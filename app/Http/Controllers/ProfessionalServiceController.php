@@ -388,7 +388,9 @@ class ProfessionalServiceController extends Controller
     public function downloadFormatted(ProfessionalServiceRequest $serviceRequest)
     {
         // User can only download their own completed files
-        if (Auth::user()->role !== 'admin' && $serviceRequest->user_id !== Auth::id()) {
+        // 'admin' is not a role in this app (they are super_admin / editor),
+        // so this check never matched and admins could never download.
+        if (!Auth::user()->is_admin && $serviceRequest->user_id !== Auth::id()) {
             abort(403);
         }
 

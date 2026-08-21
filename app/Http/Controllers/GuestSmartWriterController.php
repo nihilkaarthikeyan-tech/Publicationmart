@@ -782,6 +782,9 @@ class GuestSmartWriterController extends Controller
     public function downloadBook(Request $request, $token, $format = 'docx')
     {
         $session = GuestWritingSession::where('session_token', $token)->firstOrFail();
+        // The generate/save endpoints require a paid session; the download did
+        // not, so an unpaid session could still take the finished book.
+        abort_unless($session->isValid(), 403, 'This writing session is not active. Please complete payment to continue.');
 
         if ($format === 'pdf') {
             return $this->generatePDF($session);
@@ -793,6 +796,8 @@ class GuestSmartWriterController extends Controller
     public function export(Request $request, $token)
     {
         $session = GuestWritingSession::where('session_token', $token)->firstOrFail();
+        // Same guard as downloadBook: an unpaid session must not take the book.
+        abort_unless($session->isValid(), 403, 'This writing session is not active. Please complete payment to continue.');
 
         $format = $request->query('format', 'docx');
 

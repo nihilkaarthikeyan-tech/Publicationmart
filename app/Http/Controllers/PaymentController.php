@@ -123,7 +123,7 @@ class PaymentController extends Controller
     {
         $request->validate([
             'book_id' => 'required|exists:books,id',
-            'copies' => 'required|integer|min:0',
+            'copies' => 'required|integer|min:1|max:1000',
         ]);
 
         $book = \App\Models\Book::findOrFail($request->book_id);
@@ -164,7 +164,7 @@ class PaymentController extends Controller
     {
         $request->validate([
             'book_id' => 'required|exists:books,id',
-            'copies' => 'required|integer|min:0',
+            'copies' => 'required|integer|min:1|max:1000',
             'shipping_address' => 'required|string|max:500',
             'city' => 'required|string|max:100',
             'state' => 'required|string|max:100',
