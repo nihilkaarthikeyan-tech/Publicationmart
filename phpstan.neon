@@ -1,0 +1,19 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+        - database
+        - routes
+
+    # Level 5 is a pragmatic starting point for an existing codebase: it catches
+    # undefined methods/properties, wrong argument types and unreachable code
+    # without drowning in missing-typehint noise. Raise over time.
+    level: 5
+
+    checkModelProperties: false
+
+    ignoreErrors:
+        # Eloquent magic that Larastan can't always resolve on dynamic models.
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder#'

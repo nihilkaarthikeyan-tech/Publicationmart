@@ -12,8 +12,8 @@ class Api2PdfService
 
     public function __construct()
     {
-        $this->apiKey = env('RAPIDAPI_KEY');
-        $this->apiHost = env('RAPIDAPI_HOST', 'api2pdf-api2pdf-v1.p.rapidapi.com');
+        $this->apiKey = config('services.api2pdf.key');
+        $this->apiHost = config('services.api2pdf.host');
     }
 
     /**

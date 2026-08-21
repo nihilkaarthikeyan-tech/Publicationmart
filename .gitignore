@@ -21,3 +21,8 @@ yarn-error.log
 Thumbs.db
 /.idea
 /.vscode
+
+# tooling output
+/stan.json
+/.phpunit.cache
+/.phpunit.result.cache

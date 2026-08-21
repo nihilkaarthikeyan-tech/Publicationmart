@@ -641,6 +641,10 @@ class GuestSmartWriterController extends Controller
             $source = ($request->mode === 'custom' && !empty($request->custom_prompt)) ? 'manual' : 'automatic';
 
             $sectionTitle = $request->section_title;
+            // Initialise here: previously $sectionContent was only assigned when
+            // the section was found, so a missing/unknown section_id hit an
+            // undefined variable further down.
+            $sectionContent = null;
             // ... (keep existing logic to find section title/content) ...
             if ($request->section_id) {
                 foreach ($session->chapters_data as $cIdx => $chap) {

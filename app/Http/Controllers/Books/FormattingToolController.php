@@ -596,6 +596,11 @@ class FormattingToolController extends Controller
         $bookSizeKey = strtolower(str_replace(' ', '', $book->book_size ?? '5.5x8.5'));
         $layoutFromBookSize = $bookSizeToLayoutMap[$bookSizeKey] ?? '5.5 x 8.5';
         $layoutName = $data['layout'] ?? $layoutFromBookSize;
+        // Keep what the user actually chose: the styled templates (e.g.
+        // 'Horror Style') are not keys in this size-based config, so the safety
+        // check below used to overwrite the name and the Horror background was
+        // never applied.
+        $requestedTemplate = $data['layout'] ?? null;
         // Ensure the layout actually exists in our config (safety check)
         if (!isset($templateConfigs[$layoutName])) {
             $layoutName = $layoutFromBookSize;
@@ -645,7 +650,7 @@ class FormattingToolController extends Controller
         // (Pandoc ignores this for DOCX, but Api2Pdf will use it for the PDF preview)
         $backgroundColor = '#ffffff';
         $backgroundImageCss = '';
-        if ($layoutName === 'Horror Style') {
+        if ($requestedTemplate === 'Horror Style' || $layoutName === 'Horror Style') {
             $backgroundColor = '#1a1a1a';
             // Force text color to be light if it was accidentally saved as black
             if ($color === '#000000' || $color === '#1e293b') {
@@ -1352,7 +1357,9 @@ class FormattingToolController extends Controller
         // Extract base64 images to temp files (PHPWord handles file paths more reliably)
         $content = preg_replace_callback('/src="data:image\/([^;]+);base64,([^"]+)"/', function ($matches) {
             $extension = $matches[1] === 'jpeg' ? 'jpg' : $matches[1];
-            $imageData = base64_decode($matches[2]);
+            // Strict mode: without it base64_decode() never returns false, so
+            // the guard below could not fire and malformed data became garbage.
+            $imageData = base64_decode($matches[2], true);
             if ($imageData === false)
                 return $matches[0];
 
@@ -2200,6 +2207,7 @@ class FormattingToolController extends Controller
         $nodes = $xpath->query('//h1 | //h2 | //h3');
 
         foreach ($nodes as $node) {
+            $numStr = '';
             if ($node->nodeName === 'h1') {
                 $h1Count++;
                 $h2Count = 0;

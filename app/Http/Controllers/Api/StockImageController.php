@@ -18,8 +18,8 @@ class StockImageController extends Controller
             return response()->json(['photos' => []]);
         }
 
-        // Get API Key from .env
-        $apiKey = env('VITE_PEXELS_API_KEY');
+        // Via config() so it survives `php artisan config:cache`.
+        $apiKey = config('services.pexels.key');
 
         if (!$apiKey) {
             return response()->json(['error' => 'API Key not configured'], 500);

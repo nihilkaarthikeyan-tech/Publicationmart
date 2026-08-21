@@ -2,6 +2,17 @@
 
 return [
 
+    'api2pdf' => [
+        // Read via config() so these keep working when the config is cached
+        // (env() returns null once `php artisan config:cache` has run).
+        'key'  => env('RAPIDAPI_KEY'),
+        'host' => env('RAPIDAPI_HOST', 'api2pdf-api2pdf-v1.p.rapidapi.com'),
+    ],
+
+    'pexels' => [
+        'key' => env('PEXELS_API_KEY', env('VITE_PEXELS_API_KEY')),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
