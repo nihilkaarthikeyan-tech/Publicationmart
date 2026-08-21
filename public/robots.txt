@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /book-store/buy/*
+Disallow: /nova
+Disallow: /telescope
+Disallow: /horizon
+Disallow: /api/*
+
+# Allow Googlebot to crawl assets for proper rendering
+Allow: /build/
+Allow: /storage/
+Allow: /images/
+Allow: /js/
+Allow: /css/
+
+Sitemap: https://publicationmart.com/sitemap.xml

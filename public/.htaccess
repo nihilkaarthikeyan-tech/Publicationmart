@@ -1,0 +1,83 @@
+# --- SMART CACHE CONFIGURATION ---
+
+# 1. Disable LiteSpeed Cache ONLY for HTML (Fixes Double Render)
+<IfModule LiteSpeed>
+    CacheDisable public /
+    RewriteEngine On
+    # Only disable cache for non-static files
+    RewriteCond %{REQUEST_URI} !\.(css|js|jpg|jpeg|png|gif|ico|woff|woff2|ttf|svg|eot)$ [NC]
+    RewriteRule .* - [E=Cache-Control:no-cache]
+</IfModule>
+
+# 2. Browser Caching Headers
+<IfModule mod_headers.c>
+    # DEFAULT: Do NOT cache anything (Safety for HTML)
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+
+    # OVERRIDE: Cache Static Assets for 1 Year (Speed for Navigation)
+    <FilesMatch "\.(css|js|jpg|jpeg|png|gif|ico|woff|woff2|ttf|svg|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header unset Pragma
+        Header unset Expires
+    </FilesMatch>
+
+    # 3. SEO: Do not index the sitemap file itself (Prevents it from showing in search results)
+    <Files "sitemap.xml">
+        Header set X-Robots-Tag "noindex"
+    </Files>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes +FollowSymLinks
+    </IfModule>
+
+    RewriteEngine On
+
+    # Force HTTPS and non-www (SEO: single canonical domain)
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} ^www\. [NC]
+    RewriteRule ^ https://publicationmart.com%{REQUEST_URI} [L,R=301]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Handle X-XSRF-Token Header
+    RewriteCond %{HTTP:x-xsrf-token} .
+    RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# --- PHP LIMIT OVERRIDES ---
+# Works with Apache mod_php
+<IfModule mod_php.c>
+    php_value upload_max_filesize 1024M
+    php_value post_max_size 1024M
+    php_value memory_limit 1024M
+    php_value max_execution_time 600
+    php_value max_input_time 600
+    php_value max_input_vars 3000
+</IfModule>
+
+# Works with LiteSpeed Server (LSAPI)
+<IfModule LiteSpeed>
+    php_value upload_max_filesize 1024M
+    php_value post_max_size 1024M
+    php_value memory_limit 1024M
+    php_value max_execution_time 600
+    php_value max_input_time 600
+    php_value max_input_vars 3000
+</IfModule>
+
