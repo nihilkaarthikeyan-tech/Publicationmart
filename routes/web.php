@@ -94,8 +94,9 @@ Route::post('/api/studio/presale/otp', [\App\Http\Controllers\PresaleBookingCont
 // Challenge Routes (Guest can access)
 Route::get('/challenges', [ChallengeController::class , 'index'])->name('challenges.index');
 Route::post('/challenges', [ChallengeController::class , 'store'])->name('challenges.store');
-Route::get('/challenges/{enrollment}/payment', [ChallengeController::class , 'payment'])->name('challenges.payment');
-Route::post('/challenges/{enrollment}/pay', [ChallengeController::class , 'processPayment'])->name('challenges.process-payment');
+// Removed: ChallengeController::payment()/processPayment() were deleted when the
+// direct-payment flow replaced the confirmation page. These routes pointed at
+// missing methods and returned a server error if reached.
 Route::get('/challenges/{enrollment}/success', [ChallengeController::class , 'success'])->name('challenges.success');
 
 // Guest Smart Writer Routes (No login required)
@@ -261,10 +262,9 @@ Route::middleware('auth')->group(function () {
             Route::patch('/challenge-enrollments/{enrollment}', [App\Http\Controllers\ChallengeController::class , 'adminUpdateStatus'])->name('challenge-enrollments.update');
             Route::delete('/challenge-enrollments/{enrollment}', [App\Http\Controllers\ChallengeController::class , 'adminDestroy'])->name('challenge-enrollments.destroy');
 
-            // Challenge Settings (Video Management)
-            Route::get('/challenge-settings', [App\Http\Controllers\ChallengeController::class , 'adminSettings'])->name('challenge-settings.index');
-            Route::post('/challenge-settings', [App\Http\Controllers\ChallengeController::class , 'adminUpdateSettings'])->name('challenge-settings.update');
-            Route::delete('/challenge-settings/remove-video', [App\Http\Controllers\ChallengeController::class , 'adminRemoveVideo'])->name('challenge-settings.remove-video');
+            // Removed: Challenge Settings (video management) was never implemented —
+            // no controller methods, no admin page. The routes errored if reached.
+            // The challenge_settings table exists if this is built later.
 
             // Studio Approval Management (Renamed from Blogs)
             Route::get('/studio/submissions', [App\Http\Controllers\Admin\AdministratorController::class , 'manageBlogs'])->name('blogs.manage');
@@ -307,7 +307,9 @@ Route::middleware('auth')->group(function () {
                 );
 
                 // Certificate Management Routes
-                Route::resource('certificates', App\Http\Controllers\Admin\AdminCertificateController::class);
+                // Only the implemented actions — the controller has no create/show/edit/update.
+                Route::resource('certificates', App\Http\Controllers\Admin\AdminCertificateController::class)
+                    ->only(['index', 'store', 'destroy']);
             }
             );
 
