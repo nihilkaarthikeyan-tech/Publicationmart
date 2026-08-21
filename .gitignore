@@ -5,7 +5,7 @@
 /public/storage
 /storage/*.key
 /storage/app/*
-!/storage/app/public/
+/storage/app/public/*
 /storage/framework/cache/*
 /storage/framework/sessions/*
 /storage/framework/views/*
