@@ -82,6 +82,19 @@ class FormattingToolController extends Controller
                 'visibleFrontMatterKeys'=> 'array',
                 'layout'                => 'string'
             ]);
+
+            // The generators read $item['id'] directly on each entry, so a
+            // malformed payload (e.g. a bare string instead of an object) used
+            // to raise a TypeError deep inside generation and return a 500.
+            // Drop anything that is not a well-formed entry.
+            foreach (['frontMatters', 'chapters', 'endMatters'] as $listKey) {
+                if (!empty($data[$listKey]) && is_array($data[$listKey])) {
+                    $data[$listKey] = array_values(array_filter(
+                        $data[$listKey],
+                        fn($entry) => is_array($entry) && isset($entry['id'])
+                    ));
+                }
+            }
         } else {
             $data = $book->formatting_data;
             if (empty($data) || !is_array($data)) {
