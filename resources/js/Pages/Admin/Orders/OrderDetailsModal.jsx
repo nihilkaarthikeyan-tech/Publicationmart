@@ -19,6 +19,7 @@ export default function OrderDetailsModal({ order, onClose }) {
         ['Book', order.book_title],
         ['Amount', `₹${Number(order.amount).toFixed(2)}`],
         ['Payment Status', order.status],
+        ['Ordered Date', order.date],
         ['Customer', ship.full_name || order.customer_name],
         ['Email', ship.email],
         ['Phone', ship.phone],

@@ -631,6 +631,7 @@ class PaymentController extends Controller
                 // Notify Admin for Book Orders
                 try {
                     \Illuminate\Support\Facades\Mail::to(config('mail.from.address', 'admin@publicationmart.com'))
+                        ->cc('ranjith.mecs@gmail.com')
                         ->send(new \App\Mail\OrderPlacedNotification($txn));
                 } catch (\Exception $e) {
                     \Illuminate\Support\Facades\Log::error('Order Notification Email Failed: ' . $e->getMessage());
