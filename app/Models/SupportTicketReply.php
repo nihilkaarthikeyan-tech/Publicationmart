@@ -21,12 +21,12 @@ class SupportTicketReply extends Model
         'is_admin' => 'boolean',
     ];
 
-    public function ticket()
+    public function ticket(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(SupportTicket::class, 'support_ticket_id');
     }
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }

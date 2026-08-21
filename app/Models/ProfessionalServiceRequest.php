@@ -29,7 +29,7 @@ class ProfessionalServiceRequest extends Model
     /**
      * Get the user who made the request
      */
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -37,7 +37,7 @@ class ProfessionalServiceRequest extends Model
     /**
      * Get the associated book (optional)
      */
-    public function book()
+    public function book(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Book::class);
     }
@@ -45,7 +45,7 @@ class ProfessionalServiceRequest extends Model
     /**
      * Get the admin assigned to this request
      */
-    public function assignedAdmin()
+    public function assignedAdmin(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'assigned_to');
     }

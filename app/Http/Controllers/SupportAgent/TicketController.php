@@ -109,7 +109,7 @@ class TicketController extends Controller
                     'attachment_path' => $r->attachment_path,
                     'author_name'     => $r->is_admin
                         ? 'Support Team'
-                        : ($r->user?->name ?? $ticket->name),
+                        : ($r->user->name ?? $ticket->name),
                     'created_at'      => $r->created_at->format('d M Y, h:i A'),
                 ]),
             ],

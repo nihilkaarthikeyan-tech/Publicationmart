@@ -53,7 +53,7 @@ class GuestWritingSession extends Model
     /**
      * Get user associated with this session
      */
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -61,7 +61,7 @@ class GuestWritingSession extends Model
     /**
      * Get book if this session was converted to a real book
      */
-    public function book()
+    public function book(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Book::class);
     }

@@ -29,7 +29,7 @@ class Coupon extends Model
         'min_order_value' => 'decimal:2',
     ];
 
-    public function creator()
+    public function creator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }

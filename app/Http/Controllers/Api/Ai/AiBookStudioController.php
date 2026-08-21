@@ -638,7 +638,7 @@ class AiBookStudioController extends Controller
 
         // ALLOCATION LOGIC per requirement (UPDATED FOR EFFICIENCY)
         $totalCapacityWords = $maxPages * 275;
-        $targetWords = floor($totalCapacityWords / $totalSubchapters);
+        $targetWords = (int) floor($totalCapacityWords / $totalSubchapters);
         $pagesPerSubchapter = $targetWords / 275; // For prompt context (can be float now)
 
         // Minimum viable length check (approx 0.5 pages or 130 words)

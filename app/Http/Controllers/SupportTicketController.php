@@ -124,7 +124,7 @@ class SupportTicketController extends Controller
                     'message'        => $r->message,
                     'is_admin'       => $r->is_admin,
                     'attachment_path'=> $r->attachment_path,
-                    'author_name'    => $r->is_admin ? 'Support Team' : ($r->user?->name ?? $ticket->name),
+                    'author_name'    => $r->is_admin ? 'Support Team' : ($r->user->name ?? $ticket->name),
                     'created_at'     => $r->created_at->format('d M Y, h:i A'),
                 ]),
             ],

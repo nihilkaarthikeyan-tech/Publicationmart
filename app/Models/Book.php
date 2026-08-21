@@ -92,12 +92,12 @@ class Book extends Model
         };
     }
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function aiChapters()
+    public function aiChapters(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(AiChapter::class)->orderBy('order_index');
     }

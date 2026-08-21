@@ -520,7 +520,7 @@ class GuestSmartWriterController extends Controller
         // New Logic: (pages * 275) / sections -> precise word count
 
         $totalCapacityWords = $maxPages * 275;
-        $targetWords = floor($totalCapacityWords / $totalSubchapters);
+        $targetWords = (int) floor($totalCapacityWords / $totalSubchapters);
         $pagesPerSubchapter = $targetWords / 275; // For prompt context (can be float now)
 
         // Minimum viable length check (approx 0.5 pages or 130 words)

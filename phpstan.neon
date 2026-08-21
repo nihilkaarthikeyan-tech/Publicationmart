@@ -17,3 +17,8 @@ parameters:
     ignoreErrors:
         # Eloquent magic that Larastan can't always resolve on dynamic models.
         - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder#'
+        # Attribute access on a relation that PHPStan resolves to the base
+        # Model class. These are real database columns; PHPStan cannot see them
+        # without @property docblocks on every model. Verified false positives.
+
+        - '#Access to an undefined property Illuminate\\Database\\Eloquent\\Model::#'

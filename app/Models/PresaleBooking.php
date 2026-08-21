@@ -19,7 +19,7 @@ class PresaleBooking extends Model
         'is_verified' => 'boolean',
     ];
 
-    public function blog()
+    public function blog(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Blog::class);
     }

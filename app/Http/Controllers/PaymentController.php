@@ -609,7 +609,9 @@ class PaymentController extends Controller
                 if ($txn->author_id && $txn->author_revenue > 0) {
                     $author = \App\Models\User::find($txn->author_id);
                     if ($author) {
-                        $author->increment('wallet_balance', $txn->author_revenue);
+                        // Cast: decimal columns are returned as strings by the
+                        // driver, and increment() expects a numeric type.
+                        $author->increment('wallet_balance', (float) $txn->author_revenue);
                     }
                 }
 

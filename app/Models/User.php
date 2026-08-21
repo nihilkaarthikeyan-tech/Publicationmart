@@ -105,17 +105,17 @@ class User extends Authenticatable implements MustVerifyEmail
         });
     }
 
-    public function referrer()
+    public function referrer(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'referrer_id');
     }
 
-    public function referrals()
+    public function referrals(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(User::class, 'referrer_id');
     }
 
-    public function campaignCode()
+    public function campaignCode(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(\App\Models\CampaignCode::class, 'campaign_code_id');
     }
@@ -134,12 +134,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $bonus;
     }
 
-    public function books()
+    public function books(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Book::class);
     }
 
-    public function supportTickets()
+    public function supportTickets(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(SupportTicket::class);
     }

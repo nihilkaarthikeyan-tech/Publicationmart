@@ -25,7 +25,7 @@ class CampaignCode extends Model
     /**
      * Get the admin who created this campaign code.
      */
-    public function creator()
+    public function creator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
@@ -33,7 +33,7 @@ class CampaignCode extends Model
     /**
      * Get all users who registered with this campaign code.
      */
-    public function users()
+    public function users(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(User::class, 'campaign_code_id');
     }

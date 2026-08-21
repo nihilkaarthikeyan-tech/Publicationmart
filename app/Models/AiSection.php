@@ -21,7 +21,7 @@ class AiSection extends Model
         'image_url'
     ];
 
-    public function chapter()
+    public function chapter(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(AiChapter::class, 'ai_chapter_id');
     }
