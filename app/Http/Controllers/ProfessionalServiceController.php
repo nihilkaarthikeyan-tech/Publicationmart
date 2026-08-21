@@ -133,11 +133,12 @@ class ProfessionalServiceController extends Controller
         $txnId = 'PRO_' . $serviceRequest->id;
 
         // --- BYPASS LOGIC FOR TEST DOMAINS ---
-        $host = request()->getHost();
-        $isTestDomain = str_contains($host, 'radinfotec') || str_contains($host, 'localhost') || $host === '127.0.0.1';
+        // SECURITY: payment bypass is allowed ONLY in the local dev environment,
+        // never based on a client-supplied Host header (was Host-spoofable).
+        $isTestDomain = app()->environment('local');
         
         if ($isTestDomain) {
-            \Illuminate\Support\Facades\Log::info('Bypassing Professional Service payment for test domain: ' . $host);
+            \Illuminate\Support\Facades\Log::info('Bypassing Professional Service payment (local dev environment)');
             
             $nextStatus = ($serviceRequest->service_type !== 'cover') ? 'pending_upload' : 'pending';
             $serviceRequest->update(['status' => $nextStatus, 'payment_id' => $txnId]);

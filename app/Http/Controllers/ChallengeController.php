@@ -65,16 +65,24 @@ class ChallengeController extends Controller
             'payment_status' => 'pending'
         ]);
 
+        // Remember this enrollment in the session so the success page can be
+        // shown to the guest/user who created it — without exposing others'
+        // enrollments by sequential id (IDOR/PII fix).
+        $mine = session('my_enrollments', []);
+        $mine[] = $enrollment->id;
+        session(['my_enrollments' => array_values(array_unique($mine))]);
+
         // Direct Payment Initiation (Skip Payment Confirmation Page)
         $txnId = 'CHAL_' . $enrollment->id . '_' . time();
         $amount = $entryFee;
 
         // --- BYPASS LOGIC FOR TEST DOMAINS ---
-        $host = request()->getHost();
-        $isTestDomain = str_contains($host, 'radinfotec') || str_contains($host, 'localhost') || $host === '127.0.0.1';
+        // SECURITY: payment bypass is allowed ONLY in the local dev environment,
+        // never based on a client-supplied Host header (was Host-spoofable).
+        $isTestDomain = app()->environment('local');
         
         if ($isTestDomain) {
-            \Illuminate\Support\Facades\Log::info('Bypassing Challenge payment for test domain: ' . $host);
+            \Illuminate\Support\Facades\Log::info('Bypassing Challenge payment (local dev environment)');
             
             $enrollment->update(['payment_status' => 'paid']);
             return redirect()->route('challenges.success', ['enrollment' => $enrollment->id]);
@@ -119,6 +127,14 @@ class ChallengeController extends Controller
         if ($enrollment->payment_status !== 'paid') {
             // Optional: Check with PhonePe one last time if needed, or:
             return redirect()->route('challenges.index')->with('error', 'Payment not confirmed yet. Please checking back in a few moments.');
+        }
+
+        // SECURITY: only the enrollee may view this page (it shows name, email,
+        // phone). Allow the logged-in owner, or the session that created it.
+        $ownsBySession = in_array($enrollment->id, session('my_enrollments', []), true);
+        $ownsByAuth = auth()->check() && $enrollment->user_id === auth()->id();
+        if (!$ownsBySession && !$ownsByAuth) {
+            abort(403);
         }
 
         return Inertia::render('Challenges/Success', [

@@ -66,10 +66,19 @@ class BookStoreController extends Controller
             'book_id' => 'required|exists:books,id',
             'format' => 'required|in:hardcover,audiobook,ebook',
             'quantity' => 'required|integer|min:1',
-            'amount' => 'required|numeric|min:0',
         ]);
 
         $book = Book::findOrFail($validated['book_id']);
+
+        // SECURITY: price is computed server-side from the book's per-format
+        // price, never taken from the request. Falls back to selling_price.
+        $unitPrice = match ($validated['format']) {
+            'hardcover' => (float) ($book->hardcover_price ?? $book->selling_price ?? 0),
+            'ebook'     => (float) ($book->ebook_price ?? $book->selling_price ?? 0),
+            'audiobook' => (float) ($book->audio_price ?? round(((float) ($book->selling_price ?? 0)) * 0.7)),
+            default     => (float) ($book->selling_price ?? 0),
+        };
+        $amount = round($unitPrice * $validated['quantity'], 2);
 
         // Create a pending transaction
         $transaction = \App\Models\Transaction::create([
@@ -77,9 +86,9 @@ class BookStoreController extends Controller
             'user_id' => auth()->id(),
             'author_id' => $book->user_id,
             'quantity' => $validated['quantity'],
-            'amount' => $validated['amount'],
-            'author_revenue' => $validated['amount'] * 0.7, // 70% to author
-            'platform_commission' => $validated['amount'] * 0.3, // 30% platform fee
+            'amount' => $amount,
+            'author_revenue' => round($amount * 0.7, 2), // 70% to author
+            'platform_commission' => round($amount * 0.3, 2), // 30% platform fee
             'sales_channel' => 'direct',
             'format' => $validated['format'],
             'payment_status' => 'pending',
@@ -92,7 +101,7 @@ class BookStoreController extends Controller
             'book' => $book,
             'transaction' => $transaction,
             'format' => $validated['format'],
-            'amount' => $validated['amount'],
+            'amount' => $amount,
         ]);
     }
 }

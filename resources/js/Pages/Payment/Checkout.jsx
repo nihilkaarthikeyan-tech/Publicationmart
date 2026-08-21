@@ -123,11 +123,15 @@ export default function Checkout({ auth, book, purchaseType = 'hardcover' }) {
 
         setIsProcessing(true);
         router.post(route('payment.process', book.id), {
-            amount: total,
+            // NOTE: amount is intentionally NOT sent — the server computes it
+            // from the book price and re-validates the coupon. purchase_type
+            // and coupon_code let the server reproduce the displayed total.
             payment_method: 'phonepe',
+            purchase_type: purchaseType,
+            coupon_code: appliedCoupon,
             shipping_details: {
                 ...form,
-                coupon_code: appliedCoupon // Pass applied coupon code in shipping details (or better in a separate field if changed backend, but notes column works via shipping_details json)
+                coupon_code: appliedCoupon
             }
         }, {
             onError: () => setIsProcessing(false),

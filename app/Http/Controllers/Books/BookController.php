@@ -76,6 +76,8 @@ class BookController extends Controller
 
     public function design(Book $book)
     {
+        // SECURITY: enforce book ownership (was missing — IDOR).
+        if ($book->user_id !== Auth::id()) { abort(403); }
         // Ideally check policy if user owns book
         return Inertia::render('Books/Design', [
             'book' => $book
@@ -84,6 +86,8 @@ class BookController extends Controller
 
     public function coverCreator(Book $book)
     {
+        // SECURITY: enforce book ownership (was missing — IDOR).
+        if ($book->user_id !== Auth::id()) { abort(403); }
         return Inertia::render('Books/CoverCreator', [
             'book' => $book
         ]);
@@ -94,6 +98,8 @@ class BookController extends Controller
      */
     public function saveCover(Request $request, Book $book)
     {
+        // SECURITY: enforce book ownership (was missing — IDOR).
+        if ($book->user_id !== Auth::id()) { abort(403); }
         // Validate
         $request->validate([
             'cover_data' => 'nullable', // Flexible (array or JSON string)
@@ -139,6 +145,8 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
+        // SECURITY: enforce book ownership (was missing — IDOR).
+        if ($book->user_id !== Auth::id()) { abort(403); }
         // Handle explicit file removal
         if ($request->boolean('remove_interior_file')) {
             if ($book->interior_file) {
@@ -336,6 +344,8 @@ class BookController extends Controller
 
     public function details(Book $book)
     {
+        // SECURITY: enforce book ownership (was missing — IDOR).
+        if ($book->user_id !== Auth::id()) { abort(403); }
         $book->load('aiChapters.sections');
         return Inertia::render('Books/Details', [
             'book' => $book,
@@ -344,6 +354,8 @@ class BookController extends Controller
 
     public function updateDetails(Request $request, Book $book)
     {
+        // SECURITY: enforce book ownership (was missing — IDOR).
+        if ($book->user_id !== Auth::id()) { abort(403); }
         $validated = $request->validate([
             'author_biography' => 'required|string|min:10',
             'about_book' => 'required|string|min:20',
@@ -377,6 +389,8 @@ class BookController extends Controller
 
     public function review(Book $book)
     {
+        // SECURITY: enforce book ownership (was missing — IDOR).
+        if ($book->user_id !== Auth::id()) { abort(403); }
         return Inertia::render('Books/Review', [
             'book' => $book
         ]);

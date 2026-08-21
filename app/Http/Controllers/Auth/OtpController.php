@@ -30,9 +30,6 @@ class OtpController extends Controller
         // Explicitly use 'file' store to ensure persistence even if DB cache is misconfigured
         Cache::store('file')->put($cacheKey, $otp, now()->addMinutes(10));
 
-        // Log the OTP for debugging (Remove in final production if strict security needed)
-        \Illuminate\Support\Facades\Log::info("OTP generated for {$email}: {$otp} (Stored in File Cache)");
-
         // Send OTP via email
         try {
             Mail::raw(

@@ -128,11 +128,12 @@ class GuestSmartWriterController extends Controller
         session(['guest_writer_token' => $session->session_token]);
 
         // --- BYPASS LOGIC FOR TEST DOMAINS ---
-        $host = request()->getHost();
-        $isTestDomain = str_contains($host, 'radinfotec') || str_contains($host, 'localhost') || $host === '127.0.0.1';
+        // SECURITY: payment bypass is allowed ONLY in the local dev environment,
+        // never based on a client-supplied Host header (was Host-spoofable).
+        $isTestDomain = app()->environment('local');
         
         if ($isTestDomain) {
-            \Illuminate\Support\Facades\Log::info('Bypassing Guest Writer payment for test domain: ' . $host);
+            \Illuminate\Support\Facades\Log::info('Bypassing Guest Writer payment (local dev environment)');
             
             // Fulfill the session directly
             $session->update([
@@ -195,6 +196,7 @@ class GuestSmartWriterController extends Controller
     public function save(Request $request, $token)
     {
         $session = GuestWritingSession::where('session_token', $token)->firstOrFail();
+        abort_unless($session->isValid(), 403, 'This writing session is not active. Please complete payment to continue.');
 
         $validated = $request->validate([
             'current_step' => 'nullable|integer',
@@ -231,6 +233,7 @@ class GuestSmartWriterController extends Controller
     {
         $token = $request->input('session_token');
         $session = GuestWritingSession::where('session_token', $token)->firstOrFail();
+        abort_unless($session->isValid(), 403, 'This writing session is not active. Please complete payment to continue.');
 
         $request->validate([
             'topic' => 'required|string',
@@ -353,6 +356,7 @@ class GuestSmartWriterController extends Controller
     {
         $token = $request->input('session_token');
         $session = GuestWritingSession::where('session_token', $token)->firstOrFail();
+        abort_unless($session->isValid(), 403, 'This writing session is not active. Please complete payment to continue.');
 
         $request->validate([
             'chapter_id' => 'required',
@@ -443,6 +447,7 @@ class GuestSmartWriterController extends Controller
     {
         $token = $request->input('session_token');
         $session = GuestWritingSession::where('session_token', $token)->firstOrFail();
+        abort_unless($session->isValid(), 403, 'This writing session is not active. Please complete payment to continue.');
 
         $request->validate([
             'section_id' => 'required',
@@ -613,6 +618,7 @@ class GuestSmartWriterController extends Controller
     {
         $token = $request->input('session_token');
         $session = GuestWritingSession::where('session_token', $token)->firstOrFail();
+        abort_unless($session->isValid(), 403, 'This writing session is not active. Please complete payment to continue.');
 
         // Allow all paid plans to generate images
         // if ($session->plan_type !== 'premium') { ... }

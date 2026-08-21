@@ -193,11 +193,12 @@ class AiBookStudioController extends Controller
         ]);
 
         // --- BYPASS LOGIC FOR TEST DOMAINS ---
-        $host = request()->getHost();
-        $isTestDomain = str_contains($host, 'radinfotec') || str_contains($host, 'localhost') || $host === '127.0.0.1';
+        // SECURITY: payment bypass is allowed ONLY in the local dev environment,
+        // never based on a client-supplied Host header (was Host-spoofable).
+        $isTestDomain = app()->environment('local');
         
         if ($isTestDomain) {
-            \Illuminate\Support\Facades\Log::info('Bypassing AI Studio payment for test domain: ' . $host);
+            \Illuminate\Support\Facades\Log::info('Bypassing AI Studio payment (local dev environment)');
             
             // Fulfill the transaction
             $book->update([
@@ -894,8 +895,8 @@ class AiBookStudioController extends Controller
             // Save to DB
             $section->update(['image_url' => $localUrl]);
 
-            // Increment Usage
-            // $book->increment('image_credits_used');
+            // Increment Usage (was commented out — image limit never enforced, H6)
+            $book->increment('image_credits_used');
 
             return response()->json([
                 'success' => true,

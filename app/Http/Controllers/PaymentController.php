@@ -149,8 +149,9 @@ class PaymentController extends Controller
      */
     private function isTestDomain()
     {
-        $host = request()->getHost();
-        return str_contains($host, 'radinfotec') || str_contains($host, 'localhost') || $host === '127.0.0.1';
+        // SECURITY: only bypass payment in the local dev environment.
+        // Previously this trusted the client Host header (spoofable).
+        return app()->environment('local');
     }
 
     /**
@@ -269,11 +270,45 @@ class PaymentController extends Controller
     /**
      * Process payment (General Book Purchase)
      */
+    /**
+     * Compute the authoritative order amount for a general book purchase,
+     * server-side, from the book's stored price. NEVER trust a client amount.
+     *
+     * Mirrors resources/js/Pages/Payment/Checkout.jsx: audio = 70% of selling
+     * price, everything else = full selling price. Any coupon is re-validated
+     * and the discount is recomputed here.
+     *
+     * @return array{base: float, discount: float, amount: float, coupon: ?string}
+     */
+    private function computeBookOrderAmount(\App\Models\Book $book, ?string $purchaseType, ?string $couponCode): array
+    {
+        $sellingPrice = (float) ($book->selling_price ?? 0);
+        $base = ($purchaseType === 'audio')
+            ? round($sellingPrice * 0.7)
+            : $sellingPrice;
+
+        $discount = 0.0;
+        $appliedCoupon = null;
+
+        if (!empty($couponCode)) {
+            $coupon = \App\Models\Coupon::where('code', strtoupper($couponCode))->first();
+            if ($coupon && $coupon->is_active
+                && (!$coupon->min_order_value || $base >= $coupon->min_order_value)) {
+                $pct = min(100, max(0, (float) $coupon->discount_percentage));
+                $discount = min(round(($base * $pct) / 100, 2), $base);
+                $appliedCoupon = $coupon->code;
+            }
+        }
+
+        $amount = max(0, round($base - $discount, 2));
+        return ['base' => $base, 'discount' => $discount, 'amount' => $amount, 'coupon' => $appliedCoupon];
+    }
+
     public function processPayment(Request $request, \App\Models\Book $book)
     {
         $validated = $request->validate([
             'payment_method' => 'required|string',
-            'amount' => 'required|numeric|min:0',
+            'purchase_type' => 'nullable|string',
             'shipping_details' => 'nullable|array', // Optional for now, but frontend enforces it
             'shipping_details.full_name' => 'nullable|string',
             'shipping_details.email' => 'nullable|email',
@@ -283,17 +318,27 @@ class PaymentController extends Controller
             'shipping_details.state' => 'nullable|string',
             'shipping_details.pincode' => 'nullable|string',
             'coupon_code' => 'nullable|string',
-            'discount_amount' => 'nullable|numeric',
         ]);
+
+        // SECURITY: amount is computed server-side from the book, never taken
+        // from the request. (Previously the client-supplied amount was trusted,
+        // allowing a book to be bought for ₹1.)
+        $pricing = $this->computeBookOrderAmount(
+            $book,
+            $validated['purchase_type'] ?? $request->query('type', 'hardcover'),
+            $validated['coupon_code'] ?? null
+        );
+        $finalAmount = $pricing['amount'];
 
         // Generate Transaction ID
         $txnId = 'BOOK_' . strtoupper(uniqid());
 
-        // Prepare Shipping Info as JSON for 'notes' column
+        // Prepare Shipping Info as JSON for 'notes' column.
+        // Record the server-computed coupon/discount so it is never lost.
         $shippingDetails = $validated['shipping_details'] ?? [];
-        if (!empty($validated['coupon_code'])) {
-            $shippingDetails['coupon_code'] = $validated['coupon_code'];
-            $shippingDetails['discount_amount'] = $validated['discount_amount'];
+        if ($pricing['coupon']) {
+            $shippingDetails['coupon_code'] = $pricing['coupon'];
+            $shippingDetails['discount_amount'] = $pricing['discount'];
         }
         $shippingJson = !empty($shippingDetails) ? json_encode($shippingDetails) : null;
 
@@ -309,19 +354,20 @@ class PaymentController extends Controller
 
         // Create Transaction Record
         try {
-            \Illuminate\Support\Facades\Log::info('Creating transaction', ['validated' => $validated]);
+            \Illuminate\Support\Facades\Log::info('Creating transaction', ['book_id' => $book->id, 'amount' => $finalAmount]);
 
-            $shippingJson = json_encode($validated['shipping_details'] ?? []);
+            // NOTE: do NOT rebuild $shippingJson here — that previously dropped
+            // the coupon/discount fields merged in above (bug M5).
 
             $transaction = \App\Models\Transaction::create([
                 'book_id' => $book->id,
                 'user_id' => $userId, // Fixed: nullable
                 'author_id' => $book->user_id, // Author to pay
                 'quantity' => 1,
-                'amount' => $validated['amount'],
+                'amount' => $finalAmount,
                 // Fees
                 'author_revenue' => 0,
-                'platform_commission' => $validated['amount'],
+                'platform_commission' => $finalAmount,
                 'payment_method' => match ($validated['payment_method'] ?? 'card') {
                     'phonepe' => 'upi',
                     'card', 'upi', 'netbanking', 'wallet' => $validated['payment_method'],
@@ -356,7 +402,7 @@ class PaymentController extends Controller
 
         $response = $this->phonePeService->initiatePayment(
             $txnId,
-            $validated['amount'],
+            $finalAmount,
             $callbackUrl,
             $redirectUrl,
             $userId ?? 'GUEST_' . uniqid(), // Pass a unique guest ID string if null

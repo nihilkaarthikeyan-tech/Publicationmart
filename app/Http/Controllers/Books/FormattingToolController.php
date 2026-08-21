@@ -11,6 +11,35 @@ use Smalot\PdfParser\Parser as PdfParser;
 
 class FormattingToolController extends Controller
 {
+    /**
+     * SECURITY: only allow embedding image files that live inside the app's
+     * own public storage / asset directories. Blocks path traversal (e.g.
+     * "storage/../../../.env") and absolute paths to arbitrary server files.
+     * Returns the safe absolute path, or null if it is outside the allowlist.
+     */
+    private function safeLocalImagePath(?string $absolutePath): ?string
+    {
+        if (!$absolutePath) {
+            return null;
+        }
+        $real = realpath($absolutePath);
+        if ($real === false) {
+            return null;
+        }
+        $allowedRoots = array_filter([
+            realpath(storage_path('app/public')),
+            realpath(public_path('storage')),
+            realpath(public_path('images')),
+            realpath(public_path('build')),
+        ]);
+        foreach ($allowedRoots as $root) {
+            if (str_starts_with($real, $root . DIRECTORY_SEPARATOR) || $real === $root) {
+                return $real;
+            }
+        }
+        return null;
+    }
+
     public function index(Book $book)
     {
         // Ensure only the owner can access (basic auth check)
@@ -1301,13 +1330,16 @@ class FormattingToolController extends Controller
                 $absolutePath = public_path(ltrim($src, '/'));
             }
 
-            if ($absolutePath && file_exists($absolutePath)) {
+            // SECURITY: only embed files inside our own storage dirs (blocks
+            // path traversal to arbitrary server files during DOCX export).
+            $safePath = $this->safeLocalImagePath($absolutePath);
+            if ($safePath) {
                 // PHPWord needs absolute file paths (not file:// URIs)
-                return 'src="' . str_replace('\\', '/', $absolutePath) . '"';
+                return 'src="' . str_replace('\\', '/', $safePath) . '"';
             }
             else {
                 if ($absolutePath) {
-                    \Log::warning('Image not found for DOCX export', ['path' => $absolutePath, 'original_src' => $src]);
+                    \Log::warning('Image not found / not allowed for DOCX export', ['original_src' => $src]);
                     return 'src=""';
                 }
             }
@@ -1978,10 +2010,13 @@ class FormattingToolController extends Controller
                 }
             }
 
-            // Resolve to base64 for DomPDF
-            if ($absolutePath && ($isRemoteUrl || file_exists($absolutePath))) {
+            // Resolve to base64 for DomPDF.
+            // SECURITY: never fetch remote URLs (SSRF) and only read files
+            // inside our own storage dirs (blocks reading .env, etc.).
+            $safePath = $isRemoteUrl ? null : $this->safeLocalImagePath($absolutePath);
+            if ($safePath) {
                 try {
-                    $imgData = @file_get_contents($absolutePath);
+                    $imgData = @file_get_contents($safePath);
                     if ($imgData !== false) {
                         $finfo = new \finfo(FILEINFO_MIME_TYPE);
                         $mimeType = $finfo->buffer($imgData) ?: 'image/png';
@@ -2000,12 +2035,8 @@ class FormattingToolController extends Controller
                     'resolved_path' => $absolutePath,
                     'original_src' => $originalSrc
                 ]);
-                // Instead of removing the image, try using the original URL directly
-                // DomPDF with isRemoteEnabled can fetch http:// URLs
-                if (strpos($originalSrc, 'http') === 0) {
-                    return 'src="' . $originalSrc . '"';
-                }
-                return 'src=""'; // Remove truly broken image
+                // SECURITY: do not re-embed untrusted/remote sources.
+                return 'src=""'; // Remove image that is not in our storage
             }
         }, $content);
 

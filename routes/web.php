@@ -9,28 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Api\StockImageController;
 use App\Http\Controllers\PublishingInquiryController;
 
-// Quick Cache Clear Route (public, temporary)
-Route::get('/clear-all-caches-now', function () {
-    try {
-        \Illuminate\Support\Facades\Artisan::call('cache:clear');
-        \Illuminate\Support\Facades\Artisan::call('route:clear');
-        \Illuminate\Support\Facades\Artisan::call('config:clear');
-        \Illuminate\Support\Facades\Artisan::call('view:clear');
-
-        // Clear User Session Data (Fixes redirect loop)
-        session()->forget('url.intended');
-        session()->flush();
-        session()->save();
-
-        if (function_exists('opcache_reset')) {
-            opcache_reset();
-        }
-        return '<h1 style="color:green;">✓ All Caches & Session Cleared!</h1><p>OPcache, route, config, view caches, and <strong>user session</strong> have been cleared.</p><a href="/admin/dashboard">Go to Dashboard</a>';
-    }
-    catch (\Exception $e) {
-        return '<h1 style="color:red;">Error</h1><p>' . $e->getMessage() . '</p>';
-    }
-});
+// (removed public /clear-all-caches-now debug route — use `php artisan` over SSH)
 
 // Dynamic Sitemap (SEO - auto-includes all books & blogs)
 Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class , 'index']);
@@ -110,19 +89,7 @@ Route::post('/studio/{blog}/presale/book', [\App\Http\Controllers\PresaleBooking
 Route::get('/api/studio/presale/captcha', [\App\Http\Controllers\PresaleBookingController::class , 'generateCaptcha'])->name('blogs.presale.captcha');
 Route::post('/api/studio/presale/otp', [\App\Http\Controllers\PresaleBookingController::class , 'sendOtp'])->name('blogs.presale.otp');
 
-// Test Email Route (TEMPORARY)
-Route::get('/test-email', function () {
-    try {
-        \Illuminate\Support\Facades\Mail::raw('Test email from server.', function ($msg) {
-                    $msg->to('editor.publicationmart@gmail.com')->subject('Direct Server Test');
-                }
-                );
-                return 'SENT! Check your inbox (and spam).';
-            }
-            catch (\Exception $e) {
-                return 'ERROR: ' . $e->getMessage();
-            }
-        });
+// (removed public /test-email debug route)
 
 // Challenge Routes (Guest can access)
 Route::get('/challenges', [ChallengeController::class , 'index'])->name('challenges.index');

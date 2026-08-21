@@ -30,11 +30,19 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         // Bypass reCAPTCHA on testing domains
-        $isTestingDomain = in_array(request()->getHost(), ['radinfotec.com', 'localhost', '127.0.0.1']);
+        $isTestingDomain = app()->environment('local'); // was Host-header based (spoofable)
 
         // Verify reCAPTCHA v3 token
         $recaptchaToken = $request->input('recaptcha_token');
-        if ($recaptchaToken && !$isTestingDomain) {
+        if (!$isTestingDomain) {
+            // SECURITY: a missing/empty token must FAIL, not silently skip the
+            // check (previously `if ($token && ...)` let attackers omit it).
+            if (!$recaptchaToken) {
+                return back()->withErrors([
+                    'email' => 'Security verification failed. Please try again.',
+                ]);
+            }
+
             $recaptchaService = app(\App\Services\RecaptchaService::class);
             $result = $recaptchaService->verify($recaptchaToken, 'login');
 
@@ -58,7 +66,7 @@ class AuthenticatedSessionController extends Controller
 
         // Check if this is an OTP login attempt
         if ($request->filled('otp')) {
-            \Illuminate\Support\Facades\Log::info("Login attempt with OTP for email: " . $request->email);
+            // SECURITY: do NOT log OTP values or email (was leaking codes to logs).
 
             // Validate email exists
             $request->validate([
@@ -66,27 +74,42 @@ class AuthenticatedSessionController extends Controller
                 'otp' => 'required|string|size:6',
             ]);
 
+            // SECURITY: rate-limit OTP verification per email+IP to stop brute
+            // force of the 6-digit code (previously this path had no throttle).
+            $throttleKey = 'otp-verify:' . \Illuminate\Support\Str::lower($request->email) . '|' . $request->ip();
+            if (\Illuminate\Support\Facades\RateLimiter::tooManyAttempts($throttleKey, 5)) {
+                $seconds = \Illuminate\Support\Facades\RateLimiter::availableIn($throttleKey);
+                return back()->withErrors([
+                    'otp' => "Too many attempts. Please try again in {$seconds} seconds.",
+                ]);
+            }
+
             // Verify OTP from FILE cache
             $cacheKey = 'otp_' . md5($request->email);
             $storedOtp = \Illuminate\Support\Facades\Cache::store('file')->get($cacheKey);
 
-            \Illuminate\Support\Facades\Log::info("Stored OTP: " . ($storedOtp ? 'FOUND' : 'NOT FOUND') . " for key: " . $cacheKey);
-
             if (!$storedOtp) {
+                \Illuminate\Support\Facades\RateLimiter::hit($throttleKey, 600);
                 return back()->withErrors([
                     'otp' => 'OTP has expired. Please request a new one.',
                 ]);
             }
 
-            if ($storedOtp !== $request->otp) {
-                \Illuminate\Support\Facades\Log::warning("OTP mismatch. Stored: {$storedOtp}, Provided: " . $request->otp);
+            // Constant-time comparison; count the failure toward the cap.
+            if (!hash_equals((string) $storedOtp, (string) $request->otp)) {
+                \Illuminate\Support\Facades\RateLimiter::hit($throttleKey, 600);
+                // Invalidate the code after 5 wrong tries so it can't be brute-forced.
+                if (\Illuminate\Support\Facades\RateLimiter::attempts($throttleKey) >= 5) {
+                    \Illuminate\Support\Facades\Cache::store('file')->forget($cacheKey);
+                }
                 return back()->withErrors([
                     'otp' => 'Invalid OTP. Please try again.',
                 ]);
             }
 
-            // OTP is valid - clear it from cache
+            // OTP is valid - clear it from cache and reset the throttle
             \Illuminate\Support\Facades\Cache::store('file')->forget($cacheKey);
+            \Illuminate\Support\Facades\RateLimiter::clear($throttleKey);
 
             $user = \App\Models\User::where('email', $request->email)->first();
 
