@@ -92,6 +92,17 @@ class Book extends Model
         };
     }
 
+    /**
+     * Whether an AI writing plan has been paid for on this book. ai_plan_type
+     * is set only after a completed AI-plan payment (PaymentController AI_
+     * branch), so its presence is the paywall for AI generation — the
+     * logged-in equivalent of GuestWritingSession::isValid().
+     */
+    public function hasPaidAiPlan(): bool
+    {
+        return !empty($this->ai_plan_type);
+    }
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);

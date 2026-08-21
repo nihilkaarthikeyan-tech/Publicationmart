@@ -212,7 +212,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/ai-studio/start-new', [App\Http\Controllers\Api\Ai\AiBookStudioController::class , 'startNewSession'])->name('ai-studio.new');
 
     // AI Writer Routes
-    Route::post('/ai/generate', [App\Http\Controllers\Api\Ai\BookWriterController::class , 'generate'])->name('ai.generate');
+    // Rate-limited: this generic AI helper has no per-book paywall, so cap it
+    // to stop it being scripted as a free unlimited AI proxy. (Whether it should
+    // require a paid plan at all is a product decision — flagged.)
+    Route::post('/ai/generate', [App\Http\Controllers\Api\Ai\BookWriterController::class , 'generate'])->name('ai.generate')->middleware('throttle:15,1');
 
     // Admin Routes - Protected by admin middleware
     Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.')->group(function () {

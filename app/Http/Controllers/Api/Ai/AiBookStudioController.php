@@ -295,6 +295,9 @@ class AiBookStudioController extends Controller
         if ($book->user_id !== \Illuminate\Support\Facades\Auth::id()) {
             abort(403);
         }
+        // SECURITY: AI generation requires a paid plan (revenue paywall).
+        // Without this, a logged-in user could generate an entire book free.
+        abort_unless($book->hasPaidAiPlan(), 403, 'Please choose and pay for a plan before generating content.');
 
         $request->validate([
             'topic' => 'nullable|string',
@@ -492,6 +495,7 @@ class AiBookStudioController extends Controller
         if ($chapter->book->user_id !== \Illuminate\Support\Facades\Auth::id()) {
             abort(403);
         }
+        abort_unless($chapter->book->hasPaidAiPlan(), 403, 'Please choose and pay for a plan before generating content.');
 
         // Get user preference from request, default to 5
         $requestedCount = $request->input('count', 5);
@@ -573,6 +577,7 @@ class AiBookStudioController extends Controller
         if ($section->chapter->book->user_id !== \Illuminate\Support\Facades\Auth::id()) {
             abort(403);
         }
+        abort_unless($section->chapter->book->hasPaidAiPlan(), 403, 'Please choose and pay for a plan before generating content.');
 
         $request->validate([
             'tone' => 'nullable|string',
@@ -751,6 +756,9 @@ class AiBookStudioController extends Controller
         }
 
         $book = $section->chapter->book;
+
+        // SECURITY: image generation requires a paid plan (revenue paywall).
+        abort_unless($book->hasPaidAiPlan(), 403, 'Please choose and pay for a plan before generating images.');
 
         // Check Image Credit Limit — same logic as Guest Smart Writer (15/20/30/45 based on plan)
         if ($book->image_credits_limit > 0 && $book->image_credits_used >= $book->image_credits_limit) {

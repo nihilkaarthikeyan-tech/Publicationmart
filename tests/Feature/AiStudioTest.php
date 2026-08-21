@@ -33,6 +33,8 @@ class AiStudioTest extends TestCase
             'title'               => 'AI Book',
             'author_name'         => 'Author',
             'status'              => 'draft',
+            'ai_plan_type'        => 'premium',   // paid plan (paywall tested separately)
+            'ai_plan_name'        => '80-100',
             'image_credits_used'  => 0,
             'image_credits_limit' => 15,
         ], $attrs));
