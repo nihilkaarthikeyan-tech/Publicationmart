@@ -272,6 +272,7 @@ class AdminDashboardService
                 return [
                     'id' => $t->id,
                     'transaction_id' => $t->transaction_id,
+                    'book_id' => $t->book_id,
                     'book_title' => $t->book ? $t->book->title : 'Unknown Book',
                     'amount' => (float) $t->amount,
                     'quantity' => (int) $t->quantity,

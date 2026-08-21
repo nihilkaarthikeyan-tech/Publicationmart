@@ -1,10 +1,12 @@
 import { Head, Link, router } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import CreateCouponModal from './Coupons/CreateCouponModal';
+import OrderDetailsModal from './Orders/OrderDetailsModal';
 
 export default function AdminDashboard({ auth, stats, recentBooks, topBooks, recentTransactions, monthlyRevenue, pendingBooks = [], coupons = [], isMainAdmin = false, aiWritingStats = null, latestPlatformOrders = [], challengeEnrollments = [] }) {
     const [timeRange, setTimeRange] = useState('30days');
     const [showCouponModal, setShowCouponModal] = useState(false);
+    const [selectedOrder, setSelectedOrder] = useState(null);
     const [displayPendingBooks, setDisplayPendingBooks] = useState(pendingBooks);
     const [newSubmissionAlert, setNewSubmissionAlert] = useState(false);
     const [liveStats, setLiveStats] = useState(stats);
@@ -73,6 +75,13 @@ export default function AdminDashboard({ auth, stats, recentBooks, topBooks, rec
             <Head title="Admin Dashboard" />
 
             {/* COUPON MODAL */}
+            {selectedOrder && (
+                <OrderDetailsModal
+                    order={selectedOrder}
+                    onClose={() => setSelectedOrder(null)}
+                />
+            )}
+
             {showCouponModal && (
                 <CreateCouponModal
                     onClose={() => setShowCouponModal(false)}
@@ -462,6 +471,7 @@ export default function AdminDashboard({ auth, stats, recentBooks, topBooks, rec
                                         <th className="pb-3">Shipping Details</th>
                                         <th className="pb-3 text-right">Amount</th>
                                         <th className="pb-3 text-right">Status</th>
+                                        <th className="pb-3 text-right pr-2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody className="text-sm">
@@ -491,11 +501,19 @@ export default function AdminDashboard({ auth, stats, recentBooks, topBooks, rec
                                                         {order.status}
                                                     </span>
                                                 </td>
+                                                <td className="py-4 text-right pr-2">
+                                                    <button
+                                                        onClick={() => setSelectedOrder(order)}
+                                                        className="px-3 py-1.5 bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 rounded-lg text-xs font-bold transition-colors"
+                                                    >
+                                                        View
+                                                    </button>
+                                                </td>
                                             </tr>
                                         ))
                                     ) : (
                                         <tr>
-                                            <td colSpan="6" className="py-6 text-center text-gray-500 italic">No recent store orders found.</td>
+                                            <td colSpan="7" className="py-6 text-center text-gray-500 italic">No recent store orders found.</td>
                                         </tr>
                                     )}
                                 </tbody>
