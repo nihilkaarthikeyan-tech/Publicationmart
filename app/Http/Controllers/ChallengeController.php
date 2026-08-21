@@ -22,7 +22,15 @@ class ChallengeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Challenges/Index');
+        // The page renders a promo video per challenge type, keyed by name.
+        // Without this the video section silently fell back to the placeholder.
+        $settings = \App\Models\ChallengeSetting::all()
+            ->keyBy('challenge_type')
+            ->map(fn($s) => $s->toPublicArray());
+
+        return Inertia::render('Challenges/Index', [
+            'challengeSettings' => $settings,
+        ]);
     }
 
     /**
@@ -147,6 +155,103 @@ class ChallengeController extends Controller
     /**
      * Admin: List all challenge enrollments with filters
      */
+    /**
+     * Admin: manage the promo video shown on the public Challenges page for
+     * each challenge type. Video can be an external URL (YouTube/Vimeo) or an
+     * uploaded file.
+     */
+    public function adminSettings()
+    {
+        $existing = \App\Models\ChallengeSetting::all()->keyBy('challenge_type');
+
+        $settings = collect(\App\Models\ChallengeSetting::$types)->map(function ($type) use ($existing) {
+            $s = $existing->get($type);
+            return [
+                'challenge_type'  => $type,
+                'video_type'      => $s->video_type ?? 'url',
+                'video_url'       => $s->video_url ?? null,
+                'video_file'      => $s && $s->video_file ? asset('storage/' . $s->video_file) : null,
+                'video_thumbnail' => $s && $s->video_thumbnail ? asset('storage/' . $s->video_thumbnail) : null,
+                'video_title'     => $s->video_title ?? null,
+                'has_video'       => (bool) ($s && ($s->video_url || $s->video_file)),
+            ];
+        })->values();
+
+        return Inertia::render('Admin/ChallengeSettings', [
+            'settings' => $settings,
+        ]);
+    }
+
+    public function adminUpdateSettings(Request $request)
+    {
+        $validated = $request->validate([
+            'challenge_type'  => 'required|string|in:' . implode(',', \App\Models\ChallengeSetting::$types),
+            'video_type'      => 'required|in:url,upload',
+            'video_url'       => 'nullable|url|max:255|required_if:video_type,url',
+            'video_file'      => 'nullable|file|mimes:mp4,webm,mov|max:102400|required_if:video_type,upload',
+            'video_thumbnail' => 'nullable|mimes:jpeg,jpg,png,webp|max:5120',
+            'video_title'     => 'nullable|string|max:255',
+        ]);
+
+        $setting = \App\Models\ChallengeSetting::firstOrNew(
+            ['challenge_type' => $validated['challenge_type']]
+        );
+
+        $setting->video_type  = $validated['video_type'];
+        $setting->video_title = $validated['video_title'] ?? null;
+
+        if ($validated['video_type'] === 'url') {
+            $setting->video_url = $validated['video_url'];
+            // Drop any previously uploaded file so the two sources can't diverge.
+            if ($setting->video_file) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($setting->video_file);
+                $setting->video_file = null;
+            }
+        } else {
+            if ($request->hasFile('video_file')) {
+                if ($setting->video_file) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete($setting->video_file);
+                }
+                $setting->video_file = $request->file('video_file')->store('challenge-videos', 'public');
+            }
+            $setting->video_url = null;
+        }
+
+        if ($request->hasFile('video_thumbnail')) {
+            if ($setting->video_thumbnail) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($setting->video_thumbnail);
+            }
+            $setting->video_thumbnail = $request->file('video_thumbnail')->store('challenge-videos', 'public');
+        }
+
+        $setting->save();
+
+        return back()->with('success', $validated['challenge_type'] . ' video updated.');
+    }
+
+    public function adminRemoveVideo(Request $request)
+    {
+        $validated = $request->validate([
+            'challenge_type' => 'required|string|in:' . implode(',', \App\Models\ChallengeSetting::$types),
+        ]);
+
+        $setting = \App\Models\ChallengeSetting::where('challenge_type', $validated['challenge_type'])->first();
+
+        if (!$setting) {
+            return back()->with('error', 'No video set for this challenge.');
+        }
+
+        foreach (['video_file', 'video_thumbnail'] as $field) {
+            if ($setting->$field) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($setting->$field);
+            }
+        }
+
+        $setting->delete();
+
+        return back()->with('success', $validated['challenge_type'] . ' video removed.');
+    }
+
     public function adminIndex(Request $request)
     {
         $query = ChallengeEnrollment::query()->latest();

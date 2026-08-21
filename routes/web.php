@@ -262,9 +262,10 @@ Route::middleware('auth')->group(function () {
             Route::patch('/challenge-enrollments/{enrollment}', [App\Http\Controllers\ChallengeController::class , 'adminUpdateStatus'])->name('challenge-enrollments.update');
             Route::delete('/challenge-enrollments/{enrollment}', [App\Http\Controllers\ChallengeController::class , 'adminDestroy'])->name('challenge-enrollments.destroy');
 
-            // Removed: Challenge Settings (video management) was never implemented —
-            // no controller methods, no admin page. The routes errored if reached.
-            // The challenge_settings table exists if this is built later.
+            // Challenge Settings (promo video per challenge type)
+            Route::get('/challenge-settings', [App\Http\Controllers\ChallengeController::class , 'adminSettings'])->name('challenge-settings.index');
+            Route::post('/challenge-settings', [App\Http\Controllers\ChallengeController::class , 'adminUpdateSettings'])->name('challenge-settings.update');
+            Route::delete('/challenge-settings/remove-video', [App\Http\Controllers\ChallengeController::class , 'adminRemoveVideo'])->name('challenge-settings.remove-video');
 
             // Studio Approval Management (Renamed from Blogs)
             Route::get('/studio/submissions', [App\Http\Controllers\Admin\AdministratorController::class , 'manageBlogs'])->name('blogs.manage');
