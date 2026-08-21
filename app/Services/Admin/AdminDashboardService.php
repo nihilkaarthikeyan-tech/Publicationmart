@@ -153,20 +153,28 @@ class AdminDashboardService
 
     private function getTopBooks($adminId)
     {
-        return Book::where('user_id', $adminId)
+        $books = Book::where('user_id', $adminId)
             ->where('status', 'approved')
             ->select('id', 'title', 'author_name')
+            ->get();
+
+        // M9: aggregate all sales in ONE grouped query instead of one query
+        // per book (was N+1).
+        $stats = Transaction::whereIn('book_id', $books->pluck('id'))
+            ->where('payment_status', 'completed')
+            ->groupBy('book_id')
+            ->selectRaw('book_id, SUM(author_revenue) as revenue, SUM(quantity) as sales')
             ->get()
-            ->map(function ($book) {
-                $bookTransactions = Transaction::where('book_id', $book->id)
-                    ->where('payment_status', 'completed')
-                    ->get();
+            ->keyBy('book_id');
+
+        return $books->map(function ($book) use ($stats) {
+                $s = $stats->get($book->id);
                 return [
                     'id' => $book->id,
                     'title' => $book->title,
                     'author_name' => $book->author_name,
-                    'total_revenue' => (float) $bookTransactions->sum('author_revenue'),
-                    'sales_count' => (int) $bookTransactions->sum('quantity'),
+                    'total_revenue' => (float) ($s->revenue ?? 0),
+                    'sales_count' => (int) ($s->sales ?? 0),
                 ];
             })
             ->sortByDesc('total_revenue')

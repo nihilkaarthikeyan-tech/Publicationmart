@@ -14,8 +14,8 @@ class PresaleBookingController extends Controller
 {
     public function generateCaptcha()
     {
-        $num1 = rand(1, 10);
-        $num2 = rand(1, 10);
+        $num1 = random_int(1, 10);
+        $num2 = random_int(1, 10);
         session(['presale_captcha_answer' => $num1 + $num2]);
 
         return response()->json([
@@ -40,7 +40,7 @@ class PresaleBookingController extends Controller
         }
 
         // Generate OTP
-        $otp = rand(100000, 999999);
+        $otp = random_int(100000, 999999);
 
         // Store in cache for 10 minutes
         \Illuminate\Support\Facades\Cache::put('presale_otp_' . $request->email, $otp, 600);
@@ -73,15 +73,27 @@ class PresaleBookingController extends Controller
             'otp' => 'required|integer',
         ]);
 
-        // Verify OTP
-        $cachedOtp = \Illuminate\Support\Facades\Cache::get('presale_otp_' . $request->email);
-
-        if (!$cachedOtp || $cachedOtp != $request->otp) {
-            return back()->with('error', 'Invalid or expired OTP.'); // Inertia handles error bag usually, but flash works too if we display it
+        // SECURITY: rate-limit OTP verification to stop brute force (M11).
+        $throttleKey = 'presale-otp:' . \Illuminate\Support\Str::lower($request->email) . '|' . $request->ip();
+        if (\Illuminate\Support\Facades\RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = \Illuminate\Support\Facades\RateLimiter::availableIn($throttleKey);
+            return back()->with('error', "Too many attempts. Try again in {$seconds}s.");
         }
 
-        // Clear OTP
+        // Verify OTP (constant-time)
+        $cachedOtp = \Illuminate\Support\Facades\Cache::get('presale_otp_' . $request->email);
+
+        if (!$cachedOtp || !hash_equals((string) $cachedOtp, (string) $request->otp)) {
+            \Illuminate\Support\Facades\RateLimiter::hit($throttleKey, 600);
+            if (\Illuminate\Support\Facades\RateLimiter::attempts($throttleKey) >= 5) {
+                \Illuminate\Support\Facades\Cache::forget('presale_otp_' . $request->email);
+            }
+            return back()->with('error', 'Invalid or expired OTP.');
+        }
+
+        // Clear OTP + throttle
         \Illuminate\Support\Facades\Cache::forget('presale_otp_' . $request->email);
+        \Illuminate\Support\Facades\RateLimiter::clear($throttleKey);
 
         $blog = Blog::findOrFail($blogId);
 

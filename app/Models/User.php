@@ -23,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'google_id',
         'avatar',
-        'role', // Replaces is_admin
+        // 'role' intentionally NOT mass-assignable (set explicitly in authorized code)
         'referral_code',
         'referrer_id',
         'referral_balance',

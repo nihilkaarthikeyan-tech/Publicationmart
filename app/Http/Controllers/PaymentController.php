@@ -128,6 +128,9 @@ class PaymentController extends Controller
 
         $book = \App\Models\Book::findOrFail($request->book_id);
 
+        // SECURITY: author copies are for the author's OWN book (L5).
+        if ($book->user_id !== auth()->id()) { abort(403); }
+
         // Calculate author cost using pricing matrix (matches frontend calculation)
         $authorCost = $this->calculateAuthorCost($book);
         $publishingFee = ($book->step_completed < 5) ? 2999 : 0;
@@ -173,6 +176,9 @@ class PaymentController extends Controller
         ]);
 
         $book = \App\Models\Book::findOrFail($request->book_id);
+
+        // SECURITY: author copies are for the author's OWN book (L5).
+        if ($book->user_id !== auth()->id()) { abort(403); }
 
         // Calculate author cost using pricing matrix (matches frontend calculation)
         $authorCost = $this->calculateAuthorCost($book);
@@ -572,12 +578,32 @@ class PaymentController extends Controller
                 $req->update(['status' => $nextStatus, 'payment_id' => $txnId]);
             }
         } elseif (str_starts_with($txnId, 'TXN_') || str_starts_with($txnId, 'BOOK_')) {
-            $txn = \App\Models\Transaction::where('transaction_id', $txnId)->first();
-            if ($txn && $txn->payment_status !== 'completed') {
-                $txn->update([
-                    'payment_status' => 'completed',
-                    'completed_at' => now()
-                ]);
+            // SECURITY (M4): the gateway-confirmed amount must match the order.
+            // Skipped for the local bypass path (array $gatewayData, no getAmount).
+            $expectedTxn = \App\Models\Transaction::where('transaction_id', $txnId)->first();
+            if ($expectedTxn && is_object($gatewayData) && method_exists($gatewayData, 'getAmount')) {
+                $gatewayPaisa = (int) $gatewayData->getAmount();
+                $expectedPaisa = (int) round(((float) $expectedTxn->amount) * 100);
+                if ($gatewayPaisa > 0 && $gatewayPaisa !== $expectedPaisa) {
+                    \Illuminate\Support\Facades\Log::critical('Payment amount mismatch — refusing to fulfil order', [
+                        'transaction_id' => $txnId,
+                        'expected_paisa' => $expectedPaisa,
+                        'gateway_paisa' => $gatewayPaisa,
+                    ]);
+                    return;
+                }
+            }
+
+            // SECURITY (M1): atomically claim the order so the near-simultaneous
+            // PhonePe callback and browser redirect cannot both fulfil it and
+            // double-credit the author. Only the request that flips the row from
+            // not-completed to completed proceeds with the side effects.
+            $claimed = \App\Models\Transaction::where('transaction_id', $txnId)
+                ->where('payment_status', '!=', 'completed')
+                ->update(['payment_status' => 'completed', 'completed_at' => now()]);
+
+            if ($claimed === 1) {
+                $txn = \App\Models\Transaction::where('transaction_id', $txnId)->first();
 
                 // Credit author wallet balance (if royalty is defined and author exists)
                 if ($txn->author_id && $txn->author_revenue > 0) {
@@ -614,8 +640,10 @@ class PaymentController extends Controller
                 try {
                     $shipping = json_decode($txn->notes, true) ?? [];
                     // Prefer email from shipping details (checkout form), fallback to user account
-                    $buyerEmail = $shipping['email'] ?? ($txn->user ? $txn->user->email : null);
-                    $buyerName = $shipping['full_name'] ?? ($txn->user ? $txn->user->name : 'Customer');
+                    // Author-copies orders store the buyer under billing_email/
+                    // billing_name; general orders use email/full_name (L7).
+                    $buyerEmail = $shipping['email'] ?? $shipping['billing_email'] ?? ($txn->user ? $txn->user->email : null);
+                    $buyerName = $shipping['full_name'] ?? $shipping['billing_name'] ?? ($txn->user ? $txn->user->name : 'Customer');
 
                     if ($buyerEmail) {
                         \Illuminate\Support\Facades\Mail::to($buyerEmail)
@@ -655,9 +683,19 @@ class PaymentController extends Controller
     protected function redirectSuccess($txnId)
     {
         if (str_starts_with($txnId, 'GUEST_')) {
+            // SECURITY (H3): the guest session_token is a secret. Only hand it
+            // back to the browser that actually initiated THIS payment (matched
+            // via the txn id stored in that session at initiation). Otherwise an
+            // attacker could pass another user's paid GUEST_<id> and harvest the
+            // token from the redirect.
+            if (session('pending_payment_txn_id') !== $txnId) {
+                return redirect()->route('smart-writer')
+                    ->with('error', 'Please open your writing session from the link emailed to you.');
+            }
             $id = substr($txnId, 6);
             $session = \App\Models\GuestWritingSession::find($id);
             if ($session) {
+                session()->forget('pending_payment_txn_id');
                 return redirect()->route('guest-writer.studio', ['token' => $session->session_token]);
             }
         } elseif (str_starts_with($txnId, 'CHAL_')) {

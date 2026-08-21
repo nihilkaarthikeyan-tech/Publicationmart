@@ -1835,7 +1835,7 @@ class FormattingToolController extends Controller
 
         $request->validate([
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'file' => 'required|file|mimes:docx|max:1048576',
+            'file' => 'required|file|mimes:docx|max:51200',
         ]);
 
         $file = $request->file('file');
@@ -1893,7 +1893,7 @@ class FormattingToolController extends Controller
         }
 
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,jpg,png,gif,webp,svg|max:10240', // max 10MB
+            'image' => 'required|mimes:jpeg,jpg,png,gif,webp|max:10240', // max 10MB (no SVG — XSS)
         ]);
 
         $file = $request->file('image');

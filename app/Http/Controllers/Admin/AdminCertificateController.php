@@ -31,7 +31,7 @@ class AdminCertificateController extends Controller
             'recipient_name' => 'required|string',
             'certificate_name' => 'required|string',
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'file' => 'required|file|mimes:pdf,jpg,png,jpeg|max:1048576',
+            'file' => 'required|file|mimes:pdf,jpg,png,jpeg|max:51200',
         ]);
 
         $path = $request->file('file')->store('certificates', 'public');

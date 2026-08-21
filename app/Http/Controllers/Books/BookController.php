@@ -103,7 +103,7 @@ class BookController extends Controller
         // Validate
         $request->validate([
             'cover_data' => 'nullable', // Flexible (array or JSON string)
-            'cover_image' => 'nullable|image|max:10240', // Max 10MB
+            'cover_image' => 'nullable|mimes:jpeg,jpg,png,gif,webp|max:10240', // Max 10MB (no SVG)
         ]);
 
         $updateData = [];
@@ -171,8 +171,8 @@ class BookController extends Controller
             'binding_type' => 'nullable|string',
             'interior_layout_method' => 'nullable|string',
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'interior_file' => 'nullable|file|mimes:doc,docx|max:1048576',
-            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:1048576',
+            'interior_file' => 'nullable|file|mimes:doc,docx|max:51200',
+            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:10240',
         ]);
 
         $data = $validated;

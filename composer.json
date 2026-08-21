@@ -16,6 +16,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.24",
         "laravel/tinker": "^2.10.1",
+        "mews/purifier": "^3.4",
         "phonepe/phonepe-pg-php-sdk": "^2.0",
         "phpoffice/phpword": "1.4",
         "setasign/fpdf": "^1.8",

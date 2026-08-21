@@ -51,7 +51,7 @@ class BlogController extends Controller
             'content' => 'required|string',
             'category' => 'required|string',
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'image' => 'nullable|image|max:1048576',
+            'image' => 'nullable|mimes:jpeg,jpg,png,gif,webp|max:10240',
             'image_url' => 'nullable|string', // Keep backwards compatibility or url option
             'author_name' => 'required|string',
             'is_presale' => 'boolean',
@@ -108,10 +108,16 @@ class BlogController extends Controller
             $status = 'approved';
         }
 
+        // SECURITY (H4): blog content is rendered as raw HTML on public pages
+        // (dangerouslySetInnerHTML). Sanitize it so submitted <script>/onerror/
+        // javascript: payloads cannot become stored XSS.
+        $cleanContent = \Mews\Purifier\Facades\Purifier::clean($validated['content']);
+        $cleanExcerpt = strip_tags($validated['excerpt']);
+
         \App\Models\Blog::create([
-            'title' => $validated['title'],
-            'excerpt' => $validated['excerpt'],
-            'content' => $validated['content'],
+            'title' => strip_tags($validated['title']),
+            'excerpt' => $cleanExcerpt,
+            'content' => $cleanContent,
             'category' => $validated['category'],
             'author_name' => $validated['author_name'],
             'image_url' => $validated['image_url'] ?? null,

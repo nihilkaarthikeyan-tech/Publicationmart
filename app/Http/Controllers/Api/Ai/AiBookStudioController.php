@@ -334,7 +334,7 @@ class AiBookStudioController extends Controller
             if (!$content)
                 return response()->json(['success' => false, 'message' => 'No content provided'], 422);
 
-            $titles = array_filter(explode("\n", $content), fn($line) => trim($line) !== '');
+            $titles = array_values(array_filter(explode("\n", $content), fn($line) => trim($line) !== ''));
             $book->aiChapters()->delete();
 
             foreach ($titles as $index => $title) {

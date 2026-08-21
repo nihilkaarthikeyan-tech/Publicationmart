@@ -63,7 +63,7 @@ class ProfessionalServiceController extends Controller
     {
         $request->validate([
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'manuscript' => 'required|file|mimes:doc,docx,pdf|max:1048576',
+            'manuscript' => 'required|file|mimes:doc,docx,pdf|max:51200',
             'notes' => 'nullable|string|max:2000',
             'service_type' => 'required|in:formatting,full_package',
         ]);
@@ -208,7 +208,7 @@ class ProfessionalServiceController extends Controller
 
         $request->validate([
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'manuscript' => 'required|file|mimes:doc,docx,pdf|max:1048576',
+            'manuscript' => 'required|file|mimes:doc,docx,pdf|max:51200',
             'notes' => 'nullable|string|max:2000',
         ]);
 
@@ -340,7 +340,7 @@ class ProfessionalServiceController extends Controller
     {
         $request->validate([
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'formatted_file' => 'required|file|mimes:doc,docx,pdf|max:1048576',
+            'formatted_file' => 'required|file|mimes:doc,docx,pdf|max:51200',
         ]);
 
         // Store the formatted file

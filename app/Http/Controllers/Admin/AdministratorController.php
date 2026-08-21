@@ -220,9 +220,9 @@ class AdministratorController extends Controller
             'num_pages' => 'nullable|integer',
             'interior_layout_method' => 'nullable|string',
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'interior_file' => 'nullable|file|mimes:doc,docx,pdf|max:1048576',
-            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:1048576',
-            'audio_file' => 'nullable|file|mimes:mp3,wav,m4a,ogg,aac|max:1048576',
+            'interior_file' => 'nullable|file|mimes:doc,docx,pdf|max:51200',
+            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:10240',
+            'audio_file' => 'nullable|file|mimes:mp3,wav,m4a,ogg,aac|max:102400',
 
             // External Links
             'amazon_link' => 'nullable|url',
@@ -273,7 +273,7 @@ class AdministratorController extends Controller
         if ($fileType === 'cover' && $request->hasFile('file')) {
             try {
                 // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-                $request->validate(['file' => 'required|file|mimes:jpg,jpeg,png|max:1048576']);
+                $request->validate(['file' => 'required|file|mimes:jpg,jpeg,png|max:10240']);
                 $path = $request->file('file')->store('covers', 'public');
                 $book->update(['cover_design_path' => $path]);
                 return back()->with('success', 'Cover image uploaded successfully.');
@@ -287,7 +287,7 @@ class AdministratorController extends Controller
         if ($fileType === 'interior' && $request->hasFile('file')) {
             try {
                 // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-                $request->validate(['file' => 'required|file|mimes:doc,docx,pdf|max:1048576']);
+                $request->validate(['file' => 'required|file|mimes:doc,docx,pdf|max:51200']);
                 $path = $request->file('file')->store('interiors', 'public');
                 $book->update(['interior_file' => $path]);
                 return back()->with('success', 'Interior file uploaded successfully.');
@@ -301,7 +301,7 @@ class AdministratorController extends Controller
         if ($fileType === 'audio' && $request->hasFile('file')) {
             try {
                 // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-                $request->validate(['file' => 'required|file|mimes:mp3,wav,m4a,ogg,aac|max:1048576']);
+                $request->validate(['file' => 'required|file|mimes:mp3,wav,m4a,ogg,aac|max:102400']);
                 $path = $request->file('file')->store('audiobooks', 'public');
                 $book->update(['audio_file' => $path]);
                 return back()->with('success', 'Audio file uploaded successfully.');
@@ -536,8 +536,8 @@ class AdministratorController extends Controller
             'paper_type' => 'nullable|string',
             'interior_layout_method' => 'nullable|string',
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'interior_file' => 'nullable|file|mimes:doc,docx,pdf|max:1048576',
-            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:1048576',
+            'interior_file' => 'nullable|file|mimes:doc,docx,pdf|max:51200',
+            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:10240',
         ]);
 
         $data = $validated;
