@@ -467,6 +467,7 @@ class AiBookStudioController extends Controller
         if ($book->user_id !== \Illuminate\Support\Facades\Auth::id()) {
             abort(403);
         }
+        abort_unless($book->hasPaidAiPlan(), 403, 'Please choose and pay for a plan before using the studio.');
 
         $request->validate([
             'title' => 'required|string|max:255',
@@ -549,6 +550,7 @@ class AiBookStudioController extends Controller
         if ($chapter->book->user_id !== \Illuminate\Support\Facades\Auth::id()) {
             abort(403);
         }
+        abort_unless($chapter->book->hasPaidAiPlan(), 403, 'Please choose and pay for a plan before using the studio.');
 
         $request->validate([
             'sections' => 'required|array',
@@ -958,6 +960,7 @@ class AiBookStudioController extends Controller
         if ($book->user_id !== \Illuminate\Support\Facades\Auth::id() && !\Illuminate\Support\Facades\Auth::user()->is_admin) {
             abort(403);
         }
+        abort_unless($book->hasPaidAiPlan() || \Illuminate\Support\Facades\Auth::user()->is_admin, 403, 'Please choose and pay for a plan before downloading.');
 
         $book->load('aiChapters.sections');
         $format = $request->query('format', 'docx');

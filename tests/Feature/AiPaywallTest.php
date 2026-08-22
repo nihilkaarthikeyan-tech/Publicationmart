@@ -108,4 +108,31 @@ class AiPaywallTest extends TestCase
             'a cover add-on must not unlock AI writing (got ' . $r->getStatusCode() . ')');
         Http::assertNothingSent();
     }
+
+    public function test_unpaid_book_cannot_download(): void
+    {
+        $owner = User::factory()->create();
+        $book  = $this->unpaidBook($owner);
+
+        $level = ob_get_level();
+        try {
+            $r = $this->actingAs($owner)->get(route('ai-studio.download', $book->id));
+        } finally { while (ob_get_level() < $level) { ob_start(); } }
+
+        $this->assertContains($r->getStatusCode(), [402, 403],
+            'an unpaid book must not be downloadable (got ' . $r->getStatusCode() . ')');
+    }
+
+    public function test_unpaid_book_cannot_add_manual_chapter(): void
+    {
+        $owner = User::factory()->create();
+        $book  = $this->unpaidBook($owner);
+
+        $r = $this->actingAs($owner)->postJson(route('ai-studio.chapters.manual', $book->id), [
+            'title' => 'Free chapter',
+        ]);
+
+        $this->assertContains($r->getStatusCode(), [402, 403],
+            'an unpaid book must not accept manual chapters');
+    }
 }
