@@ -93,14 +93,41 @@ class Book extends Model
     }
 
     /**
-     * Whether an AI writing plan has been paid for on this book. ai_plan_type
-     * is set only after a completed AI-plan payment (PaymentController AI_
-     * branch), so its presence is the paywall for AI generation — the
-     * logged-in equivalent of GuestWritingSession::isValid().
+     * Plan types that are NOT AI writing plans. Both are cheap add-ons
+     * (cover 499, formatting 1499) and must not unlock AI generation, which
+     * sells for 3299-21000.
+     */
+    public const NON_WRITING_PLANS = ['formatting', 'cover'];
+
+    /**
+     * Whether an AI *writing* plan has been paid for on this book.
+     *
+     * ai_plan_type is set only after a completed AI-plan payment
+     * (PaymentController AI_ branch). savePlan() accepts
+     * pro|premium|formatting|cover|publishing, and premium/publishing are
+     * stored as their tier name, so anything other than the two add-on types
+     * counts as a writing plan. This is the logged-in equivalent of
+     * GuestWritingSession::isValid().
      */
     public function hasPaidAiPlan(): bool
     {
-        return !empty($this->ai_plan_type);
+        if (empty($this->ai_plan_type)) {
+            return false;
+        }
+
+        return !in_array(strtolower($this->ai_plan_type), self::NON_WRITING_PLANS, true);
+    }
+
+    /** Whether the paid formatting add-on is active on this book. */
+    public function hasPaidFormatting(): bool
+    {
+        return strtolower($this->ai_plan_type ?? '') === 'formatting';
+    }
+
+    /** Whether the paid cover add-on is active on this book. */
+    public function hasPaidCover(): bool
+    {
+        return strtolower($this->ai_plan_type ?? '') === 'cover';
     }
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo

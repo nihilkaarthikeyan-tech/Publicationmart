@@ -191,6 +191,10 @@ class ProfessionalServiceController extends Controller
             abort(403);
         }
 
+        // SECURITY: professional services are paid staff work. An unpaid request
+        // (payment_id null) must not reach the upload step.
+        abort_unless($serviceRequest->payment_id, 403, 'Please complete payment before uploading your manuscript.');
+
         return Inertia::render('Books/ProfessionalUpload', [
             'serviceRequest' => $serviceRequest->load('book'),
         ]);
@@ -205,6 +209,9 @@ class ProfessionalServiceController extends Controller
         if ($serviceRequest->user_id !== Auth::id()) {
             abort(403);
         }
+
+        // SECURITY: reject uploads on an unpaid request (payment_id null).
+        abort_unless($serviceRequest->payment_id, 403, 'Please complete payment before uploading your manuscript.');
 
         $request->validate([
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
@@ -265,6 +272,8 @@ class ProfessionalServiceController extends Controller
         $status = $request->query('status', 'all');
 
         $query = ProfessionalServiceRequest::with(['user', 'book', 'assignedAdmin'])
+            // Only paid requests are real work — hide abandoned unpaid ones.
+            ->whereNotNull('payment_id')
             ->orderBy('created_at', 'desc');
 
         if ($status !== 'all') {
@@ -277,9 +286,9 @@ class ProfessionalServiceController extends Controller
             'requests' => $requests,
             'currentStatus' => $status,
             'stats' => [
-                'pending' => ProfessionalServiceRequest::where('status', 'pending')->count(),
-                'in_progress' => ProfessionalServiceRequest::where('status', 'in_progress')->count(),
-                'completed' => ProfessionalServiceRequest::where('status', 'completed')->count(),
+                'pending' => ProfessionalServiceRequest::whereNotNull('payment_id')->where('status', 'pending')->count(),
+                'in_progress' => ProfessionalServiceRequest::whereNotNull('payment_id')->where('status', 'in_progress')->count(),
+                'completed' => ProfessionalServiceRequest::whereNotNull('payment_id')->where('status', 'completed')->count(),
             ],
         ]);
     }

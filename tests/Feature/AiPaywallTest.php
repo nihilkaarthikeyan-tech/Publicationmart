@@ -89,4 +89,23 @@ class AiPaywallTest extends TestCase
 
         $this->assertNotContains($r->getStatusCode(), [402, 403], 'a paid book must still generate');
     }
+
+    /** A cheap cover/formatting add-on must NOT unlock AI writing. */
+    public function test_cover_plan_does_not_unlock_ai_writing(): void
+    {
+        $owner = User::factory()->create();
+        // Paid the 499 cover add-on only.
+        $book = Book::create([
+            'user_id' => $owner->id, 'title' => 'Cover Only', 'author_name' => 'A', 'status' => 'draft',
+            'ai_plan_type' => 'cover', 'ai_plan_name' => 'cover',
+        ]);
+
+        $r = $this->actingAs($owner)->postJson(route('ai-studio.outline', $book->id), [
+            'topic' => 'x', 'chapter_count' => 3,
+        ]);
+
+        $this->assertContains($r->getStatusCode(), [402, 403],
+            'a cover add-on must not unlock AI writing (got ' . $r->getStatusCode() . ')');
+        Http::assertNothingSent();
+    }
 }
