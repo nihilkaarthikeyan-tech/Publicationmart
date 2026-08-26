@@ -21,11 +21,11 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
-Route::post('/contact', [\App\Http\Controllers\ContactController::class , 'store'])->name('contact.store');
+Route::post('/contact', [\App\Http\Controllers\ContactController::class , 'store'])->name('contact.store')->middleware('throttle:5,1');
 
 // Publishing Inquiry Routes (Public - Premium Suite Form)
 Route::get('/publishing-inquiry', [PublishingInquiryController::class , 'create'])->name('publishing-inquiry.create');
-Route::post('/publishing-inquiry', [PublishingInquiryController::class , 'store'])->name('publishing-inquiry.store');
+Route::post('/publishing-inquiry', [PublishingInquiryController::class , 'store'])->name('publishing-inquiry.store')->middleware('throttle:5,1');
 
 Route::get('/how-to-publish', function () {
     return Inertia::render('HowToPublish');
@@ -83,11 +83,11 @@ Route::get('/terms-and-conditions', function () {
 // Blog Routes (Renamed to Studio)
 Route::get('/studio', [BlogController::class , 'index'])->name('blogs.index');
 Route::get('/studio/create', [BlogController::class , 'create'])->name('blogs.create');
-Route::post('/studio', [BlogController::class , 'store'])->name('blogs.store');
+Route::post('/studio', [BlogController::class , 'store'])->name('blogs.store')->middleware('throttle:5,1');
 Route::get('/studio/{slug}', [BlogController::class , 'show'])->name('blogs.show');
-Route::post('/studio/{blog}/presale/book', [\App\Http\Controllers\PresaleBookingController::class , 'store'])->name('blogs.presale.book');
+Route::post('/studio/{blog}/presale/book', [\App\Http\Controllers\PresaleBookingController::class , 'store'])->name('blogs.presale.book')->middleware('throttle:10,1');
 Route::get('/api/studio/presale/captcha', [\App\Http\Controllers\PresaleBookingController::class , 'generateCaptcha'])->name('blogs.presale.captcha');
-Route::post('/api/studio/presale/otp', [\App\Http\Controllers\PresaleBookingController::class , 'sendOtp'])->name('blogs.presale.otp');
+Route::post('/api/studio/presale/otp', [\App\Http\Controllers\PresaleBookingController::class , 'sendOtp'])->name('blogs.presale.otp')->middleware('throttle:5,1');
 
 // (removed public /test-email debug route)
 
@@ -170,7 +170,8 @@ Route::get('/cart/{book}', [App\Http\Controllers\Books\BookStoreController::clas
 Route::post('/cart/checkout', [App\Http\Controllers\Books\BookStoreController::class , 'checkout'])->middleware('auth')->name('cart.checkout');
 
 // Public Coupon Verification
-Route::post('/api/coupons/verify', [App\Http\Controllers\CouponController::class , 'verify'])->name('coupons.verify');
+// Throttled: public endpoint, otherwise coupon codes can be brute-forced.
+Route::post('/api/coupons/verify', [App\Http\Controllers\CouponController::class , 'verify'])->name('coupons.verify')->middleware('throttle:10,1');
 
 
 use App\Http\Controllers\Books\BookController; // Import Controller

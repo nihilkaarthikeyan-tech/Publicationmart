@@ -81,3 +81,9 @@
     php_value max_input_vars 3000
 </IfModule>
 
+# --- HSTS: the site already forces HTTPS above, so tell browsers to never
+# try plain HTTP. Deliberately WITHOUT includeSubDomains/preload so it cannot
+# affect subdomains or become hard to reverse. ---
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>

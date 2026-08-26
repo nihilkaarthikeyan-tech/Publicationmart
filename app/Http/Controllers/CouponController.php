@@ -26,9 +26,12 @@ class CouponController extends Controller
         }
 
         if (!$coupon->is_active) {
+            // Same message as 'not found' on purpose: distinguishing the two
+            // turns this public endpoint into an oracle for discovering which
+            // coupon codes exist.
             return response()->json([
                 'valid' => false,
-                'message' => 'This coupon is inactive.'
+                'message' => 'Invalid coupon code.'
             ], 422);
         }
 
