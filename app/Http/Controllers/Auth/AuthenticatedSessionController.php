@@ -69,8 +69,11 @@ class AuthenticatedSessionController extends Controller
             // SECURITY: do NOT log OTP values or email (was leaking codes to logs).
 
             // Validate email exists
+            // No 'exists' rule: an unknown email has no cached OTP and hits
+            // the same generic failure below, so this no longer reveals
+            // which addresses are registered.
             $request->validate([
-                'email' => 'required|email|exists:users,email',
+                'email' => 'required|email',
                 'otp' => 'required|string|size:6',
             ]);
 

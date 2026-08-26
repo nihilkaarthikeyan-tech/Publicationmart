@@ -11,6 +11,10 @@ use Smalot\PdfParser\Parser as PdfParser;
 
 class FormattingToolController extends Controller
 {
+    /** Upper bounds for a single export request (DoS guard). */
+    private const MAX_EXPORT_SECTIONS   = 400;
+    private const MAX_EXPORT_HTML_BYTES = 20 * 1024 * 1024; // 20 MB of HTML
+
     /**
      * SECURITY: only allow embedding image files that live inside the app's
      * own public storage / asset directories. Blocks path traversal (e.g.
@@ -82,6 +86,25 @@ class FormattingToolController extends Controller
                 'visibleFrontMatterKeys'=> 'array',
                 'layout'                => 'string'
             ]);
+
+            // DoS guard: each section triggers its own external render call and
+            // in-memory PDF parse, so an unbounded payload can tie up the worker
+            // and burn the render quota. Cap the work a single export can ask for.
+            $sectionCount = is_array($data['sections'] ?? null) ? count($data['sections']) : 0;
+            if ($sectionCount > self::MAX_EXPORT_SECTIONS) {
+                return back()->with('error',
+                    'This book has too many sections to export in one go (limit '
+                    . self::MAX_EXPORT_SECTIONS . '). Please split it or contact support.');
+            }
+
+            $totalHtml = 0;
+            foreach (($data['sections'] ?? []) as $sec) {
+                $totalHtml += strlen((string) ($sec['content'] ?? ''));
+            }
+            if ($totalHtml > self::MAX_EXPORT_HTML_BYTES) {
+                return back()->with('error',
+                    'This book is too large to export in one go. Please split it or contact support.');
+            }
 
             // The generators read $item['id'] directly on each entry, so a
             // malformed payload (e.g. a bare string instead of an object) used

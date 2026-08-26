@@ -294,19 +294,31 @@ class AdminDashboardService
 
     private function getAiWritingStats()
     {
-        $booksWithAiPlans = Book::whereNotNull('ai_plan_type')->with(['aiChapters.sections'])->get();
+        // Previously this eager-loaded every AI book with all its chapters AND
+        // full section bodies at once, then counted words in PHP — enough to
+        // exhaust memory on the dashboard once manuscripts grow. Chunked so
+        // memory stays bounded; the totals are identical.
+        $totalAiBooks = Book::whereNotNull('ai_plan_type')->count();
+
+        $totalPagesGenerated = 0;
+        Book::whereNotNull('ai_plan_type')
+            ->with(['aiChapters.sections'])
+            ->chunkById(50, function ($books) use (&$totalPagesGenerated) {
+                foreach ($books as $book) {
+                    $totalWords = 0;
+                    foreach ($book->aiChapters as $chapter) {
+                        $totalWords += $chapter->sections->sum(fn($s) => str_word_count($s->content ?? ''));
+                    }
+                    $totalPagesGenerated += ceil($totalWords / 275);
+                }
+            });
+
         return [
-            'totalAiBooks' => $booksWithAiPlans->count(),
+            'totalAiBooks' => $totalAiBooks,
             'activeToday' => Book::whereNotNull('ai_plan_type')
                 ->whereHas('aiChapters.sections', fn($q) => $q->where('updated_at', '>=', now()->startOfDay()))
                 ->count(),
-            'totalPagesGenerated' => $booksWithAiPlans->sum(function ($book) {
-                $totalWords = 0;
-                foreach ($book->aiChapters as $chapter) {
-                    $totalWords += $chapter->sections->sum(fn($s) => str_word_count($s->content ?? ''));
-                }
-                return ceil($totalWords / 275);
-            }),
+            'totalPagesGenerated' => $totalPagesGenerated,
             'planBreakdown' => [
                 'saver' => Book::where('ai_plan_name', 'saver')->count(),
                 'standard' => Book::where('ai_plan_name', 'standard')->count(),

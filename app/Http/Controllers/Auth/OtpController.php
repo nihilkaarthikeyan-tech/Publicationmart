@@ -15,11 +15,23 @@ class OtpController extends Controller
      */
     public function send(Request $request)
     {
+        // NOTE: deliberately no 'exists:users,email' rule. Rejecting unknown
+        // addresses revealed which emails are registered (account
+        // enumeration). Accept any well-formed address, respond identically
+        // either way, and only actually send to real users.
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
         ]);
 
         $email = $request->email;
+
+        // Unknown address: same response, but nothing is sent.
+        if (!\App\Models\User::where('email', $email)->exists()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'If that email is registered, a code has been sent to it.',
+            ]);
+        }
 
         // Generate 6-digit OTP
         $otp = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
@@ -60,8 +72,11 @@ class OtpController extends Controller
      */
     public function verify(Request $request)
     {
+        // No 'exists' rule: an unknown email simply has no cached OTP and
+        // falls through to the same generic failure, so this no longer
+        // reveals which addresses are registered.
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email',
             'otp' => 'required|string|size:6',
         ]);
 
