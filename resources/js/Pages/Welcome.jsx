@@ -185,40 +185,6 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <Head title="PublicationMart — AI-Powered Book Writing & Publishing, India" />
             <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
-            {/* ── masthead ─────────────────────────────────── */}
-            <header className="border-b sticky top-0 z-40" style={{ borderColor: 'var(--rule)', background: 'rgba(240,236,227,.93)', backdropFilter: 'blur(8px)' }}>
-                <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-[72px]">
-                    <Link href="/" className="pm-serif text-[22px] font-bold tracking-tight whitespace-nowrap shrink-0">
-                        Publication<span style={{ color: 'var(--cloth)' }}>Mart</span>
-                    </Link>
-
-                    <nav className="hidden lg:flex items-center gap-7 mx-8">
-                        <Link href={guestHref} className="pm-run hover:text-[color:var(--ink)] transition-colors">Write</Link>
-                        <a href="#plans" className="pm-run hover:text-[color:var(--ink)] transition-colors">Plans</a>
-                        <Link href={route('book-store.index')} className="pm-run hover:text-[color:var(--ink)] transition-colors">Catalogue</Link>
-                        <a href="#faq" className="pm-run hover:text-[color:var(--ink)] transition-colors">Questions</a>
-                        <Link href={route('contact')} className="pm-run hover:text-[color:var(--ink)] transition-colors">Contact</Link>
-                    </nav>
-
-                    <div className="flex items-center gap-4">
-                        {auth?.user ? (
-                            <Link href={route('dashboard')} className="text-[13px] font-semibold px-5 py-2.5 rounded-sm whitespace-nowrap"
-                                  style={{ background: 'var(--ink)', color: 'var(--stock-3)' }}>
-                                Dashboard
-                            </Link>
-                        ) : (
-                            <>
-                                <Link href={route('login')} className="text-[13px] font-medium hidden sm:inline whitespace-nowrap">Sign in</Link>
-                                <Link href={route('register')} className="text-[13px] font-semibold px-5 py-2.5 rounded-sm whitespace-nowrap"
-                                      style={{ background: 'var(--ink)', color: 'var(--stock-3)' }}>
-                                    Create account
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                </div>
-            </header>
-
             {/* ── title page ───────────────────────────────── */}
             <section style={{ background: 'var(--stock-3)', borderBottom: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-[1.08fr_.92fr] gap-14 items-center">
@@ -455,45 +421,6 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 </div>
             </section>
 
-            {/* ── colophon ─────────────────────────────────── */}
-            <footer className="max-w-6xl mx-auto px-6 py-14">
-                <div className="pm-rule mb-8" />
-                <div className="grid sm:grid-cols-[1.4fr_1fr_1fr] gap-10">
-                    <div>
-                        <p className="pm-serif text-[19px] font-bold mb-2">
-                            Publication<span style={{ color: 'var(--cloth)' }}>Mart</span>
-                        </p>
-                        <p className="text-[13px] leading-relaxed max-w-[34ch]" style={{ color: 'var(--ink-3)' }}>
-                            An AI-powered writing and publishing house for academic and
-                            independent authors, based in India.
-                        </p>
-                    </div>
-                    <div>
-                        <p className="pm-run mb-3">Publishing</p>
-                        <ul className="space-y-2 text-[13.5px]" style={{ color: 'var(--ink-3)' }}>
-                            <li><Link href={guestHref} className="hover:text-[color:var(--ink)]">Smart Writing Tool</Link></li>
-                            <li><a href="#plans" className="hover:text-[color:var(--ink)]">Plans &amp; pricing</a></li>
-                            <li><Link href="/royalties-calculator" className="hover:text-[color:var(--ink)]">Royalties</Link></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p className="pm-run mb-3">More</p>
-                        <ul className="space-y-2 text-[13.5px]" style={{ color: 'var(--ink-3)' }}>
-                            <li><Link href={route('book-store.index')} className="hover:text-[color:var(--ink)]">Catalogue</Link></li>
-                            <li><a href="#faq" className="hover:text-[color:var(--ink)]">Questions</a></li>
-                            <li><Link href={route('contact')} className="hover:text-[color:var(--ink)]">Contact</Link></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="pm-rule mt-10 mb-5" />
-                <div className="flex flex-wrap items-center justify-between gap-3 text-[12px]" style={{ color: 'var(--ink-3)' }}>
-                    <span>© {new Date().getFullYear()} PublicationMart</span>
-                    <span className="flex gap-5">
-                        <Link href="/privacy-policy" className="hover:text-[color:var(--ink)]">Privacy</Link>
-                        <Link href="/terms" className="hover:text-[color:var(--ink)]">Terms</Link>
-                    </span>
-                </div>
-            </footer>
         </div>
     );
 }
