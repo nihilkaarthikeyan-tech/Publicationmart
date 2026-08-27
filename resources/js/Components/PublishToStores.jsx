@@ -161,9 +161,11 @@ export default function PublishToStores({ book }) {
 
                 <div className="flex flex-wrap gap-4">
                     {/* Manuscript Download */}
+                    {/* Authenticated admin route: the raw /storage/ URL served
+                        unpublished manuscripts to anyone holding the link. */}
                     {book.interior_file ? (
                         <a
-                            href={`${app_url}/storage/${book.interior_file}`}
+                            href={route('admin.books.download-manuscript', book.id)}
                             download
                             className="flex items-center gap-3 px-5 py-3 bg-white border-2 border-dashed border-red-200 rounded-xl hover:border-red-400 hover:bg-red-50 transition-all group"
                         >

@@ -87,3 +87,23 @@
 <IfModule mod_headers.c>
     Header always set Strict-Transport-Security "max-age=31536000"
 </IfModule>
+
+# --- BLOCK DIRECT ACCESS TO PRIVATE DOCUMENTS ---
+# Manuscripts (authors' unpublished books) and customer files submitted for
+# paid services were downloadable by anyone holding the URL, with no auth.
+# They are now served only through authenticated controller routes.
+# Covers/images stay public because pages need to render them.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^storage/interiors/ - [F,L]
+    RewriteRule ^storage/professional-manuscripts/ - [F,L]
+    RewriteRule ^storage/books/ - [F,L]
+    RewriteRule ^storage/audiobooks/ - [F,L]
+</IfModule>
+
+# Never index anything under /storage
+<IfModule mod_headers.c>
+    <FilesMatch "^storage/">
+        Header set X-Robots-Tag "noindex, nofollow"
+    </FilesMatch>
+</IfModule>

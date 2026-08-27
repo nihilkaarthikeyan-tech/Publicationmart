@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /storage/
+Disallow: /admin/
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /profile
