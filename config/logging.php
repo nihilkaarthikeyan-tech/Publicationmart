@@ -54,7 +54,9 @@ return [
 
         'stack' => [
             'driver' => 'stack',
-            'channels' => explode(',', (string) env('LOG_STACK', 'single')),
+            // 'daily' so the log rotates and is pruned to LOG_DAILY_DAYS instead of
+            // growing into one unbounded file (it had reached 20MB).
+            'channels' => explode(',', (string) env('LOG_STACK', 'daily')),
             'ignore_exceptions' => false,
         ],
 
