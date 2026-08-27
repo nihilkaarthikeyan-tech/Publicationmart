@@ -440,6 +440,34 @@ class BookController extends Controller
                 abort(403, 'Unauthorized action.');
             }
 
+            // Already in or past review: re-submitting used to overwrite the
+            // status back to 'submitted' AND reset step_completed from 5 to 4,
+            // which knocked a live book offline and undid its paid state.
+            if (in_array($book->status, ['submitted', 'approved', 'published'], true)) {
+                return redirect()->route('dashboard')->with('info',
+                    'This book has already been submitted. Our team will be in touch.');
+            }
+
+            // Completeness gate: publish() previously checked ownership only, so
+            // a brand-new empty book could be pushed straight into the admin
+            // review queue. Step 3 (updateDetails) is what guarantees the
+            // pricing, biography, page count and accepted terms a reviewer needs.
+            if ((int) $book->step_completed < 3) {
+                return redirect()->back()->with('error',
+                    'Please complete your book details before submitting for review.');
+            }
+
+            // And it must actually have content to review: an uploaded
+            // manuscript, work from the formatting tool, or AI chapters.
+            $hasContent = !empty($book->interior_file)
+                || !empty($book->formatting_data)
+                || $book->aiChapters()->exists();
+
+            if (!$hasContent) {
+                return redirect()->back()->with('error',
+                    'Please add your manuscript before submitting for review.');
+            }
+
             // Finalize submission - set status to pending for admin review
             $book->update([
                 'step_completed' => 4,
