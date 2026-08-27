@@ -315,7 +315,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             </section>
 
             {/* ── plans ────────────────────────────────────── */}
-            <section id="plans" style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
+            <section id="pricing-section" style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
                     <RunningHead label="Plans" folio="IV" />
 

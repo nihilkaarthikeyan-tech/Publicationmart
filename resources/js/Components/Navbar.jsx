@@ -35,11 +35,11 @@ export default function Navbar() {
 
     return (
         <nav
-            className="fixed top-0 left-0 right-0 z-[99999] bg-gradient-to-r from-indigo-950/90 via-purple-950/90 to-indigo-950/90 backdrop-blur-lg border-b border-white/10 h-[80px] shadow-lg shadow-purple-900/10"
+            className="fixed top-0 left-0 right-0 z-[99999] bg-gradient-to-r from-[#17150f]/90 via-[#241f16]/90 to-[#1f1c14]/90 backdrop-blur-lg border-b border-white/10 h-[80px] shadow-lg shadow-purple-900/10"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
                 <Link href={route('welcome')} className="flex items-center -ml-2 shrink-0 transition-transform hover:scale-[1.02] active:scale-95">
-                    <ApplicationLogo className="h-20 w-auto drop-shadow-[0_0_10px_rgba(34,211,238,0.2)]" />
+                    <ApplicationLogo className="h-20 w-auto " />
                 </Link>
 
                 {/* Desktop Navigation */}
@@ -48,7 +48,7 @@ export default function Navbar() {
                         <Link
                             key={link.label}
                             href={link.href}
-                            className="text-xs uppercase tracking-widest text-white/80 hover:text-indigo-400 transition-all duration-75 py-1 px-2 hover:bg-white/10 rounded-md"
+                            className="text-xs uppercase tracking-widest text-white/80 hover:text-[#c9a25b] transition-all duration-75 py-1 px-2 hover:bg-white/10 rounded-md"
                         >
                             {link.label}
                         </Link>
@@ -61,7 +61,7 @@ export default function Navbar() {
                             <>
                                 <Link
                                     href={auth?.user?.is_admin ? route('admin.dashboard') : route('dashboard')}
-                                    className="px-4 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition-all duration-75"
+                                    className="px-4 py-2 rounded-full bg-[#6e2530] hover:bg-[#5a1d26] text-white text-sm font-medium transition-all duration-75"
                                 >
                                     Dashboard
                                 </Link>
@@ -74,12 +74,12 @@ export default function Navbar() {
                             </>
                         ) : (
                             <>
-                                <Link href={route('login')} className="text-white/80 text-sm hover:text-indigo-400 transition-colors font-medium">
+                                <Link href={route('login')} className="text-white/80 text-sm hover:text-[#c9a25b] transition-colors font-medium">
                                     Login
                                 </Link>
                                 <Link
                                     href={route('register')}
-                                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-medium transition-all duration-75 shadow-lg hover:shadow-xl"
+                                    className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#8c3541] to-[#6e2530] hover:from-[#6e2530] hover:to-[#5a1d26] text-white text-sm font-medium transition-all duration-75 shadow-lg hover:shadow-xl"
                                 >
                                     Register
                                 </Link>
@@ -108,12 +108,12 @@ export default function Navbar() {
 
             {/* Mobile Menu Dropdown */}
             {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-[80px] left-0 right-0 bg-[#0f0a1e]/95 backdrop-blur-xl border-b border-indigo-500/40 p-4 flex flex-col gap-2 shadow-2xl animate-fade-in-down">
+                <div className="md:hidden absolute top-[80px] left-0 right-0 bg-[#17150f]/95 backdrop-blur-xl border-b border-[#a07d3b]/40 p-4 flex flex-col gap-2 shadow-2xl animate-fade-in-down">
                     {navLinks.map(link => (
                         <Link
                             key={link.label}
                             href={link.href}
-                            className="text-sm uppercase tracking-widest text-white/80 hover:text-indigo-400 py-3 px-4 hover:bg-white/5 rounded-md transition-all duration-75"
+                            className="text-sm uppercase tracking-widest text-white/80 hover:text-[#c9a25b] py-3 px-4 hover:bg-white/5 rounded-md transition-all duration-75"
                         >
                             {link.label}
                         </Link>
@@ -125,7 +125,7 @@ export default function Navbar() {
                             <>
                                 <Link
                                     href={auth?.user?.is_admin ? route('admin.dashboard') : route('dashboard')}
-                                    className="w-full text-center px-4 py-2 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition-all duration-75"
+                                    className="w-full text-center px-4 py-2 rounded-full bg-[#6e2530] hover:bg-[#5a1d26] text-white text-sm font-medium transition-all duration-75"
                                 >
                                     Dashboard
                                 </Link>
@@ -138,12 +138,12 @@ export default function Navbar() {
                             </>
                         ) : (
                             <>
-                                <Link href={route('login')} className="px-4 py-2 text-center text-white/80 text-sm hover:text-indigo-400 transition-colors font-medium hover:bg-white/5 rounded-md">
+                                <Link href={route('login')} className="px-4 py-2 text-center text-white/80 text-sm hover:text-[#c9a25b] transition-colors font-medium hover:bg-white/5 rounded-md">
                                     Login
                                 </Link>
                                 <Link
                                     href={route('register')}
-                                    className="w-full text-center px-6 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-medium transition-all duration-75 shadow-lg"
+                                    className="w-full text-center px-6 py-2.5 rounded-full bg-gradient-to-r from-[#8c3541] to-[#6e2530] hover:from-[#6e2530] hover:to-[#5a1d26] text-white text-sm font-medium transition-all duration-75 shadow-lg"
                                 >
                                     Register
                                 </Link>

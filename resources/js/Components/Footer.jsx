@@ -91,7 +91,7 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="relative z-10 bg-[#0f0a1e] text-white pt-20 pb-10 border-t border-white/5">
+        <footer className="relative z-10 bg-[#17150f] text-white pt-20 pb-10 border-t border-white/5">
             <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
                 <div className="grid grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-4 mb-16">
                     {/* Guided Publishing */}
@@ -100,7 +100,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {guidedPublishingLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-gray-400 hover:text-indigo-400 text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -116,7 +116,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {readLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-gray-400 hover:text-indigo-400 text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -132,7 +132,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {servicesLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-gray-400 hover:text-indigo-400 text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -148,7 +148,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {companyLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-gray-400 hover:text-indigo-400 text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -164,7 +164,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {legalLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-gray-400 hover:text-indigo-400 text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -198,16 +198,16 @@ export default function Footer() {
                         <Link href={route('welcome')} className="text-2xl font-black tracking-tight text-white block">
                             PublicationMart
                         </Link>
-                        <p className="text-gray-500 text-sm max-w-md">
+                        <p className="text-[#8d8474] text-sm max-w-md">
                             Empowering authors worldwide with professional tools to design, format, and distribute their stories to a global audience.
                         </p>
                     </div>
 
                     <div className="text-right space-y-2">
-                        <p className="text-sm font-medium text-gray-300">
+                        <p className="text-sm font-medium text-[#cdc5b6]">
                             Built for authors. Powered by Smart Tech.
                         </p>
-                        <p className="text-xs text-gray-600">
+                        <p className="text-xs text-[#7c7364]">
                             © {new Date().getFullYear()} PublicationMart. All rights reserved.
                         </p>
                     </div>
