@@ -9,6 +9,8 @@
 /storage/framework/cache/*
 /storage/framework/sessions/*
 /storage/framework/views/*
+# Scratch files created by Storage::fake() during tests
+/storage/framework/testing
 /storage/logs/*
 /bootstrap/cache/*
 .env
