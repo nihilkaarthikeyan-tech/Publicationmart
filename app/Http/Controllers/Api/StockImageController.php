@@ -47,7 +47,7 @@ class StockImageController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Server Error',
-                'message' => $e->getMessage()
+                'message' => 'Could not fetch images.'
             ], 500);
         }
     }

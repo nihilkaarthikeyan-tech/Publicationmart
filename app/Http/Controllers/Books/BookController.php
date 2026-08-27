@@ -461,7 +461,8 @@ class BookController extends Controller
         catch (\Exception $e) {
             \Illuminate\Support\Facades\Log::error('Publishing failed: ' . $e->getMessage());
             // Return error to user
-            return redirect()->route('dashboard')->with('error', '⚠️ Submission Failed: ' . $e->getMessage());
+            \Log::error('Book submission failed: ' . $e->getMessage());
+            return redirect()->route('dashboard')->with('error', 'Submission failed. Please try again or contact support.');
         }
     }
 

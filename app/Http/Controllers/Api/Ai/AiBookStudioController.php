@@ -455,7 +455,7 @@ class AiBookStudioController extends Controller
         }
         catch (\Exception $e) {
             Log::error("Outline Gen Error: " . $e->getMessage());
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+            return response()->json(['success' => false, 'message' => 'Could not generate the outline. Please try again.'], 500);
         }
     }
 
@@ -538,7 +538,8 @@ class AiBookStudioController extends Controller
 
         }
         catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+            \Log::error('AI Studio error: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Something went wrong. Please try again.'], 500);
         }
     }
 
@@ -744,7 +745,7 @@ class AiBookStudioController extends Controller
         }
         catch (\Exception $e) {
             \Log::error('AI Write Section Error: ' . $e->getMessage());
-            return response()->json(['success' => false, 'message' => 'AI generation failed: ' . $e->getMessage()], 500);
+            return response()->json(['success' => false, 'message' => 'AI generation failed. Please try again.'], 500);
         }
     }
 
@@ -917,7 +918,8 @@ class AiBookStudioController extends Controller
 
         }
         catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+            \Log::error('AI Studio error: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Something went wrong. Please try again.'], 500);
         }
     }
 

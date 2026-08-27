@@ -348,7 +348,8 @@ class GuestSmartWriterController extends Controller
 
         } catch (\Exception $e) {
             Log::error("Guest Outline Error: " . $e->getMessage());
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+            \Log::error('Guest writer error: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Something went wrong. Please try again.'], 500);
         }
     }
 
@@ -439,7 +440,8 @@ class GuestSmartWriterController extends Controller
             return response()->json(['success' => true, 'sections' => $sections]);
 
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+            \Log::error('Guest writer error: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Something went wrong. Please try again.'], 500);
         }
     }
 
@@ -610,7 +612,8 @@ class GuestSmartWriterController extends Controller
             return response()->json(['success' => true, 'content' => $content]);
 
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+            \Log::error('Guest writer error: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Something went wrong. Please try again.'], 500);
         }
     }
 
@@ -773,7 +776,8 @@ class GuestSmartWriterController extends Controller
             return response()->json(['success' => true, 'image_url' => $localUrl]);
 
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
+            \Log::error('Guest writer error: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Something went wrong. Please try again.'], 500);
         }
     }
 

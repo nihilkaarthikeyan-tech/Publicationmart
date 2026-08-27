@@ -14,6 +14,8 @@ class FormattingToolController extends Controller
     /** Upper bounds for a single export request (DoS guard). */
     private const MAX_EXPORT_SECTIONS   = 400;
     private const MAX_EXPORT_HTML_BYTES = 20 * 1024 * 1024; // 20 MB of HTML
+    /** Cap on the formatting_data blob saved per book. */
+    private const MAX_FORMATTING_DATA_BYTES = 20 * 1024 * 1024; // 20 MB
 
     /**
      * SECURITY: only allow embedding image files that live inside the app's
@@ -316,7 +318,8 @@ class FormattingToolController extends Controller
             } catch (\Exception $e) {
                 foreach ($tempBodyFiles as $f) { @unlink($f); }
                 \Log::error('PDF generation failed (two-pass)', ['error' => $e->getMessage()]);
-                return back()->with('error', 'Failed to generate PDF: ' . $e->getMessage());
+                \Log::error('PDF export failed: ' . $e->getMessage());
+                return back()->with('error', 'Failed to generate the PDF. Please try again.');
             }
         }
 
@@ -325,7 +328,8 @@ class FormattingToolController extends Controller
             return $this->generateDocxWithPhpWord($data, $book);
         } catch (\Exception $e) {
             \Log::error('PHPWord DOCX generation failed', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
-            return back()->with('error', 'Failed to generate DOCX: ' . $e->getMessage());
+            \Log::error('DOCX export failed: ' . $e->getMessage());
+            return back()->with('error', 'Failed to generate the document. Please try again.');
         }
     }
 
@@ -1837,6 +1841,16 @@ class FormattingToolController extends Controller
 
         // Frontend sends formatting_data as JSON string (to bypass PHP max_input_vars limit)
         $rawData = $request->input('formatting_data');
+
+        // Size guard: this is stored verbatim in a LONGTEXT column, so without a
+        // cap a user can repeatedly save multi-megabyte blobs and bloat the DB.
+        if (is_string($rawData) && strlen($rawData) > self::MAX_FORMATTING_DATA_BYTES) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This book is too large to save in one go. Please split it or contact support.',
+            ], 422);
+        }
+
         if (is_string($rawData)) {
             $formattingData = json_decode($rawData, true);
             if (json_last_error() !== JSON_ERROR_NONE || !is_array($formattingData)) {
