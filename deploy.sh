@@ -18,6 +18,16 @@ done
 
 cd "$(dirname "$0")"
 
+# Only 'main' mirrors production. Work-in-progress branches (e.g. 2.0) must
+# never reach the live site by accident.
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$CURRENT_BRANCH" != "main" ]; then
+  echo "!! Refusing to deploy from branch '$CURRENT_BRANCH'."
+  echo "   Only 'main' is deployed to the live site."
+  echo "   Switch with:  git checkout main"
+  exit 1
+fi
+
 if [ -n "$(git status --porcelain)" ]; then
   echo "!! You have uncommitted changes. Commit them first so there's a record of what shipped."
   git status --short
