@@ -20,6 +20,15 @@
     RewriteCond %{HTTPS} off
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+    # --- BLOCK PRIVATE DOCUMENTS (must run BEFORE the rewrite to /public) ---
+    # Manuscripts and paid-service customer files were downloadable by anyone
+    # holding the URL. They are served only via authenticated routes now.
+    # Covers/images stay public because pages render them.
+    RewriteRule ^(public/)?storage/interiors/ - [F,L]
+    RewriteRule ^(public/)?storage/professional-manuscripts/ - [F,L]
+    RewriteRule ^(public/)?storage/books/ - [F,L]
+    RewriteRule ^(public/)?storage/audiobooks/ - [F,L]
+
     # Route all requests to /public folder
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]
