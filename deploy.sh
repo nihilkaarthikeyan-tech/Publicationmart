@@ -59,6 +59,9 @@ ssh "$REMOTE" "cd $RPATH && tar -czf ~/backups/pm-$STAMP.tgz -T - 2>/dev/null ||
 echo "=== uploading ==="
 tar -czf - -T /tmp/pm-deploy-list.txt | ssh "$REMOTE" "tar -xzf - -C $RPATH"
 
+# Keep the last 10 pre-deploy snapshots; older ones are noise.
+ssh "$REMOTE" "ls -1t ~/backups/pm-*.tgz 2>/dev/null | tail -n +11 | xargs -r rm -f" 
+
 echo "=== clearing Laravel caches ==="
 ssh "$REMOTE" "cd $RPATH && php artisan config:clear && php artisan view:clear && php artisan route:clear" || echo "(cache clear failed - check manually)"
 
