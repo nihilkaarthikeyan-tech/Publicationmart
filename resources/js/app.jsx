@@ -9,6 +9,9 @@ const appName = 'PublicationMart';
 
 // Pages that should NOT have the layout wrapper (they have their own headers)
 const noLayoutPages = [
+    // The landing page carries its own masthead and footer; the shared dark
+    // Navbar would clash with its paper-and-ink design.
+    'Welcome',
     'Auth/Login',
     'Auth/Register',
     'Auth/ForgotPassword',
