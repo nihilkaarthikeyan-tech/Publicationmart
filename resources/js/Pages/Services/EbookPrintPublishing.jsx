@@ -12,7 +12,7 @@ export default function EbookPrintPublishing() {
                     <div className="absolute top-0 right-1/2 translate-x-1/2 w-[1000px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full -z-10" />
 
                     <div className="max-w-5xl mx-auto text-center">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-700 text-xs font-bold uppercase tracking-widest mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-800 text-xs font-bold uppercase tracking-widest mb-6">
                             Multi-Format Publishing
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">

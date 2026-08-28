@@ -161,7 +161,7 @@ export default function BookStoreIndex({ auth, books }) {
                         <div className="flex items-baseline gap-6 mb-10">
                             <span className="pm-store-run whitespace-nowrap">New arrivals</span>
                             <div className="flex-1 h-px bg-[#d8d1c1]" />
-                            <span className="pm-store-run" style={{ color: '#a07d3b' }}>Fresh from the press</span>
+                            <span className="pm-store-run" style={{ color: '#856531' }}>Fresh from the press</span>
                         </div>
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                             {frontTable.map((book, i) => (

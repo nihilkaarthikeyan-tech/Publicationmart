@@ -84,7 +84,7 @@ export default function Index({ blogs }) {
                                 <button
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
-                                    className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${selectedCategory === cat ? 'bg-[#6e2530] text-[#faf8f3] shadow-md' : 'text-[#4b443a] hover:text-[#17150f] hover:bg-[#faf8f3]'}`}
+                                    className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${selectedCategory === cat ? 'bg-[#6e2530] text-[#faf8f3] shadow-md' : 'text-[#17150f]/80 hover:text-[#17150f] hover:bg-[#faf8f3]'}`}
                                 >
                                     {cat}
                                 </button>
@@ -234,7 +234,7 @@ export default function Index({ blogs }) {
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                             />
                             <div className="absolute bottom-0 left-0 p-8 md:p-12 z-20 max-w-3xl">
-                                <span className="inline-block px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full mb-4 uppercase tracking-wider">
+                                <span className="inline-block px-3 py-1 bg-[#6e2530] text-white text-xs font-bold rounded-full mb-4 uppercase tracking-wider">
                                     {filteredBlogs[0].category}
                                 </span>
                                 <h2 className="text-3xl md:text-5xl font-bold mb-4 group-hover:text-purple-700 transition-colors">

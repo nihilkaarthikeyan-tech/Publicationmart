@@ -31,7 +31,7 @@ const CSS = `
   --stock-3:#faf8f3;    /* title page */
   --ink:#17150f;        /* printer's ink */
   --ink-2:#4b443a;
-  --ink-3:#7c7364;
+  --ink-3:#635c4e;
   --rule:#d8d1c1;
   --cloth:#6e2530;      /* library binding cloth */
   --foil:#a07d3b;       /* aged gold foil */
@@ -329,7 +329,7 @@ function Spine({ id, title, i }) {
         <>
             <div className="pm-serif text-[#f2ecdd] text-[12px] leading-snug px-4 pt-7 pr-3">{title}</div>
             <div className="absolute bottom-5 left-4 right-3 pt-2" style={{ borderTop: '1px solid rgba(242,236,221,.28)' }}>
-                <span className="pm-run" style={{ color: 'rgba(242,236,221,.6)', fontSize: 9 }}>PublicationMart</span>
+                <span className="pm-run" style={{ color: 'rgba(242,236,221,.75)', fontSize: 9 }}>PublicationMart</span>
             </div>
         </>
     );
@@ -398,7 +398,7 @@ function GreatBook({ books }) {
                             <p className="text-[12.5px] leading-relaxed pm-clamp3" style={{ color: 'var(--ink-3)' }}>{b.author_name}</p>
                             <div className="flex-1" />
                             <span className="pm-stamp in self-start">Published</span>
-                            <span className="pm-run mt-5" style={{ color: 'var(--foil)', fontSize: 9 }}>PublicationMart Press</span>
+                            <span className="pm-run mt-5" style={{ color: '#856531', fontSize: 9 }}>PublicationMart Press</span>
                         </div>
                     )}
                 </div>

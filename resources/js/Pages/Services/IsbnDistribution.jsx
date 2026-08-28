@@ -12,7 +12,7 @@ export default function IsbnDistribution() {
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[700px] bg-emerald-600/10 blur-[130px] rounded-full -z-10" />
 
                     <div className="max-w-5xl mx-auto text-center">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-xs font-bold uppercase tracking-widest mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 text-xs font-bold uppercase tracking-widest mb-6">
                             Global Identity & Reach
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
@@ -33,7 +33,7 @@ export default function IsbnDistribution() {
                                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-transparent" />
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="text-center p-8 bg-[#faf8f3] backdrop-blur-md rounded-2xl border border-[#d8d1c1] border-t-white/10">
-                                        <div className="text-4xl font-black mb-2 tracking-widest text-[#17150f]/50">ISBN 978-X-XX-XXXXXX-X</div>
+                                        <div className="text-4xl font-black mb-2 tracking-widest text-[#17150f]/70">ISBN 978-X-XX-XXXXXX-X</div>
                                         <div className="text-emerald-700 font-bold tracking-tight">GLOBAL BOOK IDENTIFIER</div>
                                     </div>
                                 </div>
@@ -147,7 +147,7 @@ export default function IsbnDistribution() {
                 {/* Important Note */}
                 <section className="py-20 px-6">
                     <div className="max-w-4xl mx-auto p-12 rounded-[40px] bg-amber-500/5 border border-amber-500/20">
-                        <h3 className="text-xl font-bold text-amber-500 mb-4 flex items-center gap-2">
+                        <h3 className="text-xl font-bold text-amber-800 mb-4 flex items-center gap-2">
                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
@@ -156,7 +156,7 @@ export default function IsbnDistribution() {
                         <p className="text-[#635c4e] leading-relaxed mb-6">
                             Distribution setup does not guarantee sales. Book performance depends on factors such as content quality, marketing efforts, pricing strategy, and audience engagement.
                         </p>
-                        <p className="text-amber-500/80 text-sm font-medium">
+                        <p className="text-amber-800 text-sm font-medium">
                             Marketing services are available separately in applicable packages.
                         </p>
                     </div>

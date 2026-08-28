@@ -68,7 +68,7 @@ export default function RoyaltyCalculator({ auth }) {
                                     key={type}
                                     onClick={() => setFormat(type)}
                                     className={`py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 ${format === type
-                                        ? 'bg-indigo-600 text-[#17150f] shadow-lg'
+                                        ? 'bg-[#6e2530] text-[#faf8f3] shadow-lg'
                                         : 'text-[#635c4e] hover:text-[#17150f] hover:bg-[#faf8f3]'
                                         }`}
                                 >
