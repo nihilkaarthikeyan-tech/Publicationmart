@@ -1,5 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { PRO_PLANS, PREMIUM_PLANS, FAQS } from './Welcome.data.jsx';
 
 /**
@@ -35,30 +35,93 @@ const CSS = `
   --rule:#d8d1c1;
   --cloth:#6e2530;      /* library binding cloth */
   --foil:#a07d3b;       /* aged gold foil */
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 .pm{background:var(--stock);color:var(--ink);font-family:'Figtree',ui-sans-serif,system-ui,sans-serif}
 .pm-serif{font-family:'EB Garamond',Georgia,'Times New Roman',serif}
 .pm-run{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
 .pm-rule{height:1px;background:var(--rule)}
 .pm a:focus-visible,.pm button:focus-visible{outline:2px solid var(--cloth);outline-offset:3px;border-radius:2px}
+.pm ::selection{background:var(--cloth);color:var(--stock-3)}
+
+/* paper grain — the whole page reads as uncoated stock */
+.pm-grain{position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.05;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E")}
 
 @keyframes pmRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.pm-rise{animation:pmRise .7s cubic-bezier(.2,.7,.3,1) both}
+.pm-rise{animation:pmRise .7s var(--ease) both}
 
 /* hero badge — bordered pill with the tricolour ribbon and a live pulse */
 .pm-badge{background:var(--stock);border:1px solid var(--rule);box-shadow:0 1px 0 rgba(23,21,15,.05),inset 0 0 0 3px var(--stock-3)}
 @keyframes pmPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
 .pm-pulse{animation:pmPulse 2.2s ease-in-out infinite}
 
-@media (prefers-reduced-motion:reduce){.pm-rise,.pm-pulse{animation:none}.pm *{transition:none!important}}
+/* the compositor sets the punchline, letter by letter */
+.pm-typeline{display:block;min-height:1.12em}
+.pm-caret{display:inline-block;width:3px;height:.9em;background:var(--cloth);vertical-align:-.08em;margin-left:4px;animation:pmBlink 1s steps(1) infinite}
+@keyframes pmBlink{50%{opacity:0}}
 
-.pm-spine{position:relative;border-radius:2px 4px 4px 2px;box-shadow:0 16px 34px rgba(23,21,15,.20),0 2px 6px rgba(23,21,15,.12);transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+/* scroll reveals — sections rise; hairline rules draw themselves */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease) var(--d,0s),transform .6s var(--ease) var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.rvx{transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease) .1s}
+.rvx.in{transform:scaleX(1)}
+
+/* bookshelf — spines settle onto the shelf; hover pulls one out */
+.pm-spine{position:relative;border-radius:2px 4px 4px 2px;box-shadow:0 16px 34px rgba(23,21,15,.20),0 2px 6px rgba(23,21,15,.12);transform:rotate(var(--rot,0deg));transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 .pm-spine::after{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:linear-gradient(90deg,rgba(0,0,0,.30),rgba(0,0,0,.04))}
-.pm-stack:hover .pm-spine{transform:translateY(-5px)}
+@keyframes pmShelf{from{opacity:0;transform:translateY(-34px) rotate(var(--rot,0deg))}to{opacity:1;transform:rotate(var(--rot,0deg))}}
+.pm-spine-in{animation:pmShelf .7s var(--ease) backwards}
+.pm-spine:hover,.pm-spine:focus-visible{transform:translateY(-14px) rotate(0deg);box-shadow:0 26px 44px rgba(23,21,15,.28),0 4px 10px rgba(23,21,15,.14);z-index:40!important}
+
+/* underline that draws itself */
+.pm-uline{background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;transition:background-size .35s var(--ease)}
+.pm-uline:hover,.pm-uline:focus-visible{background-size:100% 1px}
+
+/* plan cards — dealt in order when the suite changes; lift to hand */
+@keyframes pmPlanIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pm-plan{animation:pmPlanIn .5s var(--ease) backwards;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.pm-plan:hover{transform:translateY(-5px);box-shadow:0 20px 38px rgba(23,21,15,.12)}
 
 /* the plan the house recommends gets the cloth binding */
 .pm-plan-featured{background:var(--ink);color:var(--stock-3)}
 .pm-plan-featured .pm-run{color:var(--foil)}
+
+/* FAQ opens like a page turning, not a pop */
+.pm-faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.pm-faq-a[data-open="true"]{grid-template-rows:1fr}
+.pm-faq-a>div{overflow:hidden}
+
+/* retailer names glide past; the reader's cursor stops the press */
+.pm-marquee{overflow:hidden}
+.pm-marquee-track{display:flex;width:max-content;animation:pmSlide 32s linear infinite}
+.pm-marquee:hover .pm-marquee-track{animation-play-state:paused}
+@keyframes pmSlide{to{transform:translateX(-50%)}}
+
+/* the Published stamp thumps in */
+.pm-stamp{display:inline-block;font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:var(--cloth);border:1.5px solid var(--cloth);border-radius:3px;padding:3px 8px;transform:rotate(-6deg);opacity:0}
+@keyframes pmThump{0%{opacity:0;transform:scale(2.4) rotate(-18deg)}70%{opacity:1;transform:scale(.94) rotate(-4deg)}100%{opacity:.92;transform:scale(1) rotate(-6deg)}}
+.pm-stamp.in{animation:pmThump .45s var(--ease) both}
+
+/* genre tiles print in reverse on hover */
+.pm-genre{background:var(--stock-3);transition:background .25s,transform .25s var(--ease)}
+.pm-genre h4,.pm-genre .pm-run{transition:color .25s}
+.pm-genre:hover{background:var(--ink);transform:translateY(-2px)}
+.pm-genre:hover h4{color:var(--stock-3)}
+.pm-genre:hover .pm-run{color:var(--foil)}
+
+/* gold foil catches the light */
+.pm-foil{background:linear-gradient(100deg,#8a6a2f 0%,#a07d3b 38%,#e8cf8e 50%,#a07d3b 62%,#8a6a2f 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;animation:pmShimmer 4.5s ease-in-out infinite}
+@keyframes pmShimmer{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+
+/* pressing a control acknowledges the hand */
+.pm-press:active{transform:translateY(1px)}
+
+@media (prefers-reduced-motion:reduce){
+  .pm-rise,.pm-pulse,.pm-caret,.pm-spine-in,.pm-plan,.pm-marquee-track,.pm-foil,.pm-stamp.in{animation:none}
+  .rv,.rvx{opacity:1;transform:none;transition:none}
+  .pm-stamp{opacity:.92}
+  .pm *{transition-duration:.01ms!important}
+}
 `;
 
 const CLOTHS = [
@@ -68,32 +131,123 @@ const CLOTHS = [
     'linear-gradient(155deg,#7a6224,#584618)',
 ];
 
-function Spine({ title, i }) {
+const RETAILERS = ['Amazon Kindle', 'Apple Books', 'Google Play', 'Barnes & Noble', 'Kobo', 'IngramSpark'];
+
+const prefersReducedMotion = () =>
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** One observer for every scroll-triggered element (.rv rise, .rvx rule draw, .pm-stamp thump). */
+function useReveal() {
+    useEffect(() => {
+        const els = document.querySelectorAll('.rv, .rvx, .pm-stamp');
+        if (!('IntersectionObserver' in window) || prefersReducedMotion()) {
+            els.forEach((el) => el.classList.add('in'));
+            return;
+        }
+        const io = new IntersectionObserver(
+            (entries) => entries.forEach((e) => {
+                if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+            }),
+            { threshold: 0.12 },
+        );
+        els.forEach((el) => io.observe(el));
+        return () => io.disconnect();
+    }, []);
+}
+
+/** Counts from 0 to value when scrolled into view. */
+function CountUp({ value }) {
+    const ref = useRef(null);
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const target = Number(value) || 0;
+        const done = () => { el.textContent = target.toLocaleString('en-IN'); };
+        if (prefersReducedMotion() || !('IntersectionObserver' in window)) { done(); return; }
+        const io = new IntersectionObserver(([e]) => {
+            if (!e.isIntersecting) return;
+            io.disconnect();
+            const t0 = performance.now();
+            const tick = (t) => {
+                const p = Math.min((t - t0) / 1300, 1);
+                el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toLocaleString('en-IN');
+                if (p < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+        }, { threshold: 0.6 });
+        io.observe(el);
+        return () => io.disconnect();
+    }, [value]);
+    return <span ref={ref}>0</span>;
+}
+
+/**
+ * The hero punchline, set by a compositor: typed letter by letter, then
+ * recast as the other things a manuscript can become. Static under
+ * reduced motion, and always announced to screen readers as one sentence.
+ */
+const TYPED_WORDS = ['a real book.', 'a paperback.', 'an eBook.', 'an audiobook.', 'a bestseller.'];
+
+function TypedLine() {
+    const [text, setText] = useState(TYPED_WORDS[0]);
+    const [animating, setAnimating] = useState(false);
+    useEffect(() => {
+        if (prefersReducedMotion()) return;
+        setAnimating(true);
+        let wi = 0, ci = TYPED_WORDS[0].length, deleting = false, timer;
+        const step = () => {
+            const w = TYPED_WORDS[wi % TYPED_WORDS.length];
+            let delay = deleting ? 45 : 95;
+            if (!deleting && ci === w.length) { deleting = true; delay = 2400; }
+            else if (deleting && ci === 0) { deleting = false; wi += 1; delay = 420; }
+            else ci += deleting ? -1 : 1;
+            setText(TYPED_WORDS[wi % TYPED_WORDS.length].slice(0, ci));
+            timer = setTimeout(step, delay);
+        };
+        timer = setTimeout(step, 2600);
+        return () => clearTimeout(timer);
+    }, []);
     return (
-        <div
-            className="pm-spine absolute w-[150px] h-[226px] overflow-hidden"
-            style={{
-                background: CLOTHS[i % CLOTHS.length],
-                left: `${i * 60}px`,
-                top: `${[26, 12, 30, 18][i % 4]}px`,
-                transform: `rotate(${[-6, 2, 8, -3][i % 4]}deg)`,
-                zIndex: 10 - i,
-            }}
-        >
+        <em className="pm-typeline" style={{ color: 'var(--cloth)' }}>
+            {text}
+            {animating && <span className="pm-caret" aria-hidden="true" />}
+        </em>
+    );
+}
+
+function Spine({ id, title, i }) {
+    const style = {
+        background: CLOTHS[i % CLOTHS.length],
+        left: `${i * 60}px`,
+        top: `${[26, 12, 30, 18][i % 4]}px`,
+        '--rot': `${[-6, 2, 8, -3][i % 4]}deg`,
+        zIndex: 10 - i,
+        animationDelay: `${0.15 + i * 0.12}s`,
+    };
+    const inner = (
+        <>
             <div className="pm-serif text-[#f2ecdd] text-[12px] leading-snug px-4 pt-7 pr-3">{title}</div>
             <div className="absolute bottom-5 left-4 right-3 pt-2" style={{ borderTop: '1px solid rgba(242,236,221,.28)' }}>
                 <span className="pm-run" style={{ color: 'rgba(242,236,221,.6)', fontSize: 9 }}>PublicationMart</span>
             </div>
-        </div>
+        </>
+    );
+    const cls = 'pm-spine pm-spine-in absolute block w-[150px] h-[226px] overflow-hidden';
+    return id ? (
+        <Link href={`/book-store/${id}`} className={cls} style={style} aria-label={`${title} — view in the book store`}>
+            {inner}
+        </Link>
+    ) : (
+        <div className={cls} style={style}>{inner}</div>
     );
 }
 
 function RunningHead({ label, folio }) {
     return (
         <div className="flex items-baseline gap-6 mb-8">
-            <span className="pm-run whitespace-nowrap">{label}</span>
-            <div className="pm-rule flex-1" />
-            {folio && <span className="pm-run" style={{ color: 'var(--foil)' }}>{folio}</span>}
+            <span className="pm-run whitespace-nowrap rv">{label}</span>
+            <div className="pm-rule flex-1 rvx" />
+            {folio && <span className="pm-run rv" style={{ color: 'var(--foil)', '--d': '250ms' }}>{folio}</span>}
         </div>
     );
 }
@@ -102,7 +256,7 @@ function RunningHead({ label, folio }) {
 const isManagedPlan = (name) =>
     ['silver', 'gold'].includes(String(name).toLowerCase());
 
-function PlanCard({ plan, suite, guestHref }) {
+function PlanCard({ plan, suite, guestHref, delay }) {
     const managed = suite === 'premium' || isManagedPlan(plan.name);
     const href = managed
         ? `${route('publishing-inquiry.create')}?plan=${String(plan.name).toLowerCase()}`
@@ -110,10 +264,11 @@ function PlanCard({ plan, suite, guestHref }) {
 
     return (
         <div
-            className={`flex flex-col p-7 ${plan.popular ? 'pm-plan-featured' : ''}`}
+            className={`flex flex-col p-7 pm-plan ${plan.popular ? 'pm-plan-featured' : ''}`}
             style={{
                 border: `1px solid ${plan.popular ? 'var(--ink)' : 'var(--rule)'}`,
                 background: plan.popular ? 'var(--ink)' : 'var(--stock-3)',
+                animationDelay: delay,
             }}
         >
             {plan.popular && (
@@ -149,7 +304,7 @@ function PlanCard({ plan, suite, guestHref }) {
 
             <Link
                 href={href}
-                className="block text-center text-[13.5px] font-semibold py-3 rounded-sm transition-opacity hover:opacity-85"
+                className="pm-press block text-center text-[13.5px] font-semibold py-3 rounded-sm transition-opacity hover:opacity-85"
                 style={
                     plan.popular
                         ? { background: 'var(--stock-3)', color: 'var(--ink)' }
@@ -168,6 +323,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
     const [openFaq, setOpenFaq] = useState(null);
 
     useEffect(() => setLoaded(true), []);
+    useReveal();
 
     // The writing tool is open to visitors with no account — preserved exactly.
     const guestHref = auth?.user ? route('dashboard') : route('guest-writer.pricing');
@@ -189,6 +345,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
     return (
         <div className="pm min-h-screen">
+            <div className="pm-grain" aria-hidden="true" />
             <Head title="Self Publishing Platform for Authors in India – AI Book Writing & Publishing">
                 {/* Primary Meta Tags */}
                 <meta name="title" content="PublicationMart  Book Publishing & Author Services in India" />
@@ -252,9 +409,13 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             <span aria-hidden="true" className="pm-pulse w-2 h-2 rounded-full shrink-0" style={{ background: '#138808' }} />
                         </div>
 
-                        <h1 className="pm-serif font-medium leading-[1.04] tracking-tight text-[clamp(2.5rem,5.8vw,4rem)] mb-7">
-                            Your manuscript deserves to become{' '}
-                            <em style={{ color: 'var(--cloth)' }}>a real book.</em>
+                        <h1
+                            className="pm-serif font-medium leading-[1.04] tracking-tight text-[clamp(2.5rem,5.8vw,4rem)] mb-7"
+                            aria-label="Your manuscript deserves to become a real book."
+                        >
+                            <span aria-hidden="true">
+                                Your manuscript deserves to become <TypedLine />
+                            </span>
                         </h1>
 
                         <p className="pm-serif text-[19px] leading-relaxed max-w-[47ch] mb-9" style={{ color: 'var(--ink-2)' }}>
@@ -264,11 +425,11 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         </p>
 
                         <div className="flex flex-wrap gap-3">
-                            <Link href={guestHref} className="text-[14px] font-semibold px-7 py-3.5 rounded-sm"
+                            <Link href={guestHref} className="pm-press text-[14px] font-semibold px-7 py-3.5 rounded-sm"
                                   style={{ background: 'var(--ink)', color: 'var(--stock-3)' }}>
                                 Start writing — no account needed
                             </Link>
-                            <Link href={route('book-store.index')} className="text-[14px] font-semibold px-7 py-3.5 rounded-sm"
+                            <Link href={route('book-store.index')} className="pm-press text-[14px] font-semibold px-7 py-3.5 rounded-sm"
                                   style={{ border: '1px solid var(--rule)', color: 'var(--ink)' }}>
                                 Browse the catalogue
                             </Link>
@@ -276,9 +437,9 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
                         <div className="mt-10 pt-6" style={{ borderTop: '1px solid var(--rule)' }}>
                             <p className="text-[13.5px]" style={{ color: 'var(--ink-3)' }}>
-                                <strong style={{ color: 'var(--ink-2)' }}>{published.toLocaleString('en-IN')}</strong> titles published
+                                <strong style={{ color: 'var(--ink-2)', fontVariantNumeric: 'tabular-nums' }}><CountUp value={published} /></strong> titles published
                                 <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
-                                <strong style={{ color: 'var(--ink-2)' }}>{authors.toLocaleString('en-IN')}</strong> authors joined
+                                <strong style={{ color: 'var(--ink-2)', fontVariantNumeric: 'tabular-nums' }}><CountUp value={authors} /></strong> authors joined
                                 <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
                                 <strong style={{ color: 'var(--ink-2)' }}>100%</strong> author royalty
                                 <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
@@ -292,8 +453,8 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
                     <div className={`relative h-[290px] hidden md:block ${loaded ? 'pm-rise' : 'opacity-0'}`} style={{ animationDelay: '.12s' }}>
                         <div className="pm-stack absolute inset-0">
-                            {(spines.length ? spines : [{ id: 'a', title: 'A book published with PublicationMart' }])
-                                .map((b, i) => <Spine key={b.id ?? i} title={b.title} i={i} />)}
+                            {(spines.length ? spines : [{ title: 'A book published with PublicationMart' }])
+                                .map((b, i) => <Spine key={b.id ?? i} id={b.id} title={b.title} i={i} />)}
                         </div>
                     </div>
                 </div>
@@ -304,11 +465,11 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 <section className="max-w-6xl mx-auto px-6 py-20">
                     <RunningHead label="From the catalogue" folio="I" />
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-9">
-                        {shelf.map((b) => (
-                            <article key={b.id}>
+                        {shelf.map((b, i) => (
+                            <article key={b.id} className="rv" style={{ '--d': `${i * 70}ms` }}>
                                 <div className="pm-rule mb-4" />
                                 <h3 className="pm-serif text-[20px] leading-snug mb-2">
-                                    <Link href={`/book-store/${b.id}`} className="hover:underline decoration-1 underline-offset-4">
+                                    <Link href={`/book-store/${b.id}`} className="pm-uline">
                                         {b.title}
                                     </Link>
                                 </h3>
@@ -316,8 +477,8 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             </article>
                         ))}
                     </div>
-                    <div className="mt-12">
-                        <Link href={route('book-store.index')} className="pm-run hover:opacity-70" style={{ color: 'var(--cloth)' }}>
+                    <div className="mt-12 rv" style={{ '--d': '300ms' }}>
+                        <Link href={route('book-store.index')} className="pm-run pm-uline" style={{ color: 'var(--cloth)' }}>
                             See every title →
                         </Link>
                     </div>
@@ -333,9 +494,9 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             The people who published with us.
                         </h2>
                         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                            {featuredBooks.map((book) => (
-                                <article key={book.id} className="flex items-start gap-4 p-6"
-                                         style={{ border: '1px solid var(--rule)', background: 'var(--stock-3)' }}>
+                            {featuredBooks.map((book, i) => (
+                                <article key={book.id} className="flex items-start gap-4 p-6 rv"
+                                         style={{ border: '1px solid var(--rule)', background: 'var(--stock-3)', '--d': `${(i % 3) * 80}ms` }}>
                                     <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 pm-serif text-[18px]"
                                          style={{ background: 'var(--cloth)', color: 'var(--stock-3)' }}>
                                         {(book.author_name || 'A').charAt(0).toUpperCase()}
@@ -343,7 +504,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                     <div className="min-w-0">
                                         <h3 className="pm-serif text-[18px] leading-snug mb-0.5 truncate">{book.author_name || 'Anonymous'}</h3>
                                         <p className="text-[13px] leading-snug mb-2 truncate" style={{ color: 'var(--ink-3)' }}>{book.title}</p>
-                                        <span className="pm-run" style={{ color: 'var(--foil)', fontSize: 9.5 }}>Published</span>
+                                        <span className="pm-stamp" style={{ animationDelay: `${(i % 3) * 140 + 220}ms` }}>Published</span>
                                     </div>
                                 </article>
                             ))}
@@ -356,12 +517,12 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <section style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
                     <RunningHead label="How a book is made" folio="III" />
-                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[20ch] mb-14">
+                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[20ch] mb-14 rv">
                         Five stages, and we handle all of them.
                     </h2>
                     <ol className="grid md:grid-cols-5 gap-x-8 gap-y-10">
-                        {stages.map((s) => (
-                            <li key={s.n}>
+                        {stages.map((s, i) => (
+                            <li key={s.n} className="rv" style={{ '--d': `${i * 110}ms` }}>
                                 <div className="pm-serif text-[26px] mb-3" style={{ color: 'var(--foil)' }}>{s.n}</div>
                                 <div className="pm-rule mb-4" />
                                 <h3 className="pm-serif text-[19px] mb-2">{s.t}</h3>
@@ -376,7 +537,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <section className="max-w-6xl mx-auto px-6 py-20">
                 <RunningHead label="Who we publish" folio="IV" />
                 <div className="grid md:grid-cols-2 gap-14 items-start">
-                    <div>
+                    <div className="rv">
                         <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight mb-6">
                             Most of our authors teach for a living.
                         </h2>
@@ -403,7 +564,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             ))}
                         </ul>
                     </div>
-                    <dl className="grid gap-px" style={{ background: 'var(--rule)', border: '1px solid var(--rule)' }}>
+                    <dl className="grid gap-px rv" style={{ background: 'var(--rule)', border: '1px solid var(--rule)', '--d': '150ms' }}>
                         {[
                             ['Copyright', 'Stays entirely yours. We claim nothing.'],
                             ['Royalty', 'You keep 100% as per marketplace payouts.'],
@@ -425,7 +586,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <section id="tools-suite" style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
                     <RunningHead label="The workshop" folio="V" />
-                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[22ch] mb-12">
+                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[22ch] mb-12 rv">
                         Every tool a book needs, under one roof.
                     </h2>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -462,7 +623,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                 title: 'Smart Formatting',
                                 desc: 'Automatically convert your manuscript into eBook, Paperback, and Hardcover formats that meet global industry standards.',
                             },
-                        ].map((tool) => {
+                        ].map((tool, i) => {
                             const body = (
                                 <>
                                     <div className="pm-rule mb-4" />
@@ -475,15 +636,15 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                     )}
                                 </>
                             );
+                            const cardStyle = { border: '1px solid var(--rule)', background: 'var(--stock)', '--d': `${(i % 3) * 90}ms` };
                             return tool.href ? (
                                 <Link key={tool.title} href={tool.href}
-                                      className="flex flex-col p-6 transition-colors hover:bg-[color:var(--stock-3)]"
-                                      style={{ border: '1px solid var(--rule)', background: 'var(--stock)' }}>
+                                      className="flex flex-col p-6 rv transition-colors hover:bg-[color:var(--stock-3)]"
+                                      style={cardStyle}>
                                     {body}
                                 </Link>
                             ) : (
-                                <article key={tool.title} className="flex flex-col p-6"
-                                         style={{ border: '1px solid var(--rule)', background: 'var(--stock)' }}>
+                                <article key={tool.title} className="flex flex-col p-6 rv" style={cardStyle}>
                                     {body}
                                 </article>
                             );
@@ -497,7 +658,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 <div className="max-w-6xl mx-auto px-6 py-20">
                     <RunningHead label="Plans" folio="VI" />
 
-                    <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
+                    <div className="flex flex-wrap items-end justify-between gap-6 mb-10 rv">
                         <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[16ch]">
                             Publish it yourself, or let us do it.
                         </h2>
@@ -512,7 +673,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                     role="tab"
                                     aria-selected={suite === key}
                                     onClick={() => setSuite(key)}
-                                    className="px-6 py-3 text-[12.5px] font-semibold transition-colors"
+                                    className="pm-press px-6 py-3 text-[12.5px] font-semibold transition-colors"
                                     style={
                                         suite === key
                                             ? { background: 'var(--ink)', color: 'var(--stock-3)' }
@@ -531,9 +692,9 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         </p>
                     )}
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                        {plans.map((p) => (
-                            <PlanCard key={p.name} plan={p} suite={suite} guestHref={guestHref} />
+                    <div key={suite} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                        {plans.map((p, i) => (
+                            <PlanCard key={p.name} plan={p} suite={suite} guestHref={guestHref} delay={`${i * 70}ms`} />
                         ))}
                     </div>
 
@@ -551,7 +712,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <section id="faq" className="max-w-6xl mx-auto px-6 py-20">
                 <RunningHead label="Questions" folio="VII" />
                 <div className="grid md:grid-cols-[.8fr_1.2fr] gap-12">
-                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight">
+                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight rv">
                         Before you begin.
                     </h2>
 
@@ -559,7 +720,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         {FAQS.map((faq, i) => {
                             const open = openFaq === i;
                             return (
-                                <div key={faq.question} style={{ borderTop: '1px solid var(--rule)' }}>
+                                <div key={faq.question} className="rv" style={{ borderTop: '1px solid var(--rule)', '--d': `${Math.min(i * 35, 350)}ms` }}>
                                     <button
                                         onClick={() => setOpenFaq(open ? null : i)}
                                         aria-expanded={open}
@@ -574,11 +735,13 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                             +
                                         </span>
                                     </button>
-                                    {open && (
-                                        <p className="pb-6 pr-10 text-[14.5px] leading-relaxed" style={{ color: 'var(--ink-2)' }}>
-                                            {faq.answer}
-                                        </p>
-                                    )}
+                                    <div className="pm-faq-a" data-open={open}>
+                                        <div>
+                                            <div className="pb-6 pr-10 text-[14.5px] leading-relaxed" style={{ color: 'var(--ink-2)' }}>
+                                                {faq.answer}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             );
                         })}
@@ -589,11 +752,22 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
             {/* ── where your book travels ──────────────────── */}
             <section style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
-                <div className="max-w-6xl mx-auto px-6 py-12 text-center">
-                    <p className="pm-run mb-6">Distribute your book globally</p>
-                    <p className="pm-serif text-[19px] leading-relaxed" style={{ color: 'var(--ink-2)' }}>
-                        Amazon Kindle&ensp;·&ensp;Apple Books&ensp;·&ensp;Google Play&ensp;·&ensp;Barnes &amp; Noble&ensp;·&ensp;Kobo&ensp;·&ensp;IngramSpark
-                    </p>
+                <div className="py-12">
+                    <p className="pm-run mb-8 text-center rv">Distribute your book globally</p>
+                    <div className="pm-marquee" aria-label="Amazon Kindle, Apple Books, Google Play, Barnes and Noble, Kobo, IngramSpark">
+                        <div className="pm-marquee-track">
+                            {[0, 1].map((dup) => (
+                                <div key={dup} className="flex items-center" aria-hidden={dup === 1}>
+                                    {RETAILERS.map((r) => (
+                                        <span key={r} className="pm-serif text-[22px] whitespace-nowrap px-8" style={{ color: 'var(--ink-2)' }}>
+                                            {r}
+                                            <span className="px-8" style={{ color: 'var(--rule)' }} aria-hidden="true">·</span>
+                                        </span>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -601,7 +775,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <section id="genre-section" style={{ background: 'var(--stock)', borderTop: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
                     <RunningHead label="Ready for every genre" folio="VIII" />
-                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[24ch] mb-12">
+                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[24ch] mb-12 rv">
                         From literary fiction to technical research.
                     </h2>
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: 'var(--rule)', border: '1px solid var(--rule)' }}>
@@ -614,8 +788,8 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             { name: 'Comics', desc: 'Graphic Novels' },
                             { name: 'Tech', desc: 'Guides & Manuals' },
                             { name: 'Poetry', desc: 'Verse & Rhyme' },
-                        ].map((genre) => (
-                            <div key={genre.name} className="px-6 py-6" style={{ background: 'var(--stock-3)' }}>
+                        ].map((genre, i) => (
+                            <div key={genre.name} className="px-6 py-6 pm-genre rv" style={{ '--d': `${(i % 4) * 60}ms` }}>
                                 <h4 className="pm-serif text-[19px] mb-1">{genre.name}</h4>
                                 <p className="pm-run" style={{ fontSize: 10 }}>{genre.desc}</p>
                             </div>
@@ -626,18 +800,18 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
             {/* ── closing ──────────────────────────────────── */}
             <section style={{ background: 'var(--ink)' }}>
-                <div className="max-w-6xl mx-auto px-6 py-20 text-center">
-                    <p className="pm-run mb-7" style={{ color: 'var(--foil)' }}>Begin</p>
+                <div className="max-w-6xl mx-auto px-6 py-20 text-center rv">
+                    <p className="pm-run pm-foil mb-7">Begin</p>
                     <h2 className="pm-serif font-medium text-[clamp(2rem,5vw,3.2rem)] leading-tight max-w-[22ch] mx-auto mb-8"
                         style={{ color: 'var(--stock-3)' }}>
                         The manuscript is the hard part. <em>You have already done it.</em>
                     </h2>
                     <div className="flex flex-wrap justify-center gap-3">
-                        <Link href={route('register')} className="inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
+                        <Link href={route('register')} className="pm-press inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
                               style={{ background: 'var(--stock-3)', color: 'var(--ink)' }}>
                             Get Started for Free
                         </Link>
-                        <Link href={guestHref} className="inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
+                        <Link href={guestHref} className="pm-press inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
                               style={{ border: '1px solid rgba(240,236,227,.35)', color: 'var(--stock-3)' }}>
                             Start writing — no account needed
                         </Link>
