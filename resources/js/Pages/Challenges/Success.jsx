@@ -61,7 +61,7 @@ export default function Success({ enrollment }) {
                                     </div>
                                     <div className="flex justify-between items-center py-2">
                                         <span className="text-[#635c4e]">Amount Paid</span>
-                                        <span className="text-emerald-400 font-bold text-lg">₹{enrollment.entry_fee}</span>
+                                        <span className="text-emerald-700 font-bold text-lg">₹{enrollment.entry_fee}</span>
                                     </div>
                                 </div>
                             </div>

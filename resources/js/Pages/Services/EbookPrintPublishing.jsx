@@ -17,7 +17,7 @@ export default function EbookPrintPublishing() {
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
                             Publish Digitally. <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Publish in Print.</span>
+                            <span className=" text-[#6e2530]">Publish in Print.</span>
                         </h1>
                         <p className="text-xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
                             Reach Readers Everywhere. PublicationMart enables authors to publish their books in both eBook and paperback formats through a streamlined, guided publishing process.

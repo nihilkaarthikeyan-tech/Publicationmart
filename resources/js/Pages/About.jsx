@@ -23,7 +23,7 @@ export default function About() {
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
 
                     <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-                        We Are <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">PublicationMart</span>
+                        We Are <span className=" text-[#6e2530]">PublicationMart</span>
                     </h1>
                     <p className="text-xl md:text-2xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
                         Revolutionizing the publishing industry by bridging the gap between traditional craftsmanship and modern AI technology.

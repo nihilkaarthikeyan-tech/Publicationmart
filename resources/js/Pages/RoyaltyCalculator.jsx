@@ -127,11 +127,11 @@ export default function RoyaltyCalculator({ auth }) {
                         <p className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-2">
                             Estimated Royalty Per Sale
                         </p>
-                        <div className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+                        <div className="text-6xl font-black text-[#6e2530]">
                             {royalty > 0 ? `₹${royalty.toFixed(2)}` : '₹0.00'}
                         </div>
                         {royalty <= 0 && (
-                            <p className="text-red-400 text-sm mt-2">
+                            <p className="text-red-700 text-sm mt-2">
                                 Price too low for this page count.
                             </p>
                         )}

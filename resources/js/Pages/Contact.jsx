@@ -27,7 +27,7 @@ export default function Contact() {
 
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white to-gray-500 bg-clip-text text-transparent">
+                    <h1 className="text-5xl md:text-6xl font-bold mb-4 text-[#17150f]">
                         Get in Touch
                     </h1>
                     <p className="text-[#635c4e] text-lg max-w-2xl mx-auto">

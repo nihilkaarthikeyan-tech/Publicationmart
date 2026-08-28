@@ -27,7 +27,7 @@ export default function Services() {
                         World-Class Solutions
                     </span>
                     <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
-                        Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Publishing Services</span>
+                        Professional <span className=" text-[#6e2530]">Publishing Services</span>
                     </h1>
                     <p className="text-xl text-[#635c4e] max-w-2xl mx-auto leading-relaxed">
                         Beyond our AI tools, we offer premium services to ensure your book stands out in a crowded marketplace.
@@ -69,7 +69,7 @@ export default function Services() {
                         {/* Service 2: Premium Book Design */}
                         <div className="bg-[#f0ece3] rounded-2xl p-8 border border-[#d8d1c1] hover:border-cyan-500/30 transition-all group">
                             <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-500/20 to-teal-500/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <svg className="w-7 h-7 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-7 h-7 text-cyan-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
                             </div>
@@ -88,7 +88,7 @@ export default function Services() {
                                     <span className="w-1.5 h-1.5 rounded-full bg-cyan-500"></span> Illustrations
                                 </li>
                             </ul>
-                            <Link href="/contact" className="inline-flex items-center text-cyan-400 font-bold hover:text-cyan-300 transition-colors">
+                            <Link href="/contact" className="inline-flex items-center text-cyan-700 font-bold hover:text-cyan-700 transition-colors">
                                 View Portfolio <span className="ml-2">→</span>
                             </Link>
                         </div>

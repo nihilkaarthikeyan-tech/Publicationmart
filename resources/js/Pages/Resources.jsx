@@ -12,9 +12,9 @@ export default function Resources() {
 
                 <div className="max-w-7xl mx-auto px-6 relative z-10">
                     <div className="text-center max-w-3xl mx-auto mb-20">
-                        <span className="text-emerald-400 font-bold tracking-widest text-xs uppercase mb-4 block">Knowledge Hub</span>
+                        <span className="text-emerald-700 font-bold tracking-widest text-xs uppercase mb-4 block">Knowledge Hub</span>
                         <h1 className="text-5xl md:text-6xl font-black mb-6">
-                            Everything You Need to <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Succeed</span>
+                            Everything You Need to <span className=" text-[#6e2530]">Succeed</span>
                         </h1>
                         <p className="text-xl text-[#635c4e]">
                             Guides, tools, and insights to help you navigate the self-publishing journey with confidence.
@@ -30,11 +30,11 @@ export default function Resources() {
                                     <span className="px-3 py-1 bg-[#faf8f3] backdrop-blur-md rounded-lg text-xs font-bold text-[#17150f] border border-[#d8d1c1]">GUIDE</span>
                                 </div>
                             </div>
-                            <h3 className="text-2xl font-bold mb-3 group-hover:text-emerald-400 transition-colors">How to Publish</h3>
+                            <h3 className="text-2xl font-bold mb-3 group-hover:text-emerald-700 transition-colors">How to Publish</h3>
                             <p className="text-[#635c4e] mb-4">
                                 A step-by-step walkthrough of the PublicationMart platform. Learn how to upload, format, and distribute your book in minutes.
                             </p>
-                            <span className="text-emerald-400 font-bold text-sm">Start Learning →</span>
+                            <span className="text-emerald-700 font-bold text-sm">Start Learning →</span>
                         </Link>
 
                         {/* Resource 2: Royalty Calculator */}

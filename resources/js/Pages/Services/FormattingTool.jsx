@@ -17,7 +17,7 @@ export default function FormattingToolLanding() {
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
                             Format Your Book Professionally — <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">On Your Terms.</span>
+                            <span className=" text-[#6e2530]">On Your Terms.</span>
                         </h1>
                         <p className="text-xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
                             PublicationMart’s DIY Formatting Tool empowers authors to format their manuscripts easily using a guided, step-by-step system.

@@ -18,7 +18,7 @@ export default function Careers() {
 
                     <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-tight">
                         Shape the Future of <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Digital Publishing.</span>
+                        <span className=" text-[#6e2530]">Digital Publishing.</span>
                     </h1>
 
                     <div className="p-10 md:p-16 rounded-[48px] bg-white/[0.02] border border-[#d8d1c1] backdrop-blur-xl relative group hover:bg-white/[0.04] transition-all duration-700">

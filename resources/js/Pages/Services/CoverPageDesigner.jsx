@@ -17,7 +17,7 @@ export default function CoverPageDesigner() {
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
                             Design Your Book Cover <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Your Way.</span>
+                            <span className=" text-[#6e2530]">Your Way.</span>
                         </h1>
                         <p className="text-xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
                             Your book cover is the first impression readers see. With PublicationMart’s DIY Cover Page Designer,

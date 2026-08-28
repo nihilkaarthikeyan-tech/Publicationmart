@@ -30,11 +30,11 @@ export default function HowToPublish({ auth }) {
                             Complete Publishing Guide
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight leading-tight">
-                            <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                            <span className=" text-[#17150f]">
                                 How to Publish Your Book
                             </span>
                             <br />
-                            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                            <span className=" text-[#6e2530]">
                                 with PublicationMart
                             </span>
                         </h1>
@@ -62,7 +62,7 @@ export default function HowToPublish({ auth }) {
                             icon="✍️"
                             side="right"
                             delay={100}
-                            gradient="from-indigo-500 to-blue-600"
+                            gradient="from-[#6e2530] to-[#4d1a22]"
                             glowColor="indigo"
                         >
                             <p className="text-[#635c4e] mb-4">Use our <span className="text-indigo-700 font-semibold">Smart Writing</span> tool to:</p>
@@ -85,7 +85,7 @@ export default function HowToPublish({ auth }) {
                             icon="📖"
                             side="left"
                             delay={200}
-                            gradient="from-purple-500 to-pink-600"
+                            gradient="from-[#a07d3b] to-[#7d6027]"
                             glowColor="purple"
                         >
                             <p className="text-[#635c4e] mb-4">Our platform has a <span className="text-purple-700 font-semibold">DIY tool</span> which:</p>
@@ -108,7 +108,7 @@ export default function HowToPublish({ auth }) {
                             icon="🎨"
                             side="right"
                             delay={300}
-                            gradient="from-emerald-500 to-teal-600"
+                            gradient="from-[#2f4f45] to-[#20362d]"
                             glowColor="emerald"
                         >
                             <p className="text-[#635c4e] mb-4">Choose from:</p>
@@ -130,7 +130,7 @@ export default function HowToPublish({ auth }) {
                             icon="🔑"
                             side="left"
                             delay={400}
-                            gradient="from-amber-500 to-orange-600"
+                            gradient="from-[#7a6224] to-[#584618]"
                             glowColor="amber"
                         >
                             <p className="text-[#635c4e] mb-4">We handle:</p>
@@ -142,10 +142,10 @@ export default function HowToPublish({ auth }) {
                                 <BulletItem color="amber">Author royalty configuration</BulletItem>
                             </ul>
                             <div className="mt-4 flex items-center gap-2 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20">
-                                <svg className="w-5 h-5 text-amber-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-5 h-5 text-amber-800 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
-                                <span className="text-amber-300 text-sm font-medium">You retain 100% of your rights and royalties.</span>
+                                <span className="text-amber-800 text-sm font-medium">You retain 100% of your rights and royalties.</span>
                             </div>
                         </StepCard>
 
@@ -157,7 +157,7 @@ export default function HowToPublish({ auth }) {
                             icon="🚀"
                             side="right"
                             delay={500}
-                            gradient="from-cyan-500 to-blue-600"
+                            gradient="from-[#2b3a56] to-[#1c2739]"
                             glowColor="cyan"
                         >
                             <p className="text-[#635c4e] mb-4">Distribution includes:</p>
@@ -181,7 +181,7 @@ export default function HowToPublish({ auth }) {
                             side="left"
                             delay={600}
                             badge="Optional"
-                            gradient="from-rose-500 to-pink-600"
+                            gradient="from-[#8c3541] to-[#6a222d]"
                             glowColor="rose"
                         >
                             <p className="text-[#635c4e] mb-4">You can enhance visibility with:</p>
@@ -211,7 +211,7 @@ export default function HowToPublish({ auth }) {
                             <div className="absolute -bottom-20 -right-20 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl" />
 
                             <h2 className="text-3xl md:text-4xl font-black mb-4 relative">
-                                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                                <span className=" text-[#17150f]">
                                     Ready to Publish Your Book?
                                 </span>
                             </h2>
@@ -294,7 +294,7 @@ function StepCard({ number, title, subtitle, icon, side, delay, badge, gradient,
             style={{ transitionDelay: `${delay}ms` }}
         >
             {/* Number Circle */}
-            <div className={`absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-[#17150f] font-black text-lg shadow-lg z-10 transform md:-translate-x-1/2 border-4 border-[#1c1912] ring-2 ring-[#d8d1c1]`}>
+            <div className={`absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-[#faf8f3] font-black text-lg shadow-lg z-10 transform md:-translate-x-1/2 border-4 border-[#f0ece3] ring-2 ring-[#d8d1c1]`}>
                 {number}
             </div>
 
@@ -314,7 +314,7 @@ function StepCard({ number, title, subtitle, icon, side, delay, badge, gradient,
                             <div className="flex items-center gap-2 flex-wrap">
                                 <h3 className="text-xl font-bold text-[#17150f]">{title}</h3>
                                 {badge && (
-                                    <span className="px-2.5 py-0.5 text-xs font-bold rounded-full bg-gradient-to-r from-rose-500/20 to-pink-500/20 text-rose-300 border border-rose-500/20">
+                                    <span className="px-2.5 py-0.5 text-xs font-bold rounded-full bg-gradient-to-r from-rose-500/20 to-pink-500/20 text-rose-700 border border-rose-500/20">
                                         {badge}
                                     </span>
                                 )}

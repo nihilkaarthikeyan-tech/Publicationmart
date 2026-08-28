@@ -156,9 +156,9 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                 <div className="inline-block px-4 py-1.5 rounded-full bg-purple-50 border border-purple-500/30 text-purple-700 text-xs font-bold tracking-wider mb-6">
                     • Live Challenges 2026
                 </div>
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-indigo-100 to-gray-400 bg-clip-text text-transparent">
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#17150f]">
                     Showcase Your <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Creative Genius</span>
+                    <span className=" text-[#6e2530]">Creative Genius</span>
                 </h1>
                 <p className="text-[#635c4e] max-w-2xl mx-auto mb-8 text-lg">
                     Join our prestigious writing challenges and get a chance to be published, win awards, and reach a global audience.
@@ -294,7 +294,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                                 </div>
                                             </div>
 
-                                            <h4 className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 mb-2 text-center">
+                                            <h4 className="text-2xl font-black mb-2 text-center text-[#17150f]">
                                                 Visual Experience
                                             </h4>
 
@@ -412,7 +412,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                         {/* ═══ WHATS NEW: DIY TOOL ═══ */}
                         <div className="mt-16 pt-16 border-t border-[#d8d1c1]">
                             <h2 className="text-3xl font-bold mb-3 text-[#17150f]">What's New?</h2>
-                            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-6">
+                            <h3 className="text-xl font-bold mb-6 text-[#6e2530]">
                                 Your DIY Book Creation Tool
                             </h3>
 
@@ -454,7 +454,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
                         {/* ═══ COVER DESIGN STUDIO ═══ */}
                         <div className="mt-24 pt-16 border-t border-[#d8d1c1]">
-                            <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-6">
+                            <h3 className="text-xl font-bold mb-6 text-[#6e2530]">
                                 Professional Cover Design Creator
                             </h3>
 
@@ -586,17 +586,17 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                 ) : (
                                     <div className="flex items-center justify-between bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-4 py-3">
                                         <div className="flex items-center gap-2">
-                                            <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                            <span className="text-emerald-400 font-bold text-sm font-mono">{couponApplied.code}</span>
-                                            <span className="text-emerald-300 text-xs">({couponApplied.discount_percentage}% off)</span>
+                                            <svg className="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                            <span className="text-emerald-700 font-bold text-sm font-mono">{couponApplied.code}</span>
+                                            <span className="text-emerald-700 text-xs">({couponApplied.discount_percentage}% off)</span>
                                         </div>
-                                        <button type="button" onClick={handleRemoveCoupon} className="text-[#635c4e] hover:text-red-400 transition-colors text-xs font-bold">
+                                        <button type="button" onClick={handleRemoveCoupon} className="text-[#635c4e] hover:text-red-700 transition-colors text-xs font-bold">
                                             Remove
                                         </button>
                                     </div>
                                 )}
-                                {couponError && <p className="text-red-400 text-xs mt-1.5 ml-1">{couponError}</p>}
-                                {couponSuccess && !couponApplied && <p className="text-emerald-400 text-xs mt-1.5 ml-1">{couponSuccess}</p>}
+                                {couponError && <p className="text-red-700 text-xs mt-1.5 ml-1">{couponError}</p>}
+                                {couponSuccess && !couponApplied && <p className="text-emerald-700 text-xs mt-1.5 ml-1">{couponSuccess}</p>}
                             </div>
 
                             {/* ═══ ORDER SUMMARY ═══ */}
@@ -612,7 +612,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                         <span className="text-[#17150f] font-medium">₹{entryFee.toLocaleString()}</span>
                                     </div>
                                     {couponApplied && (
-                                        <div className="flex justify-between text-emerald-400">
+                                        <div className="flex justify-between text-emerald-700">
                                             <span className="flex items-center gap-1">
                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
                                                 Coupon ({couponApplied.code})
@@ -628,7 +628,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                     </div>
                                     {couponApplied && (
                                         <div className="text-center">
-                                            <span className="text-xs text-emerald-400 font-bold">🎉 You save ₹{couponApplied.discount_amount.toLocaleString()}!</span>
+                                            <span className="text-xs text-emerald-700 font-bold">🎉 You save ₹{couponApplied.discount_amount.toLocaleString()}!</span>
                                         </div>
                                     )}
                                 </div>

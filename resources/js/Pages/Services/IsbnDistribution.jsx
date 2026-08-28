@@ -12,12 +12,12 @@ export default function IsbnDistribution() {
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[700px] bg-emerald-600/10 blur-[130px] rounded-full -z-10" />
 
                     <div className="max-w-5xl mx-auto text-center">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-widest mb-6">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 text-xs font-bold uppercase tracking-widest mb-6">
                             Global Identity & Reach
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
                             Give Your Book a <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Global Identity.</span>
+                            <span className=" text-[#6e2530]">Global Identity.</span>
                         </h1>
                         <p className="text-xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
                             Reach Readers Worldwide. An ISBN gives your book a unique identity in the global publishing ecosystem, allowing it to be listed, tracked, and sold through recognized marketplaces.
@@ -34,7 +34,7 @@ export default function IsbnDistribution() {
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="text-center p-8 bg-[#faf8f3] backdrop-blur-md rounded-2xl border border-[#d8d1c1] border-t-white/10">
                                         <div className="text-4xl font-black mb-2 tracking-widest text-[#17150f]/50">ISBN 978-X-XX-XXXXXX-X</div>
-                                        <div className="text-emerald-400 font-bold tracking-tight">GLOBAL BOOK IDENTIFIER</div>
+                                        <div className="text-emerald-700 font-bold tracking-tight">GLOBAL BOOK IDENTIFIER</div>
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@ export default function IsbnDistribution() {
                         <div className="grid md:grid-cols-2 gap-8">
                             {/* ISBN Support */}
                             <div className="p-10 rounded-[40px] bg-gradient-to-br from-[#0a1510] to-[#f0ece3] border border-emerald-900/30">
-                                <h3 className="text-2xl font-bold mb-8 text-emerald-400">ISBN Allocation Support</h3>
+                                <h3 className="text-2xl font-bold mb-8 text-emerald-700">ISBN Allocation Support</h3>
                                 <p className="text-[#635c4e] mb-6">Depending on your selected package, we assist with:</p>
                                 <ul className="space-y-4">
                                     {[
