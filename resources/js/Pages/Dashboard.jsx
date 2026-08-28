@@ -44,45 +44,48 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
 
             <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
 
-                {/* ═══ MASTHEAD — quiet, not a billboard ═══ */}
-                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-7 border-b border-[#d8d1c1]">
-                    <div>
-                        <p className={RUN}>The author's desk</p>
-                        <h1 className="text-[clamp(1.8rem,3.4vw,2.6rem)] leading-tight text-[#17150f] mt-2" style={SERIF}>
-                            Welcome, {auth.user.name}
-                        </h1>
-                        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-[13px] text-[#635c4e]">
-                            <span className="inline-flex items-center gap-1.5">
-                                <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                                System active
-                            </span>
-                            <span className="text-[#d8d1c1]">·</span>
-                            <span>{stats?.activePlan || 'Creator Bundle'}</span>
-                            <span className="text-[#d8d1c1]">·</span>
-                            <span className="inline-flex items-center gap-3">
-                                <span style={{ fontVariantNumeric: 'tabular-nums' }}>
-                                    {stats?.pagesUsed || 0} / {quotaTotal} pages
+                {/* ═══ MASTHEAD — the cloth band across the desk ═══ */}
+                <div className="rounded-xl overflow-hidden border border-[#4d1a22]"
+                    style={{ background: 'linear-gradient(120deg, #6e2530 0%, #5a1e27 60%, #4d1a22 100%)', boxShadow: '0 14px 34px -14px rgba(77,26,34,.45)' }}>
+                    <div className="px-7 py-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                        <div>
+                            <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-[#e8cf8e]">The author's desk</p>
+                            <h1 className="text-[clamp(1.7rem,3vw,2.3rem)] leading-tight text-[#f7f3ea] mt-1.5" style={SERIF}>
+                                Welcome, {auth.user.name}
+                            </h1>
+                            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3 text-[12.5px] text-[#f2ecdd]/75">
+                                <span className="inline-flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                                    System active
                                 </span>
-                                <span className="inline-block w-28 h-1.5 bg-[#e0d9c8] rounded-full overflow-hidden align-middle">
-                                    <span className="block h-full rounded-full bg-[#6e2530] transition-all duration-700" style={{ width: `${quotaPct}%` }} />
+                                <span className="text-[#f2ecdd]/30">·</span>
+                                <span>{stats?.activePlan || 'Creator Bundle'}</span>
+                                <span className="text-[#f2ecdd]/30">·</span>
+                                <span className="inline-flex items-center gap-2.5">
+                                    <span style={{ fontVariantNumeric: 'tabular-nums' }}>
+                                        {stats?.pagesUsed || 0} / {quotaTotal} pages
+                                    </span>
+                                    <span className="inline-block w-28 h-1.5 bg-white/15 rounded-full overflow-hidden align-middle">
+                                        <span className="block h-full rounded-full bg-[#e8cf8e] transition-all duration-700" style={{ width: `${quotaPct}%` }} />
+                                    </span>
                                 </span>
-                            </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div className="flex flex-wrap items-center gap-3">
-                        <Link href={route('book-store.index')}
-                            className="px-5 py-3 text-[13.5px] font-semibold text-[#4b443a] border border-[#d8d1c1] rounded-md hover:border-[#6e2530] hover:text-[#6e2530] transition-colors">
-                            Book Store
-                        </Link>
-                        <Link href={route('support.index')}
-                            className="px-5 py-3 text-[13.5px] font-semibold text-[#4b443a] border border-[#d8d1c1] rounded-md hover:border-[#6e2530] hover:text-[#6e2530] transition-colors">
-                            Support
-                        </Link>
-                        <Link href={route('books.create')}
-                            className="px-6 py-3 text-[13.5px] font-bold text-[#faf8f3] bg-[#6e2530] hover:bg-[#5a1e27] rounded-md transition-colors active:translate-y-px">
-                            + Create New Book
-                        </Link>
+                        <div className="flex flex-wrap items-center gap-2.5">
+                            <Link href={route('book-store.index')}
+                                className="px-5 py-2.5 text-[13px] font-semibold text-[#f2ecdd]/90 border border-white/25 rounded-md hover:bg-white/10 hover:border-white/40 transition-colors">
+                                Book Store
+                            </Link>
+                            <Link href={route('support.index')}
+                                className="px-5 py-2.5 text-[13px] font-semibold text-[#f2ecdd]/90 border border-white/25 rounded-md hover:bg-white/10 hover:border-white/40 transition-colors">
+                                Support
+                            </Link>
+                            <Link href={route('books.create')}
+                                className="px-6 py-2.5 text-[13px] font-bold text-[#4d1a22] bg-[#f7f3ea] hover:bg-white rounded-md transition-colors active:translate-y-px shadow-sm">
+                                + Create New Book
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
@@ -154,14 +157,14 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                     </div>
                 )}
 
-                {/* ═══ THE LEDGER ROW — six figures, one system ═══ */}
-                <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-lg grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y lg:divide-y-0 divide-[#e7e1d4] overflow-hidden">
-                    <LedgerStat label="Total Sales" value={`₹${stats?.totalRevenue || 0}`} />
-                    <LedgerStat label="Net Income" value={`₹${stats?.monthlyRevenue || 0}`} subLabel="This month" />
-                    <LedgerStat label="Wallet Balance" value={`₹${Number(stats?.walletBalance || 0).toFixed(2)}`} />
-                    <LedgerStat label="Books Sold" value={stats?.totalSales || 0} />
-                    <LedgerStat label="Pages Used" value={stats?.pagesUsedThisMonth || stats?.pagesUsed || 0} subLabel="This month" />
-                    <LedgerStat label="Pages Left" value={stats?.pagesRemaining || 0} />
+                {/* ═══ THE FIGURES — six stat cards, one accent family ═══ */}
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
+                    <StatCard label="Total Sales" value={`₹${stats?.totalRevenue || 0}`} icon="rupee" />
+                    <StatCard label="Net Income" value={`₹${stats?.monthlyRevenue || 0}`} subLabel="This month" icon="trend" />
+                    <StatCard label="Wallet Balance" value={`₹${Number(stats?.walletBalance || 0).toFixed(2)}`} icon="wallet" />
+                    <StatCard label="Books Sold" value={stats?.totalSales || 0} icon="book" />
+                    <StatCard label="Pages Used" value={stats?.pagesUsedThisMonth || stats?.pagesUsed || 0} subLabel="This month" icon="page" />
+                    <StatCard label="Pages Left" value={stats?.pagesRemaining || 0} icon="stack" />
                 </div>
 
                 {/* ═══ MAIN LAYOUT ═══ */}
@@ -591,12 +594,27 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
 
 // ═══ COMPONENTS ═══
 
-// One cell of the ledger row — label in small caps, figure in serif.
-function LedgerStat({ label, value, subLabel }) {
+// The single icon vocabulary for stat cards — one stroke weight, one colour.
+const STAT_ICONS = {
+    rupee: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M6 4h12M6 8h12M6 4c6 0 8 2 8 5s-2 5-8 5l7 6" />,
+    trend: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 17l6-6 4 4 8-8m0 0h-5m5 0v5" />,
+    wallet: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 7a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm13 5h.01M3 9h18" />,
+    book: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 6.25v13m0-13C10.8 5.5 9.2 5 7.5 5S4.2 5.5 3 6.25v13c1.2-.75 2.8-1.25 4.5-1.25s3.3.5 4.5 1.25m0-13c1.2-.75 2.8-1.25 4.5-1.25s3.3.5 4.5 1.25v13c-1.2-.75-2.8-1.25-4.5-1.25s-3.3.5-4.5 1.25" />,
+    page: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12h6m-6 4h4m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.6a1 1 0 01.7.3l5.4 5.4a1 1 0 01.3.7V19a2 2 0 01-2 2z" />,
+    stack: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 4l8 4-8 4-8-4 8-4zm-8 8l8 4 8-4M4 16l8 4 8-4" />,
+};
+
+// One stat card — cloth icon roundel, small-caps label, serif tabular figure.
+function StatCard({ label, value, subLabel, icon }) {
     return (
-        <div className="px-5 py-5">
-            <p className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#635c4e] mb-1.5">{label}</p>
-            <p className="text-[26px] leading-none text-[#17150f]" style={{ fontFamily: "'EB Garamond', Georgia, serif", fontVariantNumeric: 'tabular-nums' }}>{value}</p>
+        <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-5 py-4 transition-all duration-200 hover:border-[#a49b8b] hover:shadow-[0_8px_20px_-8px_rgba(23,21,15,.15)]">
+            <div className="flex items-center gap-3 mb-3">
+                <span className="w-8 h-8 rounded-md bg-[#6e2530]/[0.08] border border-[#6e2530]/15 flex items-center justify-center shrink-0">
+                    <svg className="w-4 h-4 text-[#6e2530]" fill="none" viewBox="0 0 24 24" stroke="currentColor">{STAT_ICONS[icon] || STAT_ICONS.book}</svg>
+                </span>
+                <p className="text-[10px] font-semibold uppercase tracking-[.14em] text-[#635c4e] leading-tight">{label}</p>
+            </div>
+            <p className="text-[25px] leading-none text-[#17150f]" style={{ fontFamily: "'EB Garamond', Georgia, serif", fontVariantNumeric: 'tabular-nums' }}>{value}</p>
             {subLabel && <p className="text-[10px] text-[#7c7364] mt-1.5">{subLabel}</p>}
         </div>
     );
