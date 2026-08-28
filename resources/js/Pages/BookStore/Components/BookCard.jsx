@@ -2,62 +2,94 @@ import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import { route } from 'ziggy-js';
 
-export default function BookCard({ book }) {
+// Cloth bindings for books that have no cover yet — same cloths as the
+// landing-page spines, so a coverless book still looks like a book.
+export const CLOTHS = [
+    'linear-gradient(155deg,#2f4f45,#20362d)',
+    'linear-gradient(155deg,#6e2530,#4d1a22)',
+    'linear-gradient(155deg,#2b3a56,#1c2739)',
+    'linear-gradient(155deg,#7a6224,#584618)',
+];
+
+/**
+ * A cover rendered as a physical book: spine shading on the left, a page
+ * block on the right edge, a real shadow, and a lift-and-tilt on hover
+ * (the hover classes live in the store page's stylesheet as .pm-cov).
+ */
+export function PhysicalCover({ book, appUrl, fit = 'contain', clothIndex = 1 }) {
+    return (
+        <div className="pm-covwrap relative aspect-[2/3]">
+            <div className="pm-cov absolute inset-0 overflow-hidden bg-[#faf8f3]">
+                {book.cover_design_path ? (
+                    <img
+                        src={`${appUrl}/storage/${book.cover_design_path}`}
+                        alt={book.title}
+                        loading="lazy"
+                        className="h-full w-full"
+                        style={{ objectFit: fit }}
+                    />
+                ) : (
+                    <div
+                        className="flex flex-col h-full p-5"
+                        style={{ background: CLOTHS[clothIndex % CLOTHS.length] }}
+                    >
+                        <span
+                            className="text-[#f2ecdd] text-[15px] leading-snug"
+                            style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
+                        >
+                            {book.title}
+                        </span>
+                        <span className="mt-auto pt-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#f2ecdd]/60 border-t border-[#f2ecdd]/25">
+                            PublicationMart
+                        </span>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default function BookCard({ book, clothIndex = 1 }) {
     const { app_url } = usePage().props;
 
     return (
-        <div className="group relative bg-[#faf8f3] rounded-2xl overflow-hidden border border-[#d8d1c1] hover:border-[#7c7364] hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col">
-            {/* Clickable Cover Image */}
-            <Link href={route('book-store.show', book.id)} className="relative aspect-[2/3] overflow-hidden bg-[#faf8f3] block">
-                {book.cover_design_path ? (
-                    <img
-                        src={`${app_url}/storage/${book.cover_design_path}`}
-                        alt={book.title}
-                        className="h-full w-full object-contain bg-[#faf8f3] transform group-hover:scale-105 transition-transform duration-500"
-                    />
-                ) : (
-                    <div className="flex flex-col items-center justify-center h-full text-[#635c4e]">
-                        <svg className="w-12 h-12 mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                        <span>No Cover</span>
-                    </div>
-                )}
-                {/* Badge */}
-                <div className="absolute top-3 left-3">
-                    <span className="bg-[#faf8f3] backdrop-blur-md text-[#17150f] text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider border border-[#d8d1c1]">
+        <div className="group relative flex flex-col">
+            {/* Clickable physical cover */}
+            <Link href={route('book-store.show', book.id)} className="block px-2 pt-2 pb-4">
+                <PhysicalCover book={book} appUrl={app_url} clothIndex={clothIndex} />
+            </Link>
+
+            {/* Content — set like a catalogue entry, not a boxed card */}
+            <div className="px-2 flex-1 flex flex-col">
+                <div className="mb-3">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-[#d8d1c1] text-[#635c4e]">
                         {book.genre || 'General'}
                     </span>
                 </div>
-                {/* View Details Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                    <span className="text-white font-semibold text-sm bg-indigo-600 px-4 py-2 rounded-full">
-                        View Details
-                    </span>
-                </div>
-            </Link>
-
-            {/* Content */}
-            <div className="p-5 flex-1 flex flex-col">
                 <div className="mb-4">
                     <Link href={route('book-store.show', book.id)}>
-                        <h3 className="text-lg font-bold text-[#17150f] leading-tight mb-1 line-clamp-2 hover:text-indigo-700 transition-colors" title={book.title}>
+                        <h3
+                            className="text-[17px] leading-tight mb-1 line-clamp-2 text-[#17150f] hover:text-[#6e2530] transition-colors"
+                            style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
+                            title={book.title}
+                        >
                             {book.title}
                         </h3>
                     </Link>
-                    <p className="text-sm text-[#635c4e]">by <span className="text-indigo-700">{book.author_name}</span></p>
+                    <p className="text-[13px] text-[#635c4e] line-clamp-1">{book.author_name}</p>
                 </div>
 
                 <div className="mt-auto space-y-3">
                     <div className="flex items-center justify-between">
-                        <span className="text-xl font-bold text-[#17150f]">₹{book.selling_price}</span>
+                        <span className="text-lg font-bold text-[#17150f]">₹{book.selling_price}</span>
                     </div>
 
                     {/* Action Buttons */}
                     <div className="grid grid-cols-2 gap-2">
                         <Link
                             href={route('book-store.show', book.id)}
-                            className="col-span-2 w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2"
+                            className="col-span-2 w-full py-2 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2"
                         >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                             View Details
                         </Link>
 
