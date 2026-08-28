@@ -44,7 +44,13 @@ const CSS = `
 
 @keyframes pmRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .pm-rise{animation:pmRise .7s cubic-bezier(.2,.7,.3,1) both}
-@media (prefers-reduced-motion:reduce){.pm-rise{animation:none}.pm *{transition:none!important}}
+
+/* hero badge — bordered pill with the tricolour ribbon and a live pulse */
+.pm-badge{background:var(--stock);border:1px solid var(--rule);box-shadow:0 1px 0 rgba(23,21,15,.05),inset 0 0 0 3px var(--stock-3)}
+@keyframes pmPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+.pm-pulse{animation:pmPulse 2.2s ease-in-out infinite}
+
+@media (prefers-reduced-motion:reduce){.pm-rise,.pm-pulse{animation:none}.pm *{transition:none!important}}
 
 .pm-spine{position:relative;border-radius:2px 4px 4px 2px;box-shadow:0 16px 34px rgba(23,21,15,.20),0 2px 6px rgba(23,21,15,.12);transition:transform .35s cubic-bezier(.2,.7,.3,1)}
 .pm-spine::after{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:linear-gradient(90deg,rgba(0,0,0,.30),rgba(0,0,0,.04))}
@@ -230,9 +236,21 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <section style={{ background: 'var(--stock-3)', borderBottom: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-[1.08fr_.92fr] gap-14 items-center">
                     <div className={loaded ? 'pm-rise' : 'opacity-0'}>
-                        <p className="pm-run mb-7" style={{ color: 'var(--cloth)' }}>
-                            India&rsquo;s Next Gen&ensp;·&ensp;AI-Powered Book Writing &amp; Publishing Platform
-                        </p>
+                        <div className="pm-badge inline-flex items-center gap-3 pl-4 pr-5 py-2.5 mb-8 rounded-full">
+                            {/* tricolour bookmark ribbon */}
+                            <span aria-hidden="true" className="flex flex-col w-[14px] h-[14px] rounded-[3px] overflow-hidden shrink-0"
+                                  style={{ boxShadow: '0 0 0 1px rgba(23,21,15,.12)' }}>
+                                <span style={{ background: '#FF9933', flex: 1 }} />
+                                <span style={{ background: '#faf8f3', flex: 1 }} />
+                                <span style={{ background: '#138808', flex: 1 }} />
+                            </span>
+                            <span className="pm-run" style={{ color: 'var(--cloth)', fontWeight: 800 }}>
+                                India&rsquo;s Next Gen
+                            </span>
+                            <span aria-hidden="true" className="w-px self-stretch" style={{ background: 'var(--rule)' }} />
+                            <span className="pm-run">AI-Powered Book Writing &amp; Publishing Platform</span>
+                            <span aria-hidden="true" className="pm-pulse w-2 h-2 rounded-full shrink-0" style={{ background: '#138808' }} />
+                        </div>
 
                         <h1 className="pm-serif font-medium leading-[1.04] tracking-tight text-[clamp(2.5rem,5.8vw,4rem)] mb-7">
                             Your manuscript deserves to become{' '}
