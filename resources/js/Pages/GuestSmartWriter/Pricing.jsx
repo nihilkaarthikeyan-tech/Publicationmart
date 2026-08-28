@@ -96,7 +96,7 @@ export default function SmartWritingTool({ auth }) {
 
     return (
         <Layout>
-            <Head title="Smart Writing Tool - PublicationMart" />
+            <Head title="Smart Writer - PublicationMart" />
 
             <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-indigo-500 selection:text-[#17150f] overflow-x-hidden">
 
@@ -121,7 +121,7 @@ export default function SmartWritingTool({ auth }) {
                             <span className=" text-[#6e2530]">— Automatically</span>
                         </h1>
                         <p className="text-lg text-[#635c4e] max-w-2xl mx-auto">
-                            The PublicationMart Smart Writing Tool helps authors transform ideas into structured manuscripts quickly and efficiently.
+                            The PublicationMart Smart Writer helps authors transform ideas into structured manuscripts quickly and efficiently.
                         </p>
                     </div>
 
@@ -134,7 +134,7 @@ export default function SmartWritingTool({ auth }) {
                             <h3 className="text-2xl font-bold text-[#17150f] mb-1">Pro</h3>
                             <p className="text-[#635c4e] text-sm mb-6">Perfect for getting started with Smart Writer</p>
                             <ul className="space-y-4 mb-8">
-                                <TierFeature icon="✏️" title="Smart Writing Tool" desc="Generate chapters, outlines, and content effortlessly." />
+                                <TierFeature icon="✏️" title="Smart Writer" desc="Generate chapters, outlines, and content effortlessly." />
                                 <TierFeature icon="📄" title="Auto Formatting" desc="Professional book layout and structure." />
                                 <TierFeature icon="📦" title="Amazon-Ready Export" desc="Export in KDP-ready formats." />
                             </ul>
@@ -177,7 +177,7 @@ export default function SmartWritingTool({ auth }) {
                 <section className="relative pb-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-black mb-4"><span className="text-[#17150f]">From Idea to Manuscript</span> <span className="text-[#635c4e] font-normal">in Minutes</span></h2>
-                        <p className="text-[#635c4e]">Here is how the Smart Writing Tool accelerates your process.</p>
+                        <p className="text-[#635c4e]">Here is how Smart Writer accelerates your process.</p>
                     </div>
                     <div className="absolute left-6 md:left-1/2 top-32 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-purple-500/30 to-transparent md:-translate-x-1/2 transform" />
                     <div className="space-y-16 md:space-y-24">
@@ -211,7 +211,7 @@ export default function SmartWritingTool({ auth }) {
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div>
                                 <h2 className="text-3xl md:text-4xl font-black mb-6">Built for Authors at Every Level</h2>
-                                <p className="text-[#635c4e] mb-10 text-lg">The Smart Writing Tool simplifies the process and reduces the time required to complete your manuscript.</p>
+                                <p className="text-[#635c4e] mb-10 text-lg">Smart Writer simplifies the process and reduces the time required to complete your manuscript.</p>
                                 <div className="space-y-6">
                                     <FeatureRow icon="✍️" title="First-time Writers" desc="Needing structure and guidance to start their journey." />
                                     <FeatureRow icon="💼" title="Busy Professionals" desc="Turning expertise into a book efficiently." />
@@ -226,7 +226,7 @@ export default function SmartWritingTool({ auth }) {
                                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                                         Author Responsibility
                                     </h3>
-                                    <p className="text-[#4b443a] mb-6 leading-relaxed">The Smart Writing Tool is designed to assist — not replace — the author. All AI-generated content serves as a foundation and must be:</p>
+                                    <p className="text-[#4b443a] mb-6 leading-relaxed">Smart Writer is designed to assist — not replace — the author. All AI-generated content serves as a foundation and must be:</p>
                                     <ul className="space-y-3 text-[#635c4e] mb-8">
                                         <li className="flex items-center gap-3"><span className="text-orange-500">✔</span> Carefully reviewed by you</li>
                                         <li className="flex items-center gap-3"><span className="text-orange-500">✔</span> Fact-checked (especially for non-fiction)</li>

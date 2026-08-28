@@ -50,7 +50,7 @@ export default function PaymentGateway({ book, plan, type }) {
 
         try {
             // TODO: Replace with actual payment gateway when merchant key is provided
-            // For now, save plan info and navigate to AI Book Studio setup page
+            // For now, save plan info and navigate to AI Studio setup page
 
             // Save plan info to backend and initiate payment
             const response = await axios.post(route('ai-studio.save-plan', book.id), {
@@ -76,7 +76,7 @@ export default function PaymentGateway({ book, plan, type }) {
                 return;
             }
 
-            // Navigate to AI Book Studio - starts at Step 1 (Setup)
+            // Navigate to AI Studio - starts at Step 1 (Setup)
             router.visit(route('books.ai-studio', book.id) + '?step=1');
         } catch (error) {
             console.error('Error saving plan:', error);
@@ -96,7 +96,7 @@ export default function PaymentGateway({ book, plan, type }) {
 
     return (
         <>
-            <Head title="Payment - AI Book Studio" />
+            <Head title="Payment - AI Studio" />
             <div className="min-h-screen bg-[#f0ece3]">
                 {/* Header */}
                 <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-[#d8d1c1] sticky top-0 z-50">

@@ -210,7 +210,7 @@ export default function Design({ auth, book }) {
     };
 
     /**
-     * Handles launching the Smart Writer Studio.
+     * Handles launching the AI Studio.
      * Reverted to original state as per user request.
      */
     const handleLaunchSmartStudio = () => {
@@ -543,14 +543,14 @@ export default function Design({ auth, book }) {
                                                             </div>
                                                             <span className="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">RECOMMENDED</span>
                                                         </div>
-                                                        <h3 className="font-bold text-[#17150f] text-lg mb-2">Smart Writer Studio 👻</h3>
+                                                        <h3 className="font-bold text-[#17150f] text-lg mb-2">AI Studio 👻</h3>
                                                         <p className="text-sm text-[#635c4e] mb-6">Write directly in our browser editor. We handle formatting automatically.</p>
                                                         <button
                                                             type="button"
                                                             onClick={handleLaunchSmartStudio}
                                                             className="block w-full text-center py-3 bg-gradient-to-r from-purple-600 to-[#6a222d] text-white font-semibold rounded-xl hover:shadow-lg transition-all"
                                                         >
-                                                            Launch Smart Writer Studio
+                                                            Launch AI Studio
                                                         </button>
                                                     </div>
 

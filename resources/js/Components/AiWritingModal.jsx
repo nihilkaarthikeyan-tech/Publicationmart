@@ -51,7 +51,7 @@ export default function AiWritingModal({ show, onClose, onInsert }) {
                 <div className="p-6 bg-gradient-to-r from-purple-600 to-indigo-600 flex justify-between items-center">
                     <div>
                         <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                            <span className="text-2xl">✨</span> Smart Writing Assistant
+                            <span className="text-2xl">✨</span> AI Studio Assistant
                         </h3>
                     </div>
                     <button onClick={onClose} className="text-white/80 hover:text-white hover:bg-white/10 p-2 rounded-full transition-colors">

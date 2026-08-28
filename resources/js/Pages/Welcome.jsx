@@ -15,7 +15,7 @@ import { PRO_PLANS, PREMIUM_PLANS, FAQS } from './Welcome.data.jsx';
  * by university faculty, frequently with four or five co-authors.
  *
  * Functionality preserved from the previous page:
- *   • Guest Smart Writing Tool — usable WITHOUT an account
+ *   • Guest Smart Writer — usable WITHOUT an account
  *     (guest-writer.pricing, or dashboard when signed in)
  *   • Both pricing suites, all 8 plans, original prices and features
  *     - Saver / Optimizer  -> guest-writer.pricing
@@ -580,7 +580,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
     const plans = suite === 'pro' ? PRO_PLANS : PREMIUM_PLANS;
 
     const stages = [
-        { n: 'I', t: 'Write', d: 'Draft in the Smart Writing Tool, or bring a manuscript you have already finished.' },
+        { n: 'I', t: 'Write', d: 'Draft in Smart Writer, or bring a manuscript you have already finished.' },
         { n: 'II', t: 'Format', d: 'Interior typesetting to print standards — margins, running heads, folios, contents.' },
         { n: 'III', t: 'Design', d: 'A cover built for the shelf and the thumbnail, because readers meet it as both.' },
         { n: 'IV', t: 'Register', d: 'Your ISBN is allocated and the title catalogued under your name as author.' },
@@ -691,7 +691,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                 ISBN included
                             </p>
                             <p className="pm-run mt-4" style={{ fontSize: 10 }}>
-                                Smart Writing&ensp;·&ensp;AI Image Generation&ensp;·&ensp;Smart Formatting&ensp;·&ensp;Global Publishing
+                                Smart Writer&ensp;·&ensp;AI Image Generation&ensp;·&ensp;Smart Formatting&ensp;·&ensp;Global Publishing
                             </p>
                         </div>
                     </div>
@@ -857,7 +857,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                     <div className="pm-contents">
                         {[
                             {
-                                title: 'Smart Writing Tool',
+                                title: 'Smart Writer',
                                 desc: 'Distraction-free environment with intelligent suggestions to help you write faster and better.',
                                 cta: 'Start Writing',
                                 href: guestHref,

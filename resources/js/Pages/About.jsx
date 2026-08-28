@@ -48,7 +48,7 @@ export default function About() {
                         <div className="relative z-10">
                             <h2 className="text-3xl font-bold mb-4">The Future of Writing</h2>
                             <p className="text-[#635c4e] text-lg leading-relaxed">
-                                We are pioneering <span className="text-[#17150f]">AI-Assisted Publishing</span>. Our new AI Book Studio helps authors outline, draft, and format their books in record time, without losing their unique creative touch. We are building an ecosystem where technology serves creativity, not replaces it.
+                                We are pioneering <span className="text-[#17150f]">AI-Assisted Publishing</span>. Our new AI Studio helps authors outline, draft, and format their books in record time, without losing their unique creative touch. We are building an ecosystem where technology serves creativity, not replaces it.
                             </p>
                         </div>
                         <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl group-hover:bg-indigo-600/20 transition-all"></div>

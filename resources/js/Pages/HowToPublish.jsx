@@ -65,7 +65,7 @@ export default function HowToPublish({ auth }) {
                             gradient="from-[#6e2530] to-[#4d1a22]"
                             glowColor="indigo"
                         >
-                            <p className="text-[#635c4e] mb-4">Use our <span className="text-indigo-700 font-semibold">Smart Writing</span> tool to:</p>
+                            <p className="text-[#635c4e] mb-4">Use our <span className="text-indigo-700 font-semibold">Smart Writer</span> tool to:</p>
                             <ul className="space-y-2">
                                 <BulletItem>Draft chapters effortlessly</BulletItem>
                                 <BulletItem>Structure your book properly</BulletItem>

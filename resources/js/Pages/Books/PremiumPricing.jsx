@@ -108,7 +108,7 @@ export default function PremiumPricing({ book }) {
 
     return (
         <>
-            <Head title="Premium Plans - AI Book Studio" />
+            <Head title="Premium Plans - AI Studio" />
             <div className="min-h-screen bg-[#f0ece3]">
                 {/* TOP-LEFT BACK BUTTON - ALWAYS VISIBLE */}
                 <Link

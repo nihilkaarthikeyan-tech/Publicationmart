@@ -390,7 +390,7 @@ export default function AiBookStudio({ book, auth }) {
 
     return (
         <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${step === 0 ? 'bg-[#faf8f3]' : step >= 1 && step <= 5 ? 'bg-[#faf8f3]' : 'bg-gray-50'}`}>
-            <Head title={`Smart Writer Studio - ${book.title}`} />
+            <Head title={`AI Studio - ${book.title}`} />
 
             {/* Header */}
             <header className={`h-16 flex items-center justify-between px-6 shadow-sm z-50 transition-colors duration-500 ${step >= 0 && step <= 5 ? 'bg-[#0d1220]/90 backdrop-blur-md border-b border-[#d8d1c1]' : 'bg-white border-b'}`}>
@@ -412,7 +412,7 @@ export default function AiBookStudio({ book, auth }) {
                     <h1 className="font-bold text-lg flex items-center gap-2 text-[#17150f]">
                         <span className="text-2xl">✨</span>
                         {book.title}
-                        <span className="text-xs px-2 py-0.5 rounded-full uppercase tracking-wider font-bold bg-indigo-500/20 text-indigo-700 border border-indigo-500/30">Smart Writer Studio</span>
+                        <span className="text-xs px-2 py-0.5 rounded-full uppercase tracking-wider font-bold bg-indigo-500/20 text-indigo-700 border border-indigo-500/30">AI Studio</span>
                     </h1>
                 </div>
 
@@ -479,7 +479,7 @@ export default function AiBookStudio({ book, auth }) {
                                 </span>
                                 <div className="w-px h-3 bg-[#e7e1d4]"></div>
                                 <span className="text-[10px] md:text-xs font-medium text-[#4b443a] tracking-wide flex items-center gap-2">
-                                    Smart Writer-Powered Book Writing & Publishing Platform
+                                    AI-Powered Book Writing & Publishing Platform
                                     <span className="relative flex h-2 w-2">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -517,7 +517,7 @@ export default function AiBookStudio({ book, auth }) {
                                 <div className="h-full bg-[#faf8f3] rounded-[14px] p-5 md:p-6 flex flex-col relative overflow-hidden">
                                     <div className="mb-5">
                                         <h3 className="text-xl font-bold text-[#17150f] mb-2">Pro</h3>
-                                        <p className="text-sm text-[#635c4e]">Perfect for getting started with Smart Writer</p>
+                                        <p className="text-sm text-[#635c4e]">Perfect for getting started with AI Studio</p>
                                     </div>
 
                                     <div className="flex-1 space-y-4 mb-6">
@@ -526,7 +526,7 @@ export default function AiBookStudio({ book, auth }) {
                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                             </div>
                                             <div>
-                                                <span className="font-semibold text-[#17150f] block text-sm">Smart Writing Tool</span>
+                                                <span className="font-semibold text-[#17150f] block text-sm">AI Studio</span>
                                                 <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Generate chapters, outlines, and content effortlessly.</p>
                                             </div>
                                         </div>
@@ -583,7 +583,7 @@ export default function AiBookStudio({ book, auth }) {
                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                                 </div>
                                                 <div>
-                                                    <span className="font-semibold text-[#17150f] block text-sm">Advanced Smart Writer Engine</span>
+                                                    <span className="font-semibold text-[#17150f] block text-sm">Advanced AI Writing Engine</span>
                                                     <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Superior models for bestseller-quality prose.</p>
                                                 </div>
                                             </div>
@@ -593,7 +593,7 @@ export default function AiBookStudio({ book, auth }) {
                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                                 </div>
                                                 <div>
-                                                    <span className="font-semibold text-[#17150f] block text-sm">Smart Writer Art Studio</span>
+                                                    <span className="font-semibold text-[#17150f] block text-sm">AI Art Studio</span>
                                                     <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Stunning visuals for covers and headers.</p>
                                                 </div>
                                             </div>
@@ -720,7 +720,7 @@ export default function AiBookStudio({ book, auth }) {
                                                 <svg className="w-3 h-3 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                                                 Structure Settings
                                             </h4>
-                                            {/* Logic: Mirror Guest Smart Writer Limits */}
+                                            {/* Logic: Mirror Guest AI Studio Limits */}
                                             <div className="grid grid-cols-3 gap-4">
                                                 <div className="space-y-1.5">
                                                     <label className="block text-[10px] font-bold text-[#635c4e]">Chapters (Max 10)</label>
@@ -871,10 +871,10 @@ export default function AiBookStudio({ book, auth }) {
                                                 <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-700 flex items-center justify-center mb-3 border border-indigo-500/30 group-hover:scale-110 transition-transform">
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                                                 </div>
-                                                <h4 className="font-semibold text-[#17150f] text-sm mb-1">Smart Writer Mode</h4>
-                                                <p className="text-xs text-[#4b443a] mb-4 flex-grow">Let Smart Writer create chapters based on your topic.</p>
+                                                <h4 className="font-semibold text-[#17150f] text-sm mb-1">AI Studio Mode</h4>
+                                                <p className="text-xs text-[#4b443a] mb-4 flex-grow">Let AI Studio create chapters based on your topic.</p>
                                                 <button className="w-full py-2.5 bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-white rounded-lg font-bold text-xs shadow-lg transition-all">
-                                                    {isLoading ? 'Generating...' : 'Generate with Smart Writer'}
+                                                    {isLoading ? 'Generating...' : 'Generate with AI Studio'}
                                                 </button>
                                             </div>
 
@@ -1011,7 +1011,7 @@ export default function AiBookStudio({ book, auth }) {
                                                         disabled={isLoading}
                                                         className="w-full py-2.5 bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-white font-bold text-sm rounded-lg shadow-lg transition-all disabled:opacity-50"
                                                     >
-                                                        {isLoading ? 'Generating...' : '✨ Generate with Smart Writer'}
+                                                        {isLoading ? 'Generating...' : '✨ Generate with AI Studio'}
                                                     </button>
 
                                                     <div className="relative flex py-2 items-center">

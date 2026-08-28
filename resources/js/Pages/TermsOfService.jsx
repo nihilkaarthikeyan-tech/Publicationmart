@@ -4,7 +4,7 @@ export default function TermsOfService() {
     return (
         <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-indigo-500/30">
             <Head title="Terms and Conditions | PublicationMart">
-                <meta name="description" content="Read PublicationMart's Terms and Conditions. Understand author rights, royalties, refund policies, distribution, and Smart Writing Tool usage terms." />
+                <meta name="description" content="Read PublicationMart's Terms and Conditions. Understand author rights, royalties, refund policies, distribution, and Smart Writer usage terms." />
             </Head>
 
             <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
@@ -138,12 +138,12 @@ export default function TermsOfService() {
                         <li>If any refund is approved by the company, it will take <strong className="text-[#17150f]">7 working days</strong> to credit to your original source account.</li>
                     </ul>
 
-                    {/* 10. Smart Writing Tool Usage */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">10. Smart Writing Tool Usage</h2>
+                    {/* 10. Smart Writer Usage */}
+                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">10. Smart Writer Usage</h2>
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Generated Content Disclaimer</h3>
                     <p>
-                        The author is solely responsible for reviewing and editing all content generated through the Smart Writing Tool.
+                        The author is solely responsible for reviewing and editing all content generated through Smart Writer.
                         This includes fact-checking information, ensuring originality, avoiding plagiarism, verifying legal compliance
                         (including copyright, trademarks, and defamation laws), and ensuring the ethical and lawful use of the material.
                         PublicationMart shall not be liable for any claims, disputes, damages, or legal consequences arising from the use,
@@ -152,14 +152,14 @@ export default function TermsOfService() {
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Intellectual Property & Ownership</h3>
                     <p>
-                        The author retains full ownership of the final edited manuscript created using the Smart Writing Tool.
+                        The author retains full ownership of the final edited manuscript created using Smart Writer.
                         PublicationMart does not claim ownership of the author’s original ideas, inputs, or completed manuscript.
                         The tool functions as a writing assistant, and all creative responsibility remains with the author.
                     </p>
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Prohibited Use</h3>
                     <p>
-                        The Smart Writing Tool may not be used to generate or publish illegal content, defamatory material, hate speech,
+                        Smart Writer may not be used to generate or publish illegal content, defamatory material, hate speech,
                         harmful or abusive content, copyright-infringing material, or any content that violates applicable laws or
                         marketplace guidelines. PublicationMart reserves the right to suspend or terminate accounts found to be misusing
                         the system or violating these terms.

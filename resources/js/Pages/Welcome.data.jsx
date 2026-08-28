@@ -9,14 +9,14 @@ export const PRO_PLANS = [
                                 subtitle: 'For Self-Starters',
                                 price: 2999,
                                 popular: false,
-                                features: ['Smart Writing Tool', 'A-Z Writing Assist', 'Auto Formatting', 'Global Distribution', 'Standard 6x9 Size']
+                                features: ['Smart Writer', 'A-Z Writing Assist', 'Auto Formatting', 'Global Distribution', 'Standard 6x9 Size']
                             },
                             {
                                 name: 'Optimizer',
                                 subtitle: 'Writer Advantage',
                                 price: 3999,
                                 popular: false,
-                                features: ['Smart Writing Tool with Image Generator', 'A-Z Writing Assist', 'Auto Formatting', 'Global Distribution', 'Standard 6x9 Size']
+                                features: ['Smart Writer with Image Generator', 'A-Z Writing Assist', 'Auto Formatting', 'Global Distribution', 'Standard 6x9 Size']
                             },
                             {
                                 name: 'Silver',
@@ -79,8 +79,8 @@ export const FAQS = [
             answer: 'Yes. Authors receive 100% of the royalty as per marketplace payout structures. PublicationMart does not take a percentage of your book sales unless otherwise stated in specific promotional agreements.'
         },
         {
-            question: 'How does the Smart Writing Tool work?',
-            answer: 'The Smart Writing Tool generates a structured outline within minutes based on your input. Once you approve the outline, it automatically generates a complete first draft. Authors must thoroughly review, edit, and fact-check the generated content before publishing.'
+            question: 'How does Smart Writer work?',
+            answer: 'Smart Writer generates a structured outline within minutes based on your input. Once you approve the outline, it automatically generates a complete first draft. Authors must thoroughly review, edit, and fact-check the generated content before publishing.'
         },
         {
             question: 'Is AI-generated content safe to publish?',
@@ -113,7 +113,7 @@ export const FAQS = [
         },
         {
             question: 'Do I need prior writing experience?',
-            answer: 'No. Our Smart Writing Tool and guided publishing system are designed for both beginners and experienced authors.'
+            answer: 'No. Our Smart Writer and guided publishing system are designed for both beginners and experienced authors.'
         },
         {
             question: 'Can I upload my own manuscript?',
@@ -141,11 +141,11 @@ export const FAQS = [
             answer: 'Yes. Revisions can be made. However, update processes and additional charges (if applicable) may depend on your selected package.'
         },
         {
-            question: 'What happens if I misuse the Smart Writing Tool?',
+            question: 'What happens if I misuse Smart Writer?',
             answer: 'PublicationMart reserves the right to suspend or terminate accounts that generate illegal, harmful, defamatory, or copyright-infringing content.'
         },
         {
             question: 'How do I get started?',
-            answer: 'Simply choose a suitable package and begin writing using our Smart Writing Tool, or upload your manuscript to begin the publishing process.'
+            answer: 'Simply choose a suitable package and begin writing using our Smart Writer, or upload your manuscript to begin the publishing process.'
         }
     ];

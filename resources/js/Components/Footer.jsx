@@ -7,7 +7,7 @@ export default function Footer() {
         { name: 'Author Resources', href: route('resources') },
         { name: 'Royalty Calculator', href: route('royalties.calculator') },
         { name: 'Pricing Plans', href: route('welcome') + '#pricing-section' },
-        { name: 'Studio (Smart Writing & Formatting)', href: route('books.create') },
+        { name: 'AI Studio (Writing & Formatting)', href: route('books.create') },
     ];
 
     const readLinks = [
@@ -19,7 +19,7 @@ export default function Footer() {
     ];
 
     const servicesLinks = [
-        { name: 'Smart Writing Tool', href: route('guest-writer.pricing') },
+        { name: 'Smart Writer', href: route('guest-writer.pricing') },
         { name: 'Automatic Book Formatting', href: route('services.formatting-tool') },
         { name: 'Cover Page Designer', href: route('services.cover-designer') },
         { name: 'eBook & Print Publishing', href: route('services.ebook-print') },

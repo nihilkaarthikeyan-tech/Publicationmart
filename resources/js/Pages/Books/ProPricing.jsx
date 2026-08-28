@@ -96,7 +96,7 @@ export default function ProPricing({ book }) {
 
     return (
         <>
-            <Head title="Pro Plans - AI Book Studio" />
+            <Head title="Pro Plans - AI Studio" />
             <div className="min-h-screen bg-[#f0ece3]">
                 {/* TOP-LEFT BACK BUTTON - ALWAYS VISIBLE */}
                 <Link

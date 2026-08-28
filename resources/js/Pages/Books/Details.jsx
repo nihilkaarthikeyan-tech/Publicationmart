@@ -978,7 +978,7 @@ export default function Details({ auth, book }) {
                                                             />
                                                         </div>
                                                         <span className="text-sm text-[#4b443a] font-medium leading-relaxed group-hover:text-[#17150f] transition-colors">
-                                                            I confirm that any content created using the Smart Writing Tool has been fully reviewed, edited, and approved by me. I take full responsibility for the originality, accuracy, and compliance of the final content.
+                                                            I confirm that any content created using AI Studio has been fully reviewed, edited, and approved by me. I take full responsibility for the originality, accuracy, and compliance of the final content.
                                                         </span>
                                                     </label>
                                                 </div>
