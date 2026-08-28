@@ -2,7 +2,7 @@
 
 export default function PrivacyPolicy() {
     return (
-        <div className="min-h-screen bg-[#17150f] text-white font-sans selection:bg-indigo-500/30">
+        <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-indigo-500/30">
             <Head title="Privacy Policy | PublicationMart">
                 <meta name="description" content="Read PublicationMart's Privacy Policy. Learn how we collect, use, and protect your personal information on our self-publishing platform." />
             </Head>
@@ -10,15 +10,15 @@ export default function PrivacyPolicy() {
             <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
                 <h1 className="text-4xl md:text-5xl font-black mb-10">Privacy Policy</h1>
 
-                <div className="prose prose-invert prose-lg max-w-none text-gray-400">
-                    <p className="lead text-xl text-white">Last updated: January 12, 2026</p>
+                <div className="prose prose-invert prose-lg max-w-none text-[#635c4e]">
+                    <p className="lead text-xl text-[#17150f]">Last updated: January 12, 2026</p>
 
                     <p>
                         At PublicationMart, accessible from https://publicationmart.com, one of our main priorities is the privacy of our visitors.
                         This Privacy Policy document contains types of information that is collected and recorded by PublicationMart and how we use it.
                     </p>
 
-                    <h2 className="text-white mt-10 mb-4 text-2xl font-bold">Log Files</h2>
+                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">Log Files</h2>
                     <p>
                         PublicationMart follows a standard procedure of using log files. These files log visitors when they visit websites.
                         All hosting companies do this and a part of hosting services' analytics. The information collected by log files include
@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
                         and possibly the number of clicks. These are not linked to any information that is personally identifiable.
                     </p>
 
-                    <h2 className="text-white mt-10 mb-4 text-2xl font-bold">Privacy Policies</h2>
+                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">Privacy Policies</h2>
                     <p>
                         You may consult this list to find the Privacy Policy for each of the advertising partners of PublicationMart.
                     </p>
@@ -37,14 +37,14 @@ export default function PrivacyPolicy() {
                         of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
                     </p>
 
-                    <h2 className="text-white mt-10 mb-4 text-2xl font-bold">Third Party Privacy Policies</h2>
+                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">Third Party Privacy Policies</h2>
                     <p>
                         PublicationMart's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult
                         the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their
                         practices and instructions about how to opt-out of certain options.
                     </p>
 
-                    <h2 className="text-white mt-10 mb-4 text-2xl font-bold">Children's Information</h2>
+                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">Children's Information</h2>
                     <p>
                         Another part of our priority is adding protection for children while using the internet. We encourage parents and
                         guardians to observe, participate in, and/or monitor and guide their online activity.
@@ -55,7 +55,7 @@ export default function PrivacyPolicy() {
                         us immediately and we will do our best efforts to promptly remove such information from our records.
                     </p>
 
-                    <h2 className="text-white mt-10 mb-4 text-2xl font-bold">Consent</h2>
+                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">Consent</h2>
                     <p>
                         By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.
                     </p>

@@ -6,13 +6,13 @@ export default function Careers() {
         <>
             <Head title="Careers - Join Our Team | PublicationMart" />
 
-            <div className="bg-[#17150f] text-white selection:bg-indigo-500/30 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="bg-[#f0ece3] text-[#17150f] selection:bg-indigo-500/30 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
                 {/* Background Glows */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/5 blur-[150px] rounded-full -z-10" />
                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-600/5 blur-[100px] rounded-full -z-10" />
 
                 <section className="max-w-4xl mx-auto px-6 text-center py-24 relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-700 text-xs font-bold uppercase tracking-widest mb-8 animate-fade-in">
                         Join PublicationMart
                     </div>
 
@@ -21,26 +21,26 @@ export default function Careers() {
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Digital Publishing.</span>
                     </h1>
 
-                    <div className="p-10 md:p-16 rounded-[48px] bg-white/[0.02] border border-white/10 backdrop-blur-xl relative group hover:bg-white/[0.04] transition-all duration-700">
+                    <div className="p-10 md:p-16 rounded-[48px] bg-white/[0.02] border border-[#d8d1c1] backdrop-blur-xl relative group hover:bg-white/[0.04] transition-all duration-700">
                         {/* Shimmer effect */}
                         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.05] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
-                        <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-10">
+                        <p className="text-xl md:text-2xl text-[#4b443a] leading-relaxed mb-10">
                             We are always looking for passionate creators, developers, and publishing experts to join our growing team.
                         </p>
 
                         <div className="space-y-6">
                             <div className="inline-block p-6 rounded-3xl bg-indigo-500/10 border border-indigo-500/20">
-                                <p className="text-lg font-medium text-white mb-4">Interested in working with us?</p>
+                                <p className="text-lg font-medium text-[#17150f] mb-4">Interested in working with us?</p>
                                 <a
                                     href="mailto:info@publicationmart.com"
-                                    className="text-2xl md:text-3xl font-black text-indigo-400 hover:text-indigo-300 transition-colors break-all"
+                                    className="text-2xl md:text-3xl font-black text-indigo-700 hover:text-indigo-700 transition-colors break-all"
                                 >
                                     info@publicationmart.com
                                 </a>
                             </div>
 
-                            <p className="text-gray-500 text-sm max-w-md mx-auto leading-relaxed">
+                            <p className="text-[#635c4e] text-sm max-w-md mx-auto leading-relaxed">
                                 Send your resume to the email above. We will contact you once suitable vacancies arise.
                             </p>
                         </div>

@@ -6,7 +6,7 @@ export default function Layout({ children }) {
     const { auth, flash } = usePage().props;
 
     return (
-        <div className="min-h-screen flex flex-col bg-[#17150f]">
+        <div className="min-h-screen flex flex-col bg-[#f0ece3]">
             <Navbar key={auth?.user?.id || 'guest'} />
 
             {/* Global Flash Messages */}
