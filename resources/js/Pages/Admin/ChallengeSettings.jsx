@@ -162,7 +162,7 @@ export default function ChallengeSettings({ settings = [], flash = {} }) {
         <>
             <Head title="Challenge Videos" />
 
-            <div className="min-h-screen bg-[#0f0a1e] py-10 px-4">
+            <div className="min-h-screen bg-[#17150f] py-10 px-4">
                 <div className="max-w-6xl mx-auto">
                     <div className="flex items-center justify-between flex-wrap gap-4 mb-2">
                         <h1 className="text-2xl font-bold text-white">Challenge Videos</h1>

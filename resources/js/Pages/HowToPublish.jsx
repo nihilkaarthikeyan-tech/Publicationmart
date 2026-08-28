@@ -16,7 +16,7 @@ export default function HowToPublish({ auth }) {
                 <meta name="twitter:description" content="Complete guide to self-publishing your book in India. AI-powered tools, global distribution." />
             </Head>
 
-            <div className="min-h-screen bg-[#1e1535] text-white selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+            <div className="min-h-screen bg-[#1c1912] text-white selection:bg-indigo-500 selection:text-white overflow-x-hidden">
 
                 {/* ═══ HERO SECTION ═══ */}
                 <section className="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -294,7 +294,7 @@ function StepCard({ number, title, subtitle, icon, side, delay, badge, gradient,
             style={{ transitionDelay: `${delay}ms` }}
         >
             {/* Number Circle */}
-            <div className={`absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-black text-lg shadow-lg z-10 transform md:-translate-x-1/2 border-4 border-[#1e1535] ring-2 ring-white/10`}>
+            <div className={`absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-black text-lg shadow-lg z-10 transform md:-translate-x-1/2 border-4 border-[#1c1912] ring-2 ring-white/10`}>
                 {number}
             </div>
 

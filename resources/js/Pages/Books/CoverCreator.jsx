@@ -710,11 +710,11 @@ export default function CoverCreator({ book }) {
         // Gradient
         if (bgValue.startsWith('gradient-')) {
             const gradients = {
-                'gradient-grad1': 'linear-gradient(135deg, #f97316, #dc2626, #7c3aed)',
+                'gradient-grad1': 'linear-gradient(135deg, #f97316, #dc2626, #a4485c)',
                 'gradient-grad2': 'linear-gradient(135deg, #0ea5e9, #3b82f6, #6366f1)',
                 'gradient-grad3': 'linear-gradient(135deg, #22c55e, #16a34a, #0f766e)',
                 'gradient-grad4': 'linear-gradient(135deg, #1e293b, #334155, #475569)',
-                'gradient-grad5': 'linear-gradient(135deg, #06b6d4, #8b5cf6, #ec4899)',
+                'gradient-grad5': 'linear-gradient(135deg, #06b6d4, #ad5b67, #ec4899)',
                 'gradient-grad6': 'linear-gradient(135deg, #fbbf24, #f97316, #dc2626)'
             };
             return { background: gradients[bgValue] || gradients['gradient-grad1'] };
@@ -723,7 +723,7 @@ export default function CoverCreator({ book }) {
         // Pattern
         if (bgValue.startsWith('pattern-')) {
             const patterns = {
-                'pattern-stripes': { url: 'https://www.transparenttextures.com/patterns/diagonal-striped-brick.png', color: '#4f46e5' },
+                'pattern-stripes': { url: 'https://www.transparenttextures.com/patterns/diagonal-striped-brick.png', color: '#8c3541' },
                 'pattern-dots': { url: 'https://www.transparenttextures.com/patterns/egg-shell.png', color: '#10b981' },
                 'pattern-chevron': { url: 'https://www.transparenttextures.com/patterns/diagmonds.png', color: '#1f2937' },
                 'pattern-grid': { url: 'https://www.transparenttextures.com/patterns/cubes.png', color: '#dc2626' },
@@ -1043,7 +1043,7 @@ export default function CoverCreator({ book }) {
                                 '#ef4444', '#f97316', '#f59e0b', '#84cc16',
                                 '#10b981', '#06b6d4', '#3b82f6', '#6366f1',
                                 // Row 2 - More colors
-                                '#8b5cf6', '#d946ef', '#f43f5e', '#ec4899',
+                                '#ad5b67', '#b85a4c', '#f43f5e', '#ec4899',
                                 // Row 3 - Neutrals & Darks
                                 '#000000', '#374151', '#9ca3af', '#ffffff',
                                 '#1e293b', '#334155', '#78350f', '#7c2d12'
@@ -1128,7 +1128,7 @@ export default function CoverCreator({ book }) {
                             <p className="col-span-2 text-xs text-gray-400 mb-2">Seamless repeating patterns</p>
                             {[
                                 // Using SVG pattern URLs for seamless patterns
-                                { id: 'stripes', name: 'Diagonal Stripes', url: 'https://www.transparenttextures.com/patterns/diagonal-striped-brick.png', color: '#4f46e5' },
+                                { id: 'stripes', name: 'Diagonal Stripes', url: 'https://www.transparenttextures.com/patterns/diagonal-striped-brick.png', color: '#8c3541' },
                                 { id: 'dots', name: 'Polka Dots', url: 'https://www.transparenttextures.com/patterns/egg-shell.png', color: '#10b981' },
                                 { id: 'chevron', name: 'Chevron', url: 'https://www.transparenttextures.com/patterns/diagmonds.png', color: '#1f2937' },
                                 { id: 'grid', name: 'Grid', url: 'https://www.transparenttextures.com/patterns/cubes.png', color: '#dc2626' },
@@ -1163,11 +1163,11 @@ export default function CoverCreator({ book }) {
                             {/* Gradients Section */}
                             <div className="col-span-2 mt-6 mb-2 font-bold text-xs text-gray-400 uppercase tracking-widest">Gradients</div>
                             {[
-                                { id: 'grad1', name: 'Sunset', gradient: 'linear-gradient(135deg, #f97316, #dc2626, #7c3aed)' },
+                                { id: 'grad1', name: 'Sunset', gradient: 'linear-gradient(135deg, #f97316, #dc2626, #a4485c)' },
                                 { id: 'grad2', name: 'Ocean', gradient: 'linear-gradient(135deg, #0ea5e9, #3b82f6, #6366f1)' },
                                 { id: 'grad3', name: 'Forest', gradient: 'linear-gradient(135deg, #22c55e, #16a34a, #0f766e)' },
                                 { id: 'grad4', name: 'Night', gradient: 'linear-gradient(135deg, #1e293b, #334155, #475569)' },
-                                { id: 'grad5', name: 'Aurora', gradient: 'linear-gradient(135deg, #06b6d4, #8b5cf6, #ec4899)' },
+                                { id: 'grad5', name: 'Aurora', gradient: 'linear-gradient(135deg, #06b6d4, #ad5b67, #ec4899)' },
                                 { id: 'grad6', name: 'Fire', gradient: 'linear-gradient(135deg, #fbbf24, #f97316, #dc2626)' }
                             ].map((grad) => {
                                 const gradId = `gradient-${grad.id}`;
@@ -1637,7 +1637,7 @@ export default function CoverCreator({ book }) {
                             <div>
                                 <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Quick Shape Colors</h3>
                                 <div className="flex flex-wrap gap-2">
-                                    {['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#1e293b', '#ffffff'].map(color => (
+                                    {['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#ad5b67', '#ec4899', '#1e293b', '#ffffff'].map(color => (
                                         <button
                                             key={color}
                                             onClick={() => selectedShapeId && updateShapeStyle('color', color)}

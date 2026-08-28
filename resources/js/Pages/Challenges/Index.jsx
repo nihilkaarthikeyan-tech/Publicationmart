@@ -147,7 +147,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
 
     return (
-        <div className="min-h-screen bg-[#1e1535] text-white font-sans selection:bg-purple-500 selection:text-white pb-20">
+        <div className="min-h-screen bg-[#1c1912] text-white font-sans selection:bg-purple-500 selection:text-white pb-20">
             {/* <PremiumBackground /> */}
             <Head title="Writing Challenges" />
 

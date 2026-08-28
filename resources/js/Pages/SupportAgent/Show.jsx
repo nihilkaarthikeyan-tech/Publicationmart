@@ -114,7 +114,7 @@ export default function Show({ ticket, statuses, priorities, agent }) {
                             {ticket.replies.map(reply => (
                                 <div key={reply.id} style={reply.is_admin ? { ...s.message, ...s.messageAdmin } : s.message}>
                                     <div style={s.msgHeader}>
-                                        <div style={{ ...s.avatar, background: reply.is_admin ? '#2e1065' : '#1e3a5f' }}>
+                                        <div style={{ ...s.avatar, background: reply.is_admin ? '#2a0e12' : '#1e3a5f' }}>
                                             {reply.author_name.charAt(0).toUpperCase()}
                                         </div>
                                         <div>
@@ -229,9 +229,9 @@ const s = {
     sidebar:      { width: 240, background: 'rgba(15,23,42,0.95)', borderRight: '1px solid rgba(99,102,241,0.15)', display: 'flex', flexDirection: 'column', padding: '24px 0', position: 'sticky', top: 0, height: '100vh', flexShrink: 0 },
     sidebarTop:   { padding: '0 20px 24px', borderBottom: '1px solid rgba(99,102,241,0.1)', marginBottom: 16 },
     logo:         { display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20, color: 'rgba(129,140,248,0.9)' },
-    logoText:     { fontSize: 15, fontWeight: 700, background: 'linear-gradient(135deg, #818cf8, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' },
+    logoText:     { fontSize: 15, fontWeight: 700, background: 'linear-gradient(135deg, #818cf8, #cba75c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' },
     agentBadge:   { display: 'flex', alignItems: 'center', gap: 10 },
-    agentAvatar:  { width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#fff', flexShrink: 0 },
+    agentAvatar:  { width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #6366f1, #ad5b67)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#fff', flexShrink: 0 },
     agentName:    { fontSize: 13, fontWeight: 600, color: '#e2e8f0', margin: 0 },
     agentRole:    { fontSize: 11, color: '#64748b', margin: 0 },
     nav:          { flex: 1, padding: '0 12px' },
@@ -267,7 +267,7 @@ const s = {
     replyBottom:  { display: 'flex', alignItems: 'center', gap: 12, marginTop: 14, flexWrap: 'wrap' },
     fileLabel:    { fontSize: 13, color: '#6366f1', cursor: 'pointer', fontWeight: 500 },
     fileName:     { fontSize: 12, color: '#64748b' },
-    replyBtn:     { marginLeft: 'auto', padding: '10px 24px', borderRadius: 8, background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', boxShadow: '0 4px 12px rgba(99,102,241,0.3)' },
+    replyBtn:     { marginLeft: 'auto', padding: '10px 24px', borderRadius: 8, background: 'linear-gradient(135deg, #6366f1, #ad5b67)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', boxShadow: '0 4px 12px rgba(99,102,241,0.3)' },
     closedNote:   { background: 'rgba(100,116,139,0.08)', border: '1px dashed rgba(100,116,139,0.3)', borderRadius: 12, padding: '20px 24px', fontSize: 14, color: '#64748b', textAlign: 'center' },
     controlCol:   { display: 'flex', flexDirection: 'column', gap: 16, position: 'sticky', top: 24 },
     infoCard:     { background: 'rgba(15,23,42,0.8)', border: '1px solid rgba(99,102,241,0.12)', borderRadius: 14, padding: '20px' },
@@ -277,5 +277,5 @@ const s = {
     infoVal:      { color: '#e2e8f0', fontWeight: 500 },
     controlLabel: { display: 'block', fontSize: 12, fontWeight: 600, color: '#64748b', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.3px' },
     controlSelect:{ width: '100%', background: 'rgba(30,41,59,0.8)', border: '1px solid rgba(99,102,241,0.2)', borderRadius: 8, padding: '9px 12px', color: '#e2e8f0', fontSize: 13, outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' },
-    updateBtn:    { marginTop: 16, width: '100%', padding: '11px', borderRadius: 8, background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' },
+    updateBtn:    { marginTop: 16, width: '100%', padding: '11px', borderRadius: 8, background: 'linear-gradient(135deg, #6366f1, #ad5b67)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' },
 };

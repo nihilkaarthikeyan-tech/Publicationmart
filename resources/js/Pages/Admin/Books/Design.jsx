@@ -67,7 +67,7 @@ export default function Design({ auth, book }) {
 
             <div className="min-h-screen bg-[#0f172a]">
                 {/* Premium Dark Background with Mesh Gradient */}
-                <div className="fixed inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#0f172a]" />
+                <div className="fixed inset-0 bg-gradient-to-br from-[#0f172a] via-[#1f1a14] to-[#0f172a]" />
                 <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-violet-600/20 to-fuchsia-600/10 rounded-full blur-[120px] pointer-events-none" />
                 <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-600/15 to-cyan-600/10 rounded-full blur-[100px] pointer-events-none" />
                 <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-indigo-500/5 to-transparent rounded-full pointer-events-none" />

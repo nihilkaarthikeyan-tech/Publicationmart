@@ -17,7 +17,7 @@ export default function Index({ auth, blogs }) {
         <>
             <Head title="Admin Studio Management" />
 
-            <div className="min-h-screen bg-[#0f0a1e] text-white font-sans selection:bg-indigo-500/30">
+            <div className="min-h-screen bg-[#17150f] text-white font-sans selection:bg-indigo-500/30">
                 {/* Background Ambient Glows */}
                 <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
                     <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[120px]"></div>

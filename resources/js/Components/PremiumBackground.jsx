@@ -11,7 +11,7 @@ export default function PremiumBackground() {
             <div className="fixed inset-0 -z-10 pointer-events-none" aria-hidden="true">
                 {/* Base gradient: deep navy → indigo → dark blue */}
                 <div className="absolute inset-0" style={{
-                    background: 'linear-gradient(135deg, #2e1a4a 0%, #3d2963 25%, #4a3578 50%, #5a4290 75%, #3d2963 100%)'
+                    background: 'linear-gradient(135deg, #282118 0%, #332b1e 25%, #463a26 50%, #55452c 75%, #332b1e 100%)'
                 }} />
 
                 {/* Animated floating orbs */}

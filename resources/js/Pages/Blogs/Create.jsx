@@ -73,13 +73,13 @@ export default function Create({ auth }) {
             <Head title="Create Studio Post" />
 
 
-            <div className="min-h-screen bg-[#1e1535] text-white font-sans selection:bg-purple-500 selection:text-white pb-20 pt-32">
+            <div className="min-h-screen bg-[#1c1912] text-white font-sans selection:bg-purple-500 selection:text-white pb-20 pt-32">
                 <div className="pb-16 px-6 max-w-3xl mx-auto">
                     <h1 className="text-4xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
                         Create Studio Article
                     </h1>
 
-                    <form onSubmit={handleSubmit} className="space-y-6 bg-[#2d2347] border border-violet-800/50 p-8 rounded-3xl">
+                    <form onSubmit={handleSubmit} className="space-y-6 bg-[#262019] border border-violet-800/50 p-8 rounded-3xl">
 
                         {/* Title */}
                         <div className="space-y-2">
@@ -88,14 +88,14 @@ export default function Create({ auth }) {
                                 type="text"
                                 value={data.title}
                                 onChange={e => setData('title', e.target.value)}
-                                className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
+                                className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
                                 placeholder="Enter catchy title..."
                             />
                             {errors.title && <div className="text-red-500 text-xs ml-1">{errors.title}</div>}
                         </div>
 
                         {/* Presale Option */}
-                        <div className="flex items-center space-x-3 bg-[#2a1f4a] p-4 rounded-xl border border-violet-700/50">
+                        <div className="flex items-center space-x-3 bg-[#241f16] p-4 rounded-xl border border-violet-700/50">
                             <input
                                 type="checkbox"
                                 id="is_presale"
@@ -115,7 +115,7 @@ export default function Create({ auth }) {
                             <input
                                 type="file"
                                 onChange={e => setData('image', e.target.files[0])}
-                                className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
+                                className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700"
                                 accept="image/*"
                             />
                             {errors.image && <div className="text-red-500 text-xs ml-1">{errors.image}</div>}
@@ -135,7 +135,7 @@ export default function Create({ auth }) {
                                                 onClick={() => setData('category', cat.id)}
                                                 className={`cursor-pointer rounded-xl border-2 p-4 flex flex-col items-center justify-center gap-3 transition-all duration-200 ${isSelected
                                                     ? `${cat.border} ${cat.bg} ring-1 ring-offset-0 ring-offset-transparent ring-${cat.color.split('-')[1]}-500/50`
-                                                    : 'border-violet-800/30 bg-[#2a1f4a] hover:border-violet-600/50 hover:bg-violet-900/20'
+                                                    : 'border-violet-800/30 bg-[#241f16] hover:border-violet-600/50 hover:bg-violet-900/20'
                                                     }`}
                                             >
                                                 <Icon className={`w-8 h-8 ${isSelected ? cat.color : 'text-gray-500'}`} strokeWidth={1.5} />
@@ -162,7 +162,7 @@ export default function Create({ auth }) {
                                                     authors[index] = e.target.value;
                                                     setData('author_name', authors.join(', '));
                                                 }}
-                                                className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
+                                                className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
                                                 placeholder={`Author ${index + 1}`}
                                             />
                                             {/* Remove Button */}
@@ -209,7 +209,7 @@ export default function Create({ auth }) {
                                     type="email"
                                     value={data.author_email}
                                     onChange={e => setData('author_email', e.target.value)}
-                                    className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
+                                    className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
                                     placeholder="name@example.com"
                                 />
                                 {errors.author_email && <div className="text-red-500 text-xs ml-1">{errors.author_email}</div>}
@@ -222,7 +222,7 @@ export default function Create({ auth }) {
                             <textarea
                                 value={data.excerpt}
                                 onChange={e => setData('excerpt', e.target.value)}
-                                className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40 h-24"
+                                className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40 h-24"
                                 placeholder="A brief summary..."
                             ></textarea>
                             {errors.excerpt && <div className="text-red-500 text-xs ml-1">{errors.excerpt}</div>}
@@ -234,7 +234,7 @@ export default function Create({ auth }) {
                             <textarea
                                 value={data.content}
                                 onChange={e => setData('content', e.target.value)}
-                                className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40 h-64 font-mono text-sm"
+                                className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40 h-64 font-mono text-sm"
                                 placeholder="Use <h2>, <p> tags for formatting..."
                             ></textarea>
                             {errors.content && <div className="text-red-500 text-xs ml-1">{errors.content}</div>}
@@ -258,7 +258,7 @@ export default function Create({ auth }) {
                         <div className="space-y-2">
                             <label className="text-xs font-bold text-gray-400 uppercase tracking-widest ml-1">Human Verification</label>
                             <div className="flex items-center gap-4">
-                                <div className="bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-gray-300 font-mono select-none flex items-center gap-3">
+                                <div className="bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-gray-300 font-mono select-none flex items-center gap-3">
                                     <span className="text-lg font-bold text-white">{captcha.num1} + {captcha.num2} = ?</span>
                                     <button
                                         type="button"
@@ -276,7 +276,7 @@ export default function Create({ auth }) {
                                         setCaptchaAnswer(e.target.value);
                                         setData('captcha_answer', e.target.value);
                                     }}
-                                    className="w-24 bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white text-center font-bold focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
+                                    className="w-24 bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white text-center font-bold focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
                                     placeholder="?"
                                 />
                             </div>

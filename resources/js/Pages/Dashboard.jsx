@@ -28,7 +28,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
             <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
                 {/* ═══ WELCOME HEADER ═══ */}
-                <div className="rounded-3xl p-6 sm:p-8" style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 40%, #5b21b6 100%)', boxShadow: '0 10px 40px -10px rgba(124, 58, 237, 0.4)' }}>
+                <div className="rounded-3xl p-6 sm:p-8" style={{ background: 'linear-gradient(135deg, #a4485c 0%, #86303c 40%, #6a222d 100%)', boxShadow: '0 10px 40px -10px rgba(124, 58, 237, 0.4)' }}>
                     <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                         <div className="flex-1">
                             <div className="flex items-start gap-4">
@@ -307,7 +307,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                     <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
                                                         <circle cx="18" cy="18" r="15.915" fill="none" stroke="#e5e7eb" strokeWidth="3" />
                                                         <circle cx="18" cy="18" r="15.915" fill="none"
-                                                            stroke={plan.status === 'active' ? '#7c3aed' : plan.status === 'completed' ? '#3b82f6' : '#ef4444'}
+                                                            stroke={plan.status === 'active' ? '#a4485c' : plan.status === 'completed' ? '#3b82f6' : '#ef4444'}
                                                             strokeWidth="3"
                                                             strokeDasharray={`${plan.usage_percent} ${100 - plan.usage_percent}`}
                                                             strokeLinecap="round" />
@@ -325,7 +325,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                         <div className="h-full rounded-full transition-all duration-500"
                                                             style={{
                                                                 width: `${plan.usage_percent}%`,
-                                                                background: plan.status === 'active' ? 'linear-gradient(90deg, #7c3aed, #a855f7)' :
+                                                                background: plan.status === 'active' ? 'linear-gradient(90deg, #a4485c, #b8903f)' :
                                                                     plan.status === 'completed' ? 'linear-gradient(90deg, #3b82f6, #60a5fa)' : '#ef4444'
                                                             }}></div>
                                                     </div>
@@ -368,7 +368,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                         style={{
                                                             height: `${Math.max(height, 5)}%`,
                                                             minHeight: '12px',
-                                                            background: 'linear-gradient(to top, #7c3aed, #a78bfa, #c4b5fd)'
+                                                            background: 'linear-gradient(to top, #a4485c, #c8828c, #ddaeb4)'
                                                         }}>
                                                     </div>
                                                 </div>

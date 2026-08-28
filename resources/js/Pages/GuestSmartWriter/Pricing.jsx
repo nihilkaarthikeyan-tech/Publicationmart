@@ -98,7 +98,7 @@ export default function SmartWritingTool({ auth }) {
         <Layout>
             <Head title="Smart Writing Tool - PublicationMart" />
 
-            <div className="min-h-screen bg-[#0f0a1e] text-white font-sans selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+            <div className="min-h-screen bg-[#17150f] text-white font-sans selection:bg-indigo-500 selection:text-white overflow-x-hidden">
 
                 {/* ═══ HERO SECTION ═══ */}
                 <section className="relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -243,7 +243,7 @@ export default function SmartWritingTool({ auth }) {
                 </section>
 
                 {/* ═══ PRO PRICING GRID ═══ */}
-                <div ref={proGridRef} className="pt-24 pb-16 relative z-10 border-t border-white/5 bg-[#0f0a1e]">
+                <div ref={proGridRef} className="pt-24 pb-16 relative z-10 border-t border-white/5 bg-[#17150f]">
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="text-center mb-16">
                             <span className="inline-block px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold uppercase tracking-widest mb-4">Pro Plans</span>
@@ -386,7 +386,7 @@ function StepCard({ number, title, subtitle, icon, side, delay, gradient, glowCo
     const glowColors = { indigo: 'group-hover:shadow-[0_0_40px_rgba(99,102,241,0.15)]', purple: 'group-hover:shadow-[0_0_40px_rgba(168,85,247,0.15)]', rose: 'group-hover:shadow-[0_0_40px_rgba(244,63,94,0.15)]' };
     return (
         <div ref={domRef} className={`flex flex-col md:flex-row items-start md:items-center relative group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-1000 ease-out`} style={{ transitionDelay: `${delay}ms` }}>
-            <div className={`absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-black text-lg shadow-lg z-10 transform md:-translate-x-1/2 border-4 border-[#0f0a1e] ring-2 ring-white/10`}>{number}</div>
+            <div className={`absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-black text-lg shadow-lg z-10 transform md:-translate-x-1/2 border-4 border-[#17150f] ring-2 ring-white/10`}>{number}</div>
             {isRight ? <div className="hidden md:block w-1/2" /> : null}
             <div className={`w-full md:w-[46%] pl-24 md:pl-0 ${!isRight ? 'md:mr-auto md:pr-14' : 'md:ml-auto md:pl-14'}`}>
                 <div className={`bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] p-8 rounded-2xl hover:bg-white/[0.06] hover:border-white/15 transition-all duration-500 relative overflow-hidden ${glowColors[glowColor] || ''}`}>

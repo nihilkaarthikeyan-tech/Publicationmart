@@ -35,7 +35,7 @@ export default function RoyaltyCalculator({ auth }) {
     }, [listPrice, pageCount, format]);
 
     return (
-        <div className="min-h-screen bg-[#0f0a1e] text-white selection:bg-indigo-500 selection:text-white">
+        <div className="min-h-screen bg-[#17150f] text-white selection:bg-indigo-500 selection:text-white">
             <Head title="Royalty Calculator – Estimate Your Book Earnings | PublicationMart">
                 <meta name="description" content="Calculate how much you can earn per book sale. Estimate royalties for paperback, hardcover, and eBook formats with our free royalty calculator." />
                 <meta property="og:title" content="Royalty Calculator | PublicationMart" />

@@ -6,7 +6,7 @@ export default function FormattingToolLanding() {
         <>
             <Head title="DIY Book Formatting Tool - PublicationMart" />
 
-            <div className="bg-[#0f0a1e] text-white selection:bg-indigo-500/30 overflow-hidden">
+            <div className="bg-[#17150f] text-white selection:bg-indigo-500/30 overflow-hidden">
                 {/* Hero Section */}
                 <section className="relative pt-20 pb-16 px-6">
                     <div className="absolute top-0 right-1/4 w-[800px] h-[600px] bg-indigo-600/10 blur-[120px] rounded-full -z-10" />

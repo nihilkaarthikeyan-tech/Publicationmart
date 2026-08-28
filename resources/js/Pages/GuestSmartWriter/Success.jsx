@@ -13,7 +13,7 @@ export default function GuestSuccess({ session, token }) {
         <>
             <Head title="Book Completed! - Smart Writer" />
 
-            <div className="min-h-screen bg-[#0f0a1e] flex items-center justify-center p-4">
+            <div className="min-h-screen bg-[#17150f] flex items-center justify-center p-4">
                 <div className="w-full max-w-2xl text-center">
 
                     {/* Celebration Animation */}

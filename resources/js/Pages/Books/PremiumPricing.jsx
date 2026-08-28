@@ -109,7 +109,7 @@ export default function PremiumPricing({ book }) {
     return (
         <>
             <Head title="Premium Plans - AI Book Studio" />
-            <div className="min-h-screen bg-[#0f0a1e]">
+            <div className="min-h-screen bg-[#17150f]">
                 {/* TOP-LEFT BACK BUTTON - ALWAYS VISIBLE */}
                 <Link
                     href={route('ai-studio.show', book.id)}

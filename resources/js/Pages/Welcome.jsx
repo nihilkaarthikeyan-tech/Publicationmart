@@ -70,7 +70,10 @@ html:has(.pm){background:#f0ece3}
 .rvx.in{transform:scaleX(1)}
 
 /* bookshelf — spines settle onto the shelf; hover pulls one out */
-.pm-spine{position:relative;border-radius:2px 4px 4px 2px;box-shadow:0 16px 34px rgba(23,21,15,.20),0 2px 6px rgba(23,21,15,.12);transform:rotate(var(--rot,0deg));transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+/* position:absolute, not relative — this rule loads after Tailwind and would
+   otherwise beat its absolute utility, dropping the spines into normal flow
+   so they cascade down the page instead of stacking on the shelf. */
+.pm-spine{position:absolute;border-radius:2px 4px 4px 2px;box-shadow:0 16px 34px rgba(23,21,15,.20),0 2px 6px rgba(23,21,15,.12);transform:rotate(var(--rot,0deg));transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 .pm-spine::after{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:linear-gradient(90deg,rgba(0,0,0,.30),rgba(0,0,0,.04))}
 @keyframes pmShelf{from{opacity:0;transform:translateY(-34px) rotate(var(--rot,0deg))}to{opacity:1;transform:rotate(var(--rot,0deg))}}
 .pm-spine-in{animation:pmShelf .7s var(--ease) backwards}
@@ -632,7 +635,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
             {/* ── title page ───────────────────────────────── */}
-            <section style={{ background: 'var(--stock-3)', borderBottom: '1px solid var(--rule)' }}>
+            <section>
                 <div className="max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-[1.08fr_.92fr] gap-14 items-center">
                     <div className={loaded ? 'pm-rise' : 'opacity-0'}>
                         <div className="pm-badge inline-flex items-center gap-3 pl-4 pr-5 py-2.5 mb-8 rounded-full">
@@ -746,7 +749,6 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                     label="Our authors"
                     folio="II"
                     lead={<>Published this season.</>}
-                    ground={{ borderTop: '1px solid var(--rule)' }}
                 >
                     {/* An author index, set in columns like the back matter of a
                         catalogue — names lead, titles follow in smaller type. */}
@@ -770,7 +772,6 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 label="How a book is made"
                 folio="III"
                 lead={<>Five stages, and we handle all of them.</>}
-                ground={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}
             >
                 {/* Stages hang off a single continuous rule, like a press schedule. */}
                 <ol className="pm-stages">
@@ -927,7 +928,6 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 id="pricing-section"
                 label="Plans"
                 folio="VI"
-                ground={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}
             >
                     <div className="flex flex-wrap items-end justify-between gap-6 mb-10 rv">
                         <h2 className="pm-serif text-[clamp(2rem,4.4vw,2.9rem)] leading-[1.12] max-w-[16ch]">
@@ -1016,8 +1016,8 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             </Chapter>
 
             {/* ── where your book travels ──────────────────── */}
-            <section style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
-                <div className="py-12">
+            <section>
+                <div className="py-12 max-w-[1180px] mx-auto" style={{ borderTop: '1px solid var(--rule)' }}>
                     <p className="pm-run mb-8 text-center rv">Distribute your book globally</p>
                     <div className="pm-marquee" aria-label="Amazon Kindle, Apple Books, Google Play, Barnes and Noble, Kobo, IngramSpark">
                         <div className="pm-marquee-track">
@@ -1042,7 +1042,6 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 label="Every genre"
                 folio="VIII"
                 lead={<>From literary fiction to technical research.</>}
-                ground={{ borderTop: '1px solid var(--rule)' }}
             >
                 {/* A subject index — the list a publisher prints, not a grid of tiles. */}
                 <ul className="pm-subjects">

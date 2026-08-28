@@ -27,7 +27,7 @@
 
         <div style="text-align: center; margin-top: 30px;">
             <a href="{{ config('app.url') }}/admin/support"
-                style="background-color: #4f46e5; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">View
+                style="background-color: #8c3541; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">View
                 in Dashboard</a>
         </div>
 

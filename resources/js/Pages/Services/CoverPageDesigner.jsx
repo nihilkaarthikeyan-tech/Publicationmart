@@ -6,7 +6,7 @@ export default function CoverPageDesigner() {
         <>
             <Head title="DIY Cover Page Designer - PublicationMart" />
 
-            <div className="bg-[#0f0a1e] text-white selection:bg-indigo-500/30 overflow-hidden">
+            <div className="bg-[#17150f] text-white selection:bg-indigo-500/30 overflow-hidden">
                 {/* Hero Section */}
                 <section className="relative pt-20 pb-16 px-6">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-indigo-600/10 blur-[120px] rounded-full -z-10" />

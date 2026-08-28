@@ -56,7 +56,7 @@ export default function GuestCheckout({ plan, price, pages }) {
         <>
             <Head title="Checkout - Start Writing" />
 
-            <div className="min-h-screen bg-[#0f0a1e] text-white font-sans flex items-center justify-center p-4">
+            <div className="min-h-screen bg-[#17150f] text-white font-sans flex items-center justify-center p-4">
 
                 {/* Background Blobs */}
                 <div className={`fixed top-0 left-1/4 w-[500px] h-[500px] ${isPremium ? 'bg-cyan-600/10' : 'bg-indigo-600/10'} rounded-full blur-[128px] pointer-events-none`}></div>

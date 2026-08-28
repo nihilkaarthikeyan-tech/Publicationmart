@@ -42,7 +42,7 @@ createInertiaApp({
         const root = createRoot(el);
         root.render(<App {...props} />);
     },
-    progress: { color: '#22d3ee', showSpinner: true, includeCSS: true, delay: 50 },
+    progress: { color: '#a07d3b', showSpinner: true, includeCSS: true, delay: 50 },
 });
 
 // Meta Pixel: Track PageView on every SPA route change

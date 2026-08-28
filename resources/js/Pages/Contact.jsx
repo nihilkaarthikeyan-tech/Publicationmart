@@ -10,7 +10,7 @@ export default function Contact() {
     });
 
     return (
-        <div className="min-h-screen bg-[#1e1535] text-white font-sans selection:bg-indigo-500 selection:text-white pt-24 pb-20">
+        <div className="min-h-screen bg-[#1c1912] text-white font-sans selection:bg-indigo-500 selection:text-white pt-24 pb-20">
             <Head title="Contact PublicationMart – Get Publishing Help Today">
                 <meta name="description" content="Contact PublicationMart for publishing support, technical help, or partnership inquiries. Email: editor.publicationmart@gmail.com | Phone: +91 76049 57084 | Coimbatore, India." />
                 <meta property="og:title" content="Contact PublicationMart" />
@@ -41,7 +41,7 @@ export default function Contact() {
                     <div className="lg:col-span-5 space-y-8">
 
                         {/* Contact Info Card */}
-                        <div className="bg-[#2d2347] border border-violet-800/50 rounded-3xl p-8 hover:border-violet-600/50 transition-colors duration-300">
+                        <div className="bg-[#262019] border border-violet-800/50 rounded-3xl p-8 hover:border-violet-600/50 transition-colors duration-300">
                             <h2 className="text-xl font-bold mb-8 flex items-center gap-3">
                                 <span className="w-2 h-8 bg-indigo-600 rounded-full"></span>
                                 Contact Information
@@ -93,7 +93,7 @@ export default function Contact() {
                         </div>
 
                         {/* FAQ Card */}
-                        <div className="bg-gradient-to-br from-[#352654] to-[#2d2347] border border-violet-700/40 rounded-3xl p-8 relative overflow-hidden group">
+                        <div className="bg-gradient-to-br from-[#2e2720] to-[#262019] border border-violet-700/40 rounded-3xl p-8 relative overflow-hidden group">
                             {/* Decorative Glow */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-indigo-600/20 transition-all duration-500"></div>
 
@@ -109,7 +109,7 @@ export default function Contact() {
 
                     {/* Right Column: Contact Form */}
                     <div className="lg:col-span-7">
-                        <div className="bg-[#2d2347] border border-violet-800/50 rounded-3xl p-8 md:p-10 h-full">
+                        <div className="bg-[#262019] border border-violet-800/50 rounded-3xl p-8 md:p-10 h-full">
                             <h2 className="text-2xl font-bold mb-8">Send us a message</h2>
 
                             <form onSubmit={(e) => {
@@ -133,7 +133,7 @@ export default function Contact() {
                                             type="text"
                                             value={data.name}
                                             onChange={e => setData('name', e.target.value)}
-                                            className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40"
+                                            className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40"
                                             placeholder="Your name"
                                         />
                                         {errors.name && <div className="text-red-500 text-xs mt-1">{errors.name}</div>}
@@ -144,7 +144,7 @@ export default function Contact() {
                                             type="email"
                                             value={data.email}
                                             onChange={e => setData('email', e.target.value)}
-                                            className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40"
+                                            className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40"
                                             placeholder="you@example.com"
                                         />
                                         {errors.email && <div className="text-red-500 text-xs mt-1">{errors.email}</div>}
@@ -157,7 +157,7 @@ export default function Contact() {
                                         <select
                                             value={data.subject}
                                             onChange={e => setData('subject', e.target.value)}
-                                            className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition appearance-none"
+                                            className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition appearance-none"
                                         >
                                             <option>General Inquiry</option>
                                             <option>Publishing Support</option>
@@ -175,7 +175,7 @@ export default function Contact() {
                                     <textarea
                                         value={data.message}
                                         onChange={e => setData('message', e.target.value)}
-                                        className="w-full bg-[#2a1f4a] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40 min-h-[160px]"
+                                        className="w-full bg-[#241f16] border border-violet-700/50 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40 min-h-[160px]"
                                         placeholder="How can we help you?"
                                     ></textarea>
                                     {errors.message && <div className="text-red-500 text-xs mt-1">{errors.message}</div>}

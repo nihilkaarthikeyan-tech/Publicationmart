@@ -6,7 +6,7 @@ export default function BookCard({ book }) {
     const { app_url } = usePage().props;
 
     return (
-        <div className="group relative bg-[#2d2347] rounded-2xl overflow-hidden border border-violet-800/50 hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col">
+        <div className="group relative bg-[#262019] rounded-2xl overflow-hidden border border-violet-800/50 hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col">
             {/* Clickable Cover Image */}
             <Link href={route('book-store.show', book.id)} className="relative aspect-[2/3] overflow-hidden bg-gray-800 block">
                 {book.cover_design_path ? (

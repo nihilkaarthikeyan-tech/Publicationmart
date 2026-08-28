@@ -7,16 +7,16 @@
     <style>
         body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 20px; }
         .container { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .header { background: linear-gradient(135deg, #7c3aed, #5b21b6); padding: 30px; text-align: center; }
+        .header { background: linear-gradient(135deg, #a4485c, #6a222d); padding: 30px; text-align: center; }
         .header h1 { color: #ffffff; margin: 0; font-size: 22px; }
-        .header p { color: #e9d5ff; margin: 6px 0 0; font-size: 14px; }
+        .header p { color: #ecdcb4; margin: 6px 0 0; font-size: 14px; }
         .body { padding: 30px; }
-        .ticket-box { background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 8px; padding: 20px; margin: 20px 0; }
-        .ticket-number { font-size: 20px; font-weight: bold; color: #7c3aed; margin-bottom: 10px; }
+        .ticket-box { background: #f5f3ff; border: 1px solid #eed2d5; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .ticket-number { font-size: 20px; font-weight: bold; color: #a4485c; margin-bottom: 10px; }
         .label { font-size: 12px; color: #6b7280; text-transform: uppercase; font-weight: 600; margin-top: 12px; }
         .value { font-size: 15px; color: #111827; margin-top: 3px; }
-        .message-box { background: #f9fafb; border-left: 4px solid #7c3aed; padding: 15px; margin: 15px 0; border-radius: 4px; color: #374151; line-height: 1.6; }
-        .btn { display: inline-block; background: #7c3aed; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: bold; margin: 20px 0; font-size: 14px; }
+        .message-box { background: #f9fafb; border-left: 4px solid #a4485c; padding: 15px; margin: 15px 0; border-radius: 4px; color: #374151; line-height: 1.6; }
+        .btn { display: inline-block; background: #a4485c; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: bold; margin: 20px 0; font-size: 14px; }
         .footer { background: #f9fafb; padding: 20px 30px; text-align: center; color: #9ca3af; font-size: 12px; border-top: 1px solid #e5e7eb; }
     </style>
 </head>
@@ -63,7 +63,7 @@
         @endif
     </div>
     <div class="footer">
-        <p>PublicationMart Support &bull; <a href="{{ url('/') }}" style="color:#7c3aed;">publicationmart.com</a></p>
+        <p>PublicationMart Support &bull; <a href="{{ url('/') }}" style="color:#a4485c;">publicationmart.com</a></p>
         <p>This is an automated message. Please do not reply directly to this email.</p>
     </div>
 </div>

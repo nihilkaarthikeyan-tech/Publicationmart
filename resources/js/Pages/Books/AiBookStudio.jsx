@@ -389,7 +389,7 @@ export default function AiBookStudio({ book, auth }) {
     };
 
     return (
-        <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${step === 0 ? 'bg-[#0f0a1e]' : step >= 1 && step <= 5 ? 'bg-[#0a0f1a]' : 'bg-gray-50'}`}>
+        <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${step === 0 ? 'bg-[#17150f]' : step >= 1 && step <= 5 ? 'bg-[#0a0f1a]' : 'bg-gray-50'}`}>
             <Head title={`Smart Writer Studio - ${book.title}`} />
 
             {/* Header */}

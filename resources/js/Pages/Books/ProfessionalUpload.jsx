@@ -69,7 +69,7 @@ export default function ProfessionalUpload({ serviceRequest }) {
     return (
         <>
             <Head title="Upload Your Manuscript" />
-            <div className="min-h-screen bg-[#0f0a1e] flex items-center justify-center py-12 px-4">
+            <div className="min-h-screen bg-[#17150f] flex items-center justify-center py-12 px-4">
                 {/* Background Effects */}
                 <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[150px] pointer-events-none"></div>
                 <div className="fixed bottom-0 right-1/4 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none"></div>

@@ -23,7 +23,7 @@ export default function ProfessionalSuccess({ serviceRequest }) {
     return (
         <>
             <Head title="Payment Successful - Professional Services" />
-            <div className="min-h-screen bg-[#0f0a1e] flex items-center justify-center p-4">
+            <div className="min-h-screen bg-[#17150f] flex items-center justify-center p-4">
                 {/* Background Effects */}
                 <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[150px] pointer-events-none"></div>
                 <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-cyan-600/10 rounded-full blur-[150px] pointer-events-none"></div>

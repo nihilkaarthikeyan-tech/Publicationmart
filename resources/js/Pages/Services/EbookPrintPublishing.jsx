@@ -6,7 +6,7 @@ export default function EbookPrintPublishing() {
         <>
             <Head title="eBook & Print Publishing - PublicationMart" />
 
-            <div className="bg-[#0f0a1e] text-white selection:bg-purple-500/30 overflow-hidden">
+            <div className="bg-[#17150f] text-white selection:bg-purple-500/30 overflow-hidden">
                 {/* Hero Section */}
                 <section className="relative pt-20 pb-16 px-6">
                     <div className="absolute top-0 right-1/2 translate-x-1/2 w-[1000px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full -z-10" />

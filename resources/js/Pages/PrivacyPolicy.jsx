@@ -2,7 +2,7 @@
 
 export default function PrivacyPolicy() {
     return (
-        <div className="min-h-screen bg-[#0f0a1e] text-white font-sans selection:bg-indigo-500/30">
+        <div className="min-h-screen bg-[#17150f] text-white font-sans selection:bg-indigo-500/30">
             <Head title="Privacy Policy | PublicationMart">
                 <meta name="description" content="Read PublicationMart's Privacy Policy. Learn how we collect, use, and protect your personal information on our self-publishing platform." />
             </Head>

@@ -13,7 +13,7 @@
 
         <p style="margin: 30px 0;">
             <a href="{{ route('guest-writer.studio', $session->session_token) }}"
-                style="background: #4F46E5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">Access
+                style="background: #8c3541; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">Access
                 Book Studio</a>
         </p>
 

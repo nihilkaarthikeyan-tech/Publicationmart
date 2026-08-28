@@ -22,7 +22,7 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            background: linear-gradient(135deg, #8c3541 0%, #a4485c 100%);
             color: white;
             padding: 30px 20px;
             text-align: center;
@@ -63,7 +63,7 @@
         .total-row {
             font-weight: bold;
             font-size: 18px;
-            color: #4f46e5;
+            color: #8c3541;
             border-top: 2px solid #e5e7eb;
             padding-top: 15px;
             margin-top: 10px;
@@ -87,7 +87,7 @@
 
         .btn {
             display: inline-block;
-            background: #4f46e5;
+            background: #8c3541;
             color: white;
             padding: 10px 20px;
             text-decoration: none;

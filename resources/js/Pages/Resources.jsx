@@ -2,7 +2,7 @@ import { Head, Link } from '@inertiajs/react';
 
 export default function Resources() {
     return (
-        <div className="min-h-screen bg-[#1e1535] text-white font-sans selection:bg-indigo-500/30">
+        <div className="min-h-screen bg-[#1c1912] text-white font-sans selection:bg-indigo-500/30">
             <Head title="Author Resources - PublicationMart" />
 
             <div className="relative pt-32 pb-16">
@@ -23,7 +23,7 @@ export default function Resources() {
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {/* Resource 1: Publishing Guide */}
-                        <Link href="/how-to-publish" className="group bg-[#2d2347] rounded-2xl p-8 border border-violet-800/50 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
+                        <Link href="/how-to-publish" className="group bg-[#262019] rounded-2xl p-8 border border-violet-800/50 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                             <div className="h-48 rounded-xl bg-gradient-to-br from-violet-900/60 to-violet-800/40 mb-6 overflow-hidden relative">
                                 <div className="absolute inset-0 bg-emerald-500/20 group-hover:bg-emerald-500/30 transition-colors"></div>
                                 <div className="absolute bottom-4 left-4">
@@ -38,7 +38,7 @@ export default function Resources() {
                         </Link>
 
                         {/* Resource 2: Royalty Calculator */}
-                        <Link href="/royalties-calculator" className="group bg-[#2d2347] rounded-2xl p-8 border border-violet-800/50 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
+                        <Link href="/royalties-calculator" className="group bg-[#262019] rounded-2xl p-8 border border-violet-800/50 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                             <div className="h-48 rounded-xl bg-gradient-to-br from-violet-900/60 to-violet-800/40 mb-6 overflow-hidden relative">
                                 <div className="absolute inset-0 bg-indigo-500/20 group-hover:bg-indigo-500/30 transition-colors"></div>
                                 <div className="absolute bottom-4 left-4">
@@ -53,7 +53,7 @@ export default function Resources() {
                         </Link>
 
                         {/* Resource 3: FAQ / Help Center */}
-                        <Link href="/help-center" className="group bg-[#2d2347] rounded-2xl p-8 border border-violet-800/50 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
+                        <Link href="/help-center" className="group bg-[#262019] rounded-2xl p-8 border border-violet-800/50 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                             <div className="h-48 rounded-xl bg-gradient-to-br from-violet-900/60 to-violet-800/40 mb-6 overflow-hidden relative">
                                 <div className="absolute inset-0 bg-purple-500/20 group-hover:bg-purple-500/30 transition-colors"></div>
                                 <div className="absolute bottom-4 left-4">

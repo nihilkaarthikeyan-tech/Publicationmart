@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 
 export default function About() {
     return (
-        <div className="min-h-screen bg-[#1e1535] text-white font-sans selection:bg-purple-500 selection:text-white pt-24 pb-20">
+        <div className="min-h-screen bg-[#1c1912] text-white font-sans selection:bg-purple-500 selection:text-white pt-24 pb-20">
             <Head title="About PublicationMart – India's AI-Powered Self-Publishing Platform">
                 <meta name="description" content="Learn about PublicationMart, India's leading self-publishing platform. We empower authors with AI-powered tools, professional editing, ISBN, printing, and global distribution services." />
                 <meta property="og:title" content="About PublicationMart – India's Self-Publishing Platform" />
@@ -33,7 +33,7 @@ export default function About() {
                 {/* Creative Grid / Bento Box */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                     {/* Mission */}
-                    <div className="bg-[#2d2347] border border-violet-800/50 rounded-3xl p-10 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
+                    <div className="bg-[#262019] border border-violet-800/50 rounded-3xl p-10 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
                         <div className="relative z-10">
                             <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
                             <p className="text-gray-400 text-lg leading-relaxed">
@@ -44,7 +44,7 @@ export default function About() {
                     </div>
 
                     {/* Vision */}
-                    <div className="bg-[#2d2347] border border-violet-800/50 rounded-3xl p-10 relative overflow-hidden group hover:border-indigo-500/30 transition-colors">
+                    <div className="bg-[#262019] border border-violet-800/50 rounded-3xl p-10 relative overflow-hidden group hover:border-indigo-500/30 transition-colors">
                         <div className="relative z-10">
                             <h2 className="text-3xl font-bold mb-4">The Future of Writing</h2>
                             <p className="text-gray-400 text-lg leading-relaxed">
@@ -65,7 +65,7 @@ export default function About() {
                             { title: 'Expert Support', icon: '🤝' },
                             { title: 'Royalties Transparency', icon: '💎' }
                         ].map((item, i) => (
-                            <div key={i} className="bg-[#2d2347] border border-violet-800/50 rounded-2xl p-6 hover:-translate-y-1 transition-transform duration-300">
+                            <div key={i} className="bg-[#262019] border border-violet-800/50 rounded-2xl p-6 hover:-translate-y-1 transition-transform duration-300">
                                 <div className="text-4xl mb-4">{item.icon}</div>
                                 <h3 className="font-bold text-gray-200">{item.title}</h3>
                             </div>

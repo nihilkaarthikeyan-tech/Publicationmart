@@ -89,7 +89,7 @@ export default function Show({ blog }) {
         <>
             <Head title={blog.title} />
 
-            <div className={`min-h-screen bg-[#0f0a1e] text-white font-sans selection:bg-purple-500 selection:text-white pb-20 pt-32 ${isBookingOpen ? 'overflow-hidden blur-sm' : ''}`}>
+            <div className={`min-h-screen bg-[#17150f] text-white font-sans selection:bg-purple-500 selection:text-white pb-20 pt-32 ${isBookingOpen ? 'overflow-hidden blur-sm' : ''}`}>
 
                 {/* Article Header */}
                 <div className="pb-10 px-6 max-w-4xl mx-auto text-center relative z-10">

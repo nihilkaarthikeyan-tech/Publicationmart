@@ -152,7 +152,7 @@ export default function ApprovalQueue({ auth, books, dbError }) {
         <>
             <Head title="Approvals Queue" />
 
-            <div className="min-h-screen bg-[#0f0a1e] text-white font-sans selection:bg-orange-500/30">
+            <div className="min-h-screen bg-[#17150f] text-white font-sans selection:bg-orange-500/30">
                 {/* Background Ambient Glows - Orange theme for Approvals */}
                 <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
                     <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-orange-900/10 rounded-full blur-[120px]"></div>

@@ -2,7 +2,7 @@
 
 export default function Services() {
     return (
-        <div className="min-h-screen bg-[#0f0a1e] text-white font-sans selection:bg-indigo-500/30">
+        <div className="min-h-screen bg-[#17150f] text-white font-sans selection:bg-indigo-500/30">
             <Head title="Publishing Services – Editing, Design, ISBN & Distribution | PublicationMart">
                 <meta name="description" content="Professional book publishing services including manuscript editing, custom cover design, eBook conversion, ISBN allocation, and global distribution. Get expert help for your book." />
                 <meta property="og:title" content="Professional Publishing Services | PublicationMart" />

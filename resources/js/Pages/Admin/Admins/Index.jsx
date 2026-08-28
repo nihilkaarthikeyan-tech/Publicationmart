@@ -158,7 +158,7 @@ export default function Index({ auth, admins, stats }) {
 
             <style>{`
                 body {
-                    background-color: #0f0a1e;
+                    background-color: #17150f;
                 }
             `}</style>
         </>

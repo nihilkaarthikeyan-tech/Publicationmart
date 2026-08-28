@@ -2,7 +2,7 @@
 
 export default function TermsOfService() {
     return (
-        <div className="min-h-screen bg-[#0f0a1e] text-white font-sans selection:bg-indigo-500/30">
+        <div className="min-h-screen bg-[#17150f] text-white font-sans selection:bg-indigo-500/30">
             <Head title="Terms and Conditions | PublicationMart">
                 <meta name="description" content="Read PublicationMart's Terms and Conditions. Understand author rights, royalties, refund policies, distribution, and Smart Writing Tool usage terms." />
             </Head>

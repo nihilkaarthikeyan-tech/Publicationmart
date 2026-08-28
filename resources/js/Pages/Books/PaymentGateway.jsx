@@ -97,7 +97,7 @@ export default function PaymentGateway({ book, plan, type }) {
     return (
         <>
             <Head title="Payment - AI Book Studio" />
-            <div className="min-h-screen bg-[#0f0a1e]">
+            <div className="min-h-screen bg-[#17150f]">
                 {/* Header */}
                 <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
                     <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">

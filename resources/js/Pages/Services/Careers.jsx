@@ -6,7 +6,7 @@ export default function Careers() {
         <>
             <Head title="Careers - Join Our Team | PublicationMart" />
 
-            <div className="bg-[#0f0a1e] text-white selection:bg-indigo-500/30 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="bg-[#17150f] text-white selection:bg-indigo-500/30 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
                 {/* Background Glows */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/5 blur-[150px] rounded-full -z-10" />
                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-600/5 blur-[100px] rounded-full -z-10" />

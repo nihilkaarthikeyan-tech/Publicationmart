@@ -74,7 +74,7 @@ export default function Show({ auth, book }) {
             </Head>
 
             {/* PREMIUN BACKGROUND SYSTEM */}
-            <div className="fixed inset-0 z-0 bg-[#0f0a1e] overflow-hidden pointer-events-none">
+            <div className="fixed inset-0 z-0 bg-[#17150f] overflow-hidden pointer-events-none">
                 {/* Grain Texture Overlay */}
                 <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: `url('https://grainy-gradients.vercel.app/noise.svg')` }}></div>
 
@@ -537,7 +537,7 @@ export default function Show({ auth, book }) {
                     width: 6px;
                 }
                 ::-webkit-scrollbar-track {
-                    background: #0f0a1e;
+                    background: #17150f;
                 }
                 ::-webkit-scrollbar-thumb {
                     background: #1e2130;

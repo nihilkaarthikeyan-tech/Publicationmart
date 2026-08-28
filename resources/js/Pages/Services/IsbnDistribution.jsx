@@ -6,7 +6,7 @@ export default function IsbnDistribution() {
         <>
             <Head title="ISBN & Global Distribution - PublicationMart" />
 
-            <div className="bg-[#0f0a1e] text-white selection:bg-emerald-500/30 overflow-hidden">
+            <div className="bg-[#17150f] text-white selection:bg-emerald-500/30 overflow-hidden">
                 {/* Hero Section */}
                 <section className="relative pt-20 pb-16 px-6">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[700px] bg-emerald-600/10 blur-[130px] rounded-full -z-10" />
@@ -70,7 +70,7 @@ export default function IsbnDistribution() {
                     <div className="max-w-7xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-8">
                             {/* ISBN Support */}
-                            <div className="p-10 rounded-[40px] bg-gradient-to-br from-[#0a1510] to-[#0f0a1e] border border-emerald-900/30">
+                            <div className="p-10 rounded-[40px] bg-gradient-to-br from-[#0a1510] to-[#17150f] border border-emerald-900/30">
                                 <h3 className="text-2xl font-bold mb-8 text-emerald-400">ISBN Allocation Support</h3>
                                 <p className="text-gray-400 mb-6">Depending on your selected package, we assist with:</p>
                                 <ul className="space-y-4">
@@ -96,7 +96,7 @@ export default function IsbnDistribution() {
                             </div>
 
                             {/* Distribution Setup */}
-                            <div className="p-10 rounded-[40px] bg-gradient-to-br from-[#0a0b15] to-[#0f0a1e] border border-indigo-900/30">
+                            <div className="p-10 rounded-[40px] bg-gradient-to-br from-[#0a0b15] to-[#17150f] border border-indigo-900/30">
                                 <h3 className="text-2xl font-bold mb-8 text-indigo-400">Global Distribution Setup</h3>
                                 <p className="text-gray-400 mb-6 font-medium">We help set up distribution across supported platforms:</p>
                                 <div className="grid grid-cols-1 gap-3">
