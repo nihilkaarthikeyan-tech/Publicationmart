@@ -132,7 +132,7 @@ export default function Index({ auth, blogs }) {
                                                     type="button"
                                                     onClick={(e) => {
                                                         if (confirm(`Approve "${blog.title}" for publication?`)) {
-                                                            router.post(route('blogs.approve', blog.id));
+                                                            router.post(route('admin.blogs.approve', blog.id));
                                                         }
                                                     }}
                                                     className="px-3 py-1.5 bg-green-600 hover:bg-green-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-green-500/20"
@@ -146,7 +146,7 @@ export default function Index({ auth, blogs }) {
                                                     type="button"
                                                     onClick={(e) => {
                                                         if (confirm(`Reject/Unpublish "${blog.title}"?`)) {
-                                                            router.post(route('blogs.reject', blog.id));
+                                                            router.post(route('admin.blogs.reject', blog.id));
                                                         }
                                                     }}
                                                     className="px-3 py-1.5 bg-yellow-600 hover:bg-yellow-500 text-ink text-xs font-bold rounded-lg transition-all shadow-lg shadow-yellow-500/20"
@@ -159,7 +159,7 @@ export default function Index({ auth, blogs }) {
                                                 type="button"
                                                 onClick={(e) => {
                                                     if (confirm(`Are you sure you want to PERMANENTLY delete "${blog.title}"? This cannot be undone.`)) {
-                                                        router.delete(route('blogs.destroy', blog.id));
+                                                        router.delete(route('admin.blogs.destroy', blog.id));
                                                     }
                                                 }}
                                                 className="px-3 py-1.5 bg-red-600 hover:bg-red-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-red-500/20"

@@ -61,7 +61,7 @@ export default function Show({ ticket, statuses, priorities, agent }) {
                             <TicketIcon /> All Tickets
                         </Link>
                     </nav>
-                    <button onClick={() => router.post(route('agent.logout'))} style={s.logoutBtn}>
+                    <button onClick={() => router.post(route('logout'))} style={s.logoutBtn}>
                         <LogoutIcon /> Sign Out
                     </button>
                 </aside>

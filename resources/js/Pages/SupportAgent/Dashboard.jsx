@@ -28,7 +28,7 @@ export default function Dashboard({ tickets, stats, categories, filters, agent }
     };
 
     const { post: doLogout, processing: loggingOut } = useForm();
-    const logout = () => doLogout(route('agent.logout'));
+    const logout = () => doLogout(route('logout'));
 
     return (
         <>
