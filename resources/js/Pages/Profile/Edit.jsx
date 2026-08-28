@@ -8,9 +8,9 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
         <>
             <Head title="Profile" />
 
-            <div className="bg-white shadow dark:bg-[#faf8f3]">
+            <div className="bg-white shadow dark:bg-paper">
                 <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-[#4b443a]">
+                    <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-ink-soft">
                         Profile
                     </h2>
                 </div>
@@ -20,13 +20,13 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
                 <div className="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
 
                     {/* My Purchases Section */}
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-[#faf8f3]">
+                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-paper">
                         <section>
                             <header>
-                                <h2 className="text-lg font-medium text-gray-900 dark:text-[#4b443a]">
+                                <h2 className="text-lg font-medium text-gray-900 dark:text-ink-soft">
                                     My Purchases
                                 </h2>
-                                <p className="mt-1 text-sm text-[#635c4e] dark:text-[#635c4e]">
+                                <p className="mt-1 text-sm text-umber dark:text-umber">
                                     History of books and services you have purchased.
                                 </p>
                             </header>
@@ -43,9 +43,9 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
                                                     }
                                                 </div>
                                                 <div className="min-w-0 flex-1">
-                                                    <p className="truncate text-sm font-medium text-gray-900 dark:text-[#4b443a]">{purchase.book_title}</p>
-                                                    <p className="truncate text-xs text-[#635c4e] dark:text-[#635c4e]">Transaction ID: {purchase.transaction_id}</p>
-                                                    <p className="text-xs text-[#635c4e] dark:text-[#635c4e]">{purchase.created_at}</p>
+                                                    <p className="truncate text-sm font-medium text-gray-900 dark:text-ink-soft">{purchase.book_title}</p>
+                                                    <p className="truncate text-xs text-umber dark:text-umber">Transaction ID: {purchase.transaction_id}</p>
+                                                    <p className="text-xs text-umber dark:text-umber">{purchase.created_at}</p>
                                                 </div>
                                                 <div>
                                                     <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900 dark:text-green-700">
@@ -55,14 +55,14 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
                                             </div>
                                         </li>
                                     )) : (
-                                        <p className="text-sm text-[#635c4e] dark:text-[#635c4e] py-4">No purchases found.</p>
+                                        <p className="text-sm text-umber dark:text-umber py-4">No purchases found.</p>
                                     )}
                                 </ul>
                             </div>
                         </section>
                     </div>
 
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-[#faf8f3]">
+                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-paper">
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             status={status}
@@ -70,11 +70,11 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
                         />
                     </div>
 
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-[#faf8f3]">
+                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-paper">
                         <UpdatePasswordForm className="max-w-xl" />
                     </div>
 
-                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-[#faf8f3]">
+                    <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-paper">
                         <DeleteUserForm className="max-w-xl" />
                     </div>
                 </div>

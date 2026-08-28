@@ -327,7 +327,7 @@ function Spine({ id, title, i }) {
     };
     const inner = (
         <>
-            <div className="pm-serif text-[#f2ecdd] text-[12px] leading-snug px-4 pt-7 pr-3">{title}</div>
+            <div className="pm-serif text-cream text-[12px] leading-snug px-4 pt-7 pr-3">{title}</div>
             <div className="absolute bottom-5 left-4 right-3 pt-2" style={{ borderTop: '1px solid rgba(242,236,221,.28)' }}>
                 <span className="pm-run" style={{ color: 'rgba(242,236,221,.75)', fontSize: 9 }}>PublicationMart</span>
             </div>

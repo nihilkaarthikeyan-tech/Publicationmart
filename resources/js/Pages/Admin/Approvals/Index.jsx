@@ -152,7 +152,7 @@ export default function ApprovalQueue({ auth, books, dbError }) {
         <>
             <Head title="Approvals Queue" />
 
-            <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-orange-500/30">
+            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-orange-500/30">
                 {/* Background Ambient Glows - Orange theme for Approvals */}
                 <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
                     <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-orange-900/10 rounded-full blur-[120px]"></div>
@@ -196,11 +196,11 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                     {connectionStatus === 'connected' ? 'LIVE' : connectionStatus === 'fallback' ? 'POLLING' : 'CONNECTING...'}
                                 </span>
                             </div>
-                            <h1 className="text-3xl font-black tracking-tight text-[#17150f] mb-2">Approvals Queue</h1>
-                            <p className="text-[#635c4e]">Review and publish pending book submissions.</p>
+                            <h1 className="text-3xl font-black tracking-tight text-ink mb-2">Approvals Queue</h1>
+                            <p className="text-umber">Review and publish pending book submissions.</p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Link href={route('admin.dashboard')} className="px-5 py-2.5 bg-[#faf8f3] hover:bg-[#faf8f3] border border-[#d8d1c1] text-[#4b443a] rounded-xl transition-all text-sm font-bold flex items-center gap-2">
+                            <Link href={route('admin.dashboard')} className="px-5 py-2.5 bg-paper hover:bg-paper border border-linen text-ink-soft rounded-xl transition-all text-sm font-bold flex items-center gap-2">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                                 Dashboard
                             </Link>
@@ -228,16 +228,16 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                         <div className="p-5 bg-gradient-to-br from-orange-500/10 to-transparent border border-orange-500/20 rounded-2xl">
                             <div className="text-orange-800 text-xs font-bold uppercase tracking-wider mb-1">Pending Approval</div>
-                            <div className="text-3xl font-black text-[#17150f]">{books.total}</div>
+                            <div className="text-3xl font-black text-ink">{books.total}</div>
                         </div>
-                        <div className="p-5 bg-[#f0ece3]/80 backdrop-blur border border-[#d8d1c1] rounded-2xl">
-                            <div className="text-[#635c4e] text-xs font-bold uppercase tracking-wider mb-1">Missing ISBN</div>
+                        <div className="p-5 bg-parchment/80 backdrop-blur border border-linen rounded-2xl">
+                            <div className="text-umber text-xs font-bold uppercase tracking-wider mb-1">Missing ISBN</div>
                             <div className="text-2xl font-black text-rose-700">
                                 {books.data.filter(b => !b.isbn).length}
                             </div>
                         </div>
-                        <div className="p-5 bg-[#f0ece3]/80 backdrop-blur border border-[#d8d1c1] rounded-2xl">
-                            <div className="text-[#635c4e] text-xs font-bold uppercase tracking-wider mb-1">Ready to Publish</div>
+                        <div className="p-5 bg-parchment/80 backdrop-blur border border-linen rounded-2xl">
+                            <div className="text-umber text-xs font-bold uppercase tracking-wider mb-1">Ready to Publish</div>
                             <div className="text-2xl font-black text-emerald-700">
                                 {books.data.filter(b => b.isbn && b.cover_design_path && b.selling_price).length}
                             </div>
@@ -249,23 +249,23 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                         {/* Search and Sort Row */}
                         <div className="flex flex-col sm:flex-row gap-4">
                             <div className="relative flex-1">
-                                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-umber" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                                 <input
                                     type="text"
                                     placeholder="Search by title, author, or user..."
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl py-3 pl-12 pr-4 text-[#17150f] placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 transition-all outline-none"
+                                    className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 transition-all outline-none"
                                 />
                             </div>
 
                             {/* Sort Dropdown */}
                             <div className="flex items-center gap-2">
-                                <span className="text-xs text-[#635c4e] uppercase tracking-wider font-bold whitespace-nowrap">Sort:</span>
+                                <span className="text-xs text-umber uppercase tracking-wider font-bold whitespace-nowrap">Sort:</span>
                                 <select
                                     value={sortBy}
                                     onChange={(e) => setSortBy(e.target.value)}
-                                    className="bg-[#faf8f3] border border-[#d8d1c1] rounded-xl py-3 px-4 text-[#17150f] text-sm focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 transition-all outline-none cursor-pointer"
+                                    className="bg-paper border border-linen rounded-xl py-3 px-4 text-ink text-sm focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 transition-all outline-none cursor-pointer"
                                 >
                                     <option value="oldest">Oldest First (FIFO)</option>
                                     <option value="newest">Newest First</option>
@@ -280,14 +280,14 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                     key={option.value}
                                     onClick={() => setFilter(option.value)}
                                     className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-all ${filter === option.value
-                                        ? 'bg-orange-500 text-[#17150f] shadow-lg shadow-orange-500/30'
-                                        : 'bg-[#faf8f3] text-[#635c4e] border border-[#d8d1c1] hover:border-orange-500/50 hover:text-orange-800'
+                                        ? 'bg-orange-500 text-ink shadow-lg shadow-orange-500/30'
+                                        : 'bg-paper text-umber border border-linen hover:border-orange-500/50 hover:text-orange-800'
                                         }`}
                                 >
                                     <span>{option.icon}</span>
                                     <span>{option.label}</span>
                                     {option.value !== 'all' && (
-                                        <span className={`ml-1 px-1.5 py-0.5 rounded text-[10px] ${filter === option.value ? 'bg-[#e7e1d4]' : 'bg-[#faf8f3]'
+                                        <span className={`ml-1 px-1.5 py-0.5 rounded text-[10px] ${filter === option.value ? 'bg-vellum' : 'bg-paper'
                                             }`}>
                                             {option.value === 'missing_isbn' && books.data.filter(b => !b.isbn).length}
                                             {option.value === 'ready' && books.data.filter(b => b.isbn && b.cover_design_path && b.selling_price > 0).length}
@@ -325,31 +325,31 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                     </div>
 
                     {/* Table */}
-                    <div className="bg-[#f0ece3]/60 backdrop-blur-xl border border-[#d8d1c1] rounded-2xl overflow-hidden shadow-2xl">
-                        <div className="hidden md:grid grid-cols-12 gap-4 p-5 bg-[#faf8f3] border-b border-[#d8d1c1] text-xs font-bold text-[#635c4e] uppercase tracking-wider">
+                    <div className="bg-parchment/60 backdrop-blur-xl border border-linen rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="hidden md:grid grid-cols-12 gap-4 p-5 bg-paper border-b border-linen text-xs font-bold text-umber uppercase tracking-wider">
                             <div className="col-span-5">Book Details</div>
                             <div className="col-span-3">Checklist</div>
                             <div className="col-span-2">Submitted</div>
                             <div className="col-span-2 text-right">Action</div>
                         </div>
 
-                        <div className="divide-y divide-[#d8d1c1]">
+                        <div className="divide-y divide-linen">
                             {filteredBooks.length > 0 ? (
                                 filteredBooks.map((book) => (
                                     <div key={book.id} className="md:grid md:grid-cols-12 md:gap-4 p-5 hover:bg-white/[0.02] transition-colors items-center group">
 
                                         {/* Mobile Header */}
                                         <div className="md:hidden flex justify-between items-start mb-4">
-                                            <div className="font-bold text-[#17150f] text-lg">{book.title}</div>
-                                            <span className="text-xs text-[#635c4e]">{new Date(book.updated_at || book.created_at).toLocaleDateString()}</span>
+                                            <div className="font-bold text-ink text-lg">{book.title}</div>
+                                            <span className="text-xs text-umber">{new Date(book.updated_at || book.created_at).toLocaleDateString()}</span>
                                         </div>
 
                                         {/* Col 1: Details */}
                                         <div className="col-span-5 mb-4 md:mb-0">
-                                            <div className="font-bold text-[#17150f] text-base leading-tight mb-1 group-hover:text-orange-800 transition-colors w-full truncate">{book.title}</div>
-                                            <div className="text-sm text-[#635c4e] mb-1">by <span className="text-[#4b443a]">{book.author_name}</span></div>
+                                            <div className="font-bold text-ink text-base leading-tight mb-1 group-hover:text-orange-800 transition-colors w-full truncate">{book.title}</div>
+                                            <div className="text-sm text-umber mb-1">by <span className="text-ink-soft">{book.author_name}</span></div>
                                             {book.user && (
-                                                <div className="text-xs text-[#635c4e]">User: {book.user.name} ({book.user.email})</div>
+                                                <div className="text-xs text-umber">User: {book.user.name} ({book.user.email})</div>
                                             )}
                                         </div>
 
@@ -367,9 +367,9 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                         </div>
 
                                         {/* Col 3: Date */}
-                                        <div className="col-span-2 text-sm text-[#635c4e] mb-2 md:mb-0">
+                                        <div className="col-span-2 text-sm text-umber mb-2 md:mb-0">
                                             {new Date(book.updated_at || book.created_at).toLocaleDateString()}
-                                            <div className="text-xs text-[#635c4e]">{new Date(book.updated_at || book.created_at).toLocaleTimeString()}</div>
+                                            <div className="text-xs text-umber">{new Date(book.updated_at || book.created_at).toLocaleTimeString()}</div>
                                         </div>
 
                                         {/* Col 4: Action */}
@@ -388,23 +388,23 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                     <div className="w-20 h-20 bg-emerald-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                                         <svg className="w-10 h-10 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                     </div>
-                                    <h3 className="text-2xl font-bold text-[#17150f] mb-2">All Caught Up!</h3>
-                                    <p className="text-[#635c4e]">There are no pending submissions awaiting approval.</p>
+                                    <h3 className="text-2xl font-bold text-ink mb-2">All Caught Up!</h3>
+                                    <p className="text-umber">There are no pending submissions awaiting approval.</p>
                                 </div>
                             )}
                         </div>
 
                         {/* Pagination */}
                         {books.links && books.links.length > 3 && (
-                            <div className="p-4 border-t border-[#d8d1c1] flex justify-center gap-1">
+                            <div className="p-4 border-t border-linen flex justify-center gap-1">
                                 {books.links.map((link, index) => (
                                     <Link
                                         key={index}
                                         href={link.url || '#'}
                                         disabled={!link.url}
-                                        className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${link.active ? 'bg-orange-500 text-[#17150f] shadow' :
-                                            !link.url ? 'text-[#635c4e] cursor-not-allowed' :
-                                                'text-[#635c4e] hover:bg-[#faf8f3] hover:text-[#17150f]'
+                                        className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${link.active ? 'bg-orange-500 text-ink shadow' :
+                                            !link.url ? 'text-umber cursor-not-allowed' :
+                                                'text-umber hover:bg-paper hover:text-ink'
                                             }`}
                                         dangerouslySetInnerHTML={{ __html: link.label }}
                                     />

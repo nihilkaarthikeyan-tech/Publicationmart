@@ -1,6 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
-import CreateCouponModal from './CreateCouponModal';
+import CreateCouponModal from '../Components/CreateCouponModal';
 
 export default function CouponIndex({ auth, coupons }) {
     const [showCreateModal, setShowCreateModal] = useState(false);
@@ -9,7 +9,7 @@ export default function CouponIndex({ auth, coupons }) {
         <>
             <Head title="Manage Coupons" />
 
-            <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-indigo-500/30">
+            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-indigo-500/30">
                 {/* Background */}
                 <div className="fixed inset-0 z-0 pointer-events-none">
                     <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-50 rounded-full blur-[120px]"></div>
@@ -20,11 +20,11 @@ export default function CouponIndex({ auth, coupons }) {
                     {/* Header */}
                     <div className="flex justify-between items-center mb-10">
                         <div>
-                            <h1 className="text-3xl font-black tracking-tight text-[#17150f] mb-2">Coupons & Discounts</h1>
-                            <p className="text-[#635c4e]">Manage promotional codes and discounts.</p>
+                            <h1 className="text-3xl font-black tracking-tight text-ink mb-2">Coupons & Discounts</h1>
+                            <p className="text-umber">Manage promotional codes and discounts.</p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Link href={route('admin.dashboard')} className="px-4 py-2 bg-[#faf8f3] hover:bg-slate-700 text-[#4b443a] rounded-lg text-sm font-bold transition-colors">
+                            <Link href={route('admin.dashboard')} className="px-4 py-2 bg-paper hover:bg-slate-700 text-ink-soft rounded-lg text-sm font-bold transition-colors">
                                 Dashboard
                             </Link>
                             <button
@@ -41,17 +41,17 @@ export default function CouponIndex({ auth, coupons }) {
                         {/* Summary / Stats could go here */}
 
                         {/* Main List (if not using modal list as main view) */}
-                        <div className="bg-slate-100 backdrop-blur border border-[#d8d1c1] rounded-2xl overflow-hidden">
+                        <div className="bg-slate-100 backdrop-blur border border-linen rounded-2xl overflow-hidden">
                             <div className="p-6">
-                                <h3 className="text-lg font-bold text-[#17150f] mb-4">Active Campaign Codes</h3>
+                                <h3 className="text-lg font-bold text-ink mb-4">Active Campaign Codes</h3>
                                 {coupons.length === 0 ? (
-                                    <div className="text-center py-10 text-[#635c4e]">
+                                    <div className="text-center py-10 text-umber">
                                         No coupons created yet. Click "Create Coupon" to start.
                                     </div>
                                 ) : (
                                     <div className="overflow-x-auto">
-                                        <table className="w-full text-left text-sm text-[#635c4e]">
-                                            <thead className="bg-[#faf8f3] text-[#4b443a] uppercase font-bold text-xs">
+                                        <table className="w-full text-left text-sm text-umber">
+                                            <thead className="bg-paper text-ink-soft uppercase font-bold text-xs">
                                                 <tr>
                                                     <th className="px-4 py-3">Code</th>
                                                     <th className="px-4 py-3">Discount</th>
@@ -62,10 +62,10 @@ export default function CouponIndex({ auth, coupons }) {
                                                     <th className="px-4 py-3 text-right">Actions</th>
                                                 </tr>
                                             </thead>
-                                            <tbody className="divide-y divide-[#d8d1c1]">
+                                            <tbody className="divide-y divide-linen">
                                                 {coupons.map(coupon => (
-                                                    <tr key={coupon.id} className="hover:bg-[#faf8f3] transition-colors">
-                                                        <td className="px-4 py-3 font-mono font-bold text-[#17150f]">{coupon.code}</td>
+                                                    <tr key={coupon.id} className="hover:bg-paper transition-colors">
+                                                        <td className="px-4 py-3 font-mono font-bold text-ink">{coupon.code}</td>
                                                         <td className="px-4 py-3 text-indigo-700 font-bold">{parseInt(coupon.discount_percentage)}%</td>
                                                         <td className="px-4 py-3">{coupon.min_order_value ? `₹${coupon.min_order_value}` : '-'}</td>
                                                         <td className="px-4 py-3">{coupon.usage_count} uses</td>
@@ -78,7 +78,7 @@ export default function CouponIndex({ auth, coupons }) {
                                                         <td className="px-4 py-3 text-right">
                                                             <button
                                                                 onClick={() => setShowCreateModal(true)}
-                                                                className="text-indigo-700 hover:text-[#17150f] transition-colors text-xs font-bold"
+                                                                className="text-indigo-700 hover:text-ink transition-colors text-xs font-bold"
                                                             >
                                                                 Manage
                                                             </button>

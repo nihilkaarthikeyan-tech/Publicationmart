@@ -196,18 +196,18 @@ export default function BookDetails({ auth, book }) {
             <Head title={`Admin Review: ${book.title}`} />
 
             {/* Premium Dark Background */}
-            <div className="min-h-screen bg-[#0f172a] relative overflow-hidden">
+            <div className="min-h-screen bg-parchment relative overflow-hidden">
                 {/* Ambient Background */}
-                <div className="fixed inset-0 bg-gradient-to-br from-[#0f172a] via-[#1f1a14] to-[#0f172a]" />
-                <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-violet-600/20 to-fuchsia-600/10 rounded-full blur-[120px] pointer-events-none" />
-                <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-600/15 to-cyan-600/10 rounded-full blur-[100px] pointer-events-none" />
+                <div className="fixed inset-0 bg-gradient-to-br from-parchment via-vellum to-parchment" />
+                <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-oxblood/5 to-foil/10 rounded-full blur-[120px] pointer-events-none" />
+                <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-foil/10 to-oxblood/5 rounded-full blur-[100px] pointer-events-none" />
 
                 <div className="relative py-10 sm:py-14">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
                         {/* Modern Breadcrumb */}
                         <div className="mb-8">
-                            <Link href={route('admin.dashboard')} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 backdrop-blur border border-white/10 text-sm font-bold text-slate-300 hover:text-white hover:border-indigo-400/50 transition-all group">
+                            <Link href={route('admin.dashboard')} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-paper backdrop-blur border border-linen text-sm font-bold text-ink-soft hover:text-ink hover:border-oxblood/50 transition-all group">
                                 <svg className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                                 </svg>
@@ -217,7 +217,7 @@ export default function BookDetails({ auth, book }) {
 
                         {/* Flash Messages */}
                         {usePage().props.flash?.success && (
-                            <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center gap-3">
+                            <div className="mb-6 p-4 rounded-xl bg-emerald-100 border border-emerald-200 text-emerald-800 flex items-center gap-3">
                                 <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                 </svg>
@@ -225,7 +225,7 @@ export default function BookDetails({ auth, book }) {
                             </div>
                         )}
                         {usePage().props.flash?.error && (
-                            <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 flex items-center gap-3">
+                            <div className="mb-6 p-4 rounded-xl bg-red-100 border border-red-200 text-red-800 flex items-center gap-3">
                                 <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
@@ -234,38 +234,38 @@ export default function BookDetails({ auth, book }) {
                         )}
 
                         {/* Premium Card Container */}
-                        <div className="bg-white/10 backdrop-blur-xl rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)] border border-white/10 overflow-hidden">
+                        <div className="bg-paper/80 backdrop-blur-xl rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(23,21,15,0.12)] border border-linen overflow-hidden">
                             {/* Header with Modern Gradient */}
-                            <div className="relative px-8 pt-10 pb-8 bg-gradient-to-br from-slate-800 via-slate-900 to-indigo-900">
+                            <div className="relative px-8 pt-10 pb-8 bg-gradient-to-br from-paper via-parchment to-vellum">
                                 {/* Decorative Pattern */}
-                                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
+                                <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #635c4e 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
 
                                 <div className="relative flex flex-col sm:flex-row justify-between items-start gap-6">
                                     <div>
                                         <div className="flex items-center gap-3 mb-4">
-                                            <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur flex items-center justify-center border border-white/20">
-                                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div className="w-12 h-12 rounded-2xl bg-vellum backdrop-blur flex items-center justify-center border border-linen-deep">
+                                                <svg className="w-6 h-6 text-oxblood" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                                 </svg>
                                             </div>
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-indigo-300 bg-indigo-500/20 px-3 py-1.5 rounded-lg border border-indigo-400/30">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-oxblood bg-oxblood/10 px-3 py-1.5 rounded-lg border border-oxblood/20">
                                                 Admin Review Panel
                                             </span>
                                         </div>
-                                        <h1 className="text-3xl sm:text-4xl font-black text-white mb-2 tracking-tight">{book.title}</h1>
-                                        <p className="text-lg text-slate-300">by <span className="font-bold text-white">{book.author_name}</span></p>
+                                        <h1 className="text-3xl sm:text-4xl font-black text-ink mb-2 tracking-tight">{book.title}</h1>
+                                        <p className="text-lg text-ink-soft">by <span className="font-bold text-ink">{book.author_name}</span></p>
                                         <div className="mt-4 flex flex-wrap items-center gap-4 text-sm">
-                                            <span className="flex items-center gap-2 text-slate-400 bg-white/5 px-3 py-1.5 rounded-lg">
+                                            <span className="flex items-center gap-2 text-umber bg-vellum px-3 py-1.5 rounded-lg">
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                                 </svg>
-                                                <span className="font-medium text-slate-300">{book.user?.name || 'N/A'}</span>
+                                                <span className="font-medium text-ink-soft">{book.user?.name || 'N/A'}</span>
                                             </span>
-                                            <span className="flex items-center gap-2 text-slate-400 bg-white/5 px-3 py-1.5 rounded-lg">
+                                            <span className="flex items-center gap-2 text-umber bg-vellum px-3 py-1.5 rounded-lg">
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                                 </svg>
-                                                <span className="font-medium text-slate-300">{book.user?.email || ''}</span>
+                                                <span className="font-medium text-ink-soft">{book.user?.email || ''}</span>
                                             </span>
                                         </div>
                                     </div>
@@ -283,24 +283,24 @@ export default function BookDetails({ auth, book }) {
                                             )}
                                             {book.status ? book.status.charAt(0).toUpperCase() + book.status.slice(1) : 'Pending Review'}
                                         </span>
-                                        <span className="text-xs font-mono text-slate-400 bg-white/10 px-3 py-1.5 rounded-lg">ID: #{book.id}</span>
+                                        <span className="text-xs font-mono text-umber bg-vellum px-3 py-1.5 rounded-lg">ID: #{book.id}</span>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Main Content */}
-                            <div className="p-6 sm:p-8 bg-slate-800/50">
+                            <div className="p-6 sm:p-8 bg-paper">
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                                     {/* Left Column: Files & Cover */}
                                     <div className="col-span-1 space-y-6">
                                         {/* Cover Image */}
-                                        <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                                        <div className="bg-paper p-4 rounded-xl border border-linen">
                                             <div className="flex items-center justify-between mb-3">
                                                 <div>
-                                                    <h3 className="font-semibold text-white">Cover Design</h3>
-                                                    <p className="text-[10px] text-gray-400">Rec. Size: 755 x 1144 px</p>
+                                                    <h3 className="font-semibold text-ink">Cover Design</h3>
+                                                    <p className="text-[10px] text-umber">Rec. Size: 755 x 1144 px</p>
                                                 </div>
-                                                <label className={`cursor-pointer inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${uploadingCover ? 'bg-slate-700 text-slate-400' : 'text-indigo-300 bg-indigo-500/20 hover:bg-indigo-500/30'}`}>
+                                                <label className={`cursor-pointer inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${uploadingCover ? 'bg-vellum text-taupe' : 'text-oxblood bg-oxblood/10 hover:bg-oxblood/20'}`}>
                                                     {uploadingCover ? (
                                                         <>
                                                             <svg className="animate-spin w-3.5 h-3.5 mr-1" fill="none" viewBox="0 0 24 24">
@@ -329,7 +329,7 @@ export default function BookDetails({ auth, book }) {
                                             {book.cover_design_path ? (
                                                 <div>
                                                     {/* Single View - Matches Book Store Logic (No Cropping) */}
-                                                    <div className="rounded-xl overflow-hidden border border-white/10 shadow-lg bg-[#1a1c26]">
+                                                    <div className="rounded-xl overflow-hidden border border-linen shadow-lg bg-vellum">
                                                         <div className="aspect-[2/3] w-full relative overflow-hidden group">
                                                             <a href={`${app_url}/storage/${book.cover_design_path}`} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative">
                                                                 {/* Blurred Background (Optional, kept for safety if aspect ratio varies slightly) */}
@@ -347,35 +347,35 @@ export default function BookDetails({ auth, book }) {
                                                             </a>
                                                         </div>
 
-                                                        <div className="p-3 bg-white/5 text-center border-t border-white/5">
-                                                            <a href={`${app_url}/storage/${book.cover_design_path}`} download className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors">
+                                                        <div className="p-3 bg-vellum text-center border-t border-linen">
+                                                            <a href={`${app_url}/storage/${book.cover_design_path}`} download className="text-sm font-bold text-oxblood hover:text-oxblood-deep transition-colors">
                                                                 Download Full Spread
                                                             </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <div className="h-40 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-gray-400 text-sm">
-                                                    <svg className="w-8 h-8 mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div className="h-40 bg-vellum border-2 border-dashed border-linen-deep rounded-lg flex flex-col items-center justify-center text-taupe text-sm">
+                                                    <svg className="w-8 h-8 mb-2 text-taupe" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                     </svg>
                                                     <span>No Cover Uploaded</span>
-                                                    <span className="text-xs text-gray-400 mt-1">Rec. Size: 755 x 1144 px</span>
+                                                    <span className="text-xs text-taupe mt-1">Rec. Size: 755 x 1144 px</span>
                                                 </div>
                                             )}
                                         </div>
 
                                         {/* AI Generated Content (Only if exists) */}
                                         {book.ai_chapters_count > 0 && (
-                                            <div className="bg-white/5 p-4 rounded-xl border border-white/10 relative overflow-hidden group">
-                                                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                            <div className="bg-paper p-4 rounded-xl border border-linen relative overflow-hidden group">
+                                                <div className="absolute inset-0 bg-gradient-to-r from-oxblood/5 to-foil/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                                 <div className="relative z-10">
                                                     <div className="mb-3 flex items-center justify-between">
                                                         <div>
-                                                            <h3 className="font-semibold text-white">AI Manuscript</h3>
-                                                            <p className="text-[10px] text-indigo-300">Generated via AI Studio</p>
+                                                            <h3 className="font-semibold text-ink">AI Manuscript</h3>
+                                                            <p className="text-[10px] text-oxblood">Generated via AI Studio</p>
                                                         </div>
-                                                        <span className="px-2 py-1 bg-indigo-500/20 text-indigo-300 rounded text-[10px] font-bold">
+                                                        <span className="px-2 py-1 bg-oxblood/10 text-oxblood rounded text-[10px] font-bold">
                                                             {book.ai_chapters_count} Chapters
                                                         </span>
                                                     </div>
@@ -383,7 +383,7 @@ export default function BookDetails({ auth, book }) {
                                                         <a
                                                             href={route('books.format', book.id)}
                                                             target="_blank"
-                                                            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-indigo-500/20 mb-1"
+                                                            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-oxblood hover:bg-oxblood-deep text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-oxblood/20 mb-1"
                                                         >
                                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -401,7 +401,7 @@ export default function BookDetails({ auth, book }) {
                                                         <a
                                                             href={route('ai-studio.download', { book: book.id, format: 'pdf' })}
                                                             target="_blank"
-                                                            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 rounded-lg transition-all text-xs font-semibold"
+                                                            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-vellum hover:bg-vellum/70 text-ink-soft hover:text-ink border border-linen rounded-lg transition-all text-xs font-semibold"
                                                         >
                                                             Download PDF Preview
                                                         </a>
@@ -410,19 +410,19 @@ export default function BookDetails({ auth, book }) {
                                             </div>
                                         )}
 
-                                        <div className="bg-white/5 p-4 rounded-xl border border-white/10 relative overflow-hidden group">
+                                        <div className="bg-paper p-4 rounded-xl border border-linen relative overflow-hidden group">
                                             <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-teal-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                             <div className="relative z-10">
                                                 <div className="mb-3 flex items-center justify-between">
                                                     <div>
-                                                        <h3 className="font-semibold text-white">Interior Manuscript</h3>
-                                                        <p className="text-[10px] text-slate-400 mt-0.5">
-                                                            Book Size: <span className="text-indigo-300 font-bold">{book.book_size || '6x9'}</span> •
+                                                        <h3 className="font-semibold text-ink">Interior Manuscript</h3>
+                                                        <p className="text-[10px] text-umber mt-0.5">
+                                                            Book Size: <span className="text-oxblood font-bold">{book.book_size || '6x9'}</span> •
                                                             Method: <span className={`font-bold ${(book.interior_layout_method === 'upload' || book.interior_layout_method === 'upload_template')
-                                                                ? 'text-amber-300'
+                                                                ? 'text-amber-700'
                                                                 : book.interior_layout_method === 'formatting_tool'
-                                                                    ? 'text-emerald-300'
-                                                                    : 'text-slate-500'
+                                                                    ? 'text-emerald-700'
+                                                                    : 'text-taupe'
                                                                 }`}>
                                                                 {(book.interior_layout_method === 'upload' || book.interior_layout_method === 'upload_template') ? '📄 Uploaded File' : book.interior_layout_method === 'formatting_tool' ? '✏️ Formatting Tool' : '—'}
                                                             </span>
@@ -430,11 +430,11 @@ export default function BookDetails({ auth, book }) {
                                                     </div>
                                                     {/* Status Badge */}
                                                     {(book.interior_file || book.formatting_data) ? (
-                                                        <span className="px-2 py-1 bg-emerald-500/20 text-emerald-300 rounded text-[10px] font-bold">
+                                                        <span className="px-2 py-1 bg-emerald-100 text-emerald-800 rounded text-[10px] font-bold">
                                                             Available
                                                         </span>
                                                     ) : (
-                                                        <span className="px-2 py-1 bg-red-500/20 text-red-300 rounded text-[10px] font-bold">
+                                                        <span className="px-2 py-1 bg-red-100 text-red-800 rounded text-[10px] font-bold">
                                                             Not Submitted
                                                         </span>
                                                     )}
@@ -444,32 +444,32 @@ export default function BookDetails({ auth, book }) {
 
                                                     {/* ─── SECTION 1: User Uploaded File (ONLY if method is 'upload' or legacy 'upload_template') ─── */}
                                                     {(book.interior_layout_method === 'upload' || book.interior_layout_method === 'upload_template') && (
-                                                        <div className={`rounded-lg border p-3 ${book.interior_file ? 'bg-amber-500/5 border-amber-500/20' : 'bg-slate-700/20 border-slate-600/30'}`}>
+                                                        <div className={`rounded-lg border p-3 ${book.interior_file ? 'bg-amber-50 border-amber-200' : 'bg-vellum/50 border-linen'}`}>
                                                             <div className="flex items-center gap-2 mb-2">
-                                                                <svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <svg className="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                                                                 </svg>
-                                                                <span className="text-xs font-bold uppercase tracking-wider text-amber-300">
+                                                                <span className="text-xs font-bold uppercase tracking-wider text-amber-700">
                                                                     User Uploaded File
                                                                 </span>
                                                                 {book.interior_file ? (
-                                                                    <span className="ml-auto px-1.5 py-0.5 bg-amber-500/20 text-amber-300 rounded text-[9px] font-bold">
+                                                                    <span className="ml-auto px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded text-[9px] font-bold">
                                                                         Available
                                                                     </span>
                                                                 ) : (
-                                                                    <span className="ml-auto px-1.5 py-0.5 bg-red-500/20 text-red-300 rounded text-[9px] font-bold">
+                                                                    <span className="ml-auto px-1.5 py-0.5 bg-red-100 text-red-800 rounded text-[9px] font-bold">
                                                                         Missing
                                                                     </span>
                                                                 )}
                                                             </div>
                                                             {book.interior_file ? (
                                                                 <>
-                                                                    <div className="flex items-center justify-between bg-amber-500/10 p-2.5 rounded-md border border-amber-500/15 mb-2">
+                                                                    <div className="flex items-center justify-between bg-amber-50 p-2.5 rounded-md border border-amber-200 mb-2">
                                                                         <div className="flex items-center overflow-hidden">
-                                                                            <svg className="w-6 h-6 text-amber-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z"></path><path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"></path></svg>
-                                                                            <span className="text-[11px] text-slate-300 truncate">{book.interior_file.split('/').pop()}</span>
+                                                                            <svg className="w-6 h-6 text-amber-600 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z"></path><path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"></path></svg>
+                                                                            <span className="text-[11px] text-ink-soft truncate">{book.interior_file.split('/').pop()}</span>
                                                                         </div>
-                                                                        <a href={`${app_url}/storage/${book.interior_file}`} download className="text-indigo-400 hover:text-indigo-300 ml-2 flex-shrink-0">
+                                                                        <a href={`${app_url}/storage/${book.interior_file}`} download className="text-oxblood hover:text-oxblood-deep ml-2 flex-shrink-0">
                                                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                                                         </a>
                                                                     </div>
@@ -483,27 +483,27 @@ export default function BookDetails({ auth, book }) {
                                                                     </a>
                                                                 </>
                                                             ) : (
-                                                                <p className="text-[11px] text-slate-500 italic px-1">User selected upload but file is missing.</p>
+                                                                <p className="text-[11px] text-taupe italic px-1">User selected upload but file is missing.</p>
                                                             )}
                                                         </div>
                                                     )}
 
                                                     {/* ─── SECTION 2: Online Formatting Tool (ONLY if method is formatting_tool) ─── */}
                                                     {book.interior_layout_method === 'formatting_tool' && (
-                                                        <div className={`rounded-lg border p-3 ${book.formatting_data ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-slate-700/20 border-slate-600/30'}`}>
+                                                        <div className={`rounded-lg border p-3 ${book.formatting_data ? 'bg-emerald-50 border-emerald-200' : 'bg-vellum/50 border-linen'}`}>
                                                             <div className="flex items-center gap-2 mb-2">
-                                                                <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                                                 </svg>
-                                                                <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                                                                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
                                                                     Online Formatting Tool
                                                                 </span>
                                                                 {book.formatting_data ? (
-                                                                    <span className="ml-auto px-1.5 py-0.5 bg-emerald-500/20 text-emerald-300 rounded text-[9px] font-bold">
+                                                                    <span className="ml-auto px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-[9px] font-bold">
                                                                         Available
                                                                     </span>
                                                                 ) : (
-                                                                    <span className="ml-auto px-1.5 py-0.5 bg-red-500/20 text-red-300 rounded text-[9px] font-bold">
+                                                                    <span className="ml-auto px-1.5 py-0.5 bg-red-100 text-red-800 rounded text-[9px] font-bold">
                                                                         Missing
                                                                     </span>
                                                                 )}
@@ -529,7 +529,7 @@ export default function BookDetails({ auth, book }) {
                                                                     <a
                                                                         href={route('books.format', book.id)}
                                                                         target="_blank"
-                                                                        className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 rounded-lg transition-all text-xs font-semibold"
+                                                                        className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-vellum hover:bg-vellum/70 text-ink-soft hover:text-ink border border-linen rounded-lg transition-all text-xs font-semibold"
                                                                     >
                                                                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -538,22 +538,22 @@ export default function BookDetails({ auth, book }) {
                                                                     </a>
                                                                 </div>
                                                             ) : (
-                                                                <p className="text-[11px] text-slate-500 italic px-1">User selected formatting tool but content is missing.</p>
+                                                                <p className="text-[11px] text-taupe italic px-1">User selected formatting tool but content is missing.</p>
                                                             )}
                                                         </div>
                                                     )}
 
                                                     {/* ─── SECTION 3: Admin Quick Upload (Replace) — Always visible ─── */}
-                                                    <div className="rounded-lg border border-slate-600/30 bg-slate-700/20 p-3">
+                                                    <div className="rounded-lg border border-linen bg-vellum/50 p-3">
                                                         <div className="flex items-center gap-2 mb-2">
-                                                            <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <svg className="w-4 h-4 text-oxblood" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                                             </svg>
-                                                            <span className="text-xs font-bold uppercase tracking-wider text-indigo-300">
+                                                            <span className="text-xs font-bold uppercase tracking-wider text-oxblood">
                                                                 Admin Quick Upload
                                                             </span>
                                                         </div>
-                                                        <label className={`cursor-pointer w-full flex items-center justify-center gap-2 px-4 py-2.5 border border-dashed border-white/20 hover:border-indigo-400/50 rounded-lg transition-all text-xs font-semibold text-slate-400 hover:text-white ${uploadingInterior ? 'opacity-50' : ''}`}>
+                                                        <label className={`cursor-pointer w-full flex items-center justify-center gap-2 px-4 py-2.5 border border-dashed border-linen-deep hover:border-oxblood/50 rounded-lg transition-all text-xs font-semibold text-umber hover:text-ink ${uploadingInterior ? 'opacity-50' : ''}`}>
                                                             {uploadingInterior ? (
                                                                 <>
                                                                     <svg className="animate-spin w-3.5 h-3.5" fill="none" viewBox="0 0 24 24">
@@ -580,7 +580,7 @@ export default function BookDetails({ auth, book }) {
 
                                                     {/* Empty State — no method selected */}
                                                     {!book.interior_layout_method && (
-                                                        <div className="h-16 bg-slate-700/30 border-2 border-dashed border-slate-600 rounded-lg flex items-center justify-center text-slate-500 text-sm">
+                                                        <div className="h-16 bg-vellum/50 border-2 border-dashed border-linen-deep rounded-lg flex items-center justify-center text-taupe text-sm">
                                                             <span>No manuscript submitted by user</span>
                                                         </div>
                                                     )}
@@ -590,10 +590,10 @@ export default function BookDetails({ auth, book }) {
                                         </div>
 
                                         {/* Audio File */}
-                                        <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+                                        <div className="bg-paper p-4 rounded-xl border border-linen">
                                             <div className="flex items-center justify-between mb-3">
-                                                <h3 className="font-semibold text-white">Audiobook File</h3>
-                                                <label className={`cursor-pointer inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${uploadingAudio ? 'bg-slate-700 text-slate-400' : 'text-violet-300 bg-violet-500/20 hover:bg-violet-500/30'}`}>
+                                                <h3 className="font-semibold text-ink">Audiobook File</h3>
+                                                <label className={`cursor-pointer inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${uploadingAudio ? 'bg-vellum text-taupe' : 'text-oxblood bg-oxblood/10 hover:bg-oxblood/20'}`}>
                                                     {uploadingAudio ? (
                                                         <>
                                                             <svg className="animate-spin w-3.5 h-3.5 mr-1" fill="none" viewBox="0 0 24 24">
@@ -621,12 +621,12 @@ export default function BookDetails({ auth, book }) {
                                             </div>
                                             {book.audio_file ? (
                                                 <div className="space-y-2">
-                                                    <div className="flex items-center bg-slate-700/50 p-3 rounded-lg border border-white/10">
-                                                        <svg className="w-8 h-8 text-violet-400 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                    <div className="flex items-center bg-vellum p-3 rounded-lg border border-linen">
+                                                        <svg className="w-8 h-8 text-oxblood mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                             <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.21-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z" clipRule="evenodd" />
                                                         </svg>
-                                                        <span className="text-sm text-slate-300 truncate flex-1">{book.audio_file.split('/').pop()}</span>
-                                                        <a href={`${app_url}/storage/${book.audio_file}`} download className="text-indigo-400 hover:text-indigo-300 ml-2">
+                                                        <span className="text-sm text-ink-soft truncate flex-1">{book.audio_file.split('/').pop()}</span>
+                                                        <a href={`${app_url}/storage/${book.audio_file}`} download className="text-oxblood hover:text-oxblood-deep ml-2">
                                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                                         </a>
                                                     </div>
@@ -635,7 +635,7 @@ export default function BookDetails({ auth, book }) {
                                                     </audio>
                                                 </div>
                                             ) : (
-                                                <div className="h-16 bg-slate-700/30 border-2 border-dashed border-slate-600 rounded-lg flex items-center justify-center text-slate-500 text-sm">
+                                                <div className="h-16 bg-vellum/50 border-2 border-dashed border-linen-deep rounded-lg flex items-center justify-center text-taupe text-sm">
                                                     <span>No audiobook uploaded</span>
                                                 </div>
                                             )}
@@ -647,8 +647,8 @@ export default function BookDetails({ auth, book }) {
 
                                         {/* 1. Basic Info (Editable) */}
                                         <div>
-                                            <div className="flex justify-between items-center border-b border-slate-600 pb-2 mb-4">
-                                                <h3 className="text-lg font-bold text-white">Book Metadata</h3>
+                                            <div className="flex justify-between items-center border-b border-linen-deep pb-2 mb-4">
+                                                <h3 className="text-lg font-bold text-ink">Book Metadata</h3>
                                                 <SecondaryButton onClick={() => setIsEditing(!isEditing)} size="sm">
                                                     {isEditing ? 'Cancel Editing' : 'Edit Details'}
                                                 </SecondaryButton>
@@ -730,7 +730,7 @@ export default function BookDetails({ auth, book }) {
                                                             <button
                                                                 type="button"
                                                                 onClick={addCoAuthor}
-                                                                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors"
+                                                                className="px-4 py-2 bg-oxblood text-white rounded-md hover:bg-oxblood-deep transition-colors"
                                                             >
                                                                 Add
                                                             </button>
@@ -761,7 +761,7 @@ export default function BookDetails({ auth, book }) {
                                                         <InputLabel htmlFor="publication" value="Publication House" />
                                                         <select
                                                             id="publication"
-                                                            className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                                            className="mt-1 block w-full border-linen-deep focus:border-oxblood focus:ring-oxblood rounded-md shadow-sm"
                                                             value={data.publication}
                                                             onChange={e => setData('publication', e.target.value)}
                                                         >
@@ -787,22 +787,22 @@ export default function BookDetails({ auth, book }) {
                                                         />
                                                         <div className="flex justify-between mt-1">
                                                             {/* <InputError message={errors.isbn} /> */}
-                                                            <span className={`text-xs ${data.isbn?.length === 13 ? 'text-green-600' : 'text-gray-400'}`}>
+                                                            <span className={`text-xs ${data.isbn?.length === 13 ? 'text-green-700' : 'text-taupe'}`}>
                                                                 {data.isbn?.length || 0}/13 digits
                                                             </span>
                                                         </div>
                                                     </div>
                                                     <div>
                                                         <InputLabel htmlFor="selling_price" value="Selling Price (Hardcover) (INR)" />
-                                                        <TextInput id="selling_price" type="number" step="0.01" className="w-full mt-1 border-indigo-200" value={data.selling_price} onChange={e => setData('selling_price', e.target.value)} placeholder="0.00" />
+                                                        <TextInput id="selling_price" type="number" step="0.01" className="w-full mt-1 border-oxblood/20" value={data.selling_price} onChange={e => setData('selling_price', e.target.value)} placeholder="0.00" />
                                                     </div>
                                                     <div>
                                                         <InputLabel htmlFor="ebook_price" value="E-Book Price (INR)" />
-                                                        <TextInput id="ebook_price" type="number" step="0.01" className="w-full mt-1 border-indigo-200" value={data.ebook_price} onChange={e => setData('ebook_price', e.target.value)} placeholder="0.00" />
+                                                        <TextInput id="ebook_price" type="number" step="0.01" className="w-full mt-1 border-oxblood/20" value={data.ebook_price} onChange={e => setData('ebook_price', e.target.value)} placeholder="0.00" />
                                                     </div>
                                                     <div>
                                                         <InputLabel htmlFor="audio_price" value="Audio Book Price (INR)" />
-                                                        <TextInput id="audio_price" type="number" step="0.01" className="w-full mt-1 border-indigo-200" value={data.audio_price} onChange={e => setData('audio_price', e.target.value)} placeholder="0.00" />
+                                                        <TextInput id="audio_price" type="number" step="0.01" className="w-full mt-1 border-oxblood/20" value={data.audio_price} onChange={e => setData('audio_price', e.target.value)} placeholder="0.00" />
                                                     </div>
                                                     <div>
                                                         <InputLabel htmlFor="printing_cost" value="Printing Cost (INR)" />
@@ -825,7 +825,7 @@ export default function BookDetails({ auth, book }) {
                                                         <InputLabel htmlFor="about_book" value="About the Book" />
                                                         <textarea
                                                             id="about_book"
-                                                            className="w-full mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                                            className="w-full mt-1 border-linen-deep focus:border-oxblood focus:ring-oxblood rounded-md shadow-sm"
                                                             rows="4"
                                                             value={data.about_book}
                                                             onChange={e => setData('about_book', e.target.value)}
@@ -837,7 +837,7 @@ export default function BookDetails({ auth, book }) {
                                                         <InputLabel htmlFor="author_biography" value="Author Biography" />
                                                         <textarea
                                                             id="author_biography"
-                                                            className="w-full mt-1 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                                            className="w-full mt-1 border-linen-deep focus:border-oxblood focus:ring-oxblood rounded-md shadow-sm"
                                                             rows="4"
                                                             value={data.author_biography}
                                                             onChange={e => setData('author_biography', e.target.value)}
@@ -847,13 +847,13 @@ export default function BookDetails({ auth, book }) {
 
                                                     {/* Step 2 Fields: Specs */}
                                                     <div className="col-span-2 border-t pt-4 mt-2">
-                                                        <h4 className="text-sm font-bold text-gray-700 mb-3">Book Specifications</h4>
+                                                        <h4 className="text-sm font-bold text-ink-soft mb-3">Book Specifications</h4>
                                                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                             <div>
                                                                 <InputLabel htmlFor="book_size" value="Book Size" />
                                                                 <select
                                                                     id="book_size"
-                                                                    className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                                                    className="mt-1 block w-full border-linen-deep focus:border-oxblood focus:ring-oxblood rounded-md shadow-sm"
                                                                     value={data.book_size}
                                                                     onChange={e => setData('book_size', e.target.value)}
                                                                 >
@@ -864,7 +864,7 @@ export default function BookDetails({ auth, book }) {
                                                                 <InputLabel htmlFor="printing_color" value="Printing Color" />
                                                                 <select
                                                                     id="printing_color"
-                                                                    className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                                                    className="mt-1 block w-full border-linen-deep focus:border-oxblood focus:ring-oxblood rounded-md shadow-sm"
                                                                     value={data.printing_color}
                                                                     onChange={e => setData('printing_color', e.target.value)}
                                                                 >
@@ -876,7 +876,7 @@ export default function BookDetails({ auth, book }) {
                                                                 <InputLabel htmlFor="paper_type" value="Paper Type" />
                                                                 <select
                                                                     id="paper_type"
-                                                                    className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                                                    className="mt-1 block w-full border-linen-deep focus:border-oxblood focus:ring-oxblood rounded-md shadow-sm"
                                                                     value={data.paper_type}
                                                                     onChange={e => setData('paper_type', e.target.value)}
                                                                 >
@@ -887,7 +887,7 @@ export default function BookDetails({ auth, book }) {
                                                                 <InputLabel htmlFor="binding_type" value="Binding Type" />
                                                                 <select
                                                                     id="binding_type"
-                                                                    className="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                                                                    className="mt-1 block w-full border-linen-deep focus:border-oxblood focus:ring-oxblood rounded-md shadow-sm"
                                                                     value={data.binding_type}
                                                                     onChange={e => setData('binding_type', e.target.value)}
                                                                 >
@@ -896,7 +896,7 @@ export default function BookDetails({ auth, book }) {
                                                             </div>
                                                             <div>
                                                                 <InputLabel value="Layout Method" />
-                                                                <div className="mt-2 text-sm text-slate-300 bg-slate-700/50 px-3 py-2 rounded">
+                                                                <div className="mt-2 text-sm text-ink-soft bg-vellum px-3 py-2 rounded">
                                                                     {book.interior_layout_method || 'Default'}
                                                                 </div>
                                                             </div>
@@ -904,15 +904,15 @@ export default function BookDetails({ auth, book }) {
                                                     </div>
 
                                                     {/* Step 2 Fields: Files */}
-                                                    <div className="col-span-2 border-t border-slate-600 pt-4 mt-2">
-                                                        <h4 className="text-sm font-bold text-slate-300 mb-3">Files (Upload to Replace)</h4>
+                                                    <div className="col-span-2 border-t border-linen-deep pt-4 mt-2">
+                                                        <h4 className="text-sm font-bold text-ink-soft mb-3">Files (Upload to Replace)</h4>
                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                             <div>
                                                                 <InputLabel htmlFor="interior_file" value="Interior Manuscript (PDF/DOCX)" />
                                                                 <input
                                                                     type="file"
                                                                     id="interior_file"
-                                                                    className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                                                                    className="mt-1 block w-full text-sm text-taupe file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-oxblood/10 file:text-oxblood hover:file:bg-oxblood/20"
                                                                     onChange={e => setData('interior_file', e.target.files[0])}
                                                                 />
                                                                 <InputError message={errors.interior_file} className="mt-1" />
@@ -923,7 +923,7 @@ export default function BookDetails({ auth, book }) {
                                                                     type="file"
                                                                     id="cover_design_path"
                                                                     accept=".jpg,.jpeg,.png"
-                                                                    className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+                                                                    className="mt-1 block w-full text-sm text-taupe file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-oxblood/10 file:text-oxblood hover:file:bg-oxblood/20"
                                                                     onChange={e => setData('cover_design_path', e.target.files[0])}
                                                                 />
                                                                 <InputError message={errors.cover_design_path} className="mt-1" />
@@ -936,17 +936,17 @@ export default function BookDetails({ auth, book }) {
                                                                 type="file"
                                                                 id="audio_file"
                                                                 accept=".mp3,.wav,.m4a,.ogg,.aac"
-                                                                className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100"
+                                                                className="mt-1 block w-full text-sm text-taupe file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100"
                                                                 onChange={e => setData('audio_file', e.target.files[0])}
                                                             />
                                                             <InputError message={errors.audio_file} className="mt-1" />
-                                                            <p className="text-xs text-gray-400 mt-1">Max file size: 100MB</p>
+                                                            <p className="text-xs text-taupe mt-1">Max file size: 100MB</p>
                                                         </div>
                                                     </div>
 
                                                     {/* External Links */}
-                                                    <div className="col-span-2 border-t border-slate-600 pt-4 mt-2">
-                                                        <h4 className="text-sm font-bold text-slate-300 mb-3">Distribution Links (External)</h4>
+                                                    <div className="col-span-2 border-t border-linen-deep pt-4 mt-2">
+                                                        <h4 className="text-sm font-bold text-ink-soft mb-3">Distribution Links (External)</h4>
                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                             <div>
                                                                 <InputLabel htmlFor="amazon_link" value="Amazon Link" />
@@ -966,7 +966,7 @@ export default function BookDetails({ auth, book }) {
                                                         <PrimaryButton
                                                             type="submit"
                                                             disabled={processingUpdate}
-                                                            className="bg-blue-600 hover:bg-blue-700"
+                                                            className="bg-oxblood hover:bg-oxblood-deep"
                                                         >
                                                             {processingUpdate ? 'Saving...' : 'Save Changes'}
                                                         </PrimaryButton>
@@ -975,50 +975,50 @@ export default function BookDetails({ auth, book }) {
                                             ) : (
                                                 <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-6">
                                                     <div>
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">Title</dt>
-                                                        <dd className="mt-1 text-sm font-medium text-white">{book.title}</dd>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">Title</dt>
+                                                        <dd className="mt-1 text-sm font-medium text-ink">{book.title}</dd>
                                                     </div>
                                                     <div>
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">Subtitle</dt>
-                                                        <dd className="mt-1 text-sm text-slate-300">{book.subtitle || '-'}</dd>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">Subtitle</dt>
+                                                        <dd className="mt-1 text-sm text-ink-soft">{book.subtitle || '-'}</dd>
                                                     </div>
                                                     <div>
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">Genre</dt>
-                                                        <dd className="mt-1 text-sm text-slate-300">{book.genre}</dd>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">Genre</dt>
+                                                        <dd className="mt-1 text-sm text-ink-soft">{book.genre}</dd>
                                                     </div>
                                                     <div>
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">Language</dt>
-                                                        <dd className="mt-1 text-sm text-slate-300">{book.language}</dd>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">Language</dt>
+                                                        <dd className="mt-1 text-sm text-ink-soft">{book.language}</dd>
                                                     </div>
                                                     <div>
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">Publication House</dt>
-                                                        <dd className="mt-1 text-sm text-slate-300">{book.publication || 'Not specified'}</dd>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">Publication House</dt>
+                                                        <dd className="mt-1 text-sm text-ink-soft">{book.publication || 'Not specified'}</dd>
                                                     </div>
                                                     <div>
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">ISBN</dt>
-                                                        <dd className={`mt-1 text-sm font-bold ${book.isbn ? 'text-white' : 'text-rose-400 italic'}`}>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">ISBN</dt>
+                                                        <dd className={`mt-1 text-sm font-bold ${book.isbn ? 'text-ink' : 'text-rose-700 italic'}`}>
                                                             {book.isbn || 'Missing (Required for approval)'}
                                                         </dd>
                                                     </div>
                                                     <div>
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">Selling Price</dt>
-                                                        <dd className={`mt-1 text-sm font-bold ${book.selling_price > 0 ? 'text-white' : 'text-rose-400 italic'}`}>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">Selling Price</dt>
+                                                        <dd className={`mt-1 text-sm font-bold ${book.selling_price > 0 ? 'text-ink' : 'text-rose-700 italic'}`}>
                                                             {book.selling_price ? `₹${book.selling_price}` : 'Not set (Required)'}
                                                         </dd>
                                                     </div>
                                                     <div>
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">Publication Date</dt>
-                                                        <dd className="mt-1 text-sm font-medium text-slate-300">
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">Publication Date</dt>
+                                                        <dd className="mt-1 text-sm font-medium text-ink-soft">
                                                             {book.publication_date ? new Date(book.publication_date).toLocaleDateString() : 'Not set'}
                                                         </dd>
                                                     </div>
                                                     <div className="col-span-2">
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">About the Book</dt>
-                                                        <dd className="mt-1 text-sm text-slate-300 bg-slate-700/50 p-3 rounded-lg">{book.about_book || '-'}</dd>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">About the Book</dt>
+                                                        <dd className="mt-1 text-sm text-ink-soft bg-vellum p-3 rounded-lg">{book.about_book || '-'}</dd>
                                                     </div>
                                                     <div className="col-span-2">
-                                                        <dt className="text-xs text-slate-500 uppercase tracking-wider">Author Biography</dt>
-                                                        <dd className="mt-1 text-sm text-slate-300 bg-slate-700/50 p-3 rounded-lg">{book.author_biography || '-'}</dd>
+                                                        <dt className="text-xs text-taupe uppercase tracking-wider">Author Biography</dt>
+                                                        <dd className="mt-1 text-sm text-ink-soft bg-vellum p-3 rounded-lg">{book.author_biography || '-'}</dd>
                                                     </div>
                                                 </dl>
                                             )}
@@ -1026,83 +1026,83 @@ export default function BookDetails({ auth, book }) {
 
                                         {/* 2. Specs */}
                                         <div>
-                                            <h3 className="text-lg font-bold text-white border-b border-slate-600 pb-2 mb-4">Production Specifications</h3>
+                                            <h3 className="text-lg font-bold text-ink border-b border-linen-deep pb-2 mb-4">Production Specifications</h3>
                                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                                <div className="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
-                                                    <div className="text-xs text-slate-500">Size</div>
-                                                    <div className="font-semibold text-white">{book.book_size || 'N/A'}</div>
+                                                <div className="bg-vellum p-3 rounded-lg border border-linen">
+                                                    <div className="text-xs text-taupe">Size</div>
+                                                    <div className="font-semibold text-ink">{book.book_size || 'N/A'}</div>
                                                 </div>
-                                                <div className="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
-                                                    <div className="text-xs text-slate-500">Color</div>
-                                                    <div className="font-semibold text-white">{book.printing_color || 'N/A'}</div>
+                                                <div className="bg-vellum p-3 rounded-lg border border-linen">
+                                                    <div className="text-xs text-taupe">Color</div>
+                                                    <div className="font-semibold text-ink">{book.printing_color || 'N/A'}</div>
                                                 </div>
-                                                <div className="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
-                                                    <div className="text-xs text-slate-500">Paper</div>
-                                                    <div className="font-semibold text-white">{book.paper_type || 'N/A'}</div>
+                                                <div className="bg-vellum p-3 rounded-lg border border-linen">
+                                                    <div className="text-xs text-taupe">Paper</div>
+                                                    <div className="font-semibold text-ink">{book.paper_type || 'N/A'}</div>
                                                 </div>
-                                                <div className="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
-                                                    <div className="text-xs text-slate-500">Layout</div>
-                                                    <div className="font-semibold text-white capitalize">{book.interior_layout_method?.replace('_', ' ') || 'N/A'}</div>
+                                                <div className="bg-vellum p-3 rounded-lg border border-linen">
+                                                    <div className="text-xs text-taupe">Layout</div>
+                                                    <div className="font-semibold text-ink capitalize">{book.interior_layout_method?.replace('_', ' ') || 'N/A'}</div>
                                                 </div>
-                                                <div className="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
-                                                    <div className="text-xs text-slate-500">Binding</div>
-                                                    <div className="font-semibold text-white">{book.binding_type || 'Perfect Bound'}</div>
+                                                <div className="bg-vellum p-3 rounded-lg border border-linen">
+                                                    <div className="text-xs text-taupe">Binding</div>
+                                                    <div className="font-semibold text-ink">{book.binding_type || 'Perfect Bound'}</div>
                                                 </div>
-                                                <div className="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
-                                                    <div className="text-xs text-slate-500">Pages</div>
-                                                    <div className="font-semibold text-white">{book.num_pages || 'N/A'}</div>
+                                                <div className="bg-vellum p-3 rounded-lg border border-linen">
+                                                    <div className="text-xs text-taupe">Pages</div>
+                                                    <div className="font-semibold text-ink">{book.num_pages || 'N/A'}</div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         {/* 3. Pricing */}
                                         <div>
-                                            <h3 className="text-lg font-bold text-white border-b border-slate-600 pb-2 mb-4">Pricing & Revenue</h3>
+                                            <h3 className="text-lg font-bold text-ink border-b border-linen-deep pb-2 mb-4">Pricing & Revenue</h3>
                                             <div className="flex space-x-8">
                                                 <div>
-                                                    <dt className="text-xs text-slate-500 uppercase">Selling Price</dt>
-                                                    <dd className="mt-1 text-2xl font-bold text-white">₹{book.selling_price || '0.00'}</dd>
+                                                    <dt className="text-xs text-taupe uppercase">Selling Price</dt>
+                                                    <dd className="mt-1 text-2xl font-bold text-ink">₹{book.selling_price || '0.00'}</dd>
                                                 </div>
                                                 <div>
-                                                    <dt className="text-xs text-slate-500 uppercase">Printing Cost</dt>
-                                                    <dd className="mt-1 text-xl font-medium text-rose-400">- ₹{book.printing_cost || '0.00'}</dd>
+                                                    <dt className="text-xs text-taupe uppercase">Printing Cost</dt>
+                                                    <dd className="mt-1 text-xl font-medium text-rose-700">- ₹{book.printing_cost || '0.00'}</dd>
                                                 </div>
                                                 <div>
-                                                    <dt className="text-xs text-slate-500 uppercase">Author Royalty</dt>
-                                                    <dd className="mt-1 text-2xl font-bold text-emerald-400">₹{book.author_cost || '0.00'}</dd>
+                                                    <dt className="text-xs text-taupe uppercase">Author Royalty</dt>
+                                                    <dd className="mt-1 text-2xl font-bold text-emerald-600">₹{book.author_cost || '0.00'}</dd>
                                                 </div>
                                             </div>
                                         </div>
 
                                         {/* 3b. Author Contact & Order Details */}
-                                        <div className="bg-gradient-to-br from-slate-700/40 to-slate-800/40 rounded-xl p-5 border border-slate-600 relative overflow-hidden">
-                                            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-violet-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                                        <div className="bg-gradient-to-br from-paper to-vellum rounded-xl p-5 border border-linen relative overflow-hidden">
+                                            <div className="absolute top-0 right-0 w-32 h-32 bg-oxblood/5 rounded-full blur-3xl pointer-events-none"></div>
+                                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-foil/10 rounded-full blur-2xl pointer-events-none"></div>
                                             <div className="relative z-10">
                                                 <div className="flex items-center gap-3 mb-5">
-                                                    <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center">
-                                                        <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <div className="w-10 h-10 rounded-xl bg-oxblood/10 flex items-center justify-center">
+                                                        <svg className="w-5 h-5 text-oxblood" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                                         </svg>
                                                     </div>
                                                     <div>
-                                                        <h3 className="text-lg font-bold text-white">Author Contact & Order Details</h3>
-                                                        <p className="text-[10px] text-slate-400">Details submitted by the user in the order summary</p>
+                                                        <h3 className="text-lg font-bold text-ink">Author Contact & Order Details</h3>
+                                                        <p className="text-[10px] text-umber">Details submitted by the user in the order summary</p>
                                                     </div>
                                                 </div>
 
                                                 {/* ── User Account Info ── */}
-                                                <div className="bg-slate-700/60 p-4 rounded-lg border border-slate-600 mb-3">
-                                                    <div className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider mb-3">User Account</div>
+                                                <div className="bg-vellum p-4 rounded-lg border border-linen mb-3">
+                                                    <div className="text-[10px] font-bold text-oxblood uppercase tracking-wider mb-3">User Account</div>
                                                     <div className="flex items-center gap-4">
                                                         {/* Avatar */}
-                                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-black text-lg flex-shrink-0">
+                                                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-oxblood to-oxblood-deep flex items-center justify-center text-white font-black text-lg flex-shrink-0">
                                                             {book.user?.name ? book.user.name.charAt(0).toUpperCase() : '?'}
                                                         </div>
                                                         <div className="flex-1 min-w-0">
-                                                            <div className="text-sm font-bold text-white truncate">{book.user?.name || 'Unknown User'}</div>
+                                                            <div className="text-sm font-bold text-ink truncate">{book.user?.name || 'Unknown User'}</div>
                                                             {book.user?.email && (
-                                                                <a href={`mailto:${book.user.email}`} className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors truncate block">
+                                                                <a href={`mailto:${book.user.email}`} className="text-xs text-oxblood hover:text-oxblood-deep transition-colors truncate block">
                                                                     {book.user.email}
                                                                 </a>
                                                             )}
@@ -1111,7 +1111,7 @@ export default function BookDetails({ auth, book }) {
                                                         {book.user?.email && (
                                                             <a
                                                                 href={`mailto:${book.user.email}?subject=Regarding your book "${book.title}"&body=Dear ${book.user.name || 'Author'},%0D%0A%0D%0A`}
-                                                                className="flex items-center gap-1.5 px-3 py-2 bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 hover:text-indigo-200 border border-indigo-500/30 rounded-lg transition-all text-xs font-bold flex-shrink-0"
+                                                                className="flex items-center gap-1.5 px-3 py-2 bg-oxblood/10 hover:bg-oxblood/20 text-oxblood hover:text-oxblood-deep border border-oxblood/30 rounded-lg transition-all text-xs font-bold flex-shrink-0"
                                                                 title="Send Email"
                                                             >
                                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1149,21 +1149,21 @@ export default function BookDetails({ auth, book }) {
                                                     return (
                                                         <>
                                                             {/* ── Phone Contact (Prominent) ── */}
-                                                            <div className={`rounded-lg border p-4 mb-3 ${phone ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-slate-700/60 border-slate-600'}`}>
-                                                                <div className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider mb-2">Phone Contact</div>
+                                                            <div className={`rounded-lg border p-4 mb-3 ${phone ? 'bg-emerald-50 border-emerald-200' : 'bg-vellum border-linen'}`}>
+                                                                <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider mb-2">Phone Contact</div>
                                                                 {phone ? (
                                                                     <div className="flex items-center justify-between">
                                                                         <div className="flex items-center gap-2">
-                                                                            <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                            <svg className="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                                                             </svg>
-                                                                            <span className="text-lg font-bold text-white">+91 {phone}</span>
+                                                                            <span className="text-lg font-bold text-ink">+91 {phone}</span>
                                                                         </div>
                                                                         <div className="flex items-center gap-2">
                                                                             {/* Call Button */}
                                                                             <a
                                                                                 href={`tel:+91${phone}`}
-                                                                                className="flex items-center gap-1.5 px-3 py-2 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 hover:text-emerald-200 border border-emerald-500/30 rounded-lg transition-all text-xs font-bold"
+                                                                                className="flex items-center gap-1.5 px-3 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 hover:text-emerald-900 border border-emerald-300 rounded-lg transition-all text-xs font-bold"
                                                                                 title="Call"
                                                                             >
                                                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1176,7 +1176,7 @@ export default function BookDetails({ auth, book }) {
                                                                                 href={`https://wa.me/91${phone}?text=Hi ${book.user?.name || 'there'}, regarding your book "${book.title}" on PublicationMart.`}
                                                                                 target="_blank"
                                                                                 rel="noopener noreferrer"
-                                                                                className="flex items-center gap-1.5 px-3 py-2 bg-green-500/20 hover:bg-green-500/30 text-green-300 hover:text-green-200 border border-green-500/30 rounded-lg transition-all text-xs font-bold"
+                                                                                className="flex items-center gap-1.5 px-3 py-2 bg-green-100 hover:bg-green-200 text-green-800 hover:text-green-900 border border-green-300 rounded-lg transition-all text-xs font-bold"
                                                                                 title="WhatsApp"
                                                                             >
                                                                                 <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
@@ -1187,103 +1187,103 @@ export default function BookDetails({ auth, book }) {
                                                                         </div>
                                                                     </div>
                                                                 ) : (
-                                                                    <p className="text-sm text-slate-500 italic">No phone number provided</p>
+                                                                    <p className="text-sm text-taupe italic">No phone number provided</p>
                                                                 )}
                                                             </div>
 
                                                             {/* ── Shipping Address ── */}
-                                                            <div className={`rounded-lg border p-4 mb-3 ${hasAddress && street ? 'bg-slate-700/60 border-slate-600' : 'bg-slate-700/40 border-slate-600/50'}`}>
-                                                                <div className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-2">Shipping Address</div>
+                                                            <div className={`rounded-lg border p-4 mb-3 ${hasAddress && street ? 'bg-vellum border-linen' : 'bg-vellum/60 border-linen'}`}>
+                                                                <div className="text-[10px] font-bold text-amber-600 uppercase tracking-wider mb-2">Shipping Address</div>
                                                                 {hasAddress && street ? (
                                                                     <div className="grid grid-cols-2 gap-3">
                                                                         {street && (
                                                                             <div className="col-span-2">
-                                                                                <div className="text-[10px] text-slate-500 uppercase tracking-wider">Street</div>
-                                                                                <div className="text-sm font-semibold text-white mt-0.5">{street}</div>
+                                                                                <div className="text-[10px] text-taupe uppercase tracking-wider">Street</div>
+                                                                                <div className="text-sm font-semibold text-ink mt-0.5">{street}</div>
                                                                             </div>
                                                                         )}
                                                                         {city && (
                                                                             <div>
-                                                                                <div className="text-[10px] text-slate-500 uppercase tracking-wider">City</div>
-                                                                                <div className="text-sm font-semibold text-white mt-0.5">{city}</div>
+                                                                                <div className="text-[10px] text-taupe uppercase tracking-wider">City</div>
+                                                                                <div className="text-sm font-semibold text-ink mt-0.5">{city}</div>
                                                                             </div>
                                                                         )}
                                                                         {state && (
                                                                             <div>
-                                                                                <div className="text-[10px] text-slate-500 uppercase tracking-wider">State</div>
-                                                                                <div className="text-sm font-semibold text-white mt-0.5">{state}</div>
+                                                                                <div className="text-[10px] text-taupe uppercase tracking-wider">State</div>
+                                                                                <div className="text-sm font-semibold text-ink mt-0.5">{state}</div>
                                                                             </div>
                                                                         )}
                                                                         {pincode && (
                                                                             <div>
-                                                                                <div className="text-[10px] text-slate-500 uppercase tracking-wider">Pincode</div>
-                                                                                <div className="text-sm font-semibold text-white mt-0.5">{pincode}</div>
+                                                                                <div className="text-[10px] text-taupe uppercase tracking-wider">Pincode</div>
+                                                                                <div className="text-sm font-semibold text-ink mt-0.5">{pincode}</div>
                                                                             </div>
                                                                         )}
                                                                     </div>
                                                                 ) : (
-                                                                    <p className="text-sm text-slate-500 italic">No address provided</p>
+                                                                    <p className="text-sm text-taupe italic">No address provided</p>
                                                                 )}
                                                             </div>
 
                                                             {/* ── Author Copies ── */}
-                                                            <div className={`rounded-lg border p-4 ${parseInt(book.author_copies || 0) >= 5 ? 'bg-orange-500/5 border-orange-500/20' : 'bg-slate-700/40 border-slate-600/50'}`}>
-                                                                <div className="text-[10px] font-bold text-orange-400 uppercase tracking-wider mb-2">Author Copies Order</div>
+                                                            <div className={`rounded-lg border p-4 ${parseInt(book.author_copies || 0) >= 5 ? 'bg-orange-50 border-orange-200' : 'bg-vellum/60 border-linen'}`}>
+                                                                <div className="text-[10px] font-bold text-orange-600 uppercase tracking-wider mb-2">Author Copies Order</div>
                                                                 <div className="flex items-center justify-between">
                                                                     <div className="flex items-center gap-2">
-                                                                        <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                                                         </svg>
-                                                                        <span className="text-sm font-semibold text-slate-300">Copies Requested</span>
+                                                                        <span className="text-sm font-semibold text-ink-soft">Copies Requested</span>
                                                                     </div>
-                                                                    <span className={`text-lg font-bold ${parseInt(book.author_copies || 0) >= 5 ? 'text-orange-400' : 'text-slate-500'}`}>
+                                                                    <span className={`text-lg font-bold ${parseInt(book.author_copies || 0) >= 5 ? 'text-orange-600' : 'text-taupe'}`}>
                                                                         {parseInt(book.author_copies || 0) >= 5
                                                                             ? `${book.author_copies} copies`
                                                                             : 'Not ordered'}
                                                                     </span>
                                                                 </div>
                                                                 {parseInt(book.author_copies || 0) >= 5 && (
-                                                                    <div className="mt-2 text-xs text-slate-400 bg-orange-500/5 p-2 rounded">
-                                                                        Total Cost: <span className="font-bold text-orange-300">₹{((parseInt(book.author_copies) || 0) * parseFloat(book.author_cost || 0)).toFixed(2)}</span>
-                                                                        <span className="text-slate-500 ml-1">({book.author_copies} × ₹{parseFloat(book.author_cost || 0).toFixed(2)} per copy)</span>
+                                                                    <div className="mt-2 text-xs text-umber bg-orange-50 p-2 rounded">
+                                                                        Total Cost: <span className="font-bold text-orange-700">₹{((parseInt(book.author_copies) || 0) * parseFloat(book.author_cost || 0)).toFixed(2)}</span>
+                                                                        <span className="text-taupe ml-1">({book.author_copies} × ₹{parseFloat(book.author_cost || 0).toFixed(2)} per copy)</span>
                                                                     </div>
                                                                 )}
                                                             </div>
 
                                                             {/* ── Order Summary Pricing ── */}
-                                                            <div className="rounded-lg border border-slate-600/50 bg-slate-700/40 p-4 mt-3">
-                                                                <div className="text-[10px] font-bold text-violet-400 uppercase tracking-wider mb-2">User's Order Summary</div>
+                                                            <div className="rounded-lg border border-linen bg-vellum/60 p-4 mt-3">
+                                                                <div className="text-[10px] font-bold text-oxblood uppercase tracking-wider mb-2">User's Order Summary</div>
                                                                 <div className="grid grid-cols-3 gap-3">
                                                                     <div>
-                                                                        <div className="text-[10px] text-slate-500 uppercase">Pages</div>
-                                                                        <div className="text-sm font-bold text-white mt-0.5">{book.num_pages || '—'}</div>
+                                                                        <div className="text-[10px] text-taupe uppercase">Pages</div>
+                                                                        <div className="text-sm font-bold text-ink mt-0.5">{book.num_pages || '—'}</div>
                                                                     </div>
                                                                     <div>
-                                                                        <div className="text-[10px] text-slate-500 uppercase">Selling Price</div>
-                                                                        <div className="text-sm font-bold text-white mt-0.5">{book.selling_price ? `₹${book.selling_price}` : '—'}</div>
+                                                                        <div className="text-[10px] text-taupe uppercase">Selling Price</div>
+                                                                        <div className="text-sm font-bold text-ink mt-0.5">{book.selling_price ? `₹${book.selling_price}` : '—'}</div>
                                                                     </div>
                                                                     <div>
-                                                                        <div className="text-[10px] text-slate-500 uppercase">Print Cost</div>
-                                                                        <div className="text-sm font-bold text-rose-400 mt-0.5">{book.printing_cost ? `₹${book.printing_cost}` : '—'}</div>
+                                                                        <div className="text-[10px] text-taupe uppercase">Print Cost</div>
+                                                                        <div className="text-sm font-bold text-rose-700 mt-0.5">{book.printing_cost ? `₹${book.printing_cost}` : '—'}</div>
                                                                     </div>
                                                                 </div>
                                                                 {/* Declarations */}
-                                                                <div className="flex items-center gap-4 mt-3 pt-3 border-t border-slate-600/40">
+                                                                <div className="flex items-center gap-4 mt-3 pt-3 border-t border-linen">
                                                                     <div className="flex items-center gap-1.5">
                                                                         {book.agreed_terms ? (
-                                                                            <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
+                                                                            <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
                                                                         ) : (
-                                                                            <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                                                            <svg className="w-4 h-4 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                                                         )}
-                                                                        <span className="text-[10px] text-slate-400">Terms Agreed</span>
+                                                                        <span className="text-[10px] text-umber">Terms Agreed</span>
                                                                     </div>
                                                                     <div className="flex items-center gap-1.5">
                                                                         {book.confirmed_content ? (
-                                                                            <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
+                                                                            <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
                                                                         ) : (
-                                                                            <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                                                            <svg className="w-4 h-4 text-red-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                                                         )}
-                                                                        <span className="text-[10px] text-slate-400">Content Confirmed</span>
+                                                                        <span className="text-[10px] text-umber">Content Confirmed</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1294,68 +1294,68 @@ export default function BookDetails({ auth, book }) {
                                         </div>
 
                                         {/* 4. External Distribution Links - New Section Box */}
-                                        <div className="bg-slate-700/30 rounded-xl p-5 border border-slate-600">
+                                        <div className="bg-vellum/50 rounded-xl p-5 border border-linen">
                                             <div className="flex justify-between items-center mb-4">
-                                                <h3 className="text-lg font-bold text-white">External Distribution Links</h3>
+                                                <h3 className="text-lg font-bold text-ink">External Distribution Links</h3>
                                                 {!isEditing && (
-                                                    <button onClick={() => setIsEditing(true)} className="text-sm text-indigo-400 hover:text-indigo-300 hover:underline">
+                                                    <button onClick={() => setIsEditing(true)} className="text-sm text-oxblood hover:text-oxblood-deep hover:underline">
                                                         {(!book.amazon_link && !book.google_books_link) ? '+ Add Links' : 'Edit Links'}
                                                     </button>
                                                 )}
                                             </div>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                <div className="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
+                                                <div className="bg-vellum p-4 rounded-lg border border-linen">
                                                     <div className="flex items-center gap-3 mb-2">
-                                                        <div className="w-8 h-8 rounded bg-orange-500/20 flex items-center justify-center text-orange-400">
+                                                        <div className="w-8 h-8 rounded bg-orange-100 flex items-center justify-center text-orange-600">
                                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.9 16.5c-4 0-6.1-1.3-6.5-1.5-.2-.1-.2-.4 0-.6.2-.2.5-.2.7 0 .1.1 2.3 1.2 5.8 1.2 3.8 0 5.4-1.3 5.5-1.3.3-.2.6-.1.8.1.2.2.2.6-.1.8-.1.1-2.1 1.3-6.2 1.3zM15.4 12.3c-.3 0-.6.1-.9.4L13 14.2c-.3-.3-.5-.4-.9-.4-1 0-1.8.8-1.8 1.8 0 1 .8 1.7 1.8 1.7 1 0 1.8-.8 1.8-1.8v-.6l.9-1c.2-.2.6-.2.8.1.3.2.3.6 0 .8l-1.3 1.4c-.1.1-.3.2-.5.2v.3c0 1.2-1 2.1-2.2 2.1-1.3 0-2.3-1-2.3-2.2 0-1.3 1-2.3 2.3-2.3.6 0 1.1.2 1.5.6l1.2-1.3c.3-.4.8-.4 1.1-.3.3.1.4.5.3.8-.1.2-.2.2-.4.2zm-2.2 2.2c-.3 0-.6.1-.8.4v.9c.2.2.5.4.8.4.5 0 1-.4 1-1 0-.4-.4-.7-1-.7zM20 7h-2.1c-.8 0-1.5.3-2 .8L14 9.7l-1.9-1.9c-.5-.5-1.2-.8-2-.8H8c-1.7 0-3 1.3-3 3v2c0 1.7 1.3 3 3 3h2.1c.8 0 1.5-.3 2-.8l1.9-1.9 1.9 1.9c.5.5 1.2.8 2 .8H20c1.7 0 3-1.3 3-3v-2c0-1.7-1.3-3-3-3zM9.5 14H8c-1.1 0-2-.9-2-2s.9-2 2-2h1.5v4zm10.5 0h-1.5v-4H20c1.1 0 2 .9 2 2s-.9 2-2 2z" /></svg>
                                                         </div>
-                                                        <span className="font-semibold text-white">Amazon</span>
+                                                        <span className="font-semibold text-ink">Amazon</span>
                                                     </div>
                                                     {book.amazon_link ? (
-                                                        <a href={book.amazon_link} target="_blank" className="text-sm text-indigo-400 hover:underline break-all block">
+                                                        <a href={book.amazon_link} target="_blank" className="text-sm text-oxblood hover:underline break-all block">
                                                             {book.amazon_link}
                                                         </a>
                                                     ) : (
-                                                        <span className="text-sm text-slate-500 italic">No link added</span>
+                                                        <span className="text-sm text-taupe italic">No link added</span>
                                                     )}
                                                 </div>
-                                                <div className="bg-slate-700/50 p-4 rounded-lg border border-slate-600">
+                                                <div className="bg-vellum p-4 rounded-lg border border-linen">
                                                     <div className="flex items-center gap-3 mb-2">
-                                                        <div className="w-8 h-8 rounded bg-blue-500/20 flex items-center justify-center text-blue-400">
+                                                        <div className="w-8 h-8 rounded bg-blue-100 flex items-center justify-center text-blue-600">
                                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" /></svg>
                                                         </div>
-                                                        <span className="font-semibold text-white">Google Books</span>
+                                                        <span className="font-semibold text-ink">Google Books</span>
                                                     </div>
                                                     {book.google_books_link ? (
-                                                        <a href={book.google_books_link} target="_blank" className="text-sm text-indigo-400 hover:underline break-all block">
+                                                        <a href={book.google_books_link} target="_blank" className="text-sm text-oxblood hover:underline break-all block">
                                                             {book.google_books_link}
                                                         </a>
                                                     ) : (
-                                                        <span className="text-sm text-slate-500 italic">No link added</span>
+                                                        <span className="text-sm text-taupe italic">No link added</span>
                                                     )}
                                                 </div>
                                             </div>
                                         </div>
 
                                         {/* 5. Quality Assurance Dashboard */}
-                                        <div className="border-t border-slate-600 pt-8 mb-8">
-                                            <h3 className="text-lg font-bold text-white mb-4">Quality Assurance</h3>
+                                        <div className="border-t border-linen-deep pt-8 mb-8">
+                                            <h3 className="text-lg font-bold text-ink mb-4">Quality Assurance</h3>
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                <div className="bg-slate-700/30 p-4 rounded-lg border border-slate-600 flex justify-between items-center">
+                                                <div className="bg-vellum/50 p-4 rounded-lg border border-linen flex justify-between items-center">
                                                     <div>
-                                                        <div className="text-xs text-slate-500 uppercase font-bold">Word Count Check</div>
-                                                        <div className="text-sm text-slate-300">Estimated based on page count</div>
+                                                        <div className="text-xs text-taupe uppercase font-bold">Word Count Check</div>
+                                                        <div className="text-sm text-ink-soft">Estimated based on page count</div>
                                                     </div>
-                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${(!book.num_pages || book.num_pages < 20) ? 'bg-amber-500/20 text-amber-400' : 'bg-green-500/20 text-green-400'}`}>
+                                                    <span className={`px-3 py-1 rounded-full text-xs font-bold ${(!book.num_pages || book.num_pages < 20) ? 'bg-amber-100 text-amber-800' : 'bg-green-100 text-green-800'}`}>
                                                         {book.num_pages ? (book.num_pages * 250) + '~ Words' : 'Unknown'}
                                                     </span>
                                                 </div>
-                                                <div className="bg-slate-700/30 p-4 rounded-lg border border-slate-600 flex justify-between items-center">
+                                                <div className="bg-vellum/50 p-4 rounded-lg border border-linen flex justify-between items-center">
                                                     <div>
-                                                        <div className="text-xs text-slate-500 uppercase font-bold">Content Safety</div>
-                                                        <div className="text-sm text-slate-300">Plagiarism / AI Hallucination</div>
+                                                        <div className="text-xs text-taupe uppercase font-bold">Content Safety</div>
+                                                        <div className="text-sm text-ink-soft">Plagiarism / AI Hallucination</div>
                                                     </div>
-                                                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-600 text-slate-300">
+                                                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-vellum text-ink-soft">
                                                         Manual Check Req.
                                                     </span>
                                                 </div>
@@ -1363,15 +1363,15 @@ export default function BookDetails({ auth, book }) {
                                         </div>
 
                                         {/* 6. Approval Actions */}
-                                        <div className="border-t border-slate-600 pt-8">
+                                        <div className="border-t border-linen-deep pt-8">
                                             {book.status !== 'approved' ? (
                                                 <div className="flex flex-col gap-4">
                                                     {showRejectModal ? (
-                                                        <div className="bg-red-900/10 border border-red-500/30 p-6 rounded-xl animate-fade-in">
-                                                            <h4 className="font-bold text-red-400 mb-2">Request Revision</h4>
-                                                            <p className="text-sm text-red-200/70 mb-4">Explain what needs to be fixed. The user will be notified and the book status will change to Draft.</p>
+                                                        <div className="bg-red-50 border border-red-200 p-6 rounded-xl animate-fade-in">
+                                                            <h4 className="font-bold text-red-700 mb-2">Request Revision</h4>
+                                                            <p className="text-sm text-red-800/80 mb-4">Explain what needs to be fixed. The user will be notified and the book status will change to Draft.</p>
                                                             <textarea
-                                                                className="w-full bg-slate-900/50 border border-red-500/30 rounded-lg p-3 text-white text-sm focus:ring-red-500 focus:border-red-500"
+                                                                className="w-full bg-paper border border-red-300 rounded-lg p-3 text-ink text-sm focus:ring-red-500 focus:border-red-500"
                                                                 rows="4"
                                                                 placeholder="e.g., The cover image is low resolution, please upload a version with at least 300 DPI."
                                                                 value={rejectionReason}
@@ -1380,7 +1380,7 @@ export default function BookDetails({ auth, book }) {
                                                             <div className="flex justify-end gap-3 mt-4">
                                                                 <button
                                                                     onClick={() => setShowRejectModal(false)}
-                                                                    className="px-4 py-2 text-sm text-slate-400 hover:text-white"
+                                                                    className="px-4 py-2 text-sm text-umber hover:text-ink"
                                                                 >
                                                                     Cancel
                                                                 </button>
@@ -1407,7 +1407,7 @@ export default function BookDetails({ auth, book }) {
                                                                 Approve for Publication
                                                             </PrimaryButton>
                                                             <button
-                                                                className="px-6 py-3 border border-red-300/30 text-rose-300 rounded-md font-medium hover:bg-red-500/10 hover:border-red-500/50 transition-colors"
+                                                                className="px-6 py-3 border border-red-300 text-red-700 rounded-md font-medium hover:bg-red-50 hover:border-red-400 transition-colors"
                                                                 onClick={() => setShowRejectModal(true)}
                                                             >
                                                                 Request Revision
@@ -1416,7 +1416,7 @@ export default function BookDetails({ auth, book }) {
                                                     )}
                                                 </div>
                                             ) : (
-                                                <div className="bg-green-500/10 border border-green-500/20 text-green-400 px-6 py-4 rounded-md flex items-center">
+                                                <div className="bg-green-100 border border-green-200 text-green-800 px-6 py-4 rounded-md flex items-center">
                                                     <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                                                     <span className="font-bold">This book has been approved and published.</span>
                                                 </div>
@@ -1429,10 +1429,10 @@ export default function BookDetails({ auth, book }) {
                                         )}
 
                                         {/* 6. Delete Book - Admin Only */}
-                                        <div className="border-t border-slate-600 pt-8 mt-8">
-                                            <h3 className="text-lg font-bold text-red-400 mb-4">Danger Zone</h3>
-                                            <div className="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
-                                                <p className="text-sm text-red-300 mb-4">
+                                        <div className="border-t border-linen-deep pt-8 mt-8">
+                                            <h3 className="text-lg font-bold text-red-700 mb-4">Danger Zone</h3>
+                                            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                                                <p className="text-sm text-red-700 mb-4">
                                                     Once deleted, this book and all its files will be permanently removed. This action cannot be undone.
                                                 </p>
                                                 <button

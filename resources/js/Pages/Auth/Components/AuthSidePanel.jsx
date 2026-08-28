@@ -74,18 +74,18 @@ export function ManuscriptSidePanel({ eyebrow, line, chips = [] }) {
     ];
 
     return (
-        <div className="hidden lg:flex lg:w-[52%] relative overflow-hidden pm-mspage flex-col justify-between border-l border-[#d8d1c1]">
+        <div className="hidden lg:flex lg:w-[52%] relative overflow-hidden pm-mspage flex-col justify-between border-l border-linen">
             <style dangerouslySetInnerHTML={{ __html: PANEL_CSS }} />
             <div className="pm-authgrain" aria-hidden="true" />
 
             {/* The page being typed */}
             <div className="relative z-10 pl-[120px] pr-16 pt-24 max-w-3xl">
-                <p className="text-[11px] font-semibold uppercase tracking-[.26em] mb-3 text-[#6e2530]">{eyebrow}</p>
-                <p className="text-[12px] uppercase tracking-[.2em] font-semibold text-[#635c4e] mb-10">Page 1 of many</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[.26em] mb-3 text-oxblood">{eyebrow}</p>
+                <p className="text-[12px] uppercase tracking-[.2em] font-semibold text-umber mb-10">Page 1 of many</p>
 
-                <p className="text-[13px] uppercase tracking-[.18em] font-semibold text-[#635c4e] mb-4">Working title</p>
+                <p className="text-[13px] uppercase tracking-[.18em] font-semibold text-umber mb-4">Working title</p>
                 <h2
-                    className="text-[clamp(2rem,3.4vw,3.1rem)] leading-[1.15] text-[#17150f] min-h-[2.4em]"
+                    className="text-[clamp(2rem,3.4vw,3.1rem)] leading-[1.15] text-ink min-h-[2.4em]"
                     style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
                     aria-label="Your working title, still being typed"
                 >
@@ -93,20 +93,20 @@ export function ManuscriptSidePanel({ eyebrow, line, chips = [] }) {
                     <span className="pm-mscaret" aria-hidden="true" />
                 </h2>
 
-                <p className="mt-3 text-[19px] italic text-[#635c4e]" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>
+                <p className="mt-3 text-[19px] italic text-umber" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>
                     by you
                 </p>
 
                 <div className="mt-10"><span className="pm-msstamp">Draft · No. 1</span></div>
 
-                <p className="mt-10 text-[15px] leading-relaxed text-[#4b443a] max-w-[44ch]">{line}</p>
+                <p className="mt-10 text-[15px] leading-relaxed text-ink-soft max-w-[44ch]">{line}</p>
 
                 {chips.length > 0 && (
                     <div className="flex flex-wrap gap-3 mt-8">
                         {chips.map((chip) => (
                             <span
                                 key={chip}
-                                className="px-4 py-2 text-[10.5px] font-bold uppercase tracking-[.2em] text-[#6e2530] border border-[#6e2530]/40 rounded-sm bg-[#faf8f3]"
+                                className="px-4 py-2 text-[10.5px] font-bold uppercase tracking-[.2em] text-oxblood border border-oxblood/40 rounded-sm bg-paper"
                             >
                                 {chip}
                             </span>
@@ -117,16 +117,16 @@ export function ManuscriptSidePanel({ eyebrow, line, chips = [] }) {
 
             {/* The press, waiting at the foot of the page */}
             <div className="relative z-10 pl-[120px] pr-16 pb-14">
-                <div className="h-px bg-[#d8d1c1] mb-6" />
+                <div className="h-px bg-linen mb-6" />
                 <ol className="flex flex-wrap gap-x-10 gap-y-3">
                     {stages.map(([n, t]) => (
                         <li key={n} className="flex items-baseline gap-2.5">
-                            <span className="text-[17px] text-[#a07d3b]" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>{n}</span>
-                            <span className="text-[12px] uppercase tracking-[.16em] font-semibold text-[#635c4e]">{t}</span>
+                            <span className="text-[17px] text-foil" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>{n}</span>
+                            <span className="text-[12px] uppercase tracking-[.16em] font-semibold text-umber">{t}</span>
                         </li>
                     ))}
                 </ol>
-                <p className="mt-5 text-[10px] font-semibold uppercase tracking-[.24em] text-[#7c7364]">
+                <p className="mt-5 text-[10px] font-semibold uppercase tracking-[.24em] text-taupe">
                     PublicationMart · Every stage handled by the house
                 </p>
             </div>
@@ -144,20 +144,20 @@ export default function AuthSidePanel({ eyebrow, statement, emphasis, line, chip
             <div className="relative z-10 px-20 pt-28 max-w-2xl">
                 <p className="text-[11px] font-semibold uppercase tracking-[.26em] mb-8 pm-authfoil">{eyebrow}</p>
                 <h2
-                    className="text-[clamp(2.2rem,3.6vw,3.4rem)] leading-[1.14] text-[#f2ecdd]"
+                    className="text-[clamp(2.2rem,3.6vw,3.4rem)] leading-[1.14] text-cream"
                     style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
                 >
                     {statement}{' '}
                     <em className="pm-authfoil not-italic" style={{ fontStyle: 'italic' }}>{emphasis}</em>
                 </h2>
-                <p className="mt-7 text-[15px] leading-relaxed text-[#f2ecdd]/65 max-w-[46ch]">{line}</p>
+                <p className="mt-7 text-[15px] leading-relaxed text-cream/65 max-w-[46ch]">{line}</p>
 
                 {chips.length > 0 && (
                     <div className="flex flex-wrap gap-3 mt-10">
                         {chips.map((chip) => (
                             <span
                                 key={chip}
-                                className="px-4 py-2 text-[10.5px] font-bold uppercase tracking-[.2em] text-[#e8cf8e] border border-[#a07d3b]/50 rounded-sm"
+                                className="px-4 py-2 text-[10.5px] font-bold uppercase tracking-[.2em] text-foil-light border border-foil/50 rounded-sm"
                             >
                                 {chip}
                             </span>
@@ -168,7 +168,7 @@ export default function AuthSidePanel({ eyebrow, statement, emphasis, line, chip
 
             {/* The shelf at the foot of the board */}
             <div className="relative z-10 px-20 pb-16">
-                <span className="mb-3 inline-block text-[16px] text-[#a07d3b]" aria-hidden="true">❦</span>
+                <span className="mb-3 inline-block text-[16px] text-foil" aria-hidden="true">❦</span>
                 <div className="flex items-end gap-[7px]" aria-hidden="true">
                     {SPINES.map((s, i) => (
                         <div
@@ -186,7 +186,7 @@ export default function AuthSidePanel({ eyebrow, statement, emphasis, line, chip
                     style={{ background: 'linear-gradient(180deg,#3d151d,#2a0e12)', boxShadow: '0 8px 16px rgba(0,0,0,.35)' }}
                     aria-hidden="true"
                 />
-                <p className="mt-5 text-[10px] font-semibold uppercase tracking-[.24em] text-[#f2ecdd]/40">
+                <p className="mt-5 text-[10px] font-semibold uppercase tracking-[.24em] text-cream/40">
                     PublicationMart · An independent publishing house
                 </p>
             </div>

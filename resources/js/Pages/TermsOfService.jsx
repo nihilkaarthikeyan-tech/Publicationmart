@@ -2,7 +2,7 @@
 
 export default function TermsOfService() {
     return (
-        <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-indigo-500/30">
+        <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-indigo-500/30">
             <Head title="Terms and Conditions | PublicationMart">
                 <meta name="description" content="Read PublicationMart's Terms and Conditions. Understand author rights, royalties, refund policies, distribution, and Smart Writer usage terms." />
             </Head>
@@ -10,11 +10,11 @@ export default function TermsOfService() {
             <div className="pt-32 pb-20 max-w-4xl mx-auto px-6">
                 <h1 className="text-4xl md:text-5xl font-black mb-10">Terms and Conditions</h1>
 
-                <div className="prose prose-invert prose-lg max-w-none text-[#635c4e]">
-                    <p className="lead text-xl text-[#17150f]">Last updated: January 21, 2026</p>
+                <div className="prose prose-invert prose-lg max-w-none text-umber">
+                    <p className="lead text-xl text-ink">Last updated: January 21, 2026</p>
 
                     {/* 1. Intellectual Property & Copyright */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">1. Intellectual Property & Copyright</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">1. Intellectual Property & Copyright</h2>
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Ownership</h3>
                     <p>
@@ -35,7 +35,7 @@ export default function TermsOfService() {
                     </p>
 
                     {/* 2. Royalties and Payments */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">2. Royalties and Payments</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">2. Royalties and Payments</h2>
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Royalty Share</h3>
                     <p>
@@ -55,7 +55,7 @@ export default function TermsOfService() {
                     </p>
 
                     {/* 3. Services and Packages */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">3. Services and Packages</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">3. Services and Packages</h2>
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Scope</h3>
                     <p>
@@ -74,7 +74,7 @@ export default function TermsOfService() {
                     </p>
 
                     {/* 4. Cancellation and Refunds */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">4. Cancellation and Refunds</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">4. Cancellation and Refunds</h2>
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Pre-Work Refund</h3>
                     <p>
@@ -93,7 +93,7 @@ export default function TermsOfService() {
                     </p>
 
                     {/* 5. Distribution and Availability */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">5. Distribution and Availability</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">5. Distribution and Availability</h2>
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Channels</h3>
                     <p>
@@ -112,34 +112,34 @@ export default function TermsOfService() {
                     </p>
 
                     {/* 6. Termination */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">6. Termination</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">6. Termination</h2>
                     <p>
                         Either the author or the publisher can terminate the agreement. Upon termination, Publication Mart
                         will stop printing new copies, though existing stock in the market may continue to be sold until depleted.
                     </p>
 
                     {/* 7. Governing Law */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">7. Governing Law</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">7. Governing Law</h2>
                     <p>
                         In the event of any legal dispute, claim, or controversy arising from our services, the courts in
                         Tamil Nadu, India shall have exclusive jurisdiction.
                     </p>
 
                     {/* 8. Shipping Policy */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">8. Shipping Policy</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">8. Shipping Policy</h2>
                     <p>
-                        All physical books will be delivered within <strong className="text-[#17150f]">7 working days</strong>.
+                        All physical books will be delivered within <strong className="text-ink">7 working days</strong>.
                     </p>
 
                     {/* 9. Return and Refund Policy */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">9. Return and Refund Policy</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">9. Return and Refund Policy</h2>
                     <ul className="list-disc pl-6 space-y-2">
-                        <li>If any return is required, it should be done within <strong className="text-[#17150f]">7 working days</strong>.</li>
-                        <li>If any refund is approved by the company, it will take <strong className="text-[#17150f]">7 working days</strong> to credit to your original source account.</li>
+                        <li>If any return is required, it should be done within <strong className="text-ink">7 working days</strong>.</li>
+                        <li>If any refund is approved by the company, it will take <strong className="text-ink">7 working days</strong> to credit to your original source account.</li>
                     </ul>
 
                     {/* 10. Smart Writer Usage */}
-                    <h2 className="text-[#17150f] mt-10 mb-4 text-2xl font-bold">10. Smart Writer Usage</h2>
+                    <h2 className="text-ink mt-10 mb-4 text-2xl font-bold">10. Smart Writer Usage</h2>
 
                     <h3 className="text-indigo-700 mt-6 mb-2 text-lg font-semibold">Generated Content Disclaimer</h3>
                     <p>
@@ -166,8 +166,8 @@ export default function TermsOfService() {
                     </p>
 
                     {/* Contact Section */}
-                    <div className="mt-12 p-6 bg-[#faf8f3] rounded-2xl border border-[#d8d1c1]">
-                        <h3 className="text-[#17150f] text-xl font-bold mb-4">Questions About Our Terms?</h3>
+                    <div className="mt-12 p-6 bg-paper rounded-2xl border border-linen">
+                        <h3 className="text-ink text-xl font-bold mb-4">Questions About Our Terms?</h3>
                         <p>
                             If you have any questions regarding these Terms and Conditions, please contact us at{' '}
                             <a href="mailto:support@publicationmart.com" className="text-indigo-700 hover:text-indigo-700 underline">

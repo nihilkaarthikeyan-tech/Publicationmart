@@ -38,7 +38,7 @@ export const STORE_CSS = `
 export function PhysicalCover({ book, appUrl, fit = 'contain', clothIndex = 1 }) {
     return (
         <div className="pm-covwrap relative aspect-[2/3]">
-            <div className="pm-cov absolute inset-0 overflow-hidden bg-[#faf8f3]">
+            <div className="pm-cov absolute inset-0 overflow-hidden bg-paper">
                 {book.cover_design_path ? (
                     <img
                         src={`${appUrl}/storage/${book.cover_design_path}`}
@@ -53,12 +53,12 @@ export function PhysicalCover({ book, appUrl, fit = 'contain', clothIndex = 1 })
                         style={{ background: CLOTHS[clothIndex % CLOTHS.length] }}
                     >
                         <span
-                            className="text-[#f2ecdd] text-[15px] leading-snug"
+                            className="text-cream text-[15px] leading-snug"
                             style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
                         >
                             {book.title}
                         </span>
-                        <span className="mt-auto pt-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#f2ecdd]/60 border-t border-[#f2ecdd]/25">
+                        <span className="mt-auto pt-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-cream/60 border-t border-cream/25">
                             PublicationMart
                         </span>
                     </div>
@@ -81,33 +81,33 @@ export default function BookCard({ book, clothIndex = 1 }) {
             {/* Content — set like a catalogue entry, not a boxed card */}
             <div className="px-2 flex-1 flex flex-col">
                 <div className="mb-3">
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-[#d8d1c1] text-[#635c4e]">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider border border-linen text-umber">
                         {book.genre || 'General'}
                     </span>
                 </div>
                 <div className="mb-4">
                     <Link href={route('book-store.show', book.id)}>
                         <h3
-                            className="text-[17px] leading-tight mb-1 line-clamp-2 text-[#17150f] hover:text-[#6e2530] transition-colors"
+                            className="text-[17px] leading-tight mb-1 line-clamp-2 text-ink hover:text-oxblood transition-colors"
                             style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
                             title={book.title}
                         >
                             {book.title}
                         </h3>
                     </Link>
-                    <p className="text-[13px] text-[#635c4e] line-clamp-1">{book.author_name}</p>
+                    <p className="text-[13px] text-umber line-clamp-1">{book.author_name}</p>
                 </div>
 
                 <div className="mt-auto space-y-3">
                     <div className="flex items-center justify-between">
-                        <span className="text-lg font-bold text-[#17150f]">₹{book.selling_price}</span>
+                        <span className="text-lg font-bold text-ink">₹{book.selling_price}</span>
                     </div>
 
                     {/* Action Buttons */}
                     <div className="grid grid-cols-2 gap-2">
                         <Link
                             href={route('book-store.show', book.id)}
-                            className="col-span-2 w-full py-2 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2"
+                            className="col-span-2 w-full py-2 bg-oxblood hover:bg-oxblood-deep text-paper text-sm font-bold rounded-lg transition-colors flex items-center justify-center gap-2"
                         >
                             View Details
                         </Link>

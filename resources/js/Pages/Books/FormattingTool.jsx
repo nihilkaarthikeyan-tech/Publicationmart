@@ -400,7 +400,7 @@ const TitleEditor = memo(({ initialContent, onUpdate, onPaste, isLocked, classNa
     return (
         <h2
             ref={ref}
-            className={`${className} empty:before:content-[attr(data-placeholder)] empty:before:text-[#635c4e] empty:before:italic empty:before:font-normal`}
+            className={`${className} empty:before:content-[attr(data-placeholder)] empty:before:text-umber empty:before:italic empty:before:font-normal`}
             contentEditable={!isLocked}
             suppressContentEditableWarning={true}
             onInput={(e) => onUpdate(e.target.innerText)}
@@ -710,7 +710,7 @@ function PaginatedPreviewSection({ item, chapterNum, pageDimensions, previewSett
             {pages.map((pageObj, i) => (
                 <div
                     key={i}
-                    className={`shadow-xl border mx-auto relative mb-8 break-after-page ${previewSettings.theme === 'dark' ? 'bg-[#faf8f3] border-gray-700' : 'bg-white border-gray-200'}`}
+                    className={`shadow-xl border mx-auto relative mb-8 break-after-page ${previewSettings.theme === 'dark' ? 'bg-paper border-gray-700' : 'bg-white border-gray-200'}`}
                     style={{
                         width: `${pageDimensions.pageWidth}px`,
                         height: `${pageDimensions.pageHeight}px`,
@@ -2881,7 +2881,7 @@ function FormattingTool({ book, hasAiContent }) {
                         Book Size: <span className="bg-indigo-100 px-2 py-0.5 rounded">{book.book_size || '6x9'} inches</span>
                     </p>
 
-                    <p className="text-[#635c4e] mb-6 leading-relaxed">
+                    <p className="text-umber mb-6 leading-relaxed">
                         You have uploaded a pre-formatted manuscript file (<span className="font-medium text-gray-800">.docx</span>).
                         The online editor is disabled to ensure your uploaded file is used for publication.
                     </p>
@@ -2918,7 +2918,7 @@ function FormattingTool({ book, hasAiContent }) {
                         </Link>
                     </div>
 
-                    <p className="mt-5 text-xs text-[#635c4e] leading-relaxed">
+                    <p className="mt-5 text-xs text-umber leading-relaxed">
                         Your previous manual formatting work is preserved. Removing the uploaded file will restore your edits.
                     </p>
                 </div>
@@ -2935,7 +2935,7 @@ function FormattingTool({ book, hasAiContent }) {
             </Head>
 
             {/* LEFT SIDEBAR - Modern Slate */}
-            <div className="w-72 bg-[#faf8f3] text-[#635c4e] flex flex-col flex-shrink-0 shadow-xl z-20">
+            <div className="w-72 bg-paper text-umber flex flex-col flex-shrink-0 shadow-xl z-20">
                 {/* Back Link (Save & Exit) */}
                 <div className="p-5 border-b border-gray-800/50">
                     <button
@@ -2944,12 +2944,12 @@ function FormattingTool({ book, hasAiContent }) {
                             saveProgress(true); // Save before exit
                             router.visit(route('books.design', book.id));
                         }}
-                        className="flex items-center text-[11px] font-bold uppercase tracking-widest text-[#635c4e] hover:text-indigo-700 transition group mb-3 w-full text-left"
+                        className="flex items-center text-[11px] font-bold uppercase tracking-widest text-umber hover:text-indigo-700 transition group mb-3 w-full text-left"
                     >
                         <svg className="w-3 h-3 mr-2 group-hover:-translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
                         Back to Dashboard
                     </button>
-                    <h1 className="text-[#4b443a] font-bold text-lg truncate leading-tight tracking-tight" title={book.title}>
+                    <h1 className="text-ink-soft font-bold text-lg truncate leading-tight tracking-tight" title={book.title}>
                         {book.title}
                     </h1>
                 </div>
@@ -2966,14 +2966,14 @@ function FormattingTool({ book, hasAiContent }) {
                         <div className="flex items-center justify-between px-3 py-1 group">
                             <button
                                 onClick={() => setIsFrontMatterOpen(!isFrontMatterOpen)}
-                                className="flex-1 flex items-center text-left text-[11px] font-bold uppercase tracking-wider text-[#635c4e] hover:text-[#4b443a] transition focus:outline-none"
+                                className="flex-1 flex items-center text-left text-[11px] font-bold uppercase tracking-wider text-umber hover:text-ink-soft transition focus:outline-none"
                             >
                                 <svg className={`w-3 h-3 mr-2 text-indigo-500 transition-transform duration-300 ${isFrontMatterOpen ? 'rotate-0' : '-rotate-90'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                                 <span className="group-hover:translate-x-0.5 transition-transform">Pre-Content</span>
                             </button>
                             <button
                                 onClick={addFrontMatter}
-                                className="p-1 text-[#635c4e] hover:text-indigo-700 hover:bg-indigo-500/10 rounded transition"
+                                className="p-1 text-umber hover:text-indigo-700 hover:bg-indigo-500/10 rounded transition"
                                 title="Add Front Matter Page"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
@@ -2992,13 +2992,13 @@ function FormattingTool({ book, hasAiContent }) {
                                             onDragEnd={handleDragEnd}
                                             onDragOver={(e) => handleDragOver(e, index)}
                                             onDrop={(e) => handleDropFrontMatterKeys(e, index)}
-                                            className={`group flex items-center justify-between px-4 py-2 mx-2 rounded-md cursor-pointer text-sm transition-all duration-200 ${dragOverItem === index && draggedSection === 'frontMatterKeys' ? 'border-t-2 border-indigo-500' : ''} ${activeSection === key ? 'bg-indigo-500/10 text-indigo-700 font-medium' : 'text-[#635c4e] hover:text-[#4b443a]'}`}
+                                            className={`group flex items-center justify-between px-4 py-2 mx-2 rounded-md cursor-pointer text-sm transition-all duration-200 ${dragOverItem === index && draggedSection === 'frontMatterKeys' ? 'border-t-2 border-indigo-500' : ''} ${activeSection === key ? 'bg-indigo-500/10 text-indigo-700 font-medium' : 'text-umber hover:text-ink-soft'}`}
                                             onClick={() => handleSectionClick(key)}
                                         >
                                             <div className="flex items-center gap-2 overflow-hidden">
                                                 {/* Drag Handle */}
                                                 <div className="cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" title="Drag to reorder">
-                                                    <svg className="w-3.5 h-3.5 text-[#635c4e]" fill="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="w-3.5 h-3.5 text-umber" fill="currentColor" viewBox="0 0 24 24">
                                                         <path d="M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
                                                     </svg>
                                                 </div>
@@ -3014,7 +3014,7 @@ function FormattingTool({ book, hasAiContent }) {
                                                 )}
 
                                                 <button
-                                                    className={`p-1.5 text-[#635c4e] hover:text-red-700 hover:bg-red-400/10 rounded transition ${activeSection === key ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+                                                    className={`p-1.5 text-umber hover:text-red-700 hover:bg-red-400/10 rounded transition ${activeSection === key ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
                                                     onClick={(e) => {
                                                         e.stopPropagation();
                                                         if (isDynamic) deleteFrontMatter(key);
@@ -3038,14 +3038,14 @@ function FormattingTool({ book, hasAiContent }) {
                         <div className="flex items-center justify-between px-3 py-1 group">
                             <button
                                 onClick={() => setIsChapterOpen(!isChapterOpen)}
-                                className="flex-1 flex items-center text-left text-[11px] font-bold uppercase tracking-wider text-[#635c4e] hover:text-[#4b443a] transition focus:outline-none"
+                                className="flex-1 flex items-center text-left text-[11px] font-bold uppercase tracking-wider text-umber hover:text-ink-soft transition focus:outline-none"
                             >
                                 <svg className={`w-3 h-3 mr-2 text-indigo-500 transition-transform duration-300 ${isChapterOpen ? 'rotate-0' : '-rotate-90'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                                 <span className="group-hover:translate-x-0.5 transition-transform">Chapters</span>
                             </button>
                             <button
                                 onClick={addChapter}
-                                className="p-1 text-[#635c4e] hover:text-indigo-700 hover:bg-indigo-500/10 rounded transition"
+                                className="p-1 text-umber hover:text-indigo-700 hover:bg-indigo-500/10 rounded transition"
                                 title="Add Chapter"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
@@ -3056,7 +3056,7 @@ function FormattingTool({ book, hasAiContent }) {
                             <div className="mt-1 space-y-0.5">
                                 {chapters.length === 0 ? (
                                     <div className="px-8 py-6 text-center">
-                                        <p className="text-xs text-[#635c4e] mb-2">No chapters yet</p>
+                                        <p className="text-xs text-umber mb-2">No chapters yet</p>
                                         <button onClick={() => setShowChapterMenu(true)} className="text-[10px] text-indigo-700 hover:text-indigo-700 underline underline-offset-2">Create your first chapter</button>
                                     </div>
                                 ) : (
@@ -3070,22 +3070,22 @@ function FormattingTool({ book, hasAiContent }) {
                                                 onDragEnd={handleDragEnd}
                                                 onDragOver={(e) => handleDragOver(e, index)}
                                                 onDrop={(e) => handleDropChapters(e, index)}
-                                                className={`group relative flex items-center justify-between px-4 py-2 mx-2 rounded-md cursor-pointer text-sm transition-all duration-200 border border-transparent ${dragOverItem === index && draggedSection === 'chapters' ? 'border-t-2 border-indigo-500' : ''} ${activeSection === item.id ? 'bg-indigo-500/10 text-indigo-700 border-indigo-500/20 font-medium shadow-sm' : 'text-[#635c4e] hover:bg-gray-100 hover:text-[#4b443a]'}`}
+                                                className={`group relative flex items-center justify-between px-4 py-2 mx-2 rounded-md cursor-pointer text-sm transition-all duration-200 border border-transparent ${dragOverItem === index && draggedSection === 'chapters' ? 'border-t-2 border-indigo-500' : ''} ${activeSection === item.id ? 'bg-indigo-500/10 text-indigo-700 border-indigo-500/20 font-medium shadow-sm' : 'text-umber hover:bg-gray-100 hover:text-ink-soft'}`}
                                                 onClick={() => handleSectionClick(item.id)}
                                             >
                                                 <div className="flex items-center truncate gap-2 flex-1">
                                                     {/* Drag Handle */}
                                                     <div className="cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" title="Drag to reorder">
-                                                        <svg className="w-3.5 h-3.5 text-[#635c4e]" fill="currentColor" viewBox="0 0 24 24">
+                                                        <svg className="w-3.5 h-3.5 text-umber" fill="currentColor" viewBox="0 0 24 24">
                                                             <path d="M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
                                                         </svg>
                                                     </div>
                                                     {item.type === 'chapter' && (
-                                                        <span className={`font-mono text-xs opacity-50 ${activeSection === item.id ? 'text-indigo-700' : 'text-[#635c4e]'}`}>
+                                                        <span className={`font-mono text-xs opacity-50 ${activeSection === item.id ? 'text-indigo-700' : 'text-umber'}`}>
                                                             {chapterNum.toString().padStart(2, '0')}
                                                         </span>
                                                     )}
-                                                    <span className={`truncate ${!item.title ? 'text-[#635c4e] italic' : ''}`}>
+                                                    <span className={`truncate ${!item.title ? 'text-umber italic' : ''}`}>
                                                         {item.title || '(Untitled Chapter)'}
                                                     </span>
                                                 </div>
@@ -3094,7 +3094,7 @@ function FormattingTool({ book, hasAiContent }) {
                                                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
 
                                                     <button
-                                                        className="p-1.5 text-[#635c4e] hover:text-red-700 hover:bg-red-400/10 rounded transition"
+                                                        className="p-1.5 text-umber hover:text-red-700 hover:bg-red-400/10 rounded transition"
                                                         title="Delete"
                                                         onClick={(e) => {
                                                             e.stopPropagation();
@@ -3117,14 +3117,14 @@ function FormattingTool({ book, hasAiContent }) {
                         <div className="flex items-center justify-between px-3 py-1 group">
                             <button
                                 onClick={toggleEndMatter}
-                                className="flex-1 flex items-center text-left text-[11px] font-bold uppercase tracking-wider text-[#635c4e] hover:text-[#4b443a] transition focus:outline-none"
+                                className="flex-1 flex items-center text-left text-[11px] font-bold uppercase tracking-wider text-umber hover:text-ink-soft transition focus:outline-none"
                             >
                                 <svg className={`w-3 h-3 mr-2 text-indigo-500 transition-transform duration-300 ${isEndMatterOpen ? 'rotate-0' : '-rotate-90'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                                 <span className="group-hover:translate-x-0.5 transition-transform">End Matter</span>
                             </button>
                             <button
                                 onClick={addEndMatter}
-                                className="p-1 text-[#635c4e] hover:text-indigo-700 hover:bg-indigo-500/10 rounded transition"
+                                className="p-1 text-umber hover:text-indigo-700 hover:bg-indigo-500/10 rounded transition"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
                             </button>
@@ -3134,7 +3134,7 @@ function FormattingTool({ book, hasAiContent }) {
                             <div className="mt-1 space-y-0.5">
                                 {endMatters.length === 0 ? (
                                     <div className="px-8 py-4 text-center">
-                                        <p className="text-xs text-[#635c4e]">No end matter items.</p>
+                                        <p className="text-xs text-umber">No end matter items.</p>
                                     </div>
                                 ) : (
                                     endMatters.map((item, index) => (
@@ -3145,22 +3145,22 @@ function FormattingTool({ book, hasAiContent }) {
                                             onDragEnd={handleDragEnd}
                                             onDragOver={(e) => handleDragOver(e, index)}
                                             onDrop={(e) => handleDropEndMatters(e, index)}
-                                            className={`group flex items-center justify-between px-4 py-2 mx-2 rounded-md cursor-pointer text-sm transition-all duration-200 border border-transparent ${dragOverItem === index && draggedSection === 'endMatters' ? 'border-t-2 border-indigo-500' : ''} ${activeSection === item.id ? 'bg-indigo-500/10 text-indigo-700 border-indigo-500/20 font-medium shadow-sm' : 'text-[#635c4e] hover:bg-gray-100 hover:text-[#4b443a]'}`}
+                                            className={`group flex items-center justify-between px-4 py-2 mx-2 rounded-md cursor-pointer text-sm transition-all duration-200 border border-transparent ${dragOverItem === index && draggedSection === 'endMatters' ? 'border-t-2 border-indigo-500' : ''} ${activeSection === item.id ? 'bg-indigo-500/10 text-indigo-700 border-indigo-500/20 font-medium shadow-sm' : 'text-umber hover:bg-gray-100 hover:text-ink-soft'}`}
                                             onClick={() => handleSectionClick(item.id)}
                                         >
                                             <div className="flex items-center gap-2">
                                                 {/* Drag Handle */}
                                                 <div className="cursor-grab active:cursor-grabbing opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" title="Drag to reorder">
-                                                    <svg className="w-3.5 h-3.5 text-[#635c4e]" fill="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="w-3.5 h-3.5 text-umber" fill="currentColor" viewBox="0 0 24 24">
                                                         <path d="M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM14 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"></path>
                                                     </svg>
                                                 </div>
-                                                <span className="font-mono text-xs opacity-50 text-[#635c4e]">{index + 1}.</span>
+                                                <span className="font-mono text-xs opacity-50 text-umber">{index + 1}.</span>
                                                 <span>{item.title}</span>
                                             </div>
                                             <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                                 <button
-                                                    className="p-1.5 text-[#635c4e] hover:text-red-700 hover:bg-red-400/10 rounded transition"
+                                                    className="p-1.5 text-umber hover:text-red-700 hover:bg-red-400/10 rounded transition"
                                                     onClick={(e) => { e.stopPropagation(); deleteEndMatter(item.id); }}
                                                     title="Delete"
                                                 >
@@ -3177,8 +3177,8 @@ function FormattingTool({ book, hasAiContent }) {
                 </div>
 
                 {/* Footer Stats */}
-                <div className="p-4 bg-[#faf8f3] border-t border-gray-800/50 text-center space-y-2">
-                    <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-gray-100 text-[10px] font-bold tracking-widest text-[#635c4e]">
+                <div className="p-4 bg-paper border-t border-gray-800/50 text-center space-y-2">
+                    <div className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-gray-100 text-[10px] font-bold tracking-widest text-umber">
                         <span>{totalWordCount} TOTAL WORDS</span>
                         <span className="w-1 h-3 bg-gray-600 rounded-full"></span>
                         <span>EST. {Math.max(1, Math.ceil(totalWordCount / (() => { const s = (book.book_size || '').replace(/\s/g, '').toLowerCase(); if (s === '5x8') return 240; if (s === '5.5x8.5') return 260; if (s === '6x9') return 300; if (s === '8.5x8.5') return 290; if (s === '8.5x11') return 550; if (s === '16.5x11') return 500; return 260; })()))} TOTAL PAGES</span>
@@ -3202,7 +3202,7 @@ function FormattingTool({ book, hasAiContent }) {
                         <div className="relative">
                             <button
                                 onClick={() => setShowHeaderMenu(!showHeaderMenu)}
-                                className="flex items-center gap-2 px-3 py-1.5 rounded hover:bg-gray-50 text-xs font-bold text-[#635c4e] hover:text-indigo-600 transition-colors uppercase tracking-wider"
+                                className="flex items-center gap-2 px-3 py-1.5 rounded hover:bg-gray-50 text-xs font-bold text-umber hover:text-indigo-600 transition-colors uppercase tracking-wider"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                                 Headers
@@ -3210,7 +3210,7 @@ function FormattingTool({ book, hasAiContent }) {
 
                             {showHeaderMenu && (
                                 <div className="absolute top-full left-0 mt-4 w-64 bg-white rounded-xl shadow-xl border border-gray-100 p-4 z-50 animate-in fade-in slide-in-from-top-2">
-                                    <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-wider mb-3">Header Configuration</h3>
+                                    <h3 className="text-xs font-bold text-umber uppercase tracking-wider mb-3">Header Configuration</h3>
 
                                     {/* Left Page Setting */}
                                     <div className="mb-4">
@@ -3275,7 +3275,7 @@ function FormattingTool({ book, hasAiContent }) {
                             <div className="relative">
                                 <button
                                     onClick={() => setShowHistoryMenu(!showHistoryMenu)}
-                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 transition shadow-sm text-[#635c4e]"
+                                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 transition shadow-sm text-umber"
                                     title="Version History"
                                 >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -3284,20 +3284,20 @@ function FormattingTool({ book, hasAiContent }) {
                                 {showHistoryMenu && (
                                     <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50 overflow-hidden">
                                         <div className="bg-gray-50 px-3 py-2 border-b border-gray-100 flex justify-between items-center">
-                                            <span className="text-xs font-bold text-[#635c4e] uppercase">Session History</span>
-                                            <button onClick={() => setShowHistoryMenu(false)} className="text-[#635c4e] hover:text-[#635c4e]">&times;</button>
+                                            <span className="text-xs font-bold text-umber uppercase">Session History</span>
+                                            <button onClick={() => setShowHistoryMenu(false)} className="text-umber hover:text-umber">&times;</button>
                                         </div>
                                         <div className="max-h-60 overflow-y-auto">
                                             {snapshots.length === 0 ? (
-                                                <div className="p-4 text-center text-xs text-[#635c4e] italic">No snapshots yet.</div>
+                                                <div className="p-4 text-center text-xs text-umber italic">No snapshots yet.</div>
                                             ) : (
                                                 snapshots.map(snap => (
                                                     <div key={snap.id} onClick={() => restoreSnapshot(snap)} className="px-4 py-3 border-b border-gray-50 hover:bg-indigo-50 cursor-pointer transition">
                                                         <div className="flex justify-between items-center mb-1">
                                                             <span className="font-bold text-slate-700 text-xs">{snap.label}</span>
-                                                            <span className="text-[10px] text-[#635c4e]">{snap.timestamp}</span>
+                                                            <span className="text-[10px] text-umber">{snap.timestamp}</span>
                                                         </div>
-                                                        <div className="text-[10px] text-[#635c4e]">Restores full state</div>
+                                                        <div className="text-[10px] text-umber">Restores full state</div>
                                                     </div>
                                                 ))
                                             )}
@@ -3356,7 +3356,7 @@ function FormattingTool({ book, hasAiContent }) {
                                 {/* 3D Book Animation Container */}
                                 <div className="relative mb-12" style={{ perspective: '1000px' }}>
                                     {/* Book Base/Shadow */}
-                                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 h-4 bg-[#faf8f3] rounded-[100%] blur-md animate-pulse"></div>
+                                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-40 h-4 bg-paper rounded-[100%] blur-md animate-pulse"></div>
 
                                     {/* Book Structure */}
                                     <div className="relative w-48 h-64" style={{ transformStyle: 'preserve-3d' }}>
@@ -3408,14 +3408,14 @@ function FormattingTool({ book, hasAiContent }) {
                                             className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-700 rounded-r-lg shadow-2xl origin-left animate-book-open"
                                         >
                                             {/* Cover Decoration */}
-                                            <div className="absolute inset-4 border-2 border-[#d8d1c1] rounded-md flex flex-col items-center justify-center">
-                                                <div className="w-16 h-16 bg-[#e7e1d4] rounded-full flex items-center justify-center mb-4 animate-pulse">
-                                                    <svg className="w-8 h-8 text-[#17150f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div className="absolute inset-4 border-2 border-linen rounded-md flex flex-col items-center justify-center">
+                                                <div className="w-16 h-16 bg-vellum rounded-full flex items-center justify-center mb-4 animate-pulse">
+                                                    <svg className="w-8 h-8 text-ink" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                                                     </svg>
                                                 </div>
                                                 <div className="w-20 h-2 bg-white/30 rounded mb-2"></div>
-                                                <div className="w-14 h-1.5 bg-[#e7e1d4] rounded"></div>
+                                                <div className="w-14 h-1.5 bg-vellum rounded"></div>
                                             </div>
 
                                             {/* Spine highlight */}
@@ -3431,7 +3431,7 @@ function FormattingTool({ book, hasAiContent }) {
 
                                 {/* Loading Text */}
                                 <div className="text-center relative z-10">
-                                    <h3 className="text-2xl font-bold text-[#17150f] mb-3 tracking-tight">
+                                    <h3 className="text-2xl font-bold text-ink mb-3 tracking-tight">
                                         Preparing Your Document
                                     </h3>
                                     <p className="text-indigo-700 text-sm mb-6">
@@ -3439,7 +3439,7 @@ function FormattingTool({ book, hasAiContent }) {
                                     </p>
 
                                     {/* Progress Bar */}
-                                    <div className="w-64 h-2 bg-[#e7e1d4] rounded-full overflow-hidden mx-auto">
+                                    <div className="w-64 h-2 bg-vellum rounded-full overflow-hidden mx-auto">
                                         <div className="h-full bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 rounded-full animate-progress-indeterminate"></div>
                                     </div>
                                 </div>
@@ -3527,10 +3527,10 @@ function FormattingTool({ book, hasAiContent }) {
 
                             {/* Undo/Redo */}
                             <div className="flex items-center gap-0.5 flex-nowrap shrink-0">
-                                <button onClick={handleUndo} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Undo (Ctrl+Z)">
+                                <button onClick={handleUndo} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Undo (Ctrl+Z)">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
                                 </button>
-                                <button onClick={handleRedo} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Redo (Ctrl+Y)">
+                                <button onClick={handleRedo} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Redo (Ctrl+Y)">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 10h-10a8 8 0 00-8 8v2M21 10l-6 6m6-6l-6-6"></path></svg>
                                 </button>
                             </div>
@@ -3549,16 +3549,16 @@ function FormattingTool({ book, hasAiContent }) {
                                 {showFontMenu && (
                                     <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-100 overflow-hidden z-50 max-h-80 overflow-y-auto">
                                         <div className="px-3 py-2 bg-gray-50 border-b border-gray-100/50 sticky top-0">
-                                            <span className="text-[10px] font-bold text-[#635c4e] uppercase tracking-wider">Font Family</span>
+                                            <span className="text-[10px] font-bold text-umber uppercase tracking-wider">Font Family</span>
                                         </div>
                                         {['Serif', 'Sans-Serif', 'Monospace'].map(category => (
                                             <div key={category}>
-                                                <div className="px-3 py-1 text-[10px] font-bold text-[#635c4e] uppercase bg-gray-50/50">{category}</div>
+                                                <div className="px-3 py-1 text-[10px] font-bold text-umber uppercase bg-gray-50/50">{category}</div>
                                                 {availableFonts.filter(f => f.category === category).map(font => (
                                                     <button
                                                         key={font.name}
                                                         onClick={() => applyFont(font.family)}
-                                                        className="block w-full text-left px-4 py-2 hover:bg-indigo-50 text-gray-700 transition-colors border-l-4 border-transparent hover:border-[#7c7364]"
+                                                        className="block w-full text-left px-4 py-2 hover:bg-indigo-50 text-gray-700 transition-colors border-l-4 border-transparent hover:border-taupe"
                                                         style={{ fontFamily: font.family }}
                                                     >
                                                         {font.name}
@@ -3606,12 +3606,12 @@ function FormattingTool({ book, hasAiContent }) {
                                 {showTypographyMenu && (
                                     <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50 py-1">
                                         <div className="px-3 py-2 bg-gray-50 border-b border-gray-100/50">
-                                            <span className="text-[10px] font-bold text-[#635c4e] uppercase tracking-wider">Paragraph Format</span>
+                                            <span className="text-[10px] font-bold text-umber uppercase tracking-wider">Paragraph Format</span>
                                         </div>
-                                        <button onClick={() => { execCmd('formatBlock', 'P'); setShowTypographyMenu(false); }} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-indigo-50 text-gray-700 transition-colors border-l-4 border-transparent hover:border-[#7c7364]">Normal</button>
-                                        <button onClick={() => { execCmd('formatBlock', 'H1'); setShowTypographyMenu(false); }} className="block w-full text-left px-4 py-2.5 text-2xl font-bold hover:bg-indigo-50 text-slate-800 border-l-4 border-transparent hover:border-[#7c7364]">Heading 1</button>
-                                        <button onClick={() => { execCmd('formatBlock', 'H2'); setShowTypographyMenu(false); }} className="block w-full text-left px-4 py-2 text-xl font-bold hover:bg-indigo-50 text-slate-800 border-l-4 border-transparent hover:border-[#7c7364]">Heading 2</button>
-                                        <button onClick={() => { execCmd('formatBlock', 'H3'); setShowTypographyMenu(false); }} className="block w-full text-left px-4 py-2 text-lg font-semibold hover:bg-indigo-50 text-slate-800 border-l-4 border-transparent hover:border-[#7c7364]">Heading 3</button>
+                                        <button onClick={() => { execCmd('formatBlock', 'P'); setShowTypographyMenu(false); }} className="block w-full text-left px-4 py-2.5 text-sm hover:bg-indigo-50 text-gray-700 transition-colors border-l-4 border-transparent hover:border-taupe">Normal</button>
+                                        <button onClick={() => { execCmd('formatBlock', 'H1'); setShowTypographyMenu(false); }} className="block w-full text-left px-4 py-2.5 text-2xl font-bold hover:bg-indigo-50 text-slate-800 border-l-4 border-transparent hover:border-taupe">Heading 1</button>
+                                        <button onClick={() => { execCmd('formatBlock', 'H2'); setShowTypographyMenu(false); }} className="block w-full text-left px-4 py-2 text-xl font-bold hover:bg-indigo-50 text-slate-800 border-l-4 border-transparent hover:border-taupe">Heading 2</button>
+                                        <button onClick={() => { execCmd('formatBlock', 'H3'); setShowTypographyMenu(false); }} className="block w-full text-left px-4 py-2 text-lg font-semibold hover:bg-indigo-50 text-slate-800 border-l-4 border-transparent hover:border-taupe">Heading 3</button>
                                     </div>
                                 )}
                             </div>
@@ -3629,7 +3629,7 @@ function FormattingTool({ book, hasAiContent }) {
                                 {showChapterMenu && (
                                     <div className="absolute top-full left-0 mt-1 w-60 bg-white rounded-xl shadow-xl border border-gray-100 p-2 z-50">
                                         <div className="px-2 py-1 mb-2 border-b border-gray-100">
-                                            <span className="text-[10px] font-bold text-[#635c4e] uppercase tracking-wider">Chapter Header Style</span>
+                                            <span className="text-[10px] font-bold text-umber uppercase tracking-wider">Chapter Header Style</span>
                                         </div>
                                         <div className="space-y-1">
                                             {[
@@ -3660,14 +3660,14 @@ function FormattingTool({ book, hasAiContent }) {
                                     className={`flex items-center gap-1 text-xs font-semibold text-gray-700 hover:bg-gray-100 px-2 py-1.5 rounded-lg transition-colors border border-transparent hover:border-gray-200 ${showAdvancedTypeMenu ? 'bg-gray-100 border-gray-200' : ''}`}
                                     title="Text alignment, indentation, and hyphenation"
                                 >
-                                    <svg className="w-4 h-4 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                                    <svg className="w-4 h-4 text-umber" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                                     <span className="text-[9px] opacity-50 ml-0.5">▼</span>
                                 </button>
 
                                 {showAdvancedTypeMenu && (
                                     <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-xl shadow-xl border border-gray-100 p-2 z-50">
                                         <div className="px-2 py-1 mb-2 border-b border-gray-100">
-                                            <span className="text-[10px] font-bold text-[#635c4e] uppercase tracking-wider">Text Layout</span>
+                                            <span className="text-[10px] font-bold text-umber uppercase tracking-wider">Text Layout</span>
                                         </div>
 
                                         {/* Alignment */}
@@ -3676,7 +3676,7 @@ function FormattingTool({ book, hasAiContent }) {
                                                 <button
                                                     key={align}
                                                     onClick={() => setParagraphStyle({ ...paragraphStyle, alignment: align })}
-                                                    className={`p-1.5 rounded-md hover:bg-indigo-50 hover:text-indigo-600 transition ${paragraphStyle.alignment === align ? 'bg-indigo-100 text-indigo-700 ring-1 ring-indigo-300' : 'text-[#635c4e]'}`}
+                                                    className={`p-1.5 rounded-md hover:bg-indigo-50 hover:text-indigo-600 transition ${paragraphStyle.alignment === align ? 'bg-indigo-100 text-indigo-700 ring-1 ring-indigo-300' : 'text-umber'}`}
                                                     title={`Align ${align}`}
                                                 >
                                                     {/* Icons for alignment */}
@@ -3690,17 +3690,17 @@ function FormattingTool({ book, hasAiContent }) {
 
                                         {/* Indentation Mode */}
                                         <div className="mb-3 px-2">
-                                            <label className="text-[10px] font-semibold text-[#635c4e] block mb-1">Paragraph Style</label>
+                                            <label className="text-[10px] font-semibold text-umber block mb-1">Paragraph Style</label>
                                             <div className="flex bg-gray-100 rounded-lg p-0.5 border border-gray-200">
                                                 <button
                                                     onClick={() => setParagraphStyle({ ...paragraphStyle, indentation: 'indent' })}
-                                                    className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition ${paragraphStyle.indentation === 'indent' ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:text-gray-700'}`}
+                                                    className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition ${paragraphStyle.indentation === 'indent' ? 'bg-white shadow text-indigo-600' : 'text-umber hover:text-gray-700'}`}
                                                 >
                                                     First Line
                                                 </button>
                                                 <button
                                                     onClick={() => setParagraphStyle({ ...paragraphStyle, indentation: 'block' })}
-                                                    className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition ${paragraphStyle.indentation === 'block' ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:text-gray-700'}`}
+                                                    className={`flex-1 py-1.5 text-[10px] font-bold rounded-md transition ${paragraphStyle.indentation === 'block' ? 'bg-white shadow text-indigo-600' : 'text-umber hover:text-gray-700'}`}
                                                 >
                                                     Block
                                                 </button>
@@ -3709,7 +3709,7 @@ function FormattingTool({ book, hasAiContent }) {
 
                                         {/* Hyphenation */}
                                         <div className="px-2 flex items-center justify-between">
-                                            <span className="text-[10px] font-semibold text-[#635c4e]">Auto-Hyphenation</span>
+                                            <span className="text-[10px] font-semibold text-umber">Auto-Hyphenation</span>
                                             <button
                                                 onClick={() => setParagraphStyle({ ...paragraphStyle, hyphenation: !paragraphStyle.hyphenation })}
                                                 className={`relative inline-flex h-4 w-7 items-center rounded-full transition-colors ${paragraphStyle.hyphenation ? 'bg-indigo-600' : 'bg-gray-300'}`}
@@ -3725,12 +3725,12 @@ function FormattingTool({ book, hasAiContent }) {
 
                             {/* Basic Formatting */}
                             <div className="flex items-center gap-0.5">
-                                <button onClick={() => execCmd('bold')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition font-bold w-8 h-8 flex items-center justify-center" title="Bold (Ctrl+B)">B</button>
-                                <button onClick={() => execCmd('italic')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition italic w-8 h-8 flex items-center justify-center" title="Italic (Ctrl+I)">I</button>
-                                <button onClick={() => execCmd('underline')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition underline w-8 h-8 flex items-center justify-center" title="Underline (Ctrl+U)">U</button>
-                                <button onClick={() => execCmd('strikeThrough')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition line-through w-8 h-8 flex items-center justify-center" title="Strikethrough">S</button>
-                                <button onClick={toggleSuperscript} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center text-xs" title="Superscript">X²</button>
-                                <button onClick={toggleSubscript} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center text-xs" title="Subscript">X₂</button>
+                                <button onClick={() => execCmd('bold')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition font-bold w-8 h-8 flex items-center justify-center" title="Bold (Ctrl+B)">B</button>
+                                <button onClick={() => execCmd('italic')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition italic w-8 h-8 flex items-center justify-center" title="Italic (Ctrl+I)">I</button>
+                                <button onClick={() => execCmd('underline')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition underline w-8 h-8 flex items-center justify-center" title="Underline (Ctrl+U)">U</button>
+                                <button onClick={() => execCmd('strikeThrough')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition line-through w-8 h-8 flex items-center justify-center" title="Strikethrough">S</button>
+                                <button onClick={toggleSuperscript} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center text-xs" title="Superscript">X²</button>
+                                <button onClick={toggleSubscript} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center text-xs" title="Subscript">X₂</button>
                             </div>
 
                             <div className="w-px h-5 bg-gray-200 mx-1"></div>
@@ -3739,7 +3739,7 @@ function FormattingTool({ book, hasAiContent }) {
                             <div className="relative color-picker-container">
                                 <button
                                     onClick={(e) => { e.stopPropagation(); setShowColorPicker(!showColorPicker); }}
-                                    className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex flex-col items-center justify-center"
+                                    className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex flex-col items-center justify-center"
                                     title="Text Color"
                                 >
                                     <span className="text-sm font-bold">A</span>
@@ -3765,7 +3765,7 @@ function FormattingTool({ book, hasAiContent }) {
                             <div className="relative highlight-picker-container">
                                 <button
                                     onClick={(e) => { e.stopPropagation(); setShowHighlightPicker(!showHighlightPicker); }}
-                                    className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center"
+                                    className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center"
                                     title="Highlight"
                                 >
                                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M15.243 4.515l-6.738 6.737-.707 2.121-1.04 1.041 2.828 2.828 1.04-1.04 2.122-.708 6.737-6.737-4.242-4.242zM12 22a1 1 0 01-1-1v-3a1 1 0 112 0v3a1 1 0 01-1 1z" /></svg>
@@ -3792,22 +3792,22 @@ function FormattingTool({ book, hasAiContent }) {
 
                             {/* Lists & Alignment */}
                             <div className="flex items-center gap-0.5 flex-nowrap shrink-0">
-                                <button onClick={() => execCmd('insertUnorderedList')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Bullet List">
+                                <button onClick={() => execCmd('insertUnorderedList')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Bullet List">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                                 </button>
-                                <button onClick={() => execCmd('insertOrderedList')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Numbered List">
+                                <button onClick={() => execCmd('insertOrderedList')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Numbered List">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h12M7 12h12M7 17h12M3 7h.01M3 12h.01M3 17h.01"></path></svg>
                                 </button>
-                                <button onClick={() => execCmd('justifyLeft')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Align Left">
+                                <button onClick={() => execCmd('justifyLeft')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Align Left">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h10M4 18h16"></path></svg>
                                 </button>
-                                <button onClick={() => execCmd('justifyCenter')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Align Center">
+                                <button onClick={() => execCmd('justifyCenter')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Align Center">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M7 12h10M4 18h16"></path></svg>
                                 </button>
-                                <button onClick={() => execCmd('justifyRight')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Align Right">
+                                <button onClick={() => execCmd('justifyRight')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Align Right">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M10 12h10M4 18h16"></path></svg>
                                 </button>
-                                <button onClick={() => execCmd('justifyFull')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Justify">
+                                <button onClick={() => execCmd('justifyFull')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Justify">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                                 </button>
                             </div>
@@ -3818,7 +3818,7 @@ function FormattingTool({ book, hasAiContent }) {
                             <div className="relative line-height-menu-container">
                                 <button
                                     onClick={(e) => { e.stopPropagation(); setShowLineHeightMenu(!showLineHeightMenu); }}
-                                    className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center"
+                                    className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center"
                                     title="Line Spacing"
                                 >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
@@ -3826,7 +3826,7 @@ function FormattingTool({ book, hasAiContent }) {
                                 {showLineHeightMenu && (
                                     <div className="absolute top-full right-0 mt-1 w-32 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
                                         <div className="px-3 py-2 bg-gray-50 border-b border-gray-100/50">
-                                            <span className="text-[10px] font-bold text-[#635c4e] uppercase">Line Height</span>
+                                            <span className="text-[10px] font-bold text-umber uppercase">Line Height</span>
                                         </div>
                                         {lineHeights.map(lh => (
                                             <button
@@ -3855,22 +3855,22 @@ function FormattingTool({ book, hasAiContent }) {
                                 {showInsertMenu && (
                                     <div className="absolute top-full right-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-gray-100 z-50 overflow-hidden">
                                         <div className="px-3 py-2 bg-gray-50 border-b border-gray-100/50">
-                                            <span className="text-[10px] font-bold text-[#635c4e] uppercase">Insert Elements</span>
+                                            <span className="text-[10px] font-bold text-umber uppercase">Insert Elements</span>
                                         </div>
                                         <button onClick={() => { insertSceneBreak(); setShowInsertMenu(false); }} className="block w-full text-left px-4 py-2 hover:bg-indigo-50 text-gray-700 transition-colors flex items-center gap-2">
                                             <span className="text-lg">⁂</span> Scene Break
                                         </button>
                                         <button onClick={() => { insertPageBreak(); setShowInsertMenu(false); }} className="block w-full text-left px-4 py-2 hover:bg-indigo-50 text-gray-700 transition-colors flex items-center gap-2">
-                                            <span className="text-[#635c4e]">—</span> Page Break
+                                            <span className="text-umber">—</span> Page Break
                                         </button>
                                         <button onClick={() => { insertDropCap(); setShowInsertMenu(false); }} className="block w-full text-left px-4 py-2 hover:bg-indigo-50 text-gray-700 transition-colors flex items-center gap-2">
                                             <span className="text-2xl font-serif font-bold leading-none">T</span> Drop Cap
                                         </button>
                                         <button onClick={() => { insertHorizontalRule(); setShowInsertMenu(false); }} className="block w-full text-left px-4 py-2 hover:bg-indigo-50 text-gray-700 transition-colors flex items-center gap-2">
-                                            <span className="text-[#635c4e]">━</span> Horizontal Line
+                                            <span className="text-umber">━</span> Horizontal Line
                                         </button>
                                         <div className="border-t border-gray-100 my-1"></div>
-                                        <div className="px-3 py-1 text-[10px] font-bold text-[#635c4e] uppercase">Special Characters</div>
+                                        <div className="px-3 py-1 text-[10px] font-bold text-umber uppercase">Special Characters</div>
                                         <div className="grid grid-cols-4 gap-1 p-2">
                                             {specialCharacters.slice(0, 12).map((sc, i) => (
                                                 <button
@@ -3895,10 +3895,10 @@ function FormattingTool({ book, hasAiContent }) {
 
                             {/* Quote & Image */}
                             <div className="flex items-center gap-0.5">
-                                <button onClick={() => execCmd('formatBlock', 'blockquote')} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Block Quote">
+                                <button onClick={() => execCmd('formatBlock', 'blockquote')} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Block Quote">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
                                 </button>
-                                <button onClick={() => fileInputRef.current?.click()} className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Insert Image">
+                                <button onClick={() => fileInputRef.current?.click()} className="p-1.5 text-umber hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Insert Image">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                 </button>
                                 <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
@@ -3909,14 +3909,14 @@ function FormattingTool({ book, hasAiContent }) {
                             {/* Find & Replace Toggle */}
                             <button
                                 onClick={() => setShowFindReplace(!showFindReplace)}
-                                className={`p-1.5 hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center ${showFindReplace ? 'text-indigo-600 bg-indigo-50' : 'text-[#635c4e]'}`}
+                                className={`p-1.5 hover:text-indigo-600 hover:bg-indigo-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center ${showFindReplace ? 'text-indigo-600 bg-indigo-50' : 'text-umber'}`}
                                 title="Find & Replace (Ctrl+F)"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </button>
 
                             {/* Clear Formatting */}
-                            <button onClick={clearFormatting} className="p-1.5 text-[#635c4e] hover:text-red-500 hover:bg-red-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Clear Formatting">
+                            <button onClick={clearFormatting} className="p-1.5 text-umber hover:text-red-500 hover:bg-red-50/50 rounded-lg transition w-8 h-8 flex items-center justify-center" title="Clear Formatting">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                             </button>
                         </div>
@@ -3946,12 +3946,12 @@ function FormattingTool({ book, hasAiContent }) {
                                     <button onClick={handleFind} className="px-3 py-1.5 text-xs font-medium bg-indigo-50 text-indigo-600 hover:bg-indigo-100 rounded-lg transition">Find</button>
                                     <button onClick={handleReplace} className="px-3 py-1.5 text-xs font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg transition">Replace</button>
                                     <button onClick={handleReplaceAll} className="px-3 py-1.5 text-xs font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg transition">All</button>
-                                    <button onClick={clearFindHighlights} className="px-2 py-1.5 text-xs text-[#635c4e] hover:text-gray-700 transition">Clear</button>
+                                    <button onClick={clearFindHighlights} className="px-2 py-1.5 text-xs text-umber hover:text-gray-700 transition">Clear</button>
                                 </div>
                                 {findResults.count > 0 && (
-                                    <span className="text-xs text-[#635c4e]">{findResults.count} found</span>
+                                    <span className="text-xs text-umber">{findResults.count} found</span>
                                 )}
-                                <button onClick={() => setShowFindReplace(false)} className="text-[#635c4e] hover:text-[#635c4e] ml-2">
+                                <button onClick={() => setShowFindReplace(false)} className="text-umber hover:text-umber ml-2">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                 </button>
                             </div>
@@ -4091,7 +4091,7 @@ function FormattingTool({ book, hasAiContent }) {
                                                     </svg>
                                                 </div>
                                                 <h3 className="text-2xl font-black text-slate-800 mb-2 tracking-tight">Editor Locked</h3>
-                                                <p className="text-[#635c4e] mb-8 max-w-md font-medium leading-relaxed">
+                                                <p className="text-umber mb-8 max-w-md font-medium leading-relaxed">
                                                     You have uploaded a formatted manuscript file (<span className="text-indigo-600 font-bold">{book.book_size}</span>). The manual editor is disabled to prevent data conflicts.
                                                 </p>
                                                 <div className="flex gap-4 items-center">
@@ -4111,8 +4111,8 @@ function FormattingTool({ book, hasAiContent }) {
                                         {!sections[activeSection]?.content && !sections[activeSection]?.title && (
                                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0 opacity-50">
                                                 <div className="text-center">
-                                                    <div className="text-[#4b443a] text-4xl mb-2">✍️</div>
-                                                    <p className="text-[#4b443a] font-serif italic">{sections[activeSection]?.placeholder || 'Start writing...'}</p>
+                                                    <div className="text-ink-soft text-4xl mb-2">✍️</div>
+                                                    <p className="text-ink-soft font-serif italic">{sections[activeSection]?.placeholder || 'Start writing...'}</p>
                                                 </div>
                                             </div>
                                         )}
@@ -4156,7 +4156,7 @@ function FormattingTool({ book, hasAiContent }) {
                                         />
 
                                         {/* Simple Stats Overlay - NO PAGE COUNT */}
-                                        <div className="absolute -top-10 left-0 right-0 flex justify-between text-[10px] font-mono text-[#635c4e] opacity-60 select-none uppercase tracking-widest px-2">
+                                        <div className="absolute -top-10 left-0 right-0 flex justify-between text-[10px] font-mono text-umber opacity-60 select-none uppercase tracking-widest px-2">
                                             <div className="flex gap-4">
                                                 <span>{book.book_size || '5.5x8.5'} Layout</span>
                                                 <span>Words: {totalWordCount}</span>
@@ -4185,10 +4185,10 @@ function FormattingTool({ book, hasAiContent }) {
 
                     {
                         showExportPreview && (
-                            <div className={`fixed inset-0 z-[99999] flex flex-col ${previewSettings.theme === 'dark' ? 'bg-[#faf8f3]' : 'bg-white'}`}>
+                            <div className={`fixed inset-0 z-[99999] flex flex-col ${previewSettings.theme === 'dark' ? 'bg-paper' : 'bg-white'}`}>
 
                                 {/* Preview Header with controls */}
-                                <div className={`h-14 px-4 flex items-center justify-between border-b ${previewSettings.theme === 'dark' ? 'bg-[#faf8f3] border-gray-700' : 'bg-white border-gray-200'}`}>
+                                <div className={`h-14 px-4 flex items-center justify-between border-b ${previewSettings.theme === 'dark' ? 'bg-paper border-gray-700' : 'bg-white border-gray-200'}`}>
                                     <button onClick={() => setShowExportPreview(false)} className="px-4 py-2 bg-indigo-600 text-white rounded-lg">
                                         Back to Editor
                                     </button>
@@ -4203,14 +4203,14 @@ function FormattingTool({ book, hasAiContent }) {
                                     <div className="flex gap-2">
                                         <button
                                             onClick={() => setPreviewSettings(prev => ({ ...prev, theme: 'light' }))}
-                                            className={`px-3 py-1 rounded ${previewSettings.theme === 'light' ? 'bg-indigo-600 text-[#17150f]' : 'bg-gray-200 text-gray-700'}`}
+                                            className={`px-3 py-1 rounded ${previewSettings.theme === 'light' ? 'bg-indigo-600 text-ink' : 'bg-gray-200 text-gray-700'}`}
                                         >
                                             Light
                                         </button>
 
                                         <button
                                             onClick={() => setPreviewSettings(prev => ({ ...prev, theme: 'dark' }))}
-                                            className={`px-3 py-1 rounded ${previewSettings.theme === 'dark' ? 'bg-indigo-600 text-[#17150f]' : 'bg-gray-200 text-gray-700'}`}
+                                            className={`px-3 py-1 rounded ${previewSettings.theme === 'dark' ? 'bg-indigo-600 text-ink' : 'bg-gray-200 text-gray-700'}`}
                                         >
                                             Dark
                                         </button>
@@ -4221,8 +4221,8 @@ function FormattingTool({ book, hasAiContent }) {
                                 <div className="flex-1 flex overflow-hidden">
 
                                     {/* TABLE OF CONTENTS SIDEBAR (Sticky) */}
-                                    <div className={`w-64 flex-shrink-0 border-r overflow-y-auto p-4 hidden md:block ${previewSettings.theme === 'dark' ? 'bg-[#faf8f3] border-gray-700' : 'bg-gray-50 border-gray-200'}`}>
-                                        <h3 className={`text-xs font-bold uppercase tracking-widest mb-4 opacity-50 ${previewSettings.theme === 'dark' ? 'text-[#17150f]' : 'text-slate-900'}`}>Table of Contents</h3>
+                                    <div className={`w-64 flex-shrink-0 border-r overflow-y-auto p-4 hidden md:block ${previewSettings.theme === 'dark' ? 'bg-paper border-gray-700' : 'bg-gray-50 border-gray-200'}`}>
+                                        <h3 className={`text-xs font-bold uppercase tracking-widest mb-4 opacity-50 ${previewSettings.theme === 'dark' ? 'text-ink' : 'text-slate-900'}`}>Table of Contents</h3>
                                         <nav className="space-y-1">
                                             {bookViewList.map((item) => (
                                                 <button
@@ -4232,7 +4232,7 @@ function FormattingTool({ book, hasAiContent }) {
                                                         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                                     }}
                                                     className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all hover:translate-x-1 ${previewSettings.theme === 'dark'
-                                                        ? 'text-[#4b443a] hover:bg-gray-700 hover:text-[#17150f]'
+                                                        ? 'text-ink-soft hover:bg-gray-700 hover:text-ink'
                                                         : 'text-slate-700 hover:bg-white hover:shadow-sm'
                                                         }`}
                                                 >
@@ -4292,7 +4292,7 @@ function FormattingTool({ book, hasAiContent }) {
                             className="absolute -bottom-2 -right-2 w-4 h-4 bg-indigo-600 rounded-full cursor-nwse-resize pointer-events-auto border-2 border-white shadow-md hover:scale-125 transition-transform"
                             onMouseDown={handleResizeStart}
                         ></div>
-                        <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 bg-[#faf8f3] text-[#17150f] text-[10px] px-2 py-0.5 rounded transition-opacity ${resizeState.isResizing ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}`}>
+                        <div className={`absolute -bottom-8 left-1/2 -translate-x-1/2 bg-paper text-ink text-[10px] px-2 py-0.5 rounded transition-opacity ${resizeState.isResizing ? 'opacity-100' : 'opacity-60 group-hover:opacity-100'}`}>
                             {Math.round(overlayRect.width)} × {Math.round(overlayRect.height)}
                         </div>
                     </div>
@@ -4314,22 +4314,22 @@ function FormattingTool({ book, hasAiContent }) {
                         }}
                     >
                         <div className="flex items-center gap-1 border-r border-gray-100 pr-1 mr-1">
-                            <button onClick={() => updateImageStyle({ float: 'left', width: '40%' })} className="p-1.5 text-[#635c4e] hover:text-indigo-600 rounded hover:bg-indigo-50" title="Float Left">
+                            <button onClick={() => updateImageStyle({ float: 'left', width: '40%' })} className="p-1.5 text-umber hover:text-indigo-600 rounded hover:bg-indigo-50" title="Float Left">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h10M4 18h16M4 6v12"></path></svg>
                             </button>
-                            <button onClick={() => updateImageStyle({ clear: true, width: '100%' })} className="p-1.5 text-[#635c4e] hover:text-indigo-600 rounded hover:bg-indigo-50" title="Full Width">
+                            <button onClick={() => updateImageStyle({ clear: true, width: '100%' })} className="p-1.5 text-umber hover:text-indigo-600 rounded hover:bg-indigo-50" title="Full Width">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                             </button>
-                            <button onClick={() => updateImageStyle({ float: 'right', width: '40%' })} className="p-1.5 text-[#635c4e] hover:text-indigo-600 rounded hover:bg-indigo-50" title="Float Right">
+                            <button onClick={() => updateImageStyle({ float: 'right', width: '40%' })} className="p-1.5 text-umber hover:text-indigo-600 rounded hover:bg-indigo-50" title="Float Right">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M10 12h10M4 18h16M20 6v12"></path></svg>
                             </button>
                         </div>
                         <div className="flex items-center gap-1">
-                            <button onClick={() => updateImageStyle({ width: '25%' })} className="px-2 py-1 text-xs font-bold text-[#635c4e] hover:text-indigo-600 rounded hover:bg-indigo-50">S</button>
-                            <button onClick={() => updateImageStyle({ width: '50%' })} className="px-2 py-1 text-xs font-bold text-[#635c4e] hover:text-indigo-600 rounded hover:bg-indigo-50">M</button>
-                            <button onClick={() => updateImageStyle({ width: '100%' })} className="px-2 py-1 text-xs font-bold text-[#635c4e] hover:text-indigo-600 rounded hover:bg-indigo-50">L</button>
+                            <button onClick={() => updateImageStyle({ width: '25%' })} className="px-2 py-1 text-xs font-bold text-umber hover:text-indigo-600 rounded hover:bg-indigo-50">S</button>
+                            <button onClick={() => updateImageStyle({ width: '50%' })} className="px-2 py-1 text-xs font-bold text-umber hover:text-indigo-600 rounded hover:bg-indigo-50">M</button>
+                            <button onClick={() => updateImageStyle({ width: '100%' })} className="px-2 py-1 text-xs font-bold text-umber hover:text-indigo-600 rounded hover:bg-indigo-50">L</button>
                             <div className="w-px h-4 bg-gray-200 mx-1"></div>
-                            <button onClick={deleteSelectedImage} className="p-1.5 text-[#635c4e] hover:text-red-600 hover:bg-red-50 rounded" title="Remove Image">
+                            <button onClick={deleteSelectedImage} className="p-1.5 text-umber hover:text-red-600 hover:bg-red-50 rounded" title="Remove Image">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                             </button>
                         </div>
@@ -4350,7 +4350,7 @@ function FormattingTool({ book, hasAiContent }) {
                             <span className="text-slate-800 font-bold text-sm">
                                 {book.book_size || '5.5×8.5'}"
                             </span>
-                            <span className="text-[#635c4e] text-[10px] uppercase tracking-wide">
+                            <span className="text-umber text-[10px] uppercase tracking-wide">
                                 {pageDimensions.sizeName}
                             </span>
                         </div>
@@ -4360,10 +4360,10 @@ function FormattingTool({ book, hasAiContent }) {
                         <>
                             <div className="w-px h-6 bg-slate-200"></div>
                             <div className="flex items-center gap-1.5">
-                                <svg className="w-3.5 h-3.5 text-[#635c4e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-3.5 h-3.5 text-umber" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
                                 </svg>
-                                <span className="text-[#635c4e] font-mono font-bold">
+                                <span className="text-umber font-mono font-bold">
                                     {Math.round(pageDimensions.scaleFactor * 100)}%
                                 </span>
                             </div>
@@ -4374,13 +4374,13 @@ function FormattingTool({ book, hasAiContent }) {
 
             {/* Word Count Floating Indicator */}
             <div className="fixed bottom-6 right-8 z-[60] group print:hidden">
-                <div className="bg-white/90 backdrop-blur-md border border-slate-200 shadow-xl rounded-full px-5 py-2.5 flex items-center gap-4 text-xs font-bold text-[#635c4e] transition-all hover:shadow-2xl hover:scale-[1.02] hover:border-indigo-200 cursor-default">
+                <div className="bg-white/90 backdrop-blur-md border border-slate-200 shadow-xl rounded-full px-5 py-2.5 flex items-center gap-4 text-xs font-bold text-umber transition-all hover:shadow-2xl hover:scale-[1.02] hover:border-indigo-200 cursor-default">
                     <div className="flex items-center gap-2">
                         <svg className="w-4 h-4 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         <span className="tabular-nums text-slate-800 text-sm">
-                            {(totalWordCount || 0).toLocaleString()} <span className="text-[#635c4e] font-medium text-xs ml-0.5">words</span>
+                            {(totalWordCount || 0).toLocaleString()} <span className="text-umber font-medium text-xs ml-0.5">words</span>
                         </span>
                     </div>
 
@@ -4391,7 +4391,7 @@ function FormattingTool({ book, hasAiContent }) {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                         <span className="tabular-nums text-slate-800 text-sm">
-                            {Math.max(1, Math.ceil((totalWordCount || 0) / 250))} <span className="text-[#635c4e] font-medium text-xs ml-0.5">est. pages</span>
+                            {Math.max(1, Math.ceil((totalWordCount || 0) / 250))} <span className="text-umber font-medium text-xs ml-0.5">est. pages</span>
                         </span>
                     </div>
                 </div>
@@ -4422,7 +4422,7 @@ class ErrorBoundary extends React.Component {
                             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         </div>
                         <h2 className="text-2xl font-bold text-gray-800 mb-2">Editor Encountered an Error</h2>
-                        <p className="text-[#635c4e] mb-6">Something unexpected happened. Please reload the page to continue your work. Your progress is saved locally.</p>
+                        <p className="text-umber mb-6">Something unexpected happened. Please reload the page to continue your work. Your progress is saved locally.</p>
                         <button onClick={() => window.location.reload()} className="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg transition-colors shadow-lg">
                             Reload Editor
                         </button>
@@ -4441,3 +4441,6 @@ export default function FormattingToolWrapper(props) {
         </ErrorBoundary>
     );
 }
+
+// Full-screen page: renders its own chrome, so the global Layout stays off.
+FormattingToolWrapper.layout = null;

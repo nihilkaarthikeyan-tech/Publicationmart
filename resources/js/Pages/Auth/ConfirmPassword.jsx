@@ -22,7 +22,7 @@ export default function ConfirmPassword() {
         <GuestLayout>
             <Head title="Confirm Password" />
 
-            <div className="mb-4 text-sm text-[#635c4e] dark:text-[#635c4e]">
+            <div className="mb-4 text-sm text-umber dark:text-umber">
                 This is a secure area of the application. Please confirm your
                 password before continuing.
             </div>
@@ -53,3 +53,6 @@ export default function ConfirmPassword() {
         </GuestLayout>
     );
 }
+
+// Full-screen page: renders its own chrome, so the global Layout stays off.
+ConfirmPassword.layout = null;

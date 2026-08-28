@@ -90,7 +90,7 @@
     <!-- End Facebook Pixel Code -->
 </head>
 
-<body class="font-sans antialiased bg-[#f0ece3]">
+<body class="font-sans antialiased bg-parchment">
     @inertia
 </body>
 

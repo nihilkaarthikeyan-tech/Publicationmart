@@ -12,12 +12,12 @@ export default function Index({ auth, users }) {
                     <div className="mb-8">
                         <div className="flex items-center justify-between">
                             <div>
-                                <h1 className="text-3xl font-bold text-[#17150f]">User Management</h1>
-                                <p className="text-[#635c4e] mt-1">View and manage all registered authors</p>
+                                <h1 className="text-3xl font-bold text-ink">User Management</h1>
+                                <p className="text-umber mt-1">View and manage all registered authors</p>
                             </div>
                             <Link
                                 href={route('admin.dashboard')}
-                                className="px-4 py-2 bg-[#e7e1d4] hover:bg-[#e7e1d4] text-[#17150f] rounded-xl transition-all"
+                                className="px-4 py-2 bg-vellum hover:bg-vellum text-ink rounded-xl transition-all"
                             >
                                 ← Back to Dashboard
                             </Link>
@@ -26,18 +26,18 @@ export default function Index({ auth, users }) {
 
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                        <div className="bg-[#e7e1d4] backdrop-blur-xl rounded-2xl p-6 border border-[#d8d1c1]">
-                            <h3 className="text-[#635c4e] text-sm font-medium">Total Authors</h3>
-                            <p className="text-3xl font-bold text-[#17150f] mt-2">{users.total || users.data?.length || 0}</p>
+                        <div className="bg-vellum backdrop-blur-xl rounded-2xl p-6 border border-linen">
+                            <h3 className="text-umber text-sm font-medium">Total Authors</h3>
+                            <p className="text-3xl font-bold text-ink mt-2">{users.total || users.data?.length || 0}</p>
                         </div>
-                        <div className="bg-[#e7e1d4] backdrop-blur-xl rounded-2xl p-6 border border-[#d8d1c1]">
-                            <h3 className="text-[#635c4e] text-sm font-medium">Active Authors</h3>
+                        <div className="bg-vellum backdrop-blur-xl rounded-2xl p-6 border border-linen">
+                            <h3 className="text-umber text-sm font-medium">Active Authors</h3>
                             <p className="text-3xl font-bold text-green-700 mt-2">
                                 {users.data?.filter(u => u.published_books_count > 0).length || 0}
                             </p>
                         </div>
-                        <div className="bg-[#e7e1d4] backdrop-blur-xl rounded-2xl p-6 border border-[#d8d1c1]">
-                            <h3 className="text-[#635c4e] text-sm font-medium">Total Books</h3>
+                        <div className="bg-vellum backdrop-blur-xl rounded-2xl p-6 border border-linen">
+                            <h3 className="text-umber text-sm font-medium">Total Books</h3>
                             <p className="text-3xl font-bold text-purple-700 mt-2">
                                 {users.data?.reduce((acc, u) => acc + u.books_count, 0) || 0}
                             </p>
@@ -45,37 +45,37 @@ export default function Index({ auth, users }) {
                     </div>
 
                     {/* Users Table */}
-                    <div className="bg-[#e7e1d4] backdrop-blur-xl rounded-2xl border border-[#d8d1c1] overflow-hidden">
-                        <div className="p-6 border-b border-[#d8d1c1]">
-                            <h2 className="text-xl font-bold text-[#17150f]">All Authors</h2>
+                    <div className="bg-vellum backdrop-blur-xl rounded-2xl border border-linen overflow-hidden">
+                        <div className="p-6 border-b border-linen">
+                            <h2 className="text-xl font-bold text-ink">All Authors</h2>
                         </div>
 
                         <div className="overflow-x-auto">
                             <table className="w-full">
-                                <thead className="bg-[#faf8f3]">
+                                <thead className="bg-paper">
                                     <tr>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-[#635c4e] uppercase tracking-wider">Author</th>
-                                        <th className="px-6 py-4 text-left text-xs font-semibold text-[#635c4e] uppercase tracking-wider">Email</th>
-                                        <th className="px-6 py-4 text-center text-xs font-semibold text-[#635c4e] uppercase tracking-wider">Total Books</th>
-                                        <th className="px-6 py-4 text-center text-xs font-semibold text-[#635c4e] uppercase tracking-wider">Published</th>
-                                        <th className="px-6 py-4 text-center text-xs font-semibold text-[#635c4e] uppercase tracking-wider">Joined</th>
-                                        <th className="px-6 py-4 text-center text-xs font-semibold text-[#635c4e] uppercase tracking-wider">Actions</th>
+                                        <th className="px-6 py-4 text-left text-xs font-semibold text-umber uppercase tracking-wider">Author</th>
+                                        <th className="px-6 py-4 text-left text-xs font-semibold text-umber uppercase tracking-wider">Email</th>
+                                        <th className="px-6 py-4 text-center text-xs font-semibold text-umber uppercase tracking-wider">Total Books</th>
+                                        <th className="px-6 py-4 text-center text-xs font-semibold text-umber uppercase tracking-wider">Published</th>
+                                        <th className="px-6 py-4 text-center text-xs font-semibold text-umber uppercase tracking-wider">Joined</th>
+                                        <th className="px-6 py-4 text-center text-xs font-semibold text-umber uppercase tracking-wider">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-[#d8d1c1]">
+                                <tbody className="divide-y divide-linen">
                                     {users.data?.map((user) => (
-                                        <tr key={user.id} className="hover:bg-[#faf8f3] transition-colors">
+                                        <tr key={user.id} className="hover:bg-paper transition-colors">
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center">
                                                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold">
                                                         {user.name?.charAt(0).toUpperCase()}
                                                     </div>
                                                     <div className="ml-4">
-                                                        <p className="text-[#17150f] font-medium">{user.name}</p>
+                                                        <p className="text-ink font-medium">{user.name}</p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 text-[#4b443a]">{user.email}</td>
+                                            <td className="px-6 py-4 text-ink-soft">{user.email}</td>
                                             <td className="px-6 py-4 text-center">
                                                 <span className="px-3 py-1 bg-blue-500/20 text-blue-700 rounded-full text-sm font-medium">
                                                     {user.books_count}
@@ -86,7 +86,7 @@ export default function Index({ auth, users }) {
                                                     {user.published_books_count}
                                                 </span>
                                             </td>
-                                            <td className="px-6 py-4 text-center text-[#635c4e] text-sm">
+                                            <td className="px-6 py-4 text-center text-umber text-sm">
                                                 {new Date(user.created_at).toLocaleDateString()}
                                             </td>
                                             <td className="px-6 py-4 text-center">
@@ -109,16 +109,16 @@ export default function Index({ auth, users }) {
 
                         {/* Pagination */}
                         {users.links && (
-                            <div className="p-6 border-t border-[#d8d1c1] flex justify-center gap-2">
+                            <div className="p-6 border-t border-linen flex justify-center gap-2">
                                 {users.links.map((link, index) => (
                                     <Link
                                         key={index}
                                         href={link.url || '#'}
                                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${link.active
-                                            ? 'bg-purple-600 text-[#17150f]'
+                                            ? 'bg-purple-600 text-ink'
                                             : link.url
-                                                ? 'bg-[#e7e1d4] text-[#4b443a] hover:bg-[#e7e1d4]'
-                                                : 'bg-[#faf8f3] text-[#635c4e] cursor-not-allowed'
+                                                ? 'bg-vellum text-ink-soft hover:bg-vellum'
+                                                : 'bg-paper text-umber cursor-not-allowed'
                                             }`}
                                         dangerouslySetInnerHTML={{ __html: link.label }}
                                     />
@@ -129,13 +129,13 @@ export default function Index({ auth, users }) {
                         {/* Empty State */}
                         {(!users.data || users.data.length === 0) && (
                             <div className="p-12 text-center">
-                                <div className="w-16 h-16 mx-auto mb-4 bg-[#e7e1d4] rounded-full flex items-center justify-center">
-                                    <svg className="w-8 h-8 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="w-16 h-16 mx-auto mb-4 bg-vellum rounded-full flex items-center justify-center">
+                                    <svg className="w-8 h-8 text-umber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                                     </svg>
                                 </div>
-                                <h3 className="text-[#17150f] font-medium">No authors yet</h3>
-                                <p className="text-[#635c4e] text-sm mt-1">Authors will appear here when they register</p>
+                                <h3 className="text-ink font-medium">No authors yet</h3>
+                                <p className="text-umber text-sm mt-1">Authors will appear here when they register</p>
                             </div>
                         )}
                     </div>

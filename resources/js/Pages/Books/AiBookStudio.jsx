@@ -389,11 +389,11 @@ export default function AiBookStudio({ book, auth }) {
     };
 
     return (
-        <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${step === 0 ? 'bg-[#faf8f3]' : step >= 1 && step <= 5 ? 'bg-[#faf8f3]' : 'bg-gray-50'}`}>
+        <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${step === 0 ? 'bg-paper' : step >= 1 && step <= 5 ? 'bg-paper' : 'bg-gray-50'}`}>
             <Head title={`AI Studio - ${book.title}`} />
 
             {/* Header */}
-            <header className={`h-16 flex items-center justify-between px-6 shadow-sm z-50 transition-colors duration-500 ${step >= 0 && step <= 5 ? 'bg-[#0d1220]/90 backdrop-blur-md border-b border-[#d8d1c1]' : 'bg-white border-b'}`}>
+            <header className={`h-16 flex items-center justify-between px-6 shadow-sm z-50 transition-colors duration-500 ${step >= 0 && step <= 5 ? 'bg-paper/90 backdrop-blur-md border-b border-linen' : 'bg-white border-b'}`}>
                 <div className="flex items-center gap-4">
                     <button
                         onClick={() => {
@@ -405,11 +405,11 @@ export default function AiBookStudio({ book, auth }) {
                                 router.visit(route('books.design', book.id));
                             }
                         }}
-                        className="text-[#635c4e] hover:text-[#17150f] transition-colors"
+                        className="text-umber hover:text-ink transition-colors"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     </button>
-                    <h1 className="font-bold text-lg flex items-center gap-2 text-[#17150f]">
+                    <h1 className="font-bold text-lg flex items-center gap-2 text-ink">
                         <span className="text-2xl">✨</span>
                         {book.title}
                         <span className="text-xs px-2 py-0.5 rounded-full uppercase tracking-wider font-bold bg-indigo-500/20 text-indigo-700 border border-indigo-500/30">AI Studio</span>
@@ -426,9 +426,9 @@ export default function AiBookStudio({ book, auth }) {
                                 if (s <= step + 1) setStep(s);
                             }}
                             disabled={s > step + 1}
-                            className={`flex items-center gap-2 ${step >= s ? 'text-indigo-700 font-bold' : 'text-[#635c4e]'}`}
+                            className={`flex items-center gap-2 ${step >= s ? 'text-indigo-700 font-bold' : 'text-umber'}`}
                         >
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${step >= s ? 'border-indigo-500 bg-indigo-500/20 text-indigo-700' : 'border-gray-600 text-[#635c4e]'} ${s === step + 1 ? 'cursor-pointer hover:border-indigo-400' : ''}`}>
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${step >= s ? 'border-indigo-500 bg-indigo-500/20 text-indigo-700' : 'border-gray-600 text-umber'} ${s === step + 1 ? 'cursor-pointer hover:border-indigo-400' : ''}`}>
                                 {s}
                             </div>
                             <span className="hidden md:inline">
@@ -473,12 +473,12 @@ export default function AiBookStudio({ book, auth }) {
 
                         <div className="text-center mb-16 relative z-10 space-y-6">
                             {/* Premium Badge */}
-                            <div className="inline-flex items-center gap-3 py-2 px-4 rounded-full bg-[#faf8f3] border border-[#d8d1c1] backdrop-blur-sm shadow-xl animate-fade-in-up">
-                                <span className="text-[10px] md:text-xs font-bold text-[#635c4e] tracking-wider">
+                            <div className="inline-flex items-center gap-3 py-2 px-4 rounded-full bg-paper border border-linen backdrop-blur-sm shadow-xl animate-fade-in-up">
+                                <span className="text-[10px] md:text-xs font-bold text-umber tracking-wider">
                                     IN INDIA'S FIRST
                                 </span>
-                                <div className="w-px h-3 bg-[#e7e1d4]"></div>
-                                <span className="text-[10px] md:text-xs font-medium text-[#4b443a] tracking-wide flex items-center gap-2">
+                                <div className="w-px h-3 bg-vellum"></div>
+                                <span className="text-[10px] md:text-xs font-medium text-ink-soft tracking-wide flex items-center gap-2">
                                     AI-Powered Book Writing & Publishing Platform
                                     <span className="relative flex h-2 w-2">
                                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -489,13 +489,13 @@ export default function AiBookStudio({ book, auth }) {
 
                             {/* Main Headline */}
                             <div className="space-y-2">
-                                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-[#17150f] tracking-tight leading-tight">
+                                <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-ink tracking-tight leading-tight">
                                     Turn Ideas into Books
                                 </h2>
                                 <div className="relative inline-block">
                                     <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                                        <span className="text-[#635c4e] mr-2">—</span>
-                                        <span className="drop-shadow-[0_0_15px_rgba(192,38,211,0.3)] text-[#6e2530]">
+                                        <span className="text-umber mr-2">—</span>
+                                        <span className="drop-shadow-[0_0_15px_rgba(192,38,211,0.3)] text-oxblood">
                                             Automatically
                                         </span>
                                     </h2>
@@ -510,14 +510,14 @@ export default function AiBookStudio({ book, auth }) {
                             {/* Pro Plan - Clickable */}
                             <Link
                                 href={route('ai-studio.pro-pricing', book.id)}
-                                className="group relative bg-[#faf8f3] rounded-2xl p-0.5 border border-[#d8d1c1] hover:border-cyan-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-900/20 cursor-pointer block"
+                                className="group relative bg-paper rounded-2xl p-0.5 border border-linen hover:border-cyan-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-900/20 cursor-pointer block"
                             >
                                 <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                                <div className="h-full bg-[#faf8f3] rounded-[14px] p-5 md:p-6 flex flex-col relative overflow-hidden">
+                                <div className="h-full bg-paper rounded-[14px] p-5 md:p-6 flex flex-col relative overflow-hidden">
                                     <div className="mb-5">
-                                        <h3 className="text-xl font-bold text-[#17150f] mb-2">Pro</h3>
-                                        <p className="text-sm text-[#635c4e]">Perfect for getting started with AI Studio</p>
+                                        <h3 className="text-xl font-bold text-ink mb-2">Pro</h3>
+                                        <p className="text-sm text-umber">Perfect for getting started with AI Studio</p>
                                     </div>
 
                                     <div className="flex-1 space-y-4 mb-6">
@@ -526,8 +526,8 @@ export default function AiBookStudio({ book, auth }) {
                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                             </div>
                                             <div>
-                                                <span className="font-semibold text-[#17150f] block text-sm">AI Studio</span>
-                                                <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Generate chapters, outlines, and content effortlessly.</p>
+                                                <span className="font-semibold text-ink block text-sm">AI Studio</span>
+                                                <p className="text-xs text-ink-soft mt-0.5 leading-relaxed">Generate chapters, outlines, and content effortlessly.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-3 group/item">
@@ -535,8 +535,8 @@ export default function AiBookStudio({ book, auth }) {
                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                             </div>
                                             <div>
-                                                <span className="font-semibold text-[#17150f] block text-sm">Auto Formatting</span>
-                                                <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Professional book layout and structure.</p>
+                                                <span className="font-semibold text-ink block text-sm">Auto Formatting</span>
+                                                <p className="text-xs text-ink-soft mt-0.5 leading-relaxed">Professional book layout and structure.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-3 group/item">
@@ -544,14 +544,14 @@ export default function AiBookStudio({ book, auth }) {
                                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                             </div>
                                             <div>
-                                                <span className="font-semibold text-[#17150f] block text-sm">Amazon-Ready Export</span>
-                                                <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Export in KDP-ready formats.</p>
+                                                <span className="font-semibold text-ink block text-sm">Amazon-Ready Export</span>
+                                                <p className="text-xs text-ink-soft mt-0.5 leading-relaxed">Export in KDP-ready formats.</p>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className="mt-auto">
-                                        <div className="w-full py-2.5 bg-[#faf8f3] text-[#4b443a] font-semibold rounded-lg text-center border border-[#d8d1c1] text-xs uppercase tracking-wider group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 group-hover:text-cyan-700 transition-all">
+                                        <div className="w-full py-2.5 bg-paper text-ink-soft font-semibold rounded-lg text-center border border-linen text-xs uppercase tracking-wider group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 group-hover:text-cyan-700 transition-all">
                                             View Pro Plans →
                                         </div>
                                     </div>
@@ -564,17 +564,17 @@ export default function AiBookStudio({ book, auth }) {
                                 className="relative group transform md:-translate-y-4 block cursor-pointer transition-all hover:scale-105"
                             >
                                 <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-[18px] blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
-                                <div className="relative bg-[#faf8f3] rounded-2xl h-full flex flex-col overflow-hidden">
+                                <div className="relative bg-paper rounded-2xl h-full flex flex-col overflow-hidden">
                                     <div className="absolute top-0 right-0">
                                         <div className="bg-gradient-to-r from-indigo-500 to-cyan-500 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-xl uppercase tracking-widest shadow-lg">
                                             Premium
                                         </div>
                                     </div>
 
-                                    <div className="p-5 md:p-6 flex flex-col h-full bg-[#faf8f3] rounded-2xl">
+                                    <div className="p-5 md:p-6 flex flex-col h-full bg-paper rounded-2xl">
                                         <div className="mb-5">
-                                            <h3 className="text-xl font-bold text-[#635c4e] mb-2">Premium</h3>
-                                            <p className="text-sm text-[#635c4e]">Complete suite for professional authors</p>
+                                            <h3 className="text-xl font-bold text-umber mb-2">Premium</h3>
+                                            <p className="text-sm text-umber">Complete suite for professional authors</p>
                                         </div>
 
                                         <div className="flex-1 space-y-4 mb-6">
@@ -583,8 +583,8 @@ export default function AiBookStudio({ book, auth }) {
                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                                 </div>
                                                 <div>
-                                                    <span className="font-semibold text-[#17150f] block text-sm">Advanced AI Writing Engine</span>
-                                                    <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Superior models for bestseller-quality prose.</p>
+                                                    <span className="font-semibold text-ink block text-sm">Advanced AI Writing Engine</span>
+                                                    <p className="text-xs text-ink-soft mt-0.5 leading-relaxed">Superior models for bestseller-quality prose.</p>
                                                 </div>
                                             </div>
 
@@ -593,8 +593,8 @@ export default function AiBookStudio({ book, auth }) {
                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                                 </div>
                                                 <div>
-                                                    <span className="font-semibold text-[#17150f] block text-sm">AI Art Studio</span>
-                                                    <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Stunning visuals for covers and headers.</p>
+                                                    <span className="font-semibold text-ink block text-sm">AI Art Studio</span>
+                                                    <p className="text-xs text-ink-soft mt-0.5 leading-relaxed">Stunning visuals for covers and headers.</p>
                                                 </div>
                                             </div>
 
@@ -603,8 +603,8 @@ export default function AiBookStudio({ book, auth }) {
                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                                 </div>
                                                 <div>
-                                                    <span className="font-semibold text-[#17150f] block text-sm">Priority Support</span>
-                                                    <p className="text-xs text-[#4b443a] mt-0.5 leading-relaxed">Get help when you need it most.</p>
+                                                    <span className="font-semibold text-ink block text-sm">Priority Support</span>
+                                                    <p className="text-xs text-ink-soft mt-0.5 leading-relaxed">Get help when you need it most.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -634,32 +634,32 @@ export default function AiBookStudio({ book, auth }) {
                                     <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-700 text-[10px] font-bold uppercase tracking-wider mb-3">
                                         Step 1 of 5
                                     </span>
-                                    <h2 className="text-2xl font-bold text-[#17150f] mb-2">Book Specifications</h2>
-                                    <p className="text-sm text-[#4b443a]">Define your book's core details and structure</p>
+                                    <h2 className="text-2xl font-bold text-ink mb-2">Book Specifications</h2>
+                                    <p className="text-sm text-ink-soft">Define your book's core details and structure</p>
                                 </div>
 
                                 {/* Main Form Card */}
-                                <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-5 md:p-6 shadow-xl">
+                                <div className="bg-paper rounded-2xl border border-linen p-5 md:p-6 shadow-xl">
                                     <div className="space-y-5">
                                         {/* Row 1: Title & Author */}
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-1.5">
-                                                <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Book Title</label>
+                                                <label className="block text-xs font-semibold text-ink-soft uppercase tracking-wider">Book Title</label>
                                                 <input
                                                     type="text"
                                                     value={initData.title}
                                                     onChange={e => setInitData({ ...initData, title: e.target.value })}
-                                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition"
+                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition"
                                                     placeholder="Enter book title"
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Author Name</label>
+                                                <label className="block text-xs font-semibold text-ink-soft uppercase tracking-wider">Author Name</label>
                                                 <input
                                                     type="text"
                                                     value={initData.author_name}
                                                     onChange={e => setInitData({ ...initData, author_name: e.target.value })}
-                                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition"
+                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition"
                                                     placeholder="Enter author name"
                                                 />
                                             </div>
@@ -669,7 +669,7 @@ export default function AiBookStudio({ book, auth }) {
                                         {/* Row 2: Type & Sub-Genre */}
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-1.5">
-                                                <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Book Category</label>
+                                                <label className="block text-xs font-semibold text-ink-soft uppercase tracking-wider">Book Category</label>
                                                 <select
                                                     value={(initData.genre || 'Non-Fiction').split(':')[0].trim().includes('Non-Fiction') ? 'Non-Fiction' : 'Fiction'}
                                                     onChange={e => {
@@ -677,7 +677,7 @@ export default function AiBookStudio({ book, auth }) {
                                                         const defaultSub = newPrimary === 'Non-Fiction' ? NON_FICTION_TYPES[0] : FICTION_TYPES[0];
                                                         setInitData({ ...initData, genre: `${newPrimary}: ${defaultSub}` });
                                                     }}
-                                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition appearance-none cursor-pointer"
+                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition appearance-none cursor-pointer"
                                                 >
                                                     <option value="Non-Fiction">Non-Fiction (Fact-based)</option>
                                                     <option value="Fiction">Fiction (Creative)</option>
@@ -685,14 +685,14 @@ export default function AiBookStudio({ book, auth }) {
                                             </div>
 
                                             <div className="space-y-1.5">
-                                                <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Genre / Style</label>
+                                                <label className="block text-xs font-semibold text-ink-soft uppercase tracking-wider">Genre / Style</label>
                                                 <select
                                                     value={(initData.genre || '').split(':')[1]?.trim() || ''}
                                                     onChange={e => {
                                                         const primary = (initData.genre || 'Non-Fiction').split(':')[0].trim();
                                                         setInitData({ ...initData, genre: `${primary}: ${e.target.value}` });
                                                     }}
-                                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition appearance-none cursor-pointer"
+                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition appearance-none cursor-pointer"
                                                 >
                                                     {((initData.genre || 'Non-Fiction').split(':')[0].trim().includes('Non-Fiction') ? NON_FICTION_TYPES : FICTION_TYPES).map(type => (
                                                         <option key={type} value={type}>{type}</option>
@@ -703,27 +703,27 @@ export default function AiBookStudio({ book, auth }) {
 
                                         {/* Detailed Concept */}
                                         <div className="space-y-1.5">
-                                            <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">
+                                            <label className="block text-xs font-semibold text-ink-soft uppercase tracking-wider">
                                                 Book Concept / Premise <span className="text-cyan-700">*</span>
                                             </label>
                                             <textarea
                                                 value={initData.topic}
                                                 onChange={e => setInitData({ ...initData, topic: e.target.value })}
-                                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition h-20 resize-none"
+                                                className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition h-20 resize-none"
                                                 placeholder={initData.genre === 'Fiction' ? "Describe the plot, characters, and setting..." : "Describe the topic, key lessons, and goals of the book..."}
                                             />
                                         </div>
 
                                         {/* Metrics Section */}
-                                        <div className="bg-[#faf8f3] rounded-xl border border-[#d8d1c1] p-4">
-                                            <h4 className="text-[10px] font-bold text-[#4b443a] uppercase tracking-widest mb-4 flex items-center gap-1.5">
+                                        <div className="bg-paper rounded-xl border border-linen p-4">
+                                            <h4 className="text-[10px] font-bold text-ink-soft uppercase tracking-widest mb-4 flex items-center gap-1.5">
                                                 <svg className="w-3 h-3 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                                                 Structure Settings
                                             </h4>
                                             {/* Logic: Mirror Guest AI Studio Limits */}
                                             <div className="grid grid-cols-3 gap-4">
                                                 <div className="space-y-1.5">
-                                                    <label className="block text-[10px] font-bold text-[#635c4e]">Chapters (Max 10)</label>
+                                                    <label className="block text-[10px] font-bold text-umber">Chapters (Max 10)</label>
                                                     <input
                                                         type="number"
                                                         value={initData.chapter_count}
@@ -739,12 +739,12 @@ export default function AiBookStudio({ book, auth }) {
                                                             if (val > 10) val = 10;
                                                             setInitData({ ...initData, chapter_count: val });
                                                         }}
-                                                        className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-2 py-2 text-[#17150f] text-center text-base font-bold focus:outline-none focus:border-indigo-400 transition"
+                                                        className="w-full bg-paper border border-linen rounded-lg px-2 py-2 text-ink text-center text-base font-bold focus:outline-none focus:border-indigo-400 transition"
                                                         min="1" max="10"
                                                     />
                                                 </div>
                                                 <div className="space-y-1.5">
-                                                    <label className="block text-[10px] font-bold text-[#635c4e]">Sub-chapters (Max 15)</label>
+                                                    <label className="block text-[10px] font-bold text-umber">Sub-chapters (Max 15)</label>
                                                     <input
                                                         type="number"
                                                         value={initData.sub_chapter_count}
@@ -758,13 +758,13 @@ export default function AiBookStudio({ book, auth }) {
                                                             if (val > 15) val = 15;
                                                             setInitData({ ...initData, sub_chapter_count: val });
                                                         }}
-                                                        className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-2 py-2 text-[#17150f] text-center text-base font-bold focus:outline-none focus:border-indigo-400 transition"
+                                                        className="w-full bg-paper border border-linen rounded-lg px-2 py-2 text-ink text-center text-base font-bold focus:outline-none focus:border-indigo-400 transition"
                                                         min="1" max="15"
                                                     />
                                                 </div>
                                                 <div className="space-y-1.5">
-                                                    <label className="block text-[10px] font-bold text-[#635c4e]">Total Pages (Approx)</label>
-                                                    <div className={`w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-2 py-2 text-center flex flex-col justify-center h-[50px] ${(() => {
+                                                    <label className="block text-[10px] font-bold text-umber">Total Pages (Approx)</label>
+                                                    <div className={`w-full bg-paper border border-linen rounded-lg px-2 py-2 text-center flex flex-col justify-center h-[50px] ${(() => {
                                                         const rangeParts = (initData.page_range || '80-100').split('-');
                                                         const maxPages = parseInt(rangeParts[1] || rangeParts[0] || 100);
                                                         const totalSub = (initData.chapter_count || 0) * (initData.sub_chapter_count || 0);
@@ -777,7 +777,7 @@ export default function AiBookStudio({ book, auth }) {
                                                             const maxPages = parseInt(rangeParts[1] || rangeParts[0] || 100);
                                                             const totalSub = (initData.chapter_count || 0) * (initData.sub_chapter_count || 0);
 
-                                                            if (totalSub === 0) return <span className="text-sm font-bold text-[#635c4e]">0 Pages</span>;
+                                                            if (totalSub === 0) return <span className="text-sm font-bold text-umber">0 Pages</span>;
 
                                                             const pagesPerSub = Math.floor(maxPages / totalSub);
                                                             const totalUsed = pagesPerSub * totalSub; // Approximate usage matches allocation
@@ -787,7 +787,7 @@ export default function AiBookStudio({ book, auth }) {
                                                                     <span className="text-sm font-bold">
                                                                         {maxPages} Pages Used / {maxPages} Max
                                                                     </span>
-                                                                    <span className="block text-[10px] text-[#635c4e] font-normal mt-0.5">
+                                                                    <span className="block text-[10px] text-umber font-normal mt-0.5">
                                                                         {pagesPerSub} Pages per Section
                                                                     </span>
                                                                 </div>
@@ -845,8 +845,8 @@ export default function AiBookStudio({ book, auth }) {
                                     <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-700 text-[10px] font-bold uppercase tracking-wider mb-3">
                                         Step 2 of 5
                                     </span>
-                                    <h2 className="text-2xl font-bold text-[#17150f] mb-2">Chapter Outline</h2>
-                                    <p className="text-sm text-[#4b443a]">
+                                    <h2 className="text-2xl font-bold text-ink mb-2">Chapter Outline</h2>
+                                    <p className="text-sm text-ink-soft">
                                         {chapters.length > 0
                                             ? `${chapters.length} Chapters Generated`
                                             : 'Generate your book structure'}
@@ -855,12 +855,12 @@ export default function AiBookStudio({ book, auth }) {
 
                                 {/* Choice: AI or Manual (Only if no chapters exist) */}
                                 {chapters.length === 0 ? (
-                                    <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-6 md:p-8 shadow-xl text-center">
+                                    <div className="bg-paper rounded-2xl border border-linen p-6 md:p-8 shadow-xl text-center">
                                         <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 text-white rounded-xl flex items-center justify-center mx-auto mb-5 text-2xl border border-indigo-500/30">
                                             📚
                                         </div>
-                                        <h3 className="text-lg font-bold text-[#17150f] mb-2">No Chapters Yet</h3>
-                                        <p className="text-sm text-[#4b443a] mb-6 max-w-sm mx-auto">Generate an outline with AI or manually create your own structure.</p>
+                                        <h3 className="text-lg font-bold text-ink mb-2">No Chapters Yet</h3>
+                                        <p className="text-sm text-ink-soft mb-6 max-w-sm mx-auto">Generate an outline with AI or manually create your own structure.</p>
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xl mx-auto text-left">
                                             {/* Option A: AI */}
@@ -871,29 +871,29 @@ export default function AiBookStudio({ book, auth }) {
                                                 <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-700 flex items-center justify-center mb-3 border border-indigo-500/30 group-hover:scale-110 transition-transform">
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                                                 </div>
-                                                <h4 className="font-semibold text-[#17150f] text-sm mb-1">AI Studio Mode</h4>
-                                                <p className="text-xs text-[#4b443a] mb-4 flex-grow">Let AI Studio create chapters based on your topic.</p>
+                                                <h4 className="font-semibold text-ink text-sm mb-1">AI Studio Mode</h4>
+                                                <p className="text-xs text-ink-soft mb-4 flex-grow">Let AI Studio create chapters based on your topic.</p>
                                                 <button className="w-full py-2.5 bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-white rounded-lg font-bold text-xs shadow-lg transition-all">
                                                     {isLoading ? 'Generating...' : 'Generate with AI Studio'}
                                                 </button>
                                             </div>
 
                                             {/* Option B: Manual */}
-                                            <div className="bg-[#faf8f3] rounded-xl p-4 border border-[#d8d1c1] hover:border-[#d8d1c1] transition-all flex flex-col h-full">
-                                                <div className="w-8 h-8 rounded-lg bg-[#faf8f3] text-[#4b443a] flex items-center justify-center mb-3 border border-[#d8d1c1]">
+                                            <div className="bg-paper rounded-xl p-4 border border-linen hover:border-linen transition-all flex flex-col h-full">
+                                                <div className="w-8 h-8 rounded-lg bg-paper text-ink-soft flex items-center justify-center mb-3 border border-linen">
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                                 </div>
-                                                <h4 className="font-semibold text-[#17150f] text-sm mb-1">Manual Entry</h4>
-                                                <p className="text-[10px] text-[#4b443a] mb-2">Type your {initData.chapter_count} chapters line by line.</p>
+                                                <h4 className="font-semibold text-ink text-sm mb-1">Manual Entry</h4>
+                                                <p className="text-[10px] text-ink-soft mb-2">Type your {initData.chapter_count} chapters line by line.</p>
                                                 <textarea
                                                     id="manual-chapters-input"
-                                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2 text-[#17150f] placeholder-gray-500 text-xs mb-3 flex-grow focus:outline-none focus:border-indigo-400 transition resize-none"
+                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink placeholder-gray-500 text-xs mb-3 flex-grow focus:outline-none focus:border-indigo-400 transition resize-none"
                                                     placeholder={`Chapter 1: Introduction\nChapter 2: Getting Started\n...`}
                                                     style={{ minHeight: '80px' }}
                                                 ></textarea>
                                                 <button
                                                     onClick={() => generateOutline('manual')}
-                                                    className="w-full py-2.5 bg-[#e7e1d4] hover:bg-[#e7e1d4] text-[#17150f] rounded-lg font-bold text-xs border border-[#d8d1c1] transition-all"
+                                                    className="w-full py-2.5 bg-vellum hover:bg-vellum text-ink rounded-lg font-bold text-xs border border-linen transition-all"
                                                 >
                                                     Save Manual List
                                                 </button>
@@ -901,24 +901,24 @@ export default function AiBookStudio({ book, auth }) {
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-5 shadow-xl">
+                                    <div className="bg-paper rounded-2xl border border-linen p-5 shadow-xl">
                                         {/* Chapter List Display */}
                                         <div className="space-y-2 mb-5 max-h-[45vh] overflow-y-auto pr-2">
                                             {chapters.map((chapter, i) => (
-                                                <div key={chapter.id} className="bg-[#faf8f3] p-3 rounded-lg border border-[#d8d1c1] flex items-center gap-3 group hover:border-[#7c7364] transition-all">
+                                                <div key={chapter.id} className="bg-paper p-3 rounded-lg border border-linen flex items-center gap-3 group hover:border-taupe transition-all">
                                                     <span className="w-7 h-7 flex items-center justify-center bg-gradient-to-br from-indigo-500/30 to-transparent rounded-lg font-bold text-indigo-700 border border-indigo-500/30 text-xs">
                                                         {i + 1}
                                                     </span>
-                                                    <span className="flex-1 font-medium text-sm text-[#17150f]">{chapter.title}</span>
+                                                    <span className="flex-1 font-medium text-sm text-ink">{chapter.title}</span>
                                                     <span className="text-emerald-700 text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
                                                 </div>
                                             ))}
                                         </div>
 
-                                        <div className="flex justify-between items-center pt-4 border-t border-[#d8d1c1]">
+                                        <div className="flex justify-between items-center pt-4 border-t border-linen">
                                             <button
                                                 onClick={() => setStep(1)}
-                                                className="px-4 py-2 text-sm text-[#4b443a] hover:text-[#17150f] transition-colors flex items-center gap-2"
+                                                className="px-4 py-2 text-sm text-ink-soft hover:text-ink transition-colors flex items-center gap-2"
                                             >
                                                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                                                 Back
@@ -943,24 +943,24 @@ export default function AiBookStudio({ book, auth }) {
                     step === 3 && (
                         <div className="flex w-full h-full">
                             {/* Sidebar Chapters */}
-                            <div className="w-64 bg-[#faf8f3] border-r border-[#d8d1c1] overflow-y-auto flex flex-col">
-                                <div className="p-3 border-b border-[#d8d1c1]">
+                            <div className="w-64 bg-paper border-r border-linen overflow-y-auto flex flex-col">
+                                <div className="p-3 border-b border-linen">
                                     <span className="inline-block py-0.5 px-2 rounded-md bg-indigo-500/20 border border-indigo-400/30 text-indigo-700 text-[9px] font-bold uppercase tracking-wider mb-1">
                                         Step 3 of 5
                                     </span>
-                                    <h3 className="font-bold text-[#17150f] text-sm">Chapter Structure</h3>
-                                    <p className="text-[10px] text-[#4b443a]">Select a chapter to generate sub-sections</p>
+                                    <h3 className="font-bold text-ink text-sm">Chapter Structure</h3>
+                                    <p className="text-[10px] text-ink-soft">Select a chapter to generate sub-sections</p>
                                 </div>
                                 <div className="flex-1 overflow-y-auto">
                                     {chapters.map((chapter, i) => (
                                         <div
                                             key={chapter.id}
                                             onClick={() => setActiveChapterId(chapter.id)}
-                                            className={`p-3 border-b border-[#d8d1c1] cursor-pointer hover:bg-[#faf8f3] transition ${activeChapterId === chapter.id ? 'bg-indigo-500/15 border-l-4 border-l-indigo-400' : ''}`}
+                                            className={`p-3 border-b border-linen cursor-pointer hover:bg-paper transition ${activeChapterId === chapter.id ? 'bg-indigo-500/15 border-l-4 border-l-indigo-400' : ''}`}
                                         >
                                             <div className="flex justify-between items-start">
-                                                <div className="font-medium text-xs text-[#17150f]">
-                                                    <span className="text-[#635c4e] mr-1">{i + 1}.</span>
+                                                <div className="font-medium text-xs text-ink">
+                                                    <span className="text-umber mr-1">{i + 1}.</span>
                                                     {chapter.title}
                                                 </div>
                                                 {chapter.sections && chapter.sections.length > 0 ? (
@@ -978,33 +978,33 @@ export default function AiBookStudio({ book, auth }) {
                             </div>
 
                             {/* Main Area */}
-                            <div className="flex-1 bg-[#faf8f3] p-6 overflow-y-auto relative">
+                            <div className="flex-1 bg-paper p-6 overflow-y-auto relative">
                                 {/* Background Orb */}
                                 <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none"></div>
 
                                 {activeChapterId && (
                                     <div className="max-w-xl mx-auto relative z-10">
-                                        <h2 className="text-lg font-bold mb-1 text-[#17150f]">
-                                            Structure for: <span className=" text-[#6e2530]">{chapters.find(c => c.id === activeChapterId)?.title}</span>
+                                        <h2 className="text-lg font-bold mb-1 text-ink">
+                                            Structure for: <span className=" text-oxblood">{chapters.find(c => c.id === activeChapterId)?.title}</span>
                                         </h2>
-                                        <p className="text-[#4b443a] text-xs mb-5">Define the sub-sections that will make up this chapter.</p>
+                                        <p className="text-ink-soft text-xs mb-5">Define the sub-sections that will make up this chapter.</p>
 
                                         {chapters.find(c => c.id === activeChapterId)?.sections && chapters.find(c => c.id === activeChapterId)?.sections.length > 0 ? (
                                             <div className="space-y-2">
                                                 {chapters.find(c => c.id === activeChapterId).sections.map((section, idx) => (
-                                                    <div key={section.id} className="bg-[#faf8f3] p-3 rounded-lg border border-[#d8d1c1] flex items-center gap-3 group hover:border-[#7c7364] transition-all">
+                                                    <div key={section.id} className="bg-paper p-3 rounded-lg border border-linen flex items-center gap-3 group hover:border-taupe transition-all">
                                                         <span className="w-6 h-6 flex items-center justify-center bg-indigo-500/20 rounded-md text-indigo-700 text-xs font-bold border border-indigo-500/30">{idx + 1}</span>
-                                                        <span className="text-[#17150f] text-sm font-medium">{section.title}</span>
+                                                        <span className="text-ink text-sm font-medium">{section.title}</span>
                                                     </div>
                                                 ))}
                                             </div>
                                         ) : (
-                                            <div className="bg-[#faf8f3] rounded-xl border border-[#d8d1c1] p-6 text-center">
+                                            <div className="bg-paper rounded-xl border border-linen p-6 text-center">
                                                 <div className="w-12 h-12 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl border border-indigo-500/30">
                                                     📑
                                                 </div>
-                                                <h3 className="font-bold text-[#17150f] text-base mb-1">No sections yet</h3>
-                                                <p className="text-[#4b443a] mb-5 text-xs max-w-xs mx-auto">Generate sub-headings for this chapter to organize the content.</p>
+                                                <h3 className="font-bold text-ink text-base mb-1">No sections yet</h3>
+                                                <p className="text-ink-soft mb-5 text-xs max-w-xs mx-auto">Generate sub-headings for this chapter to organize the content.</p>
                                                 <div className="flex flex-col gap-3 max-w-sm mx-auto">
                                                     <button
                                                         onClick={() => generateSectionsForChapter(activeChapterId)}
@@ -1015,20 +1015,20 @@ export default function AiBookStudio({ book, auth }) {
                                                     </button>
 
                                                     <div className="relative flex py-2 items-center">
-                                                        <div className="flex-grow border-t border-[#d8d1c1]"></div>
-                                                        <span className="flex-shrink-0 mx-3 text-[#635c4e] text-[10px] uppercase tracking-wider">Or manually (max {initData.sub_chapter_count})</span>
-                                                        <div className="flex-grow border-t border-[#d8d1c1]"></div>
+                                                        <div className="flex-grow border-t border-linen"></div>
+                                                        <span className="flex-shrink-0 mx-3 text-umber text-[10px] uppercase tracking-wider">Or manually (max {initData.sub_chapter_count})</span>
+                                                        <div className="flex-grow border-t border-linen"></div>
                                                     </div>
 
                                                     <textarea
                                                         id={`manual-input-${activeChapterId}`}
-                                                        className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2 text-[#17150f] placeholder-gray-500 text-xs focus:outline-none focus:border-indigo-400 transition h-24 resize-none"
+                                                        className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink placeholder-gray-500 text-xs focus:outline-none focus:border-indigo-400 transition h-24 resize-none"
                                                         placeholder={`1. First sub-heading\n2. Second sub-heading\n...`}
                                                     ></textarea>
 
                                                     <button
                                                         onClick={() => saveManualStructure(activeChapterId)}
-                                                        className="w-full py-2 bg-[#e7e1d4] hover:bg-[#e7e1d4] text-[#17150f] rounded-lg font-bold text-xs border border-[#d8d1c1] transition-all"
+                                                        className="w-full py-2 bg-vellum hover:bg-vellum text-ink rounded-lg font-bold text-xs border border-linen transition-all"
                                                     >
                                                         Save Manual Structure
                                                     </button>
@@ -1065,17 +1065,17 @@ export default function AiBookStudio({ book, auth }) {
                     step === 4 && (
                         <div className="flex w-full h-full">
                             {/* Sidebar Navigation */}
-                            <div className="w-60 bg-[#faf8f3] border-r border-[#d8d1c1] flex flex-col">
-                                <div className="p-3 border-b border-[#d8d1c1]">
+                            <div className="w-60 bg-paper border-r border-linen flex flex-col">
+                                <div className="p-3 border-b border-linen">
                                     <span className="inline-block py-0.5 px-2 rounded-md bg-indigo-500/20 border border-indigo-400/30 text-indigo-700 text-[9px] font-bold uppercase tracking-wider mb-1">
                                         Step 4 of 5
                                     </span>
-                                    <h3 className="font-bold text-[#17150f] text-sm">Write Content</h3>
+                                    <h3 className="font-bold text-ink text-sm">Write Content</h3>
                                 </div>
                                 <div className="flex-1 overflow-y-auto custom-scrollbar">
                                     {chapters.map((chapter) => (
                                         <div key={chapter.id}>
-                                            <div className="px-3 py-2 bg-[#faf8f3] text-[10px] font-bold text-[#4b443a] uppercase tracking-wider sticky top-0 border-b border-[#d8d1c1]">
+                                            <div className="px-3 py-2 bg-paper text-[10px] font-bold text-ink-soft uppercase tracking-wider sticky top-0 border-b border-linen">
                                                 {chapter.title}
                                             </div>
                                             {chapter.sections?.map(section => (
@@ -1085,7 +1085,7 @@ export default function AiBookStudio({ book, auth }) {
                                                         setActiveSection(section);
                                                         setActiveChapterId(chapter.id);
                                                     }}
-                                                    className={`w-full text-left px-4 py-2 text-xs border-b border-[#d8d1c1] hover:bg-[#faf8f3] transition ${activeSection?.id === section.id ? 'bg-indigo-500/15 text-[#17150f] border-l-4 border-l-indigo-400' : 'text-[#4b443a]'}`}
+                                                    className={`w-full text-left px-4 py-2 text-xs border-b border-linen hover:bg-paper transition ${activeSection?.id === section.id ? 'bg-indigo-500/15 text-ink border-l-4 border-l-indigo-400' : 'text-ink-soft'}`}
                                                 >
                                                     <div className="flex justify-between items-center">
                                                         <span className="truncate pr-2">{section.title}</span>
@@ -1103,7 +1103,7 @@ export default function AiBookStudio({ book, auth }) {
                                                         setActiveChapterId(chapter.id);
                                                         setStep(3);
                                                     }}
-                                                    className="w-full text-left px-4 py-3 text-[10px] text-amber-800 bg-amber-500/5 hover:bg-amber-500/10 border-b border-[#d8d1c1] transition flex items-center gap-2"
+                                                    className="w-full text-left px-4 py-3 text-[10px] text-amber-800 bg-amber-500/5 hover:bg-amber-500/10 border-b border-linen transition flex items-center gap-2"
                                                 >
                                                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                                                     <span>Missing Structure. Click to Setup.</span>
@@ -1115,11 +1115,11 @@ export default function AiBookStudio({ book, auth }) {
                             </div>
 
                             {/* Editor Area */}
-                            <div className="flex-1 bg-[#faf8f3] flex flex-col">
+                            <div className="flex-1 bg-paper flex flex-col">
                                 {activeSection ? (
                                     <div className="flex-1 flex flex-col h-full">
-                                        <div className="h-12 border-b border-[#d8d1c1] flex items-center justify-between px-5 bg-[#faf8f3]">
-                                            <h2 className="font-bold text-[#17150f] text-sm">{activeSection.title}</h2>
+                                        <div className="h-12 border-b border-linen flex items-center justify-between px-5 bg-paper">
+                                            <h2 className="font-bold text-ink text-sm">{activeSection.title}</h2>
                                             <div className="flex gap-3 items-center">
                                                 {/* Write Button */}
                                                 {!activeSection.content ? (
@@ -1141,11 +1141,11 @@ export default function AiBookStudio({ book, auth }) {
 
                                         {/* Secondary AI Toolbar - Only show image generation for Premium plans */}
                                         {book.ai_plan_type === 'premium' ? (
-                                            <div className="h-10 border-b border-[#d8d1c1] flex items-center px-5 bg-[#faf8f3]">
+                                            <div className="h-10 border-b border-linen flex items-center px-5 bg-paper">
                                                 <button
                                                     onClick={handleGenerateImageClick}
                                                     disabled={isGeneratingImage}
-                                                    className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors ${isGeneratingImage ? 'text-[#635c4e] cursor-not-allowed' : 'text-indigo-700 hover:text-indigo-700'}`}
+                                                    className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors ${isGeneratingImage ? 'text-umber cursor-not-allowed' : 'text-indigo-700 hover:text-indigo-700'}`}
                                                 >
                                                     {isGeneratingImage ? (
                                                         <>
@@ -1163,8 +1163,8 @@ export default function AiBookStudio({ book, auth }) {
                                                 {/* Credit Display */}
                                                 {imageCredits.limit > 0 && (
                                                     <>
-                                                        <div className="mx-3 h-4 w-px bg-[#e7e1d4]"></div>
-                                                        <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-[#635c4e]">
+                                                        <div className="mx-3 h-4 w-px bg-vellum"></div>
+                                                        <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-umber">
                                                             <span>Credits:</span>
                                                             <span className={imageCredits.used >= imageCredits.limit ? 'text-red-700' : 'text-emerald-700'}>
                                                                 {imageCredits.used} / {imageCredits.limit}
@@ -1174,8 +1174,8 @@ export default function AiBookStudio({ book, auth }) {
                                                 )}
                                             </div>
                                         ) : (
-                                            <div className="h-10 border-b border-[#d8d1c1] flex items-center px-5 bg-[#faf8f3]">
-                                                <span className="text-[10px] font-bold uppercase tracking-wider text-[#635c4e] flex items-center gap-1.5">
+                                            <div className="h-10 border-b border-linen flex items-center px-5 bg-paper">
+                                                <span className="text-[10px] font-bold uppercase tracking-wider text-umber flex items-center gap-1.5">
                                                     🔒 Image Generation (Premium Only)
                                                 </span>
                                             </div>
@@ -1186,15 +1186,15 @@ export default function AiBookStudio({ book, auth }) {
                                             {/* Background effect */}
                                             <div className="absolute top-0 left-1/2 w-[400px] h-[250px] bg-indigo-600/5 rounded-full blur-[80px] pointer-events-none -translate-x-1/2"></div>
 
-                                            <div className="max-w-2xl mx-auto bg-[#faf8f3] min-h-[600px] shadow-xl border border-[#d8d1c1] rounded-xl p-8 relative z-10">
+                                            <div className="max-w-2xl mx-auto bg-paper min-h-[600px] shadow-xl border border-linen rounded-xl p-8 relative z-10">
                                                 {activeSection.image_url && (
-                                                    <div className="mb-6 p-2 border border-[#d8d1c1] rounded-lg bg-[#faf8f3] text-center">
+                                                    <div className="mb-6 p-2 border border-linen rounded-lg bg-paper text-center">
                                                         <img src={activeSection.image_url} alt="Section Illustration" className="max-w-full h-auto mx-auto rounded-lg shadow-lg" />
                                                     </div>
                                                 )}
                                                 {activeSection.content ? (
                                                     <div
-                                                        className="prose prose-invert max-w-none font-serif text-base leading-relaxed text-[#4b443a]"
+                                                        className="prose prose-invert max-w-none font-serif text-base leading-relaxed text-ink-soft"
                                                         dangerouslySetInnerHTML={{ __html: activeSection.content }}
                                                     />
                                                 ) : (
@@ -1202,7 +1202,7 @@ export default function AiBookStudio({ book, auth }) {
                                                         <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 rounded-xl flex items-center justify-center text-2xl mb-4 border border-indigo-500/30">
                                                             ✍️
                                                         </div>
-                                                        <p className="text-[#4b443a] text-sm font-medium max-w-xs">Click "Write This Section" to generate content.</p>
+                                                        <p className="text-ink-soft text-sm font-medium max-w-xs">Click "Write This Section" to generate content.</p>
                                                     </div>
                                                 )}
                                             </div>
@@ -1211,10 +1211,10 @@ export default function AiBookStudio({ book, auth }) {
                                 ) : (
                                     <div className="flex-1 flex items-center justify-center">
                                         <div className="text-center">
-                                            <div className="w-16 h-16 bg-[#faf8f3] rounded-xl flex items-center justify-center mx-auto mb-4 border border-[#d8d1c1]">
-                                                <svg className="w-7 h-7 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                                            <div className="w-16 h-16 bg-paper rounded-xl flex items-center justify-center mx-auto mb-4 border border-linen">
+                                                <svg className="w-7 h-7 text-umber" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                             </div>
-                                            <p className="text-base font-medium text-[#635c4e]">← Select a section to start writing</p>
+                                            <p className="text-base font-medium text-umber">← Select a section to start writing</p>
                                         </div>
                                     </div>
                                 )}
@@ -1238,52 +1238,52 @@ export default function AiBookStudio({ book, auth }) {
                                     </span>
                                 </div>
 
-                                <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-6 md:p-8 shadow-xl text-center">
+                                <div className="bg-paper rounded-2xl border border-linen p-6 md:p-8 shadow-xl text-center">
                                     <div className="w-16 h-16 bg-gradient-to-br from-emerald-500/30 to-emerald-400/20 rounded-xl flex items-center justify-center mx-auto mb-5 border border-emerald-500/40">
                                         <svg className="w-8 h-8 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                     </div>
-                                    <h2 className="text-2xl font-bold text-[#17150f] mb-2">Book Compilation Complete!</h2>
-                                    <p className="text-sm text-[#4b443a] mb-6 max-w-sm mx-auto">
+                                    <h2 className="text-2xl font-bold text-ink mb-2">Book Compilation Complete!</h2>
+                                    <p className="text-sm text-ink-soft mb-6 max-w-sm mx-auto">
                                         All {chapters.length} chapters and their sections have been organized. Your book manuscript is ready.
                                     </p>
 
                                     <div className="space-y-3 max-w-sm mx-auto">
                                         {/* DOCX Download */}
-                                        <div className="p-3 bg-[#faf8f3] rounded-xl border border-[#d8d1c1] flex items-center justify-between hover:border-[#7c7364] transition-all group">
+                                        <div className="p-3 bg-paper rounded-xl border border-linen flex items-center justify-between hover:border-taupe transition-all group">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-9 h-9 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-700 border border-blue-500/30">
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                                                 </div>
                                                 <div className="text-left">
-                                                    <div className="font-semibold text-sm text-[#17150f]">Microsoft Word (.docx)</div>
-                                                    <div className="text-[10px] text-[#635c4e]">Standard manuscript format</div>
+                                                    <div className="font-semibold text-sm text-ink">Microsoft Word (.docx)</div>
+                                                    <div className="text-[10px] text-umber">Standard manuscript format</div>
                                                 </div>
                                             </div>
-                                            <a href={route('ai-studio.download', { book: book.id, format: 'docx' })} className="px-3 py-1.5 bg-[#e7e1d4] hover:bg-[#e7e1d4] border border-[#d8d1c1] rounded-lg text-xs font-bold text-[#17150f] transition-all">
+                                            <a href={route('ai-studio.download', { book: book.id, format: 'docx' })} className="px-3 py-1.5 bg-vellum hover:bg-vellum border border-linen rounded-lg text-xs font-bold text-ink transition-all">
                                                 Download
                                             </a>
                                         </div>
 
                                         {/* PDF Download */}
-                                        <div className="p-3 bg-[#faf8f3] rounded-xl border border-[#d8d1c1] flex items-center justify-between hover:border-[#7c7364] transition-all group">
+                                        <div className="p-3 bg-paper rounded-xl border border-linen flex items-center justify-between hover:border-taupe transition-all group">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-9 h-9 bg-red-500/20 rounded-lg flex items-center justify-center text-red-700 border border-red-500/30">
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                                                 </div>
                                                 <div className="text-left">
-                                                    <div className="font-semibold text-sm text-[#17150f]">PDF Document (.pdf)</div>
-                                                    <div className="text-[10px] text-[#635c4e]">Universal format, print-ready</div>
+                                                    <div className="font-semibold text-sm text-ink">PDF Document (.pdf)</div>
+                                                    <div className="text-[10px] text-umber">Universal format, print-ready</div>
                                                 </div>
                                             </div>
-                                            <a href={route('ai-studio.download', { book: book.id, format: 'pdf' })} className="px-3 py-1.5 bg-[#e7e1d4] hover:bg-[#e7e1d4] border border-[#d8d1c1] rounded-lg text-xs font-bold text-[#17150f] transition-all">
+                                            <a href={route('ai-studio.download', { book: book.id, format: 'pdf' })} className="px-3 py-1.5 bg-vellum hover:bg-vellum border border-linen rounded-lg text-xs font-bold text-ink transition-all">
                                                 Download
                                             </a>
                                         </div>
                                     </div>
 
-                                    <div className="mt-8 pt-6 border-t border-[#d8d1c1]">
-                                        <h3 className="text-sm font-bold text-[#17150f] mb-1">What's Next?</h3>
-                                        <p className="text-[#4b443a] text-xs mb-4">Fine-tune fonts, layout, and add images in the formatting editor.</p>
+                                    <div className="mt-8 pt-6 border-t border-linen">
+                                        <h3 className="text-sm font-bold text-ink mb-1">What's Next?</h3>
+                                        <p className="text-ink-soft text-xs mb-4">Fine-tune fonts, layout, and add images in the formatting editor.</p>
                                         <Link
                                             href={route('books.design', book.id)}
                                             className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-white font-bold text-sm rounded-lg shadow-lg shadow-indigo-500/30 transition-all hover:scale-[1.02]"
@@ -1312,7 +1312,7 @@ export default function AiBookStudio({ book, auth }) {
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                         </button>
 
-                                        <div className="mt-4 pt-4 border-t border-[#d8d1c1]">
+                                        <div className="mt-4 pt-4 border-t border-linen">
                                             <button
                                                 onClick={() => setStep(4)}
                                                 className="text-xs text-indigo-700 hover:text-indigo-700 underline transition-colors mr-6"
@@ -1325,7 +1325,7 @@ export default function AiBookStudio({ book, auth }) {
                                                         setStep(1);
                                                     }
                                                 }}
-                                                className="text-xs text-[#635c4e] hover:text-[#4b443a] underline transition-colors"
+                                                className="text-xs text-umber hover:text-ink-soft underline transition-colors"
                                             >
                                                 Start Over / Regenerate Book
                                             </button>
@@ -1341,17 +1341,17 @@ export default function AiBookStudio({ book, auth }) {
             {/* Image Generation Modal */}
             {
                 showImagePromptModal && (
-                    <div className="fixed inset-0 bg-[#faf8f3] backdrop-blur-sm flex items-center justify-center z-[100] p-4">
-                        <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] w-full max-w-md overflow-hidden shadow-2xl">
+                    <div className="fixed inset-0 bg-paper backdrop-blur-sm flex items-center justify-center z-[100] p-4">
+                        <div className="bg-paper rounded-2xl border border-linen w-full max-w-md overflow-hidden shadow-2xl">
                             {/* Modal Header */}
-                            <div className="p-4 border-b border-[#d8d1c1] flex items-center justify-between">
-                                <h3 className="text-lg font-bold text-[#17150f] flex items-center gap-2">
+                            <div className="p-4 border-b border-linen flex items-center justify-between">
+                                <h3 className="text-lg font-bold text-ink flex items-center gap-2">
                                     <span>🎨</span>
                                     Generate Illustration
                                 </h3>
                                 <button
                                     onClick={() => setShowImagePromptModal(false)}
-                                    className="text-[#635c4e] hover:text-[#17150f] transition-colors"
+                                    className="text-umber hover:text-ink transition-colors"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -1361,43 +1361,43 @@ export default function AiBookStudio({ book, auth }) {
 
                             {/* Modal Content */}
                             <div className="p-4 space-y-4">
-                                <p className="text-sm text-[#4b443a]">
-                                    Generate an AI illustration for: <span className="text-[#17150f] font-semibold">{activeSection?.title}</span>
+                                <p className="text-sm text-ink-soft">
+                                    Generate an AI illustration for: <span className="text-ink font-semibold">{activeSection?.title}</span>
                                 </p>
 
                                 {/* Mode Selection */}
                                 <div className="grid grid-cols-2 gap-3">
                                     <button
                                         onClick={() => setImagePromptMode('auto')}
-                                        className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'auto' ? 'border-indigo-500 bg-indigo-500/20' : 'border-[#d8d1c1] hover:border-[#d8d1c1] bg-[#faf8f3]'}`}
+                                        className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'auto' ? 'border-indigo-500 bg-indigo-500/20' : 'border-linen hover:border-linen bg-paper'}`}
                                     >
                                         <span className="text-2xl mb-2 block">🤖</span>
-                                        <span className={`text-sm font-bold block ${imagePromptMode === 'auto' ? 'text-[#17150f]' : 'text-[#4b443a]'}`}>Auto (AI)</span>
-                                        <span className="text-[10px] text-[#635c4e] mt-1 block">Based on content</span>
+                                        <span className={`text-sm font-bold block ${imagePromptMode === 'auto' ? 'text-ink' : 'text-ink-soft'}`}>Auto (AI)</span>
+                                        <span className="text-[10px] text-umber mt-1 block">Based on content</span>
                                     </button>
                                     <button
                                         onClick={() => setImagePromptMode('custom')}
-                                        className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'custom' ? 'border-cyan-500 bg-cyan-500/20' : 'border-[#d8d1c1] hover:border-[#d8d1c1] bg-[#faf8f3]'}`}
+                                        className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'custom' ? 'border-cyan-500 bg-cyan-500/20' : 'border-linen hover:border-linen bg-paper'}`}
                                     >
                                         <span className="text-2xl mb-2 block">✏️</span>
-                                        <span className={`text-sm font-bold block ${imagePromptMode === 'custom' ? 'text-[#17150f]' : 'text-[#4b443a]'}`}>Custom</span>
-                                        <span className="text-[10px] text-[#635c4e] mt-1 block">Your own prompt</span>
+                                        <span className={`text-sm font-bold block ${imagePromptMode === 'custom' ? 'text-ink' : 'text-ink-soft'}`}>Custom</span>
+                                        <span className="text-[10px] text-umber mt-1 block">Your own prompt</span>
                                     </button>
                                 </div>
 
                                 {/* Custom Prompt Input */}
                                 {imagePromptMode === 'custom' && (
                                     <div className="space-y-2">
-                                        <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">
+                                        <label className="block text-xs font-semibold text-ink-soft uppercase tracking-wider">
                                             Your Image Prompt
                                         </label>
                                         <textarea
                                             value={customImagePrompt}
                                             onChange={(e) => setCustomImagePrompt(e.target.value)}
                                             placeholder="Describe the illustration you want... (e.g., 'A serene landscape with mountains at sunset, digital art style')"
-                                            className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-[#17150f] text-sm placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition resize-none h-24"
+                                            className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-ink text-sm placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition resize-none h-24"
                                         />
-                                        <p className="text-[10px] text-[#635c4e]">
+                                        <p className="text-[10px] text-umber">
                                             Tip: Be descriptive! Include style, mood, and specific details.
                                         </p>
                                     </div>
@@ -1413,10 +1413,10 @@ export default function AiBookStudio({ book, auth }) {
                             </div>
 
                             {/* Modal Footer */}
-                            <div className="p-4 border-t border-[#d8d1c1] flex gap-3">
+                            <div className="p-4 border-t border-linen flex gap-3">
                                 <button
                                     onClick={() => setShowImagePromptModal(false)}
-                                    className="flex-1 py-2.5 bg-[#faf8f3] text-[#4b443a] font-semibold rounded-lg text-sm border border-[#d8d1c1] hover:bg-[#e7e1d4] transition-colors"
+                                    className="flex-1 py-2.5 bg-paper text-ink-soft font-semibold rounded-lg text-sm border border-linen hover:bg-vellum transition-colors"
                                 >
                                     Cancel
                                 </button>
@@ -1435,3 +1435,6 @@ export default function AiBookStudio({ book, auth }) {
     );
 }
 
+
+// Full-screen page: renders its own chrome, so the global Layout stays off.
+AiBookStudio.layout = null;

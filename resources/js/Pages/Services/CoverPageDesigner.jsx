@@ -6,7 +6,7 @@ export default function CoverPageDesigner() {
         <>
             <Head title="DIY Cover Page Designer - PublicationMart" />
 
-            <div className="bg-[#f0ece3] text-[#17150f] selection:bg-indigo-500/30 overflow-hidden">
+            <div className="bg-parchment text-ink selection:bg-indigo-500/30 overflow-hidden">
                 {/* Hero Section */}
                 <section className="relative pt-20 pb-16 px-6">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-indigo-600/10 blur-[120px] rounded-full -z-10" />
@@ -17,9 +17,9 @@ export default function CoverPageDesigner() {
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
                             Design Your Book Cover <br />
-                            <span className=" text-[#6e2530]">Your Way.</span>
+                            <span className=" text-oxblood">Your Way.</span>
                         </h1>
-                        <p className="text-xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-xl text-umber max-w-3xl mx-auto leading-relaxed">
                             Your book cover is the first impression readers see. With PublicationMart’s DIY Cover Page Designer,
                             you can create a professional-looking cover without needing graphic design skills.
                         </p>
@@ -33,7 +33,7 @@ export default function CoverPageDesigner() {
                             <div className="space-y-8">
                                 <div>
                                     <h2 className="text-3xl font-bold mb-4">What You Can Do</h2>
-                                    <p className="text-[#635c4e] mb-6 font-medium">Take control of your book’s visual identity using an easy, guided design tool built specifically for authors.</p>
+                                    <p className="text-umber mb-6 font-medium">Take control of your book’s visual identity using an easy, guided design tool built specifically for authors.</p>
                                     <ul className="space-y-4">
                                         {[
                                             'Choose from professionally designed templates',
@@ -44,23 +44,23 @@ export default function CoverPageDesigner() {
                                             'Use built-in design elements and backgrounds',
                                             'Preview front cover layout before finalizing'
                                         ].map((item, i) => (
-                                            <li key={i} className="flex items-start gap-3 text-[#4b443a]">
+                                            <li key={i} className="flex items-start gap-3 text-ink-soft">
                                                 <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-500" />
                                                 {item}
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-                                <div className="p-6 rounded-2xl bg-white/[0.02] border border-[#d8d1c1] italic text-[#635c4e]">
+                                <div className="p-6 rounded-2xl bg-white/[0.02] border border-linen italic text-umber">
                                     "You stay creative, while the tool ensures structure."
                                 </div>
                             </div>
 
                             <div className="relative group">
                                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-                                <div className="relative bg-[#f0ece3] border border-[#d8d1c1] rounded-2xl p-8 space-y-6">
-                                    <h3 className="text-2xl font-bold text-[#17150f]">Built for Publishing Standards</h3>
-                                    <p className="text-[#635c4e]">The system helps you maintain quality and compliance:</p>
+                                <div className="relative bg-parchment border border-linen rounded-2xl p-8 space-y-6">
+                                    <h3 className="text-2xl font-bold text-ink">Built for Publishing Standards</h3>
+                                    <p className="text-umber">The system helps you maintain quality and compliance:</p>
                                     <div className="space-y-4">
                                         {[
                                             'Maintain correct cover dimensions',
@@ -68,15 +68,15 @@ export default function CoverPageDesigner() {
                                             'Adjust for various book sizes',
                                             'Prepare marketplace-ready cover files'
                                         ].map((item, i) => (
-                                            <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-[#faf8f3] border border-[#d8d1c1]">
+                                            <div key={i} className="flex items-center gap-3 p-3 rounded-xl bg-paper border border-linen">
                                                 <svg className="w-5 h-5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                 </svg>
-                                                <span className="text-sm font-medium text-[#4b443a]">{item}</span>
+                                                <span className="text-sm font-medium text-ink-soft">{item}</span>
                                             </div>
                                         ))}
                                     </div>
-                                    <p className="text-xs text-[#635c4e] mt-4">
+                                    <p className="text-xs text-umber mt-4">
                                         This reduces the risk of cover rejection during publishing.
                                     </p>
                                 </div>
@@ -90,7 +90,7 @@ export default function CoverPageDesigner() {
                     <div className="max-w-7xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-8">
                             {/* Author Responsibility */}
-                            <div className="p-8 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-[#d8d1c1]">
+                            <div className="p-8 rounded-3xl bg-gradient-to-br from-white/[0.03] to-transparent border border-linen">
                                 <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
                                     <span className="p-2 rounded-lg bg-amber-500/10 text-amber-500">
                                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -99,7 +99,7 @@ export default function CoverPageDesigner() {
                                     </span>
                                     Author Responsibility
                                 </h3>
-                                <p className="text-[#635c4e] mb-6 text-sm">Since this is a DIY tool, authors should:</p>
+                                <p className="text-umber mb-6 text-sm">Since this is a DIY tool, authors should:</p>
                                 <ul className="space-y-4 mb-8">
                                     {[
                                         'Review spelling and typography carefully',
@@ -107,13 +107,13 @@ export default function CoverPageDesigner() {
                                         'Confirm visual alignment and balance',
                                         'Verify branding consistency'
                                     ].map((item, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-sm text-[#4b443a]">
+                                        <li key={i} className="flex items-center gap-3 text-sm text-ink-soft">
                                             <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                                             {item}
                                         </li>
                                     ))}
                                 </ul>
-                                <p className="text-xs text-[#635c4e] font-medium pt-4 border-t border-[#d8d1c1]">
+                                <p className="text-xs text-umber font-medium pt-4 border-t border-linen">
                                     Final approval remains with the author before publishing.
                                 </p>
                             </div>
@@ -134,7 +134,7 @@ export default function CoverPageDesigner() {
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
-                                            <span className="font-bold text-[#4b443a]">{item}</span>
+                                            <span className="font-bold text-ink-soft">{item}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -145,15 +145,15 @@ export default function CoverPageDesigner() {
 
                 {/* CTA */}
                 <section className="py-24 px-6 text-center">
-                    <div className="max-w-4xl mx-auto p-12 rounded-[32px] bg-gradient-to-b from-white/[0.03] to-transparent border border-[#d8d1c1] relative overflow-hidden">
+                    <div className="max-w-4xl mx-auto p-12 rounded-[32px] bg-gradient-to-b from-white/[0.03] to-transparent border border-linen relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
                         <h2 className="text-3xl md:text-4xl font-bold mb-6">Start Designing Your Vision</h2>
-                        <p className="text-[#635c4e] mb-10 text-lg">Create a cover that captures the essence of your story today.</p>
+                        <p className="text-umber mb-10 text-lg">Create a cover that captures the essence of your story today.</p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href={route('books.create')} className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(79,70,229,0.3)]">
                                 Use DIY Designer
                             </Link>
-                            <Link href={route('contact')} className="px-8 py-4 bg-[#faf8f3] hover:bg-[#e7e1d4] text-[#17150f] font-semibold rounded-full border border-[#d8d1c1] transition-all">
+                            <Link href={route('contact')} className="px-8 py-4 bg-paper hover:bg-vellum text-ink font-semibold rounded-full border border-linen transition-all">
                                 Hire a Designer instead
                             </Link>
                         </div>

@@ -37,7 +37,7 @@ export default function Navbar() {
     // through and rendered it lighter than the footer's solid cloth.
     return (
         <nav
-            className="fixed top-0 left-0 right-0 z-[99999] bg-[#6e2530] border-b border-[#a07d3b]/40 h-[80px] shadow-[0_2px_24px_rgba(23,21,15,0.18)]"
+            className="fixed top-0 left-0 right-0 z-[99999] bg-oxblood border-b border-foil/40 h-[80px] shadow-[0_2px_24px_rgba(23,21,15,0.18)]"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
                 <Link href={route('welcome')} className="flex items-center -ml-2 shrink-0 transition-transform hover:scale-[1.02] active:scale-95">
@@ -52,7 +52,7 @@ export default function Navbar() {
                         <Link
                             key={link.label}
                             href={link.href}
-                            className="text-xs uppercase tracking-widest text-[#faf8f3]/85 hover:text-[#e8cf8e] transition-all duration-75 py-1 px-2 hover:bg-white/10 rounded-md"
+                            className="text-xs uppercase tracking-widest text-paper/85 hover:text-foil-light transition-all duration-75 py-1 px-2 hover:bg-white/10 rounded-md"
                         >
                             {link.label}
                         </Link>
@@ -65,7 +65,7 @@ export default function Navbar() {
                             <>
                                 <Link
                                     href={auth?.user?.is_admin ? route('admin.dashboard') : route('dashboard')}
-                                    className="px-4 py-2 rounded-full bg-[#17150f] hover:bg-[#241f16] text-[#faf8f3] text-sm font-medium transition-all duration-75"
+                                    className="px-4 py-2 rounded-full bg-ink hover:bg-night text-paper text-sm font-medium transition-all duration-75"
                                 >
                                     Dashboard
                                 </Link>
@@ -78,12 +78,12 @@ export default function Navbar() {
                             </>
                         ) : (
                             <>
-                                <Link href={route('login')} className="text-[#faf8f3]/85 text-sm hover:text-[#e8cf8e] transition-colors font-medium">
+                                <Link href={route('login')} className="text-paper/85 text-sm hover:text-foil-light transition-colors font-medium">
                                     Login
                                 </Link>
                                 <Link
                                     href={route('register')}
-                                    className="px-6 py-2.5 rounded-full bg-[#a07d3b] hover:bg-[#b28c46] text-[#2b1e0a] text-sm font-semibold transition-all duration-75 shadow-lg hover:shadow-xl"
+                                    className="px-6 py-2.5 rounded-full bg-foil hover:bg-[#b28c46] text-[#2b1e0a] text-sm font-semibold transition-all duration-75 shadow-lg hover:shadow-xl"
                                 >
                                     Register
                                 </Link>
@@ -112,12 +112,12 @@ export default function Navbar() {
 
             {/* Mobile Menu Dropdown */}
             {isMobileMenuOpen && (
-                <div className="md:hidden absolute top-[80px] left-0 right-0 bg-[#5d1f28]/97 backdrop-blur-xl border-b border-[#a07d3b]/40 p-4 flex flex-col gap-2 shadow-2xl animate-fade-in-down">
+                <div className="md:hidden absolute top-[80px] left-0 right-0 bg-[#5d1f28]/97 backdrop-blur-xl border-b border-foil/40 p-4 flex flex-col gap-2 shadow-2xl animate-fade-in-down">
                     {navLinks.map(link => (
                         <Link
                             key={link.label}
                             href={link.href}
-                            className="text-sm uppercase tracking-widest text-[#faf8f3]/85 hover:text-[#e8cf8e] py-3 px-4 hover:bg-white/5 rounded-md transition-all duration-75"
+                            className="text-sm uppercase tracking-widest text-paper/85 hover:text-foil-light py-3 px-4 hover:bg-white/5 rounded-md transition-all duration-75"
                         >
                             {link.label}
                         </Link>
@@ -129,7 +129,7 @@ export default function Navbar() {
                             <>
                                 <Link
                                     href={auth?.user?.is_admin ? route('admin.dashboard') : route('dashboard')}
-                                    className="w-full text-center px-4 py-2 rounded-full bg-[#17150f] hover:bg-[#241f16] text-[#faf8f3] text-sm font-medium transition-all duration-75"
+                                    className="w-full text-center px-4 py-2 rounded-full bg-ink hover:bg-night text-paper text-sm font-medium transition-all duration-75"
                                 >
                                     Dashboard
                                 </Link>
@@ -142,12 +142,12 @@ export default function Navbar() {
                             </>
                         ) : (
                             <>
-                                <Link href={route('login')} className="px-4 py-2 text-center text-[#faf8f3]/85 text-sm hover:text-[#e8cf8e] transition-colors font-medium hover:bg-white/5 rounded-md">
+                                <Link href={route('login')} className="px-4 py-2 text-center text-paper/85 text-sm hover:text-foil-light transition-colors font-medium hover:bg-white/5 rounded-md">
                                     Login
                                 </Link>
                                 <Link
                                     href={route('register')}
-                                    className="w-full text-center px-6 py-2.5 rounded-full bg-[#a07d3b] hover:bg-[#b28c46] text-[#2b1e0a] text-sm font-semibold transition-all duration-75 shadow-lg"
+                                    className="w-full text-center px-6 py-2.5 rounded-full bg-foil hover:bg-[#b28c46] text-[#2b1e0a] text-sm font-semibold transition-all duration-75 shadow-lg"
                                 >
                                     Register
                                 </Link>

@@ -48,7 +48,7 @@ export default function BookPreview({ auth, book }) {
                             <div className="flex items-center gap-3">
                                 <Link
                                     href={route('books.details', book.id)}
-                                    className="p-2 -ml-2 text-[#635c4e] hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-all"
+                                    className="p-2 -ml-2 text-umber hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-all"
                                 >
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -57,7 +57,7 @@ export default function BookPreview({ auth, book }) {
                                 <div className="h-6 w-px bg-slate-200" />
                                 <div>
                                     <h1 className="text-sm font-bold text-slate-800 tracking-tight">Book Preview</h1>
-                                    <p className="text-[11px] text-[#635c4e]">Review before publishing</p>
+                                    <p className="text-[11px] text-umber">Review before publishing</p>
                                 </div>
                             </div>
 
@@ -89,7 +89,7 @@ export default function BookPreview({ auth, book }) {
                                     {/* Book spine shadow */}
                                     <div className="absolute left-0 top-2 bottom-2 w-3 bg-gradient-to-r from-slate-400/30 to-transparent rounded-l-sm z-10" />
 
-                                    <div className="relative w-60 sm:w-72 aspect-[2/3] rounded-xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] border border-[#d8d1c1] transform group-hover:scale-[1.02] transition-transform duration-500">
+                                    <div className="relative w-60 sm:w-72 aspect-[2/3] rounded-xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.2)] border border-linen transform group-hover:scale-[1.02] transition-transform duration-500">
                                         {book.cover_design_path ? (
                                             <img
                                                 src={getCoverUrl(book.cover_design_path)}
@@ -97,7 +97,7 @@ export default function BookPreview({ auth, book }) {
                                                 className="w-full h-full object-cover object-right"
                                             />
                                         ) : (
-                                            <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center text-[#635c4e] p-8 text-center">
+                                            <div className="w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center text-umber p-8 text-center">
                                                 <svg className="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                                 </svg>
@@ -138,7 +138,7 @@ export default function BookPreview({ auth, book }) {
 
                                 {/* Subtitle */}
                                 {book.subtitle && (
-                                    <p className="text-xl text-[#635c4e] font-light mb-6 max-w-2xl mx-auto lg:mx-0">
+                                    <p className="text-xl text-umber font-light mb-6 max-w-2xl mx-auto lg:mx-0">
                                         {book.subtitle}
                                     </p>
                                 )}
@@ -165,7 +165,7 @@ export default function BookPreview({ auth, book }) {
                                         { label: 'Price', value: `₹${book.selling_price || '—'}`, color: 'from-emerald-50 to-green-50 border-emerald-100', highlight: true },
                                     ].map((stat, idx) => (
                                         <div key={idx} className={`bg-gradient-to-br ${stat.color} p-4 rounded-2xl border hover:shadow-md transition-shadow`}>
-                                            <div className="text-[#635c4e] text-[10px] uppercase font-bold tracking-widest mb-1">{stat.label}</div>
+                                            <div className="text-umber text-[10px] uppercase font-bold tracking-widest mb-1">{stat.label}</div>
                                             <div className={`font-black text-lg ${stat.highlight ? 'text-emerald-600' : 'text-slate-800'}`}>{stat.value}</div>
                                         </div>
                                     ))}
@@ -185,7 +185,7 @@ export default function BookPreview({ auth, book }) {
                                         onClick={() => setActiveTab(tab.id)}
                                         className={`px-5 py-3.5 text-sm font-semibold tracking-wide transition-all relative whitespace-nowrap rounded-t-xl ${activeTab === tab.id
                                             ? 'text-blue-700 bg-blue-50/60'
-                                            : 'text-[#635c4e] hover:text-[#635c4e] hover:bg-slate-50'
+                                            : 'text-umber hover:text-umber hover:bg-slate-50'
                                             }`}
                                     >
                                         <span className="mr-1.5">{tab.icon}</span>
@@ -207,23 +207,23 @@ export default function BookPreview({ auth, book }) {
                                     <div className="bg-white rounded-2xl border border-slate-200/60 shadow-sm p-8 sm:p-10">
                                         <h3 className="text-xl font-bold text-slate-800 mb-2">Book Description</h3>
                                         <div className="w-12 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mb-6" />
-                                        <div className="prose prose-slate max-w-none text-[#635c4e] leading-relaxed text-[15px]">
+                                        <div className="prose prose-slate max-w-none text-umber leading-relaxed text-[15px]">
                                             {book.about_book ? (
                                                 <div className="whitespace-pre-line">
                                                     {book.about_book}
                                                 </div>
                                             ) : (
-                                                <p className="italic text-[#635c4e]">No description provided yet.</p>
+                                                <p className="italic text-umber">No description provided yet.</p>
                                             )}
                                         </div>
 
                                         {/* Keywords / Tags */}
                                         {book.keywords && (
                                             <div className="mt-8 pt-6 border-t border-slate-100">
-                                                <h4 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-3">Keywords</h4>
+                                                <h4 className="text-xs font-bold text-umber uppercase tracking-widest mb-3">Keywords</h4>
                                                 <div className="flex flex-wrap gap-2">
                                                     {(typeof book.keywords === 'string' ? book.keywords.split(',') : book.keywords || []).map((kw, i) => (
-                                                        <span key={i} className="px-3 py-1 bg-slate-100 text-[#635c4e] rounded-full text-xs font-medium">
+                                                        <span key={i} className="px-3 py-1 bg-slate-100 text-umber rounded-full text-xs font-medium">
                                                             {kw.trim()}
                                                         </span>
                                                     ))}
@@ -250,9 +250,9 @@ export default function BookPreview({ auth, book }) {
                                                 <h3 className="text-2xl font-bold text-slate-800 mb-1">{book.author_name}</h3>
                                                 <div className="text-blue-500 text-xs font-bold uppercase tracking-widest mb-5">About the Author</div>
                                                 <div className="w-10 h-0.5 bg-slate-200 rounded-full mb-5" />
-                                                <div className="prose prose-slate text-[#635c4e] text-[15px] leading-relaxed">
+                                                <div className="prose prose-slate text-umber text-[15px] leading-relaxed">
                                                     {book.author_biography || (
-                                                        <p className="italic text-[#635c4e]">The author hasn't added a biography yet.</p>
+                                                        <p className="italic text-umber">The author hasn't added a biography yet.</p>
                                                     )}
                                                 </div>
                                             </div>
@@ -284,7 +284,7 @@ export default function BookPreview({ auth, book }) {
                                                 <div key={idx} className="px-8 py-4 flex items-center justify-between hover:bg-blue-50/20 transition-colors">
                                                     <div className="flex items-center gap-3">
                                                         <span className="text-lg">{row.icon}</span>
-                                                        <span className="text-sm font-medium text-[#635c4e]">{row.label}</span>
+                                                        <span className="text-sm font-medium text-umber">{row.label}</span>
                                                     </div>
                                                     <span className="text-sm text-slate-800 font-semibold">{row.value}</span>
                                                 </div>
@@ -304,7 +304,7 @@ export default function BookPreview({ auth, book }) {
                                         <div className="max-w-lg mx-auto space-y-4">
                                             <div className="flex items-center justify-between p-5 bg-slate-50 rounded-2xl border border-slate-200/60">
                                                 <div>
-                                                    <p className="text-xs text-[#635c4e] uppercase font-bold tracking-widest mb-1">Selling Price</p>
+                                                    <p className="text-xs text-umber uppercase font-bold tracking-widest mb-1">Selling Price</p>
                                                     <p className="text-2xl font-black text-slate-800">₹{sellingPrice.toFixed(2)}</p>
                                                 </div>
                                                 <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-xl">💵</div>
@@ -312,9 +312,9 @@ export default function BookPreview({ auth, book }) {
 
                                             <div className="flex items-center justify-between p-5 bg-red-50/50 rounded-2xl border border-red-100">
                                                 <div>
-                                                    <p className="text-xs text-[#635c4e] uppercase font-bold tracking-widest mb-1">Author Cost (Min. Price)</p>
+                                                    <p className="text-xs text-umber uppercase font-bold tracking-widest mb-1">Author Cost (Min. Price)</p>
                                                     <p className="text-xl font-bold text-red-500">- ₹{authorCost.toFixed(2)}</p>
-                                                    <p className="text-[10px] text-[#635c4e] mt-0.5">Includes printing cost ₹{printingCost.toFixed(2)} + platform fee</p>
+                                                    <p className="text-[10px] text-umber mt-0.5">Includes printing cost ₹{printingCost.toFixed(2)} + platform fee</p>
                                                 </div>
                                                 <div className="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center text-xl">🖨️</div>
                                             </div>
@@ -349,14 +349,14 @@ export default function BookPreview({ auth, book }) {
                                 </div>
                                 <div>
                                     <div className="text-sm font-bold text-slate-800">Ready to Publish?</div>
-                                    <div className="text-xs text-[#635c4e]">Preview confirms content & layout matches your expectations.</div>
+                                    <div className="text-xs text-umber">Preview confirms content & layout matches your expectations.</div>
                                 </div>
                             </div>
 
                             <div className="flex items-center gap-3 w-full sm:w-auto">
                                 <Link
                                     href={route('books.details', book.id)}
-                                    className="px-6 py-3 rounded-xl border border-slate-200 text-[#635c4e] font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all w-full sm:w-auto text-center"
+                                    className="px-6 py-3 rounded-xl border border-slate-200 text-umber font-bold text-sm hover:bg-slate-50 hover:border-slate-300 transition-all w-full sm:w-auto text-center"
                                 >
                                     Back
                                 </Link>

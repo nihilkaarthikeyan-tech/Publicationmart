@@ -16,7 +16,7 @@ export default function HowToPublish({ auth }) {
                 <meta name="twitter:description" content="Complete guide to self-publishing your book in India. AI-powered tools, global distribution." />
             </Head>
 
-            <div className="min-h-screen bg-[#f0ece3] text-[#17150f] selection:bg-indigo-500 selection:text-[#17150f] overflow-x-hidden">
+            <div className="min-h-screen bg-parchment text-ink selection:bg-indigo-500 selection:text-ink overflow-x-hidden">
 
                 {/* ═══ HERO SECTION ═══ */}
                 <section className="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -30,20 +30,20 @@ export default function HowToPublish({ auth }) {
                             Complete Publishing Guide
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight leading-tight">
-                            <span className=" text-[#17150f]">
+                            <span className=" text-ink">
                                 How to Publish Your Book
                             </span>
                             <br />
-                            <span className=" text-[#6e2530]">
+                            <span className=" text-oxblood">
                                 with PublicationMart
                             </span>
                         </h1>
-                        <p className="text-lg md:text-xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-lg md:text-xl text-umber max-w-3xl mx-auto leading-relaxed">
                             Publishing your book has never been easier. Whether you're a first-time writer or an experienced author,
                             PublicationMart gives you the tools, guidance, and distribution network to turn your manuscript into a
                             professionally published book.
                         </p>
-                        <p className="mt-6 text-base text-[#635c4e] italic">Here's how the process works.</p>
+                        <p className="mt-6 text-base text-umber italic">Here's how the process works.</p>
                     </div>
                 </section>
 
@@ -62,17 +62,17 @@ export default function HowToPublish({ auth }) {
                             icon="✍️"
                             side="right"
                             delay={100}
-                            gradient="from-[#6e2530] to-[#4d1a22]"
+                            gradient="from-oxblood to-oxblood-night"
                             glowColor="indigo"
                         >
-                            <p className="text-[#635c4e] mb-4">Use our <span className="text-indigo-700 font-semibold">Smart Writer</span> tool to:</p>
+                            <p className="text-umber mb-4">Use our <span className="text-indigo-700 font-semibold">Smart Writer</span> tool to:</p>
                             <ul className="space-y-2">
                                 <BulletItem>Draft chapters effortlessly</BulletItem>
                                 <BulletItem>Structure your book properly</BulletItem>
                                 <BulletItem>Refine grammar and clarity</BulletItem>
                                 <BulletItem>Generate supporting content and visuals</BulletItem>
                             </ul>
-                            <p className="text-[#635c4e] text-sm mt-4 italic border-l-2 border-indigo-500/30 pl-3">
+                            <p className="text-umber text-sm mt-4 italic border-l-2 border-indigo-500/30 pl-3">
                                 You can write from scratch or upload your completed manuscript.
                             </p>
                         </StepCard>
@@ -85,17 +85,17 @@ export default function HowToPublish({ auth }) {
                             icon="📖"
                             side="left"
                             delay={200}
-                            gradient="from-[#a07d3b] to-[#7d6027]"
+                            gradient="from-foil to-[#7d6027]"
                             glowColor="purple"
                         >
-                            <p className="text-[#635c4e] mb-4">Our platform has a <span className="text-purple-700 font-semibold">DIY tool</span> which:</p>
+                            <p className="text-umber mb-4">Our platform has a <span className="text-purple-700 font-semibold">DIY tool</span> which:</p>
                             <ul className="space-y-2">
                                 <BulletItem color="purple">Formats your interior layout</BulletItem>
                                 <BulletItem color="purple">Sets margins and trim sizes</BulletItem>
                                 <BulletItem color="purple">Creates print-ready and eBook-ready files</BulletItem>
                                 <BulletItem color="purple">Ensures publishing compliance standards</BulletItem>
                             </ul>
-                            <p className="text-[#635c4e] text-sm mt-4 italic border-l-2 border-purple-500/30 pl-3">
+                            <p className="text-umber text-sm mt-4 italic border-l-2 border-purple-500/30 pl-3">
                                 No technical knowledge required.
                             </p>
                         </StepCard>
@@ -111,13 +111,13 @@ export default function HowToPublish({ auth }) {
                             gradient="from-[#2f4f45] to-[#20362d]"
                             glowColor="emerald"
                         >
-                            <p className="text-[#635c4e] mb-4">Choose from:</p>
+                            <p className="text-umber mb-4">Choose from:</p>
                             <ul className="space-y-2">
                                 <BulletItem color="emerald">Custom-designed covers</BulletItem>
                                 <BulletItem color="emerald">Template-based professional designs</BulletItem>
                                 <BulletItem color="emerald">AI-assisted visual creation</BulletItem>
                             </ul>
-                            <p className="text-[#635c4e] text-sm mt-4 italic border-l-2 border-emerald-500/30 pl-3">
+                            <p className="text-umber text-sm mt-4 italic border-l-2 border-emerald-500/30 pl-3">
                                 We ensure your cover meets marketplace requirements for both print and digital formats.
                             </p>
                         </StepCard>
@@ -133,7 +133,7 @@ export default function HowToPublish({ auth }) {
                             gradient="from-[#7a6224] to-[#584618]"
                             glowColor="amber"
                         >
-                            <p className="text-[#635c4e] mb-4">We handle:</p>
+                            <p className="text-umber mb-4">We handle:</p>
                             <ul className="space-y-2">
                                 <BulletItem color="amber">ISBN allocation</BulletItem>
                                 <BulletItem color="amber">Metadata optimization</BulletItem>
@@ -160,14 +160,14 @@ export default function HowToPublish({ auth }) {
                             gradient="from-[#2b3a56] to-[#1c2739]"
                             glowColor="cyan"
                         >
-                            <p className="text-[#635c4e] mb-4">Distribution includes:</p>
+                            <p className="text-umber mb-4">Distribution includes:</p>
                             <ul className="space-y-2">
                                 <BulletItem color="cyan">eBook publishing</BulletItem>
                                 <BulletItem color="cyan">Paperback publishing</BulletItem>
                                 <BulletItem color="cyan">Online marketplace listing</BulletItem>
                                 <BulletItem color="cyan">Indian and international availability</BulletItem>
                             </ul>
-                            <p className="text-[#635c4e] text-sm mt-4 italic border-l-2 border-cyan-500/30 pl-3">
+                            <p className="text-umber text-sm mt-4 italic border-l-2 border-cyan-500/30 pl-3">
                                 Your book reaches readers across the globe.
                             </p>
                         </StepCard>
@@ -184,7 +184,7 @@ export default function HowToPublish({ auth }) {
                             gradient="from-[#8c3541] to-[#6a222d]"
                             glowColor="rose"
                         >
-                            <p className="text-[#635c4e] mb-4">You can enhance visibility with:</p>
+                            <p className="text-umber mb-4">You can enhance visibility with:</p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 <BulletItem color="rose">Social media creatives</BulletItem>
                                 <BulletItem color="rose">Amazon Ads management</BulletItem>
@@ -193,7 +193,7 @@ export default function HowToPublish({ auth }) {
                                 <BulletItem color="rose">PR coverage</BulletItem>
                                 <BulletItem color="rose">Website creation</BulletItem>
                             </div>
-                            <p className="text-[#635c4e] text-sm mt-4 italic border-l-2 border-rose-500/30 pl-3">
+                            <p className="text-umber text-sm mt-4 italic border-l-2 border-rose-500/30 pl-3">
                                 Choose marketing packages based on your goals.
                             </p>
                         </StepCard>
@@ -205,17 +205,17 @@ export default function HowToPublish({ auth }) {
                 <section className="relative py-24 px-4 sm:px-6 lg:px-8">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent pointer-events-none" />
                     <div className="max-w-4xl mx-auto text-center relative z-10">
-                        <div className="p-10 md:p-16 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-[#d8d1c1] backdrop-blur-sm relative overflow-hidden">
+                        <div className="p-10 md:p-16 rounded-3xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-linen backdrop-blur-sm relative overflow-hidden">
                             {/* Glow decorations */}
                             <div className="absolute -top-20 -left-20 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl" />
                             <div className="absolute -bottom-20 -right-20 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl" />
 
                             <h2 className="text-3xl md:text-4xl font-black mb-4 relative">
-                                <span className=" text-[#17150f]">
+                                <span className=" text-ink">
                                     Ready to Publish Your Book?
                                 </span>
                             </h2>
-                            <p className="text-[#635c4e] text-lg mb-8 max-w-2xl mx-auto relative">
+                            <p className="text-umber text-lg mb-8 max-w-2xl mx-auto relative">
                                 Join thousands of authors who have successfully published their books with PublicationMart. Start your publishing journey today.
                             </p>
                             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
@@ -230,7 +230,7 @@ export default function HowToPublish({ auth }) {
                                 </Link>
                                 <Link
                                     href="/smart-writer"
-                                    className="inline-flex items-center px-8 py-4 text-lg font-semibold text-[#4b443a] transition-all bg-[#faf8f3] border border-[#d8d1c1] rounded-full hover:bg-[#e7e1d4] hover:text-[#17150f] hover:border-indigo-500/30 hover:scale-105 active:scale-95"
+                                    className="inline-flex items-center px-8 py-4 text-lg font-semibold text-ink-soft transition-all bg-paper border border-linen rounded-full hover:bg-vellum hover:text-ink hover:border-indigo-500/30 hover:scale-105 active:scale-95"
                                 >
                                     Try Smart Writer
                                 </Link>
@@ -294,7 +294,7 @@ function StepCard({ number, title, subtitle, icon, side, delay, badge, gradient,
             style={{ transitionDelay: `${delay}ms` }}
         >
             {/* Number Circle */}
-            <div className={`absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-[#faf8f3] font-black text-lg shadow-lg z-10 transform md:-translate-x-1/2 border-4 border-[#f0ece3] ring-2 ring-[#d8d1c1]`}>
+            <div className={`absolute left-6 md:left-1/2 w-12 h-12 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center text-paper font-black text-lg shadow-lg z-10 transform md:-translate-x-1/2 border-4 border-parchment ring-2 ring-linen`}>
                 {number}
             </div>
 
@@ -303,7 +303,7 @@ function StepCard({ number, title, subtitle, icon, side, delay, badge, gradient,
 
             {/* Content Card */}
             <div className={`w-full md:w-[46%] pl-24 md:pl-0 ${!isRight ? 'md:mr-auto md:pr-14' : 'md:ml-auto md:pl-14'}`}>
-                <div className={`bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] p-7 rounded-2xl hover:bg-white/[0.06] hover:border-[#d8d1c1] transition-all duration-500 relative overflow-hidden ${glowColors[glowColor] || ''}`}>
+                <div className={`bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] p-7 rounded-2xl hover:bg-white/[0.06] hover:border-linen transition-all duration-500 relative overflow-hidden ${glowColors[glowColor] || ''}`}>
                     {/* Subtle corner glow */}
                     <div className={`absolute -top-12 ${isRight ? '-right-12' : '-left-12'} w-28 h-28 bg-gradient-to-br ${gradient} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500`} />
 
@@ -312,14 +312,14 @@ function StepCard({ number, title, subtitle, icon, side, delay, badge, gradient,
                         <span className="text-3xl flex-shrink-0 mt-0.5">{icon}</span>
                         <div className="flex-1">
                             <div className="flex items-center gap-2 flex-wrap">
-                                <h3 className="text-xl font-bold text-[#17150f]">{title}</h3>
+                                <h3 className="text-xl font-bold text-ink">{title}</h3>
                                 {badge && (
                                     <span className="px-2.5 py-0.5 text-xs font-bold rounded-full bg-gradient-to-r from-rose-500/20 to-pink-500/20 text-rose-700 border border-rose-500/20">
                                         {badge}
                                     </span>
                                 )}
                             </div>
-                            <p className="text-[#635c4e] text-sm mt-1">{subtitle}</p>
+                            <p className="text-umber text-sm mt-1">{subtitle}</p>
                         </div>
                     </div>
 
@@ -356,9 +356,9 @@ function BulletItem({ children, color = 'indigo' }) {
     };
 
     return (
-        <li className="flex items-start gap-3 text-[#4b443a] text-sm group/item">
+        <li className="flex items-start gap-3 text-ink-soft text-sm group/item">
             <span className={`w-1.5 h-1.5 rounded-full ${dotColors[color] || dotColors.indigo} mt-1.5 flex-shrink-0 group-hover/item:scale-150 transition-transform duration-300`} />
-            <span className="group-hover/item:text-[#17150f] transition-colors duration-300">{children}</span>
+            <span className="group-hover/item:text-ink transition-colors duration-300">{children}</span>
         </li>
     );
 }

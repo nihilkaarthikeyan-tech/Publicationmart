@@ -6,7 +6,7 @@ export default function Careers() {
         <>
             <Head title="Careers - Join Our Team | PublicationMart" />
 
-            <div className="bg-[#f0ece3] text-[#17150f] selection:bg-indigo-500/30 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
+            <div className="bg-parchment text-ink selection:bg-indigo-500/30 min-h-[70vh] flex flex-col items-center justify-center relative overflow-hidden">
                 {/* Background Glows */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/5 blur-[150px] rounded-full -z-10" />
                 <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-purple-600/5 blur-[100px] rounded-full -z-10" />
@@ -18,20 +18,20 @@ export default function Careers() {
 
                     <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-tight">
                         Shape the Future of <br />
-                        <span className=" text-[#6e2530]">Digital Publishing.</span>
+                        <span className=" text-oxblood">Digital Publishing.</span>
                     </h1>
 
-                    <div className="p-10 md:p-16 rounded-[48px] bg-white/[0.02] border border-[#d8d1c1] backdrop-blur-xl relative group hover:bg-white/[0.04] transition-all duration-700">
+                    <div className="p-10 md:p-16 rounded-[48px] bg-white/[0.02] border border-linen backdrop-blur-xl relative group hover:bg-white/[0.04] transition-all duration-700">
                         {/* Shimmer effect */}
                         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.05] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
 
-                        <p className="text-xl md:text-2xl text-[#4b443a] leading-relaxed mb-10">
+                        <p className="text-xl md:text-2xl text-ink-soft leading-relaxed mb-10">
                             We are always looking for passionate creators, developers, and publishing experts to join our growing team.
                         </p>
 
                         <div className="space-y-6">
                             <div className="inline-block p-6 rounded-3xl bg-indigo-500/10 border border-indigo-500/20">
-                                <p className="text-lg font-medium text-[#17150f] mb-4">Interested in working with us?</p>
+                                <p className="text-lg font-medium text-ink mb-4">Interested in working with us?</p>
                                 <a
                                     href="mailto:info@publicationmart.com"
                                     className="text-2xl md:text-3xl font-black text-indigo-700 hover:text-indigo-700 transition-colors break-all"
@@ -40,7 +40,7 @@ export default function Careers() {
                                 </a>
                             </div>
 
-                            <p className="text-[#635c4e] text-sm max-w-md mx-auto leading-relaxed">
+                            <p className="text-umber text-sm max-w-md mx-auto leading-relaxed">
                                 Send your resume to the email above. We will contact you once suitable vacancies arise.
                             </p>
                         </div>

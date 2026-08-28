@@ -35,14 +35,14 @@ export default function CertificatesIndex({ auth, certificates }) {
         <>
             <Head title="Manage Certificates" />
 
-            <div className="min-h-screen bg-gray-100 dark:bg-[#faf8f3] py-12">
+            <div className="min-h-screen bg-gray-100 dark:bg-paper py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
                     {/* Header Action */}
                     <div className="flex justify-between items-center mb-6">
                         <div>
-                            <h2 className="font-semibold text-2xl text-gray-800 dark:text-[#4b443a] leading-tight">Certificate Manager</h2>
-                            <div className="text-[#635c4e] dark:text-[#635c4e] mt-1">
+                            <h2 className="font-semibold text-2xl text-gray-800 dark:text-ink-soft leading-tight">Certificate Manager</h2>
+                            <div className="text-umber dark:text-umber mt-1">
                                 Issue certificates to users before they even sign up.
                             </div>
                         </div>
@@ -56,8 +56,8 @@ export default function CertificatesIndex({ auth, certificates }) {
 
                     {/* Issue Form */}
                     {showForm && (
-                        <div className="bg-white dark:bg-[#faf8f3] p-6 rounded-lg shadow-lg border border-indigo-500/30 animate-in fade-in slide-in-from-top-4">
-                            <h3 className="text-lg font-bold text-gray-900 dark:text-[#17150f] mb-4">Issue Digital Certificate</h3>
+                        <div className="bg-white dark:bg-paper p-6 rounded-lg shadow-lg border border-indigo-500/30 animate-in fade-in slide-in-from-top-4">
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-ink mb-4">Issue Digital Certificate</h3>
                             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <InputLabel value="Recipient Email (Key Anchor)" />
@@ -69,7 +69,7 @@ export default function CertificatesIndex({ auth, certificates }) {
                                         placeholder="user@example.com"
                                     />
                                     <InputError message={errors.email} className="mt-2" />
-                                    <p className="text-xs text-[#635c4e] mt-1">
+                                    <p className="text-xs text-umber mt-1">
                                         * Does not need an existing account. Will auto-link when they join.
                                     </p>
                                 </div>
@@ -102,7 +102,7 @@ export default function CertificatesIndex({ auth, certificates }) {
                                     <InputLabel value="Upload Certificate (PDF/Image)" />
                                     <input
                                         type="file"
-                                        className="w-full mt-1 text-[#635c4e] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 dark:file:bg-gray-700 dark:file:text-[#4b443a]"
+                                        className="w-full mt-1 text-umber file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 dark:file:bg-gray-700 dark:file:text-ink-soft"
                                         onChange={e => setData('file', e.target.files[0])}
                                     />
                                     <InputError message={errors.file} className="mt-2" />
@@ -118,30 +118,30 @@ export default function CertificatesIndex({ auth, certificates }) {
                     )}
 
                     {/* Certificates List */}
-                    <div className="bg-white dark:bg-[#faf8f3] overflow-hidden shadow-sm sm:rounded-lg">
+                    <div className="bg-white dark:bg-paper overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6">
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-[#4b443a] mb-4">Issued Certificates</h3>
+                            <h3 className="text-lg font-semibold text-gray-900 dark:text-ink-soft mb-4">Issued Certificates</h3>
 
                             {certificates.length === 0 ? (
-                                <p className="text-[#635c4e] text-center py-10">No certificates issued yet.</p>
+                                <p className="text-umber text-center py-10">No certificates issued yet.</p>
                             ) : (
                                 <div className="overflow-x-auto">
                                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                         <thead className="bg-gray-50 dark:bg-gray-700">
                                             <tr>
-                                                <th className="px-6 py-3 text-left text-xs font-medium text-[#635c4e] dark:text-[#4b443a] uppercase tracking-wider">Recipient</th>
-                                                <th className="px-6 py-3 text-left text-xs font-medium text-[#635c4e] dark:text-[#4b443a] uppercase tracking-wider">Title</th>
-                                                <th className="px-6 py-3 text-left text-xs font-medium text-[#635c4e] dark:text-[#4b443a] uppercase tracking-wider">Status</th>
-                                                <th className="px-6 py-3 text-left text-xs font-medium text-[#635c4e] dark:text-[#4b443a] uppercase tracking-wider">Date</th>
-                                                <th className="px-6 py-3 text-right text-xs font-medium text-[#635c4e] dark:text-[#4b443a] uppercase tracking-wider">Actions</th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Recipient</th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Title</th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Status</th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Date</th>
+                                                <th className="px-6 py-3 text-right text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody className="bg-white dark:bg-[#faf8f3] divide-y divide-gray-200 dark:divide-gray-700">
+                                        <tbody className="bg-white dark:bg-paper divide-y divide-gray-200 dark:divide-gray-700">
                                             {certificates.map((cert) => (
                                                 <tr key={cert.id} className="hover:bg-gray-50 dark:hover:bg-gray-100 transition">
                                                     <td className="px-6 py-4 whitespace-nowrap">
-                                                        <div className="text-sm font-medium text-gray-900 dark:text-[#17150f]">{cert.recipient_name}</div>
-                                                        <div className="text-sm text-[#635c4e]">{cert.email}</div>
+                                                        <div className="text-sm font-medium text-gray-900 dark:text-ink">{cert.recipient_name}</div>
+                                                        <div className="text-sm text-umber">{cert.email}</div>
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap">
                                                         <span className="px-2 py-1 text-xs font-semibold bg-indigo-100 text-indigo-800 rounded-full">
@@ -161,7 +161,7 @@ export default function CertificatesIndex({ auth, certificates }) {
                                                             </span>
                                                         )}
                                                     </td>
-                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[#635c4e]">
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-umber">
                                                         {new Date(cert.created_at).toLocaleDateString()}
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

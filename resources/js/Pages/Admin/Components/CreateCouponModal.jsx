@@ -26,14 +26,14 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#faf8f3] backdrop-blur-sm animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-paper backdrop-blur-sm animate-fade-in">
             <div className="bg-white rounded-xl w-full max-w-md shadow-2xl overflow-hidden animate-scale-in border border-gray-100">
                 {/* Header */}
                 <div className="flex justify-between items-center px-5 py-4 border-b border-gray-50 bg-gray-50/30">
                     <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
                         <span className="text-lg">🎟️</span> Manage Coupons
                     </h3>
-                    <button onClick={onClose} className="text-[#635c4e] hover:text-[#635c4e] transition-colors p-1 hover:bg-gray-100 rounded-lg">
+                    <button onClick={onClose} className="text-umber hover:text-umber transition-colors p-1 hover:bg-gray-100 rounded-lg">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -44,10 +44,10 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                     {/* Compact Grid */}
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1.5">
-                            <label className="text-[11px] font-black uppercase tracking-wider text-[#635c4e] ml-1">Code</label>
+                            <label className="text-[11px] font-black uppercase tracking-wider text-umber ml-1">Code</label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg className="h-4 w-4 text-[#635c4e]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg className="h-4 w-4 text-umber" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                                     </svg>
                                 </div>
@@ -64,10 +64,10 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                         </div>
 
                         <div className="space-y-1.5">
-                            <label className="text-[11px] font-black uppercase tracking-wider text-[#635c4e] ml-1">Discount %</label>
+                            <label className="text-[11px] font-black uppercase tracking-wider text-umber ml-1">Discount %</label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span className="text-[#635c4e] text-xs font-bold">%</span>
+                                    <span className="text-umber text-xs font-bold">%</span>
                                 </div>
                                 <input
                                     type="number"
@@ -84,10 +84,10 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                         </div>
 
                         <div className="col-span-2 space-y-1.5">
-                            <label className="text-[11px] font-black uppercase tracking-wider text-[#635c4e] ml-1">Min Order Value (Optional)</label>
+                            <label className="text-[11px] font-black uppercase tracking-wider text-umber ml-1">Min Order Value (Optional)</label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span className="text-[#635c4e] text-xs font-bold">₹</span>
+                                    <span className="text-umber text-xs font-bold">₹</span>
                                 </div>
                                 <input
                                     type="number"
@@ -112,7 +112,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
 
                 {/* Existing Coupons List */}
                 <div className="bg-gray-50 p-4 border-t border-gray-100 max-h-[35vh] overflow-y-auto custom-scrollbar">
-                    <h4 className="text-[11px] text-[#635c4e] font-black uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <h4 className="text-[11px] text-umber font-black uppercase tracking-widest mb-3 flex items-center gap-2">
                         <span>📜</span> Active Coupons
                     </h4>
                     {coupons.length > 0 ? (
@@ -129,7 +129,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                                     <div className="flex items-center gap-2">
                                         <div className="text-right mr-1">
                                             <p className="text-xs text-gray-800 font-bold leading-tight">{coupon.usage_count}</p>
-                                            <p className="text-[9px] text-[#635c4e] uppercase font-bold tracking-tight">Uses</p>
+                                            <p className="text-[9px] text-umber uppercase font-bold tracking-tight">Uses</p>
                                         </div>
 
                                         <button
@@ -141,7 +141,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
 
                                         <button
                                             onClick={() => { if (confirm('Delete coupon?')) router.delete(route('admin.coupons.destroy', coupon.id), { preserveScroll: true }) }}
-                                            className="p-1.5 text-[#4b443a] hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
+                                            className="p-1.5 text-ink-soft hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
                                         >
                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                         </button>
@@ -150,7 +150,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-6 text-[#635c4e] italic text-xs">No active coupons.</div>
+                        <div className="text-center py-6 text-umber italic text-xs">No active coupons.</div>
                     )}
                 </div>
             </div>

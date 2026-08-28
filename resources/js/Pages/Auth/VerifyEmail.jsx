@@ -10,7 +10,7 @@ export default function VerifyEmail({ status }) {
     };
 
     return (
-        <div className="min-h-screen bg-[#f0ece3] flex items-center justify-center p-6 relative overflow-hidden font-sans selection:bg-indigo-500 selection:text-[#17150f]">
+        <div className="min-h-screen bg-parchment flex items-center justify-center p-6 relative overflow-hidden font-sans selection:bg-indigo-500 selection:text-ink">
             <Head title="Verify Email" />
 
             {/* Ambient Background Effects */}
@@ -22,17 +22,17 @@ export default function VerifyEmail({ status }) {
                 <div className="text-center mb-8">
                     <Link href="/" className="inline-flex items-center gap-3 group">
                         <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-110 transition-transform duration-300">
-                            <svg className="w-6 h-6 text-[#17150f]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-6 h-6 text-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                         </div>
                     </Link>
-                    <h2 className="mt-4 text-2xl font-bold text-[#17150f] tracking-tight">Check your inbox</h2>
+                    <h2 className="mt-4 text-2xl font-bold text-ink tracking-tight">Check your inbox</h2>
                 </div>
 
                 {/* Main Card */}
-                <div className="bg-[#faf8f3] border border-gray-800 rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
-                    <div className="text-[#635c4e] text-sm leading-relaxed mb-6">
+                <div className="bg-paper border border-gray-800 rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
+                    <div className="text-umber text-sm leading-relaxed mb-6">
                         <p>
                             Thanks for signing up! Before getting started, could you verify
                             your email address by clicking on the link we just emailed to
@@ -79,7 +79,7 @@ export default function VerifyEmail({ status }) {
                                 href={route('logout')}
                                 method="post"
                                 as="button"
-                                className="w-full py-3 text-sm font-semibold text-[#635c4e] hover:text-[#4b443a] transition-colors border border-gray-800 hover:border-gray-700 rounded-xl hover:bg-[#faf8f3]"
+                                className="w-full py-3 text-sm font-semibold text-umber hover:text-ink-soft transition-colors border border-gray-800 hover:border-gray-700 rounded-xl hover:bg-paper"
                             >
                                 Log Out
                             </Link>
@@ -88,10 +88,13 @@ export default function VerifyEmail({ status }) {
                 </div>
 
                 {/* Footer Help */}
-                <p className="mt-8 text-center text-sm text-[#635c4e]">
+                <p className="mt-8 text-center text-sm text-umber">
                     Need help? <a href="#" className="text-indigo-700 hover:text-indigo-700">Contact Support</a>
                 </p>
             </div>
         </div>
     );
 }
+
+// Full-screen page: renders its own chrome, so the global Layout stays off.
+VerifyEmail.layout = null;

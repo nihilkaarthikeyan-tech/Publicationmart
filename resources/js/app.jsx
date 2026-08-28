@@ -7,32 +7,24 @@ import Layout from './Layouts/Layout';
 
 const appName = 'PublicationMart';
 
-// Pages that should NOT have the layout wrapper (they have their own headers)
-const noLayoutPages = [
-    'Auth/Login',
-    'Auth/Register',
-    'Auth/ForgotPassword',
-    'Auth/ResetPassword',
-    'Auth/VerifyEmail',
-    'Auth/ConfirmPassword',
-    'GuestSmartWriter/Studio',
-    'GuestSmartWriter/Pricing',
-    'GuestSmartWriter/Payment',
-    'GuestSmartWriter/Success',
-    'Books/AiBookStudio',
-    'Books/FormattingTool',
-    'Books/ProPricing',
-    'Books/PremiumPricing'
-];
-
 createInertiaApp({
     title: title => title.includes(appName) ? title : `${title} - ${appName}`,
     resolve: async (name) => {
-        const pages = import.meta.glob('./Pages/**/*.jsx');
+        // Only real pages resolve here. Anything a page merely imports lives in
+        // a Components/ or Partials/ subfolder (or a *.data.jsx module) beside
+        // it, and is excluded so it can never be rendered as a route target.
+        const pages = import.meta.glob([
+            './Pages/**/*.jsx',
+            '!./Pages/**/Components/**',
+            '!./Pages/**/Partials/**',
+            '!./Pages/**/*.data.jsx',
+        ]);
         const page = await resolvePageComponent(`./Pages/${name}.jsx`, pages);
 
-        // Only apply layout if page doesn't already have one AND it's not an auth page
-        if (!page.default.layout && !noLayoutPages.includes(name)) {
+        // Every page gets the global Layout (navbar + footer) unless it
+        // declares otherwise itself: full-screen pages (auth, studios,
+        // pricing takeovers) end with `TheirPage.layout = null;`.
+        if (page.default.layout === undefined) {
             page.default.layout = (pageContent) => <Layout>{pageContent}</Layout>;
         }
 

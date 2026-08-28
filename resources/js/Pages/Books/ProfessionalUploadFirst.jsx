@@ -86,13 +86,13 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
     return (
         <>
             <Head title={`Upload Manuscript - ${serviceNames[serviceType]}`} />
-            <div className="min-h-screen bg-[#f0ece3]">
+            <div className="min-h-screen bg-parchment">
                 {/* Header */}
-                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-[#d8d1c1] sticky top-0 z-50">
+                <header className="bg-paper/90 backdrop-blur-md border-b border-linen sticky top-0 z-50">
                     <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
                         <Link
                             href={route('books.design', book.id)}
-                            className="flex items-center gap-3 text-[#635c4e] hover:text-[#17150f] transition-colors"
+                            className="flex items-center gap-3 text-umber hover:text-ink transition-colors"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -101,7 +101,7 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
                         </Link>
                         <div className="flex items-center gap-2">
                             <span className="text-xl">📄</span>
-                            <span className="font-bold text-[#17150f]">Step 1: Upload Manuscript</span>
+                            <span className="font-bold text-ink">Step 1: Upload Manuscript</span>
                         </div>
                     </div>
                 </header>
@@ -113,30 +113,30 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
 
                     {/* Service Info */}
                     <div className="text-center mb-8">
-                        <h1 className="text-3xl font-bold text-[#17150f] mb-2">{serviceNames[serviceType]}</h1>
-                        <p className="text-[#635c4e]">Upload your manuscript to proceed with payment</p>
+                        <h1 className="text-3xl font-bold text-ink mb-2">{serviceNames[serviceType]}</h1>
+                        <p className="text-umber">Upload your manuscript to proceed with payment</p>
                     </div>
 
                     {/* Progress Steps */}
                     <div className="flex items-center justify-center gap-4 mb-10">
                         <div className="flex items-center gap-2">
                             <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-sm">1</div>
-                            <span className="text-[#17150f] font-medium">Upload</span>
+                            <span className="text-ink font-medium">Upload</span>
                         </div>
-                        <div className="w-12 h-0.5 bg-[#e7e1d4]"></div>
+                        <div className="w-12 h-0.5 bg-vellum"></div>
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-[#e7e1d4] flex items-center justify-center text-[#635c4e] font-bold text-sm">2</div>
-                            <span className="text-[#635c4e]">Payment</span>
+                            <div className="w-8 h-8 rounded-full bg-vellum flex items-center justify-center text-umber font-bold text-sm">2</div>
+                            <span className="text-umber">Payment</span>
                         </div>
-                        <div className="w-12 h-0.5 bg-[#e7e1d4]"></div>
+                        <div className="w-12 h-0.5 bg-vellum"></div>
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-[#e7e1d4] flex items-center justify-center text-[#635c4e] font-bold text-sm">3</div>
-                            <span className="text-[#635c4e]">Done</span>
+                            <div className="w-8 h-8 rounded-full bg-vellum flex items-center justify-center text-umber font-bold text-sm">3</div>
+                            <span className="text-umber">Done</span>
                         </div>
                     </div>
 
                     {/* Upload Card */}
-                    <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-8">
+                    <div className="bg-paper rounded-2xl border border-linen p-8">
                         {/* Drag & Drop Zone */}
                         <div
                             onDragOver={handleDragOver}
@@ -147,7 +147,7 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
                                 ? 'border-indigo-500 bg-indigo-500/10'
                                 : file
                                     ? 'border-emerald-500/50 bg-emerald-500/5'
-                                    : 'border-[#d8d1c1] hover:border-[#7c7364] hover:bg-[#faf8f3]'
+                                    : 'border-linen hover:border-taupe hover:bg-paper'
                                 }`}
                         >
                             <input
@@ -165,8 +165,8 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </div>
-                                    <p className="text-[#17150f] font-medium mb-1">{file.name}</p>
-                                    <p className="text-[#635c4e] text-sm">{formatFileSize(file.size)}</p>
+                                    <p className="text-ink font-medium mb-1">{file.name}</p>
+                                    <p className="text-umber text-sm">{formatFileSize(file.size)}</p>
                                     <button
                                         onClick={(e) => {
                                             e.stopPropagation();
@@ -184,40 +184,40 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                         </svg>
                                     </div>
-                                    <p className="text-[#17150f] font-medium mb-2">
+                                    <p className="text-ink font-medium mb-2">
                                         Drag & drop your manuscript here
                                     </p>
-                                    <p className="text-[#635c4e] text-sm mb-4">or click to browse</p>
-                                    <p className="text-[#635c4e] text-xs">Supported formats: DOC, DOCX (Max 50MB)</p>
+                                    <p className="text-umber text-sm mb-4">or click to browse</p>
+                                    <p className="text-umber text-xs">Supported formats: DOC, DOCX (Max 50MB)</p>
                                 </div>
                             )}
                         </div>
 
                         {/* Notes Section */}
                         <div className="mt-6">
-                            <label className="block text-[#635c4e] text-sm mb-2">
+                            <label className="block text-umber text-sm mb-2">
                                 Special Instructions (Optional)
                             </label>
                             <textarea
                                 value={notes}
                                 onChange={(e) => setNotes(e.target.value)}
                                 placeholder="Any specific formatting requirements, style preferences, or special instructions for our team..."
-                                className="w-full px-4 py-3 bg-[#faf8f3] border border-[#d8d1c1] rounded-xl text-[#17150f] placeholder-gray-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none"
+                                className="w-full px-4 py-3 bg-paper border border-linen rounded-xl text-ink placeholder-gray-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none"
                                 rows={4}
                             />
                         </div>
 
                         {/* Price Summary */}
-                        <div className="mt-6 p-4 bg-[#faf8f3] rounded-xl flex items-center justify-between">
+                        <div className="mt-6 p-4 bg-paper rounded-xl flex items-center justify-between">
                             <div>
-                                <p className="text-[#635c4e] text-sm">Service Price</p>
-                                <p className="text-[#17150f] font-medium">{serviceNames[serviceType]}</p>
+                                <p className="text-umber text-sm">Service Price</p>
+                                <p className="text-ink font-medium">{serviceNames[serviceType]}</p>
                             </div>
                             <div className="text-right">
-                                <p className="text-2xl font-black text-[#6e2530]">
+                                <p className="text-2xl font-black text-oxblood">
                                     ₹{price}
                                 </p>
-                                <p className="text-[#635c4e] text-xs">One-time payment</p>
+                                <p className="text-umber text-xs">One-time payment</p>
                             </div>
                         </div>
 
@@ -226,8 +226,8 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
                             onClick={handleUploadAndProceed}
                             disabled={!file || isUploading}
                             className={`w-full mt-6 py-4 rounded-xl font-bold text-base flex items-center justify-center gap-2 transition-all ${file && !isUploading
-                                ? 'bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-[#17150f] shadow-lg shadow-indigo-500/30'
-                                : 'bg-[#e7e1d4] text-[#635c4e] cursor-not-allowed'
+                                ? 'bg-gradient-to-r from-indigo-500 to-cyan-500 hover:from-indigo-400 hover:to-cyan-400 text-ink shadow-lg shadow-indigo-500/30'
+                                : 'bg-vellum text-umber cursor-not-allowed'
                                 }`}
                         >
                             {isUploading ? (
@@ -249,7 +249,7 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
                         </button>
 
                         {!file && (
-                            <p className="text-center text-[#635c4e] text-sm mt-3">
+                            <p className="text-center text-umber text-sm mt-3">
                                 Please upload your manuscript to proceed
                             </p>
                         )}
@@ -257,27 +257,27 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
 
                     {/* Info Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                        <div className="bg-[#faf8f3] rounded-xl border border-[#d8d1c1] p-5">
+                        <div className="bg-paper rounded-xl border border-linen p-5">
                             <div className="flex items-center gap-3 mb-3">
                                 <div className="p-2 bg-cyan-500/20 rounded-lg">
                                     <svg className="w-5 h-5 text-cyan-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
-                                <h4 className="text-[#17150f] font-medium">Quick Turnaround</h4>
+                                <h4 className="text-ink font-medium">Quick Turnaround</h4>
                             </div>
-                            <p className="text-[#635c4e] text-sm">Your formatted manuscript will be delivered within 3-5 business days.</p>
+                            <p className="text-umber text-sm">Your formatted manuscript will be delivered within 3-5 business days.</p>
                         </div>
-                        <div className="bg-[#faf8f3] rounded-xl border border-[#d8d1c1] p-5">
+                        <div className="bg-paper rounded-xl border border-linen p-5">
                             <div className="flex items-center gap-3 mb-3">
                                 <div className="p-2 bg-emerald-500/20 rounded-lg">
                                     <svg className="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                     </svg>
                                 </div>
-                                <h4 className="text-[#17150f] font-medium">Secure & Private</h4>
+                                <h4 className="text-ink font-medium">Secure & Private</h4>
                             </div>
-                            <p className="text-[#635c4e] text-sm">Your manuscript is encrypted and kept confidential at all times.</p>
+                            <p className="text-umber text-sm">Your manuscript is encrypted and kept confidential at all times.</p>
                         </div>
                     </div>
                 </main>

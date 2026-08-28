@@ -29,6 +29,40 @@ export default {
              * purple. Existing gradients keep their contrast and read warm.
              */
             colors: {
+                /*
+                 * Named house tokens. These are THE colour source: pages use
+                 * `bg-parchment`, `text-ink`, `bg-oxblood` … instead of raw
+                 * hexes, so a future palette change is an edit to this block
+                 * only. Values mirror the long-standing house hexes exactly.
+                 */
+                parchment: '#f0ece3',   // page background
+                paper: '#faf8f3',       // card / raised surface
+                vellum: '#e7e1d4',      // sunken surface, hover fill
+                cream: '#f2ecdd',       // light text on dark surfaces
+                linen: {
+                    DEFAULT: '#d8d1c1', // borders, rules
+                    deep: '#cdc5b1',    // stronger borders, shelf boards
+                },
+                ink: {
+                    DEFAULT: '#17150f', // primary text
+                    soft: '#4b443a',    // secondary text
+                },
+                umber: '#635c4e',       // muted text
+                taupe: {
+                    DEFAULT: '#7c7364', // faint text
+                    light: '#a49b8b',   // disabled / faintest
+                },
+                oxblood: {
+                    DEFAULT: '#6e2530', // primary accent — binding cloth
+                    deep: '#5a1e27',    // hover state
+                    night: '#4d1a22',   // darkest binding
+                },
+                foil: {
+                    DEFAULT: '#a07d3b', // aged gold foil
+                    light: '#e8cf8e',   // pale foil highlights
+                    deep: '#856531',    // pressed foil
+                },
+                night: '#241f16',       // intentional dark surfaces
                 // primary accent — oxblood binding cloth (#6e2530 at 700)
                 indigo: {
                     50: '#fcf5f5', 100: '#f7e8ea', 200: '#eed2d5', 300: '#ddaeb4',

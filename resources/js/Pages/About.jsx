@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 
 export default function About() {
     return (
-        <div className="min-h-screen overflow-x-hidden bg-[#f0ece3] text-[#17150f] font-sans selection:bg-[#6e2530] selection:text-[#faf8f3] pt-24 pb-20">
+        <div className="min-h-screen overflow-x-hidden bg-parchment text-ink font-sans selection:bg-oxblood selection:text-paper pt-24 pb-20">
             <Head title="About PublicationMart – India's AI-Powered Self-Publishing Platform">
                 <meta name="description" content="Learn about PublicationMart, India's leading self-publishing platform. We empower authors with AI-powered tools, professional editing, ISBN, printing, and global distribution services." />
                 <meta property="og:title" content="About PublicationMart – India's Self-Publishing Platform" />
@@ -23,9 +23,9 @@ export default function About() {
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
 
                     <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-                        We Are <span className=" text-[#6e2530]">PublicationMart</span>
+                        We Are <span className=" text-oxblood">PublicationMart</span>
                     </h1>
-                    <p className="text-xl md:text-2xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl md:text-2xl text-umber max-w-3xl mx-auto leading-relaxed">
                         Revolutionizing the publishing industry by bridging the gap between traditional craftsmanship and modern AI technology.
                     </p>
                 </div>
@@ -33,10 +33,10 @@ export default function About() {
                 {/* Creative Grid / Bento Box */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
                     {/* Mission */}
-                    <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-3xl p-10 relative overflow-hidden group hover:border-[#7c7364] transition-colors">
+                    <div className="bg-paper border border-linen rounded-3xl p-10 relative overflow-hidden group hover:border-taupe transition-colors">
                         <div className="relative z-10">
                             <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
-                            <p className="text-[#635c4e] text-lg leading-relaxed">
+                            <p className="text-umber text-lg leading-relaxed">
                                 To empower every author, researcher, and storyteller with the tools they need to share their voice with the world. We believe that great ideas shouldn't get lost in the complexities of publishing. Whether you're a first-time novelist or a seasoned academic, we provide the platform to launch your work globally.
                             </p>
                         </div>
@@ -44,11 +44,11 @@ export default function About() {
                     </div>
 
                     {/* Vision */}
-                    <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-3xl p-10 relative overflow-hidden group hover:border-[#7c7364] transition-colors">
+                    <div className="bg-paper border border-linen rounded-3xl p-10 relative overflow-hidden group hover:border-taupe transition-colors">
                         <div className="relative z-10">
                             <h2 className="text-3xl font-bold mb-4">The Future of Writing</h2>
-                            <p className="text-[#635c4e] text-lg leading-relaxed">
-                                We are pioneering <span className="text-[#17150f]">AI-Assisted Publishing</span>. Our new AI Studio helps authors outline, draft, and format their books in record time, without losing their unique creative touch. We are building an ecosystem where technology serves creativity, not replaces it.
+                            <p className="text-umber text-lg leading-relaxed">
+                                We are pioneering <span className="text-ink">AI-Assisted Publishing</span>. Our new AI Studio helps authors outline, draft, and format their books in record time, without losing their unique creative touch. We are building an ecosystem where technology serves creativity, not replaces it.
                             </p>
                         </div>
                         <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl group-hover:bg-indigo-600/20 transition-all"></div>
@@ -65,9 +65,9 @@ export default function About() {
                             { title: 'Expert Support', icon: '🤝' },
                             { title: 'Royalties Transparency', icon: '💎' }
                         ].map((item, i) => (
-                            <div key={i} className="bg-[#faf8f3] border border-[#d8d1c1] rounded-2xl p-6 hover:-translate-y-1 transition-transform duration-300">
+                            <div key={i} className="bg-paper border border-linen rounded-2xl p-6 hover:-translate-y-1 transition-transform duration-300">
                                 <div className="text-4xl mb-4">{item.icon}</div>
-                                <h3 className="font-bold text-[#4b443a]">{item.title}</h3>
+                                <h3 className="font-bold text-ink-soft">{item.title}</h3>
                             </div>
                         ))}
                     </div>

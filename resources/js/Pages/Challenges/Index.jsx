@@ -147,7 +147,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
 
     return (
-        <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-purple-500 selection:text-[#17150f] pb-20">
+        <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-ink pb-20">
             {/* <PremiumBackground /> */}
             <Head title="Writing Challenges" />
 
@@ -156,11 +156,11 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                 <div className="inline-block px-4 py-1.5 rounded-full bg-purple-50 border border-purple-500/30 text-purple-700 text-xs font-bold tracking-wider mb-6">
                     • Live Challenges 2026
                 </div>
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 text-[#17150f]">
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 text-ink">
                     Showcase Your <br />
-                    <span className=" text-[#6e2530]">Creative Genius</span>
+                    <span className=" text-oxblood">Creative Genius</span>
                 </h1>
-                <p className="text-[#635c4e] max-w-2xl mx-auto mb-8 text-lg">
+                <p className="text-umber max-w-2xl mx-auto mb-8 text-lg">
                     Join our prestigious writing challenges and get a chance to be published, win awards, and reach a global audience.
                 </p>
 
@@ -184,20 +184,20 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                 relative p-8 rounded-2xl text-left transition-all duration-500 cursor-pointer border group hover:-translate-y-2 backdrop-blur-sm
                                 ${selectedChallenge === challenge.title
                                     ? 'bg-indigo-100 border-indigo-500 shadow-[0_0_40px_rgba(99,102,241,0.25)]'
-                                    : 'bg-[#faf8f3] border-[#d8d1c1] hover:border-[#7c7364] hover:bg-[#e7e1d4]'}
+                                    : 'bg-paper border-linen hover:border-taupe hover:bg-vellum'}
                             `}
                         >
                             <div className={`
                                 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-6 transition-all duration-300
-                                ${selectedChallenge === challenge.title ? 'bg-indigo-600 text-[#17150f] shadow-lg shadow-indigo-500/40' : 'bg-[#e7e1d4] text-[#635c4e] group-hover:bg-[#e7e1d4]'}
+                                ${selectedChallenge === challenge.title ? 'bg-indigo-600 text-ink shadow-lg shadow-indigo-500/40' : 'bg-vellum text-umber group-hover:bg-vellum'}
                             `}>
                                 {challenge.icon}
                             </div>
                             <h3 className="text-xl font-bold mb-3 group-hover:text-indigo-700 transition-colors">{challenge.title}</h3>
-                            <p className="text-sm text-[#635c4e] leading-relaxed mb-8 min-h-[60px]">
+                            <p className="text-sm text-umber leading-relaxed mb-8 min-h-[60px]">
                                 {challenge.desc}
                             </p>
-                            <span className={`text-xs font-bold tracking-wider uppercase transition-colors ${selectedChallenge === challenge.title ? 'text-indigo-700' : 'text-[#635c4e] is-active'}`}>
+                            <span className={`text-xs font-bold tracking-wider uppercase transition-colors ${selectedChallenge === challenge.title ? 'text-indigo-700' : 'text-umber is-active'}`}>
                                 {selectedChallenge === challenge.title ? 'Selected' : 'Click to Select'}
                             </span>
                         </div>
@@ -209,7 +209,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
             {/* Details Section */}
             <div className="max-w-7xl mx-auto px-6 mb-24">
-                <div key={selectedChallenge} className="bg-[#faf8f3] border border-[#d8d1c1] rounded-3xl p-8 md:p-12 animate-fade-in-up transition-all duration-500 backdrop-blur-md shadow-2xl shadow-indigo-900/20">
+                <div key={selectedChallenge} className="bg-paper border border-linen rounded-3xl p-8 md:p-12 animate-fade-in-up transition-all duration-500 backdrop-blur-md shadow-2xl shadow-indigo-900/20">
                     <div className="inline-block px-3 py-1 bg-indigo-50 text-indigo-700 text-[10px] font-bold tracking-widest rounded mb-6 uppercase">
                         Guidelines
                     </div>
@@ -220,13 +220,13 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                             <h2 className="text-3xl font-bold mb-6">
                                 Challenge <span className="text-indigo-700">Overview</span>
                             </h2>
-                            <p className="text-[#635c4e] mb-8 leading-relaxed">
+                            <p className="text-umber mb-8 leading-relaxed">
                                 The 2026 Creative Publishing Challenge invites authors to commit to a focused 22-day creation journey. Participants will develop original work through a structured daily submission model and transform their ideas into a professionally published book.
                             </p>
 
                             <ul className="space-y-4">
                                 {currentChallenge.rules.map((rule, idx) => (
-                                    <li key={idx} className="flex items-center gap-3 text-[#4b443a]">
+                                    <li key={idx} className="flex items-center gap-3 text-ink-soft">
                                         <span className="w-5 h-5 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-700 text-xs">✓</span>
                                         {rule}
                                     </li>
@@ -234,9 +234,9 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                             </ul>
 
                             {/* Eligibility Box - Moved Here */}
-                            <div className="bg-gradient-to-br from-indigo-900/40 to-slate-900/40 border border-[#d8d1c1] rounded-2xl p-8 hover:border-indigo-500/30 transition-colors duration-300 backdrop-blur-md mt-8">
+                            <div className="bg-gradient-to-br from-indigo-900/40 to-slate-900/40 border border-linen rounded-2xl p-8 hover:border-indigo-500/30 transition-colors duration-300 backdrop-blur-md mt-8">
                                 <div className="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-4">Eligibility</div>
-                                <p className="text-[#4b443a] leading-relaxed font-light">
+                                <p className="text-ink-soft leading-relaxed font-light">
                                     {currentChallenge.eligibility}
                                 </p>
                             </div>
@@ -245,7 +245,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                         {/* Right: Video Section ONLY */}
                         <div className="space-y-6">
                             {/* Video Section */}
-                            <div className="bg-indigo-50 border border-[#d8d1c1] rounded-2xl p-2 hover:border-indigo-500/30 transition-colors duration-300 overflow-hidden shadow-2xl backdrop-blur-sm">
+                            <div className="bg-indigo-50 border border-linen rounded-2xl p-2 hover:border-indigo-500/30 transition-colors duration-300 overflow-hidden shadow-2xl backdrop-blur-sm">
                                 {challengeSettings[selectedChallenge] && (challengeSettings[selectedChallenge].video_url || challengeSettings[selectedChallenge].video_file) ? (
                                     challengeSettings[selectedChallenge].video_type === 'url' ? (
                                         <div className="relative pt-[177.77%]"> {/* 9:16 Aspect Ratio for "Shorts" style */}
@@ -258,7 +258,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                             ></iframe>
                                         </div>
                                     ) : (
-                                        <div className="relative rounded-xl overflow-hidden bg-[#faf8f3]">
+                                        <div className="relative rounded-xl overflow-hidden bg-paper">
                                             <video
                                                 controls
                                                 className="w-full h-auto rounded-xl"
@@ -283,33 +283,33 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                         <div className="absolute inset-0 flex flex-col items-center justify-center p-8 backdrop-blur-[2px]">
                                             <div className="relative">
                                                 {/* Pulsing Ring */}
-                                                <div className="absolute inset-0 bg-[#e7e1d4] rounded-full blur-xl animate-pulse"></div>
+                                                <div className="absolute inset-0 bg-vellum rounded-full blur-xl animate-pulse"></div>
 
                                                 {/* Icon Container */}
-                                                <div className="relative w-20 h-20 bg-gradient-to-br from-white/10 to-white/5 border border-[#d8d1c1] rounded-full flex items-center justify-center mb-6 shadow-2xl backdrop-blur-md group-hover:scale-110 transition-transform duration-500">
-                                                    <svg className="w-8 h-8 text-[#17150f] drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <div className="relative w-20 h-20 bg-gradient-to-br from-white/10 to-white/5 border border-linen rounded-full flex items-center justify-center mb-6 shadow-2xl backdrop-blur-md group-hover:scale-110 transition-transform duration-500">
+                                                    <svg className="w-8 h-8 text-ink drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
                                                 </div>
                                             </div>
 
-                                            <h4 className="text-2xl font-black mb-2 text-center text-[#17150f]">
+                                            <h4 className="text-2xl font-black mb-2 text-center text-ink">
                                                 Visual Experience
                                             </h4>
 
-                                            <div className="flex items-center gap-2 bg-[#faf8f3] border border-[#d8d1c1] rounded-full px-4 py-1.5 backdrop-blur-md">
+                                            <div className="flex items-center gap-2 bg-paper border border-linen rounded-full px-4 py-1.5 backdrop-blur-md">
                                                 <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
                                                 <span className="text-indigo-700 text-xs font-bold tracking-wide uppercase">Coming Soon</span>
                                             </div>
 
-                                            <p className="text-[#635c4e] text-sm text-center mt-6 leading-relaxed max-w-[80%] opacity-80">
+                                            <p className="text-umber text-sm text-center mt-6 leading-relaxed max-w-[80%] opacity-80">
                                                 We are crafting an immersive walkthrough for this challenge. Stay tuned.
                                             </p>
                                         </div>
 
                                         {/* Decorative Border Gradient */}
-                                        <div className="absolute inset-0 border border-[#d8d1c1] rounded-2xl"></div>
+                                        <div className="absolute inset-0 border border-linen rounded-2xl"></div>
                                     </div>
                                 )}
 
@@ -326,9 +326,9 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                     {/* Left: How it works */}
                     <div className="lg:col-span-12">
                         <div className="mb-16">
-                            <h2 className="text-3xl font-bold mb-8 text-[#17150f] border-l-4 border-indigo-500 pl-4">How does this work?</h2>
+                            <h2 className="text-3xl font-bold mb-8 text-ink border-l-4 border-indigo-500 pl-4">How does this work?</h2>
 
-                            <div className="space-y-6 text-[#4b443a] leading-relaxed text-lg bg-indigo-50 border border-[#d8d1c1] p-8 rounded-3xl backdrop-blur-md shadow-xl">
+                            <div className="space-y-6 text-ink-soft leading-relaxed text-lg bg-indigo-50 border border-linen p-8 rounded-3xl backdrop-blur-md shadow-xl">
                                 <p>
                                     All writers who register for the <span className="text-indigo-700 font-bold">{selectedChallenge}</span> will be given a portal on which they can write
                                     {selectedChallenge === 'Poetry Challenge' ? ' at least one poem ' : ' at least one chapter '}
@@ -347,36 +347,36 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
                         {/* Right: What You Get */}
                         <div>
-                            <h2 className="text-3xl font-bold mb-8 text-[#17150f] border-l-4 border-purple-500 pl-4">
+                            <h2 className="text-3xl font-bold mb-8 text-ink border-l-4 border-purple-500 pl-4">
                                 Here's what you'll get after you've completed the challenge:
                             </h2>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                                 {/* Certificate */}
-                                <div className="bg-indigo-50 border border-[#d8d1c1] rounded-2xl p-6 hover:border-indigo-500/50 transition-colors shadow-lg shadow-indigo-500/5 backdrop-blur-sm">
+                                <div className="bg-indigo-50 border border-linen rounded-2xl p-6 hover:border-indigo-500/50 transition-colors shadow-lg shadow-indigo-500/5 backdrop-blur-sm">
                                     <h3 className="text-lg font-bold text-indigo-700 mb-3 flex items-center gap-2">
                                         📜 Publishing Certificate
                                     </h3>
-                                    <p className="text-[#635c4e] text-sm leading-relaxed">We will send a digital publishing Certificate to each participating writer.</p>
+                                    <p className="text-umber text-sm leading-relaxed">We will send a digital publishing Certificate to each participating writer.</p>
                                 </div>
 
                                 {/* Book Publishing Intro */}
-                                <div className="bg-indigo-50 border border-[#d8d1c1] rounded-2xl p-6 hover:border-indigo-500/50 transition-colors shadow-lg shadow-indigo-500/5 backdrop-blur-sm">
+                                <div className="bg-indigo-50 border border-linen rounded-2xl p-6 hover:border-indigo-500/50 transition-colors shadow-lg shadow-indigo-500/5 backdrop-blur-sm">
                                     <h3 className="text-lg font-bold text-indigo-700 mb-3 flex items-center gap-2">
                                         📚 Book Publishing
                                     </h3>
-                                    <p className="text-[#635c4e] text-sm leading-relaxed">
+                                    <p className="text-umber text-sm leading-relaxed">
                                         We'll publish what you write during this month as your own book as part of the Writing Challenge.
                                     </p>
                                 </div>
                             </div>
 
                             {/* Detailed Kit List */}
-                            <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-3xl p-8 md:p-10 relative overflow-hidden backdrop-blur-md shadow-2xl">
+                            <div className="bg-paper border border-linen rounded-3xl p-8 md:p-10 relative overflow-hidden backdrop-blur-md shadow-2xl">
                                 <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/5 rounded-full blur-3xl -z-10"></div>
 
-                                <h3 className="text-xl font-bold text-[#17150f] mb-6">Complete Publishing Kit Details:</h3>
-                                <ul className="space-y-4 text-[#4b443a]">
+                                <h3 className="text-xl font-bold text-ink mb-6">Complete Publishing Kit Details:</h3>
+                                <ul className="space-y-4 text-ink-soft">
                                     {[
                                         'ISBN number & barcode allocation.',
                                         "Book's interior layouts & design will be created as per your choice.",
@@ -400,23 +400,23 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                         {/* ═══ BOOK MARKETING STUDIO ═══ */}
                         <div className="mt-12 bg-gradient-to-br from-indigo-900/20 to-purple-900/20 border border-indigo-500/30 rounded-2xl p-8 hover:border-indigo-500/60 transition-colors relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
-                            <h3 className="text-xl font-bold text-[#17150f] mb-4 flex items-center gap-3">
+                            <h3 className="text-xl font-bold text-ink mb-4 flex items-center gap-3">
                                 <span className="text-2xl">🚀</span> Book Marketing
                             </h3>
-                            <p className="text-[#4b443a] leading-relaxed text-lg font-light">
+                            <p className="text-ink-soft leading-relaxed text-lg font-light">
                                 When your book is out, we'll send you promotional material to help you promote it.
                                 We'll also share our <span className="text-indigo-700 font-bold">book marketing guide</span> to help you sell more copies.
                             </p>
                         </div>
 
                         {/* ═══ WHATS NEW: DIY TOOL ═══ */}
-                        <div className="mt-16 pt-16 border-t border-[#d8d1c1]">
-                            <h2 className="text-3xl font-bold mb-3 text-[#17150f]">What's New?</h2>
-                            <h3 className="text-xl font-bold mb-6 text-[#6e2530]">
+                        <div className="mt-16 pt-16 border-t border-linen">
+                            <h2 className="text-3xl font-bold mb-3 text-ink">What's New?</h2>
+                            <h3 className="text-xl font-bold mb-6 text-oxblood">
                                 Your DIY Book Creation Tool
                             </h3>
 
-                            <p className="text-[#4b443a] leading-relaxed mb-12 max-w-4xl text-lg">
+                            <p className="text-ink-soft leading-relaxed mb-12 max-w-4xl text-lg">
                                 We have developed a cutting-edge DIY portal to make your book creation process seamless and enjoyable.
                                 You can use it to write your {selectedChallenge === 'Poetry Challenge' ? 'poems' : 'stories/chapters'}, and choose from various book designs and layouts.
                                 Also, you can instantly see the final draft of your book on your screen and make any changes you want in real time.
@@ -428,7 +428,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
                                 {/* Editor Image */}
                                 <div className="w-full md:w-5/12 text-center group">
-                                    <div className="rounded-2xl overflow-hidden border border-[#d8d1c1] shadow-2xl shadow-indigo-500/20 group-hover:scale-[1.02] transition-transform duration-500 mb-4 bg-[#faf8f3] backdrop-blur-sm p-1">
+                                    <div className="rounded-2xl overflow-hidden border border-linen shadow-2xl shadow-indigo-500/20 group-hover:scale-[1.02] transition-transform duration-500 mb-4 bg-paper backdrop-blur-sm p-1">
                                         <img src="/images/challenge-editor.png" alt="Formatting Tool Interface" className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity rounded-xl" />
                                     </div>
                                     <p className="text-xs text-indigo-700 uppercase tracking-wider font-bold">Write & Design</p>
@@ -444,7 +444,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
                                 {/* Preview Image */}
                                 <div className="w-full md:w-5/12 text-center group">
-                                    <div className="rounded-2xl overflow-hidden border border-[#d8d1c1] shadow-2xl shadow-purple-500/20 group-hover:scale-[1.02] transition-transform duration-500 mb-4 bg-[#faf8f3] backdrop-blur-sm p-1">
+                                    <div className="rounded-2xl overflow-hidden border border-linen shadow-2xl shadow-purple-500/20 group-hover:scale-[1.02] transition-transform duration-500 mb-4 bg-paper backdrop-blur-sm p-1">
                                         <img src="/images/challenge-preview.png" alt="Book Preview Interface" className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition-opacity rounded-xl" />
                                     </div>
                                     <p className="text-xs text-purple-700 uppercase tracking-wider font-bold">Instant Preview</p>
@@ -453,12 +453,12 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                         </div>
 
                         {/* ═══ COVER DESIGN STUDIO ═══ */}
-                        <div className="mt-24 pt-16 border-t border-[#d8d1c1]">
-                            <h3 className="text-xl font-bold mb-6 text-[#6e2530]">
+                        <div className="mt-24 pt-16 border-t border-linen">
+                            <h3 className="text-xl font-bold mb-6 text-oxblood">
                                 Professional Cover Design Creator
                             </h3>
 
-                            <p className="text-[#4b443a] leading-relaxed mb-12 max-w-4xl text-lg">
+                            <p className="text-ink-soft leading-relaxed mb-12 max-w-4xl text-lg">
                                 Design your book cover using our intuitive cover creator. Choose from hundreds of images and designs to craft a cover that you can be proud of. The cover creator is extremely easy to use, and you do not need any prior design experience to create your cover.
                             </p>
 
@@ -473,7 +473,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
                                     {/* Step 2: Editor */}
                                     <div className="flex-1 text-center group w-full">
-                                        <div className="rounded-2xl overflow-hidden border border-[#d8d1c1] shadow-2xl shadow-indigo-500/10 group-hover:scale-[1.02] transition-transform duration-500 mb-4 bg-[#faf8f3] backdrop-blur-sm p-2">
+                                        <div className="rounded-2xl overflow-hidden border border-linen shadow-2xl shadow-indigo-500/10 group-hover:scale-[1.02] transition-transform duration-500 mb-4 bg-paper backdrop-blur-sm p-2">
                                             <img src="/images/cover-editor.png" alt="Cover Editor Interface" className="w-full h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
                                         </div>
                                         <p className="text-xs text-indigo-700 uppercase tracking-wider font-bold">1. Customize</p>
@@ -485,7 +485,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
                                     {/* Step 3: Preview */}
                                     <div className="flex-1 text-center group w-full">
-                                        <div className="rounded-2xl overflow-hidden border border-[#d8d1c1] shadow-2xl shadow-indigo-500/10 group-hover:scale-[1.02] transition-transform duration-500 mb-4 bg-[#faf8f3] backdrop-blur-sm p-2">
+                                        <div className="rounded-2xl overflow-hidden border border-linen shadow-2xl shadow-indigo-500/10 group-hover:scale-[1.02] transition-transform duration-500 mb-4 bg-paper backdrop-blur-sm p-2">
                                             <img src="/images/cover-preview.png" alt="Cover Preview" className="w-full h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity" />
                                         </div>
                                         <p className="text-xs text-purple-700 uppercase tracking-wider font-bold">2. Final Preview</p>
@@ -500,33 +500,33 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
             {/* Enrollment Form */}
             <div id="enrollment-form" className="max-w-2xl mx-auto px-6">
-                <div className="bg-indigo-50 border border-[#d8d1c1] rounded-3xl p-8 md:p-12 shadow-2xl shadow-indigo-900/10 backdrop-blur-md">
+                <div className="bg-indigo-50 border border-linen rounded-3xl p-8 md:p-12 shadow-2xl shadow-indigo-900/10 backdrop-blur-md">
                     <div className="text-center mb-10">
                         <h2 className="text-3xl font-bold mb-2">Enrollment Form</h2>
-                        <p className="text-[#635c4e]">Apply for the <span className="text-purple-700">{selectedChallenge}</span></p>
+                        <p className="text-umber">Apply for the <span className="text-purple-700">{selectedChallenge}</span></p>
                         <div className="w-16 h-1 bg-purple-600 mx-auto mt-6 rounded-full"></div>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1">Full Name</label>
+                                <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1">Full Name</label>
                                 <input
                                     type="text"
                                     value={data.full_name}
                                     onChange={e => setData('full_name', e.target.value)}
-                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3 text-[#17150f] focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
                                     placeholder="Enter your full name"
                                 />
                                 {errors.full_name && <div className="text-red-500 text-xs mt-1">{errors.full_name}</div>}
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1">Email Address</label>
+                                <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1">Email Address</label>
                                 <input
                                     type="email"
                                     value={data.email}
                                     onChange={e => setData('email', e.target.value)}
-                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3 text-[#17150f] focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
                                     placeholder="your@email.com"
                                 />
                                 {errors.email && <div className="text-red-500 text-xs mt-1">{errors.email}</div>}
@@ -535,23 +535,23 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1">Mobile Number</label>
+                                <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1">Mobile Number</label>
                                 <input
                                     type="text"
                                     value={data.mobile_number}
                                     onChange={e => setData('mobile_number', e.target.value)}
-                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3 text-[#17150f] focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
                                     placeholder="+91 00000 00000"
                                 />
                                 {errors.mobile_number && <div className="text-red-500 text-xs mt-1">{errors.mobile_number}</div>}
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1">City</label>
+                                <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1">City</label>
                                 <input
                                     type="text"
                                     value={data.city}
                                     onChange={e => setData('city', e.target.value)}
-                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3 text-[#17150f] focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
                                     placeholder="Enter your city"
                                 />
                                 {errors.city && <div className="text-red-500 text-xs mt-1">{errors.city}</div>}
@@ -561,14 +561,14 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                         <div className="pt-6 pb-2">
                             {/* ═══ COUPON CODE SECTION ═══ */}
                             <div className="mb-6">
-                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1 mb-2 block">Have a Coupon Code?</label>
+                                <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1 mb-2 block">Have a Coupon Code?</label>
                                 {!couponApplied ? (
                                     <div className="flex gap-2">
                                         <input
                                             type="text"
                                             value={couponInput}
                                             onChange={e => setCouponInput(e.target.value.toUpperCase())}
-                                            className="flex-1 bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3 text-[#17150f] focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm uppercase tracking-wider text-sm font-mono"
+                                            className="flex-1 bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm uppercase tracking-wider text-sm font-mono"
                                             placeholder="ENTER CODE"
                                             maxLength={20}
                                         />
@@ -590,7 +590,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                             <span className="text-emerald-700 font-bold text-sm font-mono">{couponApplied.code}</span>
                                             <span className="text-emerald-700 text-xs">({couponApplied.discount_percentage}% off)</span>
                                         </div>
-                                        <button type="button" onClick={handleRemoveCoupon} className="text-[#635c4e] hover:text-red-700 transition-colors text-xs font-bold">
+                                        <button type="button" onClick={handleRemoveCoupon} className="text-umber hover:text-red-700 transition-colors text-xs font-bold">
                                             Remove
                                         </button>
                                     </div>
@@ -600,16 +600,16 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                             </div>
 
                             {/* ═══ ORDER SUMMARY ═══ */}
-                            <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-2xl p-5 mb-6 backdrop-blur-sm">
-                                <h4 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-4">Order Summary</h4>
+                            <div className="bg-paper border border-linen rounded-2xl p-5 mb-6 backdrop-blur-sm">
+                                <h4 className="text-xs font-bold text-umber uppercase tracking-widest mb-4">Order Summary</h4>
                                 <div className="space-y-3 text-sm">
                                     <div className="flex justify-between">
-                                        <span className="text-[#635c4e]">Challenge</span>
+                                        <span className="text-umber">Challenge</span>
                                         <span className="text-indigo-700 font-medium">{selectedChallenge}</span>
                                     </div>
                                     <div className="flex justify-between">
-                                        <span className="text-[#635c4e]">Entry Fee</span>
-                                        <span className="text-[#17150f] font-medium">₹{entryFee.toLocaleString()}</span>
+                                        <span className="text-umber">Entry Fee</span>
+                                        <span className="text-ink font-medium">₹{entryFee.toLocaleString()}</span>
                                     </div>
                                     {couponApplied && (
                                         <div className="flex justify-between text-emerald-700">
@@ -620,9 +620,9 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                             <span className="font-medium">-₹{couponApplied.discount_amount.toLocaleString()}</span>
                                         </div>
                                     )}
-                                    <div className="border-t border-[#d8d1c1] pt-3 flex justify-between">
-                                        <span className="text-[#17150f] font-bold">Total</span>
-                                        <span className="text-xl font-black text-[#17150f]">
+                                    <div className="border-t border-linen pt-3 flex justify-between">
+                                        <span className="text-ink font-bold">Total</span>
+                                        <span className="text-xl font-black text-ink">
                                             ₹{couponApplied ? couponApplied.final_amount.toLocaleString() : entryFee.toLocaleString()}
                                         </span>
                                     </div>

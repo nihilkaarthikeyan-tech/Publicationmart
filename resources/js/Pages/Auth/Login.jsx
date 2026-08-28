@@ -3,7 +3,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import AuthSidePanel from './AuthSidePanel';
+import AuthSidePanel from './Components/AuthSidePanel';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { useState, useEffect, useCallback } from 'react';
 import { route } from 'ziggy-js';
@@ -11,7 +11,7 @@ import { route } from 'ziggy-js';
 const SERIF = { fontFamily: "'EB Garamond', Georgia, serif" };
 
 const FIELD =
-    'block w-full pl-11 pr-4 py-3 border border-[#d8d1c1] rounded-md bg-white text-[#17150f] caret-[#6e2530] placeholder-[#a49b8b] focus:outline-none focus:ring-2 focus:ring-[#6e2530]/25 focus:border-[#6e2530] transition-all text-sm';
+    'block w-full pl-11 pr-4 py-3 border border-linen rounded-md bg-white text-ink caret-oxblood placeholder-taupe-light focus:outline-none focus:ring-2 focus:ring-oxblood/25 focus:border-oxblood transition-all text-sm';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -139,7 +139,7 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <div className="min-h-screen flex font-sans relative overflow-hidden bg-[#f0ece3]">
+        <div className="min-h-screen flex font-sans relative overflow-hidden bg-parchment">
             <Head title="Sign In" />
 
             {/* Left Side - Login Form */}
@@ -149,12 +149,12 @@ export default function Login({ status, canResetPassword }) {
                     <div className="text-center">
                         <Link href="/" className="inline-flex justify-center mb-7">
                             {/* The wordmark is white lettering, so it sits on a cloth plate. */}
-                            <span className="bg-[#6e2530] rounded-lg px-5 py-1.5 shadow-md inline-flex">
+                            <span className="bg-oxblood rounded-lg px-5 py-1.5 shadow-md inline-flex">
                                 <ApplicationLogo className="h-16 w-auto brightness-0 invert" />
                             </span>
                         </Link>
-                        <h1 className="text-[34px] leading-tight text-[#17150f]" style={SERIF}>Welcome back.</h1>
-                        <p className="mt-2 text-[#635c4e] text-[15px]">Sign in to continue your publishing journey</p>
+                        <h1 className="text-[34px] leading-tight text-ink" style={SERIF}>Welcome back.</h1>
+                        <p className="mt-2 text-umber text-[15px]">Sign in to continue your publishing journey</p>
                     </div>
 
                     {status && (
@@ -163,11 +163,11 @@ export default function Login({ status, canResetPassword }) {
                         </div>
                     )}
 
-                    <div className="bg-[#faf8f3] p-8 rounded-xl border border-[#d8d1c1] shadow-[0_18px_44px_-18px_rgba(23,21,15,0.25)]">
+                    <div className="bg-paper p-8 rounded-xl border border-linen shadow-[0_18px_44px_-18px_rgba(23,21,15,0.25)]">
                         {/* Google Sign In */}
                         <a
                             href={route('auth.google')}
-                            className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white hover:bg-[#f5f2ea] text-[#17150f] font-medium rounded-md transition-colors border border-[#d8d1c1] hover:border-[#7c7364]"
+                            className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white hover:bg-[#f5f2ea] text-ink font-medium rounded-md transition-colors border border-linen hover:border-taupe"
                         >
                             <svg className="w-5 h-5" viewBox="0 0 24 24">
                                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -180,25 +180,25 @@ export default function Login({ status, canResetPassword }) {
 
                         {/* Divider */}
                         <div className="relative my-6">
-                            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-[#d8d1c1]"></div></div>
+                            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-linen"></div></div>
                             <div className="relative flex justify-center text-sm">
-                                <span className="px-4 text-[#635c4e] font-medium bg-[#faf8f3]">or sign in with email</span>
+                                <span className="px-4 text-umber font-medium bg-paper">or sign in with email</span>
                             </div>
                         </div>
 
                         {/* Login Method Tabs */}
-                        <div className="grid grid-cols-2 gap-1 p-1 bg-[#efe9db] rounded-md border border-[#d8d1c1] mb-6">
+                        <div className="grid grid-cols-2 gap-1 p-1 bg-[#efe9db] rounded-md border border-linen mb-6">
                             <button
                                 type="button"
                                 onClick={() => { setLoginMethod('password'); setOtpSent(false); }}
-                                className={`py-2 text-sm font-semibold rounded transition-all duration-300 ${loginMethod === 'password' ? 'bg-[#6e2530] text-[#faf8f3] shadow-sm' : 'text-[#635c4e] hover:text-[#17150f] hover:bg-[#faf8f3]'}`}
+                                className={`py-2 text-sm font-semibold rounded transition-all duration-300 ${loginMethod === 'password' ? 'bg-oxblood text-paper shadow-sm' : 'text-umber hover:text-ink hover:bg-paper'}`}
                             >
                                 Password
                             </button>
                             <button
                                 type="button"
                                 onClick={() => { setLoginMethod('otp'); }}
-                                className={`py-2 text-sm font-semibold rounded transition-all duration-300 ${loginMethod === 'otp' ? 'bg-[#6e2530] text-[#faf8f3] shadow-sm' : 'text-[#635c4e] hover:text-[#17150f] hover:bg-[#faf8f3]'}`}
+                                className={`py-2 text-sm font-semibold rounded transition-all duration-300 ${loginMethod === 'otp' ? 'bg-oxblood text-paper shadow-sm' : 'text-umber hover:text-ink hover:bg-paper'}`}
                             >
                                 One-Time Code
                             </button>
@@ -208,10 +208,10 @@ export default function Login({ status, canResetPassword }) {
                         <form onSubmit={submit} className="space-y-4">
                             {/* Email */}
                             <div className="space-y-1.5">
-                                <label className="block text-sm font-medium text-[#4b443a]" htmlFor="email">Email Address</label>
+                                <label className="block text-sm font-medium text-ink-soft" htmlFor="email">Email Address</label>
                                 <div className="relative group">
                                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                                        <svg className="h-5 w-5 text-[#a49b8b] group-focus-within:text-[#6e2530] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-5 w-5 text-taupe-light group-focus-within:text-oxblood transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
                                     </div>
@@ -236,10 +236,10 @@ export default function Login({ status, canResetPassword }) {
                             {/* Password Flow */}
                             {loginMethod === 'password' && (
                                 <div className="space-y-1.5">
-                                    <label className="block text-sm font-medium text-[#4b443a]" htmlFor="password">Password</label>
+                                    <label className="block text-sm font-medium text-ink-soft" htmlFor="password">Password</label>
                                     <div className="relative group">
                                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                                            <svg className="h-5 w-5 text-[#a49b8b] group-focus-within:text-[#6e2530] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg className="h-5 w-5 text-taupe-light group-focus-within:text-oxblood transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                             </svg>
                                         </div>
@@ -254,7 +254,7 @@ export default function Login({ status, canResetPassword }) {
                                             placeholder="••••••••"
                                             required
                                         />
-                                        <button type="button" className="absolute inset-y-0 right-0 px-3.5 flex items-center text-[#a49b8b] hover:text-[#17150f] transition-colors" onClick={() => setShowPassword(!showPassword)}>
+                                        <button type="button" className="absolute inset-y-0 right-0 px-3.5 flex items-center text-taupe-light hover:text-ink transition-colors" onClick={() => setShowPassword(!showPassword)}>
                                             {showPassword ? (
                                                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>
                                             ) : (
@@ -269,20 +269,20 @@ export default function Login({ status, canResetPassword }) {
                             {/* OTP Flow */}
                             {loginMethod === 'otp' && otpSent && (
                                 <div className="space-y-4">
-                                    <label className="block text-sm font-medium text-[#4b443a] text-center">Enter the verification code sent to your email</label>
+                                    <label className="block text-sm font-medium text-ink-soft text-center">Enter the verification code sent to your email</label>
                                     <TextInput
                                         id="otp"
                                         type="text"
                                         name="otp"
                                         value={data.otp}
-                                        className="block w-full text-center text-3xl tracking-[0.5em] py-4 border border-[#6e2530]/50 rounded-md bg-[#6e2530]/[0.04] text-[#17150f] caret-[#6e2530] focus:outline-none focus:ring-4 focus:ring-[#6e2530]/20 font-mono transition-all"
+                                        className="block w-full text-center text-3xl tracking-[0.5em] py-4 border border-oxblood/50 rounded-md bg-oxblood/[0.04] text-ink caret-oxblood focus:outline-none focus:ring-4 focus:ring-oxblood/20 font-mono transition-all"
                                         onChange={(e) => setData('otp', e.target.value)}
                                         maxLength={6}
                                         placeholder="000000"
                                         autoFocus
                                     />
                                     <div className="text-center">
-                                        <button type="button" onClick={() => { setOtpSent(false); }} className="text-xs text-[#6e2530] hover:text-[#5a1e27] transition-colors underline">
+                                        <button type="button" onClick={() => { setOtpSent(false); }} className="text-xs text-oxblood hover:text-oxblood-deep transition-colors underline">
                                             Use a different email or retry
                                         </button>
                                     </div>
@@ -293,11 +293,11 @@ export default function Login({ status, canResetPassword }) {
                             {loginMethod === 'password' && (
                                 <div className="flex items-center justify-between py-1">
                                     <label className="flex items-center cursor-pointer group">
-                                        <Checkbox name="remember" checked={data.remember} onChange={(e) => setData('remember', e.target.checked)} className="rounded border-[#d8d1c1] bg-white text-[#6e2530] focus:ring-[#6e2530]" />
-                                        <span className="ms-2 text-sm text-[#635c4e] group-hover:text-[#17150f] transition-colors select-none">Remember me</span>
+                                        <Checkbox name="remember" checked={data.remember} onChange={(e) => setData('remember', e.target.checked)} className="rounded border-linen bg-white text-oxblood focus:ring-oxblood" />
+                                        <span className="ms-2 text-sm text-umber group-hover:text-ink transition-colors select-none">Remember me</span>
                                     </label>
                                     {canResetPassword && (
-                                        <Link href={route('password.request')} className="text-sm font-medium text-[#6e2530] hover:text-[#5a1e27] hover:underline transition-colors">
+                                        <Link href={route('password.request')} className="text-sm font-medium text-oxblood hover:text-oxblood-deep hover:underline transition-colors">
                                             Forgot password?
                                         </Link>
                                     )}
@@ -310,20 +310,20 @@ export default function Login({ status, canResetPassword }) {
                                     <PrimaryButton
                                         type="button"
                                         onClick={handleSendOtp}
-                                        className="w-full flex justify-center items-center py-3.5 px-4 rounded-md text-sm font-bold text-[#faf8f3] bg-[#6e2530] hover:bg-[#5a1e27] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#faf8f3] focus:ring-[#6e2530] transition-colors"
+                                        className="w-full flex justify-center items-center py-3.5 px-4 rounded-md text-sm font-bold text-paper bg-oxblood hover:bg-oxblood-deep focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-paper focus:ring-oxblood transition-colors"
                                         disabled={sendingOtp}
                                     >
-                                        {sendingOtp ? <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-[#faf8f3]" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : (
+                                        {sendingOtp ? <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-paper" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : (
                                             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                         )}
                                         {sendingOtp ? 'Sending Code...' : 'Send Login Code'}
                                     </PrimaryButton>
                                 ) : (
                                     <PrimaryButton
-                                        className="w-full flex justify-center items-center py-3.5 px-4 rounded-md text-sm font-bold text-[#faf8f3] bg-[#6e2530] hover:bg-[#5a1e27] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#faf8f3] focus:ring-[#6e2530] transition-colors"
+                                        className="w-full flex justify-center items-center py-3.5 px-4 rounded-md text-sm font-bold text-paper bg-oxblood hover:bg-oxblood-deep focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-paper focus:ring-oxblood transition-colors"
                                         disabled={processing}
                                     >
-                                        {processing && <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-[#faf8f3]" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>}
+                                        {processing && <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-paper" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>}
                                         {loginMethod === 'otp' ? 'Verify & Sign In' : 'Sign In'}
                                     </PrimaryButton>
                                 )}
@@ -332,7 +332,7 @@ export default function Login({ status, canResetPassword }) {
 
                         {/* reCAPTCHA v3 Status */}
                         <div className="flex justify-center mt-6">
-                            <div className="flex items-center justify-center gap-2 text-[10px] text-[#635c4e] font-semibold">
+                            <div className="flex items-center justify-center gap-2 text-[10px] text-umber font-semibold">
                                 {recaptchaLoaded ? (
                                     <>
                                         <svg className="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
@@ -342,7 +342,7 @@ export default function Login({ status, canResetPassword }) {
                                     </>
                                 ) : (
                                     <>
-                                        <svg className="animate-spin w-3 h-3 text-[#7c7364]" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                                        <svg className="animate-spin w-3 h-3 text-taupe" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
                                         <span>Loading security...</span>
                                     </>
                                 )}
@@ -351,8 +351,8 @@ export default function Login({ status, canResetPassword }) {
                     </div>
 
                     <div className="text-center pt-2">
-                        <span className="text-sm text-[#635c4e]">Don't have an account? </span>
-                        <Link href={route('register')} className="text-sm font-bold text-[#6e2530] hover:text-[#5a1e27] hover:underline transition-colors">
+                        <span className="text-sm text-umber">Don't have an account? </span>
+                        <Link href={route('register')} className="text-sm font-bold text-oxblood hover:text-oxblood-deep hover:underline transition-colors">
                             Start Publishing
                         </Link>
                     </div>
@@ -371,3 +371,6 @@ export default function Login({ status, canResetPassword }) {
         </div>
     );
 }
+
+// Full-screen page: renders its own chrome, so the global Layout stays off.
+Login.layout = null;

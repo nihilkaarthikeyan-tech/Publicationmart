@@ -6,7 +6,7 @@ export default function EbookPrintPublishing() {
         <>
             <Head title="eBook & Print Publishing - PublicationMart" />
 
-            <div className="bg-[#f0ece3] text-[#17150f] selection:bg-purple-500/30 overflow-hidden">
+            <div className="bg-parchment text-ink selection:bg-purple-500/30 overflow-hidden">
                 {/* Hero Section */}
                 <section className="relative pt-20 pb-16 px-6">
                     <div className="absolute top-0 right-1/2 translate-x-1/2 w-[1000px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full -z-10" />
@@ -17,9 +17,9 @@ export default function EbookPrintPublishing() {
                         </div>
                         <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">
                             Publish Digitally. <br />
-                            <span className=" text-[#6e2530]">Publish in Print.</span>
+                            <span className=" text-oxblood">Publish in Print.</span>
                         </h1>
-                        <p className="text-xl text-[#635c4e] max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-xl text-umber max-w-3xl mx-auto leading-relaxed">
                             Reach Readers Everywhere. PublicationMart enables authors to publish their books in both eBook and paperback formats through a streamlined, guided publishing process.
                         </p>
                     </div>
@@ -30,14 +30,14 @@ export default function EbookPrintPublishing() {
                     <div className="max-w-7xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-8">
                             {/* eBook Publishing */}
-                            <div className="group p-8 rounded-[32px] bg-gradient-to-b from-white/[0.04] to-transparent border border-[#d8d1c1] hover:border-[#7c7364] transition-all duration-500">
+                            <div className="group p-8 rounded-[32px] bg-gradient-to-b from-white/[0.04] to-transparent border border-linen hover:border-taupe transition-all duration-500">
                                 <div className="w-16 h-16 rounded-2xl bg-purple-500/20 flex items-center justify-center text-purple-700 mb-8 group-hover:scale-110 transition-transform duration-500">
                                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                     </svg>
                                 </div>
                                 <h3 className="text-3xl font-bold mb-4">eBook Publishing</h3>
-                                <p className="text-[#635c4e] mb-6">Make your book accessible to digital readers worldwide. eBooks allow instant global availability without printing costs.</p>
+                                <p className="text-umber mb-6">Make your book accessible to digital readers worldwide. eBooks allow instant global availability without printing costs.</p>
                                 <ul className="space-y-4">
                                     {[
                                         'Conversion to marketplace-ready eBook format',
@@ -46,7 +46,7 @@ export default function EbookPrintPublishing() {
                                         'Author royalty setup',
                                         'Online listing support'
                                     ].map((item, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-[#4b443a]">
+                                        <li key={i} className="flex items-center gap-3 text-ink-soft">
                                             <div className="w-1.5 h-1.5 rounded-full bg-purple-500 shrink-0" />
                                             <span className="text-sm">{item}</span>
                                         </li>
@@ -55,14 +55,14 @@ export default function EbookPrintPublishing() {
                             </div>
 
                             {/* Print Publishing */}
-                            <div className="group p-8 rounded-[32px] bg-gradient-to-b from-white/[0.04] to-transparent border border-[#d8d1c1] hover:border-[#7c7364] transition-all duration-500">
+                            <div className="group p-8 rounded-[32px] bg-gradient-to-b from-white/[0.04] to-transparent border border-linen hover:border-taupe transition-all duration-500">
                                 <div className="w-16 h-16 rounded-2xl bg-pink-500/20 flex items-center justify-center text-pink-700 mb-8 group-hover:scale-110 transition-transform duration-500">
                                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                     </svg>
                                 </div>
                                 <h3 className="text-3xl font-bold mb-4">Print Publishing (Paperback)</h3>
-                                <p className="text-[#635c4e] mb-6">For authors who want a physical presence, we support print-ready publishing through print-on-demand systems. Books are printed only when ordered.</p>
+                                <p className="text-umber mb-6">For authors who want a physical presence, we support print-ready publishing through print-on-demand systems. Books are printed only when ordered.</p>
                                 <ul className="space-y-4">
                                     {[
                                         'Interior layout compatibility check',
@@ -71,7 +71,7 @@ export default function EbookPrintPublishing() {
                                         'Marketplace listing support',
                                         'On-demand printing model (no bulk inventory required)'
                                     ].map((item, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-[#4b443a]">
+                                        <li key={i} className="flex items-center gap-3 text-ink-soft">
                                             <div className="w-1.5 h-1.5 rounded-full bg-pink-500 shrink-0" />
                                             <span className="text-sm">{item}</span>
                                         </li>
@@ -87,7 +87,7 @@ export default function EbookPrintPublishing() {
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl font-bold mb-4">Global Distribution Support</h2>
-                            <p className="text-[#635c4e]">Once published, your book can be made available through supported online marketplaces.</p>
+                            <p className="text-umber">Once published, your book can be made available through supported online marketplaces.</p>
                         </div>
                         <div className="grid sm:grid-cols-3 gap-6">
                             {[
@@ -95,19 +95,19 @@ export default function EbookPrintPublishing() {
                                 { title: 'International Marketplaces', desc: 'Amazon US, UK, Europe, etc.' },
                                 { title: 'Print-on-Demand Networks', desc: 'Global shipping to readers.' }
                             ].map((item, i) => (
-                                <div key={i} className="p-6 rounded-2xl bg-[#f0ece3] border border-[#d8d1c1] text-center">
+                                <div key={i} className="p-6 rounded-2xl bg-parchment border border-linen text-center">
                                     <h4 className="font-bold mb-2 text-purple-700">{item.title}</h4>
-                                    <p className="text-sm text-[#635c4e]">{item.desc}</p>
+                                    <p className="text-sm text-umber">{item.desc}</p>
                                 </div>
                             ))}
                         </div>
-                        <p className="text-center text-xs text-[#635c4e] mt-8 italic">(Availability depends on package level.)</p>
+                        <p className="text-center text-xs text-umber mt-8 italic">(Availability depends on package level.)</p>
                     </div>
                 </section>
 
                 {/* Rights & Ownership */}
                 <section className="py-24 px-6">
-                    <div className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-indigo-600/10 to-purple-600/10 border border-[#d8d1c1] p-10 md:p-16 relative overflow-hidden">
+                    <div className="max-w-4xl mx-auto rounded-3xl bg-gradient-to-br from-indigo-600/10 to-purple-600/10 border border-linen p-10 md:p-16 relative overflow-hidden">
                         <div className="absolute -top-12 -right-12 w-64 h-64 bg-purple-500/10 blur-[80px] rounded-full pointer-events-none" />
 
                         <h2 className="text-3xl font-bold mb-8 text-center">Author Ownership & Control</h2>
@@ -124,11 +124,11 @@ export default function EbookPrintPublishing() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                                         </svg>
                                     </div>
-                                    <span className="text-lg font-medium text-[#4b443a]">{item}</span>
+                                    <span className="text-lg font-medium text-ink-soft">{item}</span>
                                 </div>
                             ))}
                         </div>
-                        <p className="mt-12 text-[#635c4e] text-center leading-relaxed italic">
+                        <p className="mt-12 text-umber text-center leading-relaxed italic">
                             We provide the publishing infrastructure — you remain the author and rights holder.
                         </p>
                     </div>

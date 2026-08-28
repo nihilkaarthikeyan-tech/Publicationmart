@@ -73,49 +73,49 @@ export default function Create({ auth }) {
             <Head title="Create Studio Post" />
 
 
-            <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-purple-500 selection:text-[#17150f] pb-20 pt-32">
+            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-ink pb-20 pt-32">
                 <div className="pb-16 px-6 max-w-3xl mx-auto">
-                    <h1 className="text-4xl font-bold mb-8 text-center text-[#6e2530]">
+                    <h1 className="text-4xl font-bold mb-8 text-center text-oxblood">
                         Create Studio Article
                     </h1>
 
-                    <form onSubmit={handleSubmit} className="space-y-6 bg-[#faf8f3] border border-[#d8d1c1] p-8 rounded-3xl">
+                    <form onSubmit={handleSubmit} className="space-y-6 bg-paper border border-linen p-8 rounded-3xl">
 
                         {/* Title */}
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest ml-1">Title</label>
+                            <label className="text-xs font-bold text-umber uppercase tracking-widest ml-1">Title</label>
                             <input
                                 type="text"
                                 value={data.title}
                                 onChange={e => setData('title', e.target.value)}
-                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
+                                className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
                                 placeholder="Enter catchy title..."
                             />
                             {errors.title && <div className="text-red-500 text-xs ml-1">{errors.title}</div>}
                         </div>
 
                         {/* Presale Option */}
-                        <div className="flex items-center space-x-3 bg-[#faf8f3] p-4 rounded-xl border border-[#d8d1c1]">
+                        <div className="flex items-center space-x-3 bg-paper p-4 rounded-xl border border-linen">
                             <input
                                 type="checkbox"
                                 id="is_presale"
                                 checked={data.is_presale}
                                 onChange={e => setData('is_presale', e.target.checked)}
-                                className="w-5 h-5 text-purple-600 rounded focus:ring-purple-500 bg-[#faf8f3] border-gray-600"
+                                className="w-5 h-5 text-purple-600 rounded focus:ring-purple-500 bg-paper border-gray-600"
                             />
-                            <label htmlFor="is_presale" className="text-sm font-medium text-[#4b443a] cursor-pointer select-none">
-                                Is this a Presale? <span className="text-[#635c4e] text-xs">(Requires Admin Approval)</span>
+                            <label htmlFor="is_presale" className="text-sm font-medium text-ink-soft cursor-pointer select-none">
+                                Is this a Presale? <span className="text-umber text-xs">(Requires Admin Approval)</span>
                             </label>
                             {errors.is_presale && <div className="text-red-500 text-xs ml-1">{errors.is_presale}</div>}
                         </div>
 
                         {/* Image Upload */}
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest ml-1">Cover Image</label>
+                            <label className="text-xs font-bold text-umber uppercase tracking-widest ml-1">Cover Image</label>
                             <input
                                 type="file"
                                 onChange={e => setData('image', e.target.files[0])}
-                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-purple-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-[#17150f] hover:file:bg-purple-700"
+                                className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-purple-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-ink hover:file:bg-purple-700"
                                 accept="image/*"
                             />
                             {errors.image && <div className="text-red-500 text-xs ml-1">{errors.image}</div>}
@@ -124,7 +124,7 @@ export default function Create({ auth }) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* Category - Visual Selection */}
                             <div className="space-y-2 md:col-span-2">
-                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest ml-1">Book Genre <span className="text-red-500">*</span></label>
+                                <label className="text-xs font-bold text-umber uppercase tracking-widest ml-1">Book Genre <span className="text-red-500">*</span></label>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                                     {categories.map((cat) => {
                                         const Icon = cat.icon;
@@ -135,11 +135,11 @@ export default function Create({ auth }) {
                                                 onClick={() => setData('category', cat.id)}
                                                 className={`cursor-pointer rounded-xl border-2 p-4 flex flex-col items-center justify-center gap-3 transition-all duration-200 ${isSelected
                                                     ? `${cat.border} ${cat.bg} ring-1 ring-offset-0 ring-offset-transparent ring-${cat.color.split('-')[1]}-500/50`
-                                                    : 'border-[#d8d1c1] bg-[#241f16] hover:border-violet-600/50 hover:bg-violet-50'
+                                                    : 'border-linen bg-night hover:border-violet-600/50 hover:bg-violet-50'
                                                     }`}
                                             >
-                                                <Icon className={`w-8 h-8 ${isSelected ? cat.color : 'text-[#635c4e]'}`} strokeWidth={1.5} />
-                                                <span className={`text-xs font-bold uppercase tracking-wider ${isSelected ? 'text-[#17150f]' : 'text-[#635c4e]'}`}>
+                                                <Icon className={`w-8 h-8 ${isSelected ? cat.color : 'text-umber'}`} strokeWidth={1.5} />
+                                                <span className={`text-xs font-bold uppercase tracking-wider ${isSelected ? 'text-ink' : 'text-umber'}`}>
                                                     {cat.label}
                                                 </span>
                                             </div>
@@ -150,7 +150,7 @@ export default function Create({ auth }) {
 
                             {/* Author Names */}
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest ml-1">Author Name(s) <span className="text-[#635c4e]">(Max 4)</span></label>
+                                <label className="text-xs font-bold text-umber uppercase tracking-widest ml-1">Author Name(s) <span className="text-umber">(Max 4)</span></label>
                                 <div className="space-y-3">
                                     {(data.author_name ? data.author_name.split(', ') : ['']).map((author, index) => (
                                         <div key={index} className="flex gap-2">
@@ -162,7 +162,7 @@ export default function Create({ auth }) {
                                                     authors[index] = e.target.value;
                                                     setData('author_name', authors.join(', '));
                                                 }}
-                                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
+                                                className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
                                                 placeholder={`Author ${index + 1}`}
                                             />
                                             {/* Remove Button */}
@@ -204,12 +204,12 @@ export default function Create({ auth }) {
                         {/* Guest Email (Required if not logged in) */}
                         {!auth.user && (
                             <div className="space-y-2">
-                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest ml-1">Your Email (For notification)</label>
+                                <label className="text-xs font-bold text-umber uppercase tracking-widest ml-1">Your Email (For notification)</label>
                                 <input
                                     type="email"
                                     value={data.author_email}
                                     onChange={e => setData('author_email', e.target.value)}
-                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
                                     placeholder="name@example.com"
                                 />
                                 {errors.author_email && <div className="text-red-500 text-xs ml-1">{errors.author_email}</div>}
@@ -218,11 +218,11 @@ export default function Create({ auth }) {
 
                         {/* Excerpt */}
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest ml-1">Short Excerpt (Displayed in Grid)</label>
+                            <label className="text-xs font-bold text-umber uppercase tracking-widest ml-1">Short Excerpt (Displayed in Grid)</label>
                             <textarea
                                 value={data.excerpt}
                                 onChange={e => setData('excerpt', e.target.value)}
-                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40 h-24"
+                                className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40 h-24"
                                 placeholder="A brief summary..."
                             ></textarea>
                             {errors.excerpt && <div className="text-red-500 text-xs ml-1">{errors.excerpt}</div>}
@@ -230,11 +230,11 @@ export default function Create({ auth }) {
 
                         {/* Content */}
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest ml-1">Main Content (HTML Supported)</label>
+                            <label className="text-xs font-bold text-umber uppercase tracking-widest ml-1">Main Content (HTML Supported)</label>
                             <textarea
                                 value={data.content}
                                 onChange={e => setData('content', e.target.value)}
-                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40 h-64 font-mono text-sm"
+                                className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40 h-64 font-mono text-sm"
                                 placeholder="Use <h2>, <p> tags for formatting..."
                             ></textarea>
                             {errors.content && <div className="text-red-500 text-xs ml-1">{errors.content}</div>}
@@ -256,14 +256,14 @@ export default function Create({ auth }) {
 
                         {/* Captcha */}
                         <div className="space-y-2">
-                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest ml-1">Human Verification</label>
+                            <label className="text-xs font-bold text-umber uppercase tracking-widest ml-1">Human Verification</label>
                             <div className="flex items-center gap-4">
-                                <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#4b443a] font-mono select-none flex items-center gap-3">
-                                    <span className="text-lg font-bold text-[#17150f]">{captcha.num1} + {captcha.num2} = ?</span>
+                                <div className="bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink-soft font-mono select-none flex items-center gap-3">
+                                    <span className="text-lg font-bold text-ink">{captcha.num1} + {captcha.num2} = ?</span>
                                     <button
                                         type="button"
                                         onClick={refreshCaptcha}
-                                        className="text-[#635c4e] hover:text-[#17150f] transition-colors"
+                                        className="text-umber hover:text-ink transition-colors"
                                         title="Refresh Captcha"
                                     >
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
@@ -276,7 +276,7 @@ export default function Create({ auth }) {
                                         setCaptchaAnswer(e.target.value);
                                         setData('captcha_answer', e.target.value);
                                     }}
-                                    className="w-24 bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] text-center font-bold focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
+                                    className="w-24 bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink text-center font-bold focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition placeholder-violet-400/40"
                                     placeholder="?"
                                 />
                             </div>

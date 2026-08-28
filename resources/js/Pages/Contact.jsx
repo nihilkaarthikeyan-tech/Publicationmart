@@ -10,7 +10,7 @@ export default function Contact() {
     });
 
     return (
-        <div className="min-h-screen overflow-x-hidden bg-[#f0ece3] text-[#17150f] font-sans selection:bg-[#6e2530] selection:text-[#faf8f3] pt-24 pb-20">
+        <div className="min-h-screen overflow-x-hidden bg-parchment text-ink font-sans selection:bg-oxblood selection:text-paper pt-24 pb-20">
             <Head title="Contact PublicationMart – Get Publishing Help Today">
                 <meta name="description" content="Contact PublicationMart for publishing support, technical help, or partnership inquiries. Email: editor.publicationmart@gmail.com | Phone: +91 76049 57084 | Coimbatore, India." />
                 <meta property="og:title" content="Contact PublicationMart" />
@@ -27,10 +27,10 @@ export default function Contact() {
 
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <h1 className="text-5xl md:text-6xl font-bold mb-4 text-[#17150f]">
+                    <h1 className="text-5xl md:text-6xl font-bold mb-4 text-ink">
                         Get in Touch
                     </h1>
-                    <p className="text-[#635c4e] text-lg max-w-2xl mx-auto">
+                    <p className="text-umber text-lg max-w-2xl mx-auto">
                         Have questions about publishing? Need help with our tools? We're here to help you succeed.
                     </p>
                 </div>
@@ -41,7 +41,7 @@ export default function Contact() {
                     <div className="lg:col-span-5 space-y-8">
 
                         {/* Contact Info Card */}
-                        <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-3xl p-8 hover:border-[#7c7364] transition-colors duration-300">
+                        <div className="bg-paper border border-linen rounded-3xl p-8 hover:border-taupe transition-colors duration-300">
                             <h2 className="text-xl font-bold mb-8 flex items-center gap-3">
                                 <span className="w-2 h-8 bg-indigo-600 rounded-full"></span>
                                 Contact Information
@@ -54,8 +54,8 @@ export default function Contact() {
                                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                                     </div>
                                     <div>
-                                        <div className="text-sm font-bold text-[#635c4e] uppercase tracking-widest mb-1">Email</div>
-                                        <a href="mailto:editor.publicationmart@gmail.com" className="text-[#17150f] hover:text-indigo-700 transition text-lg">
+                                        <div className="text-sm font-bold text-umber uppercase tracking-widest mb-1">Email</div>
+                                        <a href="mailto:editor.publicationmart@gmail.com" className="text-ink hover:text-indigo-700 transition text-lg">
                                             editor.publicationmart@gmail.com
                                         </a>
                                     </div>
@@ -67,8 +67,8 @@ export default function Contact() {
                                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                     </div>
                                     <div>
-                                        <div className="text-sm font-bold text-[#635c4e] uppercase tracking-widest mb-1">Address</div>
-                                        <p className="text-[#4b443a] leading-relaxed text-sm">
+                                        <div className="text-sm font-bold text-umber uppercase tracking-widest mb-1">Address</div>
+                                        <p className="text-ink-soft leading-relaxed text-sm">
                                             RLK Enterprises, Rademics Research Institute,<br />
                                             4/975-A, Sathy Road, Ganeshapuram,<br />
                                             Sarkarsamakulam, Coimbatore,<br />
@@ -83,8 +83,8 @@ export default function Contact() {
                                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                                     </div>
                                     <div>
-                                        <div className="text-sm font-bold text-[#635c4e] uppercase tracking-widest mb-1">Phone</div>
-                                        <a href="tel:+917604957084" className="text-[#17150f] hover:text-indigo-700 transition text-lg">
+                                        <div className="text-sm font-bold text-umber uppercase tracking-widest mb-1">Phone</div>
+                                        <a href="tel:+917604957084" className="text-ink hover:text-indigo-700 transition text-lg">
                                             +91 76049 57084
                                         </a>
                                     </div>
@@ -93,12 +93,12 @@ export default function Contact() {
                         </div>
 
                         {/* FAQ Card */}
-                        <div className="bg-gradient-to-br from-[#faf8f3] to-[#e7e1d4] border border-[#d8d1c1] rounded-3xl p-8 relative overflow-hidden group">
+                        <div className="bg-gradient-to-br from-paper to-vellum border border-linen rounded-3xl p-8 relative overflow-hidden group">
                             {/* Decorative Glow */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-indigo-600/20 transition-all duration-500"></div>
 
-                            <h3 className="text-xl font-bold mb-3 text-[#17150f]">FAQ</h3>
-                            <p className="text-[#635c4e] text-sm mb-6 leading-relaxed">
+                            <h3 className="text-xl font-bold mb-3 text-ink">FAQ</h3>
+                            <p className="text-umber text-sm mb-6 leading-relaxed">
                                 Check our Frequently Asked Questions for quick answers to common questions about formatting, royalties, and distribution.
                             </p>
                             <a href="#" className="inline-flex items-center text-indigo-700 font-bold text-sm hover:text-indigo-700 transition-colors group-hover:translate-x-1 duration-300">
@@ -109,7 +109,7 @@ export default function Contact() {
 
                     {/* Right Column: Contact Form */}
                     <div className="lg:col-span-7">
-                        <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-3xl p-8 md:p-10 h-full">
+                        <div className="bg-paper border border-linen rounded-3xl p-8 md:p-10 h-full">
                             <h2 className="text-2xl font-bold mb-8">Send us a message</h2>
 
                             <form onSubmit={(e) => {
@@ -128,23 +128,23 @@ export default function Contact() {
                             }} className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1">Name</label>
+                                        <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1">Name</label>
                                         <input
                                             type="text"
                                             value={data.name}
                                             onChange={e => setData('name', e.target.value)}
-                                            className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40"
+                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40"
                                             placeholder="Your name"
                                         />
                                         {errors.name && <div className="text-red-500 text-xs mt-1">{errors.name}</div>}
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1">Email</label>
+                                        <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1">Email</label>
                                         <input
                                             type="email"
                                             value={data.email}
                                             onChange={e => setData('email', e.target.value)}
-                                            className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40"
+                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40"
                                             placeholder="you@example.com"
                                         />
                                         {errors.email && <div className="text-red-500 text-xs mt-1">{errors.email}</div>}
@@ -152,30 +152,30 @@ export default function Contact() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1">Subject</label>
+                                    <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1">Subject</label>
                                     <div className="relative">
                                         <select
                                             value={data.subject}
                                             onChange={e => setData('subject', e.target.value)}
-                                            className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition appearance-none"
+                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition appearance-none"
                                         >
                                             <option>General Inquiry</option>
                                             <option>Publishing Support</option>
                                             <option>Technical Issue</option>
                                             <option>Partnership</option>
                                         </select>
-                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#635c4e]">
+                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-umber">
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold text-[#635c4e] uppercase tracking-wider ml-1">Message</label>
+                                    <label className="text-xs font-bold text-umber uppercase tracking-wider ml-1">Message</label>
                                     <textarea
                                         value={data.message}
                                         onChange={e => setData('message', e.target.value)}
-                                        className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3.5 text-[#17150f] focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40 min-h-[160px]"
+                                        className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition placeholder-violet-400/40 min-h-[160px]"
                                         placeholder="How can we help you?"
                                     ></textarea>
                                     {errors.message && <div className="text-red-500 text-xs mt-1">{errors.message}</div>}
