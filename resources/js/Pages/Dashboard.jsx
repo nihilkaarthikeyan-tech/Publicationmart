@@ -22,13 +22,13 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
     const activeAlert = adminFeedbackBook ? 'admin' : (isNewUser ? 'welcome' : 'referral');
 
     return (
-        <div className="min-h-screen font-sans" style={{ background: 'linear-gradient(135deg, #f0e6ff 0%, #e8eaff 25%, #f5f0ff 50%, #eef2ff 75%, #f8f5ff 100%)' }}>
+        <div className="min-h-screen font-sans" style={{ background: '#f0ece3' }}>
             <Head title="Author Dashboard" />
 
             <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
 
                 {/* ═══ WELCOME HEADER ═══ */}
-                <div className="rounded-3xl p-6 sm:p-8" style={{ background: 'linear-gradient(135deg, #a4485c 0%, #86303c 40%, #6a222d 100%)', boxShadow: '0 10px 40px -10px rgba(124, 58, 237, 0.4)' }}>
+                <div className="rounded-3xl p-6 sm:p-8" style={{ background: 'linear-gradient(135deg, #6e2530 0%, #5a1e27 55%, #4d1a22 100%)', boxShadow: '0 12px 36px -12px rgba(77, 26, 34, 0.5)' }}>
                     <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
                         <div className="flex-1">
                             <div className="flex items-start gap-4">
@@ -36,7 +36,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                     <span className="text-2xl">✨</span>
                                 </div>
                                 <div className="flex-1">
-                                    <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                                    <h1 className="text-3xl sm:text-4xl text-white mb-2" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>
                                         Welcome, {auth.user.name}
                                     </h1>
                                     <div className="flex flex-wrap items-center gap-2">
@@ -121,10 +121,10 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                 {activeAlert === 'welcome' && isNewUser && (
                     <div className="bg-white rounded-2xl border border-violet-100 p-6 shadow-sm animate-slide-in">
                         <div className="text-center mb-6">
-                            <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                            <h3 className="text-2xl font-bold text-[#241f16] mb-2">
                                 🚀 Start Your Publishing Journey
                             </h3>
-                            <p className="text-gray-500">Transform your ideas into published books in 3 simple steps</p>
+                            <p className="text-[#635c4e]">Transform your ideas into published books in 3 simple steps</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {[
@@ -134,8 +134,8 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                             ].map((step, i) => (
                                 <div key={i} className={`p-4 rounded-xl border text-center ${step.color}`}>
                                     <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center text-2xl shadow-sm">{step.icon}</div>
-                                    <h4 className="font-bold text-gray-800 mb-1">{step.title}</h4>
-                                    <p className="text-xs text-gray-500">{step.desc}</p>
+                                    <h4 className="font-bold text-[#241f16] mb-1">{step.title}</h4>
+                                    <p className="text-xs text-[#635c4e]">{step.desc}</p>
                                 </div>
                             ))}
                         </div>
@@ -156,13 +156,13 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                     <span className="text-2xl">🎁</span>
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-base font-bold text-gray-800 mb-1">Refer & Earn up to 10% Commission</h3>
-                                    <p className="text-xs text-gray-500">Invite friends and earn rewards on their purchases</p>
+                                    <h3 className="text-base font-bold text-[#241f16] mb-1">Refer & Earn up to 10% Commission</h3>
+                                    <p className="text-xs text-[#635c4e]">Invite friends and earn rewards on their purchases</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-4">
                                 <div className="text-right">
-                                    <p className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-0.5">Your Balance</p>
+                                    <p className="text-[10px] text-[#7c7364] uppercase tracking-wider font-bold mb-0.5">Your Balance</p>
                                     <p className="text-2xl font-bold text-violet-700">₹{auth.user.referral_balance || 0}</p>
                                 </div>
                                 <button onClick={() => setShowReferralModal(true)}
@@ -206,7 +206,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                 }
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <h4 className="font-bold text-gray-800 truncate">{proj.title || 'Untitled Project'}</h4>
+                                                <h4 className="font-bold text-[#241f16] truncate">{proj.title || 'Untitled Project'}</h4>
                                                 <div className="flex items-center gap-2 text-xs mt-1.5">
                                                     {proj.session_token ? (
                                                         <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-bold border border-emerald-200 flex items-center gap-1">
@@ -216,19 +216,19 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                         <span className="px-2 py-0.5 rounded-full bg-violet-50 text-violet-600 font-medium border border-violet-200">{proj.plan_type || 'Draft'}</span>
                                                     )}
                                                     {proj.estimated_pages > 0 && (
-                                                        <span className="text-gray-400">{proj.estimated_pages} pages</span>
+                                                        <span className="text-[#7c7364]">{proj.estimated_pages} pages</span>
                                                     )}
-                                                    <span className="text-gray-300">•</span>
-                                                    <span className="text-gray-400">Updated {proj.updated_at_human || 'recently'}</span>
+                                                    <span className="text-[#f2ecdd]/85">•</span>
+                                                    <span className="text-[#7c7364]">Updated {proj.updated_at_human || 'recently'}</span>
                                                 </div>
                                                 {/* Progress Bar */}
                                                 {proj.max_pages > 0 && (
                                                     <div className="mt-2">
                                                         <div className="flex justify-between text-[10px] mb-1">
-                                                            <span className="text-gray-400">Progress</span>
-                                                            <span className="text-gray-500">{proj.estimated_pages}/{proj.max_pages} pages</span>
+                                                            <span className="text-[#7c7364]">Progress</span>
+                                                            <span className="text-[#635c4e]">{proj.estimated_pages}/{proj.max_pages} pages</span>
                                                         </div>
-                                                        <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                                        <div className="h-1.5 bg-[#efe9db] rounded-full overflow-hidden">
                                                             <div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full transition-all"
                                                                 style={{ width: `${Math.min(100, (proj.estimated_pages / proj.max_pages) * 100)}%` }}></div>
                                                         </div>
@@ -264,7 +264,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                         <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-violet-50 flex items-center justify-center">
                                             <span className="text-4xl opacity-50">📚</span>
                                         </div>
-                                        <p className="text-gray-400 mb-3">No active projects</p>
+                                        <p className="text-[#7c7364] mb-3">No active projects</p>
                                         <Link href={route('books.create')} className="inline-block px-6 py-2 bg-violet-600 hover:bg-violet-700 text-white text-sm font-bold rounded-lg transition-all">
                                             Start Writing →
                                         </Link>
@@ -278,7 +278,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                             <Card title="📊 My Plans & Usage">
                                 <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {planUsage.map((plan) => (
-                                        <div key={plan.id} className="relative rounded-2xl border border-gray-100 p-5 hover:shadow-md transition-all duration-300 group overflow-hidden"
+                                        <div key={plan.id} className="relative rounded-2xl border border-[#e7e1d4] p-5 hover:shadow-md transition-all duration-300 group overflow-hidden"
                                             style={{ background: 'linear-gradient(135deg, #faf5ff 0%, #f5f3ff 50%, #ede9fe 100%)' }}>
                                             {/* Status Badge */}
                                             <div className="absolute top-4 right-4">
@@ -295,8 +295,8 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                 <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-violet-100 text-violet-600 mb-2 inline-block">
                                                     {plan.tool}
                                                 </span>
-                                                <h4 className="text-lg font-bold text-gray-800 mt-1">{plan.title}</h4>
-                                                <p className="text-xs text-gray-400 mt-0.5">
+                                                <h4 className="text-lg font-bold text-[#241f16] mt-1">{plan.title}</h4>
+                                                <p className="text-xs text-[#7c7364] mt-0.5">
                                                     {plan.plan_name} Plan {plan.amount_paid > 0 && `• ₹${plan.amount_paid}`}
                                                 </p>
                                             </div>
@@ -312,16 +312,16 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                             strokeDasharray={`${plan.usage_percent} ${100 - plan.usage_percent}`}
                                                             strokeLinecap="round" />
                                                     </svg>
-                                                    <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-gray-700">
+                                                    <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-[#4b443a]">
                                                         {plan.usage_percent}%
                                                     </span>
                                                 </div>
                                                 <div className="flex-1 space-y-2">
                                                     <div className="flex justify-between text-xs">
-                                                        <span className="text-gray-500">Pages</span>
-                                                        <span className="font-bold text-gray-700">{plan.pages_used} / {plan.max_pages}</span>
+                                                        <span className="text-[#635c4e]">Pages</span>
+                                                        <span className="font-bold text-[#4b443a]">{plan.pages_used} / {plan.max_pages}</span>
                                                     </div>
-                                                    <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                    <div className="h-2 bg-[#efe9db] rounded-full overflow-hidden">
                                                         <div className="h-full rounded-full transition-all duration-500"
                                                             style={{
                                                                 width: `${plan.usage_percent}%`,
@@ -330,14 +330,14 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                             }}></div>
                                                     </div>
                                                     <div className="flex justify-between text-xs">
-                                                        <span className="text-gray-500">Images</span>
-                                                        <span className="font-bold text-gray-700">{plan.image_credits_used} / {plan.image_credits_limit}</span>
+                                                        <span className="text-[#635c4e]">Images</span>
+                                                        <span className="font-bold text-[#4b443a]">{plan.image_credits_used} / {plan.image_credits_limit}</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             {/* Footer */}
-                                            <div className="flex items-center justify-between text-[10px] text-gray-400 pt-3 border-t border-gray-100">
+                                            <div className="flex items-center justify-between text-[10px] text-[#7c7364] pt-3 border-t border-[#e7e1d4]">
                                                 <span>Created {new Date(plan.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                                                 {plan.expires_at && (
                                                     <span className={plan.status === 'expired' ? 'text-red-400' : ''}>
@@ -361,7 +361,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                         return (
                                             <div key={index} className="flex-1 flex flex-col items-center gap-3 group cursor-pointer">
                                                 <div className="relative w-full flex flex-col items-center">
-                                                    <span className="text-xs text-gray-500 font-bold mb-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <span className="text-xs text-[#635c4e] font-bold mb-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                                         ₹{data.revenue}
                                                     </span>
                                                     <div className="w-full rounded-t-xl shadow-sm group-hover:shadow-lg transition-all duration-300 relative overflow-hidden"
@@ -372,12 +372,12 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                         }}>
                                                     </div>
                                                 </div>
-                                                <span className="text-[11px] text-gray-400 uppercase font-bold tracking-wider">{data.month}</span>
+                                                <span className="text-[11px] text-[#7c7364] uppercase font-bold tracking-wider">{data.month}</span>
                                             </div>
                                         );
                                     })}
                                     {monthlyRevenueData.length === 0 && (
-                                        <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+                                        <div className="w-full h-full flex items-center justify-center text-[#7c7364] text-sm">
                                             <div className="text-center">
                                                 <span className="text-3xl opacity-30 block mb-2">📈</span>
                                                 No sales data yet
@@ -392,7 +392,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                         <Card title="Recent Transactions (Last 5)">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left text-sm">
-                                    <thead className="bg-gray-50 text-xs text-gray-400 uppercase tracking-wider font-bold">
+                                    <thead className="bg-[#faf8f3] text-xs text-[#7c7364] uppercase tracking-wider font-bold">
                                         <tr>
                                             <th className="px-6 py-4">Book Title</th>
                                             <th className="px-6 py-4">Amount</th>
@@ -403,14 +403,14 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                     <tbody className="divide-y divide-gray-50">
                                         {recentTransactions.map((txn) => (
                                             <tr key={txn.id} className="hover:bg-violet-50/30 transition-all group">
-                                                <td className="px-6 py-4 text-gray-800 font-medium">{txn.book_title}</td>
+                                                <td className="px-6 py-4 text-[#241f16] font-medium">{txn.book_title}</td>
                                                 <td className="px-6 py-4 text-emerald-600 font-bold">₹{txn.amount}</td>
                                                 <td className="px-6 py-4">
                                                     <span className="px-2 py-1 rounded-full bg-violet-50 text-violet-600 text-xs font-medium border border-violet-100">
                                                         {txn.sales_channel || 'Direct'}
                                                     </span>
                                                 </td>
-                                                <td className="px-6 py-4 text-right text-gray-400 text-xs">
+                                                <td className="px-6 py-4 text-right text-[#7c7364] text-xs">
                                                     {new Date(txn.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                                                 </td>
                                             </tr>
@@ -418,7 +418,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                         {recentTransactions.length === 0 && (
                                             <tr>
                                                 <td colSpan="4" className="p-12 text-center">
-                                                    <span className="text-gray-400 text-sm">No transactions yet</span>
+                                                    <span className="text-[#7c7364] text-sm">No transactions yet</span>
                                                 </td>
                                             </tr>
                                         )}
@@ -434,7 +434,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
 
                         {/* ASSETS PANEL */}
                         <Card>
-                            <div className="flex border-b border-gray-100">
+                            <div className="flex border-b border-[#e7e1d4]">
                                 <AssetTab label="🎨 Covers" active={activeAssetTab === 'covers'} onClick={() => setActiveAssetTab('covers')} />
                                 <AssetTab label="📝 Formatted" active={activeAssetTab === 'formatting'} onClick={() => setActiveAssetTab('formatting')} />
                                 <AssetTab label="📋 Drafts" active={activeAssetTab === 'drafts'} onClick={() => setActiveAssetTab('drafts')} />
@@ -446,7 +446,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                 {activeAssetTab === 'drafts' && <DraftsList books={books} compact />}
                             </div>
 
-                            <div className="p-4 border-t border-gray-100 bg-gray-50/50">
+                            <div className="p-4 border-t border-[#e7e1d4] bg-[#faf8f3]/50">
                                 <button onClick={() => setShowAssetsDrawer(true)}
                                     className="w-full py-2 text-center text-violet-600 hover:text-violet-700 text-sm font-bold transition-all">
                                     View All Assets →
@@ -467,14 +467,14 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                             {item.icon === 'exclamation' && '⚠️'}
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-sm text-gray-800 font-medium truncate">{item.title}</p>
-                                            <p className="text-xs text-gray-400 truncate mt-0.5">{item.description}</p>
-                                            <p className="text-[10px] text-gray-300 mt-1">{new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+                                            <p className="text-sm text-[#241f16] font-medium truncate">{item.title}</p>
+                                            <p className="text-xs text-[#7c7364] truncate mt-0.5">{item.description}</p>
+                                            <p className="text-[10px] text-[#f2ecdd]/85 mt-1">{new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
                                         </div>
                                     </div>
                                 ))}
                                 {activityFeed.length === 0 && (
-                                    <p className="text-xs text-gray-400 text-center py-8 italic">No recent activity</p>
+                                    <p className="text-xs text-[#7c7364] text-center py-8 italic">No recent activity</p>
                                 )}
                             </div>
                         </Card>
@@ -487,16 +487,16 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
             {/* ═══ REFERRAL MODAL ═══ */}
             {showReferralModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-fade-in" onClick={() => setShowReferralModal(false)}>
-                    <div className="relative bg-white p-8 rounded-3xl max-w-2xl w-full border border-gray-200 shadow-2xl transform animate-scale-in max-h-[90vh] overflow-y-auto custom-scrollbar" onClick={e => e.stopPropagation()}>
-                        <button onClick={() => setShowReferralModal(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all z-10">✕</button>
+                    <div className="relative bg-white p-8 rounded-3xl max-w-2xl w-full border border-[#d8d1c1] shadow-2xl transform animate-scale-in max-h-[90vh] overflow-y-auto custom-scrollbar" onClick={e => e.stopPropagation()}>
+                        <button onClick={() => setShowReferralModal(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#efe9db] hover:bg-gray-200 text-[#635c4e] hover:text-[#4b443a] transition-all z-10">✕</button>
 
                         {/* Header */}
                         <div className="text-center mb-8">
                             <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg">
                                 <span className="text-4xl">🎁</span>
                             </div>
-                            <h2 className="text-3xl font-bold text-gray-800 mb-2">Refer & Earn</h2>
-                            <p className="text-gray-500 text-sm">Share your link and earn 10% commission on every purchase</p>
+                            <h2 className="text-3xl font-bold text-[#241f16] mb-2">Refer & Earn</h2>
+                            <p className="text-[#635c4e] text-sm">Share your link and earn 10% commission on every purchase</p>
                         </div>
 
                         {/* Stats */}
@@ -517,9 +517,9 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
 
                         {/* Referral Link */}
                         <div className="mb-6">
-                            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Your Referral Link</label>
-                            <div className="bg-gray-50 p-4 rounded-xl flex gap-2 border border-gray-200">
-                                <code className="flex-1 text-sm text-gray-600 font-mono overflow-x-auto whitespace-nowrap custom-scrollbar py-1">{referralLink}</code>
+                            <label className="block text-xs font-bold text-[#7c7364] uppercase tracking-wider mb-2">Your Referral Link</label>
+                            <div className="bg-[#faf8f3] p-4 rounded-xl flex gap-2 border border-[#d8d1c1]">
+                                <code className="flex-1 text-sm text-[#635c4e] font-mono overflow-x-auto whitespace-nowrap custom-scrollbar py-1">{referralLink}</code>
                                 <button onClick={handleCopyLink} className="px-5 py-2 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold rounded-lg transition-all shrink-0 shadow-md">
                                     {copySuccess || '📋 Copy'}
                                 </button>
@@ -527,11 +527,11 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                         </div>
 
                         {/* How It Works */}
-                        <div className="bg-gray-50 rounded-xl p-5 mb-6 border border-gray-100">
-                            <h3 className="text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
+                        <div className="bg-[#faf8f3] rounded-xl p-5 mb-6 border border-[#e7e1d4]">
+                            <h3 className="text-sm font-bold text-[#4b443a] mb-3 flex items-center gap-2">
                                 <span className="text-lg">💡</span> How It Works
                             </h3>
-                            <div className="space-y-2 text-xs text-gray-600">
+                            <div className="space-y-2 text-xs text-[#635c4e]">
                                 {['Share your unique referral link with friends', 'They sign up using your link and make a purchase', 'You earn 10% commission on their purchase amount', 'Earnings are credited to your referral balance instantly'].map((step, i) => (
                                     <div key={i} className="flex items-start gap-2">
                                         <span className="text-violet-500 shrink-0">{i + 1}.</span>
@@ -544,24 +544,24 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                         {/* Referral List */}
                         {referrals.length > 0 && (
                             <div>
-                                <h3 className="text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
+                                <h3 className="text-sm font-bold text-[#4b443a] mb-3 flex items-center gap-2">
                                     <span className="text-lg">👥</span> Your Referrals
                                 </h3>
-                                <div className="bg-gray-50 rounded-xl border border-gray-100 overflow-hidden">
+                                <div className="bg-[#faf8f3] rounded-xl border border-[#e7e1d4] overflow-hidden">
                                     <div className="max-h-48 overflow-y-auto custom-scrollbar">
                                         {referrals.map((ref, i) => (
-                                            <div key={ref.id} className={`p-3 flex items-center justify-between gap-3 ${i !== 0 ? 'border-t border-gray-100' : ''}`}>
+                                            <div key={ref.id} className={`p-3 flex items-center justify-between gap-3 ${i !== 0 ? 'border-t border-[#e7e1d4]' : ''}`}>
                                                 <div className="flex items-center gap-3 flex-1 min-w-0">
                                                     <div className="w-8 h-8 rounded-full bg-violet-100 border border-violet-200 flex items-center justify-center shrink-0">
                                                         <span className="text-xs font-bold text-violet-600">{ref.name.charAt(0).toUpperCase()}</span>
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <p className="text-sm font-medium text-gray-800 truncate">{ref.name}</p>
-                                                        <p className="text-xs text-gray-400 truncate">{ref.email}</p>
+                                                        <p className="text-sm font-medium text-[#241f16] truncate">{ref.name}</p>
+                                                        <p className="text-xs text-[#7c7364] truncate">{ref.email}</p>
                                                     </div>
                                                 </div>
                                                 <div className="text-right">
-                                                    <p className="text-xs text-gray-400">{new Date(ref.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                                                    <p className="text-xs text-[#7c7364]">{new Date(ref.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
                                                     <span className="inline-block px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[10px] font-bold rounded-full uppercase mt-1 border border-emerald-200">{ref.status}</span>
                                                 </div>
                                             </div>
@@ -572,12 +572,12 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                         )}
 
                         {referrals.length === 0 && (
-                            <div className="text-center py-8 bg-gray-50 rounded-xl border border-gray-100">
-                                <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gray-100 flex items-center justify-center">
+                            <div className="text-center py-8 bg-[#faf8f3] rounded-xl border border-[#e7e1d4]">
+                                <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-[#efe9db] flex items-center justify-center">
                                     <span className="text-3xl opacity-50">👥</span>
                                 </div>
-                                <p className="text-gray-500 text-sm">No referrals yet</p>
-                                <p className="text-gray-400 text-xs mt-1">Share your link to start earning!</p>
+                                <p className="text-[#635c4e] text-sm">No referrals yet</p>
+                                <p className="text-[#7c7364] text-xs mt-1">Share your link to start earning!</p>
                             </div>
                         )}
                     </div>
@@ -590,30 +590,30 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                     <div className="h-full overflow-y-auto bg-white/95 backdrop-blur-xl" onClick={e => e.stopPropagation()}>
                         <div className="max-w-7xl mx-auto p-8">
                             <div className="flex items-center justify-between mb-8">
-                                <h2 className="text-3xl font-bold text-gray-800">
+                                <h2 className="text-3xl font-bold text-[#241f16]">
                                     My Assets Library
                                 </h2>
                                 <button onClick={() => setShowAssetsDrawer(false)}
-                                    className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 hover:text-gray-700 transition-all">
+                                    className="w-12 h-12 flex items-center justify-center rounded-full bg-[#efe9db] hover:bg-gray-200 text-[#635c4e] hover:text-[#4b443a] transition-all">
                                     ✕
                                 </button>
                             </div>
 
                             <div className="space-y-8">
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <h3 className="text-xl font-bold text-[#241f16] mb-4 flex items-center gap-2">
                                         🎨 Cover Designs
                                     </h3>
                                     <CoversGrid books={books} />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <h3 className="text-xl font-bold text-[#241f16] mb-4 flex items-center gap-2">
                                         📝 Formatted Books
                                     </h3>
                                     <FormattedList books={books} />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                                    <h3 className="text-xl font-bold text-[#241f16] mb-4 flex items-center gap-2">
                                         📋 All Drafts
                                     </h3>
                                     <DraftsList books={books} />
@@ -658,13 +658,13 @@ function StatCard({ label, value, subLabel, icon, color }) {
     return (
         <div className={`group ${c.bg} border ${c.border} rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer`}>
             <div className="flex items-start justify-between mb-3">
-                <p className="text-xs font-medium text-gray-400 uppercase tracking-wider">{label}</p>
+                <p className="text-xs font-medium text-[#7c7364] uppercase tracking-wider">{label}</p>
                 <div className={`w-10 h-10 rounded-xl ${c.accent} flex items-center justify-center text-xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500`}>
                     {icon}
                 </div>
             </div>
-            <p className="text-3xl font-bold text-gray-800 mb-1">{value}</p>
-            {subLabel && <p className="text-xs text-gray-400">{subLabel}</p>}
+            <p className="text-3xl font-bold text-[#241f16] mb-1">{value}</p>
+            {subLabel && <p className="text-xs text-[#7c7364]">{subLabel}</p>}
         </div>
     );
 }
@@ -672,10 +672,10 @@ function StatCard({ label, value, subLabel, icon, color }) {
 // Card Container
 function Card({ title, action, children }) {
     return (
-        <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div className="bg-white rounded-2xl border border-[#e7e1d4] overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
             {title && (
-                <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50 flex items-center justify-between">
-                    <h3 className="font-bold text-gray-800 text-lg">{title}</h3>
+                <div className="px-6 py-4 border-b border-[#e7e1d4] bg-[#faf8f3]/50 flex items-center justify-between">
+                    <h3 className="font-bold text-[#241f16] text-lg">{title}</h3>
                     {action}
                 </div>
             )}
@@ -691,7 +691,7 @@ function AssetTab({ label, active, onClick }) {
             onClick={onClick}
             className={`flex-1 py-3 px-4 text-xs font-bold transition-all duration-300 ${active
                 ? 'text-violet-700 bg-violet-50 border-b-2 border-violet-500'
-                : 'text-gray-400 hover:text-gray-600 hover:bg-gray-50'
+                : 'text-[#7c7364] hover:text-[#635c4e] hover:bg-[#faf8f3]'
                 }`}>
             {label}
         </button>
@@ -700,8 +700,8 @@ function AssetTab({ label, active, onClick }) {
 
 // Empty State
 const EmptyState = ({ msg }) => (
-    <div className="h-32 flex flex-col items-center justify-center text-gray-400">
-        <div className="w-14 h-14 mb-2 rounded-full bg-gray-100 flex items-center justify-center">
+    <div className="h-32 flex flex-col items-center justify-center text-[#7c7364]">
+        <div className="w-14 h-14 mb-2 rounded-full bg-[#efe9db] flex items-center justify-center">
             <span className="text-2xl opacity-30">📂</span>
         </div>
         <span className="text-xs">{msg}</span>
@@ -713,11 +713,11 @@ const CoversGrid = ({ books, compact }) => (
     <div className={`${compact ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-2 gap-6'}`}>
         {books.filter(b => b.cover_design_path).length > 0 ? books.filter(b => b.cover_design_path).map(book => (
             <div key={book.id} className="group">
-                <p className="text-sm font-bold text-gray-700 truncate mb-2" title={book.title}>{book.title}</p>
+                <p className="text-sm font-bold text-[#4b443a] truncate mb-2" title={book.title}>{book.title}</p>
                 <div className="flex gap-2">
                     {/* Front Cover (right ~48% of image) */}
                     <div className="flex-1 flex flex-col items-center">
-                        <div className="aspect-[2/3] w-full bg-gray-100 rounded-xl overflow-hidden relative border border-gray-200 hover:border-violet-300 transition-all transform hover:scale-105 hover:shadow-lg">
+                        <div className="aspect-[2/3] w-full bg-[#efe9db] rounded-xl overflow-hidden relative border border-[#d8d1c1] hover:border-violet-300 transition-all transform hover:scale-105 hover:shadow-lg">
                             <img
                                 src={`/storage/${book.cover_design_path}`}
                                 className="w-[208%] h-full object-cover"
@@ -725,11 +725,11 @@ const CoversGrid = ({ books, compact }) => (
                                 alt={`${book.title} - Front`}
                             />
                         </div>
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-1.5">Front</span>
+                        <span className="text-[10px] font-bold text-[#7c7364] uppercase tracking-wider mt-1.5">Front</span>
                     </div>
                     {/* Back Cover (left ~48% of image) */}
                     <div className="flex-1 flex flex-col items-center">
-                        <div className="aspect-[2/3] w-full bg-gray-100 rounded-xl overflow-hidden relative border border-gray-200 hover:border-violet-300 transition-all transform hover:scale-105 hover:shadow-lg">
+                        <div className="aspect-[2/3] w-full bg-[#efe9db] rounded-xl overflow-hidden relative border border-[#d8d1c1] hover:border-violet-300 transition-all transform hover:scale-105 hover:shadow-lg">
                             <img
                                 src={`/storage/${book.cover_design_path}`}
                                 className="w-[208%] h-full object-cover"
@@ -737,7 +737,7 @@ const CoversGrid = ({ books, compact }) => (
                                 alt={`${book.title} - Back`}
                             />
                         </div>
-                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-1.5">Back</span>
+                        <span className="text-[10px] font-bold text-[#7c7364] uppercase tracking-wider mt-1.5">Back</span>
                     </div>
                 </div>
                 {/* Download Button */}
@@ -754,7 +754,7 @@ const CoversGrid = ({ books, compact }) => (
 const FormattedList = ({ books, compact }) => (
     <div className={`grid ${compact ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-3`}>
         {books.filter(b => b.formatting_data || b.interior_file).length > 0 ? books.filter(b => b.formatting_data || b.interior_file).map(book => (
-            <div key={book.id} className="group p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-violet-200 transition-all hover:shadow-md">
+            <div key={book.id} className="group p-4 bg-[#faf8f3] rounded-xl border border-[#e7e1d4] hover:border-violet-200 transition-all hover:shadow-md">
                 <div className="flex items-start justify-between mb-2">
                     <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-full bg-violet-50 text-violet-600 border border-violet-100">Formatted</span>
                     {book.interior_file && (
@@ -763,8 +763,8 @@ const FormattedList = ({ books, compact }) => (
                         </a>
                     )}
                 </div>
-                <p className="text-sm font-bold text-gray-800 truncate mb-2" title={book.title}>{book.title}</p>
-                <p className="text-xs text-gray-400 mb-3">{book.num_pages || '?'} pages</p>
+                <p className="text-sm font-bold text-[#241f16] truncate mb-2" title={book.title}>{book.title}</p>
+                <p className="text-xs text-[#7c7364] mb-3">{book.num_pages || '?'} pages</p>
                 <Link href={route('books.format', book.id)} className="block w-full text-center py-2 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold rounded-lg transition-all">
                     Open Editor
                 </Link>
@@ -777,12 +777,12 @@ const FormattedList = ({ books, compact }) => (
 const DraftsList = ({ books, compact }) => (
     <div className={`grid ${compact ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'} gap-3`}>
         {books.filter(b => b.step_completed < 5).length > 0 ? books.filter(b => b.step_completed < 5).map(book => (
-            <div key={book.id} className="group p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-violet-200 transition-all hover:shadow-md">
+            <div key={book.id} className="group p-4 bg-[#faf8f3] rounded-xl border border-[#e7e1d4] hover:border-violet-200 transition-all hover:shadow-md">
                 <div className="flex items-start justify-between mb-2">
                     <span className="px-2 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-amber-50 text-amber-600 border border-amber-200">Draft</span>
                 </div>
-                <p className="text-sm font-bold text-gray-800 truncate mb-2" title={book.title}>{book.title}</p>
-                <p className="text-xs text-gray-400 mb-3">Updated {new Date(book.updated_at).toLocaleDateString()}</p>
+                <p className="text-sm font-bold text-[#241f16] truncate mb-2" title={book.title}>{book.title}</p>
+                <p className="text-xs text-[#7c7364] mb-3">Updated {new Date(book.updated_at).toLocaleDateString()}</p>
                 <Link href={route('books.details', book.id)} className="block w-full text-center py-2 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold rounded-lg transition-all">
                     Continue →
                 </Link>

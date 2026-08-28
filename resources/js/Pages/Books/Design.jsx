@@ -225,10 +225,10 @@ export default function Design({ auth, book }) {
             {/* Split Background - Dark Left, Light Right Gradient */}
             <div className="min-h-screen relative overflow-hidden">
                 {/* Dark side gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#5a1e27] via-[#6e2530] to-[#4d1a22]" />
 
                 {/* Light overlay on right side */}
-                <div className="absolute inset-0 bg-gradient-to-l from-white via-white/95 to-transparent" style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 15% 100%)' }} />
+                <div className="absolute inset-0 bg-gradient-to-l from-[#f0ece3] via-[#f0ece3]/95 to-transparent" style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 15% 100%)' }} />
 
                 {/* Decorative elements */}
                 <div className="absolute top-20 left-20 w-72 h-72 bg-violet-500/20 rounded-full blur-[100px]" />
@@ -240,7 +240,7 @@ export default function Design({ auth, book }) {
 
                             {/* Left Side - Progress & Hero */}
                             <div className={`lg:col-span-4 transition-all duration-700 delay-200 transform ${isMounted ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'} sticky top-24`}>
-                                <div className="relative p-8 rounded-3xl bg-slate-900/40 backdrop-blur-sm border border-white/10">
+                                <div className="relative p-8 rounded-3xl bg-[#17150f]/40 backdrop-blur-sm border border-white/10">
                                     {/* Vertical Steps */}
                                     <div className="mb-8">
                                         <div className="flex items-center gap-3 mb-4">
@@ -265,11 +265,11 @@ export default function Design({ auth, book }) {
                                         </div>
                                     </div>
 
-                                    <h1 className="text-4xl font-black text-white mb-4 leading-tight">
+                                    <h1 className="text-4xl text-[#f2ecdd] mb-4 leading-tight" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>
                                         Design Your <br />
-                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-300">Masterpiece</span>
+                                        <em className="text-[#e8cf8e]">Masterpiece</em>
                                     </h1>
-                                    <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                                    <p className="text-lg text-[#f2ecdd]/85 mb-8 leading-relaxed">
                                         Customize the physical look and feel of your book. Choose from premium printing options to make your book stand out.
                                     </p>
 
@@ -280,7 +280,7 @@ export default function Design({ auth, book }) {
                                             { icon: '🎨', text: 'Premium Color Options' },
                                             { icon: '📚', text: 'Professional Binding' }
                                         ].map((item, idx) => (
-                                            <div key={idx} className="flex items-center gap-3 text-gray-300">
+                                            <div key={idx} className="flex items-center gap-3 text-[#f2ecdd]/85">
                                                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-lg">
                                                     {item.icon}
                                                 </div>
@@ -293,14 +293,14 @@ export default function Design({ auth, book }) {
 
                             {/* Right Side - Form Card */}
                             <div className={`lg:col-span-8 transition-all duration-700 delay-400 transform ${isMounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                                <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-900/10 border border-slate-100 overflow-hidden relative">
+                                <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-[#17150f]/10 border border-[#e7e1d4] overflow-hidden relative">
                                     {/* Card Header */}
-                                    <div className="px-10 py-8 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100 flex justify-between items-center">
+                                    <div className="px-10 py-8 bg-gradient-to-r from-slate-50 to-white border-b border-[#e7e1d4] flex justify-between items-center">
                                         <div className="flex items-center gap-4">
                                             <button
                                                 type="button"
                                                 onClick={() => submit('back')}
-                                                className="p-2 -ml-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+                                                className="p-2 -ml-2 text-[#7c7364] hover:text-[#635c4e] hover:bg-[#efe9db] rounded-full transition-colors"
                                                 title="Go Back"
                                             >
                                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -308,8 +308,8 @@ export default function Design({ auth, book }) {
                                                 </svg>
                                             </button>
                                             <div>
-                                                <h2 className="text-xl font-bold text-slate-900">Book Configuration</h2>
-                                                <p className="text-slate-500 text-sm mt-1">Select your printing and layout preferences</p>
+                                                <h2 className="text-xl font-bold text-[#17150f]">Book Configuration</h2>
+                                                <p className="text-[#635c4e] text-sm mt-1">Select your printing and layout preferences</p>
                                             </div>
                                         </div>
                                         <div className="hidden sm:block">
@@ -325,7 +325,7 @@ export default function Design({ auth, book }) {
 
                                             {/* Book Size */}
                                             <div>
-                                                <label className="block text-lg font-bold text-gray-900 mb-4">
+                                                <label className="block text-lg font-bold text-[#17150f] mb-4">
                                                     Book Size
                                                 </label>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -343,7 +343,7 @@ export default function Design({ auth, book }) {
                                                             onClick={() => handleSizeChange(size.id)}
                                                             className={`p-6 border-2 rounded-xl transition-all duration-200 text-left relative ${data.book_size === size.id
                                                                 ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg'
-                                                                : 'border-gray-200 hover:border-purple-300 hover:bg-purple-50/30'
+                                                                : 'border-[#d8d1c1] hover:border-purple-300 hover:bg-purple-50/30'
                                                                 }`}
                                                         >
                                                             {data.book_size === size.id && (
@@ -354,10 +354,10 @@ export default function Design({ auth, book }) {
                                                                 </div>
                                                             )}
                                                             <div className="text-center mb-3">
-                                                                <div className="text-2xl font-bold text-gray-900 mb-1">{size.label}</div>
-                                                                <div className="text-xs text-gray-500 font-medium">inches</div>
+                                                                <div className="text-2xl font-bold text-[#17150f] mb-1">{size.label}</div>
+                                                                <div className="text-xs text-[#635c4e] font-medium">inches</div>
                                                             </div>
-                                                            <div className="text-[10px] leading-tight text-gray-500 font-bold uppercase tracking-wider text-center">
+                                                            <div className="text-[10px] leading-tight text-[#635c4e] font-bold uppercase tracking-wider text-center">
                                                                 Recommended for:<br />
                                                                 <span className="text-purple-600">{size.desc}</span>
                                                             </div>
@@ -367,11 +367,11 @@ export default function Design({ auth, book }) {
                                                 <InputError message={errors.book_size} className="mt-2" />
                                             </div>
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Printing Type */}
                                             <div>
-                                                <label className="block text-lg font-bold text-gray-900 mb-4">
+                                                <label className="block text-lg font-bold text-[#17150f] mb-4">
                                                     Printing Type
                                                 </label>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -380,12 +380,12 @@ export default function Design({ auth, book }) {
                                                         onClick={() => setData('printing_color', 'B/W')}
                                                         className={`p-6 border-2 rounded-xl transition-all duration-200 text-left ${data.printing_color === 'B/W'
                                                             ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg'
-                                                            : 'border-gray-200 hover:border-purple-300'
+                                                            : 'border-[#d8d1c1] hover:border-purple-300'
                                                             }`}
                                                     >
                                                         <div className="flex items-start justify-between mb-3">
-                                                            <div className="p-2 bg-gray-100 rounded-lg">
-                                                                <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <div className="p-2 bg-[#efe9db] rounded-lg">
+                                                                <svg className="w-6 h-6 text-[#4b443a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                                 </svg>
                                                             </div>
@@ -395,8 +395,8 @@ export default function Design({ auth, book }) {
                                                                 </svg>
                                                             )}
                                                         </div>
-                                                        <h3 className="font-bold text-gray-900 mb-1">Black & White</h3>
-                                                        <p className="text-sm text-gray-600">Perfect for novels and text-heavy books</p>
+                                                        <h3 className="font-bold text-[#17150f] mb-1">Black & White</h3>
+                                                        <p className="text-sm text-[#635c4e]">Perfect for novels and text-heavy books</p>
                                                     </button>
 
                                                     <button
@@ -404,7 +404,7 @@ export default function Design({ auth, book }) {
                                                         onClick={() => setData('printing_color', 'Color')}
                                                         className={`p-6 border-2 rounded-xl transition-all duration-200 text-left ${data.printing_color === 'Color'
                                                             ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg'
-                                                            : 'border-gray-200 hover:border-purple-300'
+                                                            : 'border-[#d8d1c1] hover:border-purple-300'
                                                             }`}
                                                     >
                                                         <div className="flex items-start justify-between mb-3">
@@ -419,18 +419,18 @@ export default function Design({ auth, book }) {
                                                                 </svg>
                                                             )}
                                                         </div>
-                                                        <h3 className="font-bold text-gray-900 mb-1">Full Color</h3>
-                                                        <p className="text-sm text-gray-600">Great for children's books and illustrated guides</p>
+                                                        <h3 className="font-bold text-[#17150f] mb-1">Full Color</h3>
+                                                        <p className="text-sm text-[#635c4e]">Great for children's books and illustrated guides</p>
                                                     </button>
                                                 </div>
                                                 <InputError message={errors.printing_color} className="mt-2" />
                                             </div>
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Paper Type */}
                                             <div>
-                                                <label className="block text-lg font-bold text-gray-900 mb-4">
+                                                <label className="block text-lg font-bold text-[#17150f] mb-4">
                                                     Paper Type
                                                 </label>
                                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -441,7 +441,7 @@ export default function Design({ auth, book }) {
                                                             onClick={() => setData('paper_type', paper)}
                                                             className={`p-6 border-2 rounded-xl transition-all duration-200 ${data.paper_type === paper
                                                                 ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg'
-                                                                : 'border-gray-200 hover:border-purple-300'
+                                                                : 'border-[#d8d1c1] hover:border-purple-300'
                                                                 }`}
                                                         >
                                                             {data.paper_type === paper && (
@@ -452,7 +452,7 @@ export default function Design({ auth, book }) {
                                                                 </div>
                                                             )}
                                                             <div className="text-center">
-                                                                <div className="font-bold text-gray-900">{paper}</div>
+                                                                <div className="font-bold text-[#17150f]">{paper}</div>
                                                             </div>
                                                         </button>
                                                     ))}
@@ -460,11 +460,11 @@ export default function Design({ auth, book }) {
                                                 <InputError message={errors.paper_type} className="mt-2" />
                                             </div>
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Binding Type */}
                                             <div>
-                                                <label className="block text-lg font-bold text-gray-900 mb-4">
+                                                <label className="block text-lg font-bold text-[#17150f] mb-4">
                                                     Binding Type
                                                 </label>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -473,7 +473,7 @@ export default function Design({ auth, book }) {
                                                         onClick={() => setData('binding_type', 'Soft Binding')}
                                                         className={`p-6 border-2 rounded-xl transition-all duration-200 text-left ${data.binding_type === 'Soft Binding'
                                                             ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg'
-                                                            : 'border-gray-200 hover:border-purple-300'
+                                                            : 'border-[#d8d1c1] hover:border-purple-300'
                                                             }`}
                                                     >
                                                         <div className="flex items-start justify-between mb-3">
@@ -488,8 +488,8 @@ export default function Design({ auth, book }) {
                                                                 </svg>
                                                             )}
                                                         </div>
-                                                        <h3 className="font-bold text-gray-900 mb-1">Soft Binding</h3>
-                                                        <p className="text-sm text-gray-600">Flexible paperback binding, perfect for novels</p>
+                                                        <h3 className="font-bold text-[#17150f] mb-1">Soft Binding</h3>
+                                                        <p className="text-sm text-[#635c4e]">Flexible paperback binding, perfect for novels</p>
                                                     </button>
 
                                                     <button
@@ -497,7 +497,7 @@ export default function Design({ auth, book }) {
                                                         onClick={() => setData('binding_type', 'Hard Binding')}
                                                         className={`p-6 border-2 rounded-xl transition-all duration-200 text-left ${data.binding_type === 'Hard Binding'
                                                             ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg'
-                                                            : 'border-gray-200 hover:border-purple-300'
+                                                            : 'border-[#d8d1c1] hover:border-purple-300'
                                                             }`}
                                                     >
                                                         <div className="flex items-start justify-between mb-3">
@@ -512,18 +512,18 @@ export default function Design({ auth, book }) {
                                                                 </svg>
                                                             )}
                                                         </div>
-                                                        <h3 className="font-bold text-gray-900 mb-1">Hard Binding</h3>
-                                                        <p className="text-sm text-gray-600">Durable hardcover binding, premium quality</p>
+                                                        <h3 className="font-bold text-[#17150f] mb-1">Hard Binding</h3>
+                                                        <p className="text-sm text-[#635c4e]">Durable hardcover binding, premium quality</p>
                                                     </button>
                                                 </div>
                                                 <InputError message={errors.binding_type} className="mt-2" />
                                             </div>
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Interior Layout - USER HAS BOTH OPTIONS */}
                                             <div>
-                                                <label className="block text-lg font-bold text-gray-900 mb-4">
+                                                <label className="block text-lg font-bold text-[#17150f] mb-4">
                                                     Interior Layout Method
                                                 </label>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -532,7 +532,7 @@ export default function Design({ auth, book }) {
                                                         onClick={() => setData('interior_layout_method', 'automatic_tool')}
                                                         className={`cursor-pointer border-2 rounded-2xl p-6 transition-all ${data.interior_layout_method === 'automatic_tool'
                                                             ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg'
-                                                            : 'border-gray-200 hover:border-purple-300'
+                                                            : 'border-[#d8d1c1] hover:border-purple-300'
                                                             }`}
                                                     >
                                                         <div className="flex justify-between items-start mb-4">
@@ -543,12 +543,12 @@ export default function Design({ auth, book }) {
                                                             </div>
                                                             <span className="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">RECOMMENDED</span>
                                                         </div>
-                                                        <h3 className="font-bold text-gray-900 text-lg mb-2">Smart Writer Studio 👻</h3>
-                                                        <p className="text-sm text-gray-600 mb-6">Write directly in our browser editor. We handle formatting automatically.</p>
+                                                        <h3 className="font-bold text-[#17150f] text-lg mb-2">Smart Writer Studio 👻</h3>
+                                                        <p className="text-sm text-[#635c4e] mb-6">Write directly in our browser editor. We handle formatting automatically.</p>
                                                         <button
                                                             type="button"
                                                             onClick={handleLaunchSmartStudio}
-                                                            className="block w-full text-center py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all"
+                                                            className="block w-full text-center py-3 bg-gradient-to-r from-purple-600 to-[#6a222d] text-white font-semibold rounded-xl hover:shadow-lg transition-all"
                                                         >
                                                             Launch Smart Writer Studio
                                                         </button>
@@ -558,7 +558,7 @@ export default function Design({ auth, book }) {
                                                     <div
                                                         className={`border-2 rounded-2xl p-6 transition-all ${(data.interior_layout_method === 'upload' || data.interior_layout_method === 'upload_template')
                                                             ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg'
-                                                            : 'border-gray-200 hover:border-purple-300'
+                                                            : 'border-[#d8d1c1] hover:border-purple-300'
                                                             }`}
                                                     >
                                                         <div className="flex justify-between items-start mb-4">
@@ -568,8 +568,8 @@ export default function Design({ auth, book }) {
                                                                 </svg>
                                                             </div>
                                                         </div>
-                                                        <h3 className="font-bold text-gray-900 text-lg mb-2">Upload Formatted File</h3>
-                                                        <p className="text-sm text-gray-600 mb-3">Have a Word doc ready? Upload it here.</p>
+                                                        <h3 className="font-bold text-[#17150f] text-lg mb-2">Upload Formatted File</h3>
+                                                        <p className="text-sm text-[#635c4e] mb-3">Have a Word doc ready? Upload it here.</p>
 
                                                         {/* Book Size Requirement Notice */}
                                                         <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-xl">
@@ -586,11 +586,11 @@ export default function Design({ auth, book }) {
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setShowTemplateModal(true)}
-                                                                className="flex-1 py-3 bg-white border-2 border-gray-300 rounded-xl text-sm font-semibold text-gray-700 hover:border-purple-400 transition-all"
+                                                                className="flex-1 py-3 bg-white border-2 border-[#cdc5b1] rounded-xl text-sm font-semibold text-[#4b443a] hover:border-purple-400 transition-all"
                                                             >
                                                                 Browse Templates
                                                             </button>
-                                                            <label className="flex-1 cursor-pointer py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all text-center">
+                                                            <label className="flex-1 cursor-pointer py-3 bg-gradient-to-r from-purple-600 to-[#6a222d] text-white font-semibold rounded-xl hover:shadow-lg transition-all text-center">
                                                                 Upload File
                                                                 <input
                                                                     type="file"
@@ -671,15 +671,15 @@ export default function Design({ auth, book }) {
                                                 <InputError message={errors.interior_file} className="mt-2" />
                                             </div>
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Online Formatting Tool - Separate Feature */}
                                             <div>
-                                                <label className="block text-lg font-bold text-gray-900 mb-4">
+                                                <label className="block text-lg font-bold text-[#17150f] mb-4">
                                                     Online Formatting Tool
                                                 </label>
                                                 <div className={`relative rounded-2xl p-8 overflow-hidden border-2 transition-all duration-300 ${(book.interior_file || data.interior_file)
-                                                    ? 'bg-gray-100 border-gray-300'
+                                                    ? 'bg-[#efe9db] border-[#cdc5b1]'
                                                     : 'bg-gradient-to-br from-purple-50 to-indigo-50 border-purple-200'
                                                     }`}>
                                                     {/* Decorative background */}
@@ -689,15 +689,15 @@ export default function Design({ auth, book }) {
                                                     {(book.interior_file || data.interior_file) && (
                                                         <div className="absolute inset-0 z-20 bg-white/70 backdrop-blur-[2px] flex flex-col items-center justify-center p-6 rounded-2xl">
                                                             <div className="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center mb-4">
-                                                                <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <svg className="w-8 h-8 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                                                 </svg>
                                                             </div>
-                                                            <h4 className="text-lg font-bold text-gray-800 mb-2 text-center">Formatting Tool Locked</h4>
-                                                            <p className="text-sm text-gray-600 text-center max-w-sm mb-4">
+                                                            <h4 className="text-lg font-bold text-[#241f16] mb-2 text-center">Formatting Tool Locked</h4>
+                                                            <p className="text-sm text-[#635c4e] text-center max-w-sm mb-4">
                                                                 You have already uploaded a manuscript file. To use the Online Formatting Tool, please remove your uploaded file first from the <strong>Upload Formatted File</strong> section above.
                                                             </p>
-                                                            <div className="flex items-center gap-2 text-xs text-gray-400">
+                                                            <div className="flex items-center gap-2 text-xs text-[#7c7364]">
                                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                                                 Only one method can be active at a time
                                                             </div>
@@ -713,32 +713,32 @@ export default function Design({ auth, book }) {
                                                                     </svg>
                                                                 </div>
                                                                 <div>
-                                                                    <h3 className="text-xl font-bold text-gray-900">Professional Formatting Tool</h3>
-                                                                    <p className="text-sm text-gray-600 mt-1">Format your manuscript with our advanced online editor</p>
+                                                                    <h3 className="text-xl font-bold text-[#17150f]">Professional Formatting Tool</h3>
+                                                                    <p className="text-sm text-[#635c4e] mt-1">Format your manuscript with our advanced online editor</p>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <p className="text-gray-700 mb-6 leading-relaxed">
+                                                        <p className="text-[#4b443a] mb-6 leading-relaxed">
                                                             Use our powerful browser-based formatting tool to create professionally formatted manuscripts. Features include automatic page numbering, chapter formatting, table of contents generation, and more.
                                                         </p>
 
                                                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
                                                             <div className="bg-white p-3 rounded-lg text-center">
                                                                 <div className="text-purple-600 font-bold text-sm">Auto Format</div>
-                                                                <div className="text-xs text-gray-500 mt-1">Smart styling</div>
+                                                                <div className="text-xs text-[#635c4e] mt-1">Smart styling</div>
                                                             </div>
                                                             <div className="bg-white p-3 rounded-lg text-center">
                                                                 <div className="text-purple-600 font-bold text-sm">Templates</div>
-                                                                <div className="text-xs text-gray-500 mt-1">Pre-designed</div>
+                                                                <div className="text-xs text-[#635c4e] mt-1">Pre-designed</div>
                                                             </div>
                                                             <div className="bg-white p-3 rounded-lg text-center">
                                                                 <div className="text-purple-600 font-bold text-sm">Export PDF</div>
-                                                                <div className="text-xs text-gray-500 mt-1">Print-ready</div>
+                                                                <div className="text-xs text-[#635c4e] mt-1">Print-ready</div>
                                                             </div>
                                                             <div className="bg-white p-3 rounded-lg text-center">
                                                                 <div className="text-purple-600 font-bold text-sm">Cloud Save</div>
-                                                                <div className="text-xs text-gray-500 mt-1">Auto-save</div>
+                                                                <div className="text-xs text-[#635c4e] mt-1">Auto-save</div>
                                                             </div>
                                                         </div>
 
@@ -766,7 +766,7 @@ export default function Design({ auth, book }) {
 
                                                             <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
                                                                 <div className="flex justify-between items-center mb-3">
-                                                                    <span className="text-xs font-bold text-gray-600 uppercase tracking-wider">Struggling with formatting?</span>
+                                                                    <span className="text-xs font-bold text-[#635c4e] uppercase tracking-wider">Struggling with formatting?</span>
                                                                     <span className="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-1 rounded">₹1999</span>
                                                                 </div>
                                                                 <Link
@@ -782,11 +782,11 @@ export default function Design({ auth, book }) {
                                                 </div>
                                             </div>
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Cover Design - USER HAS BOTH OPTIONS */}
                                             <div>
-                                                <label className="block text-lg font-bold text-gray-900 mb-4">
+                                                <label className="block text-lg font-bold text-[#17150f] mb-4">
                                                     Cover Design
                                                 </label>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -800,8 +800,8 @@ export default function Design({ auth, book }) {
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
                                                             </svg>
                                                         </div>
-                                                        <h3 className="text-xl font-bold text-gray-900 mb-3">Professional Cover Creator</h3>
-                                                        <p className="text-gray-600 text-sm mb-4">Design stunning covers with our advanced studio. Unlimited stock images, professional typography, ready-made layouts.</p>
+                                                        <h3 className="text-xl font-bold text-[#17150f] mb-3">Professional Cover Creator</h3>
+                                                        <p className="text-[#635c4e] text-sm mb-4">Design stunning covers with our advanced studio. Unlimited stock images, professional typography, ready-made layouts.</p>
 
                                                         <button
                                                             type="button"
@@ -826,12 +826,12 @@ export default function Design({ auth, book }) {
                                                     </div>
 
                                                     {/* Option 2: Upload Custom Cover (USER HAS THIS TOO) */}
-                                                    <div className="border-2 border-gray-200 rounded-2xl p-6 hover:border-purple-300 transition-all flex flex-col h-full">
-                                                        <h3 className="font-bold text-gray-900 text-lg mb-4">Upload Custom Cover</h3>
+                                                    <div className="border-2 border-[#d8d1c1] rounded-2xl p-6 hover:border-purple-300 transition-all flex flex-col h-full">
+                                                        <h3 className="font-bold text-[#17150f] text-lg mb-4">Upload Custom Cover</h3>
 
                                                         {/* Image Preview Area */}
                                                         {(data.cover_design_path || book.cover_design_path) ? (
-                                                            <div className="mb-4 relative group rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
+                                                            <div className="mb-4 relative group rounded-xl overflow-hidden border border-[#d8d1c1] shadow-sm bg-[#faf8f3]">
                                                                 <div className="aspect-[2/3] w-32 mx-auto sm:w-full sm:max-w-[200px] relative">
                                                                     <img
                                                                         src={data.cover_design_path instanceof File
@@ -854,19 +854,19 @@ export default function Design({ auth, book }) {
                                                             </div>
                                                         ) : null}
 
-                                                        <div className={`border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:bg-gray-50 transition-colors relative cursor-pointer flex-1 flex flex-col justify-center items-center ${data.cover_design_path ? 'border-green-400 bg-green-50/10' : ''}`}>
-                                                            <svg className={`mx-auto h-12 w-12 mb-4 ${data.cover_design_path ? 'text-green-500' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 48 48">
+                                                        <div className={`border-2 border-dashed border-[#cdc5b1] rounded-xl p-6 text-center hover:bg-[#faf8f3] transition-colors relative cursor-pointer flex-1 flex flex-col justify-center items-center ${data.cover_design_path ? 'border-green-400 bg-green-50/10' : ''}`}>
+                                                            <svg className={`mx-auto h-12 w-12 mb-4 ${data.cover_design_path ? 'text-green-500' : 'text-[#7c7364]'}`} fill="none" stroke="currentColor" viewBox="0 0 48 48">
                                                                 {data.cover_design_path ? (
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                                 ) : (
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" />
                                                                 )}
                                                             </svg>
-                                                            <p className="text-sm text-gray-600 mb-2">
+                                                            <p className="text-sm text-[#635c4e] mb-2">
                                                                 <span className="font-semibold text-purple-600">{data.cover_design_path ? 'Change file' : 'Upload a file'}</span> or drag and drop
                                                             </p>
-                                                            <p className="text-xs text-gray-500 font-bold mb-1">Recommended Size: 755 x 1144 px</p>
-                                                            <p className="text-[10px] text-gray-400">PNG, JPG up to 10MB</p>
+                                                            <p className="text-xs text-[#635c4e] font-bold mb-1">Recommended Size: 755 x 1144 px</p>
+                                                            <p className="text-[10px] text-[#7c7364]">PNG, JPG up to 10MB</p>
                                                             <input
                                                                 type="file"
                                                                 accept=".jpg,.jpeg,.png"
@@ -911,7 +911,7 @@ export default function Design({ auth, book }) {
                                                     type="button"
                                                     onClick={() => submit('back')}
                                                     disabled={processing}
-                                                    className="w-1/3 flex items-center justify-center px-6 py-4 bg-white border-2 border-slate-200 text-slate-700 text-lg font-bold rounded-xl shadow-sm hover:border-violet-300 hover:bg-violet-50 transition-all duration-200 disabled:opacity-50"
+                                                    className="w-1/3 flex items-center justify-center px-6 py-4 bg-white border-2 border-[#d8d1c1] text-[#4b443a] text-lg font-bold rounded-xl shadow-sm hover:border-violet-300 hover:bg-violet-50 transition-all duration-200 disabled:opacity-50"
                                                 >
                                                     ← Back
                                                 </button>
@@ -920,7 +920,7 @@ export default function Design({ auth, book }) {
                                                     type="button"
                                                     onClick={() => submit('next')}
                                                     disabled={processing}
-                                                    className="flex-1 flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                                    className="flex-1 flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-[#6a222d] text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                                                 >
                                                     {processing ? (
                                                         <>
@@ -944,8 +944,8 @@ export default function Design({ auth, book }) {
                                         </form>
                                     </div>
                                     {/* Card Footer / Help */}
-                                    <div className="px-8 py-4 bg-slate-50 border-t border-slate-100 text-center">
-                                        <p className="text-sm text-slate-500">
+                                    <div className="px-8 py-4 bg-[#faf8f3] border-t border-[#e7e1d4] text-center">
+                                        <p className="text-sm text-[#635c4e]">
                                             Need help deciding? <a href="#" className="text-violet-600 hover:text-violet-700 font-semibold hover:underline">View Sizing Guide</a>
                                         </p>
                                     </div>
@@ -963,15 +963,15 @@ export default function Design({ auth, book }) {
                         <div className="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
 
                             {/* Modal Header */}
-                            <div className="p-8 border-b border-gray-100 flex justify-between items-center bg-gradient-to-r from-purple-50 to-blue-50">
+                            <div className="p-8 border-b border-[#e7e1d4] flex justify-between items-center bg-gradient-to-r from-purple-50 to-blue-50">
                                 <div>
-                                    <h3 className="text-3xl font-black text-gray-900 tracking-tight">Template Library</h3>
+                                    <h3 className="text-3xl font-black text-[#17150f] tracking-tight">Template Library</h3>
                                     <p className="text-purple-600 font-bold flex items-center gap-2 mt-1">
                                         <span className="px-2 py-0.5 bg-purple-100 rounded text-xs">SIZE: {data.book_size}</span>
                                         Formatting optimized for your selection 📏
                                     </p>
                                 </div>
-                                <button onClick={() => setShowTemplateModal(false)} className="p-2 hover:bg-white rounded-full transition-colors text-gray-400 hover:text-gray-900 shadow-sm">
+                                <button onClick={() => setShowTemplateModal(false)} className="p-2 hover:bg-white rounded-full transition-colors text-[#7c7364] hover:text-[#17150f] shadow-sm">
                                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                                     </svg>
@@ -1001,36 +1001,36 @@ export default function Design({ auth, book }) {
                             )}
 
                             {/* Modal Body */}
-                            <div className="p-8 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-50/50">
+                            <div className="p-8 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#faf8f3]/50">
                                 {(data.book_size === '16.5x11'
                                     ? [
                                         { name: 'Magazine Template', folder: 'Magazine Template', icon: '📰', color: 'from-stone-600 to-stone-800', border: 'border-stone-300' }
                                     ]
                                     : [
-                                        { name: 'Horror Style', folder: 'Horror Book Template', icon: '🧛', color: 'from-gray-900 to-red-950', border: 'border-red-900/20' },
+                                        { name: 'Horror Style', folder: 'Horror Book Template', icon: '🧛', color: 'from-[#5a1e27] to-red-950', border: 'border-red-900/20' },
                                         { name: 'Kavithai Style', folder: 'Kavithai', icon: '✍️', color: 'from-amber-500 to-orange-600', border: 'border-amber-200' },
-                                        { name: 'Standard Book', folder: 'Book', icon: '📖', color: 'from-blue-600 to-indigo-700', border: 'border-blue-200' },
+                                        { name: 'Standard Book', folder: 'Book', icon: '📖', color: 'from-[#6a222d] to-indigo-700', border: 'border-blue-200' },
                                         { name: 'Bordered Style', folder: 'Book with border', icon: '🖼️', color: 'from-emerald-500 to-teal-600', border: 'border-emerald-200' },
                                     ]
                                 ).map((style) => (
                                     <div key={style.folder} className={`group relative bg-white rounded-2xl border ${style.border} p-1 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1`}>
                                         <div className="p-6">
                                             <div className="flex items-center gap-5 mb-6">
-                                                <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center text-3xl shadow-inner group-hover:scale-110 transition-transform">
+                                                <div className="w-16 h-16 rounded-2xl bg-[#faf8f3] flex items-center justify-center text-3xl shadow-inner group-hover:scale-110 transition-transform">
                                                     {style.icon}
                                                 </div>
                                                 <div>
-                                                    <h4 className="text-xl font-bold text-gray-900">{style.name}</h4>
-                                                    <p className="text-sm text-gray-500 font-medium">Professional Layout</p>
+                                                    <h4 className="text-xl font-bold text-[#17150f]">{style.name}</h4>
+                                                    <p className="text-sm text-[#635c4e] font-medium">Professional Layout</p>
                                                 </div>
                                             </div>
 
                                             <div className="space-y-3 mb-6">
-                                                <div className="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                                <div className="flex items-center gap-2 text-xs font-bold text-[#7c7364] uppercase tracking-widest">
                                                     <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
                                                     Includes margins & bleed
                                                 </div>
-                                                <div className="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest">
+                                                <div className="flex items-center gap-2 text-xs font-bold text-[#7c7364] uppercase tracking-widest">
                                                     <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
                                                     Auto-page numbering
                                                 </div>
@@ -1048,14 +1048,14 @@ export default function Design({ auth, book }) {
                             </div>
 
                             {/* Modal Footer */}
-                            <div className="p-6 border-t border-gray-100 bg-white flex items-center gap-4">
+                            <div className="p-6 border-t border-[#e7e1d4] bg-white flex items-center gap-4">
                                 <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
                                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                                     </svg>
                                 </div>
-                                <p className="text-xs text-gray-500 font-medium leading-relaxed">
-                                    <span className="text-gray-900 font-bold">Pro Tip:</span> After downloading, simply replace the placeholder text with your content. All margins, fonts, and headers are already perfectly set for a <span className="text-purple-600 font-bold">{data.book_size}</span> book.
+                                <p className="text-xs text-[#635c4e] font-medium leading-relaxed">
+                                    <span className="text-[#17150f] font-bold">Pro Tip:</span> After downloading, simply replace the placeholder text with your content. All margins, fonts, and headers are already perfectly set for a <span className="text-purple-600 font-bold">{data.book_size}</span> book.
                                 </p>
                             </div>
                         </div>

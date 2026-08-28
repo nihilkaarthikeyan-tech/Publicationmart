@@ -318,10 +318,10 @@ export default function Details({ auth, book }) {
 
                 {/* Split Background - Dark Left, Light Right Gradient */}
                 {/* Dark side gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#5a1e27] via-[#6e2530] to-[#4d1a22]" />
 
                 {/* Light overlay on right side */}
-                <div className="absolute inset-0 bg-gradient-to-l from-white via-white/95 to-transparent" style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 15% 100%)' }} />
+                <div className="absolute inset-0 bg-gradient-to-l from-[#f0ece3] via-[#f0ece3]/95 to-transparent" style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 15% 100%)' }} />
 
                 {/* Decorative elements */}
                 <div className="absolute top-20 left-20 w-72 h-72 bg-violet-500/20 rounded-full blur-[100px]" />
@@ -333,7 +333,7 @@ export default function Details({ auth, book }) {
 
                             {/* Left Side - Progress & Hero */}
                             <div className={`lg:col-span-4 transition-all duration-700 delay-200 transform ${isMounted ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'} sticky top-24`}>
-                                <div className="relative p-8 rounded-3xl bg-slate-900/40 backdrop-blur-sm border border-white/10">
+                                <div className="relative p-8 rounded-3xl bg-[#17150f]/40 backdrop-blur-sm border border-white/10">
                                     {/* Vertical Steps */}
                                     <div className="mb-8">
                                         <div className="flex items-center gap-3 mb-4">
@@ -358,11 +358,11 @@ export default function Details({ auth, book }) {
                                         </div>
                                     </div>
 
-                                    <h1 className="text-4xl font-black text-white mb-4 leading-tight">
+                                    <h1 className="text-4xl text-[#f2ecdd] mb-4 leading-tight" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>
                                         Finalize & <br />
-                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-300">Monetize</span>
+                                        <em className="text-[#e8cf8e]">Monetize</em>
                                     </h1>
-                                    <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+                                    <p className="text-lg text-[#f2ecdd]/85 mb-8 leading-relaxed">
                                         Set your pricing, royalties, and distribution details. You retain full control over your book's earnings.
                                     </p>
 
@@ -373,7 +373,7 @@ export default function Details({ auth, book }) {
                                             { icon: '🌍', text: 'Global Distribution Setup' },
                                             { icon: '📈', text: 'Control Your Selling Price' }
                                         ].map((item, idx) => (
-                                            <div key={idx} className="flex items-center gap-3 text-gray-300">
+                                            <div key={idx} className="flex items-center gap-3 text-[#f2ecdd]/85">
                                                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-lg">
                                                     {item.icon}
                                                 </div>
@@ -386,13 +386,13 @@ export default function Details({ auth, book }) {
 
                             {/* Right Side - Form Card */}
                             <div className={`lg:col-span-8 transition-all duration-700 delay-400 transform ${isMounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                                <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-slate-900/10 border border-slate-100 overflow-hidden relative">
+                                <div className="bg-white rounded-[2.5rem] shadow-2xl shadow-[#17150f]/10 border border-[#e7e1d4] overflow-hidden relative">
                                     {/* Card Header */}
-                                    <div className="px-10 py-8 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100 flex justify-between items-center">
+                                    <div className="px-10 py-8 bg-gradient-to-r from-slate-50 to-white border-b border-[#e7e1d4] flex justify-between items-center">
                                         <div className="flex items-center gap-4">
                                             <Link
                                                 href={route('books.design', book.id)}
-                                                className="p-2 -ml-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+                                                className="p-2 -ml-2 text-[#7c7364] hover:text-[#635c4e] hover:bg-[#efe9db] rounded-full transition-colors"
                                                 title="Go Back"
                                             >
                                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -400,8 +400,8 @@ export default function Details({ auth, book }) {
                                                 </svg>
                                             </Link>
                                             <div>
-                                                <h2 className="text-xl font-bold text-slate-900">Details & Pricing</h2>
-                                                <p className="text-slate-500 text-sm mt-1">Final details to publish your book</p>
+                                                <h2 className="text-xl font-bold text-[#17150f]">Details & Pricing</h2>
+                                                <p className="text-[#635c4e] text-sm mt-1">Final details to publish your book</p>
                                             </div>
                                         </div>
                                         <div className="hidden sm:block">
@@ -487,7 +487,7 @@ export default function Details({ auth, book }) {
 
                                             {/* Book Metadata */}
                                             <div>
-                                                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                                                <h3 className="text-xl font-bold text-[#17150f] mb-6 flex items-center">
                                                     <div className="p-2 bg-purple-100 rounded-lg mr-3">
                                                         <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -498,14 +498,14 @@ export default function Details({ auth, book }) {
 
                                                 {/* Number of Pages */}
                                                 <div className="mb-6">
-                                                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                                    <label className="block text-sm font-semibold text-[#4b443a] mb-2">
                                                         Number of Pages *
                                                     </label>
                                                     <input
                                                         type="text"
                                                         inputMode="numeric"
                                                         pattern="\d*"
-                                                        className="w-full px-4 py-3 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 rounded-xl transition-all duration-200 font-medium text-gray-900"
+                                                        className="w-full px-4 py-3 border-2 border-[#d8d1c1] focus:border-purple-500 focus:ring-2 focus:ring-purple-200 rounded-xl transition-all duration-200 font-medium text-[#17150f]"
                                                         placeholder="e.g. 250"
                                                         value={data.num_pages}
                                                         onChange={(e) => {
@@ -519,17 +519,17 @@ export default function Details({ auth, book }) {
                                                         }}
                                                         required
                                                     />
-                                                    <p className="text-xs text-gray-500 mt-1">Total number of pages in your book</p>
+                                                    <p className="text-xs text-[#635c4e] mt-1">Total number of pages in your book</p>
                                                     <InputError message={errors.num_pages} className="mt-2" />
                                                 </div>
 
                                                 {/* Author Biography */}
                                                 <div>
-                                                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                                    <label className="block text-sm font-semibold text-[#4b443a] mb-2">
                                                         Author Biography
                                                     </label>
                                                     <textarea
-                                                        className="w-full px-4 py-3 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 rounded-xl transition-all duration-200"
+                                                        className="w-full px-4 py-3 border-2 border-[#d8d1c1] focus:border-purple-500 focus:ring-2 focus:ring-purple-200 rounded-xl transition-all duration-200"
                                                         rows="4"
                                                         placeholder="Tell readers about yourself..."
                                                         value={data.author_biography}
@@ -541,11 +541,11 @@ export default function Details({ auth, book }) {
 
                                                 {/* About the Book */}
                                                 <div className="mt-6">
-                                                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                                    <label className="block text-sm font-semibold text-[#4b443a] mb-2">
                                                         About the Book (Description)
                                                     </label>
                                                     <textarea
-                                                        className="w-full px-4 py-3 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 rounded-xl transition-all duration-200"
+                                                        className="w-full px-4 py-3 border-2 border-[#d8d1c1] focus:border-purple-500 focus:ring-2 focus:ring-purple-200 rounded-xl transition-all duration-200"
                                                         rows="5"
                                                         placeholder="Write a compelling description for your book..."
                                                         value={data.about_book}
@@ -556,11 +556,11 @@ export default function Details({ auth, book }) {
                                                 </div>
                                             </div>
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Pricing Strategy */}
                                             <div>
-                                                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                                                <h3 className="text-xl font-bold text-[#17150f] mb-6 flex items-center">
                                                     <div className="p-2 bg-green-100 rounded-lg mr-3">
                                                         <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -570,33 +570,33 @@ export default function Details({ auth, book }) {
                                                 </h3>
 
                                                 {/* Book Configuration Summary */}
-                                                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6">
+                                                <div className="bg-[#faf8f3] p-4 rounded-xl border border-[#d8d1c1] mb-6">
                                                     <div className="flex items-center justify-between mb-3">
-                                                        <h4 className="text-sm font-bold text-slate-600 uppercase tracking-wide">Your Book Configuration</h4>
+                                                        <h4 className="text-sm font-bold text-[#635c4e] uppercase tracking-wide">Your Book Configuration</h4>
                                                         <Link href={route('books.design', book.id)} className="text-xs text-purple-600 hover:text-purple-700 font-semibold flex items-center gap-1">
                                                             <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
                                                             Edit Design
                                                         </Link>
                                                     </div>
                                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                                        <div className="bg-white p-3 rounded-lg border border-slate-100">
-                                                            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Book Size</div>
-                                                            <div className="text-sm font-bold text-slate-800 mt-1">{book.book_size || '5.5x8.5'}"</div>
+                                                        <div className="bg-white p-3 rounded-lg border border-[#e7e1d4]">
+                                                            <div className="text-[10px] font-bold text-[#7c7364] uppercase tracking-wider">Book Size</div>
+                                                            <div className="text-sm font-bold text-[#241f16] mt-1">{book.book_size || '5.5x8.5'}"</div>
                                                         </div>
-                                                        <div className="bg-white p-3 rounded-lg border border-slate-100">
-                                                            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Printing</div>
-                                                            <div className="text-sm font-bold text-slate-800 mt-1">{book.printing_color || 'B/W'}</div>
+                                                        <div className="bg-white p-3 rounded-lg border border-[#e7e1d4]">
+                                                            <div className="text-[10px] font-bold text-[#7c7364] uppercase tracking-wider">Printing</div>
+                                                            <div className="text-sm font-bold text-[#241f16] mt-1">{book.printing_color || 'B/W'}</div>
                                                         </div>
-                                                        <div className="bg-white p-3 rounded-lg border border-slate-100">
-                                                            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Paper Type</div>
-                                                            <div className="text-sm font-bold text-slate-800 mt-1">{book.paper_type || 'White Paper'}</div>
+                                                        <div className="bg-white p-3 rounded-lg border border-[#e7e1d4]">
+                                                            <div className="text-[10px] font-bold text-[#7c7364] uppercase tracking-wider">Paper Type</div>
+                                                            <div className="text-sm font-bold text-[#241f16] mt-1">{book.paper_type || 'White Paper'}</div>
                                                         </div>
-                                                        <div className="bg-white p-3 rounded-lg border border-slate-100">
-                                                            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Binding</div>
-                                                            <div className="text-sm font-bold text-slate-800 mt-1">{book.binding_type || 'Soft Binding'}</div>
+                                                        <div className="bg-white p-3 rounded-lg border border-[#e7e1d4]">
+                                                            <div className="text-[10px] font-bold text-[#7c7364] uppercase tracking-wider">Binding</div>
+                                                            <div className="text-sm font-bold text-[#241f16] mt-1">{book.binding_type || 'Soft Binding'}</div>
                                                         </div>
                                                     </div>
-                                                    <p className="text-xs text-slate-500 mt-3 flex items-center gap-1">
+                                                    <p className="text-xs text-[#635c4e] mt-3 flex items-center gap-1">
                                                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                                         Pricing is calculated based on the above settings. Page cost: ₹{pricingData.perPage}/page, Binding: ₹{pricingData.binding}
                                                     </p>
@@ -605,18 +605,18 @@ export default function Details({ auth, book }) {
                                                 <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl border-2 border-blue-100">
                                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                                                         {/* Printing Cost - Auto-calculated, Read-only */}
-                                                        <div className="bg-white p-6 rounded-xl shadow-sm border-2 border-gray-200">
-                                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">
+                                                        <div className="bg-white p-6 rounded-xl shadow-sm border-2 border-[#d8d1c1]">
+                                                            <label className="block text-xs font-bold text-[#635c4e] uppercase tracking-wide mb-2">
                                                                 Printing Cost (Per Copy)
                                                             </label>
-                                                            <div className="text-3xl font-black text-gray-900">
+                                                            <div className="text-3xl font-black text-[#17150f]">
                                                                 ₹{printingCost.toFixed(2)}
                                                             </div>
                                                         </div>
 
                                                         {/* Author Cost - Auto-calculated, Read-only */}
                                                         <div className="bg-white p-6 rounded-xl shadow-sm border-2 border-blue-200 hover:border-blue-400 transition-colors">
-                                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">
+                                                            <label className="block text-xs font-bold text-[#635c4e] uppercase tracking-wide mb-2">
                                                                 Author Cost (Minimum Price)
                                                             </label>
                                                             <div className="text-3xl font-black text-blue-600">
@@ -629,14 +629,14 @@ export default function Details({ auth, book }) {
                                                             ? 'border-red-300 ring-2 ring-red-100'
                                                             : 'border-purple-200 focus-within:border-purple-500 focus-within:ring-2 focus-within:ring-purple-200'
                                                             }`}>
-                                                            <label className="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-2">
+                                                            <label className="block text-xs font-bold text-[#635c4e] uppercase tracking-wide mb-2">
                                                                 Selling Price (INR) *
                                                             </label>
                                                             <input
                                                                 type="number"
                                                                 min={authorCost.toFixed(2)}
                                                                 step="0.01"
-                                                                className="w-full text-2xl font-bold text-gray-900 border-none p-0 focus:ring-0 placeholder-gray-300"
+                                                                className="w-full text-2xl font-bold text-[#17150f] border-none p-0 focus:ring-0 placeholder-gray-300"
                                                                 placeholder="0.00"
                                                                 value={data.selling_price}
                                                                 onChange={(e) => setData('selling_price', e.target.value)}
@@ -644,7 +644,7 @@ export default function Details({ auth, book }) {
                                                                 required
                                                             />
                                                             <div className="h-px bg-gray-200 w-full my-2"></div>
-                                                            <p className={`text-xs font-medium ${parseFloat(data.selling_price || 0) < authorCost ? 'text-red-500' : 'text-gray-500'
+                                                            <p className={`text-xs font-medium ${parseFloat(data.selling_price || 0) < authorCost ? 'text-red-500' : 'text-[#635c4e]'
                                                                 }`}>
                                                                 Must be ≥ ₹{authorCost.toFixed(2)}
                                                             </p>
@@ -674,9 +674,9 @@ export default function Details({ auth, book }) {
                                                                 <div>
                                                                     <div className="flex items-center space-x-2 mb-1">
                                                                         <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                                                                        <h5 className="font-bold text-gray-900">Amazon Royalty</h5>
+                                                                        <h5 className="font-bold text-[#17150f]">Amazon Royalty</h5>
                                                                     </div>
-                                                                    <p className="text-xs text-gray-500">Price × 70% royalty</p>
+                                                                    <p className="text-xs text-[#635c4e]">Price × 70% royalty</p>
                                                                 </div>
                                                                 <div className="text-2xl font-bold text-orange-600">
                                                                     ₹{amazonRoyalty.toFixed(2)}
@@ -688,9 +688,9 @@ export default function Details({ auth, book }) {
                                                                 <div>
                                                                     <div className="flex items-center space-x-2 mb-1">
                                                                         <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                                                        <h5 className="font-bold text-gray-900">Google Play Royalty</h5>
+                                                                        <h5 className="font-bold text-[#17150f]">Google Play Royalty</h5>
                                                                     </div>
-                                                                    <p className="text-xs text-gray-500">Price × 70% royalty</p>
+                                                                    <p className="text-xs text-[#635c4e]">Price × 70% royalty</p>
                                                                 </div>
                                                                 <div className="text-2xl font-bold text-blue-600">
                                                                     ₹{googleRoyalty.toFixed(2)}
@@ -700,13 +700,13 @@ export default function Details({ auth, book }) {
                                                     </div>
 
                                                     <div className="mt-8">
-                                                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                                                            International Selling Price (USD) <span className="text-gray-400 font-normal">(Optional)</span>
+                                                        <label className="block text-sm font-semibold text-[#4b443a] mb-2">
+                                                            International Selling Price (USD) <span className="text-[#7c7364] font-normal">(Optional)</span>
                                                         </label>
                                                         <input
                                                             type="number"
                                                             step="0.01"
-                                                            className="w-full md:w-1/3 px-4 py-3 border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 rounded-xl transition-all duration-200"
+                                                            className="w-full md:w-1/3 px-4 py-3 border-2 border-[#d8d1c1] focus:border-purple-500 focus:ring-2 focus:ring-purple-200 rounded-xl transition-all duration-200"
                                                             placeholder="e.g. 14.99"
                                                             value={data.international_price}
                                                             onChange={(e) => setData('international_price', e.target.value)}
@@ -716,11 +716,11 @@ export default function Details({ auth, book }) {
                                                 </div>
                                             </div>
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Author Copies */}
                                             <div>
-                                                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                                                <h3 className="text-xl font-bold text-[#17150f] mb-6 flex items-center">
                                                     <div className="p-2 bg-orange-100 rounded-lg mr-3">
                                                         <svg className="w-5 h-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -729,14 +729,14 @@ export default function Details({ auth, book }) {
                                                     Author Copies
                                                 </h3>
                                                 <div className="bg-orange-50 rounded-2xl p-8 border border-orange-100">
-                                                    <p className="text-gray-600 mb-6">
-                                                        <span className="font-bold text-gray-800">Optional:</span> Purchase your own books at <span className="font-bold text-orange-700">author cost</span>. If you choose to buy, minimum order is 5 copies.
+                                                    <p className="text-[#635c4e] mb-6">
+                                                        <span className="font-bold text-[#241f16]">Optional:</span> Purchase your own books at <span className="font-bold text-orange-700">author cost</span>. If you choose to buy, minimum order is 5 copies.
                                                     </p>
 
                                                     <div className="flex flex-col md:flex-row gap-8 items-start">
                                                         <div className="w-full md:w-1/3">
-                                                            <label className="block text-sm font-bold text-gray-700 mb-2">
-                                                                Number of Copies <span className="text-gray-400 font-normal">(Optional)</span>
+                                                            <label className="block text-sm font-bold text-[#4b443a] mb-2">
+                                                                Number of Copies <span className="text-[#7c7364] font-normal">(Optional)</span>
                                                             </label>
                                                             <input
                                                                 type="number"
@@ -750,7 +750,7 @@ export default function Details({ auth, book }) {
                                                                 value={data.author_copies}
                                                                 onChange={(e) => setData('author_copies', e.target.value)}
                                                             />
-                                                            <p className="text-xs text-gray-500 mt-1">Enter 0 (no purchase) or 5+ copies.</p>
+                                                            <p className="text-xs text-[#635c4e] mt-1">Enter 0 (no purchase) or 5+ copies.</p>
                                                             {authorCopiesError && (
                                                                 <p className="text-xs text-red-500 mt-1 font-medium">{authorCopiesError}</p>
                                                             )}
@@ -759,11 +759,11 @@ export default function Details({ auth, book }) {
 
                                                         <div className="w-full md:w-2/3 bg-white p-6 rounded-xl border border-orange-100 shadow-sm flex flex-col md:flex-row items-center justify-between">
                                                             <div>
-                                                                <h4 className="text-sm font-bold text-gray-500 uppercase tracking-wide">Total Cost for Author Copies</h4>
+                                                                <h4 className="text-sm font-bold text-[#635c4e] uppercase tracking-wide">Total Cost for Author Copies</h4>
                                                                 <div className="text-4xl font-black text-orange-600 mt-2">
                                                                     ₹{((parseInt(data.author_copies || 0) >= 0 ? parseInt(data.author_copies || 0) : 0) * authorCost).toFixed(2)}
                                                                 </div>
-                                                                <p className="text-sm text-gray-500 mt-1">
+                                                                <p className="text-sm text-[#635c4e] mt-1">
                                                                     {data.author_copies || 0} copies × ₹{authorCost.toFixed(2)}
                                                                 </p>
                                                             </div>
@@ -776,12 +776,12 @@ export default function Details({ auth, book }) {
                                                                             <svg className="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                                                                             Added to Order
                                                                         </p>
-                                                                        <p className="text-xs text-gray-500">Proceed to bottom to pay</p>
+                                                                        <p className="text-xs text-[#635c4e]">Proceed to bottom to pay</p>
                                                                     </div>
                                                                 ) : parseInt(data.author_copies || 0) > 0 && parseInt(data.author_copies || 0) < 5 ? (
                                                                     <p className="text-sm text-red-500 font-medium">Enter at least 5 copies to order</p>
                                                                 ) : (
-                                                                    <p className="text-sm text-gray-400">Enter quantity to order (Min 5)</p>
+                                                                    <p className="text-sm text-[#7c7364]">Enter quantity to order (Min 5)</p>
                                                                 )}
                                                             </div>
                                                         </div>
@@ -792,7 +792,7 @@ export default function Details({ auth, book }) {
                                             {/* Dispatch Address - Only shown when ordering author copies */}
                                             {parseInt(data.author_copies || 0) >= 5 && (
                                                 <div id="dispatch-address-section">
-                                                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+                                                    <h3 className="text-xl font-bold text-[#17150f] mb-6 flex items-center">
                                                         <div className="p-2 bg-blue-100 rounded-lg mr-3">
                                                             <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -801,17 +801,17 @@ export default function Details({ auth, book }) {
                                                         </div>
                                                         Dispatch Address
                                                     </h3>
-                                                    <p className="text-sm text-gray-600 mb-4">Where should we send your author copies?</p>
+                                                    <p className="text-sm text-[#635c4e] mb-4">Where should we send your author copies?</p>
 
-                                                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
+                                                    <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-xl p-6">
                                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                             {/* Street / Flat */}
                                                             <div className="md:col-span-2">
-                                                                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
+                                                                <label className="block text-xs font-bold text-[#4b443a] uppercase tracking-wide mb-2">
                                                                     Street Address / Flat No. <span className="text-red-500">*</span>
                                                                 </label>
                                                                 <textarea
-                                                                    className={`w-full px-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg transition-all ${addressErrors.street_address ? 'border-red-400 focus:border-red-500' : 'border-gray-300 focus:border-purple-500'
+                                                                    className={`w-full px-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg transition-all ${addressErrors.street_address ? 'border-red-400 focus:border-red-500' : 'border-[#cdc5b1] focus:border-purple-500'
                                                                         }`}
                                                                     rows="2"
                                                                     placeholder="House No, Building Name, Street Area, Landmark..."
@@ -829,12 +829,12 @@ export default function Details({ auth, book }) {
 
                                                             {/* City */}
                                                             <div>
-                                                                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
+                                                                <label className="block text-xs font-bold text-[#4b443a] uppercase tracking-wide mb-2">
                                                                     City <span className="text-red-500">*</span>
                                                                 </label>
                                                                 <input
                                                                     type="text"
-                                                                    className={`w-full px-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg ${addressErrors.city ? 'border-red-400 focus:border-red-500' : 'border-gray-300 focus:border-purple-500'
+                                                                    className={`w-full px-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg ${addressErrors.city ? 'border-red-400 focus:border-red-500' : 'border-[#cdc5b1] focus:border-purple-500'
                                                                         }`}
                                                                     placeholder="e.g. Mumbai"
                                                                     value={data.city}
@@ -853,11 +853,11 @@ export default function Details({ auth, book }) {
 
                                                             {/* State */}
                                                             <div>
-                                                                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
+                                                                <label className="block text-xs font-bold text-[#4b443a] uppercase tracking-wide mb-2">
                                                                     State <span className="text-red-500">*</span>
                                                                 </label>
                                                                 <select
-                                                                    className={`w-full px-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg appearance-none bg-white ${addressErrors.state ? 'border-red-400 focus:border-red-500' : 'border-gray-300 focus:border-purple-500'
+                                                                    className={`w-full px-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg appearance-none bg-white ${addressErrors.state ? 'border-red-400 focus:border-red-500' : 'border-[#cdc5b1] focus:border-purple-500'
                                                                         }`}
                                                                     value={data.state}
                                                                     onChange={(e) => {
@@ -878,14 +878,14 @@ export default function Details({ auth, book }) {
 
                                                             {/* Pincode */}
                                                             <div>
-                                                                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
+                                                                <label className="block text-xs font-bold text-[#4b443a] uppercase tracking-wide mb-2">
                                                                     Pincode / Zip <span className="text-red-500">*</span>
                                                                 </label>
                                                                 <input
                                                                     type="text"
                                                                     inputMode="numeric"
                                                                     maxLength="6"
-                                                                    className={`w-full px-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg ${addressErrors.pincode ? 'border-red-400 focus:border-red-500' : 'border-gray-300 focus:border-purple-500'
+                                                                    className={`w-full px-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg ${addressErrors.pincode ? 'border-red-400 focus:border-red-500' : 'border-[#cdc5b1] focus:border-purple-500'
                                                                         }`}
                                                                     placeholder="e.g. 400001"
                                                                     value={data.pincode}
@@ -906,16 +906,16 @@ export default function Details({ auth, book }) {
 
                                                             {/* Phone Number */}
                                                             <div>
-                                                                <label className="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
+                                                                <label className="block text-xs font-bold text-[#4b443a] uppercase tracking-wide mb-2">
                                                                     Contact Number <span className="text-red-500">*</span>
                                                                 </label>
                                                                 <div className="relative">
-                                                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 font-medium">+91</span>
+                                                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#635c4e] font-medium">+91</span>
                                                                     <input
                                                                         type="tel"
                                                                         inputMode="numeric"
                                                                         maxLength="10"
-                                                                        className={`w-full pl-12 pr-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg ${addressErrors.phone_contact ? 'border-red-400 focus:border-red-500' : 'border-gray-300 focus:border-purple-500'
+                                                                        className={`w-full pl-12 pr-4 py-3 border focus:ring-2 focus:ring-purple-200 rounded-lg ${addressErrors.phone_contact ? 'border-red-400 focus:border-red-500' : 'border-[#cdc5b1] focus:border-purple-500'
                                                                             }`}
                                                                         placeholder="9876543210"
                                                                         value={data.phone_contact}
@@ -938,7 +938,7 @@ export default function Details({ auth, book }) {
                                                                 )}
                                                             </div>
                                                         </div>
-                                                        <p className="text-xs text-gray-400 mt-4 flex items-center">
+                                                        <p className="text-xs text-[#7c7364] mt-4 flex items-center">
                                                             <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
                                                             Your address is encrypted and only used for shipping.
                                                         </p>
@@ -947,12 +947,12 @@ export default function Details({ auth, book }) {
                                                 </div>
                                             )}
 
-                                            <div className="border-t border-gray-200"></div>
+                                            <div className="border-t border-[#d8d1c1]"></div>
 
                                             {/* Final Confirmations */}
                                             {/* Final Confirmations */}
-                                            <div id="final-declaration" className="bg-gray-50 p-6 rounded-2xl border border-gray-200">
-                                                <h4 className="font-bold text-gray-900 mb-4">Final Declaration & Approval</h4>
+                                            <div id="final-declaration" className="bg-[#faf8f3] p-6 rounded-2xl border border-[#d8d1c1]">
+                                                <h4 className="font-bold text-[#17150f] mb-4">Final Declaration & Approval</h4>
                                                 <div className="space-y-4">
                                                     <label className="flex items-start gap-3 cursor-pointer group">
                                                         <div className="relative flex items-center">
@@ -960,10 +960,10 @@ export default function Details({ auth, book }) {
                                                                 type="checkbox"
                                                                 checked={data.agreed_terms}
                                                                 onChange={(e) => setData('agreed_terms', e.target.checked)}
-                                                                className="w-5 h-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500 cursor-pointer"
+                                                                className="w-5 h-5 text-indigo-600 rounded border-[#cdc5b1] focus:ring-indigo-500 cursor-pointer"
                                                             />
                                                         </div>
-                                                        <span className="text-sm text-gray-700 font-medium group-hover:text-gray-900 transition-colors">
+                                                        <span className="text-sm text-[#4b443a] font-medium group-hover:text-[#17150f] transition-colors">
                                                             I agree to the policy, terms and condition.
                                                         </span>
                                                     </label>
@@ -974,10 +974,10 @@ export default function Details({ auth, book }) {
                                                                 type="checkbox"
                                                                 checked={data.confirmed_content}
                                                                 onChange={(e) => setData('confirmed_content', e.target.checked)}
-                                                                className="w-5 h-5 text-indigo-600 rounded border-gray-300 focus:ring-indigo-500 cursor-pointer"
+                                                                className="w-5 h-5 text-indigo-600 rounded border-[#cdc5b1] focus:ring-indigo-500 cursor-pointer"
                                                             />
                                                         </div>
-                                                        <span className="text-sm text-gray-700 font-medium leading-relaxed group-hover:text-gray-900 transition-colors">
+                                                        <span className="text-sm text-[#4b443a] font-medium leading-relaxed group-hover:text-[#17150f] transition-colors">
                                                             I confirm that any content created using the Smart Writing Tool has been fully reviewed, edited, and approved by me. I take full responsibility for the originality, accuracy, and compliance of the final content.
                                                         </span>
                                                     </label>
@@ -994,7 +994,7 @@ export default function Details({ auth, book }) {
                                                     <button
                                                         type="button"
                                                         onClick={() => submit('back')}
-                                                        className="flex items-center text-gray-600 hover:text-gray-900 font-semibold transition-colors"
+                                                        className="flex items-center text-[#635c4e] hover:text-[#17150f] font-semibold transition-colors"
                                                     >
                                                         <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1021,7 +1021,7 @@ export default function Details({ auth, book }) {
                                                 <div className="flex flex-col items-end">
                                                     <button
                                                         type="submit"
-                                                        className={`px-6 py-3 text-white font-bold rounded-xl shadow-lg transition-all items-center flex gap-2 ${(!hasPreviewed || !data.agreed_terms || !data.confirmed_content) ? 'bg-gray-300 cursor-not-allowed text-gray-500 shadow-none' : 'bg-orange-600 hover:bg-orange-700'
+                                                        className={`px-6 py-3 text-white font-bold rounded-xl shadow-lg transition-all items-center flex gap-2 ${(!hasPreviewed || !data.agreed_terms || !data.confirmed_content) ? 'bg-gray-300 cursor-not-allowed text-[#635c4e] shadow-none' : 'bg-orange-600 hover:bg-orange-700'
                                                             }`}
                                                     >
                                                         Pay & Order Copies
@@ -1036,8 +1036,8 @@ export default function Details({ auth, book }) {
                                         </form>
                                     </div>
                                     {/* Card Footer */}
-                                    <div className="px-8 py-4 bg-slate-50 border-t border-slate-100 text-center">
-                                        <p className="text-sm text-slate-500">
+                                    <div className="px-8 py-4 bg-[#faf8f3] border-t border-[#e7e1d4] text-center">
+                                        <p className="text-sm text-[#635c4e]">
                                             Need help? <Link href={route('support.index')} className="text-violet-600 hover:text-violet-700 font-semibold hover:underline">Contact Support</Link>
                                         </p>
                                     </div>

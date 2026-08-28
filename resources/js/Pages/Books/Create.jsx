@@ -58,10 +58,10 @@ export default function Create({ auth, book }) {
             {/* Split Background - Dark Left, Light Right Gradient */}
             <div className="min-h-screen relative overflow-hidden">
                 {/* Dark side gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#5a1e27] via-[#6e2530] to-[#4d1a22]" />
 
                 {/* Light overlay on right side */}
-                <div className="absolute inset-0 bg-gradient-to-l from-white via-white/95 to-transparent" style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 15% 100%)' }} />
+                <div className="absolute inset-0 bg-gradient-to-l from-[#f0ece3] via-[#f0ece3]/95 to-transparent" style={{ clipPath: 'polygon(30% 0, 100% 0, 100% 100%, 15% 100%)' }} />
 
                 {/* Decorative elements */}
                 <div className="absolute top-20 left-20 w-72 h-72 bg-violet-500/20 rounded-full blur-[100px]" />
@@ -75,7 +75,7 @@ export default function Create({ auth, book }) {
                             {/* Left Side - Hero Content (Dark) */}
                             <div className={`lg:col-span-5 transition-all duration-700 delay-200 transform ${isMounted ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
                                 {/* Background backdrop for text */}
-                                <div className="relative p-8 rounded-3xl bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-indigo-900/60 backdrop-blur-sm border border-white/5">
+                                <div className="relative p-8 rounded-3xl bg-gradient-to-br from-[#5a1e27]/90 via-[#6e2530]/85 to-[#4d1a22]/85 backdrop-blur-sm border border-white/5">
                                     {/* Progress Steps - Vertical */}
                                     <div className="mb-8">
                                         <div className="flex items-center gap-3 mb-4">
@@ -101,11 +101,11 @@ export default function Create({ auth, book }) {
                                         </div>
                                     </div>
 
-                                    <h1 className="text-4xl lg:text-5xl font-black tracking-tight mb-4 text-white" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}>
+                                    <h1 className="text-4xl lg:text-5xl tracking-tight mb-4 text-[#f2ecdd]" style={{ fontFamily: "'EB Garamond', Georgia, serif", textShadow: '0 2px 10px rgba(0,0,0,0.25)' }}>
                                         Let's bring your
-                                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-300">
+                                        <em className="block text-[#e8cf8e]">
                                             story to life
-                                        </span>
+                                        </em>
                                     </h1>
 
                                     <p className="text-lg text-white mb-8 leading-relaxed" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
@@ -130,10 +130,10 @@ export default function Create({ auth, book }) {
 
                             {/* Right Side - Form Card (Light) */}
                             <div className={`lg:col-span-7 transition-all duration-700 delay-400 transform ${isMounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                                <div className="bg-white rounded-[2rem] shadow-2xl shadow-slate-900/10 border border-slate-100 overflow-hidden">
+                                <div className="bg-white rounded-[2rem] shadow-2xl shadow-[#17150f]/10 border border-[#e7e1d4] overflow-hidden">
 
                                     {/* Card Header */}
-                                    <div className="px-8 py-6 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
+                                    <div className="px-8 py-6 bg-gradient-to-r from-slate-50 to-white border-b border-[#e7e1d4]">
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/30">
@@ -142,8 +142,8 @@ export default function Create({ auth, book }) {
                                                     </svg>
                                                 </div>
                                                 <div>
-                                                    <h2 className="text-lg font-bold text-slate-900">Basic Information</h2>
-                                                    <p className="text-xs text-slate-500">Fill in the details about your book</p>
+                                                    <h2 className="text-lg font-bold text-[#17150f]">Basic Information</h2>
+                                                    <p className="text-xs text-[#635c4e]">Fill in the details about your book</p>
                                                 </div>
                                             </div>
                                             <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-emerald-50 rounded-full">
@@ -161,14 +161,14 @@ export default function Create({ auth, book }) {
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                                 {/* Book Language */}
                                                 <div>
-                                                    <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                                    <label className="block text-sm font-semibold text-[#4b443a] mb-2">
                                                         Language
                                                     </label>
                                                     <div className="relative">
                                                         <select
                                                             value={data.language}
                                                             onChange={(e) => setData('language', e.target.value)}
-                                                            className="w-full h-12 pl-4 pr-10 text-sm font-medium text-slate-700 bg-slate-50 border-2 border-slate-200 rounded-xl appearance-none transition-all duration-200 focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-slate-300 cursor-pointer"
+                                                            className="w-full h-12 pl-4 pr-10 text-sm font-medium text-[#4b443a] bg-[#faf8f3] border-2 border-[#d8d1c1] rounded-xl appearance-none transition-all duration-200 focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-[#cdc5b1] cursor-pointer"
                                                         >
                                                             <option>English</option>
                                                             <option>Spanish</option>
@@ -177,7 +177,7 @@ export default function Create({ auth, book }) {
                                                             <option>Hindi</option>
                                                             <option>Tamil</option>
                                                         </select>
-                                                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#7c7364] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                         </svg>
                                                     </div>
@@ -185,7 +185,7 @@ export default function Create({ auth, book }) {
 
                                                 {/* Primary Author */}
                                                 <div>
-                                                    <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                                    <label className="block text-sm font-semibold text-[#4b443a] mb-2">
                                                         Primary Author <span className="text-rose-500">*</span>
                                                     </label>
                                                     <div className="relative">
@@ -194,7 +194,7 @@ export default function Create({ auth, book }) {
                                                             value={data.author_name}
                                                             onChange={(e) => setData('author_name', e.target.value)}
                                                             required
-                                                            className="w-full h-12 px-4 text-sm font-semibold text-slate-700 bg-violet-50/50 border-2 border-violet-200 rounded-xl transition-all duration-200 focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
+                                                            className="w-full h-12 px-4 text-sm font-semibold text-[#4b443a] bg-violet-50/50 border-2 border-violet-200 rounded-xl transition-all duration-200 focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100"
                                                         />
                                                         <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 text-xs text-violet-600 font-medium">
                                                             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
@@ -208,7 +208,7 @@ export default function Create({ auth, book }) {
 
                                             {/* Book Title */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                                <label className="block text-sm font-semibold text-[#4b443a] mb-2">
                                                     Book Title <span className="text-rose-500">*</span>
                                                 </label>
                                                 <input
@@ -217,29 +217,29 @@ export default function Create({ auth, book }) {
                                                     onChange={(e) => setData('title', e.target.value)}
                                                     required
                                                     placeholder="Enter your book title..."
-                                                    className="w-full h-14 px-5 text-base font-semibold text-slate-800 bg-slate-50 border-2 border-slate-200 rounded-xl transition-all duration-200 placeholder:text-slate-400 placeholder:font-normal focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-slate-300"
+                                                    className="w-full h-14 px-5 text-base font-semibold text-[#241f16] bg-[#faf8f3] border-2 border-[#d8d1c1] rounded-xl transition-all duration-200 placeholder:text-[#a49b8b] placeholder:font-normal focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-[#cdc5b1]"
                                                 />
                                                 <InputError message={errors.title} className="mt-2" />
                                             </div>
 
                                             {/* Subtitle */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                                                    Subtitle <span className="text-slate-400 font-normal">(Optional)</span>
+                                                <label className="block text-sm font-semibold text-[#4b443a] mb-2">
+                                                    Subtitle <span className="text-[#7c7364] font-normal">(Optional)</span>
                                                 </label>
                                                 <input
                                                     type="text"
                                                     value={data.subtitle}
                                                     onChange={(e) => setData('subtitle', e.target.value)}
                                                     placeholder="A catchy subtitle for your book..."
-                                                    className="w-full h-12 px-4 text-sm font-medium text-slate-700 bg-slate-50 border-2 border-slate-200 rounded-xl transition-all duration-200 placeholder:text-slate-400 focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-slate-300"
+                                                    className="w-full h-12 px-4 text-sm font-medium text-[#4b443a] bg-[#faf8f3] border-2 border-[#d8d1c1] rounded-xl transition-all duration-200 placeholder:text-[#a49b8b] focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-[#cdc5b1]"
                                                 />
                                             </div>
 
                                             {/* Co-Authors */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-700 mb-2">
-                                                    Co-Authors <span className="text-slate-400 font-normal">(Optional)</span>
+                                                <label className="block text-sm font-semibold text-[#4b443a] mb-2">
+                                                    Co-Authors <span className="text-[#7c7364] font-normal">(Optional)</span>
                                                 </label>
                                                 <div className="flex gap-2">
                                                     <input
@@ -248,12 +248,12 @@ export default function Create({ auth, book }) {
                                                         onChange={(e) => setCoAuthorInput(e.target.value)}
                                                         onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addCoAuthor())}
                                                         placeholder="Add co-author name..."
-                                                        className="flex-1 h-12 px-4 text-sm font-medium text-slate-700 bg-slate-50 border-2 border-slate-200 rounded-xl transition-all duration-200 placeholder:text-slate-400 focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-slate-300"
+                                                        className="flex-1 h-12 px-4 text-sm font-medium text-[#4b443a] bg-[#faf8f3] border-2 border-[#d8d1c1] rounded-xl transition-all duration-200 placeholder:text-[#a49b8b] focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-[#cdc5b1]"
                                                     />
                                                     <button
                                                         type="button"
                                                         onClick={addCoAuthor}
-                                                        className="h-12 px-5 bg-slate-900 text-white font-bold text-sm rounded-xl shadow-lg hover:bg-slate-800 transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                                                        className="h-12 px-5 bg-[#17150f] text-white font-bold text-sm rounded-xl shadow-lg hover:bg-[#241f16] transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                                                     >
                                                         Add
                                                     </button>
@@ -262,12 +262,12 @@ export default function Create({ auth, book }) {
                                                 {data.co_authors.length > 0 && (
                                                     <div className="mt-3 flex flex-wrap gap-2">
                                                         {data.co_authors.map((author, index) => (
-                                                            <span key={index} className="inline-flex items-center gap-2 pl-3 pr-1.5 py-1.5 bg-slate-100 rounded-lg text-sm font-medium text-slate-700">
+                                                            <span key={index} className="inline-flex items-center gap-2 pl-3 pr-1.5 py-1.5 bg-[#efe9db] rounded-lg text-sm font-medium text-[#4b443a]">
                                                                 {author}
                                                                 <button
                                                                     type="button"
                                                                     onClick={() => removeCoAuthor(index)}
-                                                                    className="p-1 hover:bg-rose-100 rounded-md text-slate-400 hover:text-rose-500 transition-colors"
+                                                                    className="p-1 hover:bg-rose-100 rounded-md text-[#7c7364] hover:text-rose-500 transition-colors"
                                                                 >
                                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -281,7 +281,7 @@ export default function Create({ auth, book }) {
 
                                             {/* Publication Selection - NEW FIELD */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                                <label className="block text-sm font-semibold text-[#4b443a] mb-2">
                                                     Publication House <span className="text-rose-500">*</span>
                                                 </label>
                                                 <div className="relative">
@@ -289,14 +289,14 @@ export default function Create({ auth, book }) {
                                                         value={data.publication}
                                                         onChange={(e) => setData('publication', e.target.value)}
                                                         required
-                                                        className="w-full h-12 pl-4 pr-10 text-sm font-medium text-slate-700 bg-slate-50 border-2 border-slate-200 rounded-xl appearance-none transition-all duration-200 focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-slate-300 cursor-pointer"
+                                                        className="w-full h-12 pl-4 pr-10 text-sm font-medium text-[#4b443a] bg-[#faf8f3] border-2 border-[#d8d1c1] rounded-xl appearance-none transition-all duration-200 focus:bg-white focus:border-violet-500 focus:ring-4 focus:ring-violet-100 hover:border-[#cdc5b1] cursor-pointer"
                                                     >
                                                         <option value="" disabled>Select a Publication House</option>
                                                         {['RK Publications', 'Redknot Publications', 'GreenInk publications', 'Leaf publications', 'Violet Publications'].map((pub) => (
                                                             <option key={pub} value={pub}>{pub}</option>
                                                         ))}
                                                     </select>
-                                                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#7c7364] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                     </svg>
                                                 </div>
@@ -304,7 +304,7 @@ export default function Create({ auth, book }) {
 
                                             {/* Genre Selection - Premium Cards */}
                                             <div>
-                                                <label className="block text-sm font-semibold text-slate-700 mb-3">
+                                                <label className="block text-sm font-semibold text-[#4b443a] mb-3">
                                                     Book Genre <span className="text-rose-500">*</span>
                                                 </label>
                                                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
@@ -317,7 +317,7 @@ export default function Create({ auth, book }) {
                                                             onMouseLeave={() => setHoveredGenre(null)}
                                                             className={`relative p-4 rounded-2xl border-2 text-center transition-all duration-300 transform ${data.genre === genre.id
                                                                 ? `${genre.borderColor} ${genre.bgLight} shadow-lg scale-[1.02]`
-                                                                : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-md'
+                                                                : 'border-[#d8d1c1] bg-white hover:border-[#cdc5b1] hover:shadow-md'
                                                                 }`}
                                                         >
                                                             {/* Selected indicator */}
@@ -332,7 +332,7 @@ export default function Create({ auth, book }) {
                                                             <div className={`text-3xl mb-2 transition-transform duration-300 ${hoveredGenre === genre.id || data.genre === genre.id ? 'scale-110' : ''}`}>
                                                                 {genre.icon}
                                                             </div>
-                                                            <div className={`text-sm font-bold ${data.genre === genre.id ? 'text-slate-900' : 'text-slate-700'}`}>
+                                                            <div className={`text-sm font-bold ${data.genre === genre.id ? 'text-[#17150f]' : 'text-[#4b443a]'}`}>
                                                                 {genre.label}
                                                             </div>
                                                         </button>
@@ -376,8 +376,8 @@ export default function Create({ auth, book }) {
                                     </div>
 
                                     {/* Card Footer */}
-                                    <div className="px-8 py-4 bg-slate-50 border-t border-slate-100">
-                                        <div className="flex items-center justify-between text-xs text-slate-500">
+                                    <div className="px-8 py-4 bg-[#faf8f3] border-t border-[#e7e1d4]">
+                                        <div className="flex items-center justify-between text-xs text-[#635c4e]">
                                             <div className="flex items-center gap-4">
                                                 <div className="flex items-center gap-1.5">
                                                     <svg className="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
