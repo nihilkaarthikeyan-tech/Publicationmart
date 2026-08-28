@@ -1,9 +1,12 @@
+import { useEffect, useState } from 'react';
+
 /**
- * The right-hand board of the auth pages — designed, not photographed.
+ * The right-hand boards of the auth pages — designed, not photographed.
  *
- * A cloth-bound book board in the house oxblood: blind-tooled double gold
- * frame, a foil statement set in EB Garamond, and a small shelf of cloth
- * spines standing on a board at the foot. Pure CSS; no stock imagery.
+ * Two different sides of the same house: the login board is a finished,
+ * cloth-bound book (the returning author's shelf); the register board is
+ * a fresh manuscript page still being typed (the new author's first page).
+ * Pure CSS; no stock imagery.
  */
 const PANEL_CSS = `
 .pm-authboard{background:linear-gradient(160deg,#77293527 0%,transparent 40%),linear-gradient(155deg,#6e2530 0%,#5a1e27 55%,#4d1a22 100%)}
@@ -16,7 +19,19 @@ const PANEL_CSS = `
 .pm-authspine::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(90deg,rgba(0,0,0,.35),transparent)}
 .pm-authspine .band{position:absolute;left:4px;right:4px;height:1px;background:rgba(232,207,142,.55)}
 @media (prefers-reduced-motion:reduce){.pm-authfoil{animation:none}}
+
+/* ── the manuscript page (register) ── */
+.pm-mspage{background:
+  repeating-linear-gradient(to bottom,transparent 0 35px,rgba(23,21,15,.055) 35px 36px),
+  linear-gradient(90deg,transparent 0 88px,rgba(110,37,48,.32) 88px 89px,transparent 89px),
+  linear-gradient(160deg,#faf8f3,#f0ece3)}
+.pm-mscaret{display:inline-block;width:3px;height:.85em;background:#6e2530;vertical-align:-.06em;margin-left:5px;animation:pmMsBlink 1s steps(1) infinite}
+@keyframes pmMsBlink{50%{opacity:0}}
+.pm-msstamp{display:inline-block;font-size:11px;letter-spacing:.26em;text-transform:uppercase;font-weight:800;color:#6e2530;border:2px solid #6e2530;border-radius:4px;padding:6px 14px;transform:rotate(-7deg);opacity:.85}
+@media (prefers-reduced-motion:reduce){.pm-mscaret{animation:none}}
 `;
+
+const TYPE_TITLES = ['Untitled Manuscript', 'My First Monograph', 'The Book I Always Meant to Write'];
 
 const SPINES = [
     { h: 150, w: 30, bg: 'linear-gradient(155deg,#2f4f45,#20362d)', r: '-1.5deg' },
@@ -26,6 +41,98 @@ const SPINES = [
     { h: 156, w: 24, bg: 'linear-gradient(155deg,#efe9db,#d8d1c1)', r: '-0.5deg' },
     { h: 168, w: 31, bg: 'linear-gradient(155deg,#2f4f45,#20362d)', r: '0.8deg' },
 ];
+
+/**
+ * Register's board: a manuscript page still being typed. Ruled paper with a
+ * red margin, a working title set by a live caret, a DRAFT stamp, and the
+ * five stages of the press waiting at the foot.
+ */
+export function ManuscriptSidePanel({ eyebrow, line, chips = [] }) {
+    const [text, setText] = useState('');
+
+    useEffect(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setText(TYPE_TITLES[0]);
+            return;
+        }
+        let ti = 0, ci = 0, deleting = false, timer;
+        const step = () => {
+            const t = TYPE_TITLES[ti % TYPE_TITLES.length];
+            let delay = deleting ? 40 : 105;
+            if (!deleting && ci === t.length) { deleting = true; delay = 2600; }
+            else if (deleting && ci === 0) { deleting = false; ti += 1; delay = 500; }
+            else ci += deleting ? -1 : 1;
+            setText(TYPE_TITLES[ti % TYPE_TITLES.length].slice(0, ci));
+            timer = setTimeout(step, delay);
+        };
+        timer = setTimeout(step, 700);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const stages = [
+        ['I', 'Write'], ['II', 'Format'], ['III', 'Design'], ['IV', 'Register'], ['V', 'Distribute'],
+    ];
+
+    return (
+        <div className="hidden lg:flex lg:w-[52%] relative overflow-hidden pm-mspage flex-col justify-between border-l border-[#d8d1c1]">
+            <style dangerouslySetInnerHTML={{ __html: PANEL_CSS }} />
+            <div className="pm-authgrain" aria-hidden="true" />
+
+            {/* The page being typed */}
+            <div className="relative z-10 pl-[120px] pr-16 pt-24 max-w-3xl">
+                <p className="text-[11px] font-semibold uppercase tracking-[.26em] mb-3 text-[#6e2530]">{eyebrow}</p>
+                <p className="text-[12px] uppercase tracking-[.2em] font-semibold text-[#635c4e] mb-10">Page 1 of many</p>
+
+                <p className="text-[13px] uppercase tracking-[.18em] font-semibold text-[#635c4e] mb-4">Working title</p>
+                <h2
+                    className="text-[clamp(2rem,3.4vw,3.1rem)] leading-[1.15] text-[#17150f] min-h-[2.4em]"
+                    style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
+                    aria-label="Your working title, still being typed"
+                >
+                    {text}
+                    <span className="pm-mscaret" aria-hidden="true" />
+                </h2>
+
+                <p className="mt-3 text-[19px] italic text-[#635c4e]" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>
+                    by you
+                </p>
+
+                <div className="mt-10"><span className="pm-msstamp">Draft · No. 1</span></div>
+
+                <p className="mt-10 text-[15px] leading-relaxed text-[#4b443a] max-w-[44ch]">{line}</p>
+
+                {chips.length > 0 && (
+                    <div className="flex flex-wrap gap-3 mt-8">
+                        {chips.map((chip) => (
+                            <span
+                                key={chip}
+                                className="px-4 py-2 text-[10.5px] font-bold uppercase tracking-[.2em] text-[#6e2530] border border-[#6e2530]/40 rounded-sm bg-[#faf8f3]"
+                            >
+                                {chip}
+                            </span>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            {/* The press, waiting at the foot of the page */}
+            <div className="relative z-10 pl-[120px] pr-16 pb-14">
+                <div className="h-px bg-[#d8d1c1] mb-6" />
+                <ol className="flex flex-wrap gap-x-10 gap-y-3">
+                    {stages.map(([n, t]) => (
+                        <li key={n} className="flex items-baseline gap-2.5">
+                            <span className="text-[17px] text-[#a07d3b]" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>{n}</span>
+                            <span className="text-[12px] uppercase tracking-[.16em] font-semibold text-[#635c4e]">{t}</span>
+                        </li>
+                    ))}
+                </ol>
+                <p className="mt-5 text-[10px] font-semibold uppercase tracking-[.24em] text-[#7c7364]">
+                    PublicationMart · Every stage handled by the house
+                </p>
+            </div>
+        </div>
+    );
+}
 
 export default function AuthSidePanel({ eyebrow, statement, emphasis, line, chips = [] }) {
     return (

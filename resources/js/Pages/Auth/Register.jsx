@@ -4,7 +4,7 @@ import { route } from 'ziggy-js';
 import InputError from '@/Components/InputError';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import AuthSidePanel from './AuthSidePanel';
+import { ManuscriptSidePanel } from './AuthSidePanel';
 import { useState } from 'react';
 
 const SERIF = { fontFamily: "'EB Garamond', Georgia, serif" };
@@ -259,11 +259,9 @@ export default function Register() {
                 </div>
             </div>
 
-            {/* Right Side — the house's cloth board */}
-            <AuthSidePanel
+            {/* Right Side — a manuscript page still being typed */}
+            <ManuscriptSidePanel
                 eyebrow="PublicationMart · New authors"
-                statement="Your story deserves"
-                emphasis="a spine of its own."
                 line="Write, design, and publish your book with AI-powered tools. From the first draft to the shop shelf, the whole press is yours."
                 chips={['Cover Design', 'Formatting']}
             />
