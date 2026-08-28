@@ -92,7 +92,7 @@ export default function Footer() {
 
     return (
         // Oxblood binding cloth, matching the masthead — the two bookend the page.
-        <footer className="relative z-10 bg-gradient-to-b from-[#6e2530] to-[#5a1e27] text-white pt-20 pb-10 border-t-2 border-[#a07d3b]/50">
+        <footer className="relative z-10 bg-[#6e2530] text-white pt-20 pb-10 border-t-2 border-[#a07d3b]/50">
             <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
                 <div className="grid grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-4 mb-16">
                     {/* Guided Publishing */}

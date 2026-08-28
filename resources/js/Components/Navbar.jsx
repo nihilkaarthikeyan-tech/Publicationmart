@@ -33,9 +33,11 @@ export default function Navbar() {
         { href: route('contact'), label: 'Contact' },
     ];
 
+    // The bar is solid, not 95% opaque: over the paper page the alpha let light
+    // through and rendered it lighter than the footer's solid cloth.
     return (
         <nav
-            className="fixed top-0 left-0 right-0 z-[99999] bg-gradient-to-b from-[#6e2530]/95 to-[#5d1f28]/95 backdrop-blur-lg border-b border-[#a07d3b]/40 h-[80px] shadow-[0_2px_24px_rgba(23,21,15,0.18)]"
+            className="fixed top-0 left-0 right-0 z-[99999] bg-[#6e2530] border-b border-[#a07d3b]/40 h-[80px] shadow-[0_2px_24px_rgba(23,21,15,0.18)]"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-full">
                 <Link href={route('welcome')} className="flex items-center -ml-2 shrink-0 transition-transform hover:scale-[1.02] active:scale-95">
