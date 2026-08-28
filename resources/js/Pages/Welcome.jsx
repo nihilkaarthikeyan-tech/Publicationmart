@@ -116,10 +116,52 @@ const CSS = `
 /* pressing a control acknowledges the hand */
 .pm-press:active{transform:translateY(1px)}
 
+/* ── the great book — a cloth-bound volume that opens itself ── */
+.pm-scene{perspective:1700px;display:flex;align-items:center;justify-content:center;height:100%}
+.pm-book{position:relative;width:min(300px,80%);aspect-ratio:3/4;transform-style:preserve-3d;transform:rotateX(var(--tiltx,0deg)) rotateY(var(--tilty,0deg));transition:transform .25s ease-out}
+.pm-book-block{position:absolute;inset:0;background:var(--stock-3);border:1px solid var(--rule);border-radius:2px 5px 5px 2px;box-shadow:0 30px 60px rgba(23,21,15,.28),0 4px 12px rgba(23,21,15,.14)}
+.pm-book-block::after{content:"";position:absolute;top:4px;bottom:4px;right:-6px;width:6px;border-radius:0 3px 3px 0;background:repeating-linear-gradient(to bottom,#efe9db 0 2px,#ddd5c2 2px 3px)}
+.pm-leaf{position:absolute;inset:0;padding:32px 26px;display:flex;flex-direction:column;transform-origin:left center;animation:pmLeaf .8s var(--ease)}
+@keyframes pmLeaf{from{transform:rotateY(-75deg);opacity:.15}to{transform:none;opacity:1}}
+.pm-cover{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;transition:transform 1.6s cubic-bezier(.72,0,.24,1);z-index:5;pointer-events:none}
+.pm-book.open .pm-cover{transform:rotateY(-105deg)}
+.pm-cover-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:2px 5px 5px 2px}
+.pm-cover-front{background:linear-gradient(155deg,#6e2530 0%,#5a1e28 55%,#4d1a22 100%);box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),0 10px 30px rgba(23,21,15,.25)}
+.pm-cover-front::before{content:"";position:absolute;inset:13px;border:1px solid rgba(160,125,59,.55);border-radius:1px}
+.pm-cover-front::after{content:"";position:absolute;inset:18px;border:1px solid rgba(160,125,59,.3)}
+.pm-cover-inside{transform:rotateY(180deg);background:var(--stock-2);box-shadow:inset 0 0 24px rgba(23,21,15,.12)}
+.pm-hinge{position:absolute;left:0;top:0;bottom:0;width:10px;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,0));z-index:6;border-radius:2px 0 0 2px;pointer-events:none}
+
+/* bookmark ribbon marks how far the reader has come */
+.pm-ribbon{position:fixed;top:0;right:16px;width:7px;height:0;background:var(--cloth);z-index:70;pointer-events:none;box-shadow:0 1px 4px rgba(23,21,15,.3)}
+.pm-ribbon::after{content:"";position:absolute;bottom:-7px;left:0;border-left:3.5px solid var(--cloth);border-right:3.5px solid var(--cloth);border-bottom:7px solid transparent}
+
+/* ink sweeps across a CTA under the hand */
+.pm-cta{position:relative;overflow:hidden}
+.pm-cta::before{content:"";position:absolute;inset:0;background:var(--cloth);transform:translateX(-101%);transition:transform .35s var(--ease);z-index:0}
+.pm-cta:hover::before,.pm-cta:focus-visible::before{transform:none}
+.pm-cta>span{position:relative;z-index:1}
+.pm-cta-ghost{transition:color .3s}
+.pm-cta-ghost:hover,.pm-cta-ghost:focus-visible{color:var(--stock-3)!important}
+
+/* a reading lamp follows the cursor across the plan cards */
+.pm-plan{position:relative;overflow:hidden}
+.pm-plan::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(160,125,59,.14),transparent 65%)}
+.pm-plan:hover::after{opacity:1}
+
+/* choose-button arrow slides in */
+.pm-arr{display:inline-block;max-width:0;overflow:hidden;vertical-align:bottom;white-space:nowrap;transition:max-width .3s var(--ease),padding-left .3s var(--ease)}
+.pm-plan a:hover .pm-arr,.pm-plan a:focus-visible .pm-arr{max-width:1.4em;padding-left:.45em}
+
+/* long academic titles stay inside the page */
+.pm-clamp4{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.pm-clamp3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
 @media (prefers-reduced-motion:reduce){
-  .pm-rise,.pm-pulse,.pm-caret,.pm-spine-in,.pm-plan,.pm-marquee-track,.pm-foil,.pm-stamp.in{animation:none}
+  .pm-rise,.pm-pulse,.pm-caret,.pm-spine-in,.pm-plan,.pm-marquee-track,.pm-foil,.pm-stamp.in,.pm-leaf{animation:none}
   .rv,.rvx{opacity:1;transform:none;transition:none}
   .pm-stamp{opacity:.92}
+  .pm-cover{transition:none}
   .pm *{transition-duration:.01ms!important}
 }
 `;
@@ -242,6 +284,81 @@ function Spine({ id, title, i }) {
     );
 }
 
+/**
+ * The Great Book — a large cloth-bound volume. Its cover swings open when the
+ * reader scrolls to it, and real books from the catalogue turn inside it as
+ * pages. The whole volume tilts gently toward the cursor.
+ */
+function GreatBook({ books }) {
+    const [open, setOpen] = useState(false);
+    const [page, setPage] = useState(0);
+    const bookRef = useRef(null);
+
+    useEffect(() => {
+        const el = bookRef.current;
+        if (!el) return;
+        if (prefersReducedMotion() || !('IntersectionObserver' in window)) { setOpen(true); return; }
+        const io = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { setTimeout(() => setOpen(true), 450); io.disconnect(); }
+        }, { threshold: 0.45 });
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (!open || books.length < 2 || prefersReducedMotion()) return;
+        const iv = setInterval(() => setPage((p) => (p + 1) % books.length), 4200);
+        return () => clearInterval(iv);
+    }, [open, books.length]);
+
+    const tilt = (e) => {
+        if (prefersReducedMotion()) return;
+        const el = bookRef.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--tiltx', `${((0.5 - (e.clientY - r.top) / r.height) * 7).toFixed(2)}deg`);
+        el.style.setProperty('--tilty', `${(((e.clientX - r.left) / r.width - 0.5) * 10).toFixed(2)}deg`);
+    };
+    const untilt = () => {
+        const el = bookRef.current;
+        if (el) { el.style.setProperty('--tiltx', '0deg'); el.style.setProperty('--tilty', '0deg'); }
+    };
+
+    const b = books[page % Math.max(books.length, 1)];
+    return (
+        <div className="pm-scene" onMouseMove={tilt} onMouseLeave={untilt}>
+            <div ref={bookRef} className={`pm-book ${open ? 'open' : ''}`}>
+                <div className="pm-book-block">
+                    {b && (
+                        <div key={b.id} className="pm-leaf">
+                            <span className="pm-run" style={{ color: 'var(--cloth)' }}>Now on the press</span>
+                            <h3 className="pm-serif text-[20px] leading-snug mt-4 mb-4 pm-clamp4">
+                                <Link href={`/book-store/${b.id}`} className="pm-uline">{b.title}</Link>
+                            </h3>
+                            <div className="pm-rule mb-4" />
+                            <p className="text-[12.5px] leading-relaxed pm-clamp3" style={{ color: 'var(--ink-3)' }}>{b.author_name}</p>
+                            <div className="flex-1" />
+                            <span className="pm-stamp in self-start">Published</span>
+                            <span className="pm-run mt-5" style={{ color: 'var(--foil)', fontSize: 9 }}>PublicationMart Press</span>
+                        </div>
+                    )}
+                </div>
+                <div className="pm-cover" aria-hidden="true">
+                    <div className="pm-cover-face pm-cover-front">
+                        <div className="h-full flex flex-col items-center justify-center text-center px-8">
+                            <span className="pm-run pm-foil">PublicationMart</span>
+                            <span className="pm-serif text-[30px] mt-4" style={{ color: 'var(--foil)' }}>The Catalogue</span>
+                            <span className="mt-3" style={{ color: 'rgba(160,125,59,.8)', fontSize: 18 }}>❦</span>
+                        </div>
+                    </div>
+                    <div className="pm-cover-face pm-cover-inside" />
+                </div>
+                <div className="pm-hinge" aria-hidden="true" />
+            </div>
+        </div>
+    );
+}
+
 function RunningHead({ label, folio }) {
     return (
         <div className="flex items-baseline gap-6 mb-8">
@@ -311,7 +428,7 @@ function PlanCard({ plan, suite, guestHref, delay }) {
                         : { background: 'var(--ink)', color: 'var(--stock-3)' }
                 }
             >
-                Choose {plan.name}
+                Choose {plan.name}<span className="pm-arr" aria-hidden="true">→</span>
             </Link>
         </div>
     );
@@ -324,6 +441,40 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
     useEffect(() => setLoaded(true), []);
     useReveal();
+
+    // Bookmark ribbon: a cloth ribbon on the right edge grows as the reader
+    // moves through the page, the way a bookmark marks progress in a book.
+    useEffect(() => {
+        const el = document.querySelector('.pm-ribbon');
+        if (!el) return;
+        let raf = 0;
+        const onScroll = () => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                el.style.height = `${max > 0 ? Math.min(window.scrollY / max, 1) * 100 : 0}vh`;
+            });
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
+    }, []);
+
+    // Reading lamp: a warm glow follows the cursor across the plan cards.
+    useEffect(() => {
+        if (!window.matchMedia('(pointer: fine)').matches) return;
+        const section = document.getElementById('pricing-section');
+        if (!section) return;
+        const move = (e) => {
+            section.querySelectorAll('.pm-plan').forEach((card) => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+                card.style.setProperty('--my', `${e.clientY - r.top}px`);
+            });
+        };
+        section.addEventListener('pointermove', move);
+        return () => section.removeEventListener('pointermove', move);
+    }, []);
 
     // The writing tool is open to visitors with no account — preserved exactly.
     const guestHref = auth?.user ? route('dashboard') : route('guest-writer.pricing');
@@ -346,6 +497,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
     return (
         <div className="pm min-h-screen">
             <div className="pm-grain" aria-hidden="true" />
+            <div className="pm-ribbon" aria-hidden="true" />
             <Head title="Self Publishing Platform for Authors in India – AI Book Writing & Publishing">
                 {/* Primary Meta Tags */}
                 <meta name="title" content="PublicationMart  Book Publishing & Author Services in India" />
@@ -425,13 +577,13 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         </p>
 
                         <div className="flex flex-wrap gap-3">
-                            <Link href={guestHref} className="pm-press text-[14px] font-semibold px-7 py-3.5 rounded-sm"
+                            <Link href={guestHref} className="pm-press pm-cta text-[14px] font-semibold px-7 py-3.5 rounded-sm"
                                   style={{ background: 'var(--ink)', color: 'var(--stock-3)' }}>
-                                Start writing — no account needed
+                                <span>Start writing — no account needed</span>
                             </Link>
-                            <Link href={route('book-store.index')} className="pm-press text-[14px] font-semibold px-7 py-3.5 rounded-sm"
+                            <Link href={route('book-store.index')} className="pm-press pm-cta pm-cta-ghost text-[14px] font-semibold px-7 py-3.5 rounded-sm"
                                   style={{ border: '1px solid var(--rule)', color: 'var(--ink)' }}>
-                                Browse the catalogue
+                                <span>Browse the catalogue</span>
                             </Link>
                         </div>
 
@@ -460,27 +612,34 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 </div>
             </section>
 
-            {/* ── catalogue ────────────────────────────────── */}
+            {/* ── catalogue — the Great Book opens beside the list ── */}
             {shelf.length > 0 && (
                 <section className="max-w-6xl mx-auto px-6 py-20">
                     <RunningHead label="From the catalogue" folio="I" />
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-9">
-                        {shelf.map((b, i) => (
-                            <article key={b.id} className="rv" style={{ '--d': `${i * 70}ms` }}>
-                                <div className="pm-rule mb-4" />
-                                <h3 className="pm-serif text-[20px] leading-snug mb-2">
-                                    <Link href={`/book-store/${b.id}`} className="pm-uline">
-                                        {b.title}
-                                    </Link>
-                                </h3>
-                                <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ink-3)' }}>{b.author_name}</p>
-                            </article>
-                        ))}
-                    </div>
-                    <div className="mt-12 rv" style={{ '--d': '300ms' }}>
-                        <Link href={route('book-store.index')} className="pm-run pm-uline" style={{ color: 'var(--cloth)' }}>
-                            See every title →
-                        </Link>
+                    <div className="grid md:grid-cols-[.8fr_1.2fr] gap-14 items-center">
+                        <div className="hidden md:block h-[440px] rv">
+                            <GreatBook books={shelf} />
+                        </div>
+                        <div>
+                            <div className="grid sm:grid-cols-2 gap-x-10 gap-y-9">
+                                {shelf.map((b, i) => (
+                                    <article key={b.id} className="rv" style={{ '--d': `${i * 70}ms` }}>
+                                        <div className="pm-rule mb-4" />
+                                        <h3 className="pm-serif text-[20px] leading-snug mb-2">
+                                            <Link href={`/book-store/${b.id}`} className="pm-uline">
+                                                {b.title}
+                                            </Link>
+                                        </h3>
+                                        <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ink-3)' }}>{b.author_name}</p>
+                                    </article>
+                                ))}
+                            </div>
+                            <div className="mt-12 rv" style={{ '--d': '300ms' }}>
+                                <Link href={route('book-store.index')} className="pm-run pm-uline" style={{ color: 'var(--cloth)' }}>
+                                    See every title →
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </section>
             )}
@@ -807,13 +966,13 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         The manuscript is the hard part. <em>You have already done it.</em>
                     </h2>
                     <div className="flex flex-wrap justify-center gap-3">
-                        <Link href={route('register')} className="pm-press inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
+                        <Link href={route('register')} className="pm-press pm-cta pm-cta-ghost inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
                               style={{ background: 'var(--stock-3)', color: 'var(--ink)' }}>
-                            Get Started for Free
+                            <span>Get Started for Free</span>
                         </Link>
-                        <Link href={guestHref} className="pm-press inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
+                        <Link href={guestHref} className="pm-press pm-cta inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
                               style={{ border: '1px solid rgba(240,236,227,.35)', color: 'var(--stock-3)' }}>
-                            Start writing — no account needed
+                            <span>Start writing — no account needed</span>
                         </Link>
                     </div>
                     <p className="mt-6 text-[13px]" style={{ color: 'rgba(240,236,227,.5)' }}>
