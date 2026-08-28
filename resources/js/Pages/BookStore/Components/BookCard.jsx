@@ -6,24 +6,24 @@ export default function BookCard({ book }) {
     const { app_url } = usePage().props;
 
     return (
-        <div className="group relative bg-[#262019] rounded-2xl overflow-hidden border border-violet-800/50 hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col">
+        <div className="group relative bg-[#faf8f3] rounded-2xl overflow-hidden border border-[#d8d1c1] hover:border-[#7c7364] hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300 flex flex-col">
             {/* Clickable Cover Image */}
-            <Link href={route('book-store.show', book.id)} className="relative aspect-[2/3] overflow-hidden bg-gray-800 block">
+            <Link href={route('book-store.show', book.id)} className="relative aspect-[2/3] overflow-hidden bg-[#faf8f3] block">
                 {book.cover_design_path ? (
                     <img
                         src={`${app_url}/storage/${book.cover_design_path}`}
                         alt={book.title}
-                        className="h-full w-full object-contain bg-gray-900 transform group-hover:scale-105 transition-transform duration-500"
+                        className="h-full w-full object-contain bg-[#faf8f3] transform group-hover:scale-105 transition-transform duration-500"
                     />
                 ) : (
-                    <div className="flex flex-col items-center justify-center h-full text-gray-600">
+                    <div className="flex flex-col items-center justify-center h-full text-[#635c4e]">
                         <svg className="w-12 h-12 mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                         <span>No Cover</span>
                     </div>
                 )}
                 {/* Badge */}
                 <div className="absolute top-3 left-3">
-                    <span className="bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider border border-white/10">
+                    <span className="bg-[#faf8f3] backdrop-blur-md text-[#17150f] text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider border border-[#d8d1c1]">
                         {book.genre || 'General'}
                     </span>
                 </div>
@@ -39,16 +39,16 @@ export default function BookCard({ book }) {
             <div className="p-5 flex-1 flex flex-col">
                 <div className="mb-4">
                     <Link href={route('book-store.show', book.id)}>
-                        <h3 className="text-lg font-bold text-white leading-tight mb-1 line-clamp-2 hover:text-indigo-400 transition-colors" title={book.title}>
+                        <h3 className="text-lg font-bold text-[#17150f] leading-tight mb-1 line-clamp-2 hover:text-indigo-700 transition-colors" title={book.title}>
                             {book.title}
                         </h3>
                     </Link>
-                    <p className="text-sm text-gray-400">by <span className="text-indigo-400">{book.author_name}</span></p>
+                    <p className="text-sm text-[#635c4e]">by <span className="text-indigo-700">{book.author_name}</span></p>
                 </div>
 
                 <div className="mt-auto space-y-3">
                     <div className="flex items-center justify-between">
-                        <span className="text-xl font-bold text-white">₹{book.selling_price}</span>
+                        <span className="text-xl font-bold text-[#17150f]">₹{book.selling_price}</span>
                     </div>
 
                     {/* Action Buttons */}

@@ -89,7 +89,7 @@ html:has(.pm){background:#f0ece3}
 .pm-plan:hover{transform:translateY(-5px);box-shadow:0 20px 38px rgba(23,21,15,.12)}
 
 /* the plan the house recommends gets the cloth binding */
-.pm-plan-featured{background:var(--ink);color:var(--stock-3)}
+.pm-plan-featured{background:var(--cloth);color:var(--stock-3)}
 .pm-plan-featured .pm-run{color:var(--foil)}
 
 /* FAQ opens like a page turning, not a pop */
@@ -476,8 +476,8 @@ function PlanCard({ plan, suite, guestHref, delay }) {
         <div
             className={`flex flex-col p-7 pm-plan ${plan.popular ? 'pm-plan-featured' : ''}`}
             style={{
-                border: `1px solid ${plan.popular ? 'var(--ink)' : 'var(--rule)'}`,
-                background: plan.popular ? 'var(--ink)' : 'var(--stock-3)',
+                border: `1px solid ${plan.popular ? 'var(--cloth)' : 'var(--rule)'}`,
+                background: plan.popular ? 'var(--cloth)' : 'var(--stock-3)',
                 animationDelay: delay,
             }}
         >
@@ -517,8 +517,8 @@ function PlanCard({ plan, suite, guestHref, delay }) {
                 className="pm-press block text-center text-[13.5px] font-semibold py-3 rounded-sm transition-opacity hover:opacity-85"
                 style={
                     plan.popular
-                        ? { background: 'var(--stock-3)', color: 'var(--ink)' }
-                        : { background: 'var(--ink)', color: 'var(--stock-3)' }
+                        ? { background: 'var(--stock-3)', color: 'var(--cloth)' }
+                        : { background: 'var(--cloth)', color: 'var(--stock-3)' }
                 }
             >
                 Choose {plan.name}<span className="pm-arr" aria-hidden="true">→</span>
@@ -787,27 +787,27 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             </Chapter>
 
             {/* ── who we publish — the dark spread, mid-book ── */}
-            <section className="pm-dark" style={{ background: 'var(--ink)' }}>
+            <section style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
                 <div className="max-w-[1180px] mx-auto px-6 py-28">
                     <div className="grid md:grid-cols-[152px_minmax(0,1fr)] gap-x-16">
                         <div className="md:sticky md:top-28 self-start mb-10 md:mb-0">
-                            <div className="mb-4 rvx" style={{ height: 1, background: 'rgba(160,125,59,.45)' }} />
-                            <p className="pm-run rv" style={{ color: 'rgba(240,236,227,.55)' }}>Who we publish</p>
-                            <p className="pm-serif text-[24px] mt-2 rv pm-foil" style={{ '--d': '160ms' }}>IV</p>
+                            <div className="pm-rule mb-4 rvx" />
+                            <p className="pm-run rv">Who we publish</p>
+                            <p className="pm-serif text-[24px] mt-2 rv" style={{ color: 'var(--foil)', '--d': '160ms' }}>IV</p>
                         </div>
 
                         <div className="grid lg:grid-cols-2 gap-x-16 gap-y-12 items-start">
                             <div className="rv">
-                                <h2 className="pm-serif text-[clamp(2rem,4.4vw,3rem)] leading-[1.1] mb-7" style={{ color: 'var(--stock-3)' }}>
-                                    Most of our authors <em style={{ color: '#e8cf8e' }}>teach for a living.</em>
+                                <h2 className="pm-serif text-[clamp(2rem,4.4vw,3rem)] leading-[1.1] mb-7">
+                                    Most of our authors <em style={{ color: 'var(--cloth)' }}>teach for a living.</em>
                                 </h2>
-                                <p className="pm-serif text-[18.5px] leading-relaxed mb-5" style={{ color: 'rgba(240,236,227,.72)' }}>
+                                <p className="pm-serif text-[18.5px] leading-relaxed mb-5" style={{ color: 'var(--ink-2)' }}>
                                     Textbooks, monographs and technical titles — often written by four
                                     or five colleagues at once. The process is built around that:
                                     multiple named authors, departmental affiliations, and
                                     citation-ready formatting.
                                 </p>
-                                <p className="pm-serif text-[18.5px] leading-relaxed" style={{ color: 'rgba(240,236,227,.72)' }}>
+                                <p className="pm-serif text-[18.5px] leading-relaxed" style={{ color: 'var(--ink-2)' }}>
                                     No agent. No proposal. No waiting on a commissioning editor.
                                 </p>
                                 <ul className="space-y-5 mt-9">
@@ -817,9 +817,9 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                         ['Fast Results', 'Go from manuscript to store in as little as 24 hours.'],
                                     ].map(([t, d]) => (
                                         <li key={t} className="pl-5 relative">
-                                            <span className="absolute left-0 top-[9px] w-[6px] h-[6px] rounded-full" style={{ background: 'var(--foil)' }} />
-                                            <h4 className="pm-serif text-[17px] leading-snug" style={{ color: 'var(--stock-3)' }}>{t}</h4>
-                                            <p className="text-[13.5px]" style={{ color: 'rgba(240,236,227,.5)' }}>{d}</p>
+                                            <span className="absolute left-0 top-[9px] w-[6px] h-[6px] rounded-full" style={{ background: 'var(--cloth)' }} />
+                                            <h4 className="pm-serif text-[17px] leading-snug">{t}</h4>
+                                            <p className="text-[13.5px]" style={{ color: 'var(--ink-3)' }}>{d}</p>
                                         </li>
                                     ))}
                                 </ul>
@@ -836,9 +836,9 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                     ['Formats', 'eBook, paperback, hardcover and audiobook.'],
                                 ].map(([k, v]) => (
                                     <div key={k} className="grid grid-cols-[92px_minmax(0,1fr)] gap-6 py-4"
-                                         style={{ borderTop: '1px solid rgba(240,236,227,.14)' }}>
-                                        <dt className="pm-run pt-1" style={{ color: 'var(--foil)' }}>{k}</dt>
-                                        <dd className="pm-serif text-[17px]" style={{ color: 'rgba(240,236,227,.82)' }}>{v}</dd>
+                                         style={{ borderTop: '1px solid var(--rule)' }}>
+                                        <dt className="pm-run pt-1" style={{ color: 'var(--cloth)' }}>{k}</dt>
+                                        <dd className="pm-serif text-[17px]" style={{ color: 'var(--ink-2)' }}>{v}</dd>
                                     </div>
                                 ))}
                             </dl>
@@ -1064,24 +1064,23 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             </Chapter>
 
             {/* ── closing ──────────────────────────────────── */}
-            <section style={{ background: 'var(--ink)' }}>
-                <div className="max-w-6xl mx-auto px-6 py-20 text-center rv">
-                    <p className="pm-run pm-foil mb-7">Begin</p>
-                    <h2 className="pm-serif font-medium text-[clamp(2rem,5vw,3.2rem)] leading-tight max-w-[22ch] mx-auto mb-8"
-                        style={{ color: 'var(--stock-3)' }}>
-                        The manuscript is the hard part. <em>You have already done it.</em>
+            <section style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)' }}>
+                <div className="max-w-6xl mx-auto px-6 py-24 text-center rv">
+                    <p className="pm-run mb-7" style={{ color: 'var(--cloth)' }}>Begin</p>
+                    <h2 className="pm-serif font-medium text-[clamp(2rem,5vw,3.2rem)] leading-tight max-w-[22ch] mx-auto mb-8">
+                        The manuscript is the hard part. <em style={{ color: 'var(--cloth)' }}>You have already done it.</em>
                     </h2>
                     <div className="flex flex-wrap justify-center gap-3">
-                        <Link href={route('register')} className="pm-press pm-cta pm-cta-ghost inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
-                              style={{ background: 'var(--stock-3)', color: 'var(--ink)' }}>
-                            <span>Get Started for Free</span>
+                        <Link href={route('register')} className="pm-press inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
+                              style={{ background: 'var(--cloth)', color: 'var(--stock-3)' }}>
+                            Get Started for Free
                         </Link>
-                        <Link href={guestHref} className="pm-press pm-cta inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
-                              style={{ border: '1px solid rgba(240,236,227,.35)', color: 'var(--stock-3)' }}>
+                        <Link href={guestHref} className="pm-press pm-cta pm-cta-ghost inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
+                              style={{ border: '1px solid var(--rule)', color: 'var(--ink)' }}>
                             <span>Start writing — no account needed</span>
                         </Link>
                     </div>
-                    <p className="mt-6 text-[13px]" style={{ color: 'rgba(240,236,227,.5)' }}>
+                    <p className="mt-6 text-[13px]" style={{ color: 'var(--ink-3)' }}>
                         No credit card required · Publish in 24 hours · Keep 100% of your rights
                     </p>
                 </div>
