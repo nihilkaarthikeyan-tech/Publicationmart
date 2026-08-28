@@ -112,7 +112,7 @@ function PlanCard({ plan, suite, guestHref }) {
         >
             {plan.popular && (
                 <span className="pm-run mb-4" style={{ color: 'var(--foil)' }}>
-                    Recommended
+                    {suite === 'pro' ? 'Best Value' : 'Most Popular'}
                 </span>
             )}
 
@@ -150,7 +150,7 @@ function PlanCard({ plan, suite, guestHref }) {
                         : { background: 'var(--ink)', color: 'var(--stock-3)' }
                 }
             >
-                {managed ? `Enquire about ${plan.name}` : `Start with ${plan.name}`}
+                Choose {plan.name}
             </Link>
         </div>
     );
@@ -169,6 +169,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
     const spines = (featuredBooks || []).slice(0, 4);
     const shelf = (featuredBooks || []).slice(0, 6);
     const published = platformStats?.publishedBooks ?? 0;
+    const authors = platformStats?.totalAuthors ?? 0;
 
     const plans = suite === 'pro' ? PRO_PLANS : PREMIUM_PLANS;
 
@@ -182,7 +183,47 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
     return (
         <div className="pm min-h-screen">
-            <Head title="PublicationMart — AI-Powered Book Writing & Publishing, India" />
+            <Head title="Self Publishing Platform for Authors in India – AI Book Writing & Publishing">
+                {/* Primary Meta Tags */}
+                <meta name="title" content="PublicationMart  Book Publishing & Author Services in India" />
+                <meta name="description" content="PublicationMart helps authors publish books easily with professional editing, ISBN, printing, and distribution services across India." />
+                <meta name="keywords" content="self-publishing, book publishing, publish book online, ebook publishing, print on demand, author platform, book distribution" />
+                {/* Open Graph / Facebook / WhatsApp */}
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://publicationmart.com/" />
+                <meta property="og:title" content="PublicationMart  Book Publishing & Author Services in India" />
+                <meta property="og:description" content="PublicationMart helps authors publish books easily with professional editing, ISBN, printing, and distribution services across India." />
+                <meta property="og:image" content="https://publicationmart.com/images/publicationmart-social-share.jpg" />
+                <meta property="og:site_name" content="PublicationMart" />
+                {/* Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:url" content="https://publicationmart.com/" />
+                <meta name="twitter:title" content="PublicationMart  Book Publishing & Author Services in India" />
+                <meta name="twitter:description" content="PublicationMart helps authors publish books easily with professional editing, ISBN, printing, and distribution services across India." />
+                <meta name="twitter:image" content="https://publicationmart.com/images/publicationmart-social-share.jpg" />
+                {/* Structured Data for Organization */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "PublicationMart",
+                        "url": "https://publicationmart.com",
+                        "logo": "https://publicationmart.com/images/logo_new.png",
+                        "description": "Global self-publishing platform for independent authors",
+                        "sameAs": [
+                            "https://whatsapp.com/channel/0029VaDNAMO9MF983m4Y5s1y",
+                            "https://www.facebook.com/people/RK-Publications/100094272053003/",
+                            "https://www.instagram.com/publicationmart15?utm_source=qr&igsh=MWlubWJxN3hxMGxvdg==",
+                            "https://www.youtube.com/@Rademics"
+                        ],
+                        "contactPoint": {
+                            "@type": "ContactPoint",
+                            "contactType": "customer service",
+                            "areaServed": "Worldwide"
+                        }
+                    })}
+                </script>
+            </Head>
             <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
             {/* ── title page ───────────────────────────────── */}
@@ -219,9 +260,14 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             <p className="text-[13.5px]" style={{ color: 'var(--ink-3)' }}>
                                 <strong style={{ color: 'var(--ink-2)' }}>{published.toLocaleString('en-IN')}</strong> titles published
                                 <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
+                                <strong style={{ color: 'var(--ink-2)' }}>{authors.toLocaleString('en-IN')}</strong> authors joined
+                                <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
                                 <strong style={{ color: 'var(--ink-2)' }}>100%</strong> author royalty
                                 <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
                                 ISBN included
+                            </p>
+                            <p className="pm-run mt-4" style={{ fontSize: 10 }}>
+                                Smart Writing&ensp;·&ensp;AI Image Generation&ensp;·&ensp;Smart Formatting&ensp;·&ensp;Global Publishing
                             </p>
                         </div>
                     </div>
@@ -302,8 +348,10 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         {[
                             ['Copyright', 'Stays entirely yours. We claim nothing.'],
                             ['Royalty', 'You keep 100% as per marketplace payouts.'],
+                            ['Payouts', 'Transparent royalty reports, paid out monthly.'],
                             ['ISBN', 'Allocated and registered to your title.'],
                             ['Reach', 'Amazon, Apple, Google and 50+ stores.'],
+                            ['Formats', 'eBook, paperback, hardcover and audiobook.'],
                         ].map(([k, v]) => (
                             <div key={k} className="px-6 py-5" style={{ background: 'var(--stock)' }}>
                                 <dt className="pm-run mb-1.5" style={{ color: 'var(--cloth)' }}>{k}</dt>
@@ -314,10 +362,81 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 </div>
             </section>
 
+            {/* ── the workshop — the tools, wired as before ── */}
+            <section id="tools-suite" style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
+                <div className="max-w-6xl mx-auto px-6 py-20">
+                    <RunningHead label="The workshop" folio="IV" />
+                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[22ch] mb-12">
+                        Every tool a book needs, under one roof.
+                    </h2>
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {[
+                            {
+                                title: 'Smart Writing Tool',
+                                desc: 'Distraction-free environment with intelligent suggestions to help you write faster and better.',
+                                cta: 'Start Writing',
+                                href: guestHref,
+                            },
+                            {
+                                title: 'Instant Cover Design',
+                                desc: 'Generate award-winning book covers in seconds. No design skills required.',
+                                cta: 'Open the Studio',
+                                href: route('login'),
+                            },
+                            {
+                                title: 'Formatting Tool',
+                                desc: 'Perfect layout for Kindle & Print. One-click export to PDF & EPUB.',
+                                cta: 'Try Online',
+                                href: route('login'),
+                            },
+                            {
+                                title: 'Design Suite',
+                                desc: 'Integrated design tools. Create stunning visuals without leaving.',
+                                cta: 'Launch Canvas',
+                                href: route('login'),
+                            },
+                            {
+                                title: 'Real-Time Insights',
+                                desc: 'Track your global sales, royalties, and reader engagement across all stores from a single, unified dashboard.',
+                            },
+                            {
+                                title: 'Smart Formatting',
+                                desc: 'Automatically convert your manuscript into eBook, Paperback, and Hardcover formats that meet global industry standards.',
+                            },
+                        ].map((tool) => {
+                            const body = (
+                                <>
+                                    <div className="pm-rule mb-4" />
+                                    <h3 className="pm-serif text-[21px] mb-2">{tool.title}</h3>
+                                    <p className="text-[13.5px] leading-relaxed flex-1" style={{ color: 'var(--ink-3)' }}>{tool.desc}</p>
+                                    {tool.href && (
+                                        <span className="pm-run mt-5 inline-block" style={{ color: 'var(--cloth)' }}>
+                                            {tool.cta} →
+                                        </span>
+                                    )}
+                                </>
+                            );
+                            return tool.href ? (
+                                <Link key={tool.title} href={tool.href}
+                                      className="flex flex-col p-6 transition-colors hover:bg-[color:var(--stock-3)]"
+                                      style={{ border: '1px solid var(--rule)', background: 'var(--stock)' }}>
+                                    {body}
+                                </Link>
+                            ) : (
+                                <article key={tool.title} className="flex flex-col p-6"
+                                         style={{ border: '1px solid var(--rule)', background: 'var(--stock)' }}>
+                                    {body}
+                                </article>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
             {/* ── plans ────────────────────────────────────── */}
             <section id="pricing-section" style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="Plans" folio="IV" />
+                    <RunningHead label="Plans" folio="V" />
 
                     <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
                         <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[16ch]">
@@ -326,8 +445,8 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
                         <div className="flex" style={{ border: '1px solid var(--rule)' }} role="tablist" aria-label="Plan suites">
                             {[
-                                ['pro', 'Self-publishing'],
-                                ['premium', 'Managed & promoted'],
+                                ['pro', 'Pro Suite'],
+                                ['premium', 'Premium Suite'],
                             ].map(([key, label]) => (
                                 <button
                                     key={key}
@@ -365,7 +484,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
             {/* ── questions ────────────────────────────────── */}
             <section id="faq" className="max-w-6xl mx-auto px-6 py-20">
-                <RunningHead label="Questions" folio="V" />
+                <RunningHead label="Questions" folio="VI" />
                 <div className="grid md:grid-cols-[.8fr_1.2fr] gap-12">
                     <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight">
                         Before you begin.
@@ -403,6 +522,43 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 </div>
             </section>
 
+            {/* ── where your book travels ──────────────────── */}
+            <section style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
+                <div className="max-w-6xl mx-auto px-6 py-12 text-center">
+                    <p className="pm-run mb-6">Distribute your book globally</p>
+                    <p className="pm-serif text-[19px] leading-relaxed" style={{ color: 'var(--ink-2)' }}>
+                        Amazon Kindle&ensp;·&ensp;Apple Books&ensp;·&ensp;Google Play&ensp;·&ensp;Barnes &amp; Noble&ensp;·&ensp;Kobo&ensp;·&ensp;IngramSpark
+                    </p>
+                </div>
+            </section>
+
+            {/* ── every genre ──────────────────────────────── */}
+            <section id="genre-section" style={{ background: 'var(--stock)', borderTop: '1px solid var(--rule)' }}>
+                <div className="max-w-6xl mx-auto px-6 py-20">
+                    <RunningHead label="Ready for every genre" folio="VII" />
+                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[24ch] mb-12">
+                        From literary fiction to technical research.
+                    </h2>
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: 'var(--rule)', border: '1px solid var(--rule)' }}>
+                        {[
+                            { name: 'Fiction', desc: 'Novels & Stories' },
+                            { name: 'Research', desc: 'Academic Papers' },
+                            { name: 'Business', desc: 'Growth & Strategy' },
+                            { name: 'Fantasy', desc: 'World Building' },
+                            { name: 'Self-Help', desc: 'Personal Growth' },
+                            { name: 'Comics', desc: 'Graphic Novels' },
+                            { name: 'Tech', desc: 'Guides & Manuals' },
+                            { name: 'Poetry', desc: 'Verse & Rhyme' },
+                        ].map((genre) => (
+                            <div key={genre.name} className="px-6 py-6" style={{ background: 'var(--stock-3)' }}>
+                                <h4 className="pm-serif text-[19px] mb-1">{genre.name}</h4>
+                                <p className="pm-run" style={{ fontSize: 10 }}>{genre.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* ── closing ──────────────────────────────────── */}
             <section style={{ background: 'var(--ink)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20 text-center">
@@ -411,12 +567,18 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         style={{ color: 'var(--stock-3)' }}>
                         The manuscript is the hard part. <em>You have already done it.</em>
                     </h2>
-                    <Link href={guestHref} className="inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
-                          style={{ background: 'var(--stock-3)', color: 'var(--ink)' }}>
-                        Start writing — no account needed
-                    </Link>
+                    <div className="flex flex-wrap justify-center gap-3">
+                        <Link href={route('register')} className="inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
+                              style={{ background: 'var(--stock-3)', color: 'var(--ink)' }}>
+                            Get Started for Free
+                        </Link>
+                        <Link href={guestHref} className="inline-block text-[14px] font-semibold px-8 py-4 rounded-sm"
+                              style={{ border: '1px solid rgba(240,236,227,.35)', color: 'var(--stock-3)' }}>
+                            Start writing — no account needed
+                        </Link>
+                    </div>
                     <p className="mt-6 text-[13px]" style={{ color: 'rgba(240,236,227,.5)' }}>
-                        Free to begin · No commitment until you publish
+                        No credit card required · Publish in 24 hours · Keep 100% of your rights
                     </p>
                 </div>
             </section>

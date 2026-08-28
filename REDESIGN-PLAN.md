@@ -196,7 +196,7 @@ Diff the two objects. Any difference must be explainable and intentional.
 
 | Phase | Page | Status |
 |---|---|---|
-| 0 | Welcome (landing) | ⚠️ redesigned; open debts in §9 |
+| 0 | Welcome (landing) | ✅ redesigned + full functional parity restored (§9 debts cleared) |
 | 0 | Navbar (shared) | ✅ restyled, colours only — `5346c46` |
 | 0 | Footer (shared) | ✅ restyled, colours only — `5346c46` |
 | 1–6 | everything else | ⬜ not started |
@@ -230,28 +230,32 @@ Diff the two objects. Any difference must be explainable and intentional.
 
 ---
 
-## 9. Known debts from the landing-page audit (must clear before cutover)
+## 9. Known debts from the landing-page audit — CLEARED 2026-08-28
 
-Found by diffing old `Welcome.jsx` (`56d5a27`) against the redesign:
+Found by diffing old `Welcome.jsx` (`56d5a27`) against the redesign; all
+restored and verified in the browser:
 
-1. **SEO head block lost — highest priority.** Old page had meta description,
-   keywords, Open Graph (WhatsApp/Facebook share image + text), Twitter card,
-   and JSON-LD Organization schema with the social profiles. New page has only
-   a `<title>`. Port the whole block back.
-2. **No register CTA in the page body.** Old closing CTA was "Get Started for
-   Free" → `route('register')`. Navbar still has Sign Up, but decide whether
-   the closing section should drive registration again.
-3. **`platformStats.totalAuthors` no longer displayed** ("Authors Joined").
-   Decide: show it or drop it deliberately.
-4. **Cut content to decide on** (was on the old page, absent now): product
-   tool cards (Cover Design / Formatting Tool / Design Suite / Real-Time
-   Insights), Monthly Payouts + Multi-Format (audiobook) mentions, retailer
-   names (Kobo, Barnes & Noble, IngramSpark), genre grid, trust badges,
-   "Join 12,500+ Authors" claim.
-5. **Wording changes awaiting sign-off:** suite tabs ("Pro/Premium Suite" →
-   "Self-publishing / Managed & promoted"), plan buttons ("Choose X" →
-   "Start with X"/"Enquire about X"), badges ("Best Value"/"Most Popular" →
-   "Recommended").
+1. ✅ **SEO head block** ported back verbatim (title, meta description,
+   keywords, Open Graph, Twitter card, JSON-LD Organization schema).
+2. ✅ **Register CTA restored** — closing section has "Get Started for Free"
+   → `route('register')` plus the old microcopy line.
+3. ✅ **`platformStats.totalAuthors` displayed again** in the title-page stat
+   line ("authors joined").
+4. ✅ **Cut content restored:** "The workshop" tools section (Smart Writing →
+   guest flow, Cover Design / Formatting Tool / Design Suite → login, plus
+   Insights and Smart Formatting cards), Payouts + Formats rows in the promise
+   table, retailer names band (Kindle, Apple, Google Play, B&N, Kobo,
+   IngramSpark), genre grid, trust-capabilities line. The "Join 12,500+
+   Authors" claim was NOT restored — real `platformStats` numbers are shown
+   instead (deliberate; the figure was unverifiable).
+5. ✅ **Original wording restored:** "Pro Suite / Premium Suite" tabs,
+   "Choose {plan}" buttons, "Best Value" / "Most Popular" badges.
+
+**New debt discovered (pre-existing, not from the redesign):**
+`resources/views/app.blade.php` hardcodes a `<title>` and Inertia adds its
+own, so the page carries two `<title>` tags (browsers use the first — the
+blade one — so per-page titles never show). Existed before 2.0; fix as its
+own commit sometime during the rework.
 
 ---
 
