@@ -111,7 +111,7 @@ export default function Footer() {
                     {/* Read */}
                     <div>
                         <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                            📖 Discover & Read
+                            Discover & Read
                         </h3>
                         <ul className="space-y-4">
                             {readLinks.map((item) => (
@@ -127,7 +127,7 @@ export default function Footer() {
                     {/* Services */}
                     <div>
                         <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                            🛠 Services
+                            Services
                         </h3>
                         <ul className="space-y-4">
                             {servicesLinks.map((item) => (
@@ -143,7 +143,7 @@ export default function Footer() {
                     {/* Company */}
                     <div>
                         <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                            🏢 Company
+                            Company
                         </h3>
                         <ul className="space-y-4">
                             {companyLinks.map((item) => (
@@ -159,7 +159,7 @@ export default function Footer() {
                     {/* Legal */}
                     <div>
                         <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                            ⚖ Legal
+                            Legal
                         </h3>
                         <ul className="space-y-4">
                             {legalLinks.map((item) => (
@@ -175,7 +175,7 @@ export default function Footer() {
                     {/* Connect With Us */}
                     <div>
                         <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-                            🌐 Connect With Us
+                            Connect With Us
                         </h3>
                         <div className="flex flex-wrap gap-3">
                             {socialIcons.map((icon, index) => (
