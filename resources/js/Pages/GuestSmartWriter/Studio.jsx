@@ -365,10 +365,10 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
             if (btn) {
                 const originalText = btn.innerText;
                 btn.innerText = 'Saved!';
-                btn.classList.add('text-emerald-400');
+                btn.classList.add('text-emerald-700');
                 setTimeout(() => {
                     btn.innerText = originalText;
-                    btn.classList.remove('text-emerald-400');
+                    btn.classList.remove('text-emerald-700');
                 }, 2000);
             }
         } catch (error) {
@@ -384,7 +384,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
     };
 
     return (
-        <div className="min-h-screen flex flex-col font-sans bg-[#05060b] text-white selection:bg-indigo-500/30">
+        <div className="min-h-screen flex flex-col font-sans bg-[#f0ece3] text-[#17150f] selection:bg-indigo-500/30">
             <Head title={`Smart Writer - ${initData.title || 'Untitled'}`} />
 
             {/* TOP-LEFT BACK BUTTON - ALWAYS VISIBLE */}
@@ -402,7 +402,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                         }
                     }
                 }}
-                className="fixed top-4 left-4 z-[100] flex items-center gap-2 px-4 py-2 bg-[#0d1220]/90 backdrop-blur-md border border-white/10 rounded-lg text-gray-300 hover:text-white hover:bg-[#0d1220] transition-all shadow-lg"
+                className="fixed top-4 left-4 z-[100] flex items-center gap-2 px-4 py-2 bg-[#faf8f3]/90 backdrop-blur-md border border-[#d8d1c1] rounded-lg text-[#4b443a] hover:text-[#17150f] hover:bg-[#faf8f3] transition-all shadow-lg"
                 title="Go Back"
             >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -410,7 +410,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
             </button>
 
             {/* STEPPER HEADER - ALWAYS VISIBLE AT TOP CENTER */}
-            <div className="fixed top-0 left-0 right-0 z-50 bg-[#0d1220]/90 backdrop-blur-md border-b border-white/10">
+            <div className="fixed top-0 left-0 right-0 z-50 bg-[#faf8f3]/90 backdrop-blur-md border-b border-[#d8d1c1]">
                 <div className="h-16 flex items-center justify-center px-6">
                     {/* Progress Stepper - VISIBLE ON ALL SCREENS */}
                     <div className="flex items-center gap-1 md:gap-2 text-sm">
@@ -422,9 +422,9 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                     if (s <= Math.max(step, 2)) setStep(s);
                                 }}
                                 disabled={s > Math.max(step, 2) && s > step + 1}
-                                className={`flex items-center gap-1 md:gap-2 ${step >= s ? 'text-indigo-400 font-bold' : 'text-gray-500'}`}
+                                className={`flex items-center gap-1 md:gap-2 ${step >= s ? 'text-indigo-700 font-bold' : 'text-[#635c4e]'}`}
                             >
-                                <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center border-2 transition-all text-xs md:text-sm ${step >= s ? 'border-indigo-500 bg-indigo-500/20 text-indigo-300' : 'border-gray-600/50 text-gray-500'} ${s <= step ? 'cursor-pointer hover:border-indigo-400' : ''}`}>
+                                <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center border-2 transition-all text-xs md:text-sm ${step >= s ? 'border-indigo-500 bg-indigo-500/20 text-indigo-700' : 'border-gray-600/50 text-[#635c4e]'} ${s <= step ? 'cursor-pointer hover:border-indigo-400' : ''}`}>
                                     {s}
                                 </div>
                                 <span className="hidden md:inline text-xs font-semibold uppercase tracking-wider">
@@ -441,13 +441,13 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                 </div>
 
                 {/* Book Title and Actions Bar */}
-                <div className="h-12 border-t border-white/5 flex items-center justify-between px-6 bg-[#0a0f1a]/80">
-                    <h1 className="font-bold text-sm md:text-lg flex items-center gap-2 text-white pl-20 md:pl-24">
+                <div className="h-12 border-t border-[#d8d1c1] flex items-center justify-between px-6 bg-[#faf8f3]/80">
+                    <h1 className="font-bold text-sm md:text-lg flex items-center gap-2 text-[#17150f] pl-20 md:pl-24">
                         <span className="text-xl md:text-2xl">✨</span>
-                        <span className="hidden md:inline text-gray-400 text-xs uppercase tracking-wider">Smart Writer Studio</span>
-                        <span className="hidden md:inline text-gray-600 mx-2">|</span>
+                        <span className="hidden md:inline text-[#635c4e] text-xs uppercase tracking-wider">Smart Writer Studio</span>
+                        <span className="hidden md:inline text-[#635c4e] mx-2">|</span>
                         <span className="truncate max-w-[120px] md:max-w-none">{initData.title || 'Untitled Book'}</span>
-                        <span className="text-[10px] md:text-xs px-2 py-0.5 rounded-full uppercase tracking-wider font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">Guest</span>
+                        <span className="text-[10px] md:text-xs px-2 py-0.5 rounded-full uppercase tracking-wider font-bold bg-indigo-500/20 text-indigo-700 border border-indigo-500/30">Guest</span>
                     </h1>
 
 
@@ -455,18 +455,18 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                         {/* Stats Display (Progress & Words) */}
                         <div className="hidden lg:flex items-center gap-4 mr-2">
                             <div className="flex flex-col items-end">
-                                <span className="text-[10px] uppercase font-bold tracking-wider text-gray-400">Progress</span>
+                                <span className="text-[10px] uppercase font-bold tracking-wider text-[#635c4e]">Progress</span>
                                 <div className="flex items-center gap-2">
-                                    <div className="w-24 h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                                    <div className="w-24 h-1.5 bg-[#efe9db] rounded-full overflow-hidden">
                                         <div className="h-full bg-emerald-500 transition-all duration-500" style={{ width: `${stats.percent}%` }}></div>
                                     </div>
-                                    <span className="text-xs font-bold text-emerald-400">{stats.percent}%</span>
+                                    <span className="text-xs font-bold text-emerald-700">{stats.percent}%</span>
                                 </div>
                             </div>
-                            <div className="w-px h-6 bg-white/10"></div>
+                            <div className="w-px h-6 bg-[#e7e1d4]"></div>
                             <div className="flex flex-col items-start">
-                                <span className="text-[10px] uppercase font-bold tracking-wider text-gray-400">Words</span>
-                                <span className="text-xs font-bold text-indigo-300">{stats.totalWords.toLocaleString()}</span>
+                                <span className="text-[10px] uppercase font-bold tracking-wider text-[#635c4e]">Words</span>
+                                <span className="text-xs font-bold text-indigo-700">{stats.totalWords.toLocaleString()}</span>
                             </div>
                         </div>
 
@@ -478,7 +478,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                 Finish →
                             </button>
                         )}
-                        <button id="save-btn" onClick={() => saveProgress()} className="text-xs text-indigo-300 border border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-500/20 px-3 py-1.5 rounded-lg font-bold transition-colors uppercase tracking-wider flex items-center gap-1">
+                        <button id="save-btn" onClick={() => saveProgress()} className="text-xs text-indigo-700 border border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-500/20 px-3 py-1.5 rounded-lg font-bold transition-colors uppercase tracking-wider flex items-center gap-1">
                             <span>Save</span>
                         </button>
                     </div>
@@ -491,37 +491,37 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                     <div className="w-full max-w-2xl mx-auto py-10 px-4 relative overflow-y-auto">
                         <div className="relative z-10">
                             <div className="text-center mb-6">
-                                <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-[10px] font-bold uppercase tracking-wider mb-3">Step 1 of 5</span>
-                                <h2 className="text-2xl font-bold text-white mb-2">Book Specifications</h2>
-                                <p className="text-sm text-gray-300">Define your book's core details and structure</p>
+                                <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-700 text-[10px] font-bold uppercase tracking-wider mb-3">Step 1 of 5</span>
+                                <h2 className="text-2xl font-bold text-[#17150f] mb-2">Book Specifications</h2>
+                                <p className="text-sm text-[#4b443a]">Define your book's core details and structure</p>
                             </div>
 
-                            <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-5 md:p-6 shadow-xl">
+                            <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-5 md:p-6 shadow-xl">
                                 <div className="space-y-5">
                                     {/* User Details (For Access Link) */}
                                     <div className="bg-indigo-500/5 rounded-xl border border-indigo-500/20 p-4 mb-4">
-                                        <h4 className="text-[10px] font-bold text-indigo-300 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                        <h4 className="text-[10px] font-bold text-indigo-700 uppercase tracking-widest mb-3 flex items-center gap-2">
                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
                                             Your Details (For Access Link)
                                         </h4>
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div className="space-y-1.5">
-                                                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Your Name <span className="text-red-400">*</span></label>
+                                                <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Your Name <span className="text-red-700">*</span></label>
                                                 <input
                                                     type="text"
                                                     value={initData.full_name || ''}
                                                     onChange={e => setInitData({ ...initData, full_name: e.target.value })}
-                                                    className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-400"
+                                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400"
                                                     placeholder="Enter your full name"
                                                 />
                                             </div>
                                             <div className="space-y-1.5">
-                                                <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Email Address <span className="text-red-400">*</span></label>
+                                                <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Email Address <span className="text-red-700">*</span></label>
                                                 <input
                                                     type="email"
                                                     value={initData.email || ''}
                                                     onChange={e => setInitData({ ...initData, email: e.target.value })}
-                                                    className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-400"
+                                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400"
                                                     placeholder="Where should we send your link?"
                                                 />
                                             </div>
@@ -530,18 +530,18 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div className="space-y-1.5">
-                                            <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Book Title</label>
-                                            <input type="text" value={initData.title} onChange={e => setInitData({ ...initData, title: e.target.value })} className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-400" placeholder="Enter book title" />
+                                            <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Book Title</label>
+                                            <input type="text" value={initData.title} onChange={e => setInitData({ ...initData, title: e.target.value })} className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400" placeholder="Enter book title" />
                                         </div>
                                         <div className="space-y-1.5">
-                                            <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Author Name</label>
-                                            <input type="text" value={initData.author_name} onChange={e => setInitData({ ...initData, author_name: e.target.value })} className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-400" placeholder="Enter author name" />
+                                            <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Author Name</label>
+                                            <input type="text" value={initData.author_name} onChange={e => setInitData({ ...initData, author_name: e.target.value })} className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400" placeholder="Enter author name" />
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div className="space-y-1.5">
-                                            <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Book Category</label>
+                                            <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Book Category</label>
                                             <select
                                                 value={(initData.genre || 'Non-Fiction').split(':')[0].trim().includes('Non-Fiction') ? 'Non-Fiction' : 'Fiction'}
                                                 onChange={e => {
@@ -549,21 +549,21 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                     const defaultSub = newPrimary === 'Non-Fiction' ? NON_FICTION_TYPES[0] : FICTION_TYPES[0];
                                                     setInitData({ ...initData, genre: `${newPrimary}: ${defaultSub}` });
                                                 }}
-                                                className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-400 appearance-none cursor-pointer"
+                                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400 appearance-none cursor-pointer"
                                             >
                                                 <option value="Non-Fiction">Non-Fiction (Fact-based)</option>
                                                 <option value="Fiction">Fiction (Creative)</option>
                                             </select>
                                         </div>
                                         <div className="space-y-1.5">
-                                            <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Genre / Style</label>
+                                            <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Genre / Style</label>
                                             <select
                                                 value={(initData.genre || '').split(':')[1]?.trim() || ''}
                                                 onChange={e => {
                                                     const primary = (initData.genre || 'Non-Fiction').split(':')[0].trim();
                                                     setInitData({ ...initData, genre: `${primary}: ${e.target.value}` });
                                                 }}
-                                                className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-400 appearance-none cursor-pointer"
+                                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400 appearance-none cursor-pointer"
                                             >
                                                 {((initData.genre || 'Non-Fiction').split(':')[0].trim().includes('Non-Fiction') ? NON_FICTION_TYPES : FICTION_TYPES).map(type => (
                                                     <option key={type} value={type}>{type}</option>
@@ -573,12 +573,12 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                     </div>
 
                                     <div className="space-y-1.5">
-                                        <label className="block text-xs font-semibold text-gray-300 uppercase tracking-wider">Book Concept / Premise <span className="text-cyan-400">*</span></label>
-                                        <textarea value={initData.topic} onChange={e => setInitData({ ...initData, topic: e.target.value })} className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-400 h-20 resize-none" placeholder={initData.genre === 'Fiction' ? "Describe the plot..." : "Describe the topic..."} />
+                                        <label className="block text-xs font-semibold text-[#4b443a] uppercase tracking-wider">Book Concept / Premise <span className="text-cyan-700">*</span></label>
+                                        <textarea value={initData.topic} onChange={e => setInitData({ ...initData, topic: e.target.value })} className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2.5 text-sm text-[#17150f] focus:outline-none focus:border-indigo-400 h-20 resize-none" placeholder={initData.genre === 'Fiction' ? "Describe the plot..." : "Describe the topic..."} />
                                     </div>
 
-                                    <div className="bg-[#0a0f1a] rounded-xl border border-white/10 p-4">
-                                        <h4 className="text-[10px] font-bold text-gray-300 uppercase tracking-widest mb-4">Structure Settings</h4>
+                                    <div className="bg-[#faf8f3] rounded-xl border border-[#d8d1c1] p-4">
+                                        <h4 className="text-[10px] font-bold text-[#4b443a] uppercase tracking-widest mb-4">Structure Settings</h4>
                                         <div className="grid grid-cols-3 gap-4">
                                             {/* Dynamic LIMITS Calculation for UI */}
                                             {(() => {
@@ -592,7 +592,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                 return (
                                                     <>
                                                         <div className="space-y-1.5">
-                                                            <label className="block text-[10px] font-bold text-gray-400">Chapters (Max {limits.maxCh})</label>
+                                                            <label className="block text-[10px] font-bold text-[#635c4e]">Chapters (Max {limits.maxCh})</label>
                                                             <input
                                                                 type="number"
                                                                 value={initData.chapter_count}
@@ -606,13 +606,13 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                                     if (val > limits.maxCh) val = limits.maxCh;
                                                                     setInitData({ ...initData, chapter_count: val });
                                                                 }}
-                                                                className="w-full bg-[#070a10] border border-white/10 rounded-lg px-2 py-2 text-white text-center font-bold"
+                                                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-2 py-2 text-[#17150f] text-center font-bold"
                                                                 min="1"
                                                                 max={limits.maxCh}
                                                             />
                                                         </div>
                                                         <div className="space-y-1.5">
-                                                            <label className="block text-[10px] font-bold text-gray-400">Sub-chapters (Max {limits.maxSub})</label>
+                                                            <label className="block text-[10px] font-bold text-[#635c4e]">Sub-chapters (Max {limits.maxSub})</label>
                                                             <input
                                                                 type="number"
                                                                 value={initData.sub_chapter_count}
@@ -626,7 +626,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                                     if (val > limits.maxSub) val = limits.maxSub;
                                                                     setInitData({ ...initData, sub_chapter_count: val });
                                                                 }}
-                                                                className="w-full bg-[#070a10] border border-white/10 rounded-lg px-2 py-2 text-white text-center font-bold"
+                                                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-2 py-2 text-[#17150f] text-center font-bold"
                                                                 min="1"
                                                                 max={limits.maxSub}
                                                             />
@@ -635,18 +635,18 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                 );
                                             })()}
                                             <div className="space-y-1.5">
-                                                <label className="block text-[10px] font-bold text-gray-400">Total Pages (Approx)</label>
+                                                <label className="block text-[10px] font-bold text-[#635c4e]">Total Pages (Approx)</label>
                                                 <div className={`w-full border rounded-lg px-2 py-2 text-center text-xs font-bold flex flex-col justify-center ${(() => {
                                                     // Parse Max Pages from Range (e.g., "150-200" -> 200)
                                                     const rangeParts = (initData.page_range || '80-100').split('-');
                                                     const maxPages = parseInt(rangeParts[1] || rangeParts[0] || 100);
 
                                                     const totalSub = (initData.chapter_count || 0) * (initData.sub_chapter_count || 0);
-                                                    if (totalSub === 0) return 'bg-[#070a10] border-white/10 text-white opacity-70';
+                                                    if (totalSub === 0) return 'bg-[#faf8f3] border-[#d8d1c1] text-[#17150f] opacity-70';
 
                                                     const pagesPerSub = Math.floor(maxPages / totalSub);
                                                     if (pagesPerSub < 1) return 'bg-red-500/10 border-red-500/30 text-red-500'; // Invalid
-                                                    return 'bg-[#070a10] border-white/10 text-emerald-400';
+                                                    return 'bg-[#faf8f3] border-[#d8d1c1] text-emerald-700';
                                                 })()
                                                     }`}>
                                                     {(() => {
@@ -661,14 +661,14 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                         const pagesPerSub = wordsPerSub / 275;
                                                         const totalUsedPages = Math.round((wordsPerSub * totalSub) / 275);
 
-                                                        let statusColor = 'text-emerald-400';
+                                                        let statusColor = 'text-emerald-700';
                                                         let statusText = `${pagesPerSub.toFixed(1)} Pages / Section`;
 
                                                         if (pagesPerSub < 0.5) {
                                                             statusColor = 'text-red-500';
                                                             statusText = 'TOO DENSE (< 0.5 Pg/Sec)';
                                                         } else if (pagesPerSub < 1.0) {
-                                                            statusColor = 'text-amber-400';
+                                                            statusColor = 'text-amber-800';
                                                             statusText = `Short Sections (${pagesPerSub.toFixed(1)} Pg)`;
                                                         }
 
@@ -685,8 +685,8 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                             </div>
                                         </div>
                                         {/* Plan Limits Legend */}
-                                        <div className="mt-3 flex items-center gap-2 text-[10px] text-gray-400 bg-white/5 p-2 rounded-lg border border-white/5">
-                                            <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        <div className="mt-3 flex items-center gap-2 text-[10px] text-[#635c4e] bg-[#faf8f3] p-2 rounded-lg border border-[#d8d1c1]">
+                                            <svg className="w-3.5 h-3.5 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                             <span>
                                                 {(() => {
                                                     const rangeParts = (initData.page_range || '80-100').split('-');
@@ -717,38 +717,38 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                     <div className="w-full max-w-3xl mx-auto py-10 px-4 overflow-y-auto relative">
                         <div className="relative z-10">
                             <div className="text-center mb-6">
-                                <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-[10px] font-bold uppercase tracking-wider mb-3">Step 2 of 5</span>
-                                <h2 className="text-2xl font-bold text-white mb-2">Chapter Outline</h2>
-                                <p className="text-sm text-gray-300">{chapters.length > 0 ? `${chapters.length} Chapters Generated` : 'Generate your book structure'}</p>
+                                <span className="inline-block py-1 px-3 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-700 text-[10px] font-bold uppercase tracking-wider mb-3">Step 2 of 5</span>
+                                <h2 className="text-2xl font-bold text-[#17150f] mb-2">Chapter Outline</h2>
+                                <p className="text-sm text-[#4b443a]">{chapters.length > 0 ? `${chapters.length} Chapters Generated` : 'Generate your book structure'}</p>
                             </div>
 
                             {chapters.length === 0 ? (
-                                <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl text-center">
+                                <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-6 md:p-8 shadow-xl text-center">
                                     <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 text-white rounded-xl flex items-center justify-center mx-auto mb-5 text-2xl border border-indigo-500/30">📚</div>
-                                    <h3 className="text-lg font-bold text-white mb-2">No Chapters Yet</h3>
-                                    <p className="text-sm text-gray-300 mb-6 max-w-sm mx-auto">Generate an outline with AI or manually create your own.</p>
+                                    <h3 className="text-lg font-bold text-[#17150f] mb-2">No Chapters Yet</h3>
+                                    <p className="text-sm text-[#4b443a] mb-6 max-w-sm mx-auto">Generate an outline with AI or manually create your own.</p>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
                                         {/* Auto Mode */}
                                         <div onClick={() => generateOutline('ai')} className="group bg-gradient-to-br from-indigo-500/15 to-transparent rounded-xl p-4 border border-indigo-500/30 hover:border-indigo-400/50 transition-all cursor-pointer text-center h-full flex flex-col justify-center">
                                             <div className="w-10 h-10 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">✨</div>
-                                            <h4 className="font-semibold text-white text-sm mb-1">Smart Writer Mode</h4>
-                                            <p className="text-xs text-gray-300 mb-4">Let AI create a structured outline based on your concept.</p>
+                                            <h4 className="font-semibold text-[#17150f] text-sm mb-1">Smart Writer Mode</h4>
+                                            <p className="text-xs text-[#4b443a] mb-4">Let AI create a structured outline based on your concept.</p>
                                             <button className="w-full py-2 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white rounded-lg font-bold text-xs shadow-lg mt-auto">
                                                 {isLoading ? 'Generating...' : 'Generate with AI'}
                                             </button>
                                         </div>
 
                                         {/* Manual Mode */}
-                                        <div className="group bg-[#0a0f1a] rounded-xl p-4 border border-white/10 hover:border-white/20 transition-all text-center h-full flex flex-col justify-center relative">
-                                            <div className="w-10 h-10 bg-gray-700/30 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">✍️</div>
-                                            <h4 className="font-semibold text-white text-sm mb-1">Manual Creation</h4>
-                                            <p className="text-xs text-gray-400 mb-3">Type or paste your chapter titles directly.</p>
+                                        <div className="group bg-[#faf8f3] rounded-xl p-4 border border-[#d8d1c1] hover:border-[#d8d1c1] transition-all text-center h-full flex flex-col justify-center relative">
+                                            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">✍️</div>
+                                            <h4 className="font-semibold text-[#17150f] text-sm mb-1">Manual Creation</h4>
+                                            <p className="text-xs text-[#635c4e] mb-3">Type or paste your chapter titles directly.</p>
 
                                             <div className="flex-1 w-full mb-3">
                                                 <textarea
                                                     id="manual-chapters-input"
-                                                    className="w-full h-24 bg-[#05060b] border border-white/10 rounded-lg p-2 text-xs text-white placeholder-gray-600 resize-none focus:outline-none focus:border-indigo-500"
+                                                    className="w-full h-24 bg-[#f0ece3] border border-[#d8d1c1] rounded-lg p-2 text-xs text-[#17150f] placeholder-gray-600 resize-none focus:outline-none focus:border-indigo-500"
                                                     placeholder="Chapter 1: The Beginning&#10;Chapter 2: The Journey&#10;..."
                                                     onClick={(e) => e.stopPropagation()}
                                                 ></textarea>
@@ -756,7 +756,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
 
                                             <button
                                                 onClick={(e) => { e.stopPropagation(); generateOutline('manual'); }}
-                                                className="w-full py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-bold text-xs border border-white/10 mt-auto"
+                                                className="w-full py-2 bg-[#e7e1d4] hover:bg-[#e7e1d4] text-[#17150f] rounded-lg font-bold text-xs border border-[#d8d1c1] mt-auto"
                                             >
                                                 Use Manual Outline
                                             </button>
@@ -764,18 +764,18 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                     </div>
                                 </div>
                             ) : (
-                                <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-5 shadow-xl">
+                                <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-5 shadow-xl">
                                     <div className="space-y-2 mb-5 max-h-[45vh] overflow-y-auto pr-2">
                                         {chapters.map((chapter, i) => (
-                                            <div key={i} className="bg-[#0a0f1a] p-3 rounded-lg border border-white/10 flex items-center gap-3">
-                                                <span className="w-7 h-7 flex items-center justify-center bg-indigo-500/20 rounded-lg font-bold text-indigo-300 text-xs">{i + 1}</span>
-                                                <span className="flex-1 font-medium text-sm text-white">{chapter.title}</span>
-                                                <span className="text-emerald-400 text-xs">✓</span>
+                                            <div key={i} className="bg-[#faf8f3] p-3 rounded-lg border border-[#d8d1c1] flex items-center gap-3">
+                                                <span className="w-7 h-7 flex items-center justify-center bg-indigo-500/20 rounded-lg font-bold text-indigo-700 text-xs">{i + 1}</span>
+                                                <span className="flex-1 font-medium text-sm text-[#17150f]">{chapter.title}</span>
+                                                <span className="text-emerald-700 text-xs">✓</span>
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="flex justify-between items-center pt-4 border-t border-white/10">
-                                        <button onClick={() => setStep(1)} className="px-4 py-2 text-sm text-gray-300 hover:text-white flex items-center gap-2">Back</button>
+                                    <div className="flex justify-between items-center pt-4 border-t border-[#d8d1c1]">
+                                        <button onClick={() => setStep(1)} className="px-4 py-2 text-sm text-[#4b443a] hover:text-[#17150f] flex items-center gap-2">Back</button>
                                         <button onClick={startSubChapters} className="px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-bold text-sm rounded-lg shadow-lg flex items-center gap-2">Approve Outline & Next →</button>
                                     </div>
                                 </div>
@@ -787,56 +787,56 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                 {/* Step 3: Structure */}
                 {step === 3 && (
                     <div className="flex w-full h-full">
-                        <div className="w-64 bg-[#0a0f1a] border-r border-white/10 overflow-y-auto flex flex-col pt-4">
+                        <div className="w-64 bg-[#faf8f3] border-r border-[#d8d1c1] overflow-y-auto flex flex-col pt-4">
                             <div className="px-4 mb-4">
-                                <span className="inline-block py-0.5 px-2 rounded-md bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-[9px] font-bold uppercase tracking-wider mb-1">Step 3 of 5</span>
-                                <h3 className="font-bold text-white text-sm">Chapter Structure</h3>
-                                <p className="text-gray-500 text-[10px] mt-1">Select a chapter to generate sub-sections</p>
+                                <span className="inline-block py-0.5 px-2 rounded-md bg-indigo-500/20 border border-indigo-400/30 text-indigo-700 text-[9px] font-bold uppercase tracking-wider mb-1">Step 3 of 5</span>
+                                <h3 className="font-bold text-[#17150f] text-sm">Chapter Structure</h3>
+                                <p className="text-[#635c4e] text-[10px] mt-1">Select a chapter to generate sub-sections</p>
                             </div>
                             <div className="flex-1">
                                 {chapters.map((chapter, i) => (
-                                    <div key={i} onClick={() => setActiveChapterId(chapter.id)} className={`p-3 border-b border-white/5 cursor-pointer hover:bg-white/5 transition ${activeChapterId === chapter.id ? 'bg-indigo-500/15 border-l-4 border-l-indigo-400' : ''}`}>
+                                    <div key={i} onClick={() => setActiveChapterId(chapter.id)} className={`p-3 border-b border-[#d8d1c1] cursor-pointer hover:bg-[#faf8f3] transition ${activeChapterId === chapter.id ? 'bg-indigo-500/15 border-l-4 border-l-indigo-400' : ''}`}>
                                         <div className="flex justify-between items-start">
-                                            <div className="font-medium text-xs text-white"><span className="text-gray-400 mr-1">{i + 1}.</span>{chapter.title}</div>
-                                            {chapter.sections && chapter.sections.length > 0 ? <span className="text-emerald-400 text-[10px]">Ready</span> : <span className="text-amber-400 text-[10px]">Pending</span>}
+                                            <div className="font-medium text-xs text-[#17150f]"><span className="text-[#635c4e] mr-1">{i + 1}.</span>{chapter.title}</div>
+                                            {chapter.sections && chapter.sections.length > 0 ? <span className="text-emerald-700 text-[10px]">Ready</span> : <span className="text-amber-800 text-[10px]">Pending</span>}
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </div>
-                        <div className="flex-1 bg-[#070a10] p-6 overflow-y-auto relative">
+                        <div className="flex-1 bg-[#faf8f3] p-6 overflow-y-auto relative">
                             {activeChapterId && (
                                 <div className="max-w-xl mx-auto relative z-10">
-                                    <h2 className="text-lg font-bold mb-1 text-white">Structure for: <span className="text-indigo-400">{chapters.find(c => c.id === activeChapterId)?.title}</span></h2>
-                                    <p className="text-gray-300 text-xs mb-5">Define sub-sections.</p>
+                                    <h2 className="text-lg font-bold mb-1 text-[#17150f]">Structure for: <span className="text-indigo-700">{chapters.find(c => c.id === activeChapterId)?.title}</span></h2>
+                                    <p className="text-[#4b443a] text-xs mb-5">Define sub-sections.</p>
 
                                     {chapters.find(c => c.id === activeChapterId)?.sections?.length > 0 ? (
                                         <div className="space-y-2">
                                             {chapters.find(c => c.id === activeChapterId).sections.map((section, idx) => (
-                                                <div key={idx} className="bg-[#0d1220] p-3 rounded-lg border border-white/10 flex items-center gap-3">
-                                                    <span className="w-6 h-6 flex items-center justify-center bg-indigo-500/20 rounded-md text-indigo-300 text-xs font-bold">{idx + 1}</span>
-                                                    <span className="text-white text-sm font-medium">{section.title}</span>
+                                                <div key={idx} className="bg-[#faf8f3] p-3 rounded-lg border border-[#d8d1c1] flex items-center gap-3">
+                                                    <span className="w-6 h-6 flex items-center justify-center bg-indigo-500/20 rounded-md text-indigo-700 text-xs font-bold">{idx + 1}</span>
+                                                    <span className="text-[#17150f] text-sm font-medium">{section.title}</span>
                                                 </div>
                                             ))}
                                         </div>
                                     ) : (
-                                        <div className="bg-[#0d1220] rounded-xl border border-white/10 p-8 text-center">
+                                        <div className="bg-[#faf8f3] rounded-xl border border-[#d8d1c1] p-8 text-center">
                                             {/* No sections yet icon */}
-                                            <div className="w-14 h-14 mx-auto mb-4 bg-[#0a0f1a] rounded-xl flex items-center justify-center border border-white/10">
-                                                <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div className="w-14 h-14 mx-auto mb-4 bg-[#faf8f3] rounded-xl flex items-center justify-center border border-[#d8d1c1]">
+                                                <svg className="w-6 h-6 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                 </svg>
                                             </div>
-                                            <h4 className="text-white font-bold text-sm mb-1">No sections yet</h4>
-                                            <p className="text-gray-400 text-xs mb-6">Generate sub-headings for this chapter to organize the content.</p>
+                                            <h4 className="text-[#17150f] font-bold text-sm mb-1">No sections yet</h4>
+                                            <p className="text-[#635c4e] text-xs mb-6">Generate sub-headings for this chapter to organize the content.</p>
 
                                             <button onClick={() => generateSectionsForChapter(activeChapterId)} disabled={isLoading} className="w-full py-3 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-bold text-sm rounded-lg shadow-lg mb-5">
                                                 {isLoading ? 'Generating...' : '✨ Generate with Smart Writer'}
                                             </button>
 
-                                            <div className="text-xs text-gray-500 uppercase tracking-widest mb-3">Or Manually (Max {initData.sub_chapter_count || 5})</div>
-                                            <textarea id={`manual-input-${activeChapterId}`} className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2 text-white placeholder-gray-500 text-xs h-24 mb-3" placeholder={`1. First sub-heading\n2. Second sub-heading\n...`}></textarea>
-                                            <button onClick={() => saveManualStructure(activeChapterId)} className="w-full py-2.5 bg-white/10 text-white rounded-lg font-bold text-xs border border-white/10 hover:bg-white/15 transition">Save Manual Structure</button>
+                                            <div className="text-xs text-[#635c4e] uppercase tracking-widest mb-3">Or Manually (Max {initData.sub_chapter_count || 5})</div>
+                                            <textarea id={`manual-input-${activeChapterId}`} className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2 text-[#17150f] placeholder-gray-500 text-xs h-24 mb-3" placeholder={`1. First sub-heading\n2. Second sub-heading\n...`}></textarea>
+                                            <button onClick={() => saveManualStructure(activeChapterId)} className="w-full py-2.5 bg-[#e7e1d4] text-[#17150f] rounded-lg font-bold text-xs border border-[#d8d1c1] hover:bg-white/15 transition">Save Manual Structure</button>
                                         </div>
                                     )}
                                 </div>
@@ -864,17 +864,17 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                 {
                     step === 4 && (
                         <div className="flex w-full h-full">
-                            <div className="w-60 bg-[#0a0f1a] border-r border-white/10 flex flex-col pt-4">
+                            <div className="w-60 bg-[#faf8f3] border-r border-[#d8d1c1] flex flex-col pt-4">
                                 <div className="px-4 mb-4">
-                                    <span className="inline-block py-0.5 px-2 rounded-md bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-[9px] font-bold uppercase tracking-wider mb-1">Step 4 of 5</span>
-                                    <h3 className="font-bold text-white text-sm">Write Content</h3>
+                                    <span className="inline-block py-0.5 px-2 rounded-md bg-indigo-500/20 border border-indigo-400/30 text-indigo-700 text-[9px] font-bold uppercase tracking-wider mb-1">Step 4 of 5</span>
+                                    <h3 className="font-bold text-[#17150f] text-sm">Write Content</h3>
                                 </div>
                                 <div className="flex-1 overflow-y-auto">
                                     {chapters.map(chapter => (
                                         <div key={chapter.id}>
-                                            <div className="px-3 py-2 bg-[#070a10] text-[10px] font-bold text-gray-300 uppercase tracking-wider sticky top-0 border-b border-white/5">{chapter.title}</div>
+                                            <div className="px-3 py-2 bg-[#faf8f3] text-[10px] font-bold text-[#4b443a] uppercase tracking-wider sticky top-0 border-b border-[#d8d1c1]">{chapter.title}</div>
                                             {chapter.sections?.map(section => (
-                                                <button key={section.id} onClick={() => { setActiveSection(section); setActiveChapterId(chapter.id); }} className={`w-full text-left px-4 py-2 text-xs border-b border-white/5 hover:bg-white/5 transition ${activeSection?.id === section.id ? 'bg-indigo-500/15 text-white border-l-4 border-l-indigo-400' : 'text-gray-300'}`}>
+                                                <button key={section.id} onClick={() => { setActiveSection(section); setActiveChapterId(chapter.id); }} className={`w-full text-left px-4 py-2 text-xs border-b border-[#d8d1c1] hover:bg-[#faf8f3] transition ${activeSection?.id === section.id ? 'bg-indigo-500/15 text-[#17150f] border-l-4 border-l-indigo-400' : 'text-[#4b443a]'}`}>
                                                     <div className="flex justify-between items-center">
                                                         <span className="truncate pr-2">{section.title}</span>
                                                         {section.content ? <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> : <span className="w-1.5 h-1.5 rounded-full bg-gray-600 border border-gray-500"></span>}
@@ -887,7 +887,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                         setActiveChapterId(chapter.id);
                                                         setStep(3);
                                                     }}
-                                                    className="w-full text-left px-4 py-3 text-[10px] text-amber-400 bg-amber-500/5 hover:bg-amber-500/10 border-b border-white/5 transition flex items-center gap-2"
+                                                    className="w-full text-left px-4 py-3 text-[10px] text-amber-800 bg-amber-500/5 hover:bg-amber-500/10 border-b border-[#d8d1c1] transition flex items-center gap-2"
                                                 >
                                                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                                                     <span>Missing Structure. Click to Setup.</span>
@@ -897,57 +897,57 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                     ))}
                                 </div>
                             </div>
-                            <div className="flex-1 bg-[#070a10] flex flex-col">
+                            <div className="flex-1 bg-[#faf8f3] flex flex-col">
                                 {activeSection ? (
                                     <div className="flex-1 flex flex-col h-full">
-                                        <div className="h-12 border-b border-white/10 flex items-center justify-between px-5 bg-[#0a0f1a]">
-                                            <h2 className="font-bold text-white text-sm">{activeSection.title}</h2>
+                                        <div className="h-12 border-b border-[#d8d1c1] flex items-center justify-between px-5 bg-[#faf8f3]">
+                                            <h2 className="font-bold text-[#17150f] text-sm">{activeSection.title}</h2>
                                             <div className="flex gap-3 items-center">
                                                 {!activeSection.content ? (
                                                     <button onClick={() => writeContent(activeSection)} disabled={isLoading} className="px-4 py-2 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-bold text-xs rounded-lg shadow-lg">
                                                         {isLoading ? 'Writing...' : '✨ Write This Section'}
                                                     </button>
                                                 ) : (
-                                                    <div className="px-3 py-1.5 bg-emerald-500/20 text-emerald-300 font-bold rounded-lg border border-emerald-500/30 text-xs flex items-center gap-1.5"><span>✔ Generated</span></div>
+                                                    <div className="px-3 py-1.5 bg-emerald-500/20 text-emerald-700 font-bold rounded-lg border border-emerald-500/30 text-xs flex items-center gap-1.5"><span>✔ Generated</span></div>
                                                 )}
                                             </div>
                                         </div>
 
                                         {/* Toolbar - Image generation available to all paid guest plans */}
-                                        <div className="h-10 border-b border-white/10 flex items-center px-5 bg-[#0d1220]">
+                                        <div className="h-10 border-b border-[#d8d1c1] flex items-center px-5 bg-[#faf8f3]">
                                             {session.image_credits_limit > 0 ? (
                                                 <>
-                                                    <button onClick={handleGenerateImageClick} disabled={isGeneratingImage || imageCredits.used >= imageCredits.limit} className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 ${isGeneratingImage || imageCredits.used >= imageCredits.limit ? 'text-gray-500 cursor-not-allowed' : 'text-indigo-400 hover:text-indigo-300'}`}>
+                                                    <button onClick={handleGenerateImageClick} disabled={isGeneratingImage || imageCredits.used >= imageCredits.limit} className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 ${isGeneratingImage || imageCredits.used >= imageCredits.limit ? 'text-[#635c4e] cursor-not-allowed' : 'text-indigo-700 hover:text-indigo-700'}`}>
                                                         {isGeneratingImage ? 'Generating Image...' : '🎨 Generate Illustration'}
                                                     </button>
-                                                    <div className="mx-3 h-4 w-px bg-white/10"></div>
-                                                    <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-gray-400">
+                                                    <div className="mx-3 h-4 w-px bg-[#e7e1d4]"></div>
+                                                    <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-[#635c4e]">
                                                         <span>Credits:</span>
-                                                        <span className={imageCredits.used >= imageCredits.limit ? 'text-red-400' : 'text-emerald-400'}>{imageCredits.used} / {imageCredits.limit}</span>
+                                                        <span className={imageCredits.used >= imageCredits.limit ? 'text-red-700' : 'text-emerald-700'}>{imageCredits.used} / {imageCredits.limit}</span>
                                                     </div>
                                                 </>
                                             ) : (
-                                                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">🔒 Image Generation (Not Available)</span>
+                                                <span className="text-[10px] font-bold uppercase tracking-wider text-[#635c4e]">🔒 Image Generation (Not Available)</span>
                                             )}
                                         </div>
 
                                         <div className="flex-1 p-6 overflow-y-auto relative">
-                                            <div className="max-w-3xl mx-auto bg-[#0d1220] min-h-[600px] shadow-xl border border-white/10 rounded-xl p-8 relative z-10">
-                                                {activeSection.image_url && <div className="mb-6 p-2 border border-white/10 rounded-lg bg-[#0a0f1a] text-center"><img src={activeSection.image_url} className="max-w-full h-auto mx-auto rounded-lg shadow-lg" /></div>}
+                                            <div className="max-w-3xl mx-auto bg-[#faf8f3] min-h-[600px] shadow-xl border border-[#d8d1c1] rounded-xl p-8 relative z-10">
+                                                {activeSection.image_url && <div className="mb-6 p-2 border border-[#d8d1c1] rounded-lg bg-[#faf8f3] text-center"><img src={activeSection.image_url} className="max-w-full h-auto mx-auto rounded-lg shadow-lg" /></div>}
                                                 {activeSection.content ? (
                                                     <div
-                                                        className="prose prose-invert max-w-none font-serif text-base leading-relaxed text-gray-100"
+                                                        className="prose prose-invert max-w-none font-serif text-base leading-relaxed text-[#4b443a]"
                                                         dangerouslySetInnerHTML={{ __html: activeSection.content }}
                                                     />
                                                 ) : (
-                                                    <div className="flex flex-col items-center justify-center h-full text-center py-16"><p className="text-gray-300 text-sm font-medium">Click "Write This Section" to generate content.</p></div>
+                                                    <div className="flex flex-col items-center justify-center h-full text-center py-16"><p className="text-[#4b443a] text-sm font-medium">Click "Write This Section" to generate content.</p></div>
                                                 )}
                                             </div>
                                         </div>
                                     </div>
                                 ) : (
                                     <div className="flex-1 flex items-center justify-center p-10">
-                                        <div className="text-center text-gray-500">
+                                        <div className="text-center text-[#635c4e]">
                                             <div className="text-4xl mb-4 opacity-50">👈</div>
                                             <p className="text-base font-medium">Select a section from the left sidebar to start writing</p>
                                         </div>
@@ -967,17 +967,17 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                             <div className="relative z-10 text-center space-y-6">
 
                                 {/* Download Section */}
-                                <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-6 md:p-8 shadow-xl">
-                                    <h2 className="text-2xl font-bold text-white mb-2">Book Compilation Complete!</h2>
-                                    <p className="text-sm text-gray-300 mb-6">Your book manuscript is ready.</p>
+                                <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-6 md:p-8 shadow-xl">
+                                    <h2 className="text-2xl font-bold text-[#17150f] mb-2">Book Compilation Complete!</h2>
+                                    <p className="text-sm text-[#4b443a] mb-6">Your book manuscript is ready.</p>
                                     <div className="space-y-3 max-w-sm mx-auto">
-                                        <div className="p-3 bg-[#0a0f1a] rounded-xl border border-white/10 flex items-center justify-between">
-                                            <div className="text-left"><div className="font-semibold text-sm text-white">Microsoft Word (.docx)</div></div>
-                                            <a href={route('guest-writer.download-book', { session_token: token, format: 'word' })} className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-xs font-bold text-white">Download</a>
+                                        <div className="p-3 bg-[#faf8f3] rounded-xl border border-[#d8d1c1] flex items-center justify-between">
+                                            <div className="text-left"><div className="font-semibold text-sm text-[#17150f]">Microsoft Word (.docx)</div></div>
+                                            <a href={route('guest-writer.download-book', { session_token: token, format: 'word' })} className="px-3 py-1.5 bg-[#e7e1d4] hover:bg-[#e7e1d4] border border-[#d8d1c1] rounded-lg text-xs font-bold text-[#17150f]">Download</a>
                                         </div>
-                                        <div className="p-3 bg-[#0a0f1a] rounded-xl border border-white/10 flex items-center justify-between">
-                                            <div className="text-left"><div className="font-semibold text-sm text-white">PDF Document (.pdf)</div></div>
-                                            <a href={route('guest-writer.download-book', { session_token: token, format: 'pdf' })} className="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/10 rounded-lg text-xs font-bold text-white">Download</a>
+                                        <div className="p-3 bg-[#faf8f3] rounded-xl border border-[#d8d1c1] flex items-center justify-between">
+                                            <div className="text-left"><div className="font-semibold text-sm text-[#17150f]">PDF Document (.pdf)</div></div>
+                                            <a href={route('guest-writer.download-book', { session_token: token, format: 'pdf' })} className="px-3 py-1.5 bg-[#e7e1d4] hover:bg-[#e7e1d4] border border-[#d8d1c1] rounded-lg text-xs font-bold text-[#17150f]">Download</a>
                                         </div>
                                     </div>
                                 </div>
@@ -986,13 +986,13 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                 <div className="bg-gradient-to-br from-indigo-900/40 to-cyan-900/40 rounded-2xl border border-indigo-500/30 p-6 md:p-8 shadow-xl relative overflow-hidden group">
                                     <div className="absolute inset-0 bg-indigo-500/5 group-hover:bg-indigo-500/10 transition-colors"></div>
                                     <div className="relative z-10">
-                                        <span className="inline-block py-1 px-3 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[10px] font-bold uppercase tracking-wider mb-3">Next Step</span>
-                                        <h3 className="text-xl font-bold text-white mb-2">Ready to Publish Globally?</h3>
-                                        <p className="text-sm text-gray-300 mb-6 max-w-md mx-auto">
+                                        <span className="inline-block py-1 px-3 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-700 text-[10px] font-bold uppercase tracking-wider mb-3">Next Step</span>
+                                        <h3 className="text-xl font-bold text-[#17150f] mb-2">Ready to Publish Globally?</h3>
+                                        <p className="text-sm text-[#4b443a] mb-6 max-w-md mx-auto">
                                             Turn your manuscript into a bestseller. Create a free account to distribute to Amazon, Google Books, and 100+ stores.
                                         </p>
                                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                            <Link href={route('login')} className="w-full sm:w-auto px-6 py-2.5 bg-[#0a0f1a] hover:bg-[#151b29] border border-white/10 text-white font-bold text-sm rounded-lg transition-all">
+                                            <Link href={route('login')} className="w-full sm:w-auto px-6 py-2.5 bg-[#faf8f3] hover:bg-[#151b29] border border-[#d8d1c1] text-[#17150f] font-bold text-sm rounded-lg transition-all">
                                                 Login to Account
                                             </Link>
                                             <Link href={route('register')} className="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-indigo-500 to-cyan-500 hover:scale-105 text-white font-bold text-sm rounded-lg shadow-lg transition-all">
@@ -1011,28 +1011,28 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
             {/* Image Generation Modal */}
             {
                 showImagePromptModal && (
-                    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[100] p-4">
-                        <div className="bg-[#0d1220] rounded-2xl border border-white/10 w-full max-w-md overflow-hidden shadow-2xl">
-                            <div className="p-4 border-b border-white/10 flex items-center justify-between">
-                                <h3 className="text-lg font-bold text-white">🎨 Generate Illustration</h3>
-                                <button onClick={() => setShowImagePromptModal(false)} className="text-gray-400 hover:text-white">✕</button>
+                    <div className="fixed inset-0 bg-[#e7e1d4]/70 backdrop-blur-sm flex items-center justify-center z-[100] p-4">
+                        <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] w-full max-w-md overflow-hidden shadow-2xl">
+                            <div className="p-4 border-b border-[#d8d1c1] flex items-center justify-between">
+                                <h3 className="text-lg font-bold text-[#17150f]">🎨 Generate Illustration</h3>
+                                <button onClick={() => setShowImagePromptModal(false)} className="text-[#635c4e] hover:text-[#17150f]">✕</button>
                             </div>
                             <div className="p-4 space-y-4">
-                                <p className="text-sm text-gray-300">Generate for: <span className="text-white font-semibold">{activeSection?.title}</span></p>
+                                <p className="text-sm text-[#4b443a]">Generate for: <span className="text-[#17150f] font-semibold">{activeSection?.title}</span></p>
                                 <div className="grid grid-cols-2 gap-3">
-                                    <button onClick={() => setImagePromptMode('auto')} className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'auto' ? 'border-indigo-500 bg-indigo-500/20 text-white' : 'border-white/10 bg-white/5 text-gray-300'}`}>
+                                    <button onClick={() => setImagePromptMode('auto')} className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'auto' ? 'border-indigo-500 bg-indigo-500/20 text-white' : 'border-[#d8d1c1] bg-[#faf8f3] text-[#4b443a]'}`}>
                                         <span className="block text-sm font-bold">Auto (AI)</span>
                                     </button>
-                                    <button onClick={() => setImagePromptMode('custom')} className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'custom' ? 'border-cyan-500 bg-cyan-500/20 text-white' : 'border-white/10 bg-white/5 text-gray-300'}`}>
+                                    <button onClick={() => setImagePromptMode('custom')} className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'custom' ? 'border-cyan-500 bg-cyan-500/20 text-white' : 'border-[#d8d1c1] bg-[#faf8f3] text-[#4b443a]'}`}>
                                         <span className="block text-sm font-bold">Custom</span>
                                     </button>
                                 </div>
                                 {imagePromptMode === 'custom' && (
-                                    <textarea value={customImagePrompt} onChange={e => setCustomImagePrompt(e.target.value)} placeholder="Describe the image..." className="w-full bg-[#0a0f1a] border border-white/10 rounded-lg px-3 py-2 text-white text-sm h-24 resize-none" />
+                                    <textarea value={customImagePrompt} onChange={e => setCustomImagePrompt(e.target.value)} placeholder="Describe the image..." className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2 text-[#17150f] text-sm h-24 resize-none" />
                                 )}
                             </div>
-                            <div className="p-4 border-t border-white/10 flex gap-3">
-                                <button onClick={() => setShowImagePromptModal(false)} className="flex-1 py-2.5 bg-white/5 text-gray-300 font-semibold rounded-lg text-sm border border-white/10">Cancel</button>
+                            <div className="p-4 border-t border-[#d8d1c1] flex gap-3">
+                                <button onClick={() => setShowImagePromptModal(false)} className="flex-1 py-2.5 bg-[#faf8f3] text-[#4b443a] font-semibold rounded-lg text-sm border border-[#d8d1c1]">Cancel</button>
                                 <button onClick={() => generateImage(activeSection, imagePromptMode, customImagePrompt)} disabled={imagePromptMode === 'custom' && !customImagePrompt.trim()} className="flex-1 py-2.5 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-bold rounded-lg text-sm shadow-lg disabled:opacity-50">Generate Image</button>
                             </div>
                         </div>

@@ -31,15 +31,15 @@ export default function Footer() {
         { name: 'About Us', href: route('about') },
         { name: 'Contact Us', href: route('contact') },
         { name: 'Careers', href: route('careers') },
-        { name: 'Partners', href: '#' },
+        { name: 'Partners', href: route('contact') },
         { name: 'Challenges & Contests', href: route('challenges.index') },
     ];
 
     const legalLinks = [
         { name: 'Terms & Conditions', href: route('terms-and-conditions') },
         { name: 'Privacy Policy', href: route('privacy-policy') },
-        { name: 'Copyright Policy', href: '#' },
-        { name: 'Refund Policy', href: '#' },
+        { name: 'Copyright Policy', href: route('terms-and-conditions') },
+        { name: 'Refund Policy', href: route('terms-and-conditions') },
     ];
 
     const socialIcons = [

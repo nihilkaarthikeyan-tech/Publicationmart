@@ -46,6 +46,23 @@ class PhonePeService
      */
     public function initiatePayment($merchantTransactionId, $amount, $callbackUrl, $redirectUrl, $userId = null, $mobileNumber = '9999999999')
     {
+        // Local safety: the .env here carries PRODUCTION PhonePe credentials,
+        // so a test checkout on localhost would reach the real gateway. Every
+        // payment flow funnels through this method, so refusing here disables
+        // them all at once. Nothing is removed — on staging/production
+        // (APP_ENV != local) this guard never triggers, and it can be
+        // overridden locally with PHONEPE_ALLOW_LOCAL=true when a gateway
+        // test is genuinely intended.
+        if (app()->environment('local') && !env('PHONEPE_ALLOW_LOCAL', false)) {
+            \Log::info('PhonePe payment blocked in local environment', [
+                'txn' => $merchantTransactionId,
+                'amount' => $amount,
+            ]);
+            return [
+                'success' => false,
+                'message' => 'Payments are disabled in the local environment. Set PHONEPE_ALLOW_LOCAL=true in .env to enable gateway testing.'
+            ];
+        }
 
         if (!$this->client) {
             return [
