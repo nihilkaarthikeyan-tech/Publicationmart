@@ -231,7 +231,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 <div className="max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-[1.08fr_.92fr] gap-14 items-center">
                     <div className={loaded ? 'pm-rise' : 'opacity-0'}>
                         <p className="pm-run mb-7" style={{ color: 'var(--cloth)' }}>
-                            India&rsquo;s next-gen AI book writing &amp; publishing house
+                            India&rsquo;s Next Gen&ensp;·&ensp;AI-Powered Book Writing &amp; Publishing Platform
                         </p>
 
                         <h1 className="pm-serif font-medium leading-[1.04] tracking-tight text-[clamp(2.5rem,5.8vw,4rem)] mb-7">
@@ -306,10 +306,38 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                 </section>
             )}
 
+            {/* ── the authors — real people from the database ── */}
+            {featuredBooks.length > 0 && (
+                <section id="author-stories" style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
+                    <div className="max-w-6xl mx-auto px-6 py-20">
+                        <RunningHead label="Author success stories" folio="II" />
+                        <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[22ch] mb-12">
+                            The people who published with us.
+                        </h2>
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                            {featuredBooks.map((book) => (
+                                <article key={book.id} className="flex items-start gap-4 p-6"
+                                         style={{ border: '1px solid var(--rule)', background: 'var(--stock-3)' }}>
+                                    <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 pm-serif text-[18px]"
+                                         style={{ background: 'var(--cloth)', color: 'var(--stock-3)' }}>
+                                        {(book.author_name || 'A').charAt(0).toUpperCase()}
+                                    </div>
+                                    <div className="min-w-0">
+                                        <h3 className="pm-serif text-[18px] leading-snug mb-0.5 truncate">{book.author_name || 'Anonymous'}</h3>
+                                        <p className="text-[13px] leading-snug mb-2 truncate" style={{ color: 'var(--ink-3)' }}>{book.title}</p>
+                                        <span className="pm-run" style={{ color: 'var(--foil)', fontSize: 9.5 }}>Published</span>
+                                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* ── how a book is made ───────────────────────── */}
             <section style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="How a book is made" folio="II" />
+                    <RunningHead label="How a book is made" folio="III" />
                     <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[20ch] mb-14">
                         Five stages, and we handle all of them.
                     </h2>
@@ -328,7 +356,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
             {/* ── who we publish ───────────────────────────── */}
             <section className="max-w-6xl mx-auto px-6 py-20">
-                <RunningHead label="Who we publish" folio="III" />
+                <RunningHead label="Who we publish" folio="IV" />
                 <div className="grid md:grid-cols-2 gap-14 items-start">
                     <div>
                         <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight mb-6">
@@ -340,9 +368,22 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             multiple named authors, departmental affiliations, and
                             citation-ready formatting.
                         </p>
-                        <p className="pm-serif text-[18px] leading-relaxed" style={{ color: 'var(--ink-2)' }}>
+                        <p className="pm-serif text-[18px] leading-relaxed mb-8" style={{ color: 'var(--ink-2)' }}>
                             No agent. No proposal. No waiting on a commissioning editor.
                         </p>
+                        <ul className="space-y-5">
+                            {[
+                                ['Global Coverage', 'Reach 50+ countries and thousands of retail channels.'],
+                                ['Full Control', 'You decide the price, the cover, and the distribution.'],
+                                ['Fast Results', 'Go from manuscript to store in as little as 24 hours.'],
+                            ].map(([t, d]) => (
+                                <li key={t} className="pl-5 relative">
+                                    <span className="absolute left-0 top-[8px] w-[6px] h-[6px] rounded-full" style={{ background: 'var(--cloth)' }} />
+                                    <h4 className="pm-serif text-[17px] leading-snug">{t}</h4>
+                                    <p className="text-[13.5px]" style={{ color: 'var(--ink-3)' }}>{d}</p>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                     <dl className="grid gap-px" style={{ background: 'var(--rule)', border: '1px solid var(--rule)' }}>
                         {[
@@ -365,7 +406,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             {/* ── the workshop — the tools, wired as before ── */}
             <section id="tools-suite" style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="The workshop" folio="IV" />
+                    <RunningHead label="The workshop" folio="V" />
                     <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[22ch] mb-12">
                         Every tool a book needs, under one roof.
                     </h2>
@@ -436,7 +477,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             {/* ── plans ────────────────────────────────────── */}
             <section id="pricing-section" style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="Plans" folio="V" />
+                    <RunningHead label="Plans" folio="VI" />
 
                     <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
                         <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[16ch]">
@@ -466,6 +507,12 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         </div>
                     </div>
 
+                    {suite === 'premium' && (
+                        <p className="pm-run mb-8" style={{ color: 'var(--cloth)' }}>
+                            Full Publishing + Marketing &amp; Promotion Services
+                        </p>
+                    )}
+
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
                         {plans.map((p) => (
                             <PlanCard key={p.name} plan={p} suite={suite} guestHref={guestHref} />
@@ -484,7 +531,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
             {/* ── questions ────────────────────────────────── */}
             <section id="faq" className="max-w-6xl mx-auto px-6 py-20">
-                <RunningHead label="Questions" folio="VI" />
+                <RunningHead label="Questions" folio="VII" />
                 <div className="grid md:grid-cols-[.8fr_1.2fr] gap-12">
                     <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight">
                         Before you begin.
@@ -535,7 +582,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             {/* ── every genre ──────────────────────────────── */}
             <section id="genre-section" style={{ background: 'var(--stock)', borderTop: '1px solid var(--rule)' }}>
                 <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="Ready for every genre" folio="VII" />
+                    <RunningHead label="Ready for every genre" folio="VIII" />
                     <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[24ch] mb-12">
                         From literary fiction to technical research.
                     </h2>

@@ -245,7 +245,10 @@ restored and verified in the browser:
    guest flow, Cover Design / Formatting Tool / Design Suite → login, plus
    Insights and Smart Formatting cards), Payouts + Formats rows in the promise
    table, retailer names band (Kindle, Apple, Google Play, B&N, Kobo,
-   IngramSpark), genre grid, trust-capabilities line. The "Join 12,500+
+   IngramSpark), genre grid, trust-capabilities line, author success stories
+   (all 10 `featuredBooks` authors from the database, initial avatar + book
+   title + Published badge, as the old ticker showed), premium-tab note,
+   "Built by Authors" bullets, exact hero badge wording. The "Join 12,500+
    Authors" claim was NOT restored — real `platformStats` numbers are shown
    instead (deliberate; the figure was unverifiable).
 5. ✅ **Original wording restored:** "Pro Suite / Premium Suite" tabs,
