@@ -1,12 +1,17 @@
 import Checkbox from '@/Components/Checkbox';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import AuthSidePanel from './AuthSidePanel';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { useState, useEffect, useCallback } from 'react';
 import { route } from 'ziggy-js';
+
+const SERIF = { fontFamily: "'EB Garamond', Georgia, serif" };
+
+const FIELD =
+    'block w-full pl-11 pr-4 py-3 border border-[#d8d1c1] rounded-md bg-white text-[#17150f] caret-[#6e2530] placeholder-[#a49b8b] focus:outline-none focus:ring-2 focus:ring-[#6e2530]/25 focus:border-[#6e2530] transition-all text-sm';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -27,9 +32,9 @@ export default function Login({ status, canResetPassword }) {
     const [loginMethod, setLoginMethod] = useState('password');
 
     // Bypass reCAPTCHA on testing domains
-    const isTestingMode = typeof window !== 'undefined' && 
-                          (window.location.hostname === 'radinfotec.com' || 
-                           window.location.hostname === 'localhost' || 
+    const isTestingMode = typeof window !== 'undefined' &&
+                          (window.location.hostname === 'radinfotec.com' ||
+                           window.location.hostname === 'localhost' ||
                            window.location.hostname === '127.0.0.1');
 
     // Clear any browser-autofilled values on mount
@@ -134,13 +139,7 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <div className="min-h-screen flex font-sans relative overflow-hidden bg-[#0A0A10]">
-            {/* Ambient Base matching website */}
-            <div className="fixed inset-0 bg-gradient-to-br from-[#0c0814] via-[#120a22] to-[#0A0A10]" />
-            <div className="fixed top-[-10%] left-[-10%] w-[600px] h-[600px] bg-violet-600/20 rounded-full blur-[120px] pointer-events-none" />
-            <div className="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-fuchsia-600/20 rounded-full blur-[100px] pointer-events-none" />
-            <div className="fixed inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '32px 32px' }}></div>
-
+        <div className="min-h-screen flex font-sans relative overflow-hidden bg-[#f0ece3]">
             <Head title="Sign In" />
 
             {/* Left Side - Login Form */}
@@ -148,24 +147,27 @@ export default function Login({ status, canResetPassword }) {
                 <div className="w-full max-w-md space-y-6">
                     {/* Header */}
                     <div className="text-center">
-                        <Link href="/" className="inline-flex justify-center mb-6">
-                            <ApplicationLogo className="h-32 w-auto drop-shadow-lg" />
+                        <Link href="/" className="inline-flex justify-center mb-7">
+                            {/* The wordmark is white lettering, so it sits on a cloth plate. */}
+                            <span className="bg-[#6e2530] rounded-lg px-5 py-1.5 shadow-md inline-flex">
+                                <ApplicationLogo className="h-16 w-auto brightness-0 invert" />
+                            </span>
                         </Link>
-                        <h1 className="text-3xl font-black text-white tracking-tight">Welcome back</h1>
-                        <p className="mt-2 text-slate-400 text-[15px]">Sign in to continue your publishing journey</p>
+                        <h1 className="text-[34px] leading-tight text-[#17150f]" style={SERIF}>Welcome back.</h1>
+                        <p className="mt-2 text-[#635c4e] text-[15px]">Sign in to continue your publishing journey</p>
                     </div>
 
                     {status && (
-                        <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-sm font-medium text-emerald-400 text-center">
+                        <div className="p-3.5 rounded-md bg-emerald-50 border border-emerald-300 text-sm font-medium text-emerald-800 text-center">
                             {status}
                         </div>
                     )}
 
-                    <div className="bg-white/5 backdrop-blur-xl p-8 rounded-[2rem] border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)]">
+                    <div className="bg-[#faf8f3] p-8 rounded-xl border border-[#d8d1c1] shadow-[0_18px_44px_-18px_rgba(23,21,15,0.25)]">
                         {/* Google Sign In */}
                         <a
                             href={route('auth.google')}
-                            className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white/5 hover:bg-white/10 text-white font-medium rounded-xl transition-all border border-white/10 hover:border-white/20 hover:shadow-lg"
+                            className="w-full flex items-center justify-center gap-3 py-3 px-4 bg-white hover:bg-[#f5f2ea] text-[#17150f] font-medium rounded-md transition-colors border border-[#d8d1c1] hover:border-[#7c7364]"
                         >
                             <svg className="w-5 h-5" viewBox="0 0 24 24">
                                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -178,25 +180,25 @@ export default function Login({ status, canResetPassword }) {
 
                         {/* Divider */}
                         <div className="relative my-6">
-                            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/10"></div></div>
+                            <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-[#d8d1c1]"></div></div>
                             <div className="relative flex justify-center text-sm">
-                                <span className="px-4 text-slate-500 font-medium bg-[#0f0b18]">or sign in with email</span>
+                                <span className="px-4 text-[#635c4e] font-medium bg-[#faf8f3]">or sign in with email</span>
                             </div>
                         </div>
 
                         {/* Login Method Tabs */}
-                        <div className="grid grid-cols-2 gap-1 p-1 bg-white/5 rounded-xl border border-white/5 mb-6">
+                        <div className="grid grid-cols-2 gap-1 p-1 bg-[#efe9db] rounded-md border border-[#d8d1c1] mb-6">
                             <button
                                 type="button"
                                 onClick={() => { setLoginMethod('password'); setOtpSent(false); }}
-                                className={`py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${loginMethod === 'password' ? 'bg-violet-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                                className={`py-2 text-sm font-semibold rounded transition-all duration-300 ${loginMethod === 'password' ? 'bg-[#6e2530] text-[#faf8f3] shadow-sm' : 'text-[#635c4e] hover:text-[#17150f] hover:bg-[#faf8f3]'}`}
                             >
                                 Password
                             </button>
                             <button
                                 type="button"
                                 onClick={() => { setLoginMethod('otp'); }}
-                                className={`py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${loginMethod === 'otp' ? 'bg-violet-600 text-white shadow-md' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                                className={`py-2 text-sm font-semibold rounded transition-all duration-300 ${loginMethod === 'otp' ? 'bg-[#6e2530] text-[#faf8f3] shadow-sm' : 'text-[#635c4e] hover:text-[#17150f] hover:bg-[#faf8f3]'}`}
                             >
                                 One-Time Code
                             </button>
@@ -206,10 +208,10 @@ export default function Login({ status, canResetPassword }) {
                         <form onSubmit={submit} className="space-y-4">
                             {/* Email */}
                             <div className="space-y-1.5">
-                                <label className="block text-sm font-medium text-slate-300" htmlFor="email">Email Address</label>
+                                <label className="block text-sm font-medium text-[#4b443a]" htmlFor="email">Email Address</label>
                                 <div className="relative group">
                                     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                                        <svg className="h-5 w-5 text-slate-500 group-focus-within:text-violet-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="h-5 w-5 text-[#a49b8b] group-focus-within:text-[#6e2530] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                         </svg>
                                     </div>
@@ -218,7 +220,7 @@ export default function Login({ status, canResetPassword }) {
                                         type="email"
                                         name="email"
                                         value={data.email}
-                                        className="block w-full pl-11 pr-4 py-3 border border-white/10 rounded-xl bg-white/5 text-white caret-violet-500 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all text-sm"
+                                        className={FIELD}
                                         placeholder="author@example.com"
                                         autoComplete="off"
                                         isFocused={true}
@@ -227,17 +229,17 @@ export default function Login({ status, canResetPassword }) {
                                     />
                                 </div>
                                 <InputError message={errors.email} className="mt-1" />
-                                {otpError && <p className="mt-1 text-sm text-red-400">{otpError}</p>}
-                                {otpSuccess && <p className="mt-1 text-sm text-emerald-400">{otpSuccess}</p>}
+                                {otpError && <p className="mt-1 text-sm text-red-700">{otpError}</p>}
+                                {otpSuccess && <p className="mt-1 text-sm text-emerald-700">{otpSuccess}</p>}
                             </div>
 
                             {/* Password Flow */}
                             {loginMethod === 'password' && (
                                 <div className="space-y-1.5">
-                                    <label className="block text-sm font-medium text-slate-300" htmlFor="password">Password</label>
+                                    <label className="block text-sm font-medium text-[#4b443a]" htmlFor="password">Password</label>
                                     <div className="relative group">
                                         <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                                            <svg className="h-5 w-5 text-slate-500 group-focus-within:text-violet-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg className="h-5 w-5 text-[#a49b8b] group-focus-within:text-[#6e2530] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                             </svg>
                                         </div>
@@ -246,13 +248,13 @@ export default function Login({ status, canResetPassword }) {
                                             type={showPassword ? "text" : "password"}
                                             name="password"
                                             value={data.password}
-                                            className="block w-full pl-11 pr-12 py-3 border border-white/10 rounded-xl bg-white/5 text-white caret-violet-500 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500 transition-all text-sm"
+                                            className={`${FIELD} pr-12`}
                                             autoComplete="off"
                                             onChange={(e) => setData('password', e.target.value)}
                                             placeholder="••••••••"
                                             required
                                         />
-                                        <button type="button" className="absolute inset-y-0 right-0 px-3.5 flex items-center text-slate-500 hover:text-white transition-colors" onClick={() => setShowPassword(!showPassword)}>
+                                        <button type="button" className="absolute inset-y-0 right-0 px-3.5 flex items-center text-[#a49b8b] hover:text-[#17150f] transition-colors" onClick={() => setShowPassword(!showPassword)}>
                                             {showPassword ? (
                                                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" /></svg>
                                             ) : (
@@ -267,20 +269,20 @@ export default function Login({ status, canResetPassword }) {
                             {/* OTP Flow */}
                             {loginMethod === 'otp' && otpSent && (
                                 <div className="space-y-4">
-                                    <label className="block text-sm font-medium text-slate-300 text-center">Enter the verification code sent to your email</label>
+                                    <label className="block text-sm font-medium text-[#4b443a] text-center">Enter the verification code sent to your email</label>
                                     <TextInput
                                         id="otp"
                                         type="text"
                                         name="otp"
                                         value={data.otp}
-                                        className="block w-full text-center text-3xl tracking-[0.5em] py-4 border border-violet-500/50 rounded-xl bg-violet-900/20 text-white caret-violet-400 focus:outline-none focus:ring-4 focus:ring-violet-500/30 font-mono transition-all"
+                                        className="block w-full text-center text-3xl tracking-[0.5em] py-4 border border-[#6e2530]/50 rounded-md bg-[#6e2530]/[0.04] text-[#17150f] caret-[#6e2530] focus:outline-none focus:ring-4 focus:ring-[#6e2530]/20 font-mono transition-all"
                                         onChange={(e) => setData('otp', e.target.value)}
                                         maxLength={6}
                                         placeholder="000000"
                                         autoFocus
                                     />
                                     <div className="text-center">
-                                        <button type="button" onClick={() => { setOtpSent(false); }} className="text-xs text-violet-400 hover:text-violet-300 transition-colors underline">
+                                        <button type="button" onClick={() => { setOtpSent(false); }} className="text-xs text-[#6e2530] hover:text-[#5a1e27] transition-colors underline">
                                             Use a different email or retry
                                         </button>
                                     </div>
@@ -291,11 +293,11 @@ export default function Login({ status, canResetPassword }) {
                             {loginMethod === 'password' && (
                                 <div className="flex items-center justify-between py-1">
                                     <label className="flex items-center cursor-pointer group">
-                                        <Checkbox name="remember" checked={data.remember} onChange={(e) => setData('remember', e.target.checked)} className="rounded border-white/20 bg-white/5 text-violet-500 focus:ring-violet-500 focus:ring-offset-gray-900" />
-                                        <span className="ms-2 text-sm text-slate-400 group-hover:text-white transition-colors select-none">Remember me</span>
+                                        <Checkbox name="remember" checked={data.remember} onChange={(e) => setData('remember', e.target.checked)} className="rounded border-[#d8d1c1] bg-white text-[#6e2530] focus:ring-[#6e2530]" />
+                                        <span className="ms-2 text-sm text-[#635c4e] group-hover:text-[#17150f] transition-colors select-none">Remember me</span>
                                     </label>
                                     {canResetPassword && (
-                                        <Link href={route('password.request')} className="text-sm font-medium text-violet-400 hover:text-violet-300 transition-colors">
+                                        <Link href={route('password.request')} className="text-sm font-medium text-[#6e2530] hover:text-[#5a1e27] hover:underline transition-colors">
                                             Forgot password?
                                         </Link>
                                     )}
@@ -308,20 +310,20 @@ export default function Login({ status, canResetPassword }) {
                                     <PrimaryButton
                                         type="button"
                                         onClick={handleSendOtp}
-                                        className="w-full flex justify-center items-center py-3.5 px-4 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-violet-500 transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] border border-white/10"
+                                        className="w-full flex justify-center items-center py-3.5 px-4 rounded-md text-sm font-bold text-[#faf8f3] bg-[#6e2530] hover:bg-[#5a1e27] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#faf8f3] focus:ring-[#6e2530] transition-colors"
                                         disabled={sendingOtp}
                                     >
-                                        {sendingOtp ? <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : (
+                                        {sendingOtp ? <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-[#faf8f3]" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> : (
                                             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                         )}
                                         {sendingOtp ? 'Sending Code...' : 'Send Login Code'}
                                     </PrimaryButton>
                                 ) : (
                                     <PrimaryButton
-                                        className="w-full flex justify-center items-center py-3.5 px-4 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-violet-500 transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] border border-white/10"
+                                        className="w-full flex justify-center items-center py-3.5 px-4 rounded-md text-sm font-bold text-[#faf8f3] bg-[#6e2530] hover:bg-[#5a1e27] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#faf8f3] focus:ring-[#6e2530] transition-colors"
                                         disabled={processing}
                                     >
-                                        {processing && <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>}
+                                        {processing && <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-[#faf8f3]" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>}
                                         {loginMethod === 'otp' ? 'Verify & Sign In' : 'Sign In'}
                                     </PrimaryButton>
                                 )}
@@ -330,17 +332,17 @@ export default function Login({ status, canResetPassword }) {
 
                         {/* reCAPTCHA v3 Status */}
                         <div className="flex justify-center mt-6">
-                            <div className="flex items-center justify-center gap-2 text-[10px] text-slate-500 font-medium">
+                            <div className="flex items-center justify-center gap-2 text-[10px] text-[#635c4e] font-semibold">
                                 {recaptchaLoaded ? (
                                     <>
-                                        <svg className="w-3 h-3 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg className="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
                                             <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                         </svg>
                                         <span>{isTestingMode ? 'Testing Mode (reCAPTCHA bypassed)' : 'Protected by reCAPTCHA'}</span>
                                     </>
                                 ) : (
                                     <>
-                                        <svg className="animate-spin w-3 h-3 text-slate-500" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                                        <svg className="animate-spin w-3 h-3 text-[#7c7364]" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
                                         <span>Loading security...</span>
                                     </>
                                 )}
@@ -349,8 +351,8 @@ export default function Login({ status, canResetPassword }) {
                     </div>
 
                     <div className="text-center pt-2">
-                        <span className="text-sm text-slate-400">Don't have an account? </span>
-                        <Link href={route('register')} className="text-sm font-bold text-violet-400 hover:text-violet-300 hover:underline transition-colors">
+                        <span className="text-sm text-[#635c4e]">Don't have an account? </span>
+                        <Link href={route('register')} className="text-sm font-bold text-[#6e2530] hover:text-[#5a1e27] hover:underline transition-colors">
                             Start Publishing
                         </Link>
                     </div>
@@ -358,39 +360,14 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             </div>
 
-            {/* Right Side - Image Overlay for Dark Theme Integration */}
-            <div className="hidden lg:block lg:w-[52%] relative overflow-hidden bg-black">
-                {/* Blend the image into the dark theme */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A10] via-transparent to-transparent z-10" />
-                <div className="absolute inset-0 bg-[#0A0A10]/40 z-10 mix-blend-multiply" />
-
-                <img
-                    src="/images/auth-login-hero.png"
-                    alt="Golden book with quill pen"
-                    className="absolute inset-0 w-full h-full object-cover opacity-80"
-                />
-
-                {/* Overlay text at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-12 z-20">
-                    <div className="backdrop-blur-xl bg-black/40 rounded-3xl p-8 border border-white/10 shadow-2xl relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 to-fuchsia-600/20" />
-                        <div className="relative flex items-center gap-6">
-                            <div className="flex-1">
-                                <h3 className="text-white font-black text-2xl tracking-tight mb-1">Your Publishing Partner</h3>
-                                <p className="text-slate-300 text-sm">From manuscript to bookshelf — we make it simple</p>
-                            </div>
-                            <div className="flex gap-3">
-                                <div className="px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg">
-                                    <span className="text-white text-xs font-bold tracking-wider uppercase">Smart Writer</span>
-                                </div>
-                                <div className="px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 shadow-lg">
-                                    <span className="text-white text-xs font-bold tracking-wider uppercase">AI Studio</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* Right Side — the house's cloth board */}
+            <AuthSidePanel
+                eyebrow="PublicationMart · Welcome back"
+                statement="Pick up your story where"
+                emphasis="you left it."
+                line="From manuscript to bookshelf — we make it simple. Your drafts, covers and royalties are exactly where you left them."
+                chips={['Smart Writer', 'AI Studio']}
+            />
         </div>
     );
 }
