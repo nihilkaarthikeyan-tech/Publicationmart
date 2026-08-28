@@ -91,16 +91,17 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="relative z-10 bg-[#17150f] text-white pt-20 pb-10 border-t-2 border-[#a07d3b]/45">
+        // Oxblood binding cloth, matching the masthead — the two bookend the page.
+        <footer className="relative z-10 bg-gradient-to-b from-[#6e2530] to-[#5a1e27] text-white pt-20 pb-10 border-t-2 border-[#a07d3b]/50">
             <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
                 <div className="grid grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-4 mb-16">
                     {/* Guided Publishing */}
                     <div>
-                        <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6">Guided Publishing</h3>
+                        <h3 className="text-xs font-bold text-[#e8cf8e] uppercase tracking-widest mb-6">Guided Publishing</h3>
                         <ul className="space-y-4">
                             {guidedPublishingLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#f0ece3]/70 hover:text-[#e8cf8e] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -110,13 +111,13 @@ export default function Footer() {
 
                     {/* Read */}
                     <div>
-                        <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <h3 className="text-xs font-bold text-[#e8cf8e] uppercase tracking-widest mb-6 flex items-center gap-2">
                             Discover & Read
                         </h3>
                         <ul className="space-y-4">
                             {readLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#f0ece3]/70 hover:text-[#e8cf8e] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -126,13 +127,13 @@ export default function Footer() {
 
                     {/* Services */}
                     <div>
-                        <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <h3 className="text-xs font-bold text-[#e8cf8e] uppercase tracking-widest mb-6 flex items-center gap-2">
                             Services
                         </h3>
                         <ul className="space-y-4">
                             {servicesLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#f0ece3]/70 hover:text-[#e8cf8e] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -142,13 +143,13 @@ export default function Footer() {
 
                     {/* Company */}
                     <div>
-                        <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <h3 className="text-xs font-bold text-[#e8cf8e] uppercase tracking-widest mb-6 flex items-center gap-2">
                             Company
                         </h3>
                         <ul className="space-y-4">
                             {companyLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#f0ece3]/70 hover:text-[#e8cf8e] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -158,13 +159,13 @@ export default function Footer() {
 
                     {/* Legal */}
                     <div>
-                        <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <h3 className="text-xs font-bold text-[#e8cf8e] uppercase tracking-widest mb-6 flex items-center gap-2">
                             Legal
                         </h3>
                         <ul className="space-y-4">
                             {legalLinks.map((item) => (
                                 <li key={item.name}>
-                                    <Link href={item.href} className="text-[#a49b8b] hover:text-[#c9a25b] text-[14px] transition-colors">
+                                    <Link href={item.href} className="text-[#f0ece3]/70 hover:text-[#e8cf8e] text-[14px] transition-colors">
                                         {item.name}
                                     </Link>
                                 </li>
@@ -174,7 +175,7 @@ export default function Footer() {
 
                     {/* Connect With Us */}
                     <div>
-                        <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                        <h3 className="text-xs font-bold text-[#e8cf8e] uppercase tracking-widest mb-6 flex items-center gap-2">
                             Connect With Us
                         </h3>
                         <div className="flex flex-wrap gap-3">
@@ -182,7 +183,7 @@ export default function Footer() {
                                 <a
                                     key={index}
                                     href={icon.href}
-                                    className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white hover:text-black hover:scale-110 flex items-center justify-center transition-all duration-300"
+                                    className="p-3 rounded-xl bg-black/15 border border-[#e8cf8e]/25 text-[#f0ece3] hover:bg-[#a07d3b] hover:text-[#2b1e0a] hover:border-[#a07d3b] hover:scale-110 flex items-center justify-center transition-all duration-300"
                                     aria-label={icon.name}
                                 >
                                     {icon.icon}
@@ -193,21 +194,21 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-end gap-6">
+                <div className="border-t border-[#e8cf8e]/20 pt-8 flex flex-col md:flex-row justify-between items-end gap-6">
                     <div className="space-y-2">
                         <Link href={route('welcome')} className="text-2xl font-black tracking-tight text-white block">
                             PublicationMart
                         </Link>
-                        <p className="text-[#8d8474] text-sm max-w-md">
+                        <p className="text-[#f0ece3]/60 text-sm max-w-md">
                             Empowering authors worldwide with professional tools to design, format, and distribute their stories to a global audience.
                         </p>
                     </div>
 
                     <div className="text-right space-y-2">
-                        <p className="text-sm font-medium text-[#cdc5b6]">
+                        <p className="text-sm font-medium text-[#f0ece3]/75">
                             Built for authors. Powered by Smart Tech.
                         </p>
-                        <p className="text-xs text-[#7c7364]">
+                        <p className="text-xs text-[#f0ece3]/45">
                             © {new Date().getFullYear()} PublicationMart. All rights reserved.
                         </p>
                     </div>
