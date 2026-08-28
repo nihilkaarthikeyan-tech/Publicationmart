@@ -36,9 +36,13 @@ class SetCacheHeaders
             return $response;
         }
 
-        // Cache public pages (homepage, book store)
+        // Public pages: always revalidate the HTML shell. The HTML references
+        // hashed build assets, so caching it means visitors keep loading asset
+        // URLs that stop existing after the next deploy (blank page for up to
+        // an hour). The expensive queries behind these pages are already
+        // cached server-side; the hashed assets below cache for a year.
         if ($request->is('/') || $request->is('book-store') || $request->is('book-store/*')) {
-            $response->headers->set('Cache-Control', 'public, max-age=3600, s-maxage=3600'); // 1 hour
+            $response->headers->set('Cache-Control', 'no-cache, must-revalidate');
 
             // Append Accept-Encoding to Vary without losing X-Inertia
             $vary = $response->headers->get('Vary');
