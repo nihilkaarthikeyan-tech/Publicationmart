@@ -196,7 +196,7 @@ Diff the two objects. Any difference must be explainable and intentional.
 
 | Phase | Page | Status |
 |---|---|---|
-| 0 | Welcome (landing) | ✅ redesigned + full functional parity restored (§9 debts cleared) |
+| 0 | Welcome (landing) | ✅ redesigned + full parity (§9) + motion system (`2fd09b1`): scroll reveals, typed headline, shelf entrance + spine links, count-up, marquee, stamps, grain, foil, FAQ page-turn — all reduced-motion safe |
 | 0 | Navbar (shared) | ✅ restyled, colours only — `5346c46` |
 | 0 | Footer (shared) | ✅ restyled, colours only — `5346c46` |
 | 1–6 | everything else | ⬜ not started |
