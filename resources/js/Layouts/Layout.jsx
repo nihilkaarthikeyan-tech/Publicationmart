@@ -41,7 +41,9 @@ export default function Layout({ children }) {
                 </div>
             )}
 
-            <main className="flex-1 pt-[85px]">
+            {/* 80px matches the navbar height exactly — a larger value exposed a
+                strip of the layout background between the bar and the page. */}
+            <main className="flex-1 pt-[80px]">
                 {children}
             </main>
             <Footer />

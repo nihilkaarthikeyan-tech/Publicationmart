@@ -91,7 +91,7 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="relative z-10 bg-[#17150f] text-white pt-20 pb-10 border-t border-white/5">
+        <footer className="relative z-10 bg-[#17150f] text-white pt-20 pb-10 border-t-2 border-[#a07d3b]/45">
             <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
                 <div className="grid grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-4 mb-16">
                     {/* Guided Publishing */}

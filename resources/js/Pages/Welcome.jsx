@@ -37,6 +37,9 @@ const CSS = `
   --foil:#a07d3b;       /* aged gold foil */
   --ease:cubic-bezier(.16,1,.3,1);
 }
+/* While this page is mounted the document ground is paper, so no dark
+   background shows through overscroll at the top or bottom of the page. */
+html:has(.pm){background:#f0ece3}
 .pm{background:var(--stock);color:var(--ink);font-family:'Figtree',ui-sans-serif,system-ui,sans-serif}
 .pm-serif{font-family:'EB Garamond',Georgia,'Times New Roman',serif}
 .pm-run{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
@@ -149,9 +152,62 @@ const CSS = `
 .pm-plan::after{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s;pointer-events:none;background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(160,125,59,.14),transparent 65%)}
 .pm-plan:hover::after{opacity:1}
 
-/* choose-button arrow slides in */
-.pm-arr{display:inline-block;max-width:0;overflow:hidden;vertical-align:bottom;white-space:nowrap;transition:max-width .3s var(--ease),padding-left .3s var(--ease)}
-.pm-plan a:hover .pm-arr,.pm-plan a:focus-visible .pm-arr{max-width:1.4em;padding-left:.45em}
+/* choose-button arrow slides in (transform only — no layout animation) */
+.pm-arr{display:inline-block;margin-left:.45em;opacity:0;transform:translateX(-6px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.pm-plan a:hover .pm-arr,.pm-plan a:focus-visible .pm-arr{opacity:1;transform:none}
+
+/* ── editorial structures: lists and indexes, not grids of cards ── */
+
+/* the catalogue list — entries hang off rules and slide on hover.
+   The row's contents translate; the row box itself never moves, so the
+   rules stay put and nothing triggers layout. */
+.pm-entry{transition:background-color .3s}
+.pm-entry>div{transition:transform .3s var(--ease)}
+.pm-entry:hover{background:rgba(110,37,48,.045)}
+.pm-entry:hover>div{transform:translateX(10px)}
+.pm-entry-t{transition:color .25s}
+.pm-entry:hover .pm-entry-t{color:var(--cloth)}
+.pm-entry-arr{opacity:0;transform:translateX(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.pm-entry:hover .pm-entry-arr{opacity:1;transform:none}
+
+/* the author index — flows in columns like back matter */
+.pm-index{column-width:230px;column-gap:44px;column-rule:1px solid var(--rule)}
+.pm-index-entry{break-inside:avoid;padding:0 0 18px;margin:0 0 18px;border-bottom:1px solid var(--rule)}
+
+/* the press schedule — stages threaded on one continuous rule */
+.pm-stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:34px 26px;position:relative;padding-top:26px}
+.pm-stages::before{content:"";position:absolute;top:5px;left:0;right:0;height:1px;background:var(--rule)}
+.pm-stage{position:relative}
+.pm-stage-dot{position:absolute;top:-26px;left:0;width:9px;height:9px;border-radius:50%;background:var(--stock-3);border:1px solid var(--foil);transform:translateY(1px);transition:background .3s,transform .3s var(--ease)}
+.pm-stage:hover .pm-stage-dot{background:var(--foil);transform:translateY(1px) scale(1.35)}
+
+/* the contents page — title, dotted leader, description */
+.pm-contents{border-top:1px solid var(--rule)}
+.pm-contents-row{display:grid;grid-template-columns:34px minmax(140px,auto) 1fr minmax(0,44%);align-items:baseline;gap:0 14px;padding:22px 0;border-bottom:1px solid var(--rule);transition:background-color .3s}
+.pm-contents-row>*{transition:transform .3s var(--ease)}
+.pm-contents-link:hover,.pm-contents-link:focus-visible{background:rgba(110,37,48,.045)}
+.pm-contents-link:hover>*,.pm-contents-link:focus-visible>*{transform:translateX(12px)}
+.pm-contents-t{transition:color .25s}
+.pm-contents-link:hover .pm-contents-t{color:var(--cloth)}
+.pm-contents-leader{align-self:center;height:1px;background-image:linear-gradient(90deg,var(--rule) 45%,transparent 0);background-size:6px 1px;background-repeat:repeat-x;min-width:24px}
+.pm-arr-c{display:inline-block;transition:transform .3s var(--ease)}
+.pm-contents-link:hover .pm-arr-c{transform:translateX(5px)}
+@media(max-width:760px){
+  .pm-contents-row{grid-template-columns:30px 1fr;gap:4px 12px}
+  .pm-contents-leader{display:none}
+  .pm-contents-d{grid-column:2}
+}
+
+/* the subject index — type at scale, rules between */
+.pm-subjects{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0;border-top:1px solid var(--rule)}
+.pm-subject{padding:20px 6px 18px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:7px;transition:background-color .3s}
+.pm-subject>*{transition:transform .3s var(--ease),color .25s}
+.pm-subject:hover{background:rgba(110,37,48,.05)}
+.pm-subject:hover>*{transform:translateX(12px)}
+.pm-subject-n{transition:color .25s}
+.pm-subject:hover .pm-subject-n{color:var(--cloth)}
+.pm-subject-d{transition:color .25s}
+.pm-subject:hover .pm-subject-d{color:var(--foil)}
 
 /* long academic titles stay inside the page */
 .pm-clamp4{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
@@ -366,6 +422,40 @@ function RunningHead({ label, folio }) {
             <div className="pm-rule flex-1 rvx" />
             {folio && <span className="pm-run rv" style={{ color: 'var(--foil)', '--d': '250ms' }}>{folio}</span>}
         </div>
+    );
+}
+
+/**
+ * A chapter of the page, set the way a book sets a page: the running head and
+ * folio live in the outer margin and stay beside the reader while the chapter
+ * scrolls past — which is what a printed running head does. It also breaks the
+ * page out of the stack-of-full-width-bands rhythm that every template has.
+ */
+function Chapter({ label, folio, id, ground, children, lead }) {
+    return (
+        <section id={id} style={ground}>
+            <div className="max-w-[1180px] mx-auto px-6 py-24">
+                <div className="grid md:grid-cols-[152px_minmax(0,1fr)] gap-x-16">
+                    <div className="md:sticky md:top-28 self-start mb-10 md:mb-0">
+                        <div className="pm-rule mb-4 rvx" />
+                        <p className="pm-run rv">{label}</p>
+                        {folio && (
+                            <p className="pm-serif text-[24px] mt-2 rv" style={{ color: 'var(--foil)', '--d': '160ms' }}>
+                                {folio}
+                            </p>
+                        )}
+                    </div>
+                    <div>
+                        {lead && (
+                            <h2 className="pm-serif text-[clamp(2rem,4.4vw,2.9rem)] leading-[1.12] max-w-[24ch] mb-14 rv">
+                                {lead}
+                            </h2>
+                        )}
+                        {children}
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 }
 
@@ -614,141 +704,156 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
 
             {/* ── catalogue — the Great Book opens beside the list ── */}
             {shelf.length > 0 && (
-                <section className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="From the catalogue" folio="I" />
-                    <div className="grid md:grid-cols-[.8fr_1.2fr] gap-14 items-center">
-                        <div className="hidden md:block h-[440px] rv">
+                <Chapter label="From the catalogue" folio="I">
+                    <div className="grid lg:grid-cols-[300px_minmax(0,1fr)] gap-16 items-start">
+                        <div className="hidden lg:block h-[430px] rv">
                             <GreatBook books={shelf} />
                         </div>
                         <div>
-                            <div className="grid sm:grid-cols-2 gap-x-10 gap-y-9">
+                            {/* A publisher's list: titles hang off a rule, no boxes. */}
+                            <ol>
                                 {shelf.map((b, i) => (
-                                    <article key={b.id} className="rv" style={{ '--d': `${i * 70}ms` }}>
-                                        <div className="pm-rule mb-4" />
-                                        <h3 className="pm-serif text-[20px] leading-snug mb-2">
-                                            <Link href={`/book-store/${b.id}`} className="pm-uline">
-                                                {b.title}
-                                            </Link>
-                                        </h3>
-                                        <p className="text-[13px] leading-relaxed" style={{ color: 'var(--ink-3)' }}>{b.author_name}</p>
-                                    </article>
+                                    <li key={b.id} className="rv group" style={{ '--d': `${i * 60}ms`, borderTop: '1px solid var(--rule)' }}>
+                                        <Link href={`/book-store/${b.id}`} className="block py-5 pm-entry">
+                                            <div className="flex items-baseline gap-5">
+                                                <span className="pm-serif text-[13px] w-7 shrink-0" style={{ color: 'var(--foil)' }}>
+                                                    {String(i + 1).padStart(2, '0')}
+                                                </span>
+                                                <span className="flex-1 min-w-0">
+                                                    <span className="pm-serif text-[19px] leading-snug block pm-entry-t">{b.title}</span>
+                                                    <span className="text-[13px] block mt-1" style={{ color: 'var(--ink-3)' }}>{b.author_name}</span>
+                                                </span>
+                                                <span className="pm-entry-arr pm-serif text-[17px] shrink-0" style={{ color: 'var(--cloth)' }} aria-hidden="true">→</span>
+                                            </div>
+                                        </Link>
+                                    </li>
                                 ))}
-                            </div>
-                            <div className="mt-12 rv" style={{ '--d': '300ms' }}>
+                            </ol>
+                            <div className="mt-10 rv" style={{ '--d': '300ms', borderTop: '1px solid var(--rule)', paddingTop: '1.5rem' }}>
                                 <Link href={route('book-store.index')} className="pm-run pm-uline" style={{ color: 'var(--cloth)' }}>
                                     See every title →
                                 </Link>
                             </div>
                         </div>
                     </div>
-                </section>
+                </Chapter>
             )}
 
             {/* ── the authors — real people from the database ── */}
             {featuredBooks.length > 0 && (
-                <section id="author-stories" style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
-                    <div className="max-w-6xl mx-auto px-6 py-20">
-                        <RunningHead label="Author success stories" folio="II" />
-                        <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[22ch] mb-12">
-                            The people who published with us.
-                        </h2>
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                            {featuredBooks.map((book, i) => (
-                                <article key={book.id} className="flex items-start gap-4 p-6 rv"
-                                         style={{ border: '1px solid var(--rule)', background: 'var(--stock-3)', '--d': `${(i % 3) * 80}ms` }}>
-                                    <div className="w-11 h-11 rounded-full flex items-center justify-center shrink-0 pm-serif text-[18px]"
-                                         style={{ background: 'var(--cloth)', color: 'var(--stock-3)' }}>
-                                        {(book.author_name || 'A').charAt(0).toUpperCase()}
-                                    </div>
-                                    <div className="min-w-0">
-                                        <h3 className="pm-serif text-[18px] leading-snug mb-0.5 truncate">{book.author_name || 'Anonymous'}</h3>
-                                        <p className="text-[13px] leading-snug mb-2 truncate" style={{ color: 'var(--ink-3)' }}>{book.title}</p>
-                                        <span className="pm-stamp" style={{ animationDelay: `${(i % 3) * 140 + 220}ms` }}>Published</span>
-                                    </div>
-                                </article>
-                            ))}
-                        </div>
+                <Chapter
+                    id="author-stories"
+                    label="Our authors"
+                    folio="II"
+                    lead={<>Published this season.</>}
+                    ground={{ borderTop: '1px solid var(--rule)' }}
+                >
+                    {/* An author index, set in columns like the back matter of a
+                        catalogue — names lead, titles follow in smaller type. */}
+                    <div className="pm-index">
+                        {featuredBooks.map((book, i) => (
+                            <p key={book.id} className="pm-index-entry rv" style={{ '--d': `${Math.min(i * 45, 320)}ms` }}>
+                                <span className="pm-serif text-[17.5px] leading-snug block">{book.author_name || 'Anonymous'}</span>
+                                <span className="text-[13px] leading-snug block mt-0.5" style={{ color: 'var(--ink-3)' }}>{book.title}</span>
+                            </p>
+                        ))}
                     </div>
-                </section>
+                    <p className="mt-12 text-[14px] rv" style={{ color: 'var(--ink-3)', '--d': '250ms' }}>
+                        <span className="pm-stamp mr-3">Published</span>
+                        and listed worldwide — every name above is a PublicationMart author.
+                    </p>
+                </Chapter>
             )}
 
             {/* ── how a book is made ───────────────────────── */}
-            <section style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
-                <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="How a book is made" folio="III" />
-                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[20ch] mb-14 rv">
-                        Five stages, and we handle all of them.
-                    </h2>
-                    <ol className="grid md:grid-cols-5 gap-x-8 gap-y-10">
-                        {stages.map((s, i) => (
-                            <li key={s.n} className="rv" style={{ '--d': `${i * 110}ms` }}>
-                                <div className="pm-serif text-[26px] mb-3" style={{ color: 'var(--foil)' }}>{s.n}</div>
-                                <div className="pm-rule mb-4" />
-                                <h3 className="pm-serif text-[19px] mb-2">{s.t}</h3>
-                                <p className="text-[13.5px] leading-relaxed" style={{ color: 'var(--ink-3)' }}>{s.d}</p>
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-            </section>
+            <Chapter
+                label="How a book is made"
+                folio="III"
+                lead={<>Five stages, and we handle all of them.</>}
+                ground={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}
+            >
+                {/* Stages hang off a single continuous rule, like a press schedule. */}
+                <ol className="pm-stages">
+                    {stages.map((s, i) => (
+                        <li key={s.n} className="rv pm-stage" style={{ '--d': `${i * 100}ms` }}>
+                            <span className="pm-stage-dot" aria-hidden="true" />
+                            <div className="pm-serif text-[24px] mb-2" style={{ color: 'var(--foil)' }}>{s.n}</div>
+                            <h3 className="pm-serif text-[20px] mb-2">{s.t}</h3>
+                            <p className="text-[13.5px] leading-relaxed" style={{ color: 'var(--ink-3)' }}>{s.d}</p>
+                        </li>
+                    ))}
+                </ol>
+            </Chapter>
 
-            {/* ── who we publish ───────────────────────────── */}
-            <section className="max-w-6xl mx-auto px-6 py-20">
-                <RunningHead label="Who we publish" folio="IV" />
-                <div className="grid md:grid-cols-2 gap-14 items-start">
-                    <div className="rv">
-                        <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight mb-6">
-                            Most of our authors teach for a living.
-                        </h2>
-                        <p className="pm-serif text-[18px] leading-relaxed mb-5" style={{ color: 'var(--ink-2)' }}>
-                            Textbooks, monographs and technical titles — often written by four
-                            or five colleagues at once. The process is built around that:
-                            multiple named authors, departmental affiliations, and
-                            citation-ready formatting.
-                        </p>
-                        <p className="pm-serif text-[18px] leading-relaxed mb-8" style={{ color: 'var(--ink-2)' }}>
-                            No agent. No proposal. No waiting on a commissioning editor.
-                        </p>
-                        <ul className="space-y-5">
-                            {[
-                                ['Global Coverage', 'Reach 50+ countries and thousands of retail channels.'],
-                                ['Full Control', 'You decide the price, the cover, and the distribution.'],
-                                ['Fast Results', 'Go from manuscript to store in as little as 24 hours.'],
-                            ].map(([t, d]) => (
-                                <li key={t} className="pl-5 relative">
-                                    <span className="absolute left-0 top-[8px] w-[6px] h-[6px] rounded-full" style={{ background: 'var(--cloth)' }} />
-                                    <h4 className="pm-serif text-[17px] leading-snug">{t}</h4>
-                                    <p className="text-[13.5px]" style={{ color: 'var(--ink-3)' }}>{d}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <dl className="grid gap-px rv" style={{ background: 'var(--rule)', border: '1px solid var(--rule)', '--d': '150ms' }}>
-                        {[
-                            ['Copyright', 'Stays entirely yours. We claim nothing.'],
-                            ['Royalty', 'You keep 100% as per marketplace payouts.'],
-                            ['Payouts', 'Transparent royalty reports, paid out monthly.'],
-                            ['ISBN', 'Allocated and registered to your title.'],
-                            ['Reach', 'Amazon, Apple, Google and 50+ stores.'],
-                            ['Formats', 'eBook, paperback, hardcover and audiobook.'],
-                        ].map(([k, v]) => (
-                            <div key={k} className="px-6 py-5" style={{ background: 'var(--stock)' }}>
-                                <dt className="pm-run mb-1.5" style={{ color: 'var(--cloth)' }}>{k}</dt>
-                                <dd className="pm-serif text-[17px]" style={{ color: 'var(--ink-2)' }}>{v}</dd>
+            {/* ── who we publish — the dark spread, mid-book ── */}
+            <section className="pm-dark" style={{ background: 'var(--ink)' }}>
+                <div className="max-w-[1180px] mx-auto px-6 py-28">
+                    <div className="grid md:grid-cols-[152px_minmax(0,1fr)] gap-x-16">
+                        <div className="md:sticky md:top-28 self-start mb-10 md:mb-0">
+                            <div className="mb-4 rvx" style={{ height: 1, background: 'rgba(160,125,59,.45)' }} />
+                            <p className="pm-run rv" style={{ color: 'rgba(240,236,227,.55)' }}>Who we publish</p>
+                            <p className="pm-serif text-[24px] mt-2 rv pm-foil" style={{ '--d': '160ms' }}>IV</p>
+                        </div>
+
+                        <div className="grid lg:grid-cols-2 gap-x-16 gap-y-12 items-start">
+                            <div className="rv">
+                                <h2 className="pm-serif text-[clamp(2rem,4.4vw,3rem)] leading-[1.1] mb-7" style={{ color: 'var(--stock-3)' }}>
+                                    Most of our authors <em style={{ color: '#e8cf8e' }}>teach for a living.</em>
+                                </h2>
+                                <p className="pm-serif text-[18.5px] leading-relaxed mb-5" style={{ color: 'rgba(240,236,227,.72)' }}>
+                                    Textbooks, monographs and technical titles — often written by four
+                                    or five colleagues at once. The process is built around that:
+                                    multiple named authors, departmental affiliations, and
+                                    citation-ready formatting.
+                                </p>
+                                <p className="pm-serif text-[18.5px] leading-relaxed" style={{ color: 'rgba(240,236,227,.72)' }}>
+                                    No agent. No proposal. No waiting on a commissioning editor.
+                                </p>
+                                <ul className="space-y-5 mt-9">
+                                    {[
+                                        ['Global Coverage', 'Reach 50+ countries and thousands of retail channels.'],
+                                        ['Full Control', 'You decide the price, the cover, and the distribution.'],
+                                        ['Fast Results', 'Go from manuscript to store in as little as 24 hours.'],
+                                    ].map(([t, d]) => (
+                                        <li key={t} className="pl-5 relative">
+                                            <span className="absolute left-0 top-[9px] w-[6px] h-[6px] rounded-full" style={{ background: 'var(--foil)' }} />
+                                            <h4 className="pm-serif text-[17px] leading-snug" style={{ color: 'var(--stock-3)' }}>{t}</h4>
+                                            <p className="text-[13.5px]" style={{ color: 'rgba(240,236,227,.5)' }}>{d}</p>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
-                        ))}
-                    </dl>
+
+                            {/* The terms, set as a colophon — hairlines, no boxes. */}
+                            <dl className="rv" style={{ '--d': '150ms' }}>
+                                {[
+                                    ['Copyright', 'Stays entirely yours. We claim nothing.'],
+                                    ['Royalty', 'You keep 100% as per marketplace payouts.'],
+                                    ['Payouts', 'Transparent royalty reports, paid out monthly.'],
+                                    ['ISBN', 'Allocated and registered to your title.'],
+                                    ['Reach', 'Amazon, Apple, Google and 50+ stores.'],
+                                    ['Formats', 'eBook, paperback, hardcover and audiobook.'],
+                                ].map(([k, v]) => (
+                                    <div key={k} className="grid grid-cols-[92px_minmax(0,1fr)] gap-6 py-4"
+                                         style={{ borderTop: '1px solid rgba(240,236,227,.14)' }}>
+                                        <dt className="pm-run pt-1" style={{ color: 'var(--foil)' }}>{k}</dt>
+                                        <dd className="pm-serif text-[17px]" style={{ color: 'rgba(240,236,227,.82)' }}>{v}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </div>
+                    </div>
                 </div>
             </section>
 
             {/* ── the workshop — the tools, wired as before ── */}
-            <section id="tools-suite" style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
-                <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="The workshop" folio="V" />
-                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[22ch] mb-12 rv">
-                        Every tool a book needs, under one roof.
-                    </h2>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <Chapter
+                id="tools-suite"
+                label="The workshop"
+                folio="V"
+                lead={<>Every tool a book needs, under one roof.</>}
+            >
+                    <div className="pm-contents">
                         {[
                             {
                                 title: 'Smart Writing Tool',
@@ -783,42 +888,49 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                                 desc: 'Automatically convert your manuscript into eBook, Paperback, and Hardcover formats that meet global industry standards.',
                             },
                         ].map((tool, i) => {
+                            /* A contents page: title on the left, description on the
+                               right, joined by a dotted leader — the way a book lists
+                               what is inside. Entries that lead somewhere are links. */
                             const body = (
                                 <>
-                                    <div className="pm-rule mb-4" />
-                                    <h3 className="pm-serif text-[21px] mb-2">{tool.title}</h3>
-                                    <p className="text-[13.5px] leading-relaxed flex-1" style={{ color: 'var(--ink-3)' }}>{tool.desc}</p>
-                                    {tool.href && (
-                                        <span className="pm-run mt-5 inline-block" style={{ color: 'var(--cloth)' }}>
-                                            {tool.cta} →
-                                        </span>
-                                    )}
+                                    <span className="pm-serif text-[13px] pm-contents-no" style={{ color: 'var(--foil)' }}>
+                                        {String(i + 1).padStart(2, '0')}
+                                    </span>
+                                    <span className="pm-contents-t pm-serif text-[21px] leading-snug">{tool.title}</span>
+                                    <span className="pm-contents-leader" aria-hidden="true" />
+                                    <span className="pm-contents-d text-[13.5px] leading-relaxed" style={{ color: 'var(--ink-3)' }}>
+                                        {tool.desc}
+                                        {tool.href && (
+                                            <span className="pm-run block mt-3" style={{ color: 'var(--cloth)' }}>
+                                                {tool.cta}<span className="pm-arr-c" aria-hidden="true"> →</span>
+                                            </span>
+                                        )}
+                                    </span>
                                 </>
                             );
-                            const cardStyle = { border: '1px solid var(--rule)', background: 'var(--stock)', '--d': `${(i % 3) * 90}ms` };
+                            const style = { '--d': `${i * 70}ms` };
                             return tool.href ? (
-                                <Link key={tool.title} href={tool.href}
-                                      className="flex flex-col p-6 rv transition-colors hover:bg-[color:var(--stock-3)]"
-                                      style={cardStyle}>
+                                <Link key={tool.title} href={tool.href} className="pm-contents-row pm-contents-link rv" style={style}>
                                     {body}
                                 </Link>
                             ) : (
-                                <article key={tool.title} className="flex flex-col p-6 rv" style={cardStyle}>
+                                <div key={tool.title} className="pm-contents-row rv" style={style}>
                                     {body}
-                                </article>
+                                </div>
                             );
                         })}
                     </div>
-                </div>
-            </section>
+            </Chapter>
 
             {/* ── plans ────────────────────────────────────── */}
-            <section id="pricing-section" style={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}>
-                <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="Plans" folio="VI" />
-
+            <Chapter
+                id="pricing-section"
+                label="Plans"
+                folio="VI"
+                ground={{ background: 'var(--stock-3)', borderTop: '1px solid var(--rule)', borderBottom: '1px solid var(--rule)' }}
+            >
                     <div className="flex flex-wrap items-end justify-between gap-6 mb-10 rv">
-                        <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[16ch]">
+                        <h2 className="pm-serif text-[clamp(2rem,4.4vw,2.9rem)] leading-[1.12] max-w-[16ch]">
                             Publish it yourself, or let us do it.
                         </h2>
 
@@ -864,17 +976,11 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         </Link>
                         .
                     </p>
-                </div>
-            </section>
+            </Chapter>
 
             {/* ── questions ────────────────────────────────── */}
-            <section id="faq" className="max-w-6xl mx-auto px-6 py-20">
-                <RunningHead label="Questions" folio="VII" />
-                <div className="grid md:grid-cols-[.8fr_1.2fr] gap-12">
-                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight rv">
-                        Before you begin.
-                    </h2>
-
+            <Chapter id="faq" label="Questions" folio="VII" lead={<>Before you begin.</>}>
+                <div className="max-w-[68ch]">
                     <div>
                         {FAQS.map((faq, i) => {
                             const open = openFaq === i;
@@ -907,7 +1013,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         <div className="pm-rule" />
                     </div>
                 </div>
-            </section>
+            </Chapter>
 
             {/* ── where your book travels ──────────────────── */}
             <section style={{ background: 'var(--stock-2)', borderTop: '1px solid var(--rule)' }}>
@@ -931,31 +1037,32 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             </section>
 
             {/* ── every genre ──────────────────────────────── */}
-            <section id="genre-section" style={{ background: 'var(--stock)', borderTop: '1px solid var(--rule)' }}>
-                <div className="max-w-6xl mx-auto px-6 py-20">
-                    <RunningHead label="Ready for every genre" folio="VIII" />
-                    <h2 className="pm-serif text-[clamp(1.9rem,4vw,2.6rem)] leading-tight max-w-[24ch] mb-12 rv">
-                        From literary fiction to technical research.
-                    </h2>
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-px" style={{ background: 'var(--rule)', border: '1px solid var(--rule)' }}>
-                        {[
-                            { name: 'Fiction', desc: 'Novels & Stories' },
-                            { name: 'Research', desc: 'Academic Papers' },
-                            { name: 'Business', desc: 'Growth & Strategy' },
-                            { name: 'Fantasy', desc: 'World Building' },
-                            { name: 'Self-Help', desc: 'Personal Growth' },
-                            { name: 'Comics', desc: 'Graphic Novels' },
-                            { name: 'Tech', desc: 'Guides & Manuals' },
-                            { name: 'Poetry', desc: 'Verse & Rhyme' },
-                        ].map((genre, i) => (
-                            <div key={genre.name} className="px-6 py-6 pm-genre rv" style={{ '--d': `${(i % 4) * 60}ms` }}>
-                                <h4 className="pm-serif text-[19px] mb-1">{genre.name}</h4>
-                                <p className="pm-run" style={{ fontSize: 10 }}>{genre.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <Chapter
+                id="genre-section"
+                label="Every genre"
+                folio="VIII"
+                lead={<>From literary fiction to technical research.</>}
+                ground={{ borderTop: '1px solid var(--rule)' }}
+            >
+                {/* A subject index — the list a publisher prints, not a grid of tiles. */}
+                <ul className="pm-subjects">
+                    {[
+                        { name: 'Fiction', desc: 'Novels & Stories' },
+                        { name: 'Research', desc: 'Academic Papers' },
+                        { name: 'Business', desc: 'Growth & Strategy' },
+                        { name: 'Fantasy', desc: 'World Building' },
+                        { name: 'Self-Help', desc: 'Personal Growth' },
+                        { name: 'Comics', desc: 'Graphic Novels' },
+                        { name: 'Tech', desc: 'Guides & Manuals' },
+                        { name: 'Poetry', desc: 'Verse & Rhyme' },
+                    ].map((genre, i) => (
+                        <li key={genre.name} className="pm-subject rv" style={{ '--d': `${(i % 4) * 55}ms` }}>
+                            <span className="pm-serif text-[26px] leading-none pm-subject-n">{genre.name}</span>
+                            <span className="pm-run pm-subject-d" style={{ fontSize: 10 }}>{genre.desc}</span>
+                        </li>
+                    ))}
+                </ul>
+            </Chapter>
 
             {/* ── closing ──────────────────────────────────── */}
             <section style={{ background: 'var(--ink)' }}>
