@@ -14,11 +14,14 @@ class BookStoreController extends Controller
      */
     public function index()
     {
-        // Only fetch books that have been approved by Admin
-        $books = Book::with('user')
-            ->where('status', 'approved')
+        // Only fetch books that have been approved by Admin.
+        // Select just the columns the storefront renders — the full rows
+        // (formatting_data, cover_data, biographies…) plus each author's
+        // user record weighed ~1.6MB of JSON per visit; this is ~240KB.
+        $books = Book::where('status', 'approved')
             ->latest()
-            ->get();
+            ->get(['id', 'title', 'author_name', 'genre', 'selling_price',
+                   'cover_design_path', 'amazon_link', 'google_books_link']);
 
         return Inertia::render('BookStore/Index', [
             'books' => $books

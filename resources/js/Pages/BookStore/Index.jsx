@@ -62,19 +62,27 @@ function FrontTableBook({ book, i }) {
     );
 }
 
+// How many catalogue cards mount at once; "Show more" adds another page.
+const PAGE_SIZE = 24;
+
 export default function BookStoreIndex({ auth, books }) {
     const [searchQuery, setSearchQuery] = useState('');
+    const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
+    const q = searchQuery.toLowerCase();
     const filteredBooks = books.filter(book =>
-        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.author_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.genre.toLowerCase().includes(searchQuery.toLowerCase())
+        (book.title || '').toLowerCase().includes(q) ||
+        (book.author_name || '').toLowerCase().includes(q) ||
+        (book.genre || '').toLowerCase().includes(q)
     );
 
     // Controller sends books newest-first, so the front table is simply the
     // first four. While searching, the table steps aside and results lead.
     const frontTable = books.slice(0, 4);
     const shelfBooks = searchQuery ? filteredBooks : books.slice(4);
+    // Mounting the full ~700-card catalogue at once makes the first paint
+    // crawl, so the grid grows a shelf at a time instead.
+    const visibleShelfBooks = shelfBooks.slice(0, visibleCount);
 
     // Subject shelves. The genre column is no help here — nearly the whole
     // catalogue is filed under one word ("academic") — so books are shelved
@@ -147,7 +155,10 @@ export default function BookStoreIndex({ auth, books }) {
                                 placeholder="Search by title, author, or genre..."
                                 className="w-full bg-transparent border-none text-[#17150f] placeholder-[#7c7364] focus:ring-0 px-4 py-2"
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onChange={(e) => {
+                                    setSearchQuery(e.target.value);
+                                    setVisibleCount(PAGE_SIZE);
+                                }}
                             />
                         </div>
                     </div>
@@ -214,11 +225,27 @@ export default function BookStoreIndex({ auth, books }) {
                     </div>
 
                     {shelfBooks.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
-                            {shelfBooks.map((book, i) => (
-                                <BookCard key={book.id} book={book} clothIndex={i} />
-                            ))}
-                        </div>
+                        <>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-12">
+                                {visibleShelfBooks.map((book, i) => (
+                                    <BookCard key={book.id} book={book} clothIndex={i} />
+                                ))}
+                            </div>
+                            {visibleShelfBooks.length < shelfBooks.length && (
+                                <div className="mt-14 text-center">
+                                    <button
+                                        type="button"
+                                        onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
+                                        className="inline-flex items-center gap-3 px-8 py-3 rounded-full border border-[#d8d1c1] bg-[#faf8f3] text-[#17150f] text-sm font-bold hover:border-[#6e2530] hover:text-[#6e2530] transition-colors shadow-sm"
+                                    >
+                                        Show more titles
+                                        <span className="pm-store-run" style={{ letterSpacing: '.14em' }}>
+                                            {visibleShelfBooks.length.toLocaleString('en-IN')} of {shelfBooks.length.toLocaleString('en-IN')}
+                                        </span>
+                                    </button>
+                                </div>
+                            )}
+                        </>
                     ) : (
                         <div className="text-center py-32">
                             <div className="inline-flex items-center justify-center w-20 h-20 bg-[#faf8f3] rounded-full mb-6 border border-[#d8d1c1] shadow-lg">

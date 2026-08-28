@@ -40,11 +40,13 @@
     }
     </script>
 
-    <!-- Optimized for Google Search Results -->
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
+    {{-- Favicon: the cloth-bound book. SVG for modern browsers (crisp at any
+         size), multi-size ICO for legacy, 512px PNG for search results, and a
+         padded 180px tile for iOS home screens. --}}
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v=2">
+    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="{{ asset('favicon.ico') }}?v=2">
+    <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('favicon.png') }}?v=2">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=2">
     <meta name="apple-mobile-web-app-title" content="PublicationMart">
     <meta name="application-name" content="PublicationMart">
 
