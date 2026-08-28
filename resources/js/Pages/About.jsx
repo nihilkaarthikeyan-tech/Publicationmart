@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 
 export default function About() {
     return (
-        <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-purple-500 selection:text-[#17150f] pt-24 pb-20">
+        <div className="min-h-screen overflow-x-hidden bg-[#f0ece3] text-[#17150f] font-sans selection:bg-[#6e2530] selection:text-[#faf8f3] pt-24 pb-20">
             <Head title="About PublicationMart – India's AI-Powered Self-Publishing Platform">
                 <meta name="description" content="Learn about PublicationMart, India's leading self-publishing platform. We empower authors with AI-powered tools, professional editing, ISBN, printing, and global distribution services." />
                 <meta property="og:title" content="About PublicationMart – India's Self-Publishing Platform" />

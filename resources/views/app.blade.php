@@ -7,7 +7,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="deploy-version" content="2026-01-03 11:45 AM - Full Sync (Role+Navbar+Verify)">
 
-    <title>PublicationMart – Book Publishing & Author Services in India</title>
+    {{-- The `inertia` attribute lets the client adapter manage this tag, so
+         crawlers get this server-rendered fallback and each page's own Head
+         title replaces it after mount. A plain <title> here shipped two title
+         tags and browsers used this one, hiding every per-page title. --}}
+    <title inertia>PublicationMart – Book Publishing & Author Services in India</title>
     <meta name="description"
         content="PublicationMart helps authors publish books easily with professional editing, ISBN, printing, and distribution services across India.">
     <meta name="keywords"

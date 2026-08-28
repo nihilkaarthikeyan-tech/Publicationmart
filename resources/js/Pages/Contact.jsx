@@ -10,7 +10,7 @@ export default function Contact() {
     });
 
     return (
-        <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-indigo-500 selection:text-[#17150f] pt-24 pb-20">
+        <div className="min-h-screen overflow-x-hidden bg-[#f0ece3] text-[#17150f] font-sans selection:bg-[#6e2530] selection:text-[#faf8f3] pt-24 pb-20">
             <Head title="Contact PublicationMart – Get Publishing Help Today">
                 <meta name="description" content="Contact PublicationMart for publishing support, technical help, or partnership inquiries. Email: editor.publicationmart@gmail.com | Phone: +91 76049 57084 | Coimbatore, India." />
                 <meta property="og:title" content="Contact PublicationMart" />
