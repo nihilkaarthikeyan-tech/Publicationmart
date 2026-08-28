@@ -216,10 +216,67 @@ html:has(.pm){background:#f0ece3}
 .pm-clamp4{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .pm-clamp3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 
+/* ── plate I: the press — the title page prints itself under the scroll ──
+   Two copies of the title page sit in a pinned screen: a blind-embossed
+   sheet below, the inked page above, clipped at --press. A roller rides
+   the boundary. On load the press runs to the end of the headline; the
+   reader's scroll prints the rest. --press defaults to 1, so with no JS,
+   reduced motion, or a crawler the page is simply… printed. */
+.pm-presswrap{height:180vh}
+.pm-presspin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.pm-sheet-blind{position:absolute;inset:0;display:flex;align-items:center;pointer-events:none;z-index:1}
+.pm-sheet-blind .pm-ghost, .pm-sheet-blind .pm-ghost *{color:rgba(23,21,15,.055)!important;text-shadow:0 1px 0 rgba(253,251,245,.9);border-color:rgba(23,21,15,.08)!important;background:transparent!important;box-shadow:none!important;animation:none!important}
+.pm-sheet-ink{position:relative;z-index:2;width:100%;clip-path:inset(0 0 calc((1 - var(--press,1))*100%) 0)}
+.pm-rollerbar{position:absolute;left:0;right:0;top:calc(var(--press,1)*100%);z-index:3;pointer-events:none;transform:translateY(-50%);opacity:clamp(0, (1 - var(--press,1)) * 9, 1)}
+.pm-roller{height:28px;margin:0 6vw;border-radius:14px;background:linear-gradient(180deg,#4b443a,#241f16 55%,#4b443a);box-shadow:0 8px 22px rgba(23,21,15,.32);position:relative;overflow:hidden}
+.pm-roller::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 16px,rgba(242,236,221,.10) 16px 18px);animation:pmRoll .9s linear infinite}
+@keyframes pmRoll{to{transform:translateX(18px)}}
+.pm-roller-tag{position:absolute;right:6vw;bottom:calc(100% + 8px);font-size:9px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--ink-3)}
+@media (max-width:767px){.pm-presswrap{height:150vh}}
+
+/* ── plate II: type an idea and the compositor sets it as a page ── */
+.pm-desk-page{background:#fdfbf5;border:1px solid var(--rule);padding:26px 30px;min-height:150px;box-shadow:0 10px 26px rgba(23,21,15,.07)}
+.pm-dc{font-family:'EB Garamond',Georgia,serif;font-size:17px;line-height:1.7;color:#241f16;margin:0}
+.pm-dc::first-letter{float:left;font-size:3.1em;line-height:.85;padding:4px 9px 0 0;color:var(--cloth);font-weight:600;font-family:'EB Garamond',Georgia,serif}
+.pm-desk-caret{display:inline-block;width:1.5px;height:1em;background:var(--cloth);vertical-align:-2px;animation:pmBlink 1s steps(1) infinite}
+.pm-desk-input{font-size:14.5px;padding:11px 16px;border:1px solid var(--rule);background:var(--stock-3);color:var(--ink);width:100%}
+.pm-desk-input:focus{outline:2px solid var(--cloth);outline-offset:1px}
+
+/* ── plate III: the manuscript blade — wipe the mess into a book ── */
+.pm-cmp{position:relative;height:230px;border:1px solid var(--rule);overflow:hidden;user-select:none;-webkit-user-select:none}
+.pm-cmp-side{position:absolute;inset:0;padding:22px 26px}
+.pm-cmp-raw{background:var(--stock-2);font-family:ui-monospace,Consolas,monospace;font-size:12.5px;color:var(--ink-2);line-height:1.85}
+.pm-cmp-raw s{text-decoration-color:#9c4038;text-decoration-thickness:1.5px}
+.pm-cmp-pencil{font-family:'Caveat',cursive;color:#9c4038;font-size:17px}
+.pm-cmp-set{background:#fdfbf5;font-family:'EB Garamond',Georgia,serif;color:#241f16;clip-path:inset(0 0 0 var(--cut,52%))}
+.pm-cmp-blade{position:absolute;top:0;bottom:0;left:var(--cut,52%);width:2px;background:var(--cloth);z-index:2}
+.pm-cmp-blade::after{content:"⇔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--cloth);color:var(--stock-3);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:14px;box-shadow:0 4px 12px rgba(23,21,15,.3)}
+.pm-cmp input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0;z-index:3}
+
+/* ── plate IV: an editor's pencil in the margins ── */
+.pm-note{font-family:'Caveat',cursive;color:var(--cloth);font-size:19px;line-height:1.25;display:inline-block;transform:rotate(-2.5deg);opacity:0;transition:opacity .7s var(--ease) .2s}
+.pm-note.in{opacity:1}
+.pm-note svg{display:block;margin-top:1px}
+.pm-note svg path{stroke-dasharray:140;stroke-dashoffset:140}
+.pm-note.in svg path{animation:pmDraw 1s .5s var(--ease) forwards}
+@keyframes pmDraw{to{stroke-dashoffset:0}}
+
+/* ── plate V: foil that follows the hand (cursor, or the phone's tilt) ── */
+.pm[data-lit] .pm-foil{animation:none;background-position:var(--foilx,50%) 0}
+
+/* ── plate VI: the curled corner that turns to the next chapter ── */
+.pm-curl{position:absolute;right:0;bottom:0;width:54px;height:54px;padding:0;border:0;cursor:pointer;z-index:5;background:linear-gradient(315deg,var(--stock) 0 46%,#d9d2c0 46% 51%,var(--stock-3) 51%);box-shadow:-5px -5px 12px rgba(23,21,15,.13);transition:width .35s var(--ease),height .35s var(--ease)}
+.pm-curl:hover,.pm-curl:focus-visible{width:86px;height:86px}
+.pm-curl span{position:absolute;right:8px;bottom:6px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink-3);opacity:0;transition:opacity .3s;white-space:nowrap;transform:rotate(-45deg);transform-origin:right bottom}
+.pm-curl:hover span,.pm-curl:focus-visible span{opacity:1}
+
 @media (prefers-reduced-motion:reduce){
-  .pm-rise,.pm-pulse,.pm-caret,.pm-spine-in,.pm-plan,.pm-marquee-track,.pm-foil,.pm-stamp.in,.pm-leaf{animation:none}
+  .pm-rise,.pm-pulse,.pm-caret,.pm-spine-in,.pm-plan,.pm-marquee-track,.pm-foil,.pm-stamp.in,.pm-leaf,.pm-roller::after,.pm-desk-caret,.pm-note.in svg path{animation:none}
   .rv,.rvx{opacity:1;transform:none;transition:none}
   .pm-stamp{opacity:.92}
+  .pm-note{opacity:1}
+  .pm-note svg path{stroke-dashoffset:0}
+  .pm-presswrap{height:auto}
   .pm-cover{transition:none}
   .pm *{transition-duration:.01ms!important}
 }
@@ -240,7 +297,7 @@ const prefersReducedMotion = () =>
 /** One observer for every scroll-triggered element (.rv rise, .rvx rule draw, .pm-stamp thump). */
 function useReveal() {
     useEffect(() => {
-        const els = document.querySelectorAll('.rv, .rvx, .pm-stamp');
+        const els = document.querySelectorAll('.rv, .rvx, .pm-stamp, .pm-note');
         if (!('IntersectionObserver' in window) || prefersReducedMotion()) {
             els.forEach((el) => el.classList.add('in'));
             return;
@@ -313,6 +370,149 @@ function TypedLine() {
             {text}
             {animating && <span className="pm-caret" aria-hidden="true" />}
         </em>
+    );
+}
+
+/**
+ * Plate IV — an editor's pencil note in the margin. Appears when scrolled
+ * into view (the shared reveal observer adds .in); the underline draws
+ * itself. Purely decorative, so hidden from assistive tech.
+ */
+function Marginalia({ children, rotate = -2.5, className = '', style }) {
+    return (
+        <span className={`pm-note ${className}`} aria-hidden="true"
+              style={{ transform: `rotate(${rotate}deg)`, ...style }}>
+            {children}
+            <svg width="104" height="12" viewBox="0 0 104 12" fill="none">
+                <path d="M3 9 C 28 2, 70 12, 101 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+        </span>
+    );
+}
+
+/**
+ * Plate II — the idea desk. The visitor types a book idea and a typeset
+ * paragraph composes itself, drop cap and all, ending in the door to the
+ * Smart Writer. The paragraph is a crafted frame around their words — no
+ * AI call, so it is instant and never fails.
+ */
+function IdeaDesk({ guestHref }) {
+    const PLACEHOLDER = 'A monsoon romance in Chennai…';
+    const [idea, setIdea] = useState('');
+    const [out, setOut] = useState('');
+    const [typingDone, setTypingDone] = useState(false);
+    const timer = useRef(null);
+
+    const compose = () => {
+        const raw = (idea || PLACEHOLDER).trim().replace(/[.…\s]+$/, '');
+        const seed = raw.charAt(0).toUpperCase() + raw.slice(1);
+        const text = `${seed} — that is where this book begins. Chapter by chapter the Smart Writer shapes it: an outline first, then sections, then prose you can edit line by line, until the day it stands in the store with your name on the spine.`;
+        clearInterval(timer.current);
+        setTypingDone(false);
+        if (prefersReducedMotion()) { setOut(text); setTypingDone(true); return; }
+        let i = 0;
+        setOut('');
+        timer.current = setInterval(() => {
+            i += 2;
+            setOut(text.slice(0, i));
+            if (i >= text.length) { clearInterval(timer.current); setTypingDone(true); }
+        }, 16);
+    };
+    useEffect(() => () => clearInterval(timer.current), []);
+
+    const continueHref = `${guestHref}${guestHref.includes('?') ? '&' : '?'}idea=${encodeURIComponent((idea || PLACEHOLDER).trim())}`;
+
+    return (
+        <div className="mt-16 rv">
+            <div className="pm-rule mb-8 rvx" />
+            <div className="grid lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] gap-10 items-start">
+                <div>
+                    <h3 className="pm-serif text-[26px] leading-snug mb-3">Try it with your own idea.</h3>
+                    <p className="text-[14px] leading-relaxed mb-6" style={{ color: 'var(--ink-3)' }}>
+                        Type a book idea — any few words — and watch the compositor set
+                        it as a page. When it reads right, carry it straight into the
+                        Smart Writer and keep going.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                        <input
+                            className="pm-desk-input flex-1"
+                            type="text"
+                            maxLength={80}
+                            value={idea}
+                            placeholder={PLACEHOLDER}
+                            aria-label="Your book idea"
+                            onChange={(e) => setIdea(e.target.value)}
+                            onKeyDown={(e) => { if (e.key === 'Enter') compose(); }}
+                        />
+                        <button type="button" onClick={compose}
+                                className="pm-press text-[13.5px] font-semibold px-6 py-3 rounded-sm shrink-0"
+                                style={{ background: 'var(--cloth)', color: 'var(--stock-3)' }}>
+                            Set the page
+                        </button>
+                    </div>
+                </div>
+                <div className="pm-desk-page" aria-live="polite">
+                    {out ? (
+                        <>
+                            <p className="pm-dc">
+                                {out}
+                                {!typingDone && <span className="pm-desk-caret" aria-hidden="true" />}
+                            </p>
+                            {typingDone && (
+                                <Link href={continueHref} className="pm-run pm-uline inline-block mt-5" style={{ color: 'var(--cloth)' }}>
+                                    Continue this book in Smart Writer →
+                                </Link>
+                            )}
+                        </>
+                    ) : (
+                        <p className="pm-dc" style={{ color: 'var(--ink-3)' }}>
+                            Your paragraph will be set here, the way a compositor would
+                            set it — one considered line at a time.
+                        </p>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/**
+ * Plate III — the manuscript blade. One page, two states: the raw
+ * manuscript and the typeset spread, split by a blade the visitor drags.
+ */
+function ManuscriptBlade() {
+    const ref = useRef(null);
+    return (
+        <div className="mt-16 rv" style={{ '--d': '150ms' }}>
+            <p className="pm-run mb-5" style={{ color: 'var(--cloth)' }}>
+                Drag the blade — manuscript to book
+            </p>
+            <div className="pm-cmp" ref={ref} style={{ '--cut': '52%' }}>
+                <div className="pm-cmp-side pm-cmp-raw" aria-hidden="true">
+                    chapter 1 — the monsoon<br />
+                    it was raining <s>alot</s> heavily when meera<br />
+                    reached the station. she had <s>forgot</s> forgotten<br />
+                    the letter. <span className="pm-cmp-pencil">← fix tense!</span><br />
+                    the train was late again
+                </div>
+                <div className="pm-cmp-side pm-cmp-set">
+                    <h4 className="text-[19px] font-semibold mb-2">Chapter One · The Monsoon</h4>
+                    <p className="text-[14.5px] leading-relaxed" style={{ maxWidth: '52ch' }}>
+                        It was raining heavily when Meera reached the station. She had
+                        forgotten the letter, and the train — as always — was late.
+                    </p>
+                </div>
+                <div className="pm-cmp-blade" aria-hidden="true" />
+                <input
+                    type="range" min="8" max="92" defaultValue="52"
+                    aria-label="Reveal the typeset page"
+                    onInput={(e) => ref.current?.style.setProperty('--cut', `${e.target.value}%`)}
+                />
+            </div>
+            <p className="mt-4 text-[13px]" style={{ color: 'var(--ink-3)' }}>
+                Editing, typesetting and design — the same page, before and after the desk.
+            </p>
+        </div>
     );
 }
 
@@ -418,6 +618,173 @@ function GreatBook({ books }) {
     );
 }
 
+/**
+ * The title page content, printable twice: the real inked copy, and a
+ * blind-embossed ghost that sits beneath the press. The ghost renders no
+ * headline element, no links and no live widgets — just the shapes of type.
+ */
+function TitlePage({ ghost = false, loaded, guestHref, spines, published, authors }) {
+    const H = ghost ? 'div' : 'h1';
+    return (
+        <div className={`max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-[1.08fr_.92fr] gap-14 items-center w-full ${ghost ? 'pm-ghost' : ''}`}>
+            <div className={!ghost && loaded ? 'pm-rise' : ghost ? '' : 'opacity-0'}>
+                <div className="pm-badge inline-flex items-center gap-3 pl-4 pr-5 py-2.5 mb-8 rounded-full">
+                    {/* tricolour bookmark ribbon */}
+                    <span aria-hidden="true" className="flex flex-col w-[14px] h-[14px] rounded-[3px] overflow-hidden shrink-0"
+                          style={{ boxShadow: '0 0 0 1px rgba(23,21,15,.12)' }}>
+                        <span style={{ background: '#FF9933', flex: 1 }} />
+                        <span style={{ background: '#faf8f3', flex: 1 }} />
+                        <span style={{ background: '#138808', flex: 1 }} />
+                    </span>
+                    <span className="pm-run" style={{ color: 'var(--cloth)', fontWeight: 800 }}>
+                        India&rsquo;s Next Gen
+                    </span>
+                    <span aria-hidden="true" className="w-px self-stretch" style={{ background: 'var(--rule)' }} />
+                    <span className="pm-run">AI-Powered Book Writing &amp; Publishing Platform</span>
+                    {!ghost && <span aria-hidden="true" className="pm-pulse w-2 h-2 rounded-full shrink-0" style={{ background: '#138808' }} />}
+                </div>
+
+                <H
+                    className="pm-serif font-medium leading-[1.04] tracking-tight text-[clamp(2.5rem,5.8vw,4rem)] mb-7"
+                    aria-label={ghost ? undefined : 'Your manuscript deserves to become a real book.'}
+                >
+                    <span aria-hidden="true">
+                        Your manuscript deserves to become {ghost
+                            ? <em className="pm-typeline">a real book.</em>
+                            : <TypedLine />}
+                    </span>
+                </H>
+
+                <p className="pm-serif text-[19px] leading-relaxed max-w-[47ch] mb-9" style={{ color: 'var(--ink-2)' }}>
+                    Write with AI assistance, typeset to print standards, and publish
+                    worldwide with your own ISBN. You keep the copyright, and 100% of
+                    the royalty.
+                </p>
+
+                <div className="flex flex-wrap gap-3">
+                    {ghost ? (
+                        <>
+                            <span className="text-[14px] font-semibold px-7 py-3.5 rounded-sm" style={{ border: '1px solid var(--rule)' }}>Start writing — no account needed</span>
+                            <span className="text-[14px] font-semibold px-7 py-3.5 rounded-sm" style={{ border: '1px solid var(--rule)' }}>Browse the catalogue</span>
+                        </>
+                    ) : (
+                        <>
+                            <Link href={guestHref} className="pm-press pm-cta text-[14px] font-semibold px-7 py-3.5 rounded-sm"
+                                  style={{ background: 'var(--ink)', color: 'var(--stock-3)' }}>
+                                <span>Start writing — no account needed</span>
+                            </Link>
+                            <Link href={route('book-store.index')} className="pm-press pm-cta pm-cta-ghost text-[14px] font-semibold px-7 py-3.5 rounded-sm"
+                                  style={{ border: '1px solid var(--rule)', color: 'var(--ink)' }}>
+                                <span>Browse the catalogue</span>
+                            </Link>
+                        </>
+                    )}
+                </div>
+
+                <div className="mt-10 pt-6" style={{ borderTop: '1px solid var(--rule)' }}>
+                    <p className="text-[13.5px]" style={{ color: 'var(--ink-3)' }}>
+                        <strong style={{ color: 'var(--ink-2)', fontVariantNumeric: 'tabular-nums' }}>
+                            {ghost ? published.toLocaleString('en-IN') : <CountUp value={published} />}
+                        </strong> titles published
+                        <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
+                        <strong style={{ color: 'var(--ink-2)', fontVariantNumeric: 'tabular-nums' }}>
+                            {ghost ? authors.toLocaleString('en-IN') : <CountUp value={authors} />}
+                        </strong> authors joined
+                        <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
+                        <strong style={{ color: 'var(--ink-2)' }}>100%</strong> author royalty
+                        <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
+                        ISBN included
+                        {!ghost && (
+                            <Marginalia className="ml-4 align-middle" rotate={-3}>live from the register ✓</Marginalia>
+                        )}
+                    </p>
+                    <p className="pm-run mt-4" style={{ fontSize: 10 }}>
+                        Smart Writer&ensp;·&ensp;AI Image Generation&ensp;·&ensp;Smart Formatting&ensp;·&ensp;Global Publishing
+                    </p>
+                </div>
+            </div>
+
+            <div className={`relative h-[290px] hidden md:block ${!ghost && loaded ? 'pm-rise' : ghost ? '' : 'opacity-0'}`} style={ghost ? undefined : { animationDelay: '.12s' }}>
+                {!ghost && (
+                    <div className="pm-stack absolute inset-0">
+                        {(spines.length ? spines : [{ title: 'A book published with PublicationMart' }])
+                            .map((b, i) => <Spine key={b.id ?? i} id={b.id} title={b.title} i={i} />)}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+/**
+ * Plate I — the press. Pins the title page for one screen of scroll; on
+ * load the press runs to the end of the headline, and the reader's scroll
+ * prints the rest of the sheet. All state lives in the --press CSS custom
+ * property (no re-renders), and everything degrades to a printed page.
+ */
+function PressHero(props) {
+    const wrapRef = useRef(null);
+    const pinRef = useRef(null);
+
+    useEffect(() => {
+        if (prefersReducedMotion()) return;
+        const wrap = wrapRef.current, pin = pinRef.current;
+        if (!wrap || !pin) return;
+        const INTRO_END = 0.42;
+        let raf = 0, introRaf = 0, introDone = false;
+        const set = (v) => pin.style.setProperty('--press', String(Math.min(Math.max(v, 0), 1)));
+
+        // The press runs on load, printing down to the end of the headline.
+        // The sheet only goes blind inside the first animation frame: if
+        // frames never come (hidden/background tab, rAF throttled), the CSS
+        // default --press:1 keeps the page fully printed.
+        let t0 = null;
+        const intro = (t) => {
+            if (t0 === null) t0 = t;
+            const k = Math.min((t - t0) / 1200, 1);
+            set(INTRO_END * (1 - Math.pow(1 - k, 3)));
+            if (k < 1 && !introDone) introRaf = requestAnimationFrame(intro);
+            else introDone = true;
+        };
+        introRaf = requestAnimationFrame(intro);
+
+        const onScroll = () => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+                const r = wrap.getBoundingClientRect();
+                const scrollable = r.height - window.innerHeight;
+                if (scrollable <= 0) { set(1); return; }
+                const prog = Math.min(Math.max(-r.top / scrollable, 0), 1);
+                if (prog > 0 && !introDone) { introDone = true; cancelAnimationFrame(introRaf); }
+                if (introDone) set(INTRO_END + (1 - INTRO_END) * prog);
+            });
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            cancelAnimationFrame(raf);
+            cancelAnimationFrame(introRaf);
+        };
+    }, []);
+
+    return (
+        <section className="pm-presswrap" ref={wrapRef}>
+            <div className="pm-presspin" ref={pinRef}>
+                <div className="pm-sheet-blind" aria-hidden="true">
+                    <TitlePage {...props} ghost />
+                </div>
+                <div className="pm-sheet-ink">
+                    <TitlePage {...props} />
+                </div>
+                <div className="pm-rollerbar" aria-hidden="true">
+                    <span className="pm-roller-tag">The press · printing this page</span>
+                    <div className="pm-roller" />
+                </div>
+            </div>
+        </section>
+    );
+}
+
 function RunningHead({ label, folio }) {
     return (
         <div className="flex items-baseline gap-6 mb-8">
@@ -435,8 +802,17 @@ function RunningHead({ label, folio }) {
  * page out of the stack-of-full-width-bands rhythm that every template has.
  */
 function Chapter({ label, folio, id, ground, children, lead }) {
+    // Plate VI — the curled corner: the bottom of every chapter folds like a
+    // page mid-turn; pressing it turns to the next chapter.
+    const turn = (e) => {
+        const next = e.currentTarget.closest('section')?.nextElementSibling;
+        if (next) next.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+    };
     return (
-        <section id={id} style={ground}>
+        <section id={id} style={{ position: 'relative', ...ground }}>
+            <button type="button" className="pm-curl" onClick={turn} aria-label="Turn to the next chapter">
+                <span aria-hidden="true">turn the page</span>
+            </button>
             <div className="max-w-[1180px] mx-auto px-6 py-24">
                 <div className="grid md:grid-cols-[152px_minmax(0,1fr)] gap-x-16">
                     <div className="md:sticky md:top-28 self-start mb-10 md:mb-0">
@@ -553,6 +929,35 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
         return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf); };
     }, []);
 
+    // Plate V — the foil catches real light: the gold shimmer follows the
+    // cursor on desktop and the device tilt on a phone. Falls back to the
+    // ambient shimmer until the first movement is seen.
+    useEffect(() => {
+        if (prefersReducedMotion()) return;
+        const root = document.querySelector('.pm');
+        if (!root) return;
+        let raf = 0;
+        const light = (x01) => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+                root.dataset.lit = '1';
+                root.style.setProperty('--foilx', `${(100 - x01 * 100).toFixed(1)}%`);
+            });
+        };
+        const onPointer = (e) => light(e.clientX / window.innerWidth);
+        const onTilt = (e) => {
+            if (e.gamma == null) return;
+            light((Math.max(-30, Math.min(30, e.gamma)) + 30) / 60);
+        };
+        window.addEventListener('pointermove', onPointer, { passive: true });
+        window.addEventListener('deviceorientation', onTilt);
+        return () => {
+            window.removeEventListener('pointermove', onPointer);
+            window.removeEventListener('deviceorientation', onTilt);
+            cancelAnimationFrame(raf);
+        };
+    }, []);
+
     // Reading lamp: a warm glow follows the cursor across the plan cards.
     useEffect(() => {
         if (!window.matchMedia('(pointer: fine)').matches) return;
@@ -592,6 +997,8 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             <div className="pm-grain" aria-hidden="true" />
             <div className="pm-ribbon" aria-hidden="true" />
             <Head title="Self Publishing Platform for Authors in India – AI Book Writing & Publishing">
+                {/* The pencil hand for the marginal notes (Plates III & IV) */}
+                <link href="https://fonts.bunny.net/css?family=caveat:500&display=swap" rel="stylesheet" />
                 {/* Primary Meta Tags */}
                 <meta name="title" content="PublicationMart  Book Publishing & Author Services in India" />
                 <meta name="description" content="PublicationMart helps authors publish books easily with professional editing, ISBN, printing, and distribution services across India." />
@@ -634,76 +1041,14 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
             </Head>
             <style dangerouslySetInnerHTML={{ __html: CSS }} />
 
-            {/* ── title page ───────────────────────────────── */}
-            <section>
-                <div className="max-w-6xl mx-auto px-6 py-20 md:py-24 grid md:grid-cols-[1.08fr_.92fr] gap-14 items-center">
-                    <div className={loaded ? 'pm-rise' : 'opacity-0'}>
-                        <div className="pm-badge inline-flex items-center gap-3 pl-4 pr-5 py-2.5 mb-8 rounded-full">
-                            {/* tricolour bookmark ribbon */}
-                            <span aria-hidden="true" className="flex flex-col w-[14px] h-[14px] rounded-[3px] overflow-hidden shrink-0"
-                                  style={{ boxShadow: '0 0 0 1px rgba(23,21,15,.12)' }}>
-                                <span style={{ background: '#FF9933', flex: 1 }} />
-                                <span style={{ background: '#faf8f3', flex: 1 }} />
-                                <span style={{ background: '#138808', flex: 1 }} />
-                            </span>
-                            <span className="pm-run" style={{ color: 'var(--cloth)', fontWeight: 800 }}>
-                                India&rsquo;s Next Gen
-                            </span>
-                            <span aria-hidden="true" className="w-px self-stretch" style={{ background: 'var(--rule)' }} />
-                            <span className="pm-run">AI-Powered Book Writing &amp; Publishing Platform</span>
-                            <span aria-hidden="true" className="pm-pulse w-2 h-2 rounded-full shrink-0" style={{ background: '#138808' }} />
-                        </div>
-
-                        <h1
-                            className="pm-serif font-medium leading-[1.04] tracking-tight text-[clamp(2.5rem,5.8vw,4rem)] mb-7"
-                            aria-label="Your manuscript deserves to become a real book."
-                        >
-                            <span aria-hidden="true">
-                                Your manuscript deserves to become <TypedLine />
-                            </span>
-                        </h1>
-
-                        <p className="pm-serif text-[19px] leading-relaxed max-w-[47ch] mb-9" style={{ color: 'var(--ink-2)' }}>
-                            Write with AI assistance, typeset to print standards, and publish
-                            worldwide with your own ISBN. You keep the copyright, and 100% of
-                            the royalty.
-                        </p>
-
-                        <div className="flex flex-wrap gap-3">
-                            <Link href={guestHref} className="pm-press pm-cta text-[14px] font-semibold px-7 py-3.5 rounded-sm"
-                                  style={{ background: 'var(--ink)', color: 'var(--stock-3)' }}>
-                                <span>Start writing — no account needed</span>
-                            </Link>
-                            <Link href={route('book-store.index')} className="pm-press pm-cta pm-cta-ghost text-[14px] font-semibold px-7 py-3.5 rounded-sm"
-                                  style={{ border: '1px solid var(--rule)', color: 'var(--ink)' }}>
-                                <span>Browse the catalogue</span>
-                            </Link>
-                        </div>
-
-                        <div className="mt-10 pt-6" style={{ borderTop: '1px solid var(--rule)' }}>
-                            <p className="text-[13.5px]" style={{ color: 'var(--ink-3)' }}>
-                                <strong style={{ color: 'var(--ink-2)', fontVariantNumeric: 'tabular-nums' }}><CountUp value={published} /></strong> titles published
-                                <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
-                                <strong style={{ color: 'var(--ink-2)', fontVariantNumeric: 'tabular-nums' }}><CountUp value={authors} /></strong> authors joined
-                                <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
-                                <strong style={{ color: 'var(--ink-2)' }}>100%</strong> author royalty
-                                <span className="mx-3" style={{ color: 'var(--rule)' }}>·</span>
-                                ISBN included
-                            </p>
-                            <p className="pm-run mt-4" style={{ fontSize: 10 }}>
-                                Smart Writer&ensp;·&ensp;AI Image Generation&ensp;·&ensp;Smart Formatting&ensp;·&ensp;Global Publishing
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className={`relative h-[290px] hidden md:block ${loaded ? 'pm-rise' : 'opacity-0'}`} style={{ animationDelay: '.12s' }}>
-                        <div className="pm-stack absolute inset-0">
-                            {(spines.length ? spines : [{ title: 'A book published with PublicationMart' }])
-                                .map((b, i) => <Spine key={b.id ?? i} id={b.id} title={b.title} i={i} />)}
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* ── title page, printed by the press (Plate I) ── */}
+            <PressHero
+                loaded={loaded}
+                guestHref={guestHref}
+                spines={spines}
+                published={published}
+                authors={authors}
+            />
 
             {/* ── catalogue — the Great Book opens beside the list ── */}
             {shelf.length > 0 && (
@@ -763,6 +1108,7 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                     <p className="mt-12 text-[14px] rv" style={{ color: 'var(--ink-3)', '--d': '250ms' }}>
                         <span className="pm-stamp mr-3">Published</span>
                         and listed worldwide — every name above is a PublicationMart author.
+                        <Marginalia className="ml-4 align-middle" rotate={-2}>real names, from the register</Marginalia>
                     </p>
                 </Chapter>
             )}
@@ -784,6 +1130,9 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                         </li>
                     ))}
                 </ol>
+
+                {/* Plate III — the manuscript blade: the service, felt */}
+                <ManuscriptBlade />
             </Chapter>
 
             {/* ── who we publish — the dark spread, mid-book ── */}
@@ -826,7 +1175,8 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             </div>
 
                             {/* The terms, set as a colophon — hairlines, no boxes. */}
-                            <dl className="rv" style={{ '--d': '150ms' }}>
+                            <dl className="rv" style={{ '--d': '150ms', position: 'relative' }}>
+                                <Marginalia rotate={-3} style={{ position: 'absolute', top: -30, right: 0 }}>no small print ✓</Marginalia>
                                 {[
                                     ['Copyright', 'Stays entirely yours. We claim nothing.'],
                                     ['Royalty', 'You keep 100% as per marketplace payouts.'],
@@ -921,6 +1271,9 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                             );
                         })}
                     </div>
+
+                    {/* Plate II — type an idea, watch it become a page */}
+                    <IdeaDesk guestHref={guestHref} />
             </Chapter>
 
             {/* ── plans ────────────────────────────────────── */}
@@ -1082,6 +1435,23 @@ export default function Welcome({ auth, featuredBooks = [], platformStats = { pu
                     </div>
                     <p className="mt-6 text-[13px]" style={{ color: 'var(--ink-3)' }}>
                         No credit card required · Publish in 24 hours · Keep 100% of your rights
+                    </p>
+                </div>
+            </section>
+
+            {/* ── the colophon (Plate VII) — books end with one, so does this page ── */}
+            <section aria-label="Colophon" style={{ borderTop: '1px solid var(--rule)' }}>
+                <div className="max-w-2xl mx-auto px-6 py-16 text-center rv">
+                    <p className="pm-serif pm-foil mb-5" aria-hidden="true" style={{ fontSize: 20, letterSpacing: '.6em', paddingLeft: '.6em' }}>
+                        ❦ ❦ ❦
+                    </p>
+                    <p className="pm-serif text-[15.5px] leading-relaxed" style={{ color: 'var(--ink-2)' }}>
+                        This site was set in <em>EB Garamond</em> &amp; <em>Figtree</em>,<br />
+                        printed in oxblood and gold foil on digital parchment,<br />
+                        and published — like everything on it — <em style={{ color: 'var(--cloth)' }}>by its authors</em>.
+                    </p>
+                    <p className="pm-run mt-5" style={{ fontSize: 9, color: 'var(--foil)' }}>
+                        PublicationMart Press · MMXXVI
                     </p>
                 </div>
             </section>
