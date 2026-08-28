@@ -1,6 +1,20 @@
 import { Head, Link, router } from '@inertiajs/react';
 import { useState } from 'react';
 
+/**
+ * Author dashboard, set as the author's desk ledger.
+ *
+ * Every backend-driven feature of the previous dashboard is preserved:
+ * alert priority (admin feedback > new user > referral), the six stats with
+ * their exact value mapping, Continue Working (smart-writer sessions merged
+ * with drafts, resume/delete), plan usage rings, the 6-month revenue chart,
+ * transactions, the assets tabs with the front/back cover crop, the activity
+ * feed, the referral modal with clipboard copy, and the assets drawer.
+ */
+
+const SERIF = { fontFamily: "'EB Garamond', Georgia, serif" };
+const RUN = 'text-[11px] font-semibold uppercase tracking-[.18em] text-[#635c4e]';
+
 export default function Dashboard({ auth, books, stats, monthlyRevenueData = [], recentTransactions = [], referrals = [], smartWriterSessions = [], activeDrafts = [], activityFeed = [], planUsage = [] }) {
     const [showReferralModal, setShowReferralModal] = useState(false);
     const [activeAssetTab, setActiveAssetTab] = useState('covers');
@@ -21,127 +35,100 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
     const isNewUser = books.length === 0;
     const activeAlert = adminFeedbackBook ? 'admin' : (isNewUser ? 'welcome' : 'referral');
 
+    const quotaTotal = (stats?.pagesUsed || 0) + (stats?.pagesRemaining || 0);
+    const quotaPct = Math.min(100, ((stats?.pagesUsed || 0) / Math.max(1, quotaTotal)) * 100);
+
     return (
         <div className="min-h-screen font-sans" style={{ background: '#f0ece3' }}>
             <Head title="Author Dashboard" />
 
-            <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+            <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
 
-                {/* ═══ WELCOME HEADER ═══ */}
-                <div className="rounded-3xl p-6 sm:p-8" style={{ background: 'linear-gradient(135deg, #6e2530 0%, #5a1e27 55%, #4d1a22 100%)', boxShadow: '0 12px 36px -12px rgba(77, 26, 34, 0.5)' }}>
-                    <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
-                        <div className="flex-1">
-                            <div className="flex items-start gap-4">
-                                <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg shrink-0">
-                                    <span className="text-2xl">✨</span>
-                                </div>
-                                <div className="flex-1">
-                                    <h1 className="text-3xl sm:text-4xl text-white mb-2" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>
-                                        Welcome, {auth.user.name}
-                                    </h1>
-                                    <div className="flex flex-wrap items-center gap-2">
-                                        <span className="px-3 py-1 rounded-full bg-emerald-400/20 text-emerald-200 text-xs font-bold uppercase tracking-wider border border-emerald-400/30 flex items-center gap-1.5">
-                                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                            System Active
-                                        </span>
-                                        <span className="px-3 py-1 rounded-full bg-white/15 text-white/90 text-xs font-bold border border-white/20">
-                                            {stats?.activePlan || 'Creator Bundle'}
-                                        </span>
-                                        <span className="px-3 py-1 rounded-full bg-white/15 text-white/90 text-xs font-bold border border-white/20">
-                                            {stats?.pagesRemaining || 0} pages left
-                                        </span>
-                                    </div>
-
-                                    {/* Page Quota Bar */}
-                                    <div className="mt-4 max-w-md">
-                                        <div className="flex justify-between text-xs mb-1.5">
-                                            <span className="text-white/60 font-medium">Page Quota Usage</span>
-                                            <span className="font-bold text-white">
-                                                {stats?.pagesUsed || 0} / {(stats?.pagesUsed || 0) + (stats?.pagesRemaining || 0)}
-                                            </span>
-                                        </div>
-                                        <div className="h-2.5 bg-white/15 rounded-full overflow-hidden">
-                                            <div className="h-full bg-gradient-to-r from-white/80 to-emerald-300 rounded-full transition-all duration-700"
-                                                style={{ width: `${Math.min(100, ((stats?.pagesUsed || 0) / Math.max(1, (stats?.pagesUsed || 0) + (stats?.pagesRemaining || 0))) * 100)}%` }}>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                {/* ═══ MASTHEAD — quiet, not a billboard ═══ */}
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-7 border-b border-[#d8d1c1]">
+                    <div>
+                        <p className={RUN}>The author's desk</p>
+                        <h1 className="text-[clamp(1.8rem,3.4vw,2.6rem)] leading-tight text-[#17150f] mt-2" style={SERIF}>
+                            Welcome, {auth.user.name}
+                        </h1>
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-[13px] text-[#635c4e]">
+                            <span className="inline-flex items-center gap-1.5">
+                                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                                System active
+                            </span>
+                            <span className="text-[#d8d1c1]">·</span>
+                            <span>{stats?.activePlan || 'Creator Bundle'}</span>
+                            <span className="text-[#d8d1c1]">·</span>
+                            <span className="inline-flex items-center gap-3">
+                                <span style={{ fontVariantNumeric: 'tabular-nums' }}>
+                                    {stats?.pagesUsed || 0} / {quotaTotal} pages
+                                </span>
+                                <span className="inline-block w-28 h-1.5 bg-[#e0d9c8] rounded-full overflow-hidden align-middle">
+                                    <span className="block h-full rounded-full bg-[#6e2530] transition-all duration-700" style={{ width: `${quotaPct}%` }} />
+                                </span>
+                            </span>
                         </div>
+                    </div>
 
-                        {/* Quick Actions */}
-                        <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
-                            <Link href={route('books.create')}
-                                className="group px-8 py-4 bg-white text-violet-700 font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden text-center">
-                                <span className="flex items-center justify-center gap-2 text-sm whitespace-nowrap">
-                                    <span className="text-xl">+</span> Create New Book
-                                </span>
-                            </Link>
-                            <Link href={route('book-store.index')}
-                                className="px-8 py-4 bg-white/15 hover:bg-white/25 border border-white/20 text-white rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 text-center backdrop-blur-sm shadow-lg">
-                                <span className="flex items-center justify-center gap-2 text-sm whitespace-nowrap">
-                                    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
-                                    Store
-                                </span>
-                            </Link>
-                            <Link href={route('support.index')}
-                                className="px-8 py-4 bg-white/15 hover:bg-white/25 border border-white/20 text-white rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 text-center backdrop-blur-sm shadow-lg">
-                                <span className="flex items-center justify-center gap-2 text-sm whitespace-nowrap">
-                                    <svg className="w-4 h-4 text-emerald-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-                                    Support
-                                </span>
-                            </Link>
-                        </div>
+                    <div className="flex flex-wrap items-center gap-3">
+                        <Link href={route('book-store.index')}
+                            className="px-5 py-3 text-[13.5px] font-semibold text-[#4b443a] border border-[#d8d1c1] rounded-md hover:border-[#6e2530] hover:text-[#6e2530] transition-colors">
+                            Book Store
+                        </Link>
+                        <Link href={route('support.index')}
+                            className="px-5 py-3 text-[13.5px] font-semibold text-[#4b443a] border border-[#d8d1c1] rounded-md hover:border-[#6e2530] hover:text-[#6e2530] transition-colors">
+                            Support
+                        </Link>
+                        <Link href={route('books.create')}
+                            className="px-6 py-3 text-[13.5px] font-bold text-[#faf8f3] bg-[#6e2530] hover:bg-[#5a1e27] rounded-md transition-colors active:translate-y-px">
+                            + Create New Book
+                        </Link>
                     </div>
                 </div>
 
-                {/* ═══ SMART ALERTS ═══ */}
+                {/* ═══ SMART ALERTS (priority unchanged) ═══ */}
                 {activeAlert === 'admin' && adminFeedbackBook && (
-                    <div className="bg-red-50 border border-red-200 rounded-2xl p-5 flex items-center justify-between gap-4 shadow-sm animate-slide-in">
-                        <div className="flex items-center gap-4">
-                            <div className="p-3 bg-red-100 rounded-xl shrink-0">
-                                <svg className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                    <div className="bg-[#faf8f3] border border-red-300 rounded-lg p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-slide-in">
+                        <div className="flex items-start gap-4">
+                            <div className="w-10 h-10 rounded-md bg-red-50 border border-red-200 flex items-center justify-center shrink-0">
+                                <svg className="w-5 h-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                             </div>
                             <div className="flex-1">
-                                <h3 className="font-bold text-red-800 flex items-center gap-2">
-                                    ⚠️ Action Required: Revision Requested
-                                </h3>
-                                <p className="text-red-600 text-sm mt-1">Admin feedback on "{adminFeedbackBook.title}"</p>
-                                <p className="text-red-500 text-xs mt-2 italic">"{adminFeedbackBook.admin_feedback}"</p>
+                                <h3 className="font-bold text-red-800">Action required — revision requested</h3>
+                                <p className="text-red-700 text-sm mt-1">Admin feedback on “{adminFeedbackBook.title}”</p>
+                                <p className="text-red-600/90 text-xs mt-1.5 italic">“{adminFeedbackBook.admin_feedback}”</p>
                             </div>
                         </div>
                         <Link href={route('books.details', adminFeedbackBook.id)}
-                            className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white text-sm font-bold rounded-xl transition-all shadow-md whitespace-nowrap">
+                            className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-md transition-colors whitespace-nowrap self-start sm:self-auto">
                             Fix & Resubmit →
                         </Link>
                     </div>
                 )}
 
                 {activeAlert === 'welcome' && isNewUser && (
-                    <div className="bg-white rounded-2xl border border-violet-100 p-6 shadow-sm animate-slide-in">
-                        <div className="text-center mb-6">
-                            <h3 className="text-2xl font-bold text-[#241f16] mb-2">
-                                🚀 Start Your Publishing Journey
-                            </h3>
-                            <p className="text-[#635c4e]">Transform your ideas into published books in 3 simple steps</p>
+                    <div className="bg-[#faf8f3] rounded-lg border border-[#d8d1c1] p-8 animate-slide-in">
+                        <div className="text-center mb-8">
+                            <p className={RUN}>Begin here</p>
+                            <h3 className="text-[26px] text-[#17150f] mt-2" style={SERIF}>Start your publishing journey</h3>
+                            <p className="text-[#635c4e] text-sm mt-1.5">Transform your ideas into published books in three steps</p>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <ol className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#d8d1c1] border border-[#d8d1c1] rounded-md overflow-hidden">
                             {[
-                                { icon: '✍️', title: '1. Write', desc: 'Use AI or upload your manuscript', color: 'bg-violet-50 border-violet-100' },
-                                { icon: '🎨', title: '2. Design', desc: 'Create stunning covers & format', color: 'bg-purple-50 border-purple-100' },
-                                { icon: '📚', title: '3. Publish', desc: 'Distribute & start earning', color: 'bg-pink-50 border-pink-100' },
-                            ].map((step, i) => (
-                                <div key={i} className={`p-4 rounded-xl border text-center ${step.color}`}>
-                                    <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-white flex items-center justify-center text-2xl shadow-sm">{step.icon}</div>
+                                { n: 'I', title: 'Write', desc: 'Use AI or upload your manuscript' },
+                                { n: 'II', title: 'Design', desc: 'Create stunning covers & format' },
+                                { n: 'III', title: 'Publish', desc: 'Distribute & start earning' },
+                            ].map((step) => (
+                                <li key={step.n} className="p-5 text-center bg-[#f0ece3]">
+                                    <div className="text-[22px] text-[#a07d3b] mb-1" style={SERIF}>{step.n}</div>
                                     <h4 className="font-bold text-[#241f16] mb-1">{step.title}</h4>
                                     <p className="text-xs text-[#635c4e]">{step.desc}</p>
-                                </div>
+                                </li>
                             ))}
-                        </div>
-                        <div className="mt-6 text-center">
+                        </ol>
+                        <div className="mt-7 text-center">
                             <Link href={route('books.create')}
-                                className="inline-block px-8 py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl shadow-lg transition-all transform hover:scale-105">
+                                className="inline-block px-8 py-3 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] font-bold rounded-md transition-colors">
                                 Create Your First Book →
                             </Link>
                         </div>
@@ -149,96 +136,88 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                 )}
 
                 {activeAlert === 'referral' && (
-                    <div className="rounded-2xl overflow-hidden shadow-sm animate-slide-in" style={{ background: 'linear-gradient(135deg, #f5f3ff, #ede9fe, #faf5ff)' }}>
-                        <div className="p-5 flex items-center justify-between gap-6 border border-violet-200 rounded-2xl">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-md shrink-0">
-                                    <span className="text-2xl">🎁</span>
-                                </div>
-                                <div className="flex-1">
-                                    <h3 className="text-base font-bold text-[#241f16] mb-1">Refer & Earn up to 10% Commission</h3>
-                                    <p className="text-xs text-[#635c4e]">Invite friends and earn rewards on their purchases</p>
-                                </div>
+                    <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-lg p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-5 animate-slide-in">
+                        <div>
+                            <h3 className="text-[15px] font-bold text-[#241f16]">Refer & earn up to 10% commission</h3>
+                            <p className="text-xs text-[#635c4e] mt-0.5">Invite friends and earn rewards on their purchases</p>
+                        </div>
+                        <div className="flex items-center gap-5">
+                            <div className="text-right">
+                                <p className={RUN} style={{ fontSize: 10 }}>Your balance</p>
+                                <p className="text-[22px] text-[#6e2530]" style={{ ...SERIF, fontVariantNumeric: 'tabular-nums' }}>₹{auth.user.referral_balance || 0}</p>
                             </div>
-                            <div className="flex items-center gap-4">
-                                <div className="text-right">
-                                    <p className="text-[10px] text-[#7c7364] uppercase tracking-wider font-bold mb-0.5">Your Balance</p>
-                                    <p className="text-2xl font-bold text-violet-700">₹{auth.user.referral_balance || 0}</p>
-                                </div>
-                                <button onClick={() => setShowReferralModal(true)}
-                                    className="px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white text-sm font-bold rounded-xl shadow-md transition-all transform hover:scale-105 whitespace-nowrap">
-                                    Get Link →
-                                </button>
-                            </div>
+                            <button onClick={() => setShowReferralModal(true)}
+                                className="px-5 py-2.5 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-sm font-bold rounded-md transition-colors whitespace-nowrap">
+                                Get Link →
+                            </button>
                         </div>
                     </div>
                 )}
 
-                {/* ═══ STAT CARDS ═══ */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                    <StatCard label="Total Sales" value={`₹${stats?.totalRevenue || 0}`} icon="💰" color="violet" />
-                    <StatCard label="Net Income" value={`₹${stats?.monthlyRevenue || 0}`} subLabel="This Month" icon="📈" color="emerald" />
-                    <StatCard label="Wallet Balance" value={`₹${Number(stats?.walletBalance || 0).toFixed(2)}`} icon="👛" color="blue" />
-                    <StatCard label="Books Sold" value={stats?.totalSales || 0} icon="📚" color="blue" />
-                    <StatCard label="Pages Used" value={stats?.pagesUsedThisMonth || stats?.pagesUsed || 0} subLabel="This Month" icon="📄" color="amber" />
-                    <StatCard label="Pages Left" value={stats?.pagesRemaining || 0} icon="🔋" color="teal" />
+                {/* ═══ THE LEDGER ROW — six figures, one system ═══ */}
+                <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-lg grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 divide-x divide-y lg:divide-y-0 divide-[#e7e1d4] overflow-hidden">
+                    <LedgerStat label="Total Sales" value={`₹${stats?.totalRevenue || 0}`} />
+                    <LedgerStat label="Net Income" value={`₹${stats?.monthlyRevenue || 0}`} subLabel="This month" />
+                    <LedgerStat label="Wallet Balance" value={`₹${Number(stats?.walletBalance || 0).toFixed(2)}`} />
+                    <LedgerStat label="Books Sold" value={stats?.totalSales || 0} />
+                    <LedgerStat label="Pages Used" value={stats?.pagesUsedThisMonth || stats?.pagesUsed || 0} subLabel="This month" />
+                    <LedgerStat label="Pages Left" value={stats?.pagesRemaining || 0} />
                 </div>
 
                 {/* ═══ MAIN LAYOUT ═══ */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
                     {/* LEFT COLUMN */}
-                    <div className="lg:col-span-2 space-y-6">
+                    <div className="lg:col-span-2 space-y-8">
 
                         {/* CONTINUE WORKING */}
-                        <Card title="Continue Working"
-                            action={<Link href={route('books.create')} className="text-xs text-violet-600 hover:text-violet-700 font-bold">See All →</Link>}>
-                            <div className="divide-y divide-gray-100">
+                        <Card title="Continue working"
+                            action={<Link href={route('books.create')} className="text-xs text-[#6e2530] hover:underline underline-offset-4 font-bold">See all →</Link>}>
+                            <div className="divide-y divide-[#e7e1d4]">
                                 {([...(smartWriterSessions || []), ...(activeDrafts || [])])
                                     .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
                                     .slice(0, 4)
                                     .map((proj, idx) => (
-                                        <div key={idx} className="group p-4 hover:bg-violet-50/50 transition-all duration-300 flex items-center gap-4 rounded-xl">
-                                            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-violet-100 to-purple-100 border border-violet-200/50 flex items-center justify-center shrink-0 overflow-hidden shadow-sm group-hover:scale-110 transition-transform">
+                                        <div key={idx} className="group px-5 py-4 hover:bg-[#f0ece3]/70 transition-colors flex items-center gap-4">
+                                            <div className="w-12 h-16 rounded-sm bg-[#efe9db] border border-[#d8d1c1] flex items-center justify-center shrink-0 overflow-hidden shadow-sm">
                                                 {proj.cover_design_path ?
                                                     <img src={`/storage/${proj.cover_design_path}`} className="w-full h-full object-cover" alt={proj.title} /> :
-                                                    <span className="text-2xl">📝</span>
+                                                    <svg className="w-5 h-5 text-[#a49b8b]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
                                                 }
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <h4 className="font-bold text-[#241f16] truncate">{proj.title || 'Untitled Project'}</h4>
-                                                <div className="flex items-center gap-2 text-xs mt-1.5">
+                                                <h4 className="text-[16px] text-[#17150f] truncate" style={SERIF}>{proj.title || 'Untitled Project'}</h4>
+                                                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs mt-1">
                                                     {proj.session_token ? (
-                                                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-bold border border-emerald-200 flex items-center gap-1">
-                                                            ✓ Smart Writer ({proj.plan_type})
+                                                        <span className="px-2 py-0.5 rounded-sm bg-emerald-50 text-emerald-800 font-semibold border border-emerald-200">
+                                                            Smart Writer · {proj.plan_type}
                                                         </span>
                                                     ) : (
-                                                        <span className="px-2 py-0.5 rounded-full bg-violet-50 text-violet-600 font-medium border border-violet-200">{proj.plan_type || 'Draft'}</span>
+                                                        <span className="px-2 py-0.5 rounded-sm bg-[#f0ece3] text-[#4b443a] font-semibold border border-[#d8d1c1]">{proj.plan_type || 'Draft'}</span>
                                                     )}
                                                     {proj.estimated_pages > 0 && (
-                                                        <span className="text-[#7c7364]">{proj.estimated_pages} pages</span>
+                                                        <span className="text-[#635c4e]" style={{ fontVariantNumeric: 'tabular-nums' }}>{proj.estimated_pages} pages</span>
                                                     )}
-                                                    <span className="text-[#f2ecdd]/85">•</span>
-                                                    <span className="text-[#7c7364]">Updated {proj.updated_at_human || 'recently'}</span>
+                                                    <span className="text-[#d8d1c1]">·</span>
+                                                    <span className="text-[#635c4e]">Updated {proj.updated_at_human || 'recently'}</span>
                                                 </div>
-                                                {/* Progress Bar */}
                                                 {proj.max_pages > 0 && (
-                                                    <div className="mt-2">
+                                                    <div className="mt-2 max-w-xs">
                                                         <div className="flex justify-between text-[10px] mb-1">
-                                                            <span className="text-[#7c7364]">Progress</span>
-                                                            <span className="text-[#635c4e]">{proj.estimated_pages}/{proj.max_pages} pages</span>
+                                                            <span className="text-[#635c4e]">Progress</span>
+                                                            <span className="text-[#4b443a]" style={{ fontVariantNumeric: 'tabular-nums' }}>{proj.estimated_pages}/{proj.max_pages} pages</span>
                                                         </div>
-                                                        <div className="h-1.5 bg-[#efe9db] rounded-full overflow-hidden">
-                                                            <div className="h-full bg-gradient-to-r from-violet-500 to-purple-500 rounded-full transition-all"
+                                                        <div className="h-1.5 bg-[#e7e1d4] rounded-full overflow-hidden">
+                                                            <div className="h-full bg-[#6e2530] rounded-full transition-all"
                                                                 style={{ width: `${Math.min(100, (proj.estimated_pages / proj.max_pages) * 100)}%` }}></div>
                                                         </div>
                                                     </div>
                                                 )}
                                             </div>
-                                            <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all shrink-0">
+                                            <div className="flex items-center gap-2 shrink-0">
                                                 <Link
                                                     href={proj.session_token ? route('guest-writer.studio', proj.session_token) : route('books.details', proj.id)}
-                                                    className="px-5 py-2.5 bg-violet-600 hover:bg-violet-700 text-white text-sm font-bold rounded-xl shadow-md transform hover:scale-105 transition-all whitespace-nowrap">
+                                                    className="px-4 py-2 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-[13px] font-bold rounded-md transition-colors whitespace-nowrap">
                                                     Resume →
                                                 </Link>
                                                 {!proj.session_token && (
@@ -250,7 +229,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                                                 });
                                                             }
                                                         }}
-                                                        className="p-2.5 bg-red-50 hover:bg-red-500 text-red-400 hover:text-white rounded-xl border border-red-200 hover:border-red-500 transition-all transform hover:scale-105"
+                                                        className="p-2 text-[#a49b8b] hover:text-red-700 hover:bg-red-50 rounded-md border border-transparent hover:border-red-200 transition-colors"
                                                         title="Delete Project">
                                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                                     </button>
@@ -260,12 +239,10 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                     ))}
 
                                 {([...(smartWriterSessions || []), ...(activeDrafts || [])].length === 0) && (
-                                    <div className="p-12 text-center">
-                                        <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-violet-50 flex items-center justify-center">
-                                            <span className="text-4xl opacity-50">📚</span>
-                                        </div>
-                                        <p className="text-[#7c7364] mb-3">No active projects</p>
-                                        <Link href={route('books.create')} className="inline-block px-6 py-2 bg-violet-600 hover:bg-violet-700 text-white text-sm font-bold rounded-lg transition-all">
+                                    <div className="p-14 text-center">
+                                        <p className="text-[18px] text-[#4b443a] mb-1" style={SERIF}>No active projects</p>
+                                        <p className="text-xs text-[#635c4e] mb-5">Your works-in-progress will appear here.</p>
+                                        <Link href={route('books.create')} className="inline-block px-6 py-2.5 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-sm font-bold rounded-md transition-colors">
                                             Start Writing →
                                         </Link>
                                     </div>
@@ -275,72 +252,64 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
 
                         {/* PLAN USAGE TRACKER */}
                         {planUsage.length > 0 && (
-                            <Card title="📊 My Plans & Usage">
-                                <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <Card title="My plans & usage">
+                                <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {planUsage.map((plan) => (
-                                        <div key={plan.id} className="relative rounded-2xl border border-[#e7e1d4] p-5 hover:shadow-md transition-all duration-300 group overflow-hidden"
-                                            style={{ background: 'linear-gradient(135deg, #faf5ff 0%, #f5f3ff 50%, #ede9fe 100%)' }}>
-                                            {/* Status Badge */}
+                                        <div key={plan.id} className="relative rounded-md border border-[#d8d1c1] bg-[#f0ece3] p-5">
                                             <div className="absolute top-4 right-4">
-                                                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${plan.status === 'active' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' :
-                                                    plan.status === 'completed' ? 'bg-blue-50 text-blue-600 border border-blue-200' :
-                                                        'bg-red-50 text-red-500 border border-red-200'
+                                                <span className={`px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider border ${plan.status === 'active' ? 'bg-emerald-50 text-emerald-800 border-emerald-200' :
+                                                    plan.status === 'completed' ? 'bg-[#faf8f3] text-[#4b443a] border-[#d8d1c1]' :
+                                                        'bg-red-50 text-red-700 border-red-200'
                                                     }`}>
                                                     {plan.status}
                                                 </span>
                                             </div>
 
-                                            {/* Tool & Plan Name */}
-                                            <div className="mb-4">
-                                                <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-violet-100 text-violet-600 mb-2 inline-block">
-                                                    {plan.tool}
-                                                </span>
-                                                <h4 className="text-lg font-bold text-[#241f16] mt-1">{plan.title}</h4>
-                                                <p className="text-xs text-[#7c7364] mt-0.5">
-                                                    {plan.plan_name} Plan {plan.amount_paid > 0 && `• ₹${plan.amount_paid}`}
+                                            <div className="mb-4 pr-20">
+                                                <p className={RUN} style={{ fontSize: 10 }}>{plan.tool}</p>
+                                                <h4 className="text-[18px] text-[#17150f] mt-1 truncate" style={SERIF}>{plan.title}</h4>
+                                                <p className="text-xs text-[#635c4e] mt-0.5">
+                                                    {plan.plan_name} Plan {plan.amount_paid > 0 && `· ₹${plan.amount_paid}`}
                                                 </p>
                                             </div>
 
-                                            {/* Usage Ring */}
                                             <div className="flex items-center gap-5 mb-4">
                                                 <div className="relative w-16 h-16 shrink-0">
                                                     <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
-                                                        <circle cx="18" cy="18" r="15.915" fill="none" stroke="#e5e7eb" strokeWidth="3" />
+                                                        <circle cx="18" cy="18" r="15.915" fill="none" stroke="#ddd6c4" strokeWidth="3" />
                                                         <circle cx="18" cy="18" r="15.915" fill="none"
-                                                            stroke={plan.status === 'active' ? '#a4485c' : plan.status === 'completed' ? '#3b82f6' : '#ef4444'}
+                                                            stroke={plan.status === 'active' ? '#6e2530' : plan.status === 'completed' ? '#7c7364' : '#dc2626'}
                                                             strokeWidth="3"
                                                             strokeDasharray={`${plan.usage_percent} ${100 - plan.usage_percent}`}
                                                             strokeLinecap="round" />
                                                     </svg>
-                                                    <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-[#4b443a]">
+                                                    <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-[#4b443a]" style={{ fontVariantNumeric: 'tabular-nums' }}>
                                                         {plan.usage_percent}%
                                                     </span>
                                                 </div>
                                                 <div className="flex-1 space-y-2">
                                                     <div className="flex justify-between text-xs">
                                                         <span className="text-[#635c4e]">Pages</span>
-                                                        <span className="font-bold text-[#4b443a]">{plan.pages_used} / {plan.max_pages}</span>
+                                                        <span className="font-bold text-[#4b443a]" style={{ fontVariantNumeric: 'tabular-nums' }}>{plan.pages_used} / {plan.max_pages}</span>
                                                     </div>
-                                                    <div className="h-2 bg-[#efe9db] rounded-full overflow-hidden">
+                                                    <div className="h-1.5 bg-[#ddd6c4] rounded-full overflow-hidden">
                                                         <div className="h-full rounded-full transition-all duration-500"
                                                             style={{
                                                                 width: `${plan.usage_percent}%`,
-                                                                background: plan.status === 'active' ? 'linear-gradient(90deg, #a4485c, #b8903f)' :
-                                                                    plan.status === 'completed' ? 'linear-gradient(90deg, #3b82f6, #60a5fa)' : '#ef4444'
+                                                                background: plan.status === 'active' ? '#6e2530' : plan.status === 'completed' ? '#7c7364' : '#dc2626'
                                                             }}></div>
                                                     </div>
                                                     <div className="flex justify-between text-xs">
                                                         <span className="text-[#635c4e]">Images</span>
-                                                        <span className="font-bold text-[#4b443a]">{plan.image_credits_used} / {plan.image_credits_limit}</span>
+                                                        <span className="font-bold text-[#4b443a]" style={{ fontVariantNumeric: 'tabular-nums' }}>{plan.image_credits_used} / {plan.image_credits_limit}</span>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            {/* Footer */}
-                                            <div className="flex items-center justify-between text-[10px] text-[#7c7364] pt-3 border-t border-[#e7e1d4]">
+                                            <div className="flex items-center justify-between text-[10px] text-[#635c4e] pt-3 border-t border-[#ddd6c4]">
                                                 <span>Created {new Date(plan.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
                                                 {plan.expires_at && (
-                                                    <span className={plan.status === 'expired' ? 'text-red-400' : ''}>
+                                                    <span className={plan.status === 'expired' ? 'text-red-600' : ''}>
                                                         Expires {new Date(plan.expires_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                                     </span>
                                                 )}
@@ -352,65 +321,65 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                         )}
 
                         {/* REVENUE TRENDS */}
-                        <Card title="Revenue Trends (Last 6 Months)">
+                        <Card title="Revenue, last six months">
                             <div className="p-6">
-                                <div className="h-56 flex items-end justify-between gap-3">
+                                <div className="h-56 flex items-end justify-between gap-4 border-b border-[#d8d1c1] pb-px">
                                     {monthlyRevenueData.map((data, index) => {
                                         const maxRevenue = Math.max(...monthlyRevenueData.map(d => d.revenue)) || 1;
                                         const height = (data.revenue / maxRevenue) * 100;
                                         return (
-                                            <div key={index} className="flex-1 flex flex-col items-center gap-3 group cursor-pointer">
-                                                <div className="relative w-full flex flex-col items-center">
-                                                    <span className="text-xs text-[#635c4e] font-bold mb-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                        ₹{data.revenue}
-                                                    </span>
-                                                    <div className="w-full rounded-t-xl shadow-sm group-hover:shadow-lg transition-all duration-300 relative overflow-hidden"
-                                                        style={{
-                                                            height: `${Math.max(height, 5)}%`,
-                                                            minHeight: '12px',
-                                                            background: 'linear-gradient(to top, #a4485c, #c8828c, #ddaeb4)'
-                                                        }}>
-                                                    </div>
+                                            <div key={index} className="flex-1 flex flex-col items-center gap-0 group cursor-default h-full justify-end">
+                                                <span className="text-xs text-[#4b443a] font-bold mb-1.5 opacity-0 group-hover:opacity-100 transition-opacity" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                                                    ₹{data.revenue}
+                                                </span>
+                                                <div className="w-full max-w-[52px] rounded-t-sm transition-colors bg-[#6e2530] group-hover:bg-[#5a1e27]"
+                                                    style={{ height: `${Math.max(height, 3)}%`, minHeight: '6px' }}>
                                                 </div>
-                                                <span className="text-[11px] text-[#7c7364] uppercase font-bold tracking-wider">{data.month}</span>
                                             </div>
                                         );
                                     })}
                                     {monthlyRevenueData.length === 0 && (
-                                        <div className="w-full h-full flex items-center justify-center text-[#7c7364] text-sm">
+                                        <div className="w-full h-full flex items-center justify-center">
                                             <div className="text-center">
-                                                <span className="text-3xl opacity-30 block mb-2">📈</span>
-                                                No sales data yet
+                                                <p className="text-[18px] text-[#4b443a]" style={SERIF}>No sales data yet</p>
+                                                <p className="text-xs text-[#635c4e] mt-1">Your first sale will start this chart.</p>
                                             </div>
                                         </div>
                                     )}
                                 </div>
+                                {monthlyRevenueData.length > 0 && (
+                                    <div className="flex justify-between gap-4 pt-2.5">
+                                        {monthlyRevenueData.map((data, index) => (
+                                            <span key={index} className="flex-1 text-center text-[10px] text-[#635c4e] uppercase font-semibold tracking-[.14em]">{data.month}</span>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         </Card>
 
                         {/* RECENT TRANSACTIONS */}
-                        <Card title="Recent Transactions (Last 5)">
+                        <Card title="Recent transactions">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left text-sm">
-                                    <thead className="bg-[#faf8f3] text-xs text-[#7c7364] uppercase tracking-wider font-bold">
-                                        <tr>
-                                            <th className="px-6 py-4">Book Title</th>
-                                            <th className="px-6 py-4">Amount</th>
-                                            <th className="px-6 py-4">Channel</th>
-                                            <th className="px-6 py-4 text-right">Date</th>
+                                    <thead>
+                                        <tr className="border-b border-[#d8d1c1]">
+                                            <th className={`px-6 py-3.5 ${RUN}`} style={{ fontSize: 10 }}>Book title</th>
+                                            <th className={`px-6 py-3.5 text-right ${RUN}`} style={{ fontSize: 10 }}>Amount</th>
+                                            <th className={`px-6 py-3.5 ${RUN}`} style={{ fontSize: 10 }}>Channel</th>
+                                            <th className={`px-6 py-3.5 text-right ${RUN}`} style={{ fontSize: 10 }}>Date</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-gray-50">
+                                    <tbody className="divide-y divide-[#e7e1d4]">
                                         {recentTransactions.map((txn) => (
-                                            <tr key={txn.id} className="hover:bg-violet-50/30 transition-all group">
-                                                <td className="px-6 py-4 text-[#241f16] font-medium">{txn.book_title}</td>
-                                                <td className="px-6 py-4 text-emerald-600 font-bold">₹{txn.amount}</td>
+                                            <tr key={txn.id} className="hover:bg-[#f0ece3]/70 transition-colors">
+                                                <td className="px-6 py-4 text-[15px] text-[#17150f]" style={SERIF}>{txn.book_title}</td>
+                                                <td className="px-6 py-4 text-right font-bold text-emerald-800" style={{ fontVariantNumeric: 'tabular-nums' }}>₹{txn.amount}</td>
                                                 <td className="px-6 py-4">
-                                                    <span className="px-2 py-1 rounded-full bg-violet-50 text-violet-600 text-xs font-medium border border-violet-100">
+                                                    <span className="px-2 py-0.5 rounded-sm bg-[#f0ece3] text-[#4b443a] text-xs font-semibold border border-[#d8d1c1]">
                                                         {txn.sales_channel || 'Direct'}
                                                     </span>
                                                 </td>
-                                                <td className="px-6 py-4 text-right text-[#7c7364] text-xs">
+                                                <td className="px-6 py-4 text-right text-[#635c4e] text-xs" style={{ fontVariantNumeric: 'tabular-nums' }}>
                                                     {new Date(txn.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                                                 </td>
                                             </tr>
@@ -418,7 +387,7 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                         {recentTransactions.length === 0 && (
                                             <tr>
                                                 <td colSpan="4" className="p-12 text-center">
-                                                    <span className="text-[#7c7364] text-sm">No transactions yet</span>
+                                                    <span className="text-[#635c4e] text-sm">No transactions yet</span>
                                                 </td>
                                             </tr>
                                         )}
@@ -430,14 +399,14 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                     </div>
 
                     {/* RIGHT COLUMN */}
-                    <div className="space-y-6">
+                    <div className="space-y-8">
 
                         {/* ASSETS PANEL */}
                         <Card>
-                            <div className="flex border-b border-[#e7e1d4]">
-                                <AssetTab label="🎨 Covers" active={activeAssetTab === 'covers'} onClick={() => setActiveAssetTab('covers')} />
-                                <AssetTab label="📝 Formatted" active={activeAssetTab === 'formatting'} onClick={() => setActiveAssetTab('formatting')} />
-                                <AssetTab label="📋 Drafts" active={activeAssetTab === 'drafts'} onClick={() => setActiveAssetTab('drafts')} />
+                            <div className="flex border-b border-[#d8d1c1]">
+                                <AssetTab label="Covers" active={activeAssetTab === 'covers'} onClick={() => setActiveAssetTab('covers')} />
+                                <AssetTab label="Formatted" active={activeAssetTab === 'formatting'} onClick={() => setActiveAssetTab('formatting')} />
+                                <AssetTab label="Drafts" active={activeAssetTab === 'drafts'} onClick={() => setActiveAssetTab('drafts')} />
                             </div>
 
                             <div className="p-4 max-h-[400px] overflow-y-auto custom-scrollbar">
@@ -446,35 +415,34 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                                 {activeAssetTab === 'drafts' && <DraftsList books={books} compact />}
                             </div>
 
-                            <div className="p-4 border-t border-[#e7e1d4] bg-[#faf8f3]/50">
+                            <div className="p-3 border-t border-[#d8d1c1]">
                                 <button onClick={() => setShowAssetsDrawer(true)}
-                                    className="w-full py-2 text-center text-violet-600 hover:text-violet-700 text-sm font-bold transition-all">
-                                    View All Assets →
+                                    className="w-full py-2 text-center text-[#6e2530] hover:underline underline-offset-4 text-sm font-bold transition-all">
+                                    View all assets →
                                 </button>
                             </div>
                         </Card>
 
                         {/* ACTIVITY FEED */}
-                        <Card title="🔔 Activity Feed">
-                            <div className="p-4 space-y-3 max-h-80 overflow-y-auto custom-scrollbar">
+                        <Card title="Activity">
+                            <div className="px-5 py-2 max-h-80 overflow-y-auto custom-scrollbar divide-y divide-[#e7e1d4]">
                                 {activityFeed.slice(0, 6).map((item, i) => (
-                                    <div key={i} className="flex gap-3 items-start p-3 rounded-xl hover:bg-violet-50/50 transition-all">
-                                        <div className={`w-9 h-9 rounded-full shrink-0 flex items-center justify-center text-sm ${item.type === 'sale' ? 'bg-emerald-50 text-emerald-500' : 'bg-violet-50 text-violet-500'
-                                            }`}>
-                                            {item.icon === 'currency-rupee' && '₹'}
-                                            {item.icon === 'book' && '📖'}
-                                            {item.icon === 'sparkles' && '✨'}
-                                            {item.icon === 'exclamation' && '⚠️'}
+                                    <div key={i} className="flex gap-3 items-start py-3.5">
+                                        <div className={`w-8 h-8 rounded-full shrink-0 flex items-center justify-center border ${item.type === 'sale' ? 'bg-emerald-50 text-emerald-800 border-emerald-200' : 'bg-[#f0ece3] text-[#6e2530] border-[#d8d1c1]'}`}>
+                                            {item.icon === 'currency-rupee' && <span className="text-[13px] font-bold">₹</span>}
+                                            {item.icon === 'book' && <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>}
+                                            {item.icon === 'sparkles' && <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>}
+                                            {item.icon === 'exclamation' && <span className="text-[13px] font-bold">!</span>}
                                         </div>
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-sm text-[#241f16] font-medium truncate">{item.title}</p>
-                                            <p className="text-xs text-[#7c7364] truncate mt-0.5">{item.description}</p>
-                                            <p className="text-[10px] text-[#f2ecdd]/85 mt-1">{new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+                                            <p className="text-sm text-[#241f16] font-semibold truncate">{item.title}</p>
+                                            <p className="text-xs text-[#635c4e] truncate mt-0.5">{item.description}</p>
+                                            <p className="text-[10px] text-[#a49b8b] mt-1" style={{ fontVariantNumeric: 'tabular-nums' }}>{new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
                                         </div>
                                     </div>
                                 ))}
                                 {activityFeed.length === 0 && (
-                                    <p className="text-xs text-[#7c7364] text-center py-8 italic">No recent activity</p>
+                                    <p className="text-xs text-[#635c4e] text-center py-8 italic">No recent activity</p>
                                 )}
                             </div>
                         </Card>
@@ -487,82 +455,69 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
             {/* ═══ REFERRAL MODAL ═══ */}
             {showReferralModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-fade-in" onClick={() => setShowReferralModal(false)}>
-                    <div className="relative bg-white p-8 rounded-3xl max-w-2xl w-full border border-[#d8d1c1] shadow-2xl transform animate-scale-in max-h-[90vh] overflow-y-auto custom-scrollbar" onClick={e => e.stopPropagation()}>
-                        <button onClick={() => setShowReferralModal(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#efe9db] hover:bg-gray-200 text-[#635c4e] hover:text-[#4b443a] transition-all z-10">✕</button>
+                    <div className="relative bg-[#faf8f3] p-8 rounded-lg max-w-2xl w-full border border-[#d8d1c1] shadow-2xl transform animate-scale-in max-h-[90vh] overflow-y-auto custom-scrollbar" onClick={e => e.stopPropagation()}>
+                        <button onClick={() => setShowReferralModal(false)} className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-[#efe9db] hover:bg-[#e0d9c8] text-[#635c4e] hover:text-[#17150f] transition-all z-10">✕</button>
 
-                        {/* Header */}
                         <div className="text-center mb-8">
-                            <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg">
-                                <span className="text-4xl">🎁</span>
-                            </div>
-                            <h2 className="text-3xl font-bold text-[#241f16] mb-2">Refer & Earn</h2>
+                            <p className={RUN}>Referral programme</p>
+                            <h2 className="text-[30px] text-[#17150f] mt-2 mb-1" style={SERIF}>Refer & earn</h2>
                             <p className="text-[#635c4e] text-sm">Share your link and earn 10% commission on every purchase</p>
                         </div>
 
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-3 mb-6">
-                            <div className="bg-violet-50 p-4 rounded-xl border border-violet-100 text-center">
-                                <div className="text-xs text-violet-400 uppercase tracking-wider font-bold mb-2">Total Referrals</div>
-                                <div className="text-3xl font-bold text-violet-700">{referrals.length}</div>
-                            </div>
-                            <div className="bg-emerald-50 p-4 rounded-xl border border-emerald-100 text-center">
-                                <div className="text-xs text-emerald-400 uppercase tracking-wider font-bold mb-2">Total Earned</div>
-                                <div className="text-3xl font-bold text-emerald-600">₹{auth.user.referral_balance || 0}</div>
-                            </div>
-                            <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-center">
-                                <div className="text-xs text-blue-400 uppercase tracking-wider font-bold mb-2">Commission</div>
-                                <div className="text-3xl font-bold text-blue-600">10%</div>
-                            </div>
+                        <div className="grid grid-cols-3 divide-x divide-[#e7e1d4] border border-[#d8d1c1] rounded-md mb-6 bg-[#f0ece3]">
+                            {[
+                                ['Total referrals', referrals.length],
+                                ['Total earned', `₹${auth.user.referral_balance || 0}`],
+                                ['Commission', '10%'],
+                            ].map(([l, v]) => (
+                                <div key={l} className="p-4 text-center">
+                                    <div className={RUN} style={{ fontSize: 10 }}>{l}</div>
+                                    <div className="text-[26px] text-[#17150f] mt-1" style={{ ...SERIF, fontVariantNumeric: 'tabular-nums' }}>{v}</div>
+                                </div>
+                            ))}
                         </div>
 
-                        {/* Referral Link */}
                         <div className="mb-6">
-                            <label className="block text-xs font-bold text-[#7c7364] uppercase tracking-wider mb-2">Your Referral Link</label>
-                            <div className="bg-[#faf8f3] p-4 rounded-xl flex gap-2 border border-[#d8d1c1]">
-                                <code className="flex-1 text-sm text-[#635c4e] font-mono overflow-x-auto whitespace-nowrap custom-scrollbar py-1">{referralLink}</code>
-                                <button onClick={handleCopyLink} className="px-5 py-2 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold rounded-lg transition-all shrink-0 shadow-md">
-                                    {copySuccess || '📋 Copy'}
+                            <label className={`block mb-2 ${RUN}`} style={{ fontSize: 10 }}>Your referral link</label>
+                            <div className="bg-white p-3 rounded-md flex gap-2 border border-[#d8d1c1]">
+                                <code className="flex-1 text-sm text-[#4b443a] font-mono overflow-x-auto whitespace-nowrap custom-scrollbar py-1">{referralLink}</code>
+                                <button onClick={handleCopyLink} className="px-5 py-2 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-xs font-bold rounded-md transition-colors shrink-0">
+                                    {copySuccess || 'Copy'}
                                 </button>
                             </div>
                         </div>
 
-                        {/* How It Works */}
-                        <div className="bg-[#faf8f3] rounded-xl p-5 mb-6 border border-[#e7e1d4]">
-                            <h3 className="text-sm font-bold text-[#4b443a] mb-3 flex items-center gap-2">
-                                <span className="text-lg">💡</span> How It Works
-                            </h3>
-                            <div className="space-y-2 text-xs text-[#635c4e]">
+                        <div className="bg-[#f0ece3] rounded-md p-5 mb-6 border border-[#d8d1c1]">
+                            <h3 className="text-sm font-bold text-[#4b443a] mb-3">How it works</h3>
+                            <ol className="space-y-2 text-xs text-[#635c4e]">
                                 {['Share your unique referral link with friends', 'They sign up using your link and make a purchase', 'You earn 10% commission on their purchase amount', 'Earnings are credited to your referral balance instantly'].map((step, i) => (
-                                    <div key={i} className="flex items-start gap-2">
-                                        <span className="text-violet-500 shrink-0">{i + 1}.</span>
+                                    <li key={i} className="flex items-start gap-2.5">
+                                        <span className="text-[#a07d3b] shrink-0 font-semibold" style={SERIF}>{['I', 'II', 'III', 'IV'][i]}.</span>
                                         <span>{step}</span>
-                                    </div>
+                                    </li>
                                 ))}
-                            </div>
+                            </ol>
                         </div>
 
-                        {/* Referral List */}
                         {referrals.length > 0 && (
                             <div>
-                                <h3 className="text-sm font-bold text-[#4b443a] mb-3 flex items-center gap-2">
-                                    <span className="text-lg">👥</span> Your Referrals
-                                </h3>
-                                <div className="bg-[#faf8f3] rounded-xl border border-[#e7e1d4] overflow-hidden">
+                                <h3 className="text-sm font-bold text-[#4b443a] mb-3">Your referrals</h3>
+                                <div className="bg-[#f0ece3] rounded-md border border-[#d8d1c1] overflow-hidden">
                                     <div className="max-h-48 overflow-y-auto custom-scrollbar">
                                         {referrals.map((ref, i) => (
                                             <div key={ref.id} className={`p-3 flex items-center justify-between gap-3 ${i !== 0 ? 'border-t border-[#e7e1d4]' : ''}`}>
                                                 <div className="flex items-center gap-3 flex-1 min-w-0">
-                                                    <div className="w-8 h-8 rounded-full bg-violet-100 border border-violet-200 flex items-center justify-center shrink-0">
-                                                        <span className="text-xs font-bold text-violet-600">{ref.name.charAt(0).toUpperCase()}</span>
+                                                    <div className="w-8 h-8 rounded-full bg-[#6e2530] flex items-center justify-center shrink-0">
+                                                        <span className="text-xs text-[#faf8f3]" style={SERIF}>{ref.name.charAt(0).toUpperCase()}</span>
                                                     </div>
                                                     <div className="flex-1 min-w-0">
-                                                        <p className="text-sm font-medium text-[#241f16] truncate">{ref.name}</p>
-                                                        <p className="text-xs text-[#7c7364] truncate">{ref.email}</p>
+                                                        <p className="text-sm font-semibold text-[#241f16] truncate">{ref.name}</p>
+                                                        <p className="text-xs text-[#635c4e] truncate">{ref.email}</p>
                                                     </div>
                                                 </div>
                                                 <div className="text-right">
-                                                    <p className="text-xs text-[#7c7364]">{new Date(ref.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
-                                                    <span className="inline-block px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[10px] font-bold rounded-full uppercase mt-1 border border-emerald-200">{ref.status}</span>
+                                                    <p className="text-xs text-[#635c4e]">{new Date(ref.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</p>
+                                                    <span className="inline-block px-2 py-0.5 bg-emerald-50 text-emerald-800 text-[10px] font-bold rounded-sm uppercase mt-1 border border-emerald-200">{ref.status}</span>
                                                 </div>
                                             </div>
                                         ))}
@@ -572,12 +527,9 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
                         )}
 
                         {referrals.length === 0 && (
-                            <div className="text-center py-8 bg-[#faf8f3] rounded-xl border border-[#e7e1d4]">
-                                <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-[#efe9db] flex items-center justify-center">
-                                    <span className="text-3xl opacity-50">👥</span>
-                                </div>
-                                <p className="text-[#635c4e] text-sm">No referrals yet</p>
-                                <p className="text-[#7c7364] text-xs mt-1">Share your link to start earning!</p>
+                            <div className="text-center py-8 bg-[#f0ece3] rounded-md border border-[#d8d1c1]">
+                                <p className="text-[17px] text-[#4b443a]" style={SERIF}>No referrals yet</p>
+                                <p className="text-[#635c4e] text-xs mt-1">Share your link to start earning.</p>
                             </div>
                         )}
                     </div>
@@ -587,35 +539,30 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
             {/* ═══ ASSETS DRAWER ═══ */}
             {showAssetsDrawer && (
                 <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm animate-fade-in" onClick={() => setShowAssetsDrawer(false)}>
-                    <div className="h-full overflow-y-auto bg-white/95 backdrop-blur-xl" onClick={e => e.stopPropagation()}>
+                    <div className="h-full overflow-y-auto bg-[#f0ece3]" onClick={e => e.stopPropagation()}>
                         <div className="max-w-7xl mx-auto p-8">
-                            <div className="flex items-center justify-between mb-8">
-                                <h2 className="text-3xl font-bold text-[#241f16]">
-                                    My Assets Library
-                                </h2>
+                            <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#d8d1c1]">
+                                <div>
+                                    <p className={RUN}>The archive</p>
+                                    <h2 className="text-[30px] text-[#17150f] mt-1" style={SERIF}>My assets library</h2>
+                                </div>
                                 <button onClick={() => setShowAssetsDrawer(false)}
-                                    className="w-12 h-12 flex items-center justify-center rounded-full bg-[#efe9db] hover:bg-gray-200 text-[#635c4e] hover:text-[#4b443a] transition-all">
+                                    className="w-11 h-11 flex items-center justify-center rounded-full bg-[#faf8f3] border border-[#d8d1c1] hover:border-[#6e2530] text-[#635c4e] hover:text-[#6e2530] transition-colors">
                                     ✕
                                 </button>
                             </div>
 
-                            <div className="space-y-8">
+                            <div className="space-y-10">
                                 <div>
-                                    <h3 className="text-xl font-bold text-[#241f16] mb-4 flex items-center gap-2">
-                                        🎨 Cover Designs
-                                    </h3>
+                                    <h3 className="text-[22px] text-[#17150f] mb-4" style={SERIF}>Cover designs</h3>
                                     <CoversGrid books={books} />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-[#241f16] mb-4 flex items-center gap-2">
-                                        📝 Formatted Books
-                                    </h3>
+                                    <h3 className="text-[22px] text-[#17150f] mb-4" style={SERIF}>Formatted books</h3>
                                     <FormattedList books={books} />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold text-[#241f16] mb-4 flex items-center gap-2">
-                                        📋 All Drafts
-                                    </h3>
+                                    <h3 className="text-[22px] text-[#17150f] mb-4" style={SERIF}>All drafts</h3>
                                     <DraftsList books={books} />
                                 </div>
                             </div>
@@ -626,17 +573,17 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
 
             <style jsx>{`
                 .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-                .custom-scrollbar::-webkit-scrollbar-track { background: rgba(124, 58, 237, 0.05); border-radius: 10px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.2); border-radius: 10px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(124, 58, 237, 0.4); }
-                
+                .custom-scrollbar::-webkit-scrollbar-track { background: rgba(23, 21, 15, 0.04); border-radius: 10px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: #d8d1c1; border-radius: 10px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #a49b8b; }
+
                 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-                @keyframes scale-in { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-                @keyframes slide-in { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-                
-                .animate-fade-in { animation: fade-in 0.3s ease-out; }
-                .animate-scale-in { animation: scale-in 0.3s ease-out; }
-                .animate-slide-in { animation: slide-in 0.4s ease-out; }
+                @keyframes scale-in { from { transform: scale(0.97); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+                @keyframes slide-in { from { transform: translateY(-8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+                .animate-fade-in { animation: fade-in 0.25s ease-out; }
+                .animate-scale-in { animation: scale-in 0.25s ease-out; }
+                .animate-slide-in { animation: slide-in 0.35s ease-out; }
             `}</style>
         </div>
     );
@@ -644,38 +591,24 @@ export default function Dashboard({ auth, books, stats, monthlyRevenueData = [],
 
 // ═══ COMPONENTS ═══
 
-// Stat Card
-function StatCard({ label, value, subLabel, icon, color }) {
-    const colors = {
-        violet: { bg: 'bg-violet-50', border: 'border-violet-100', accent: 'bg-violet-100 text-violet-600' },
-        emerald: { bg: 'bg-emerald-50', border: 'border-emerald-100', accent: 'bg-emerald-100 text-emerald-600' },
-        blue: { bg: 'bg-blue-50', border: 'border-blue-100', accent: 'bg-blue-100 text-blue-600' },
-        amber: { bg: 'bg-amber-50', border: 'border-amber-100', accent: 'bg-amber-100 text-amber-600' },
-        teal: { bg: 'bg-teal-50', border: 'border-teal-100', accent: 'bg-teal-100 text-teal-600' },
-    };
-    const c = colors[color] || colors.violet;
-
+// One cell of the ledger row — label in small caps, figure in serif.
+function LedgerStat({ label, value, subLabel }) {
     return (
-        <div className={`group ${c.bg} border ${c.border} rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer`}>
-            <div className="flex items-start justify-between mb-3">
-                <p className="text-xs font-medium text-[#7c7364] uppercase tracking-wider">{label}</p>
-                <div className={`w-10 h-10 rounded-xl ${c.accent} flex items-center justify-center text-xl transform group-hover:rotate-12 group-hover:scale-110 transition-all duration-500`}>
-                    {icon}
-                </div>
-            </div>
-            <p className="text-3xl font-bold text-[#241f16] mb-1">{value}</p>
-            {subLabel && <p className="text-xs text-[#7c7364]">{subLabel}</p>}
+        <div className="px-5 py-5">
+            <p className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#635c4e] mb-1.5">{label}</p>
+            <p className="text-[26px] leading-none text-[#17150f]" style={{ fontFamily: "'EB Garamond', Georgia, serif", fontVariantNumeric: 'tabular-nums' }}>{value}</p>
+            {subLabel && <p className="text-[10px] text-[#7c7364] mt-1.5">{subLabel}</p>}
         </div>
     );
 }
 
-// Card Container
+// Card Container — running-head title on a paper card.
 function Card({ title, action, children }) {
     return (
-        <div className="bg-white rounded-2xl border border-[#e7e1d4] overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+        <div className="bg-[#faf8f3] rounded-lg border border-[#d8d1c1] overflow-hidden">
             {title && (
-                <div className="px-6 py-4 border-b border-[#e7e1d4] bg-[#faf8f3]/50 flex items-center justify-between">
-                    <h3 className="font-bold text-[#241f16] text-lg">{title}</h3>
+                <div className="px-6 py-4 border-b border-[#d8d1c1] flex items-center justify-between">
+                    <h3 className="text-[11px] font-semibold uppercase tracking-[.18em] text-[#4b443a]">{title}</h3>
                     {action}
                 </div>
             )}
@@ -689,9 +622,9 @@ function AssetTab({ label, active, onClick }) {
     return (
         <button
             onClick={onClick}
-            className={`flex-1 py-3 px-4 text-xs font-bold transition-all duration-300 ${active
-                ? 'text-violet-700 bg-violet-50 border-b-2 border-violet-500'
-                : 'text-[#7c7364] hover:text-[#635c4e] hover:bg-[#faf8f3]'
+            className={`flex-1 py-3 px-4 text-[11px] font-semibold uppercase tracking-[.14em] transition-colors border-b-2 ${active
+                ? 'text-[#6e2530] border-[#6e2530]'
+                : 'text-[#635c4e] border-transparent hover:text-[#17150f]'
                 }`}>
             {label}
         </button>
@@ -700,10 +633,7 @@ function AssetTab({ label, active, onClick }) {
 
 // Empty State
 const EmptyState = ({ msg }) => (
-    <div className="h-32 flex flex-col items-center justify-center text-[#7c7364]">
-        <div className="w-14 h-14 mb-2 rounded-full bg-[#efe9db] flex items-center justify-center">
-            <span className="text-2xl opacity-30">📂</span>
-        </div>
+    <div className="h-32 flex flex-col items-center justify-center text-[#635c4e]">
         <span className="text-xs">{msg}</span>
     </div>
 );
@@ -713,11 +643,11 @@ const CoversGrid = ({ books, compact }) => (
     <div className={`${compact ? 'space-y-4' : 'grid grid-cols-1 md:grid-cols-2 gap-6'}`}>
         {books.filter(b => b.cover_design_path).length > 0 ? books.filter(b => b.cover_design_path).map(book => (
             <div key={book.id} className="group">
-                <p className="text-sm font-bold text-[#4b443a] truncate mb-2" title={book.title}>{book.title}</p>
+                <p className="text-[15px] text-[#241f16] truncate mb-2" style={{ fontFamily: "'EB Garamond', Georgia, serif" }} title={book.title}>{book.title}</p>
                 <div className="flex gap-2">
                     {/* Front Cover (right ~48% of image) */}
                     <div className="flex-1 flex flex-col items-center">
-                        <div className="aspect-[2/3] w-full bg-[#efe9db] rounded-xl overflow-hidden relative border border-[#d8d1c1] hover:border-violet-300 transition-all transform hover:scale-105 hover:shadow-lg">
+                        <div className="aspect-[2/3] w-full bg-[#efe9db] rounded-sm overflow-hidden relative border border-[#d8d1c1] hover:border-[#6e2530] transition-colors shadow-sm">
                             <img
                                 src={`/storage/${book.cover_design_path}`}
                                 className="w-[208%] h-full object-cover"
@@ -725,11 +655,11 @@ const CoversGrid = ({ books, compact }) => (
                                 alt={`${book.title} - Front`}
                             />
                         </div>
-                        <span className="text-[10px] font-bold text-[#7c7364] uppercase tracking-wider mt-1.5">Front</span>
+                        <span className="text-[9px] font-bold text-[#635c4e] uppercase tracking-[.16em] mt-1.5">Front</span>
                     </div>
                     {/* Back Cover (left ~48% of image) */}
                     <div className="flex-1 flex flex-col items-center">
-                        <div className="aspect-[2/3] w-full bg-[#efe9db] rounded-xl overflow-hidden relative border border-[#d8d1c1] hover:border-violet-300 transition-all transform hover:scale-105 hover:shadow-lg">
+                        <div className="aspect-[2/3] w-full bg-[#efe9db] rounded-sm overflow-hidden relative border border-[#d8d1c1] hover:border-[#6e2530] transition-colors shadow-sm">
                             <img
                                 src={`/storage/${book.cover_design_path}`}
                                 className="w-[208%] h-full object-cover"
@@ -737,13 +667,13 @@ const CoversGrid = ({ books, compact }) => (
                                 alt={`${book.title} - Back`}
                             />
                         </div>
-                        <span className="text-[10px] font-bold text-[#7c7364] uppercase tracking-wider mt-1.5">Back</span>
+                        <span className="text-[9px] font-bold text-[#635c4e] uppercase tracking-[.16em] mt-1.5">Back</span>
                     </div>
                 </div>
                 {/* Download Button */}
                 <a href={`/storage/${book.cover_design_path}`} download
-                    className="mt-2 block w-full py-2 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold rounded-lg text-center transition-all shadow-sm">
-                    ⬇ Download Full Cover
+                    className="mt-2 block w-full py-2 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-xs font-bold rounded-md text-center transition-colors">
+                    Download Full Cover
                 </a>
             </div>
         )) : <div className="col-span-full"><EmptyState msg="No covers designed yet" /></div>}
@@ -754,18 +684,18 @@ const CoversGrid = ({ books, compact }) => (
 const FormattedList = ({ books, compact }) => (
     <div className={`grid ${compact ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'} gap-3`}>
         {books.filter(b => b.formatting_data || b.interior_file).length > 0 ? books.filter(b => b.formatting_data || b.interior_file).map(book => (
-            <div key={book.id} className="group p-4 bg-[#faf8f3] rounded-xl border border-[#e7e1d4] hover:border-violet-200 transition-all hover:shadow-md">
+            <div key={book.id} className="p-4 bg-[#f0ece3] rounded-md border border-[#d8d1c1] hover:border-[#a49b8b] transition-colors">
                 <div className="flex items-start justify-between mb-2">
-                    <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded-full bg-violet-50 text-violet-600 border border-violet-100">Formatted</span>
+                    <span className="text-[9px] uppercase tracking-[.16em] font-bold px-2 py-1 rounded-sm bg-[#faf8f3] text-[#4b443a] border border-[#d8d1c1]">Formatted</span>
                     {book.interior_file && (
-                        <a href={`/storage/${book.interior_file}`} className="w-8 h-8 flex items-center justify-center bg-violet-50 text-violet-500 rounded-lg hover:bg-violet-600 hover:text-white transition-all border border-violet-100">
+                        <a href={`/storage/${book.interior_file}`} className="w-8 h-8 flex items-center justify-center bg-[#faf8f3] text-[#6e2530] rounded-md hover:bg-[#6e2530] hover:text-[#faf8f3] transition-colors border border-[#d8d1c1]" title="Download interior file">
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
                         </a>
                     )}
                 </div>
-                <p className="text-sm font-bold text-[#241f16] truncate mb-2" title={book.title}>{book.title}</p>
-                <p className="text-xs text-[#7c7364] mb-3">{book.num_pages || '?'} pages</p>
-                <Link href={route('books.format', book.id)} className="block w-full text-center py-2 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold rounded-lg transition-all">
+                <p className="text-[15px] text-[#241f16] truncate mb-1" style={{ fontFamily: "'EB Garamond', Georgia, serif" }} title={book.title}>{book.title}</p>
+                <p className="text-xs text-[#635c4e] mb-3" style={{ fontVariantNumeric: 'tabular-nums' }}>{book.num_pages || '?'} pages</p>
+                <Link href={route('books.format', book.id)} className="block w-full text-center py-2 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-xs font-bold rounded-md transition-colors">
                     Open Editor
                 </Link>
             </div>
@@ -777,13 +707,13 @@ const FormattedList = ({ books, compact }) => (
 const DraftsList = ({ books, compact }) => (
     <div className={`grid ${compact ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'} gap-3`}>
         {books.filter(b => b.step_completed < 5).length > 0 ? books.filter(b => b.step_completed < 5).map(book => (
-            <div key={book.id} className="group p-4 bg-[#faf8f3] rounded-xl border border-[#e7e1d4] hover:border-violet-200 transition-all hover:shadow-md">
+            <div key={book.id} className="p-4 bg-[#f0ece3] rounded-md border border-[#d8d1c1] hover:border-[#a49b8b] transition-colors">
                 <div className="flex items-start justify-between mb-2">
-                    <span className="px-2 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-amber-50 text-amber-600 border border-amber-200">Draft</span>
+                    <span className="text-[9px] uppercase tracking-[.16em] font-bold px-2 py-1 rounded-sm bg-[#faf8f3] text-[#856531] border border-[#a07d3b]/40">Draft</span>
                 </div>
-                <p className="text-sm font-bold text-[#241f16] truncate mb-2" title={book.title}>{book.title}</p>
-                <p className="text-xs text-[#7c7364] mb-3">Updated {new Date(book.updated_at).toLocaleDateString()}</p>
-                <Link href={route('books.details', book.id)} className="block w-full text-center py-2 bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold rounded-lg transition-all">
+                <p className="text-[15px] text-[#241f16] truncate mb-1" style={{ fontFamily: "'EB Garamond', Georgia, serif" }} title={book.title}>{book.title}</p>
+                <p className="text-xs text-[#635c4e] mb-3">Updated {new Date(book.updated_at).toLocaleDateString()}</p>
+                <Link href={route('books.details', book.id)} className="block w-full text-center py-2 bg-[#6e2530] hover:bg-[#5a1e27] text-[#faf8f3] text-xs font-bold rounded-md transition-colors">
                     Continue →
                 </Link>
             </div>
