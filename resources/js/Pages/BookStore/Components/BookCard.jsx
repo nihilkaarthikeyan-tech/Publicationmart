@@ -11,6 +11,25 @@ export const CLOTHS = [
     'linear-gradient(155deg,#7a6224,#584618)',
 ];
 
+/* The store's physical-book treatment, shared by the index and the book
+   page: spine shading, page block, shadow, lift-and-tilt on hover, the
+   shelf rails and the shelf board they rest on. */
+export const STORE_CSS = `
+.pm-covwrap{perspective:900px}
+.pm-cov{border-radius:3px 7px 7px 3px;box-shadow:0 12px 24px rgba(23,21,15,.16),0 3px 7px rgba(23,21,15,.10);transform-origin:left center;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
+.pm-cov::before{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:linear-gradient(90deg,rgba(0,0,0,.30),rgba(0,0,0,.05) 70%,rgba(255,255,255,.14));z-index:2;pointer-events:none}
+.pm-cov::after{content:"";position:absolute;top:3px;bottom:3px;right:-5px;width:5px;background:repeating-linear-gradient(to bottom,#f5f0e4 0 2px,#dcd4c0 2px 3px);border-radius:0 2px 2px 0}
+.group:hover .pm-cov,a:hover>.pm-covwrap>.pm-cov{transform:rotateY(-8deg) translateY(-6px);box-shadow:0 26px 44px rgba(23,21,15,.24),0 6px 14px rgba(23,21,15,.13)}
+.pm-store-run{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#635c4e;font-weight:600}
+.pm-rail{display:flex;gap:28px;overflow-x:auto;padding:6px 4px 22px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:#d8d1c1 transparent}
+.pm-rail::-webkit-scrollbar{height:6px}
+.pm-rail::-webkit-scrollbar-track{background:transparent}
+.pm-rail::-webkit-scrollbar-thumb{background:#d8d1c1;border-radius:3px}
+.pm-rail>*{scroll-snap-align:start;flex:0 0 auto}
+.pm-shelfboard{height:9px;margin-top:-14px;background:linear-gradient(180deg,#cdc5b1,#b9b09a);border-radius:2px;box-shadow:0 10px 18px rgba(23,21,15,.16)}
+@media (prefers-reduced-motion:reduce){.pm-cov{transition:none}}
+`;
+
 /**
  * A cover rendered as a physical book: spine shading on the left, a page
  * block on the right edge, a real shadow, and a lift-and-tilt on hover

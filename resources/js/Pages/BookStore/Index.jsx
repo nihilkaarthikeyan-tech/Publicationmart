@@ -1,18 +1,24 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import { useState } from 'react';
-import BookCard, { PhysicalCover } from './Components/BookCard';
+import { useMemo, useState } from 'react';
+import BookCard, { PhysicalCover, STORE_CSS } from './Components/BookCard';
 
-/* The store's physical-book treatment: spine shading, page block, shadow,
-   and a lift-and-tilt when the reader reaches for a book. */
-const STORE_CSS = `
-.pm-covwrap{perspective:900px}
-.pm-cov{border-radius:3px 7px 7px 3px;box-shadow:0 12px 24px rgba(23,21,15,.16),0 3px 7px rgba(23,21,15,.10);transform-origin:left center;transition:transform .45s cubic-bezier(.16,1,.3,1),box-shadow .45s cubic-bezier(.16,1,.3,1)}
-.pm-cov::before{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:linear-gradient(90deg,rgba(0,0,0,.30),rgba(0,0,0,.05) 70%,rgba(255,255,255,.14));z-index:2;pointer-events:none}
-.pm-cov::after{content:"";position:absolute;top:3px;bottom:3px;right:-5px;width:5px;background:repeating-linear-gradient(to bottom,#f5f0e4 0 2px,#dcd4c0 2px 3px);border-radius:0 2px 2px 0}
-.group:hover .pm-cov,a:hover>.pm-covwrap>.pm-cov{transform:rotateY(-8deg) translateY(-6px);box-shadow:0 26px 44px rgba(23,21,15,.24),0 6px 14px rgba(23,21,15,.13)}
-.pm-store-run{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#7c7364;font-weight:600}
-@media (prefers-reduced-motion:reduce){.pm-cov{transition:none}}
-`;
+/** A small edition of a book for the genre shelf rails. */
+function RailBook({ book, i }) {
+    const { app_url } = usePage().props;
+    return (
+        <Link href={route('book-store.show', book.id)} className="group block w-[136px]">
+            <PhysicalCover book={book} appUrl={app_url} clothIndex={i} />
+            <h4
+                className="mt-4 text-[14px] leading-snug line-clamp-2 text-[#17150f] group-hover:text-[#6e2530] transition-colors"
+                style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
+                title={book.title}
+            >
+                {book.title}
+            </h4>
+            <p className="text-[12px] font-bold text-[#17150f] mt-1">₹{book.selling_price}</p>
+        </Link>
+    );
+}
 
 /** One book on the front table — displayed large, like the newest titles
  *  laid out at the entrance of a bookshop. */
@@ -69,6 +75,39 @@ export default function BookStoreIndex({ auth, books }) {
     // first four. While searching, the table steps aside and results lead.
     const frontTable = books.slice(0, 4);
     const shelfBooks = searchQuery ? filteredBooks : books.slice(4);
+
+    // Subject shelves. The genre column is no help here — nearly the whole
+    // catalogue is filed under one word ("academic") — so books are shelved
+    // by subject read from their titles, the way an academic bookshop sorts
+    // its tables. Purely a browsing aid: matching is first-hit, unmatched
+    // books simply stay in the full catalogue below, and nothing is hidden.
+    const genreShelves = useMemo(() => {
+        const SUBJECTS = [
+            ['Computing & AI', /\b(ai|artificial intelligence|machine learning|deep learning|data (science|analytics|mining)|computer|computing|software|programming|python|java\b|iot|cyber|network|cloud|algorithm|operating system|database|blockchain|web)\b/i],
+            ['Electronics & Engineering', /\b(vlsi|electronic|electrical|circuit|embedded|micro ?controller|microprocessor|signal|semiconductor|mechanical|civil|engineering|robotic|automation|power system|renewable|energy)\b/i],
+            ['Mathematics & Physical Sciences', /\b(math|mathematic|statistic|physics|chemistry|chemical|quantum|calculus|algebra|geometry|material science)\b/i],
+            ['Life Sciences & Medicine', /\b(bio\w*|health|medical|medicine|nursing|pharma\w*|plant|agricultur\w*|environment\w*|ecolog\w*|disease|anatomy|clinical|food|nutrition|genetic)\b/i],
+            ['Business & Management', /\b(business|management|marketing|finance|financial|econom\w*|entrepreneur\w*|leadership|accounting|commerce|banking)\b/i],
+            ['Society, Education & Letters', /\b(education|teaching|pedagog\w*|history|culture|society|social|psycholog\w*|philosoph\w*|literature|language|english|poetry|law|yoga)\b/i],
+        ];
+        const shelves = new Map(SUBJECTS.map(([name]) => [name, []]));
+        books.forEach((b) => {
+            const genre = (b.genre || '').trim().toLowerCase();
+            // A real (non-academic) genre is its own shelf — Fiction, Poetry…
+            if (genre && genre !== 'academic' && genre !== 'general') {
+                const label = genre.charAt(0).toUpperCase() + genre.slice(1);
+                if (!shelves.has(label)) shelves.set(label, []);
+                shelves.get(label).push(b);
+                return;
+            }
+            const hit = SUBJECTS.find(([, re]) => re.test(b.title));
+            if (hit) shelves.get(hit[0]).push(b);
+        });
+        return [...shelves.entries()]
+            .filter(([, list]) => list.length >= 3)
+            .sort((a, b) => b[1].length - a[1].length)
+            .slice(0, 6);
+    }, [books]);
 
     return (
         <>
@@ -129,6 +168,36 @@ export default function BookStoreIndex({ auth, books }) {
                                 <FrontTableBook key={book.id} book={book} i={i} />
                             ))}
                         </div>
+                    </section>
+                )}
+
+                {/* ── The subject shelves: browse by genre, walk the rails ── */}
+                {!searchQuery && genreShelves.length > 0 && (
+                    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+                        <div className="flex items-baseline gap-6 mb-2">
+                            <span className="pm-store-run whitespace-nowrap">Browse the shelves</span>
+                            <div className="flex-1 h-px bg-[#d8d1c1]" />
+                            <span className="pm-store-run hidden sm:inline">Shelved by subject · slide along each shelf →</span>
+                        </div>
+                        {genreShelves.map(([genre, list]) => (
+                            <div key={genre} className="mt-10">
+                                <div className="flex items-baseline gap-4 mb-6">
+                                    <h3
+                                        className="text-[22px] text-[#17150f]"
+                                        style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
+                                    >
+                                        {genre}
+                                    </h3>
+                                    <span className="pm-store-run">{list.length} titles</span>
+                                </div>
+                                <div className="pm-rail">
+                                    {list.slice(0, 12).map((book, i) => (
+                                        <RailBook key={book.id} book={book} i={i} />
+                                    ))}
+                                </div>
+                                <div className="pm-shelfboard" aria-hidden="true" />
+                            </div>
+                        ))}
                     </section>
                 )}
 
