@@ -75,15 +75,15 @@ export default function Create({ auth, book }) {
                             {/* Left Side - Hero Content (Dark) */}
                             <div className={`lg:col-span-5 transition-all duration-700 delay-200 transform ${isMounted ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
                                 {/* Background backdrop for text */}
-                                <div className="relative p-8 rounded-3xl bg-gradient-to-br from-[#5a1e27]/90 via-[#6e2530]/85 to-[#4d1a22]/85 backdrop-blur-sm border border-white/5">
+                                <div className="relative p-8 rounded-3xl bg-gradient-to-br from-[#5a1e27]/90 via-[#6e2530]/85 to-[#4d1a22]/85 backdrop-blur-sm border border-[#d8d1c1]">
                                     {/* Progress Steps - Vertical */}
                                     <div className="mb-8">
                                         <div className="flex items-center gap-3 mb-4">
                                             {[1, 2, 3, 4].map((step, idx) => (
                                                 <div key={step} className="flex items-center">
                                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm transition-all ${step === 1
-                                                        ? 'bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/50'
-                                                        : 'bg-white/10 text-white/50 border border-white/20'
+                                                        ? 'bg-[#e8cf8e] text-[#4d1a22] shadow-lg'
+                                                        : 'bg-white/10 text-[#f2ecdd]/60 border border-white/20'
                                                         }`}>
                                                         {step === 1 ? (
                                                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,13 +91,13 @@ export default function Create({ auth, book }) {
                                                             </svg>
                                                         ) : step}
                                                     </div>
-                                                    {idx < 3 && <div className={`w-6 h-0.5 ${step === 1 ? 'bg-gradient-to-r from-violet-500 to-white/20' : 'bg-white/20'}`} />}
+                                                    {idx < 3 && <div className={`w-6 h-0.5 ${step === 1 ? 'bg-gradient-to-r from-violet-500 to-white/20' : 'bg-[#e7e1d4]'}`} />}
                                                 </div>
                                             ))}
                                         </div>
                                         <div className="flex items-center gap-2">
-                                            <span className="px-3 py-1 bg-violet-500/30 rounded-lg text-violet-200 text-sm font-bold">Step 1</span>
-                                            <span className="text-white/50 text-sm">of 4</span>
+                                            <span className="px-3 py-1 bg-[#e8cf8e]/20 rounded-lg text-[#e8cf8e] text-sm font-bold">Step 1</span>
+                                            <span className="text-[#f2ecdd]/60 text-sm">of 4</span>
                                         </div>
                                     </div>
 
@@ -108,20 +108,20 @@ export default function Create({ auth, book }) {
                                         </em>
                                     </h1>
 
-                                    <p className="text-lg text-white mb-8 leading-relaxed" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
+                                    <p className="text-lg text-[#f2ecdd]/85 mb-8 leading-relaxed">
                                         Start your publishing journey by telling us about your masterpiece. Every great book starts with a simple first step.
                                     </p>
 
                                     {/* Feature highlights */}
                                     <div className="space-y-3">
                                         {[
-                                            { icon: '🚀', text: 'Global distribution across 40+ countries' },
-                                            { icon: '💰', text: 'Keep up to 70% royalties on every sale' },
-                                            { icon: '📱', text: 'Available in print, eBook & audiobook' },
-                                        ].map((feature, idx) => (
+                                            'Global distribution across 40+ countries',
+                                            'Keep up to 70% royalties on every sale',
+                                            'Available in print, eBook & audiobook',
+                                        ].map((text, idx) => (
                                             <div key={idx} className="flex items-center gap-3">
-                                                <span className="text-xl">{feature.icon}</span>
-                                                <span className="text-white font-medium" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>{feature.text}</span>
+                                                <span className="w-1.5 h-1.5 rounded-full bg-[#e8cf8e] shrink-0" aria-hidden="true" />
+                                                <span className="text-[#f2ecdd]/90 font-medium">{text}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -137,7 +137,7 @@ export default function Create({ auth, book }) {
                                         <div className="flex items-center justify-between">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/30">
-                                                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="w-5 h-5 text-[#17150f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                                     </svg>
                                                 </div>
@@ -177,7 +177,7 @@ export default function Create({ auth, book }) {
                                                             <option>Hindi</option>
                                                             <option>Tamil</option>
                                                         </select>
-                                                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#7c7364] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#635c4e] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                         </svg>
                                                     </div>
@@ -225,7 +225,7 @@ export default function Create({ auth, book }) {
                                             {/* Subtitle */}
                                             <div>
                                                 <label className="block text-sm font-semibold text-[#4b443a] mb-2">
-                                                    Subtitle <span className="text-[#7c7364] font-normal">(Optional)</span>
+                                                    Subtitle <span className="text-[#635c4e] font-normal">(Optional)</span>
                                                 </label>
                                                 <input
                                                     type="text"
@@ -239,7 +239,7 @@ export default function Create({ auth, book }) {
                                             {/* Co-Authors */}
                                             <div>
                                                 <label className="block text-sm font-semibold text-[#4b443a] mb-2">
-                                                    Co-Authors <span className="text-[#7c7364] font-normal">(Optional)</span>
+                                                    Co-Authors <span className="text-[#635c4e] font-normal">(Optional)</span>
                                                 </label>
                                                 <div className="flex gap-2">
                                                     <input
@@ -253,7 +253,7 @@ export default function Create({ auth, book }) {
                                                     <button
                                                         type="button"
                                                         onClick={addCoAuthor}
-                                                        className="h-12 px-5 bg-[#17150f] text-white font-bold text-sm rounded-xl shadow-lg hover:bg-[#241f16] transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                                                        className="h-12 px-5 bg-[#faf8f3] text-[#17150f] font-bold text-sm rounded-xl shadow-lg hover:bg-[#faf8f3] transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
                                                     >
                                                         Add
                                                     </button>
@@ -267,7 +267,7 @@ export default function Create({ auth, book }) {
                                                                 <button
                                                                     type="button"
                                                                     onClick={() => removeCoAuthor(index)}
-                                                                    className="p-1 hover:bg-rose-100 rounded-md text-[#7c7364] hover:text-rose-500 transition-colors"
+                                                                    className="p-1 hover:bg-rose-100 rounded-md text-[#635c4e] hover:text-rose-500 transition-colors"
                                                                 >
                                                                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -296,7 +296,7 @@ export default function Create({ auth, book }) {
                                                             <option key={pub} value={pub}>{pub}</option>
                                                         ))}
                                                     </select>
-                                                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#7c7364] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#635c4e] pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                                     </svg>
                                                 </div>
@@ -323,7 +323,7 @@ export default function Create({ auth, book }) {
                                                             {/* Selected indicator */}
                                                             {data.genre === genre.id && (
                                                                 <div className={`absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br ${genre.color} rounded-full flex items-center justify-center shadow-lg`}>
-                                                                    <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                                    <svg className="w-3.5 h-3.5 text-[#17150f]" fill="currentColor" viewBox="0 0 20 20">
                                                                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                                     </svg>
                                                                 </div>

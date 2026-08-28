@@ -32,13 +32,13 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
     return (
         <>
             <Head title={`Hire a Professional - ${serviceNames[serviceType]}`} />
-            <div className="min-h-screen bg-[#17150f]">
+            <div className="min-h-screen bg-[#f0ece3]">
                 {/* Header */}
-                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-[#d8d1c1] sticky top-0 z-50">
                     <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
                         <Link
                             href={route('books.design', book.id)}
-                            className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
+                            className="flex items-center gap-3 text-[#635c4e] hover:text-[#17150f] transition-colors"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -46,10 +46,10 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
                             <span className="font-medium">Back</span>
                         </Link>
                         <div className="flex items-center gap-2">
-                            <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
-                            <span className="font-bold text-white">Secure Payment</span>
+                            <span className="font-bold text-[#17150f]">Secure Payment</span>
                         </div>
                     </div>
                 </header>
@@ -62,9 +62,9 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
 
                     <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {/* Order Summary */}
-                        <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-6">
-                            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                                <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-6">
+                            <h2 className="text-xl font-bold text-[#17150f] mb-6 flex items-center gap-2">
+                                <svg className="w-5 h-5 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                 </svg>
                                 Order Summary
@@ -72,48 +72,48 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
 
                             <div className="space-y-4">
                                 {/* Service Info */}
-                                <div className="bg-[#0a0f1a] rounded-xl p-4 border border-white/5">
+                                <div className="bg-[#faf8f3] rounded-xl p-4 border border-[#d8d1c1]">
                                     <div className="flex items-center justify-between mb-2">
-                                        <span className="text-gray-400 text-sm">Service</span>
-                                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                                        <span className="text-[#635c4e] text-sm">Service</span>
+                                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-700 border border-emerald-400/30">
                                             Professional
                                         </span>
                                     </div>
-                                    <h3 className="text-lg font-bold text-white">{serviceNames[serviceType]}</h3>
+                                    <h3 className="text-lg font-bold text-[#17150f]">{serviceNames[serviceType]}</h3>
                                 </div>
 
                                 {/* Book Info */}
-                                <div className="bg-[#0a0f1a] rounded-xl p-4 border border-white/5">
-                                    <div className="text-gray-400 text-sm mb-2">For Book</div>
-                                    <h3 className="text-white font-medium">{book.title || 'Untitled Book'}</h3>
+                                <div className="bg-[#faf8f3] rounded-xl p-4 border border-[#d8d1c1]">
+                                    <div className="text-[#635c4e] text-sm mb-2">For Book</div>
+                                    <h3 className="text-[#17150f] font-medium">{book.title || 'Untitled Book'}</h3>
                                 </div>
 
                                 {/* What's Included */}
-                                <div className="space-y-3 pt-4 border-t border-white/10">
-                                    <h4 className="text-sm font-bold text-gray-300 uppercase tracking-wider">What's Included</h4>
+                                <div className="space-y-3 pt-4 border-t border-[#d8d1c1]">
+                                    <h4 className="text-sm font-bold text-[#4b443a] uppercase tracking-wider">What's Included</h4>
                                     <div className="space-y-2">
                                         {serviceType === 'formatting' && (
                                             <>
-                                                <div className="flex items-center gap-2 text-sm text-gray-300">
-                                                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div className="flex items-center gap-2 text-sm text-[#4b443a]">
+                                                    <svg className="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                     Professional book formatting
                                                 </div>
-                                                <div className="flex items-center gap-2 text-sm text-gray-300">
-                                                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div className="flex items-center gap-2 text-sm text-[#4b443a]">
+                                                    <svg className="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                     Amazon KDP-ready layout
                                                 </div>
-                                                <div className="flex items-center gap-2 text-sm text-gray-300">
-                                                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div className="flex items-center gap-2 text-sm text-[#4b443a]">
+                                                    <svg className="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                     Table of Contents
                                                 </div>
-                                                <div className="flex items-center gap-2 text-sm text-gray-300">
-                                                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div className="flex items-center gap-2 text-sm text-[#4b443a]">
+                                                    <svg className="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                     3-5 business days delivery
@@ -122,14 +122,14 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
                                         )}
                                         {serviceType === 'cover' && (
                                             <>
-                                                <div className="flex items-center gap-2 text-sm text-gray-300">
-                                                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div className="flex items-center gap-2 text-sm text-[#4b443a]">
+                                                    <svg className="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                     Custom cover design
                                                 </div>
-                                                <div className="flex items-center gap-2 text-sm text-gray-300">
-                                                    <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div className="flex items-center gap-2 text-sm text-[#4b443a]">
+                                                    <svg className="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                     2 revision rounds
@@ -140,48 +140,48 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
                                 </div>
 
                                 {/* Total */}
-                                <div className="pt-4 border-t border-white/10">
+                                <div className="pt-4 border-t border-[#d8d1c1]">
                                     <div className="flex justify-between items-center">
-                                        <span className="text-lg font-bold text-white">Total</span>
-                                        <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                                        <span className="text-lg font-bold text-[#17150f]">Total</span>
+                                        <span className="text-2xl font-bold text-[#6e2530]">
                                             ₹{price}
                                         </span>
                                     </div>
-                                    <p className="text-xs text-gray-500 mt-1">One-time payment • No recurring fees</p>
+                                    <p className="text-xs text-[#635c4e] mt-1">One-time payment • No recurring fees</p>
                                 </div>
 
                                 {/* What Happens Next? */}
-                                <div className="pt-4 border-t border-white/10">
-                                    <h4 className="text-sm font-bold text-gray-300 uppercase tracking-wider mb-3">What Happens Next?</h4>
+                                <div className="pt-4 border-t border-[#d8d1c1]">
+                                    <h4 className="text-sm font-bold text-[#4b443a] uppercase tracking-wider mb-3">What Happens Next?</h4>
                                     <div className="space-y-2">
                                         {requiresUpload ? (
                                             <>
                                                 <div className="flex items-start gap-3">
                                                     <span className="w-5 h-5 rounded-full bg-indigo-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
-                                                    <span className="text-sm text-gray-300">Upload your manuscript (DOCX/PDF)</span>
+                                                    <span className="text-sm text-[#4b443a]">Upload your manuscript (DOCX/PDF)</span>
                                                 </div>
                                                 <div className="flex items-start gap-3">
                                                     <span className="w-5 h-5 rounded-full bg-indigo-500/50 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
-                                                    <span className="text-sm text-gray-400">Our team formats your book</span>
+                                                    <span className="text-sm text-[#635c4e]">Our team formats your book</span>
                                                 </div>
                                                 <div className="flex items-start gap-3">
                                                     <span className="w-5 h-5 rounded-full bg-indigo-500/30 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
-                                                    <span className="text-sm text-gray-400">Download your formatted file</span>
+                                                    <span className="text-sm text-[#635c4e]">Download your formatted file</span>
                                                 </div>
                                             </>
                                         ) : (
                                             <>
                                                 <div className="flex items-start gap-3">
                                                     <span className="w-5 h-5 rounded-full bg-pink-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">1</span>
-                                                    <span className="text-sm text-gray-300">Our team will contact you within 24hrs</span>
+                                                    <span className="text-sm text-[#4b443a]">Our team will contact you within 24hrs</span>
                                                 </div>
                                                 <div className="flex items-start gap-3">
                                                     <span className="w-5 h-5 rounded-full bg-pink-500/50 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">2</span>
-                                                    <span className="text-sm text-gray-400">Discuss your cover vision & requirements</span>
+                                                    <span className="text-sm text-[#635c4e]">Discuss your cover vision & requirements</span>
                                                 </div>
                                                 <div className="flex items-start gap-3">
                                                     <span className="w-5 h-5 rounded-full bg-pink-500/30 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">3</span>
-                                                    <span className="text-sm text-gray-400">Receive your custom cover design</span>
+                                                    <span className="text-sm text-[#635c4e]">Receive your custom cover design</span>
                                                 </div>
                                             </>
                                         )}
@@ -191,9 +191,9 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
                         </div>
 
                         {/* Payment Form */}
-                        <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-6">
-                            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                                <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-6">
+                            <h2 className="text-xl font-bold text-[#17150f] mb-6 flex items-center gap-2">
+                                <svg className="w-5 h-5 text-cyan-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                                 </svg>
                                 Payment Details
@@ -202,13 +202,13 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
                             {/* Secure Payment Notice */}
                             <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-4 mb-6 flex items-start gap-3">
                                 <div className="p-2 bg-indigo-500/20 rounded-lg shrink-0">
-                                    <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                     </svg>
                                 </div>
                                 <div>
-                                    <h4 className="font-bold text-white text-sm mb-1">Redirecting to PhonePe</h4>
-                                    <p className="text-gray-400 text-xs">
+                                    <h4 className="font-bold text-[#17150f] text-sm mb-1">Redirecting to PhonePe</h4>
+                                    <p className="text-[#635c4e] text-xs">
                                         You will be redirected to PhonePe's secure gateway to complete your payment via UPI, Card, or Netbanking.
                                     </p>
                                 </div>
@@ -239,7 +239,7 @@ export default function ProfessionalPayment({ book, serviceType, price, serviceR
                             </button>
 
                             {/* Security Badge */}
-                            <div className="mt-4 flex items-center justify-center gap-2 text-gray-500">
+                            <div className="mt-4 flex items-center justify-center gap-2 text-[#635c4e]">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>

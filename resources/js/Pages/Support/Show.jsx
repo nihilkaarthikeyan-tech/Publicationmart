@@ -3,14 +3,14 @@ import { useState } from 'react';
 
 const statusColors = {
     open:        'bg-emerald-100 text-emerald-700',
-    in_progress: 'bg-yellow-100 text-yellow-700',
-    closed:      'bg-gray-100 text-gray-500',
+    in_progress: 'bg-yellow-100 text-yellow-800',
+    closed:      'bg-gray-100 text-[#635c4e]',
 };
 
 const priorityColors = {
     urgent: 'bg-red-100 text-red-700',
     normal: 'bg-blue-100 text-blue-700',
-    low:    'bg-gray-100 text-gray-500',
+    low:    'bg-gray-100 text-[#635c4e]',
 };
 
 export default function SupportShow({ auth, ticket }) {
@@ -48,11 +48,11 @@ export default function SupportShow({ auth, ticket }) {
                         <div>
                             <div className="flex items-center gap-2 mb-1">
                                 <span className="text-xs font-mono text-violet-600 font-bold">{ticket.ticket_number}</span>
-                                <span className="text-gray-300">•</span>
-                                <span className="text-xs text-gray-400">{ticket.category_label}</span>
+                                <span className="text-[#4b443a]">•</span>
+                                <span className="text-xs text-[#635c4e]">{ticket.category_label}</span>
                             </div>
                             <h1 className="text-xl font-bold text-gray-900">{ticket.subject}</h1>
-                            <p className="text-xs text-gray-400 mt-1">Opened {ticket.created_at}</p>
+                            <p className="text-xs text-[#635c4e] mt-1">Opened {ticket.created_at}</p>
                         </div>
                         <div className="flex items-center gap-2">
                             <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${priorityColors[ticket.priority]}`}>
@@ -64,7 +64,7 @@ export default function SupportShow({ auth, ticket }) {
                             {ticket.status !== 'closed' && (
                                 <button
                                     onClick={handleClose}
-                                    className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-full text-xs font-semibold transition"
+                                    className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-[#635c4e] rounded-full text-xs font-semibold transition"
                                 >
                                     Close Ticket
                                 </button>
@@ -84,7 +84,7 @@ export default function SupportShow({ auth, ticket }) {
                             </div>
                             <div>
                                 <span className="font-semibold text-gray-800 text-sm">{auth.user.name}</span>
-                                <span className="text-xs text-gray-400 ml-2">{ticket.created_at}</span>
+                                <span className="text-xs text-[#635c4e] ml-2">{ticket.created_at}</span>
                             </div>
                         </div>
                         <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">{ticket.message}</p>
@@ -106,13 +106,13 @@ export default function SupportShow({ auth, ticket }) {
                             className={`rounded-2xl shadow p-5 ${reply.is_admin ? 'bg-violet-50 border border-violet-100' : 'bg-white'}`}
                         >
                             <div className="flex items-center gap-2 mb-3">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-white' : 'bg-violet-100 text-violet-700'}`}>
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-[#17150f]' : 'bg-violet-100 text-violet-700'}`}>
                                     {reply.is_admin ? '🛡' : reply.author_name.charAt(0).toUpperCase()}
                                 </div>
                                 <div>
                                     <span className="font-semibold text-gray-800 text-sm">{reply.author_name}</span>
                                     {reply.is_admin && <span className="ml-1 text-xs bg-violet-600 text-white px-2 py-0.5 rounded-full">Support</span>}
-                                    <span className="text-xs text-gray-400 ml-2">{reply.created_at}</span>
+                                    <span className="text-xs text-[#635c4e] ml-2">{reply.created_at}</span>
                                 </div>
                             </div>
                             <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">{reply.message}</p>
@@ -149,7 +149,7 @@ export default function SupportShow({ auth, ticket }) {
                                     type="file"
                                     accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
                                     onChange={e => setData('attachment', e.target.files[0])}
-                                    className="text-sm text-gray-500 border border-gray-200 rounded-lg px-3 py-2 w-full"
+                                    className="text-sm text-[#635c4e] border border-gray-200 rounded-lg px-3 py-2 w-full"
                                 />
                             </div>
                             <button
@@ -163,7 +163,7 @@ export default function SupportShow({ auth, ticket }) {
                     </div>
                 ) : (
                     <div className="bg-gray-50 rounded-2xl border border-gray-200 p-5 mt-4 text-center">
-                        <p className="text-gray-500 text-sm">This ticket is closed.</p>
+                        <p className="text-[#635c4e] text-sm">This ticket is closed.</p>
                         <Link href={route('support.create')} className="mt-2 inline-block text-violet-600 hover:underline text-sm font-medium">
                             Open a new ticket →
                         </Link>

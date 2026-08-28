@@ -873,13 +873,13 @@ export default function CoverCreator({ book }) {
 
             {/* LEFT SIDEBAR - TOOLBAR */}
             {/* LEFT SIDEBAR - TOOLBAR */}
-            <div className="w-20 bg-[#0f1014] flex flex-col items-center py-6 gap-6 z-20 shadow-2xl border-r border-white/5">
+            <div className="w-20 bg-[#faf8f3] flex flex-col items-center py-6 gap-6 z-20 shadow-2xl border-r border-[#d8d1c1]">
                 {/* Back Button */}
-                <Link href={route('books.design', book.id)} className="group relative w-12 h-12 flex items-center justify-center text-gray-500 hover:text-white transition-all duration-300 bg-white/5 hover:bg-white/10 rounded-2xl mb-2">
+                <Link href={route('books.design', book.id)} className="group relative w-12 h-12 flex items-center justify-center text-[#635c4e] hover:text-[#17150f] transition-all duration-300 bg-[#faf8f3] hover:bg-[#e7e1d4] rounded-2xl mb-2">
                     <svg className="w-6 h-6 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 </Link>
 
-                <div className="w-10 h-px bg-white/10 rounded-full mb-2"></div>
+                <div className="w-10 h-px bg-[#e7e1d4] rounded-full mb-2"></div>
 
                 {/* Tools */}
                 <div className="flex flex-col gap-4 w-full px-2">
@@ -888,8 +888,8 @@ export default function CoverCreator({ book }) {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`w-full aspect-square rounded-2xl flex flex-col items-center justify-center transition-all duration-300 group relative ${activeTab === tab.id
-                                ? 'bg-gradient-to-br from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-500/25 ring-1 ring-white/20'
-                                : 'text-gray-500 hover:text-white hover:bg-white/5'
+                                ? 'bg-gradient-to-br from-indigo-600 to-violet-600 text-[#17150f] shadow-lg shadow-indigo-500/25 ring-1 ring-[#d8d1c1]'
+                                : 'text-[#635c4e] hover:text-[#17150f] hover:bg-[#faf8f3]'
                                 }`}
                         >
                             <svg className={`w-6 h-6 mb-1.5 transition-transform duration-300 ${activeTab === tab.id ? 'scale-110' : 'group-hover:scale-110'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={activeTab === tab.id ? "2" : "1.5"} d={tab.icon}></path></svg>
@@ -915,32 +915,32 @@ export default function CoverCreator({ book }) {
                         <div className="grid grid-cols-2 gap-3">
                             {/* Target Selector - Front or Back Cover */}
                             <div className="col-span-2 mb-4">
-                                <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Apply To</label>
+                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Apply To</label>
                                 <div className="flex bg-gray-100 rounded-lg p-1">
                                     <button
                                         onClick={() => setBgTarget('front')}
-                                        className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition ${bgTarget === 'front' ? 'bg-white shadow text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
+                                        className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition ${bgTarget === 'front' ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:text-gray-700'}`}
                                     >
                                         Front Cover
                                     </button>
                                     <button
                                         onClick={() => setBgTarget('spine')}
-                                        className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition ${bgTarget === 'spine' ? 'bg-white shadow text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
+                                        className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition ${bgTarget === 'spine' ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:text-gray-700'}`}
                                     >
                                         Spine
                                     </button>
                                     <button
                                         onClick={() => setBgTarget('back')}
-                                        className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition ${bgTarget === 'back' ? 'bg-white shadow text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
+                                        className={`flex-1 py-2 px-3 rounded-md text-sm font-medium transition ${bgTarget === 'back' ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:text-gray-700'}`}
                                     >
                                         Back Cover
                                     </button>
                                 </div>
-                                <p className="text-xs text-gray-400 mt-2">Currently editing: <span className="font-semibold text-indigo-600">{bgTarget === 'front' ? 'Front Cover' : bgTarget === 'spine' ? 'Spine' : 'Back Cover'}</span></p>
+                                <p className="text-xs text-[#635c4e] mt-2">Currently editing: <span className="font-semibold text-indigo-600">{bgTarget === 'front' ? 'Front Cover' : bgTarget === 'spine' ? 'Spine' : 'Back Cover'}</span></p>
                             </div>
 
                             <div className="col-span-2 mb-4">
-                                <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Search Free Photos (Pexels)</label>
+                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Search Free Photos (Pexels)</label>
                                 {/* AI Toggle Removed - Now Purely Pexels Stock Search */}
                             </div>
 
@@ -953,13 +953,13 @@ export default function CoverCreator({ book }) {
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     onKeyDown={handleSearch}
                                 />
-                                <svg className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                <svg className="w-4 h-4 text-[#635c4e] absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </div>
 
                             {/* Featured Backgrounds (Visible when not searching) */}
                             {!searchQuery && (
                                 <div className="col-span-2 mb-6">
-                                    <div className="font-bold text-xs text-gray-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <div className="font-bold text-xs text-[#635c4e] uppercase tracking-widest mb-3 flex items-center gap-2">
                                         <svg className="w-3 h-3 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                                         Featured Collection
                                     </div>
@@ -988,7 +988,7 @@ export default function CoverCreator({ book }) {
                             {isSearching && (
                                 <div className="col-span-2 py-8 text-center">
                                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-2"></div>
-                                    <p className="text-xs text-gray-500">Searching specifically for "{searchQuery}"...</p>
+                                    <p className="text-xs text-[#635c4e]">Searching specifically for "{searchQuery}"...</p>
                                 </div>
                             )}
 
@@ -996,12 +996,12 @@ export default function CoverCreator({ book }) {
                             {searchResults.length > 0 && (
                                 <div className="col-span-2 mb-6">
                                     <div className="flex justify-between items-center mb-3">
-                                        <div className="text-sm text-gray-600">
+                                        <div className="text-sm text-[#635c4e]">
                                             <span className="font-semibold text-indigo-600">{searchResults.length}</span> of <span className="font-semibold">{totalHits.toLocaleString()}</span> Free images
                                         </div>
-                                        <button onClick={() => { setSearchResults([]); setTotalHits(0); }} className="text-xs text-gray-400 hover:text-red-500">Clear</button>
+                                        <button onClick={() => { setSearchResults([]); setTotalHits(0); }} className="text-xs text-[#635c4e] hover:text-red-500">Clear</button>
                                     </div>
-                                    <p className="text-xs text-gray-400 mb-3">Click any image to apply it as your book cover background</p>
+                                    <p className="text-xs text-[#635c4e] mb-3">Click any image to apply it as your book cover background</p>
                                     <div className="grid grid-cols-2 gap-2">
                                         {searchResults.map((img) => (
                                             <div
@@ -1036,8 +1036,8 @@ export default function CoverCreator({ book }) {
                             )}
 
                             {/* Solid Color Backgrounds */}
-                            <div className="col-span-2 mb-2 font-bold text-xs text-gray-400 uppercase tracking-widest">Solid Colors</div>
-                            <p className="col-span-2 text-xs text-gray-400 mb-2">Click to apply as background</p>
+                            <div className="col-span-2 mb-2 font-bold text-xs text-[#635c4e] uppercase tracking-widest">Solid Colors</div>
+                            <p className="col-span-2 text-xs text-[#635c4e] mb-2">Click to apply as background</p>
                             {[
                                 // Row 1 - Vibrant
                                 '#ef4444', '#f97316', '#f59e0b', '#84cc16',
@@ -1058,7 +1058,7 @@ export default function CoverCreator({ book }) {
                                     >
                                         {isSelected && (
                                             <div className="w-full h-full flex items-center justify-center">
-                                                <svg className={`w-5 h-5 ${color === '#ffffff' || color === '#f59e0b' || color === '#84cc16' ? 'text-gray-800' : 'text-white'} drop-shadow-lg`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                                                <svg className={`w-5 h-5 ${color === '#ffffff' || color === '#f59e0b' || color === '#84cc16' ? 'text-gray-800' : 'text-[#17150f]'} drop-shadow-lg`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
                                             </div>
                                         )}
                                     </div>
@@ -1066,8 +1066,8 @@ export default function CoverCreator({ book }) {
                             })}
 
                             {/* Textures Section */}
-                            <div className="col-span-2 mt-6 mb-2 font-bold text-xs text-gray-400 uppercase tracking-widest">Textures</div>
-                            <p className="col-span-2 text-xs text-gray-400 mb-2">High-quality photo backgrounds</p>
+                            <div className="col-span-2 mt-6 mb-2 font-bold text-xs text-[#635c4e] uppercase tracking-widest">Textures</div>
+                            <p className="col-span-2 text-xs text-[#635c4e] mb-2">High-quality photo backgrounds</p>
                             {[
                                 // Nature & Scenery
                                 { seed: 'palmtree', label: 'Palm Tree' },
@@ -1124,8 +1124,8 @@ export default function CoverCreator({ book }) {
                             })}
 
                             {/* Patterns Section */}
-                            <div className="col-span-2 mt-6 mb-2 font-bold text-xs text-gray-400 uppercase tracking-widest">Patterns</div>
-                            <p className="col-span-2 text-xs text-gray-400 mb-2">Seamless repeating patterns</p>
+                            <div className="col-span-2 mt-6 mb-2 font-bold text-xs text-[#635c4e] uppercase tracking-widest">Patterns</div>
+                            <p className="col-span-2 text-xs text-[#635c4e] mb-2">Seamless repeating patterns</p>
                             {[
                                 // Using SVG pattern URLs for seamless patterns
                                 { id: 'stripes', name: 'Diagonal Stripes', url: 'https://www.transparenttextures.com/patterns/diagonal-striped-brick.png', color: '#8c3541' },
@@ -1152,16 +1152,16 @@ export default function CoverCreator({ book }) {
                                     >
                                         {isSelected && (
                                             <div className="absolute inset-0 bg-green-500/30 flex items-center justify-center">
-                                                <svg className="w-6 h-6 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                                                <svg className="w-6 h-6 text-[#17150f] drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
                                             </div>
                                         )}
-                                        <div className="absolute bottom-1 left-1 bg-black/50 text-white text-[9px] px-1.5 py-0.5 rounded">{pattern.name}</div>
+                                        <div className="absolute bottom-1 left-1 bg-[#faf8f3] text-[#17150f] text-[9px] px-1.5 py-0.5 rounded">{pattern.name}</div>
                                     </div>
                                 );
                             })}
 
                             {/* Gradients Section */}
-                            <div className="col-span-2 mt-6 mb-2 font-bold text-xs text-gray-400 uppercase tracking-widest">Gradients</div>
+                            <div className="col-span-2 mt-6 mb-2 font-bold text-xs text-[#635c4e] uppercase tracking-widest">Gradients</div>
                             {[
                                 { id: 'grad1', name: 'Sunset', gradient: 'linear-gradient(135deg, #f97316, #dc2626, #a4485c)' },
                                 { id: 'grad2', name: 'Ocean', gradient: 'linear-gradient(135deg, #0ea5e9, #3b82f6, #6366f1)' },
@@ -1181,7 +1181,7 @@ export default function CoverCreator({ book }) {
                                     >
                                         {isSelected && (
                                             <div className="absolute inset-0 flex items-center justify-center">
-                                                <svg className="w-5 h-5 text-white drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                                                <svg className="w-5 h-5 text-[#17150f] drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
                                             </div>
                                         )}
                                     </div>
@@ -1195,13 +1195,13 @@ export default function CoverCreator({ book }) {
                             {/* Text Sub-Tabs (Visual Reference to Canva) */}
                             <div className="flex border-b border-gray-200 mb-4">
                                 <button
-                                    className={`flex-1 py-2 text-sm font-medium ${textSubTab === 'style' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
+                                    className={`flex-1 py-2 text-sm font-medium ${textSubTab === 'style' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-[#635c4e] hover:text-gray-700'}`}
                                     onClick={() => setTextSubTab('style')}
                                 >
                                     Text Style
                                 </button>
                                 <button
-                                    className={`flex-1 py-2 text-sm font-medium ${textSubTab === 'add' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
+                                    className={`flex-1 py-2 text-sm font-medium ${textSubTab === 'add' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-[#635c4e] hover:text-gray-700'}`}
                                     onClick={() => setTextSubTab('add')}
                                 >
                                     Add Text
@@ -1214,23 +1214,23 @@ export default function CoverCreator({ book }) {
                                     <div className="pb-4 border-b border-gray-200 flex justify-between items-center">
                                         <div>
                                             <h3 className="text-sm font-bold text-gray-800 mb-1">Editing: <span className="text-indigo-600 capitalize">{selectedId.replace('back', 'Back ').replace(/([A-Z])/g, ' $1').trim()}</span></h3>
-                                            <p className="text-xs text-gray-500">Drag on canvas to move</p>
+                                            <p className="text-xs text-[#635c4e]">Drag on canvas to move</p>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <button
                                                 onClick={() => deleteElement(selectedId)}
-                                                className="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 rounded transition"
+                                                className="p-1.5 text-red-700 hover:text-red-600 hover:bg-red-50 rounded transition"
                                                 title="Delete Element"
                                             >
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                             </button>
-                                            <button onClick={() => setSelectedId(null)} className="text-xs text-gray-400 hover:text-gray-600 underline">Done</button>
+                                            <button onClick={() => setSelectedId(null)} className="text-xs text-[#635c4e] hover:text-[#635c4e] underline">Done</button>
                                         </div>
                                     </div>
 
                                     {/* ... Existing Tools ... */}
                                     <div>
-                                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Content</label>
+                                        <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Content</label>
                                         <textarea
                                             rows="2"
                                             value={coverElements[selectedId].text}
@@ -1241,7 +1241,7 @@ export default function CoverCreator({ book }) {
 
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Size (px)</label>
+                                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Size (px)</label>
                                             <input
                                                 type="number"
                                                 value={coverElements[selectedId].fontSize}
@@ -1250,7 +1250,7 @@ export default function CoverCreator({ book }) {
                                             />
                                         </div>
                                         <div className="relative">
-                                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Color</label>
+                                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Color</label>
                                             <button
                                                 onClick={() => setShowColorPicker(!showColorPicker)}
                                                 className="flex items-center gap-2 w-full border border-gray-200 rounded-md p-1.5 hover:bg-gray-50 transition"
@@ -1259,7 +1259,7 @@ export default function CoverCreator({ book }) {
                                                     className="w-6 h-6 rounded border border-gray-200"
                                                     style={{ backgroundColor: coverElements[selectedId].color }}
                                                 ></div>
-                                                <span className="text-xs text-gray-600 font-mono uppercase truncate">{coverElements[selectedId].color}</span>
+                                                <span className="text-xs text-[#635c4e] font-mono uppercase truncate">{coverElements[selectedId].color}</span>
                                             </button>
 
                                             {/* Color Picker Popover */}
@@ -1281,13 +1281,13 @@ export default function CoverCreator({ book }) {
                                     {/* ALIGNMENT & LAYERS TOOLBAR */}
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Alignment</label>
+                                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Alignment</label>
                                             <div className="flex bg-gray-100 rounded-md p-1 gap-1">
                                                 {['left', 'center', 'right'].map(align => (
                                                     <button
                                                         key={align}
                                                         onClick={() => updateElementStyle('textAlign', align)}
-                                                        className={`flex-1 p-1.5 rounded flex justify-center items-center transition ${coverElements[selectedId].textAlign === align ? 'bg-white shadow text-indigo-600' : 'text-gray-400 hover:text-gray-600 hover:bg-gray-200'}`}
+                                                        className={`flex-1 p-1.5 rounded flex justify-center items-center transition ${coverElements[selectedId].textAlign === align ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:text-[#635c4e] hover:bg-gray-200'}`}
                                                         title={`Align ${align}`}
                                                     >
                                                         {align === 'left' && <AlignLeft size={16} />}
@@ -1298,18 +1298,18 @@ export default function CoverCreator({ book }) {
                                             </div>
                                         </div>
                                         <div>
-                                            <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Layer Order</label>
+                                            <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Layer Order</label>
                                             <div className="flex bg-gray-100 rounded-md p-1 gap-1">
                                                 <button
                                                     onClick={() => moveLayer('down')}
-                                                    className="flex-1 p-1.5 rounded flex justify-center items-center text-gray-500 hover:text-gray-800 hover:bg-white hover:shadow transition"
+                                                    className="flex-1 p-1.5 rounded flex justify-center items-center text-[#635c4e] hover:text-gray-800 hover:bg-white hover:shadow transition"
                                                     title="Send Backward"
                                                 >
                                                     <ArrowDown size={14} /> <span className="text-[10px] ml-1">Back</span>
                                                 </button>
                                                 <button
                                                     onClick={() => moveLayer('up')}
-                                                    className="flex-1 p-1.5 rounded flex justify-center items-center text-gray-500 hover:text-gray-800 hover:bg-white hover:shadow transition"
+                                                    className="flex-1 p-1.5 rounded flex justify-center items-center text-[#635c4e] hover:text-gray-800 hover:bg-white hover:shadow transition"
                                                     title="Bring Forward"
                                                 >
                                                     <ArrowUp size={14} /> <span className="text-[10px] ml-1">Front</span>
@@ -1319,7 +1319,7 @@ export default function CoverCreator({ book }) {
                                     </div>
 
                                     <div>
-                                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Font Family</label>
+                                        <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Font Family</label>
                                         <select
                                             value={coverElements[selectedId].fontFamily}
                                             onChange={(e) => updateElementStyle('fontFamily', e.target.value)}
@@ -1332,31 +1332,31 @@ export default function CoverCreator({ book }) {
                                     </div>
 
                                     <div>
-                                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Font Style</label>
+                                        <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Font Style</label>
                                         <div className="flex bg-gray-100 rounded-md p-1 gap-1">
                                             <button
                                                 onClick={() => updateElementStyle('fontWeight', coverElements[selectedId].fontWeight === 'bold' ? 'normal' : 'bold')}
-                                                className={`flex-1 py-1.5 rounded text-xs font-bold transition ${coverElements[selectedId].fontWeight === 'bold' ? 'bg-white shadow text-indigo-600' : 'text-gray-500 hover:bg-gray-200'}`}
+                                                className={`flex-1 py-1.5 rounded text-xs font-bold transition ${coverElements[selectedId].fontWeight === 'bold' ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:bg-gray-200'}`}
                                             >B</button>
                                             <button
                                                 onClick={() => updateElementStyle('fontStyle', coverElements[selectedId].fontStyle === 'italic' ? 'normal' : 'italic')}
-                                                className={`flex-1 py-1.5 rounded text-xs italic font-serif transition ${coverElements[selectedId].fontStyle === 'italic' ? 'bg-white shadow text-indigo-600' : 'text-gray-500 hover:bg-gray-200'}`}
+                                                className={`flex-1 py-1.5 rounded text-xs italic font-serif transition ${coverElements[selectedId].fontStyle === 'italic' ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:bg-gray-200'}`}
                                             >I</button>
                                             <button
                                                 onClick={() => updateElementStyle('textDecoration', coverElements[selectedId].textDecoration === 'underline' ? 'none' : 'underline')}
-                                                className={`flex-1 py-1.5 rounded text-xs underline transition ${coverElements[selectedId].textDecoration === 'underline' ? 'bg-white shadow text-indigo-600' : 'text-gray-500 hover:bg-gray-200'}`}
+                                                className={`flex-1 py-1.5 rounded text-xs underline transition ${coverElements[selectedId].textDecoration === 'underline' ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:bg-gray-200'}`}
                                             >U</button>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label className="text-xs font-bold text-gray-500 uppercase tracking-widest block mb-2">Alignment</label>
+                                        <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest block mb-2">Alignment</label>
                                         <div className="flex bg-gray-100 rounded-md p-1 gap-1">
                                             {['left', 'center', 'right', 'justify'].map(align => (
                                                 <button
                                                     key={align}
                                                     onClick={() => updateElementStyle('textAlign', align)}
-                                                    className={`flex-1 py-1.5 rounded transition ${coverElements[selectedId].textAlign === align ? 'bg-white shadow text-indigo-600' : 'text-gray-400 hover:bg-gray-200'}`}
+                                                    className={`flex-1 py-1.5 rounded transition ${coverElements[selectedId].textAlign === align ? 'bg-white shadow text-indigo-600' : 'text-[#635c4e] hover:bg-gray-200'}`}
                                                 >
                                                     <svg className="w-4 h-4 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         {align === 'left' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h10M4 18h16" />}
@@ -1372,7 +1372,7 @@ export default function CoverCreator({ book }) {
                                     <div className="space-y-4 pt-2">
                                         <div>
                                             <div className="flex justify-between mb-1">
-                                                <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">Line Height</label>
+                                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest">Line Height</label>
                                                 <span className="text-xs text-indigo-600">{coverElements[selectedId].lineHeight || 1.4}</span>
                                             </div>
                                             <input
@@ -1387,7 +1387,7 @@ export default function CoverCreator({ book }) {
                                         </div>
                                         <div>
                                             <div className="flex justify-between mb-1">
-                                                <label className="text-xs font-bold text-gray-500 uppercase tracking-widest">Letter Spacing</label>
+                                                <label className="text-xs font-bold text-[#635c4e] uppercase tracking-widest">Letter Spacing</label>
                                                 <span className="text-xs text-indigo-600">{coverElements[selectedId].letterSpacing || 0}px</span>
                                             </div>
                                             <input
@@ -1430,7 +1430,7 @@ export default function CoverCreator({ book }) {
                                         </div>
                                     ) : (
                                         <>
-                                            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Layers</h3>
+                                            <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest">Layers</h3>
                                             <div className="space-y-2">
                                                 {Object.entries(coverElements).map(([key, el]) => (
                                                     <div
@@ -1439,14 +1439,14 @@ export default function CoverCreator({ book }) {
                                                         className="flex items-center justify-between p-3 bg-gray-50 hover:bg-white border border-gray-100 hover:border-indigo-300 rounded cursor-pointer transition group"
                                                     >
                                                         <div className="flex items-center gap-3">
-                                                            <div className="text-gray-400 group-hover:text-indigo-500">
+                                                            <div className="text-[#635c4e] group-hover:text-indigo-500">
                                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16"></path></svg>
                                                             </div>
                                                             <div className="text-sm font-medium text-gray-700 group-hover:text-indigo-700 capitalize">
                                                                 {key.replace(/([A-Z])/g, ' $1').trim()}
                                                             </div>
                                                         </div>
-                                                        <div className="text-[10px] text-gray-400 bg-gray-200 px-1.5 py-0.5 rounded">
+                                                        <div className="text-[10px] text-[#635c4e] bg-gray-200 px-1.5 py-0.5 rounded">
                                                             {key.includes('back') ? 'Back' : 'Front'}
                                                         </div>
                                                     </div>
@@ -1463,11 +1463,11 @@ export default function CoverCreator({ book }) {
                         <div className="flex flex-col items-center justify-center h-full pb-10">
                             <div
                                 onClick={() => fileInputRef.current.click()}
-                                className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-white hover:border-indigo-500 hover:shadow-md transition-all cursor-pointer group"
+                                className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 hover:bg-white hover:border-[#7c7364] hover:shadow-md transition-all cursor-pointer group"
                             >
-                                <svg className="w-12 h-12 text-gray-400 group-hover:text-indigo-500 mb-3 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                <span className="text-sm font-bold text-gray-500 group-hover:text-indigo-600">Click to Upload Media</span>
-                                <span className="text-xs text-gray-400 mt-1">JPG, PNG, SVG (Max 10MB)</span>
+                                <svg className="w-12 h-12 text-[#635c4e] group-hover:text-indigo-500 mb-3 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                <span className="text-sm font-bold text-[#635c4e] group-hover:text-indigo-600">Click to Upload Media</span>
+                                <span className="text-xs text-[#635c4e] mt-1">JPG, PNG, SVG (Max 10MB)</span>
                                 <input
                                     type="file"
                                     ref={fileInputRef}
@@ -1488,7 +1488,7 @@ export default function CoverCreator({ book }) {
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={() => deleteShape(selectedShapeId)}
-                                                className="p-1.5 text-red-400 hover:text-red-600 hover:bg-red-50 rounded"
+                                                className="p-1.5 text-red-700 hover:text-red-600 hover:bg-red-50 rounded"
                                             >
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                             </button>
@@ -1497,7 +1497,7 @@ export default function CoverCreator({ book }) {
                                     </div>
 
                                     <div>
-                                        <label className="text-xs font-bold text-gray-500 uppercase block mb-2">Fill Color</label>
+                                        <label className="text-xs font-bold text-[#635c4e] uppercase block mb-2">Fill Color</label>
                                         <div className="flex items-center gap-2">
                                             <input
                                                 type="color"
@@ -1516,7 +1516,7 @@ export default function CoverCreator({ book }) {
 
                                     <div className="grid grid-cols-2 gap-3">
                                         <div>
-                                            <label className="text-xs font-bold text-gray-500 uppercase block mb-2">Width (%)</label>
+                                            <label className="text-xs font-bold text-[#635c4e] uppercase block mb-2">Width (%)</label>
                                             <input
                                                 type="number"
                                                 value={shapeElements[selectedShapeId].width}
@@ -1525,7 +1525,7 @@ export default function CoverCreator({ book }) {
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-xs font-bold text-gray-500 uppercase block mb-2">Height (%)</label>
+                                            <label className="text-xs font-bold text-[#635c4e] uppercase block mb-2">Height (%)</label>
                                             <input
                                                 type="number"
                                                 value={shapeElements[selectedShapeId].height}
@@ -1536,7 +1536,7 @@ export default function CoverCreator({ book }) {
                                     </div>
 
                                     <div>
-                                        <label className="text-xs font-bold text-gray-500 uppercase block mb-2">Opacity</label>
+                                        <label className="text-xs font-bold text-[#635c4e] uppercase block mb-2">Opacity</label>
                                         <input
                                             type="range"
                                             min="0" max="1" step="0.1"
@@ -1547,7 +1547,7 @@ export default function CoverCreator({ book }) {
                                     </div>
 
                                     <div>
-                                        <label className="text-xs font-bold text-gray-500 uppercase block mb-2">Border</label>
+                                        <label className="text-xs font-bold text-[#635c4e] uppercase block mb-2">Border</label>
                                         <div className="flex gap-2">
                                             <input
                                                 type="color"
@@ -1569,7 +1569,7 @@ export default function CoverCreator({ book }) {
 
                             {/* Basic Shapes */}
                             <div>
-                                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Basic Shapes</h3>
+                                <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-3">Basic Shapes</h3>
                                 <div className="grid grid-cols-4 gap-2">
                                     {[
                                         { type: 'rectangle', icon: <div className="w-8 h-5 bg-gray-700 rounded-sm"></div>, label: 'Rectangle' },
@@ -1591,7 +1591,7 @@ export default function CoverCreator({ book }) {
 
                             {/* Special Shapes */}
                             <div>
-                                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Special Shapes</h3>
+                                <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-3">Special Shapes</h3>
                                 <div className="grid grid-cols-4 gap-2">
                                     {[
                                         { type: 'triangle', icon: <div className="w-0 h-0 border-l-[12px] border-r-[12px] border-b-[20px] border-l-transparent border-r-transparent border-b-gray-700"></div>, label: 'Triangle' },
@@ -1614,7 +1614,7 @@ export default function CoverCreator({ book }) {
 
                             {/* Lines & Dividers */}
                             <div>
-                                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Lines & Dividers</h3>
+                                <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-3">Lines & Dividers</h3>
                                 <div className="grid grid-cols-3 gap-2">
                                     {[
                                         { type: 'line', icon: <div className="w-10 h-0.5 bg-gray-700"></div>, label: 'Horizontal Line' },
@@ -1635,7 +1635,7 @@ export default function CoverCreator({ book }) {
 
                             {/* Quick Colors */}
                             <div>
-                                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Quick Shape Colors</h3>
+                                <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-3">Quick Shape Colors</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {['#3b82f6', '#ef4444', '#10b981', '#f59e0b', '#ad5b67', '#ec4899', '#1e293b', '#ffffff'].map(color => (
                                         <button
@@ -1647,13 +1647,13 @@ export default function CoverCreator({ book }) {
                                         />
                                     ))}
                                 </div>
-                                {!selectedShapeId && <p className="text-xs text-gray-400 mt-2">Add or select a shape to change color</p>}
+                                {!selectedShapeId && <p className="text-xs text-[#635c4e] mt-2">Add or select a shape to change color</p>}
                             </div>
 
                             {/* Active Shapes List */}
                             {Object.keys(shapeElements).length > 0 && (
                                 <div>
-                                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Active Shapes ({Object.keys(shapeElements).length})</h3>
+                                    <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-3">Active Shapes ({Object.keys(shapeElements).length})</h3>
                                     <div className="space-y-2">
                                         {Object.entries(shapeElements).map(([key, shape]) => (
                                             <div
@@ -1670,7 +1670,7 @@ export default function CoverCreator({ book }) {
                                                 </div>
                                                 <button
                                                     onClick={(e) => { e.stopPropagation(); deleteShape(key); }}
-                                                    className="text-red-400 hover:text-red-600"
+                                                    className="text-red-700 hover:text-red-600"
                                                 >
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 </button>
@@ -1689,8 +1689,8 @@ export default function CoverCreator({ book }) {
 
                             {/* Keyboard Shortcuts Info */}
                             <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-                                <h4 className="text-xs font-bold text-gray-600 mb-2">⌨️ Keyboard Shortcuts</h4>
-                                <div className="grid grid-cols-2 gap-2 text-[10px] text-gray-500">
+                                <h4 className="text-xs font-bold text-[#635c4e] mb-2">⌨️ Keyboard Shortcuts</h4>
+                                <div className="grid grid-cols-2 gap-2 text-[10px] text-[#635c4e]">
                                     <div><kbd className="bg-gray-200 px-1 rounded">Delete</kbd> Remove</div>
                                     <div><kbd className="bg-gray-200 px-1 rounded">Ctrl+D</kbd> Duplicate</div>
                                     <div><kbd className="bg-gray-200 px-1 rounded">Ctrl+Z</kbd> Undo</div>
@@ -1700,7 +1700,7 @@ export default function CoverCreator({ book }) {
 
                             {/* Text Elements Section */}
                             <div>
-                                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-3 flex items-center gap-2">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
                                     Text Elements ({Object.keys(coverElements).length})
                                 </h3>
@@ -1712,23 +1712,23 @@ export default function CoverCreator({ book }) {
                                             className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition border ${selectedId === key ? 'bg-indigo-100 border-indigo-300' : 'bg-white hover:bg-gray-50 border-gray-200'}`}
                                         >
                                             <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center text-xs font-bold text-gray-500">T</div>
+                                                <div className="w-8 h-8 bg-gray-100 rounded flex items-center justify-center text-xs font-bold text-[#635c4e]">T</div>
                                                 <div>
                                                     <span className="text-sm font-medium text-gray-700 block truncate max-w-[120px]">{el.text ? el.text.substring(0, 20) : 'Untitled'}{el.text && el.text.length > 20 ? '...' : ''}</span>
-                                                    <span className="text-[10px] text-gray-400">{el.fontSize || 16}px</span>
+                                                    <span className="text-[10px] text-[#635c4e]">{el.fontSize || 16}px</span>
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-1">
                                                 <button
                                                     onClick={(e) => { e.stopPropagation(); duplicateElement(key); }}
-                                                    className="p-1.5 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition"
+                                                    className="p-1.5 text-[#635c4e] hover:text-indigo-600 hover:bg-indigo-50 rounded transition"
                                                     title="Duplicate"
                                                 >
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                                                 </button>
                                                 <button
                                                     onClick={(e) => { e.stopPropagation(); deleteElement(key); }}
-                                                    className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition"
+                                                    className="p-1.5 text-[#635c4e] hover:text-red-600 hover:bg-red-50 rounded transition"
                                                     title="Delete"
                                                 >
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
@@ -1742,7 +1742,7 @@ export default function CoverCreator({ book }) {
                             {/* Shape Elements Section */}
                             {Object.keys(shapeElements).length > 0 && (
                                 <div>
-                                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                    <h3 className="text-xs font-bold text-[#635c4e] uppercase tracking-widest mb-3 flex items-center gap-2">
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V7a1 1 0 00-1.447-.894l-4-2a1 1 0 00-1.106 0l-4 2A1 1 0 005 7v8a1 1 0 001.447.894l4 2z"></path></svg>
                                         Shapes ({Object.keys(shapeElements).length})
                                     </h3>
@@ -1757,20 +1757,20 @@ export default function CoverCreator({ book }) {
                                                     <div className="w-8 h-8 rounded flex items-center justify-center" style={{ backgroundColor: shape.color }}></div>
                                                     <div>
                                                         <span className="text-sm font-medium text-gray-700 capitalize">{shape.type}</span>
-                                                        <span className="text-[10px] text-gray-400 block">{shape.width}% x {shape.height}%</span>
+                                                        <span className="text-[10px] text-[#635c4e] block">{shape.width}% x {shape.height}%</span>
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-1">
                                                     <button
                                                         onClick={(e) => { e.stopPropagation(); duplicateShape(key); }}
-                                                        className="p-1.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition"
+                                                        className="p-1.5 text-[#635c4e] hover:text-blue-600 hover:bg-blue-50 rounded transition"
                                                         title="Duplicate"
                                                     >
                                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                                                     </button>
                                                     <button
                                                         onClick={(e) => { e.stopPropagation(); deleteShape(key); }}
-                                                        className="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded transition"
+                                                        className="p-1.5 text-[#635c4e] hover:text-red-600 hover:bg-red-50 rounded transition"
                                                         title="Delete"
                                                     >
                                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
@@ -1785,7 +1785,7 @@ export default function CoverCreator({ book }) {
                             {/* Summary */}
                             <div className="bg-gray-100 rounded-lg p-4 text-center">
                                 <div className="text-2xl font-bold text-gray-700">{Object.keys(coverElements).length + Object.keys(shapeElements).length}</div>
-                                <div className="text-xs text-gray-500">Total Elements</div>
+                                <div className="text-xs text-[#635c4e]">Total Elements</div>
                             </div>
                         </div>
                     )}
@@ -1801,7 +1801,7 @@ export default function CoverCreator({ book }) {
                         {/* Logo/Brand */}
                         <div className="flex items-center gap-2">
                             <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-lg flex items-center justify-center shadow-lg shadow-indigo-500/20 text-white font-bold">
-                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                <svg className="w-5 h-5 text-[#17150f]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                             </div>
                             <span className="text-lg font-bold text-gray-800 tracking-tight">PublicationMart</span>
                         </div>
@@ -1840,7 +1840,7 @@ export default function CoverCreator({ book }) {
                         {saveStatus === 'error' && (
                             <>
                                 <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                                <span className="text-xs text-red-400">Save failed - retrying...</span>
+                                <span className="text-xs text-red-700">Save failed - retrying...</span>
                             </>
                         )}
                     </div>
@@ -1852,7 +1852,7 @@ export default function CoverCreator({ book }) {
                             <button
                                 onClick={handleUndo}
                                 disabled={historyIndex === 0}
-                                className={`p-2 rounded-lg transition-all flex items-center justify-center ${historyIndex === 0 ? 'text-gray-300' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200'}`}
+                                className={`p-2 rounded-lg transition-all flex items-center justify-center ${historyIndex === 0 ? 'text-[#4b443a]' : 'text-[#635c4e] hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200'}`}
                                 title="Undo (Ctrl+Z)"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -1860,7 +1860,7 @@ export default function CoverCreator({ book }) {
                             <button
                                 onClick={handleRedo}
                                 disabled={historyIndex === history.length - 1}
-                                className={`p-2 rounded-lg transition-all flex items-center justify-center ${historyIndex === history.length - 1 ? 'text-gray-300' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200'}`}
+                                className={`p-2 rounded-lg transition-all flex items-center justify-center ${historyIndex === history.length - 1 ? 'text-[#4b443a]' : 'text-[#635c4e] hover:text-gray-900 hover:bg-gray-100 active:bg-gray-200'}`}
                                 title="Redo (Ctrl+Y)"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -1870,7 +1870,7 @@ export default function CoverCreator({ book }) {
                         {/* Preview Button */}
                         <button
                             onClick={() => setShowPreview(true)}
-                            className="text-gray-600 hover:text-gray-900 font-medium text-sm px-4 py-2 rounded-lg hover:bg-gray-100 transition flex items-center gap-2"
+                            className="text-[#635c4e] hover:text-gray-900 font-medium text-sm px-4 py-2 rounded-lg hover:bg-gray-100 transition flex items-center gap-2"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                             Preview
@@ -1884,7 +1884,7 @@ export default function CoverCreator({ book }) {
                                     router.visit(route('books.design', book.id));
                                 }
                             }}
-                            className="bg-gray-900 hover:bg-gray-800 text-white text-sm font-bold px-6 py-2.5 rounded-lg shadow-lg shadow-gray-900/20 transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+                            className="bg-[#faf8f3] hover:bg-[#faf8f3] text-[#17150f] text-sm font-bold px-6 py-2.5 rounded-lg shadow-lg shadow-gray-900/20 transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
                         >
                             <span>Save Design</span>
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -1911,28 +1911,28 @@ export default function CoverCreator({ book }) {
                 >
 
                     {/* Floating Zoom Controls - Glassmorphism Dark */}
-                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-[#1e1e2e]/90 backdrop-blur-md rounded-full shadow-2xl px-4 py-2 border border-white/10 ring-1 ring-black/5">
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 bg-[#1e1e2e]/90 backdrop-blur-md rounded-full shadow-2xl px-4 py-2 border border-[#d8d1c1] ring-1 ring-black/5">
                         <button
                             onClick={() => setCanvasScale(Math.max(0.5, canvasScale - 0.1))}
-                            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition text-gray-400 hover:text-white"
+                            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#e7e1d4] transition text-[#635c4e] hover:text-[#17150f]"
                             title="Zoom Out"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4"></path></svg>
                         </button>
-                        <div className="w-px h-5 bg-white/10"></div>
-                        <span className="text-xs font-bold text-gray-300 w-12 text-center font-mono">{Math.round(canvasScale * 100)}%</span>
-                        <div className="w-px h-5 bg-white/10"></div>
+                        <div className="w-px h-5 bg-[#e7e1d4]"></div>
+                        <span className="text-xs font-bold text-[#4b443a] w-12 text-center font-mono">{Math.round(canvasScale * 100)}%</span>
+                        <div className="w-px h-5 bg-[#e7e1d4]"></div>
                         <button
                             onClick={() => setCanvasScale(Math.min(1.5, canvasScale + 0.1))}
-                            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition text-gray-400 hover:text-white"
+                            className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#e7e1d4] transition text-[#635c4e] hover:text-[#17150f]"
                             title="Zoom In"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
                         </button>
-                        <div className="w-px h-5 bg-white/10"></div>
+                        <div className="w-px h-5 bg-[#e7e1d4]"></div>
                         <button
                             onClick={() => setCanvasScale(1)}
-                            className="px-3 py-1 text-[10px] font-bold text-indigo-400 hover:text-indigo-300 hover:bg-white/5 rounded-full transition uppercase tracking-wider"
+                            className="px-3 py-1 text-[10px] font-bold text-indigo-700 hover:text-indigo-700 hover:bg-[#faf8f3] rounded-full transition uppercase tracking-wider"
                             title="Reset Zoom"
                         >
                             Reset
@@ -1981,7 +1981,7 @@ export default function CoverCreator({ book }) {
                             <div className="absolute bottom-8 right-8 z-10 p-2 bg-white shadow-sm flex flex-col items-center justify-center h-14">
                                 <div className="flex space-x-0.5 h-12">
                                     {[...Array(20)].map((_, i) => (
-                                        <div key={i} className={`h-full bg-black ${i % 3 === 0 ? 'w-0.5' : 'w-[1px]'}`}></div>
+                                        <div key={i} className={`h-full bg-[#e7e1d4] ${i % 3 === 0 ? 'w-0.5' : 'w-[1px]'}`}></div>
                                     ))}
                                 </div>
                                 {/* ISBN Removed as per request */}
@@ -2064,7 +2064,7 @@ export default function CoverCreator({ book }) {
                                                 className="w-6 h-6 bg-white border-2 border-red-500 rounded-full flex items-center justify-center cursor-grab pointer-events-auto hover:scale-110 transition active:cursor-grabbing shadow-sm"
                                                 onMouseDown={(e) => handleRotateStart(e, key)}
                                             >
-                                                <svg className="w-3 h-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                                                <svg className="w-3 h-3 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                                             </div>
                                         </div>
                                     </div>
@@ -2150,7 +2150,7 @@ export default function CoverCreator({ book }) {
                                             className="absolute -top-8 right-0 w-6 h-6 bg-red-500 hover:bg-red-600 shadow rounded-full flex items-center justify-center cursor-pointer pointer-events-auto transition"
                                             title="Delete Shape"
                                         >
-                                            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            <svg className="w-3 h-3 text-[#17150f]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                         </div>
                                     </div>
                                 )}
@@ -2219,12 +2219,12 @@ export default function CoverCreator({ book }) {
             {/* PREVIEW MODAL */}
             {showPreview && (
                 <div
-                    className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-8 backdrop-blur-sm animate-fadeIn"
+                    className="fixed inset-0 bg-[#faf8f3] z-[100] flex items-center justify-center p-8 backdrop-blur-sm animate-fadeIn"
                     onClick={() => setShowPreview(false)}
                 >
                     <button
                         onClick={(e) => { e.stopPropagation(); setShowPreview(false); }}
-                        className="absolute top-6 left-6 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg backdrop-blur-md transition border border-white/20 text-sm font-medium flex items-center gap-2 z-[110]"
+                        className="absolute top-6 left-6 px-4 py-2 bg-[#e7e1d4] hover:bg-[#e7e1d4] text-[#17150f] rounded-lg backdrop-blur-md transition border border-[#d8d1c1] text-sm font-medium flex items-center gap-2 z-[110]"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Back to Editor
@@ -2232,27 +2232,27 @@ export default function CoverCreator({ book }) {
 
                     <button
                         onClick={(e) => { e.stopPropagation(); setShowPreview(false); }}
-                        className="absolute top-6 right-6 text-white/80 hover:text-white transition transform hover:scale-110 hover:rotate-90 duration-300 z-[110]"
+                        className="absolute top-6 right-6 text-[#17150f]/80 hover:text-[#17150f] transition transform hover:scale-110 hover:rotate-90 duration-300 z-[110]"
                         title="Close Preview (ESC)"
                     >
                         <svg className="w-10 h-10 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
 
                     <div
-                        className="bg-[#15161b] rounded-2xl overflow-hidden shadow-2xl border border-white/10 max-w-5xl w-full mx-4 flex flex-col max-h-[90vh]"
+                        className="bg-[#faf8f3] rounded-2xl overflow-hidden shadow-2xl border border-[#d8d1c1] max-w-5xl w-full mx-4 flex flex-col max-h-[90vh]"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Modal Header */}
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#1e2029]">
-                            <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                                <span className="p-1.5 bg-indigo-500/20 text-indigo-400 rounded-lg">
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-[#d8d1c1] bg-[#faf8f3]">
+                            <h2 className="text-xl font-bold text-[#17150f] flex items-center gap-2">
+                                <span className="p-1.5 bg-indigo-500/20 text-indigo-700 rounded-lg">
                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
                                 </span>
                                 Cover Preview
                             </h2>
                             <button
                                 onClick={() => setShowPreview(false)}
-                                className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-bold rounded-lg transition-colors border border-white/5 flex items-center gap-2"
+                                className="px-4 py-2 bg-[#e7e1d4] hover:bg-[#e7e1d4] text-[#17150f] text-sm font-bold rounded-lg transition-colors border border-[#d8d1c1] flex items-center gap-2"
                             >
                                 <span>Close Preview</span>
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -2260,7 +2260,7 @@ export default function CoverCreator({ book }) {
                         </div>
 
                         {/* Modal Body */}
-                        <div className="flex-1 overflow-auto p-8 flex items-center justify-center bg-[#0f1015]">
+                        <div className="flex-1 overflow-auto p-8 flex items-center justify-center bg-[#faf8f3]">
                             <div
                                 className="relative shadow-2xl flex bg-white mx-auto transition-transform"
                                 style={{ height: '550px', width: '825px' }}
@@ -2287,14 +2287,14 @@ export default function CoverCreator({ book }) {
                                         <div className="absolute bottom-6 right-6 z-10 p-1.5 bg-white shadow-sm flex flex-col items-center justify-center h-10">
                                             <div className="flex space-x-0.5 h-8">
                                                 {[...Array(20)].map((_, i) => (
-                                                    <div key={i} className={`h-full bg-black ${i % 3 === 0 ? 'w-0.5' : 'w-[1px]'}`}></div>
+                                                    <div key={i} className={`h-full bg-[#e7e1d4] ${i % 3 === 0 ? 'w-0.5' : 'w-[1px]'}`}></div>
                                                 ))}
                                             </div>
                                         </div>
                                     </div>
                                     {/* Spine Preview */}
                                     <div
-                                        className="w-[5.33%] flex items-center justify-center overflow-hidden border-l border-r border-white/10 bg-cover bg-center"
+                                        className="w-[5.33%] flex items-center justify-center overflow-hidden border-l border-r border-[#d8d1c1] bg-cover bg-center"
                                         style={spineBgImage ? getBackgroundStyle(spineBgImage) : { backgroundColor: '#ffffff' }}
                                     >
                                     </div>
@@ -2381,12 +2381,12 @@ export default function CoverCreator({ book }) {
             {/* GUIDELINES MODAL */}
             {
                 showGuidelines && (
-                    <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4 overflow-auto">
+                    <div className="fixed inset-0 bg-[#faf8f3] z-[100] flex items-center justify-center p-4 overflow-auto">
                         <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-auto">
                             {/* Header */}
                             <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6 sticky top-0">
-                                <h2 className="text-2xl font-bold text-white">📚 Book Cover Design Guidelines</h2>
-                                <p className="text-indigo-100 text-sm mt-1">Follow these best practices for a professional, print-ready cover</p>
+                                <h2 className="text-2xl font-bold text-[#17150f]">📚 Book Cover Design Guidelines</h2>
+                                <p className="text-indigo-700 text-sm mt-1">Follow these best practices for a professional, print-ready cover</p>
                             </div>
 
                             <div className="p-8 space-y-8">
@@ -2397,7 +2397,7 @@ export default function CoverCreator({ book }) {
                                             <span className="w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center text-sm">📐</span>
                                             Recommended Dimensions
                                         </h3>
-                                        <ul className="space-y-2 text-sm text-gray-600">
+                                        <ul className="space-y-2 text-sm text-[#635c4e]">
                                             <li>• <strong>Front Cover:</strong> 6" x 9" (1800 x 2700 pixels at 300 DPI)</li>
                                             <li>• <strong>Full Wrap:</strong> Include spine and back cover</li>
                                             <li>• <strong>Bleed Area:</strong> Add 0.125" (0.3175 cm) on all edges</li>
@@ -2410,7 +2410,7 @@ export default function CoverCreator({ book }) {
                                             <span className="w-8 h-8 bg-purple-500 text-white rounded-lg flex items-center justify-center text-sm">🎨</span>
                                             Color & Quality
                                         </h3>
-                                        <ul className="space-y-2 text-sm text-gray-600">
+                                        <ul className="space-y-2 text-sm text-[#635c4e]">
                                             <li>• Use <strong>CMYK color mode</strong> for printing</li>
                                             <li>• Minimum <strong>300 DPI resolution</strong></li>
                                             <li>• Avoid pure black, use rich black (C:40, M:30, Y:30, K:100)</li>
@@ -2425,7 +2425,7 @@ export default function CoverCreator({ book }) {
                                         <span className="w-8 h-8 bg-amber-500 text-white rounded-lg flex items-center justify-center text-sm">✍️</span>
                                         Typography Best Practices
                                     </h3>
-                                    <div className="grid md:grid-cols-3 gap-4 text-sm text-gray-600">
+                                    <div className="grid md:grid-cols-3 gap-4 text-sm text-[#635c4e]">
                                         <div>
                                             <strong className="text-gray-800">Title</strong>
                                             <p>• 48-72pt font size</p>
@@ -2453,7 +2453,7 @@ export default function CoverCreator({ book }) {
                                         <h3 className="font-bold text-green-800 flex items-center gap-2 mb-4">
                                             <span className="text-xl">✅</span> Do's
                                         </h3>
-                                        <ul className="space-y-2 text-sm text-gray-600">
+                                        <ul className="space-y-2 text-sm text-[#635c4e]">
                                             <li>✓ Use high-quality, relevant images</li>
                                             <li>✓ Keep the design simple and focused</li>
                                             <li>✓ Ensure title is readable as thumbnail</li>
@@ -2466,7 +2466,7 @@ export default function CoverCreator({ book }) {
                                         <h3 className="font-bold text-red-800 flex items-center gap-2 mb-4">
                                             <span className="text-xl">❌</span> Don'ts
                                         </h3>
-                                        <ul className="space-y-2 text-sm text-gray-600">
+                                        <ul className="space-y-2 text-sm text-[#635c4e]">
                                             <li>✗ Don't use low-resolution images</li>
                                             <li>✗ Avoid too many fonts (max 2-3)</li>
                                             <li>✗ Don't put text too close to edges</li>
@@ -2480,10 +2480,10 @@ export default function CoverCreator({ book }) {
                                 {/* Spine Info */}
                                 <div className="bg-gray-100 rounded-xl p-6 border border-gray-200">
                                     <h3 className="font-bold text-gray-900 flex items-center gap-2 mb-4">
-                                        <span className="w-8 h-8 bg-gray-700 text-white rounded-lg flex items-center justify-center text-sm">📖</span>
+                                        <span className="w-8 h-8 bg-gray-700 text-[#17150f] rounded-lg flex items-center justify-center text-sm">📖</span>
                                         Spine Guidelines
                                     </h3>
-                                    <p className="text-sm text-gray-600">
+                                    <p className="text-sm text-[#635c4e]">
                                         The spine width depends on your page count. For books under <strong>100 pages</strong>, spine text may not be printable.
                                         Our system will automatically calculate the correct spine width based on your interior file.
                                     </p>
@@ -2492,7 +2492,7 @@ export default function CoverCreator({ book }) {
 
                             {/* Footer */}
                             <div className="border-t border-gray-200 px-8 py-5 bg-gray-50 sticky bottom-0 flex justify-between items-center">
-                                <label className="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                                <label className="flex items-center gap-2 text-sm text-[#635c4e] cursor-pointer">
                                     <input type="checkbox" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                                     Don't show this again
                                 </label>
@@ -2538,7 +2538,7 @@ export default function CoverCreator({ book }) {
                         <div className="absolute bottom-[5%] right-[6%] z-10 p-[1%] bg-white shadow-sm flex flex-col items-center justify-center">
                             <div className="flex space-x-1 h-14">
                                 {[...Array(20)].map((_, i) => (
-                                    <div key={i} className={`h-full bg-black ${i % 3 === 0 ? 'w-1.5' : 'w-0.5'}`}></div>
+                                    <div key={i} className={`h-full bg-[#e7e1d4] ${i % 3 === 0 ? 'w-1.5' : 'w-0.5'}`}></div>
                                 ))}
                             </div>
                             {/* ISBN Removed as per request */}
@@ -2548,7 +2548,7 @@ export default function CoverCreator({ book }) {
                     {/* 2. SPINE PLACEHOLDER */}
                     <div className="w-[4%] bg-gray-200 border-l border-r border-gray-300 relative">
                         <div className="absolute inset-0 flex items-center justify-center transform -rotate-90">
-                            <span className="text-gray-400 text-xs tracking-[0.2em] font-sans font-bold uppercase whitespace-nowrap opacity-50">{book.title}</span>
+                            <span className="text-[#635c4e] text-xs tracking-[0.2em] font-sans font-bold uppercase whitespace-nowrap opacity-50">{book.title}</span>
                         </div>
                     </div>
 

@@ -9,22 +9,22 @@ export default function CouponIndex({ auth, coupons }) {
         <>
             <Head title="Manage Coupons" />
 
-            <div className="min-h-screen bg-[#0f172a] text-white font-sans selection:bg-indigo-500/30">
+            <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-indigo-500/30">
                 {/* Background */}
                 <div className="fixed inset-0 z-0 pointer-events-none">
-                    <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-900/10 rounded-full blur-[120px]"></div>
-                    <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[120px]"></div>
+                    <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-50 rounded-full blur-[120px]"></div>
+                    <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-50 rounded-full blur-[120px]"></div>
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                     {/* Header */}
                     <div className="flex justify-between items-center mb-10">
                         <div>
-                            <h1 className="text-3xl font-black tracking-tight text-white mb-2">Coupons & Discounts</h1>
-                            <p className="text-gray-400">Manage promotional codes and discounts.</p>
+                            <h1 className="text-3xl font-black tracking-tight text-[#17150f] mb-2">Coupons & Discounts</h1>
+                            <p className="text-[#635c4e]">Manage promotional codes and discounts.</p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Link href={route('admin.dashboard')} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-sm font-bold transition-colors">
+                            <Link href={route('admin.dashboard')} className="px-4 py-2 bg-[#faf8f3] hover:bg-slate-700 text-[#4b443a] rounded-lg text-sm font-bold transition-colors">
                                 Dashboard
                             </Link>
                             <button
@@ -41,17 +41,17 @@ export default function CouponIndex({ auth, coupons }) {
                         {/* Summary / Stats could go here */}
 
                         {/* Main List (if not using modal list as main view) */}
-                        <div className="bg-slate-800/50 backdrop-blur border border-white/10 rounded-2xl overflow-hidden">
+                        <div className="bg-slate-100 backdrop-blur border border-[#d8d1c1] rounded-2xl overflow-hidden">
                             <div className="p-6">
-                                <h3 className="text-lg font-bold text-white mb-4">Active Campaign Codes</h3>
+                                <h3 className="text-lg font-bold text-[#17150f] mb-4">Active Campaign Codes</h3>
                                 {coupons.length === 0 ? (
-                                    <div className="text-center py-10 text-gray-500">
+                                    <div className="text-center py-10 text-[#635c4e]">
                                         No coupons created yet. Click "Create Coupon" to start.
                                     </div>
                                 ) : (
                                     <div className="overflow-x-auto">
-                                        <table className="w-full text-left text-sm text-gray-400">
-                                            <thead className="bg-white/5 text-gray-200 uppercase font-bold text-xs">
+                                        <table className="w-full text-left text-sm text-[#635c4e]">
+                                            <thead className="bg-[#faf8f3] text-[#4b443a] uppercase font-bold text-xs">
                                                 <tr>
                                                     <th className="px-4 py-3">Code</th>
                                                     <th className="px-4 py-3">Discount</th>
@@ -62,15 +62,15 @@ export default function CouponIndex({ auth, coupons }) {
                                                     <th className="px-4 py-3 text-right">Actions</th>
                                                 </tr>
                                             </thead>
-                                            <tbody className="divide-y divide-white/5">
+                                            <tbody className="divide-y divide-[#d8d1c1]">
                                                 {coupons.map(coupon => (
-                                                    <tr key={coupon.id} className="hover:bg-white/5 transition-colors">
-                                                        <td className="px-4 py-3 font-mono font-bold text-white">{coupon.code}</td>
-                                                        <td className="px-4 py-3 text-indigo-400 font-bold">{parseInt(coupon.discount_percentage)}%</td>
+                                                    <tr key={coupon.id} className="hover:bg-[#faf8f3] transition-colors">
+                                                        <td className="px-4 py-3 font-mono font-bold text-[#17150f]">{coupon.code}</td>
+                                                        <td className="px-4 py-3 text-indigo-700 font-bold">{parseInt(coupon.discount_percentage)}%</td>
                                                         <td className="px-4 py-3">{coupon.min_order_value ? `₹${coupon.min_order_value}` : '-'}</td>
                                                         <td className="px-4 py-3">{coupon.usage_count} uses</td>
                                                         <td className="px-4 py-3">
-                                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${coupon.is_active ? 'bg-emerald-500/10 text-emerald-400' : 'bg-red-500/10 text-red-400'}`}>
+                                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${coupon.is_active ? 'bg-emerald-500/10 text-emerald-700' : 'bg-red-500/10 text-red-700'}`}>
                                                                 {coupon.is_active ? 'Active' : 'Inactive'}
                                                             </span>
                                                         </td>
@@ -78,7 +78,7 @@ export default function CouponIndex({ auth, coupons }) {
                                                         <td className="px-4 py-3 text-right">
                                                             <button
                                                                 onClick={() => setShowCreateModal(true)}
-                                                                className="text-indigo-400 hover:text-white transition-colors text-xs font-bold"
+                                                                className="text-indigo-700 hover:text-[#17150f] transition-colors text-xs font-bold"
                                                             >
                                                                 Manage
                                                             </button>

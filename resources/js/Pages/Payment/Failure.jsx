@@ -5,7 +5,7 @@ export default function Failure({ error }) {
         <>
             <Head title="Payment Failed" />
 
-            <div className="min-h-screen bg-[#17150f] flex items-center justify-center p-4 relative overflow-hidden">
+            <div className="min-h-screen bg-[#f0ece3] flex items-center justify-center p-4 relative overflow-hidden">
                 {/* Background Glows */}
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/10 rounded-full blur-[100px]"></div>
 
@@ -17,13 +17,13 @@ export default function Failure({ error }) {
                         </svg>
                     </div>
 
-                    <h1 className="text-3xl font-black text-white mb-2">Payment Failed</h1>
-                    <p className="text-gray-400 mb-8">We couldn't process your payment. Please try again or contact support.</p>
+                    <h1 className="text-3xl font-black text-[#17150f] mb-2">Payment Failed</h1>
+                    <p className="text-[#635c4e] mb-8">We couldn't process your payment. Please try again or contact support.</p>
 
                     {error && (
                         <div className="bg-red-500/10 rounded-xl p-4 border border-red-500/20 mb-8 text-left">
-                            <p className="text-xs text-red-400 uppercase font-bold tracking-wider mb-1">Error Details</p>
-                            <p className="text-red-200 text-sm font-mono break-all">
+                            <p className="text-xs text-red-700 uppercase font-bold tracking-wider mb-1">Error Details</p>
+                            <p className="text-red-700 text-sm font-mono break-all">
                                 {JSON.stringify(error)}
                             </p>
                         </div>
@@ -39,7 +39,7 @@ export default function Failure({ error }) {
 
                         <Link
                             href="/contact"
-                            className="block w-full py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 font-semibold rounded-xl transition-all"
+                            className="block w-full py-3.5 bg-[#faf8f3] hover:bg-[#e7e1d4] border border-[#d8d1c1] text-[#4b443a] font-semibold rounded-xl transition-all"
                         >
                             Contact Support
                         </Link>

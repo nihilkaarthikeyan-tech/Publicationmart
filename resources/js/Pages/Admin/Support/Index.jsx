@@ -2,15 +2,15 @@ import { Head, Link, router } from '@inertiajs/react';
 import { useState } from 'react';
 
 const statusColors = {
-    open:        'bg-emerald-900/30 text-emerald-400',
-    in_progress: 'bg-yellow-900/30 text-yellow-400',
-    closed:      'bg-gray-700/30 text-gray-400',
+    open:        'bg-emerald-900/30 text-emerald-700',
+    in_progress: 'bg-yellow-900/30 text-yellow-800',
+    closed:      'bg-gray-100 text-[#635c4e]',
 };
 
 const priorityColors = {
-    urgent: 'bg-red-900/30 text-red-400',
-    normal: 'bg-blue-900/30 text-blue-400',
-    low:    'bg-gray-700/30 text-gray-400',
+    urgent: 'bg-red-900/30 text-red-700',
+    normal: 'bg-blue-900/30 text-blue-700',
+    low:    'bg-gray-100 text-[#635c4e]',
 };
 
 export default function AdminSupportIndex({ auth, tickets, stats, categories, filters }) {
@@ -37,10 +37,10 @@ export default function AdminSupportIndex({ auth, tickets, stats, categories, fi
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-white">Support Tickets</h1>
-                        <p className="text-gray-400 mt-1">Manage all customer support requests</p>
+                        <h1 className="text-3xl font-bold text-[#17150f]">Support Tickets</h1>
+                        <p className="text-[#635c4e] mt-1">Manage all customer support requests</p>
                     </div>
-                    <Link href={route('admin.dashboard')} className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-sm transition border border-white/10">
+                    <Link href={route('admin.dashboard')} className="px-4 py-2 bg-[#e7e1d4] hover:bg-[#e7e1d4] text-[#17150f] rounded-xl text-sm transition border border-[#d8d1c1]">
                         ← Admin Dashboard
                     </Link>
                 </div>
@@ -54,77 +54,77 @@ export default function AdminSupportIndex({ auth, tickets, stats, categories, fi
                         { label: 'Closed',      value: stats.closed,      color: 'from-gray-500 to-gray-600' },
                         { label: 'Urgent',      value: stats.urgent,      color: 'from-red-500 to-red-600' },
                     ].map(s => (
-                        <div key={s.label} className={`bg-gradient-to-br ${s.color} rounded-2xl p-4 text-white`}>
-                            <p className="text-white/70 text-xs font-medium">{s.label}</p>
+                        <div key={s.label} className={`bg-gradient-to-br ${s.color} rounded-2xl p-4 text-[#17150f]`}>
+                            <p className="text-[#17150f]/70 text-xs font-medium">{s.label}</p>
                             <p className="text-3xl font-bold mt-1">{s.value}</p>
                         </div>
                     ))}
                 </div>
 
                 {/* Filters */}
-                <div className="bg-white/10 backdrop-blur rounded-2xl p-4 mb-6 flex flex-wrap gap-3 items-end">
+                <div className="bg-[#e7e1d4] backdrop-blur rounded-2xl p-4 mb-6 flex flex-wrap gap-3 items-end">
                     <input
                         type="text"
                         value={search}
                         onChange={e => setSearch(e.target.value)}
                         placeholder="Search ticket, name, email..."
-                        className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 flex-1 min-w-[200px]"
+                        className="bg-[#e7e1d4] border border-[#d8d1c1] rounded-xl px-4 py-2 text-[#17150f] placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 flex-1 min-w-[200px]"
                         onKeyDown={e => e.key === 'Enter' && applyFilters()}
                     />
-                    <select value={status} onChange={e => setStatus(e.target.value)} className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-white text-sm focus:outline-none">
+                    <select value={status} onChange={e => setStatus(e.target.value)} className="bg-[#e7e1d4] border border-[#d8d1c1] rounded-xl px-4 py-2 text-[#17150f] text-sm focus:outline-none">
                         <option value="">All Status</option>
                         <option value="open">Open</option>
                         <option value="in_progress">In Progress</option>
                         <option value="closed">Closed</option>
                     </select>
-                    <select value={priority} onChange={e => setPriority(e.target.value)} className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-white text-sm focus:outline-none">
+                    <select value={priority} onChange={e => setPriority(e.target.value)} className="bg-[#e7e1d4] border border-[#d8d1c1] rounded-xl px-4 py-2 text-[#17150f] text-sm focus:outline-none">
                         <option value="">All Priority</option>
                         <option value="urgent">Urgent</option>
                         <option value="normal">Normal</option>
                         <option value="low">Low</option>
                     </select>
-                    <select value={category} onChange={e => setCategory(e.target.value)} className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-white text-sm focus:outline-none">
+                    <select value={category} onChange={e => setCategory(e.target.value)} className="bg-[#e7e1d4] border border-[#d8d1c1] rounded-xl px-4 py-2 text-[#17150f] text-sm focus:outline-none">
                         <option value="">All Categories</option>
                         {Object.entries(categories).map(([key, label]) => (
                             <option key={key} value={key}>{label}</option>
                         ))}
                     </select>
                     <button onClick={applyFilters} className="px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-xl text-sm font-semibold transition">Filter</button>
-                    <button onClick={resetFilters} className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-sm transition">Reset</button>
+                    <button onClick={resetFilters} className="px-4 py-2 bg-[#e7e1d4] hover:bg-[#e7e1d4] text-[#17150f] rounded-xl text-sm transition">Reset</button>
                 </div>
 
                 {/* Tickets Table */}
-                <div className="bg-white/10 backdrop-blur rounded-2xl overflow-hidden">
+                <div className="bg-[#e7e1d4] backdrop-blur rounded-2xl overflow-hidden">
                     {tickets.data.length === 0 ? (
-                        <div className="text-center py-16 text-gray-400">
+                        <div className="text-center py-16 text-[#635c4e]">
                             <div className="text-4xl mb-3">🎫</div>
                             <p>No tickets found.</p>
                         </div>
                     ) : (
                         <table className="w-full text-sm">
                             <thead>
-                                <tr className="border-b border-white/10 text-left">
-                                    <th className="px-5 py-4 text-gray-400 font-semibold">Ticket</th>
-                                    <th className="px-5 py-4 text-gray-400 font-semibold">From</th>
-                                    <th className="px-5 py-4 text-gray-400 font-semibold">Category</th>
-                                    <th className="px-5 py-4 text-gray-400 font-semibold">Priority</th>
-                                    <th className="px-5 py-4 text-gray-400 font-semibold">Status</th>
-                                    <th className="px-5 py-4 text-gray-400 font-semibold">Date</th>
-                                    <th className="px-5 py-4 text-gray-400 font-semibold">Action</th>
+                                <tr className="border-b border-[#d8d1c1] text-left">
+                                    <th className="px-5 py-4 text-[#635c4e] font-semibold">Ticket</th>
+                                    <th className="px-5 py-4 text-[#635c4e] font-semibold">From</th>
+                                    <th className="px-5 py-4 text-[#635c4e] font-semibold">Category</th>
+                                    <th className="px-5 py-4 text-[#635c4e] font-semibold">Priority</th>
+                                    <th className="px-5 py-4 text-[#635c4e] font-semibold">Status</th>
+                                    <th className="px-5 py-4 text-[#635c4e] font-semibold">Date</th>
+                                    <th className="px-5 py-4 text-[#635c4e] font-semibold">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {tickets.data.map(ticket => (
-                                    <tr key={ticket.id} className="border-b border-white/5 hover:bg-white/5 transition">
+                                    <tr key={ticket.id} className="border-b border-[#d8d1c1] hover:bg-[#faf8f3] transition">
                                         <td className="px-5 py-4">
-                                            <div className="font-mono text-violet-400 text-xs">{ticket.ticket_number}</div>
-                                            <div className="text-white font-medium mt-0.5 max-w-[220px] truncate">{ticket.subject}</div>
+                                            <div className="font-mono text-violet-700 text-xs">{ticket.ticket_number}</div>
+                                            <div className="text-[#17150f] font-medium mt-0.5 max-w-[220px] truncate">{ticket.subject}</div>
                                         </td>
                                         <td className="px-5 py-4">
-                                            <div className="text-white">{ticket.name}</div>
-                                            <div className="text-gray-400 text-xs">{ticket.email}</div>
+                                            <div className="text-[#17150f]">{ticket.name}</div>
+                                            <div className="text-[#635c4e] text-xs">{ticket.email}</div>
                                         </td>
-                                        <td className="px-5 py-4 text-gray-300 text-xs">{ticket.category_label}</td>
+                                        <td className="px-5 py-4 text-[#4b443a] text-xs">{ticket.category_label}</td>
                                         <td className="px-5 py-4">
                                             <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${priorityColors[ticket.priority]}`}>
                                                 {ticket.priority.charAt(0).toUpperCase() + ticket.priority.slice(1)}
@@ -135,7 +135,7 @@ export default function AdminSupportIndex({ auth, tickets, stats, categories, fi
                                                 {ticket.status === 'in_progress' ? 'In Progress' : ticket.status.charAt(0).toUpperCase() + ticket.status.slice(1)}
                                             </span>
                                         </td>
-                                        <td className="px-5 py-4 text-gray-400 text-xs">{ticket.created_at}</td>
+                                        <td className="px-5 py-4 text-[#635c4e] text-xs">{ticket.created_at}</td>
                                         <td className="px-5 py-4">
                                             <Link
                                                 href={route('admin.support.show', ticket.id)}
@@ -159,7 +159,7 @@ export default function AdminSupportIndex({ auth, tickets, stats, categories, fi
                                 key={i}
                                 onClick={() => link.url && router.get(link.url)}
                                 disabled={!link.url}
-                                className={`px-3 py-1.5 rounded-lg text-sm ${link.active ? 'bg-violet-600 text-white' : 'bg-white/10 text-gray-300 hover:bg-white/20'} disabled:opacity-40 transition`}
+                                className={`px-3 py-1.5 rounded-lg text-sm ${link.active ? 'bg-violet-600 text-[#17150f]' : 'bg-[#e7e1d4] text-[#4b443a] hover:bg-[#e7e1d4]'} disabled:opacity-40 transition`}
                                 dangerouslySetInnerHTML={{ __html: link.label }}
                             />
                         ))}

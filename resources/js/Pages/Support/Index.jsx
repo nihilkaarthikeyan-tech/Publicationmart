@@ -2,14 +2,14 @@ import { Head, Link } from '@inertiajs/react';
 
 const statusColors = {
     open:        'bg-emerald-100 text-emerald-700',
-    in_progress: 'bg-yellow-100 text-yellow-700',
-    closed:      'bg-gray-100 text-gray-500',
+    in_progress: 'bg-yellow-100 text-yellow-800',
+    closed:      'bg-gray-100 text-[#635c4e]',
 };
 
 const priorityColors = {
     urgent: 'bg-red-100 text-red-700',
     normal: 'bg-blue-100 text-blue-700',
-    low:    'bg-gray-100 text-gray-500',
+    low:    'bg-gray-100 text-[#635c4e]',
 };
 
 export default function SupportIndex({ auth, tickets }) {
@@ -23,7 +23,7 @@ export default function SupportIndex({ auth, tickets }) {
                 <div className="flex items-center justify-between mb-8">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900">Support Tickets</h1>
-                        <p className="text-gray-500 mt-1">Track and manage your support requests</p>
+                        <p className="text-[#635c4e] mt-1">Track and manage your support requests</p>
                     </div>
                     <Link
                         href={route('support.create')}
@@ -38,7 +38,7 @@ export default function SupportIndex({ auth, tickets }) {
                     <div className="bg-white rounded-2xl shadow p-12 text-center">
                         <div className="text-5xl mb-4">🎫</div>
                         <h2 className="text-xl font-semibold text-gray-700 mb-2">No tickets yet</h2>
-                        <p className="text-gray-400 mb-6">Need help? Submit a support ticket and our team will get back to you.</p>
+                        <p className="text-[#635c4e] mb-6">Need help? Submit a support ticket and our team will get back to you.</p>
                         <Link href={route('support.create')} className="px-6 py-3 bg-violet-600 text-white rounded-xl font-semibold hover:bg-violet-700 transition">
                             Create Your First Ticket
                         </Link>
@@ -55,11 +55,11 @@ export default function SupportIndex({ auth, tickets }) {
                                     <div className="flex-1 min-w-0">
                                         <div className="flex items-center gap-2 mb-1">
                                             <span className="text-xs font-mono text-violet-600 font-bold">{ticket.ticket_number}</span>
-                                            <span className="text-gray-300">•</span>
-                                            <span className="text-xs text-gray-400">{ticket.category_label}</span>
+                                            <span className="text-[#4b443a]">•</span>
+                                            <span className="text-xs text-[#635c4e]">{ticket.category_label}</span>
                                         </div>
                                         <h3 className="font-semibold text-gray-900 truncate">{ticket.subject}</h3>
-                                        <p className="text-xs text-gray-400 mt-1">
+                                        <p className="text-xs text-[#635c4e] mt-1">
                                             Created {ticket.created_at}
                                             {ticket.last_reply_at && <> &bull; Last reply {ticket.last_reply_at}</>}
                                         </p>

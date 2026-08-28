@@ -97,13 +97,13 @@ export default function PaymentGateway({ book, plan, type }) {
     return (
         <>
             <Head title="Payment - AI Book Studio" />
-            <div className="min-h-screen bg-[#17150f]">
+            <div className="min-h-screen bg-[#f0ece3]">
                 {/* Header */}
-                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-[#d8d1c1] sticky top-0 z-50">
                     <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
                         <Link
                             href={route(type === 'premium' ? 'ai-studio.premium-pricing' : 'ai-studio.pro-pricing', book.id)}
-                            className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
+                            className="flex items-center gap-3 text-[#635c4e] hover:text-[#17150f] transition-colors"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -111,10 +111,10 @@ export default function PaymentGateway({ book, plan, type }) {
                             <span className="font-medium">Back to Plans</span>
                         </Link>
                         <div className="flex items-center gap-2">
-                            <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
-                            <span className="font-bold text-white">Secure Payment</span>
+                            <span className="font-bold text-[#17150f]">Secure Payment</span>
                         </div>
                     </div>
                 </header>
@@ -127,9 +127,9 @@ export default function PaymentGateway({ book, plan, type }) {
 
                     <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {/* Order Summary */}
-                        <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-6">
-                            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                                <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-6">
+                            <h2 className="text-xl font-bold text-[#17150f] mb-6 flex items-center gap-2">
+                                <svg className="w-5 h-5 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                 </svg>
                                 Order Summary
@@ -137,55 +137,55 @@ export default function PaymentGateway({ book, plan, type }) {
 
                             <div className="space-y-4">
                                 {/* Plan Info */}
-                                <div className="bg-[#0a0f1a] rounded-xl p-4 border border-white/5">
+                                <div className="bg-[#faf8f3] rounded-xl p-4 border border-[#d8d1c1]">
                                     <div className="flex items-center justify-between mb-2">
-                                        <span className="text-gray-400 text-sm">Selected Plan</span>
-                                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${type === 'premium' ? 'bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 text-cyan-300 border border-cyan-400/30' : 'bg-indigo-500/20 text-indigo-300 border border-indigo-400/30'}`}>
+                                        <span className="text-[#635c4e] text-sm">Selected Plan</span>
+                                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${type === 'premium' ? 'bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 text-cyan-700 border border-cyan-400/30' : 'bg-indigo-500/20 text-indigo-700 border border-indigo-400/30'}`}>
                                             {type}
                                         </span>
                                     </div>
-                                    <h3 className="text-lg font-bold text-white capitalize">{plan}</h3>
+                                    <h3 className="text-lg font-bold text-[#17150f] capitalize">{plan}</h3>
                                 </div>
 
                                 {/* Book Info */}
-                                <div className="bg-[#0a0f1a] rounded-xl p-4 border border-white/5">
-                                    <div className="text-gray-400 text-sm mb-2">For Book</div>
-                                    <h3 className="text-white font-medium">{book.title || 'Untitled Book'}</h3>
+                                <div className="bg-[#faf8f3] rounded-xl p-4 border border-[#d8d1c1]">
+                                    <div className="text-[#635c4e] text-sm mb-2">For Book</div>
+                                    <h3 className="text-[#17150f] font-medium">{book.title || 'Untitled Book'}</h3>
                                 </div>
 
                                 {/* Plan Details */}
-                                <div className="space-y-3 pt-4 border-t border-white/10">
+                                <div className="space-y-3 pt-4 border-t border-[#d8d1c1]">
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-400 text-sm">Number of Books</span>
-                                        <span className="text-white font-semibold">{planDetails.books}</span>
+                                        <span className="text-[#635c4e] text-sm">Number of Books</span>
+                                        <span className="text-[#17150f] font-semibold">{planDetails.books}</span>
                                     </div>
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-400 text-sm">Word Credits</span>
-                                        <span className="text-white font-semibold">{planDetails.words}</span>
+                                        <span className="text-[#635c4e] text-sm">Word Credits</span>
+                                        <span className="text-[#17150f] font-semibold">{planDetails.words}</span>
                                     </div>
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-400 text-sm">AI Features</span>
-                                        <span className="text-emerald-400 font-semibold text-sm">? Included</span>
+                                        <span className="text-[#635c4e] text-sm">AI Features</span>
+                                        <span className="text-emerald-700 font-semibold text-sm">? Included</span>
                                     </div>
                                 </div>
 
                                 {/* Total */}
-                                <div className="pt-4 border-t border-white/10">
+                                <div className="pt-4 border-t border-[#d8d1c1]">
                                     <div className="flex justify-between items-center">
-                                        <span className="text-lg font-bold text-white">Total</span>
-                                        <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">
+                                        <span className="text-lg font-bold text-[#17150f]">Total</span>
+                                        <span className="text-2xl font-bold text-[#6e2530]">
                                             {planDetails.currency}{planDetails.price}
                                         </span>
                                     </div>
-                                    <p className="text-xs text-gray-500 mt-1">One-time payment � No recurring fees</p>
+                                    <p className="text-xs text-[#635c4e] mt-1">One-time payment � No recurring fees</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Payment Form */}
-                        <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-6">
-                            <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-                                <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-6">
+                            <h2 className="text-xl font-bold text-[#17150f] mb-6 flex items-center gap-2">
+                                <svg className="w-5 h-5 text-cyan-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                                 </svg>
                                 Payment Details
@@ -195,13 +195,13 @@ export default function PaymentGateway({ book, plan, type }) {
                             <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-4 mb-6">
                                 <div className="flex gap-3">
                                     <div className="shrink-0">
-                                        <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold text-white text-sm mb-1">Secure Payment via PhonePe</h3>
-                                        <p className="text-xs text-gray-400">
+                                        <h3 className="font-semibold text-[#17150f] text-sm mb-1">Secure Payment via PhonePe</h3>
+                                        <p className="text-xs text-[#635c4e]">
                                             You will be redirected to PhonePe's secure gateway to complete your payment.
                                             We support UPI, Credit/Debit Cards, and Net Banking.
                                         </p>
@@ -211,11 +211,11 @@ export default function PaymentGateway({ book, plan, type }) {
 
                             {/* Payment Methods Icons (Visual Only) */}
                             <div className="flex justify-center gap-4 mb-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                                <span className="text-white text-xs border border-white/10 px-2 py-1 rounded">UPI</span>
-                                <span className="text-white text-xs border border-white/10 px-2 py-1 rounded">Visa</span>
-                                <span className="text-white text-xs border border-white/10 px-2 py-1 rounded">MasterCard</span>
-                                <span className="text-white text-xs border border-white/10 px-2 py-1 rounded">RuPay</span>
-                                <span className="text-white text-xs border border-white/10 px-2 py-1 rounded">NetBanking</span>
+                                <span className="text-[#17150f] text-xs border border-[#d8d1c1] px-2 py-1 rounded">UPI</span>
+                                <span className="text-[#17150f] text-xs border border-[#d8d1c1] px-2 py-1 rounded">Visa</span>
+                                <span className="text-[#17150f] text-xs border border-[#d8d1c1] px-2 py-1 rounded">MasterCard</span>
+                                <span className="text-[#17150f] text-xs border border-[#d8d1c1] px-2 py-1 rounded">RuPay</span>
+                                <span className="text-[#17150f] text-xs border border-[#d8d1c1] px-2 py-1 rounded">NetBanking</span>
                             </div>
 
                             {/* Pay Button */}
@@ -243,7 +243,7 @@ export default function PaymentGateway({ book, plan, type }) {
                             </button>
 
                             {/* Security Badge */}
-                            <div className="mt-4 flex items-center justify-center gap-2 text-gray-500">
+                            <div className="mt-4 flex items-center justify-center gap-2 text-[#635c4e]">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>

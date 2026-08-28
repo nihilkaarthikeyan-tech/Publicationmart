@@ -189,7 +189,7 @@ export default function Show({ blog }) {
                 isShareOpen && (
                     <div className="fixed inset-0 z-[60] flex items-center justify-center px-4">
                         <div className="absolute inset-0 bg-[#faf8f3] backdrop-blur-sm" onClick={() => setIsShareOpen(false)}></div>
-                        <div className="relative bg-[#1a1a1e] border border-gray-700 p-8 rounded-2xl shadow-2xl w-full max-w-sm animate-in fade-in zoom-in duration-200">
+                        <div className="relative bg-[#faf8f3] border border-gray-700 p-8 rounded-2xl shadow-2xl w-full max-w-sm animate-in fade-in zoom-in duration-200">
                             <button onClick={() => setIsShareOpen(false)} className="absolute top-4 right-4 text-[#635c4e] hover:text-[#17150f]">
                                 <X className="w-5 h-5" />
                             </button>
@@ -273,7 +273,7 @@ export default function Show({ blog }) {
                 isBookingOpen && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
                         <div className="absolute inset-0 bg-[#faf8f3] backdrop-blur-sm" onClick={() => setIsBookingOpen(false)}></div>
-                        <div className="relative bg-[#1a1a1e] border border-gray-700 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-in fade-in zoom-in duration-200">
+                        <div className="relative bg-[#faf8f3] border border-gray-700 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-in fade-in zoom-in duration-200">
                             <button onClick={() => setIsBookingOpen(false)} className="absolute top-4 right-4 text-[#635c4e] hover:text-[#17150f]">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                             </button>

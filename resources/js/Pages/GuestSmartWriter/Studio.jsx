@@ -992,7 +992,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                             Turn your manuscript into a bestseller. Create a free account to distribute to Amazon, Google Books, and 100+ stores.
                                         </p>
                                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                            <Link href={route('login')} className="w-full sm:w-auto px-6 py-2.5 bg-[#faf8f3] hover:bg-[#151b29] border border-[#d8d1c1] text-[#17150f] font-bold text-sm rounded-lg transition-all">
+                                            <Link href={route('login')} className="w-full sm:w-auto px-6 py-2.5 bg-[#faf8f3] hover:bg-[#faf8f3] border border-[#d8d1c1] text-[#17150f] font-bold text-sm rounded-lg transition-all">
                                                 Login to Account
                                             </Link>
                                             <Link href={route('register')} className="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-indigo-500 to-cyan-500 hover:scale-105 text-white font-bold text-sm rounded-lg shadow-lg transition-all">

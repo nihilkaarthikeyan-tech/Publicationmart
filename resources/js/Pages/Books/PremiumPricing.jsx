@@ -109,24 +109,24 @@ export default function PremiumPricing({ book }) {
     return (
         <>
             <Head title="Premium Plans - AI Book Studio" />
-            <div className="min-h-screen bg-[#17150f]">
+            <div className="min-h-screen bg-[#f0ece3]">
                 {/* TOP-LEFT BACK BUTTON - ALWAYS VISIBLE */}
                 <Link
                     href={route('ai-studio.show', book.id)}
-                    className="fixed top-4 left-4 z-[100] flex items-center gap-2 px-4 py-2 bg-[#0d1220]/90 backdrop-blur-md border border-white/10 rounded-lg text-gray-300 hover:text-white hover:bg-[#0d1220] transition-all shadow-lg"
+                    className="fixed top-4 left-4 z-[100] flex items-center gap-2 px-4 py-2 bg-[#0d1220]/90 backdrop-blur-md border border-[#d8d1c1] rounded-lg text-[#4b443a] hover:text-[#17150f] hover:bg-[#faf8f3] transition-all shadow-lg"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     <span className="text-sm font-medium">Back</span>
                 </Link>
 
                 {/* STEPPER HEADER - ALWAYS VISIBLE AT TOP CENTER */}
-                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-[#d8d1c1] sticky top-0 z-50">
                     <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-center">
                         {/* Progress Stepper - VISIBLE ON ALL SCREENS */}
                         <div className="flex items-center gap-1 md:gap-2 text-sm">
                             {['Setup', 'Outline', 'Structure', 'Write', 'Export'].map((label, i) => (
-                                <div key={i} className="flex items-center gap-1 md:gap-2 text-gray-500">
-                                    <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center border-2 transition-all text-xs md:text-sm border-gray-600/50 text-gray-500`}>
+                                <div key={i} className="flex items-center gap-1 md:gap-2 text-[#635c4e]">
+                                    <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center border-2 transition-all text-xs md:text-sm border-gray-600/50 text-[#635c4e]`}>
                                         {i + 1}
                                     </div>
                                     <span className="hidden md:inline text-xs font-semibold uppercase tracking-wider">
@@ -139,11 +139,11 @@ export default function PremiumPricing({ book }) {
                     </div>
 
                     {/* Book Title Bar */}
-                    <div className="h-12 border-t border-white/5 flex items-center justify-between px-6 bg-[#0a0f1a]/80">
+                    <div className="h-12 border-t border-[#d8d1c1] flex items-center justify-between px-6 bg-[#0a0f1a]/80">
                         <div className="flex items-center gap-2 pl-20 md:pl-24">
-                            <span className="text-indigo-400">✨</span>
-                            <span className="font-bold text-white text-sm md:text-base truncate max-w-[120px] md:max-w-none">{book.title || 'AI Studio'}</span>
-                            <span className="text-[10px] bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-400/30 font-bold uppercase tracking-wider">Premium Plans</span>
+                            <span className="text-indigo-700">✨</span>
+                            <span className="font-bold text-[#17150f] text-sm md:text-base truncate max-w-[120px] md:max-w-none">{book.title || 'AI Studio'}</span>
+                            <span className="text-[10px] bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-400/30 font-bold uppercase tracking-wider">Premium Plans</span>
                         </div>
                     </div>
                 </header>
@@ -156,13 +156,13 @@ export default function PremiumPricing({ book }) {
 
                     {/* Header */}
                     <div className="text-center mb-12 relative z-10">
-                        <span className="inline-block py-1 px-3 rounded-full bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 border border-indigo-400/30 text-indigo-300 text-[10px] font-bold uppercase tracking-wider mb-4">
+                        <span className="inline-block py-1 px-3 rounded-full bg-gradient-to-r from-indigo-500/20 to-cyan-500/20 border border-indigo-400/30 text-indigo-700 text-[10px] font-bold uppercase tracking-wider mb-4">
                             Premium Writing Plans
                         </span>
-                        <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-                            Unlock <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Premium Power</span>
+                        <h1 className="text-3xl md:text-5xl font-bold text-[#17150f] mb-4 tracking-tight">
+                            Unlock <span className=" text-[#6e2530]">Premium Power</span>
                         </h1>
-                        <p className="text-base text-gray-300 max-w-xl mx-auto">
+                        <p className="text-base text-[#4b443a] max-w-xl mx-auto">
                             Experience advanced AI writing with stunning image generation for your bestseller.
                         </p>
                     </div>
@@ -186,8 +186,8 @@ export default function PremiumPricing({ book }) {
                                     </>
                                 )}
 
-                                <div className={`relative bg-[#0d1220] rounded-2xl h-full flex flex-col overflow-hidden border ${plan.popular ? 'border-indigo-500/50' : 'border-white/10 hover:border-cyan-500/30'} transition-all duration-300`}>
-                                    <div className="p-6 flex flex-col h-full bg-[#0a0f1a]">
+                                <div className={`relative bg-[#faf8f3] rounded-2xl h-full flex flex-col overflow-hidden border ${plan.popular ? 'border-indigo-500/50' : 'border-[#d8d1c1] hover:border-cyan-500/30'} transition-all duration-300`}>
+                                    <div className="p-6 flex flex-col h-full bg-[#faf8f3]">
                                         {/* Plan Name */}
                                         <h3 className={`text-xl font-bold mb-4 ${plan.popular ? 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400' : 'text-white'}`}>
                                             {plan.name}
@@ -195,39 +195,39 @@ export default function PremiumPricing({ book }) {
 
                                         {/* Pricing */}
                                         <div className="mb-2">
-                                            <span className="text-2xl font-bold text-gray-500 line-through">₹{plan.originalPrice}</span>
+                                            <span className="text-2xl font-bold text-[#635c4e] line-through">₹{plan.originalPrice}</span>
                                         </div>
                                         <div className="flex items-baseline gap-2 mb-1">
-                                            <span className={`text-3xl font-bold ${plan.popular ? 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400' : 'text-cyan-400'}`}>
+                                            <span className={`text-3xl font-bold ${plan.popular ? 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400' : 'text-cyan-700'}`}>
                                                 ₹{plan.discountedPrice}
                                             </span>
-                                            <span className="text-xs text-orange-400 font-bold">-{plan.discount}%</span>
+                                            <span className="text-xs text-orange-800 font-bold">-{plan.discount}%</span>
                                         </div>
 
                                         {/* Books info */}
                                         <div className="mb-1">
-                                            <span className="text-white font-semibold">{plan.books} {plan.books === 1 ? 'Book' : 'Books'}</span>
+                                            <span className="text-[#17150f] font-semibold">{plan.books} {plan.books === 1 ? 'Book' : 'Books'}</span>
                                         </div>
-                                        <div className="text-xs text-gray-400 mb-4">
+                                        <div className="text-xs text-[#635c4e] mb-4">
                                             ₹{plan.perBook.toFixed(0)} per Book
                                         </div>
 
                                         {/* Words */}
-                                        <div className="flex items-center gap-2 mb-4 py-2 border-t border-b border-white/10">
-                                            <svg className={`w-4 h-4 ${plan.popular ? 'text-cyan-400' : 'text-indigo-400'}`} fill="currentColor" viewBox="0 0 20 20">
+                                        <div className="flex items-center gap-2 mb-4 py-2 border-t border-b border-[#d8d1c1]">
+                                            <svg className={`w-4 h-4 ${plan.popular ? 'text-cyan-700' : 'text-indigo-700'}`} fill="currentColor" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                             </svg>
-                                            <span className="text-white font-semibold text-sm">{plan.words} WORDS</span>
+                                            <span className="text-[#17150f] font-semibold text-sm">{plan.words} WORDS</span>
                                         </div>
 
                                         {/* Features */}
                                         <div className="flex-1 space-y-3 mb-6">
                                             {plan.features.map((feature, idx) => (
                                                 <div key={idx} className="flex items-center gap-2">
-                                                    <svg className={`w-4 h-4 flex-shrink-0 ${plan.popular ? 'text-cyan-400' : 'text-indigo-400'}`} fill="currentColor" viewBox="0 0 20 20">
+                                                    <svg className={`w-4 h-4 flex-shrink-0 ${plan.popular ? 'text-cyan-700' : 'text-indigo-700'}`} fill="currentColor" viewBox="0 0 20 20">
                                                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                                     </svg>
-                                                    <span className="text-sm text-gray-300">{feature}</span>
+                                                    <span className="text-sm text-[#4b443a]">{feature}</span>
                                                 </div>
                                             ))}
                                         </div>
@@ -235,7 +235,7 @@ export default function PremiumPricing({ book }) {
                                         {/* CTA Button - DISABLED */}
                                         <button
                                             disabled
-                                            className="w-full py-3 font-bold text-sm rounded-lg transition-all duration-300 bg-gray-700/30 text-gray-500 border border-gray-700/30 cursor-not-allowed"
+                                            className="w-full py-3 font-bold text-sm rounded-lg transition-all duration-300 bg-gray-100 text-[#635c4e] border border-gray-700/30 cursor-not-allowed"
                                         >
                                             COMING SOON
                                         </button>
@@ -247,8 +247,8 @@ export default function PremiumPricing({ book }) {
 
                     {/* Footer note */}
                     <div className="text-center mt-12 relative z-10">
-                        <p className="text-xs text-gray-500">* Amazon-Ready formatting for Kindle Direct Publishing</p>
-                        <p className="text-xs text-indigo-400 mt-2">Premium includes all Pro features plus AI Image Generation</p>
+                        <p className="text-xs text-[#635c4e]">* Amazon-Ready formatting for Kindle Direct Publishing</p>
+                        <p className="text-xs text-indigo-700 mt-2">Premium includes all Pro features plus AI Image Generation</p>
                     </div>
                 </main>
             </div>

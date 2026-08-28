@@ -17,11 +17,11 @@ export default function Index({ auth, blogs }) {
         <>
             <Head title="Admin Studio Management" />
 
-            <div className="min-h-screen bg-[#17150f] text-white font-sans selection:bg-indigo-500/30">
+            <div className="min-h-screen bg-[#f0ece3] text-[#17150f] font-sans selection:bg-indigo-500/30">
                 {/* Background Ambient Glows */}
                 <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/10 rounded-full blur-[120px]"></div>
-                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-900/10 rounded-full blur-[120px]"></div>
+                    <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-50 rounded-full blur-[120px]"></div>
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-50 rounded-full blur-[120px]"></div>
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -29,11 +29,11 @@ export default function Index({ auth, blogs }) {
                     {/* Header Section */}
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
                         <div>
-                            <h1 className="text-3xl font-black tracking-tight text-white mb-2">Studio Submissions</h1>
-                            <p className="text-gray-400">Review pending studio posts from users and guests.</p>
+                            <h1 className="text-3xl font-black tracking-tight text-[#17150f] mb-2">Studio Submissions</h1>
+                            <p className="text-[#635c4e]">Review pending studio posts from users and guests.</p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Link href={route('admin.dashboard')} className="px-5 py-2.5 bg-[#15161b] hover:bg-[#1e2029] border border-white/10 text-gray-300 rounded-xl transition-all text-sm font-bold flex items-center gap-2">
+                            <Link href={route('admin.dashboard')} className="px-5 py-2.5 bg-[#faf8f3] hover:bg-[#faf8f3] border border-[#d8d1c1] text-[#4b443a] rounded-xl transition-all text-sm font-bold flex items-center gap-2">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                                 Dashboard
                             </Link>
@@ -42,35 +42,35 @@ export default function Index({ auth, blogs }) {
 
                     {/* Quick Stats Row */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                        <div className="p-5 bg-[#15161b]/80 backdrop-blur border border-white/10 rounded-2xl">
-                            <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Total Pending</div>
-                            <div className="text-2xl font-black text-white">{blogs.data.length}</div>
+                        <div className="p-5 bg-[#f0ece3]/80 backdrop-blur border border-[#d8d1c1] rounded-2xl">
+                            <div className="text-[#635c4e] text-xs font-bold uppercase tracking-wider mb-1">Total Pending</div>
+                            <div className="text-2xl font-black text-[#17150f]">{blogs.data.length}</div>
                         </div>
-                        <div className="p-5 bg-[#15161b]/80 backdrop-blur border border-white/10 rounded-2xl">
-                            <div className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-1">Needing Review</div>
-                            <div className="text-2xl font-black text-yellow-400">{pendingCount}</div>
+                        <div className="p-5 bg-[#f0ece3]/80 backdrop-blur border border-[#d8d1c1] rounded-2xl">
+                            <div className="text-[#635c4e] text-xs font-bold uppercase tracking-wider mb-1">Needing Review</div>
+                            <div className="text-2xl font-black text-yellow-800">{pendingCount}</div>
                         </div>
                     </div>
 
                     {/* Toolbar: Search */}
                     <div className="flex flex-col sm:flex-row gap-4 mb-6">
                         <div className="relative flex-1">
-                            <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                            <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                             <input
                                 type="text"
                                 placeholder="Search studio posts or authors..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full bg-[#15161b] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white placeholder-gray-500 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all outline-none"
+                                className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl py-3 pl-12 pr-4 text-[#17150f] placeholder-gray-500 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all outline-none"
                             />
                         </div>
                     </div>
 
                     {/* Content Table / Grid */}
-                    <div className="bg-[#15161b]/60 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                    <div className="bg-[#f0ece3]/60 backdrop-blur-xl border border-[#d8d1c1] rounded-2xl overflow-hidden shadow-2xl">
 
                         {/* Desktop Table Header */}
-                        <div className="hidden md:grid grid-cols-12 gap-4 p-5 bg-white/5 border-b border-white/10 text-xs font-bold text-gray-400 uppercase tracking-wider">
+                        <div className="hidden md:grid grid-cols-12 gap-4 p-5 bg-[#faf8f3] border-b border-[#d8d1c1] text-xs font-bold text-[#635c4e] uppercase tracking-wider">
                             <div className="col-span-5">Post Details</div>
                             <div className="col-span-3">Author Info</div>
                             <div className="col-span-2 text-center">Date</div>
@@ -78,20 +78,20 @@ export default function Index({ auth, blogs }) {
                         </div>
 
                         {/* Inventory List */}
-                        <div className="divide-y divide-white/5">
+                        <div className="divide-y divide-[#d8d1c1]">
                             {filteredBlogs.length > 0 ? (
                                 filteredBlogs.map((blog) => (
                                     <div key={blog.id} className="md:grid md:grid-cols-12 md:gap-4 p-5 hover:bg-white/[0.02] transition-colors items-start group">
 
                                         {/* Col 1: Blog Info */}
                                         <div className="col-span-5 mb-4 md:mb-0">
-                                            <div className="font-bold text-white text-base leading-tight mb-2 group-hover:text-indigo-400 transition-colors">{blog.title}</div>
-                                            <p className="text-gray-400 text-sm line-clamp-2">{blog.excerpt}</p>
+                                            <div className="font-bold text-[#17150f] text-base leading-tight mb-2 group-hover:text-indigo-700 transition-colors">{blog.title}</div>
+                                            <p className="text-[#635c4e] text-sm line-clamp-2">{blog.excerpt}</p>
                                             <div className="mt-2 text-xs">
-                                                <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${blog.status === 'pending' ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' :
-                                                        blog.status === 'rejected' ? 'bg-red-500/10 text-red-400 border border-red-500/20' :
-                                                            blog.status === 'approved' ? 'bg-green-500/10 text-green-400 border border-green-500/20' :
-                                                                'bg-gray-500/10 text-gray-400'
+                                                <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${blog.status === 'pending' ? 'bg-yellow-500/10 text-yellow-800 border border-yellow-500/20' :
+                                                        blog.status === 'rejected' ? 'bg-red-500/10 text-red-700 border border-red-500/20' :
+                                                            blog.status === 'approved' ? 'bg-green-500/10 text-green-700 border border-green-500/20' :
+                                                                'bg-gray-500/10 text-[#635c4e]'
                                                     }`}>
                                                     {blog.status}
                                                 </span>
@@ -99,18 +99,18 @@ export default function Index({ auth, blogs }) {
                                         </div>
 
                                         {/* Col 2: Author Info */}
-                                        <div className="col-span-3 text-sm text-gray-400 mb-2 md:mb-0">
-                                            <div className="font-bold text-white mb-1">{blog.author_name}</div>
-                                            <div className="text-xs text-gray-500">{blog.author_email || 'No email provided'}</div>
+                                        <div className="col-span-3 text-sm text-[#635c4e] mb-2 md:mb-0">
+                                            <div className="font-bold text-[#17150f] mb-1">{blog.author_name}</div>
+                                            <div className="text-xs text-[#635c4e]">{blog.author_email || 'No email provided'}</div>
                                             {blog.user && (
-                                                <div className="mt-1 inline-block bg-indigo-500/10 text-indigo-400 text-[10px] px-1.5 rounded border border-indigo-500/20">
+                                                <div className="mt-1 inline-block bg-indigo-500/10 text-indigo-700 text-[10px] px-1.5 rounded border border-indigo-500/20">
                                                     Registered User
                                                 </div>
                                             )}
                                         </div>
 
                                         {/* Col 3: Date */}
-                                        <div className="col-span-2 text-left md:text-center text-sm text-gray-500 mb-4 md:mb-0">
+                                        <div className="col-span-2 text-left md:text-center text-sm text-[#635c4e] mb-4 md:mb-0">
                                             {blog.created_at}
                                         </div>
 
@@ -149,7 +149,7 @@ export default function Index({ auth, blogs }) {
                                                             router.post(route('blogs.reject', blog.id));
                                                         }
                                                     }}
-                                                    className="px-3 py-1.5 bg-yellow-600 hover:bg-yellow-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-yellow-500/20"
+                                                    className="px-3 py-1.5 bg-yellow-600 hover:bg-yellow-500 text-[#17150f] text-xs font-bold rounded-lg transition-all shadow-lg shadow-yellow-500/20"
                                                 >
                                                     Reject
                                                 </button>
@@ -171,11 +171,11 @@ export default function Index({ auth, blogs }) {
                                 ))
                             ) : (
                                 <div className="p-12 text-center flex flex-col items-center justify-center">
-                                    <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mb-4">
-                                        <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
+                                    <div className="w-16 h-16 bg-[#faf8f3] rounded-full flex items-center justify-center mb-4">
+                                        <svg className="w-8 h-8 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
                                     </div>
-                                    <h3 className="text-white font-bold text-lg mb-1">No pending submissions</h3>
-                                    <p className="text-gray-500 text-sm">All studio posts have been reviewed.</p>
+                                    <h3 className="text-[#17150f] font-bold text-lg mb-1">No pending submissions</h3>
+                                    <p className="text-[#635c4e] text-sm">All studio posts have been reviewed.</p>
                                 </div>
                             )}
                         </div>

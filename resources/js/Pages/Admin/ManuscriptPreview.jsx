@@ -10,15 +10,15 @@ export default function ManuscriptPreview({ book, formattingData, interiorFile, 
         return (
             <>
                 <Head title={`Preview: ${book.title}`} />
-                <div className="min-h-screen bg-slate-900 flex items-center justify-center p-6">
-                    <div className="bg-slate-800 p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border border-slate-700">
+                <div className="min-h-screen bg-[#faf8f3] flex items-center justify-center p-6">
+                    <div className="bg-[#faf8f3] p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border border-slate-700">
                         <div className="w-20 h-20 bg-indigo-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
                         </div>
-                        <h2 className="text-2xl font-bold text-white mb-2">Uploaded Manuscript</h2>
-                        <p className="text-slate-400 mb-8">
+                        <h2 className="text-2xl font-bold text-[#17150f] mb-2">Uploaded Manuscript</h2>
+                        <p className="text-[#635c4e] mb-8">
                             This author uploaded a pre-formatted manuscript file instead of using the online tool.
                         </p>
                         <div className="space-y-4">
@@ -35,7 +35,7 @@ export default function ManuscriptPreview({ book, formattingData, interiorFile, 
                             </a>
                             <Link
                                 href={route('admin.books.show', book.id)}
-                                className="block w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-lg font-medium transition-colors"
+                                className="block w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 text-[#4b443a] rounded-lg font-medium transition-colors"
                             >
                                 Back to Book Details
                             </Link>
@@ -101,11 +101,11 @@ export default function ManuscriptPreview({ book, formattingData, interiorFile, 
         return (
             <>
                 <Head title="Manuscript Preview" />
-                <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+                <div className="min-h-screen bg-[#faf8f3] flex items-center justify-center">
                     <div className="text-center">
                         <div className="text-6xl mb-4">📄</div>
-                        <h2 className="text-white text-xl font-bold mb-2">No Formatted Content</h2>
-                        <p className="text-white/50 mb-6">This book hasn't been formatted yet.</p>
+                        <h2 className="text-[#17150f] text-xl font-bold mb-2">No Formatted Content</h2>
+                        <p className="text-[#17150f]/50 mb-6">This book hasn't been formatted yet.</p>
                         <Link href={route('admin.books.show', book.id)} className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
                             ← Back to Book Details
                         </Link>

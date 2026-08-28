@@ -11,11 +11,11 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
 
     const getStatusBadge = (status) => {
         const badges = {
-            pending_upload: { label: 'Awaiting Upload', bg: 'bg-yellow-500/20', text: 'text-yellow-300', border: 'border-yellow-500/30' },
-            pending: { label: 'Pending Review', bg: 'bg-blue-500/20', text: 'text-blue-300', border: 'border-blue-500/30' },
-            in_progress: { label: 'In Progress', bg: 'bg-indigo-500/20', text: 'text-indigo-300', border: 'border-indigo-500/30' },
-            completed: { label: 'Completed', bg: 'bg-emerald-500/20', text: 'text-emerald-300', border: 'border-emerald-500/30' },
-            cancelled: { label: 'Cancelled', bg: 'bg-red-500/20', text: 'text-red-300', border: 'border-red-500/30' },
+            pending_upload: { label: 'Awaiting Upload', bg: 'bg-yellow-500/20', text: 'text-yellow-800', border: 'border-yellow-500/30' },
+            pending: { label: 'Pending Review', bg: 'bg-blue-500/20', text: 'text-blue-700', border: 'border-blue-500/30' },
+            in_progress: { label: 'In Progress', bg: 'bg-indigo-500/20', text: 'text-indigo-700', border: 'border-indigo-500/30' },
+            completed: { label: 'Completed', bg: 'bg-emerald-500/20', text: 'text-emerald-700', border: 'border-emerald-500/30' },
+            cancelled: { label: 'Cancelled', bg: 'bg-red-500/20', text: 'text-red-700', border: 'border-red-500/30' },
         };
         return badges[status] || badges.pending;
     };
@@ -32,20 +32,20 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
     return (
         <>
             <Head title="Professional Service Requests - Admin" />
-            <div className="min-h-screen bg-[#17150f]">
+            <div className="min-h-screen bg-[#f0ece3]">
                 {/* Header */}
-                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+                <header className="bg-[#0d1220]/90 backdrop-blur-md border-b border-[#d8d1c1] sticky top-0 z-50">
                     <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             <Link
                                 href={route('admin.dashboard')}
-                                className="text-gray-400 hover:text-white transition-colors"
+                                className="text-[#635c4e] hover:text-[#17150f] transition-colors"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                                 </svg>
                             </Link>
-                            <h1 className="text-xl font-bold text-white flex items-center gap-2">
+                            <h1 className="text-xl font-bold text-[#17150f] flex items-center gap-2">
                                 <span className="text-2xl">🛠️</span>
                                 Professional Service Requests
                             </h1>
@@ -55,7 +55,7 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                         {stats.pending > 0 && (
                             <div className="flex items-center gap-2 bg-red-500/20 border border-red-500/30 rounded-full px-4 py-1">
                                 <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></div>
-                                <span className="text-red-300 text-sm font-bold">{stats.pending} Pending</span>
+                                <span className="text-red-700 text-sm font-bold">{stats.pending} Pending</span>
                             </div>
                         )}
                     </div>
@@ -68,11 +68,11 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                         <div className="bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-xl border border-blue-500/20 p-5">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-gray-400 text-sm">Pending Review</p>
-                                    <p className="text-3xl font-bold text-white mt-1">{stats.pending}</p>
+                                    <p className="text-[#635c4e] text-sm">Pending Review</p>
+                                    <p className="text-3xl font-bold text-[#17150f] mt-1">{stats.pending}</p>
                                 </div>
                                 <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                                    <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
@@ -81,11 +81,11 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                         <div className="bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-xl border border-indigo-500/20 p-5">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-gray-400 text-sm">In Progress</p>
-                                    <p className="text-3xl font-bold text-white mt-1">{stats.in_progress}</p>
+                                    <p className="text-[#635c4e] text-sm">In Progress</p>
+                                    <p className="text-3xl font-bold text-[#17150f] mt-1">{stats.in_progress}</p>
                                 </div>
                                 <div className="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center">
-                                    <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                     </svg>
                                 </div>
@@ -94,11 +94,11 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                         <div className="bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-xl border border-emerald-500/20 p-5">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-gray-400 text-sm">Completed</p>
-                                    <p className="text-3xl font-bold text-white mt-1">{stats.completed}</p>
+                                    <p className="text-[#635c4e] text-sm">Completed</p>
+                                    <p className="text-3xl font-bold text-[#17150f] mt-1">{stats.completed}</p>
                                 </div>
                                 <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
-                                    <svg className="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
@@ -113,12 +113,12 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                                 key={filter.value}
                                 href={route('admin.professional.index', { status: filter.value })}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${currentStatus === filter.value
-                                    ? 'bg-indigo-500 text-white'
-                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                                    ? 'bg-indigo-500 text-[#17150f]'
+                                    : 'bg-[#faf8f3] text-[#635c4e] hover:bg-[#e7e1d4] hover:text-[#17150f]'
                                     }`}
                             >
                                 {filter.label}
-                                <span className="ml-2 px-2 py-0.5 rounded-full bg-white/10 text-xs">
+                                <span className="ml-2 px-2 py-0.5 rounded-full bg-[#e7e1d4] text-xs">
                                     {filter.count}
                                 </span>
                             </Link>
@@ -126,43 +126,43 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                     </div>
 
                     {/* Requests Table */}
-                    <div className="bg-[#0d1220] rounded-2xl border border-white/10 overflow-hidden">
+                    <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] overflow-hidden">
                         {requests.data && requests.data.length > 0 ? (
                             <div className="overflow-x-auto">
                                 <table className="w-full">
-                                    <thead className="bg-white/5">
+                                    <thead className="bg-[#faf8f3]">
                                         <tr>
-                                            <th className="text-left px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">User</th>
-                                            <th className="text-left px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Service</th>
-                                            <th className="text-left px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Book</th>
-                                            <th className="text-left px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Amount</th>
-                                            <th className="text-left px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Status</th>
-                                            <th className="text-left px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Date</th>
-                                            <th className="text-left px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Action</th>
+                                            <th className="text-left px-6 py-4 text-xs font-bold text-[#635c4e] uppercase tracking-wider">User</th>
+                                            <th className="text-left px-6 py-4 text-xs font-bold text-[#635c4e] uppercase tracking-wider">Service</th>
+                                            <th className="text-left px-6 py-4 text-xs font-bold text-[#635c4e] uppercase tracking-wider">Book</th>
+                                            <th className="text-left px-6 py-4 text-xs font-bold text-[#635c4e] uppercase tracking-wider">Amount</th>
+                                            <th className="text-left px-6 py-4 text-xs font-bold text-[#635c4e] uppercase tracking-wider">Status</th>
+                                            <th className="text-left px-6 py-4 text-xs font-bold text-[#635c4e] uppercase tracking-wider">Date</th>
+                                            <th className="text-left px-6 py-4 text-xs font-bold text-[#635c4e] uppercase tracking-wider">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-white/5">
+                                    <tbody className="divide-y divide-[#d8d1c1]">
                                         {requests.data.map((request) => {
                                             const badge = getStatusBadge(request.status);
                                             return (
-                                                <tr key={request.id} className="hover:bg-white/5 transition-colors">
+                                                <tr key={request.id} className="hover:bg-[#faf8f3] transition-colors">
                                                     <td className="px-6 py-4">
                                                         <div>
-                                                            <p className="text-white font-medium">{request.user?.name || 'Unknown'}</p>
-                                                            <p className="text-gray-500 text-xs">{request.user?.email}</p>
+                                                            <p className="text-[#17150f] font-medium">{request.user?.name || 'Unknown'}</p>
+                                                            <p className="text-[#635c4e] text-xs">{request.user?.email}</p>
                                                             {request.user?.mobile_number && (
-                                                                <p className="text-cyan-400 text-xs mt-0.5">📞 {request.user?.mobile_number}</p>
+                                                                <p className="text-cyan-700 text-xs mt-0.5">📞 {request.user?.mobile_number}</p>
                                                             )}
                                                         </div>
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        <span className="text-gray-300">{getServiceName(request.service_type)}</span>
+                                                        <span className="text-[#4b443a]">{getServiceName(request.service_type)}</span>
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        <span className="text-gray-400">{request.book?.title || 'Not linked'}</span>
+                                                        <span className="text-[#635c4e]">{request.book?.title || 'Not linked'}</span>
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        <span className="text-emerald-400 font-bold">₹{request.amount}</span>
+                                                        <span className="text-emerald-700 font-bold">₹{request.amount}</span>
                                                     </td>
                                                     <td className="px-6 py-4">
                                                         <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold ${badge.bg} ${badge.text} border ${badge.border}`}>
@@ -170,14 +170,14 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                                                         </span>
                                                     </td>
                                                     <td className="px-6 py-4">
-                                                        <span className="text-gray-500 text-sm">
+                                                        <span className="text-[#635c4e] text-sm">
                                                             {new Date(request.created_at).toLocaleDateString()}
                                                         </span>
                                                     </td>
                                                     <td className="px-6 py-4">
                                                         <Link
                                                             href={route('admin.professional.show', request.id)}
-                                                            className="px-4 py-2 bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 rounded-lg text-sm font-medium transition-colors"
+                                                            className="px-4 py-2 bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-700 rounded-lg text-sm font-medium transition-colors"
                                                         >
                                                             View Details
                                                         </Link>
@@ -190,12 +190,12 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                             </div>
                         ) : (
                             <div className="py-16 text-center">
-                                <div className="w-20 h-20 mx-auto bg-white/5 rounded-2xl flex items-center justify-center mb-4">
-                                    <svg className="w-10 h-10 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="w-20 h-20 mx-auto bg-[#faf8f3] rounded-2xl flex items-center justify-center mb-4">
+                                    <svg className="w-10 h-10 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                                     </svg>
                                 </div>
-                                <p className="text-gray-500">No service requests found</p>
+                                <p className="text-[#635c4e]">No service requests found</p>
                             </div>
                         )}
                     </div>
@@ -208,10 +208,10 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                                     key={index}
                                     href={link.url || '#'}
                                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${link.active
-                                        ? 'bg-indigo-500 text-white'
+                                        ? 'bg-indigo-500 text-[#17150f]'
                                         : link.url
-                                            ? 'bg-white/5 text-gray-400 hover:bg-white/10'
-                                            : 'bg-white/5 text-gray-600 cursor-not-allowed'
+                                            ? 'bg-[#faf8f3] text-[#635c4e] hover:bg-[#e7e1d4]'
+                                            : 'bg-[#faf8f3] text-[#635c4e] cursor-not-allowed'
                                         }`}
                                     dangerouslySetInnerHTML={{ __html: link.label }}
                                 />

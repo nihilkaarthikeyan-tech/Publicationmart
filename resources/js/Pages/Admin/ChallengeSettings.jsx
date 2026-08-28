@@ -33,21 +33,21 @@ function ChallengeCard({ setting }) {
     const pickMode = (m) => { setMode(m); setData('video_type', m); };
 
     return (
-        <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm">
+        <div className="bg-[#faf8f3] border border-[#d8d1c1] rounded-2xl p-6 backdrop-blur-sm">
             <div className="flex items-start justify-between gap-4 mb-5">
                 <div>
-                    <h3 className="text-lg font-bold text-white">{setting.challenge_type}</h3>
+                    <h3 className="text-lg font-bold text-[#17150f]">{setting.challenge_type}</h3>
                     <p className="text-sm mt-1">
                         {setting.has_video
-                            ? <span className="text-emerald-400">Video is live on the challenges page</span>
-                            : <span className="text-gray-500">No video — visitors see the placeholder</span>}
+                            ? <span className="text-emerald-700">Video is live on the challenges page</span>
+                            : <span className="text-[#635c4e]">No video — visitors see the placeholder</span>}
                     </p>
                 </div>
                 {setting.has_video && (
                     <button
                         type="button"
                         onClick={removeVideo}
-                        className="shrink-0 px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-lg text-xs font-bold transition-colors"
+                        className="shrink-0 px-3 py-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-700 border border-red-500/20 rounded-lg text-xs font-bold transition-colors"
                     >
                         Remove
                     </button>
@@ -56,7 +56,7 @@ function ChallengeCard({ setting }) {
 
             {/* Current video preview */}
             {setting.has_video && (
-                <div className="mb-5 rounded-xl overflow-hidden border border-white/10 bg-black/40 max-w-[220px]">
+                <div className="mb-5 rounded-xl overflow-hidden border border-[#d8d1c1] bg-[#faf8f3] max-w-[220px]">
                     {setting.video_type === 'url' && setting.video_url ? (
                         <div className="relative pt-[177.77%]">
                             <iframe
@@ -83,8 +83,8 @@ function ChallengeCard({ setting }) {
                             onClick={() => pickMode(m)}
                             className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors border ${
                                 mode === m
-                                    ? 'bg-indigo-500 text-white border-indigo-400'
-                                    : 'bg-white/5 text-gray-400 border-white/10 hover:text-white'
+                                    ? 'bg-indigo-500 text-[#17150f] border-indigo-400'
+                                    : 'bg-[#faf8f3] text-[#635c4e] border-[#d8d1c1] hover:text-[#17150f]'
                             }`}
                         >
                             {m === 'url' ? 'YouTube / link' : 'Upload file'}
@@ -94,55 +94,55 @@ function ChallengeCard({ setting }) {
 
                 {mode === 'url' ? (
                     <div>
-                        <label className="block text-xs uppercase tracking-wider text-gray-500 mb-1.5">Video link</label>
+                        <label className="block text-xs uppercase tracking-wider text-[#635c4e] mb-1.5">Video link</label>
                         <input
                             type="url"
                             value={data.video_url}
                             onChange={(e) => setData('video_url', e.target.value)}
                             placeholder="https://www.youtube.com/watch?v=..."
-                            className="w-full bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-white text-sm placeholder-gray-600 focus:border-indigo-500 focus:outline-none"
+                            className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2 text-[#17150f] text-sm placeholder-gray-600 focus:border-indigo-500 focus:outline-none"
                         />
-                        {errors.video_url && <p className="text-red-400 text-xs mt-1">{errors.video_url}</p>}
-                        <p className="text-gray-600 text-xs mt-1.5">A normal YouTube link works — it is converted to an embed automatically.</p>
+                        {errors.video_url && <p className="text-red-700 text-xs mt-1">{errors.video_url}</p>}
+                        <p className="text-[#635c4e] text-xs mt-1.5">A normal YouTube link works — it is converted to an embed automatically.</p>
                     </div>
                 ) : (
                     <div>
-                        <label className="block text-xs uppercase tracking-wider text-gray-500 mb-1.5">Video file</label>
+                        <label className="block text-xs uppercase tracking-wider text-[#635c4e] mb-1.5">Video file</label>
                         <input
                             type="file"
                             accept="video/mp4,video/webm,video/quicktime"
                             onChange={(e) => setData('video_file', e.target.files[0])}
-                            className="w-full text-sm text-gray-400 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-500 file:text-white file:font-bold file:cursor-pointer"
+                            className="w-full text-sm text-[#635c4e] file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-500 file:text-[#17150f] file:font-bold file:cursor-pointer"
                         />
-                        {errors.video_file && <p className="text-red-400 text-xs mt-1">{errors.video_file}</p>}
-                        <p className="text-gray-600 text-xs mt-1.5">MP4, WebM or MOV — up to 100 MB.</p>
+                        {errors.video_file && <p className="text-red-700 text-xs mt-1">{errors.video_file}</p>}
+                        <p className="text-[#635c4e] text-xs mt-1.5">MP4, WebM or MOV — up to 100 MB.</p>
                     </div>
                 )}
 
                 <div>
-                    <label className="block text-xs uppercase tracking-wider text-gray-500 mb-1.5">
-                        Thumbnail <span className="text-gray-600 normal-case tracking-normal">(optional)</span>
+                    <label className="block text-xs uppercase tracking-wider text-[#635c4e] mb-1.5">
+                        Thumbnail <span className="text-[#635c4e] normal-case tracking-normal">(optional)</span>
                     </label>
                     <input
                         type="file"
                         accept="image/jpeg,image/png,image/webp"
                         onChange={(e) => setData('video_thumbnail', e.target.files[0])}
-                        className="w-full text-sm text-gray-400 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-white/10 file:text-gray-200 file:font-bold file:cursor-pointer"
+                        className="w-full text-sm text-[#635c4e] file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-[#e7e1d4] file:text-[#4b443a] file:font-bold file:cursor-pointer"
                     />
-                    {errors.video_thumbnail && <p className="text-red-400 text-xs mt-1">{errors.video_thumbnail}</p>}
+                    {errors.video_thumbnail && <p className="text-red-700 text-xs mt-1">{errors.video_thumbnail}</p>}
                 </div>
 
                 <div>
-                    <label className="block text-xs uppercase tracking-wider text-gray-500 mb-1.5">
-                        Title <span className="text-gray-600 normal-case tracking-normal">(optional)</span>
+                    <label className="block text-xs uppercase tracking-wider text-[#635c4e] mb-1.5">
+                        Title <span className="text-[#635c4e] normal-case tracking-normal">(optional)</span>
                     </label>
                     <input
                         type="text"
                         value={data.video_title}
                         onChange={(e) => setData('video_title', e.target.value)}
-                        className="w-full bg-black/30 border border-white/10 rounded-lg px-3 py-2 text-white text-sm focus:border-indigo-500 focus:outline-none"
+                        className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-lg px-3 py-2 text-[#17150f] text-sm focus:border-indigo-500 focus:outline-none"
                     />
-                    {errors.video_title && <p className="text-red-400 text-xs mt-1">{errors.video_title}</p>}
+                    {errors.video_title && <p className="text-red-700 text-xs mt-1">{errors.video_title}</p>}
                 </div>
 
                 <button
@@ -162,28 +162,28 @@ export default function ChallengeSettings({ settings = [], flash = {} }) {
         <>
             <Head title="Challenge Videos" />
 
-            <div className="min-h-screen bg-[#17150f] py-10 px-4">
+            <div className="min-h-screen bg-[#f0ece3] py-10 px-4">
                 <div className="max-w-6xl mx-auto">
                     <div className="flex items-center justify-between flex-wrap gap-4 mb-2">
-                        <h1 className="text-2xl font-bold text-white">Challenge Videos</h1>
+                        <h1 className="text-2xl font-bold text-[#17150f]">Challenge Videos</h1>
                         <Link
                             href={route('admin.dashboard')}
-                            className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 rounded-lg text-sm transition-colors"
+                            className="px-4 py-2 bg-[#faf8f3] hover:bg-[#e7e1d4] text-[#4b443a] border border-[#d8d1c1] rounded-lg text-sm transition-colors"
                         >
                             ← Back to dashboard
                         </Link>
                     </div>
-                    <p className="text-gray-400 mb-8">
+                    <p className="text-[#635c4e] mb-8">
                         Set the promo video shown beside each challenge on the public challenges page.
                     </p>
 
                     {flash.success && (
-                        <div className="mb-6 px-4 py-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 rounded-xl text-sm">
+                        <div className="mb-6 px-4 py-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 rounded-xl text-sm">
                             {flash.success}
                         </div>
                     )}
                     {flash.error && (
-                        <div className="mb-6 px-4 py-3 bg-red-500/10 border border-red-500/20 text-red-300 rounded-xl text-sm">
+                        <div className="mb-6 px-4 py-3 bg-red-500/10 border border-red-500/20 text-red-700 rounded-xl text-sm">
                             {flash.error}
                         </div>
                     )}

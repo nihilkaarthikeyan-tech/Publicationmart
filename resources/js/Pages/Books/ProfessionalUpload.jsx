@@ -69,7 +69,7 @@ export default function ProfessionalUpload({ serviceRequest }) {
     return (
         <>
             <Head title="Upload Your Manuscript" />
-            <div className="min-h-screen bg-[#17150f] flex items-center justify-center py-12 px-4">
+            <div className="min-h-screen bg-[#f0ece3] flex items-center justify-center py-12 px-4">
                 {/* Background Effects */}
                 <div className="fixed top-0 left-1/4 w-[500px] h-[500px] bg-emerald-600/10 rounded-full blur-[150px] pointer-events-none"></div>
                 <div className="fixed bottom-0 right-1/4 w-[400px] h-[400px] bg-indigo-600/10 rounded-full blur-[150px] pointer-events-none"></div>
@@ -78,20 +78,20 @@ export default function ProfessionalUpload({ serviceRequest }) {
                     {/* Success Badge */}
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center gap-3 py-2 px-5 rounded-full bg-emerald-500/20 border border-emerald-500/30 mb-4">
-                            <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                             </svg>
-                            <span className="text-emerald-300 font-bold">Payment Successful!</span>
+                            <span className="text-emerald-700 font-bold">Payment Successful!</span>
                         </div>
-                        <h1 className="text-3xl font-bold text-white mb-2">Upload Your Manuscript</h1>
-                        <p className="text-gray-400">
+                        <h1 className="text-3xl font-bold text-[#17150f] mb-2">Upload Your Manuscript</h1>
+                        <p className="text-[#635c4e]">
                             Your {serviceNames[serviceRequest.service_type]} service is confirmed.
                             Please upload your manuscript to get started.
                         </p>
                     </div>
 
                     {/* Upload Card */}
-                    <div className="bg-[#0d1220] rounded-2xl border border-white/10 p-8">
+                    <div className="bg-[#faf8f3] rounded-2xl border border-[#d8d1c1] p-8">
                         <form onSubmit={handleSubmit}>
                             {/* Drag & Drop Zone */}
                             <div
@@ -103,7 +103,7 @@ export default function ProfessionalUpload({ serviceRequest }) {
                                     ? 'border-indigo-400 bg-indigo-500/10'
                                     : selectedFile
                                         ? 'border-emerald-400 bg-emerald-500/10'
-                                        : 'border-white/20 hover:border-white/40'
+                                        : 'border-[#d8d1c1] hover:border-[#d8d1c1]'
                                     }`}
                             >
                                 <input
@@ -116,12 +116,12 @@ export default function ProfessionalUpload({ serviceRequest }) {
                                 {selectedFile ? (
                                     <div className="space-y-3">
                                         <div className="w-16 h-16 mx-auto bg-emerald-500/20 rounded-2xl flex items-center justify-center">
-                                            <svg className="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg className="w-8 h-8 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                             </svg>
                                         </div>
-                                        <p className="text-white font-bold">{selectedFile.name}</p>
-                                        <p className="text-gray-400 text-sm">
+                                        <p className="text-[#17150f] font-bold">{selectedFile.name}</p>
+                                        <p className="text-[#635c4e] text-sm">
                                             {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                                         </p>
                                         <button
@@ -130,22 +130,22 @@ export default function ProfessionalUpload({ serviceRequest }) {
                                                 e.stopPropagation();
                                                 setSelectedFile(null);
                                             }}
-                                            className="text-red-400 hover:text-red-300 text-sm underline"
+                                            className="text-red-700 hover:text-red-700 text-sm underline"
                                         >
                                             Remove file
                                         </button>
                                     </div>
                                 ) : (
                                     <div className="space-y-3">
-                                        <div className="w-16 h-16 mx-auto bg-white/5 rounded-2xl flex items-center justify-center">
-                                            <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div className="w-16 h-16 mx-auto bg-[#faf8f3] rounded-2xl flex items-center justify-center">
+                                            <svg className="w-8 h-8 text-[#635c4e]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                             </svg>
                                         </div>
-                                        <p className="text-white font-medium">
+                                        <p className="text-[#17150f] font-medium">
                                             Drag & drop your manuscript here
                                         </p>
-                                        <p className="text-gray-500 text-sm">
+                                        <p className="text-[#635c4e] text-sm">
                                             or click to browse • DOC, DOCX (max 50MB)
                                         </p>
                                     </div>
@@ -154,14 +154,14 @@ export default function ProfessionalUpload({ serviceRequest }) {
 
                             {/* Notes */}
                             <div className="mt-6">
-                                <label className="block text-sm font-bold text-gray-300 mb-2">
+                                <label className="block text-sm font-bold text-[#4b443a] mb-2">
                                     Special Instructions (Optional)
                                 </label>
                                 <textarea
                                     value={notes}
                                     onChange={(e) => setNotes(e.target.value)}
                                     placeholder="Any specific formatting preferences, font choices, or special requirements..."
-                                    className="w-full bg-[#0a0f1a] border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-400 transition resize-none h-24"
+                                    className="w-full bg-[#faf8f3] border border-[#d8d1c1] rounded-xl px-4 py-3 text-[#17150f] placeholder-gray-500 focus:outline-none focus:border-indigo-400 transition resize-none h-24"
                                 />
                             </div>
 
@@ -192,18 +192,18 @@ export default function ProfessionalUpload({ serviceRequest }) {
 
                         {/* Info Box */}
                         <div className="mt-6 bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-4">
-                            <h4 className="font-bold text-indigo-300 text-sm mb-2">What happens next?</h4>
-                            <ul className="space-y-1 text-sm text-gray-400">
+                            <h4 className="font-bold text-indigo-700 text-sm mb-2">What happens next?</h4>
+                            <ul className="space-y-1 text-sm text-[#635c4e]">
                                 <li className="flex items-start gap-2">
-                                    <span className="text-indigo-400">1.</span>
+                                    <span className="text-indigo-700">1.</span>
                                     Our team will review your manuscript within 24 hours
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <span className="text-indigo-400">2.</span>
+                                    <span className="text-indigo-700">2.</span>
                                     Professional formatting will begin immediately
                                 </li>
                                 <li className="flex items-start gap-2">
-                                    <span className="text-indigo-400">3.</span>
+                                    <span className="text-indigo-700">3.</span>
                                     You'll receive your formatted book in 3-5 business days
                                 </li>
                             </ul>
@@ -214,7 +214,7 @@ export default function ProfessionalUpload({ serviceRequest }) {
                     <div className="text-center mt-6">
                         <Link
                             href={route('dashboard')}
-                            className="text-gray-500 hover:text-gray-300 text-sm transition"
+                            className="text-[#635c4e] hover:text-[#4b443a] text-sm transition"
                         >
                             I'll upload later → Go to Dashboard
                         </Link>
