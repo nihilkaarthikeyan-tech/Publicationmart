@@ -182,7 +182,7 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                 </span>
                                 {/* Real-time connection status */}
                                 <span className={`px-3 py-1 rounded-full text-xs font-bold border flex items-center gap-1.5 ${connectionStatus === 'connected'
-                                    ? 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20'
+                                    ? 'bg-emerald-500/10 text-emerald-800 border-emerald-500/20'
                                     : connectionStatus === 'fallback'
                                         ? 'bg-blue-500/10 text-blue-700 border-blue-500/20'
                                         : 'bg-yellow-500/10 text-yellow-800 border-yellow-500/20'
@@ -280,7 +280,7 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                     key={option.value}
                                     onClick={() => setFilter(option.value)}
                                     className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-bold transition-all ${filter === option.value
-                                        ? 'bg-orange-500 text-ink shadow-lg shadow-orange-500/30'
+                                        ? 'bg-orange-700 text-paper shadow-lg shadow-orange-700/30'
                                         : 'bg-paper text-umber border border-linen hover:border-orange-500/50 hover:text-orange-800'
                                         }`}
                                 >
@@ -355,13 +355,13 @@ export default function ApprovalQueue({ auth, books, dbError }) {
 
                                         {/* Col 2: Checklist Flags */}
                                         <div className="col-span-3 flex flex-wrap gap-2 mb-4 md:mb-0">
-                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase border ${book.isbn ? 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20' : 'bg-red-500/10 text-red-700 border-red-500/20'}`}>
+                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase border ${book.isbn ? 'bg-emerald-500/10 text-emerald-800 border-emerald-500/20' : 'bg-red-500/10 text-red-800 border-red-500/20'}`}>
                                                 {book.isbn ? 'ISBN OK' : 'No ISBN'}
                                             </span>
-                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase border ${book.cover_design_path ? 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20' : 'bg-red-500/10 text-red-700 border-red-500/20'}`}>
+                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase border ${book.cover_design_path ? 'bg-emerald-500/10 text-emerald-800 border-emerald-500/20' : 'bg-red-500/10 text-red-800 border-red-500/20'}`}>
                                                 {book.cover_design_path ? 'Cover OK' : 'No Cover'}
                                             </span>
-                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase border ${book.selling_price > 0 ? 'bg-emerald-500/10 text-emerald-700 border-emerald-500/20' : 'bg-red-500/10 text-red-700 border-red-500/20'}`}>
+                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase border ${book.selling_price > 0 ? 'bg-emerald-500/10 text-emerald-800 border-emerald-500/20' : 'bg-red-500/10 text-red-800 border-red-500/20'}`}>
                                                 {book.selling_price > 0 ? 'Price OK' : 'No Price'}
                                             </span>
                                         </div>
@@ -402,7 +402,7 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                         key={index}
                                         href={link.url || '#'}
                                         disabled={!link.url}
-                                        className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${link.active ? 'bg-orange-500 text-ink shadow' :
+                                        className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${link.active ? 'bg-orange-700 text-paper shadow' :
                                             !link.url ? 'text-umber cursor-not-allowed' :
                                                 'text-umber hover:bg-paper hover:text-ink'
                                             }`}

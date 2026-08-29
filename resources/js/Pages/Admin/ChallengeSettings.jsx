@@ -83,7 +83,7 @@ function ChallengeCard({ setting }) {
                             onClick={() => pickMode(m)}
                             className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors border ${
                                 mode === m
-                                    ? 'bg-indigo-500 text-ink border-indigo-400'
+                                    ? 'bg-indigo-500 text-paper border-indigo-400'
                                     : 'bg-paper text-umber border-linen hover:text-ink'
                             }`}
                         >
@@ -112,7 +112,7 @@ function ChallengeCard({ setting }) {
                             type="file"
                             accept="video/mp4,video/webm,video/quicktime"
                             onChange={(e) => setData('video_file', e.target.files[0])}
-                            className="w-full text-sm text-umber file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-500 file:text-ink file:font-bold file:cursor-pointer"
+                            className="w-full text-sm text-umber file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-500 file:text-paper file:font-bold file:cursor-pointer"
                         />
                         {errors.video_file && <p className="text-red-700 text-xs mt-1">{errors.video_file}</p>}
                         <p className="text-umber text-xs mt-1.5">MP4, WebM or MOV — up to 100 MB.</p>

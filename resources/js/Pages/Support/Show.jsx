@@ -106,7 +106,7 @@ export default function SupportShow({ auth, ticket }) {
                             className={`rounded-2xl shadow p-5 ${reply.is_admin ? 'bg-violet-50 border border-violet-100' : 'bg-white'}`}
                         >
                             <div className="flex items-center gap-2 mb-3">
-                                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-ink' : 'bg-violet-100 text-violet-700'}`}>
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-paper' : 'bg-violet-100 text-violet-700'}`}>
                                     {reply.is_admin ? '🛡' : reply.author_name.charAt(0).toUpperCase()}
                                 </div>
                                 <div>

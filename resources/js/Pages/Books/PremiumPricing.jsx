@@ -132,7 +132,7 @@ export default function PremiumPricing({ book }) {
                                     <span className="hidden md:inline text-xs font-semibold uppercase tracking-wider">
                                         {label}
                                     </span>
-                                    {i < 4 && <div className="w-3 md:w-6 h-px mx-0.5 md:mx-1 bg-gray-700" />}
+                                    {i < 4 && <div className="w-3 md:w-6 h-px mx-0.5 md:mx-1 bg-linen-deep" />}
                                 </div>
                             ))}
                         </div>

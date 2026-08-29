@@ -4203,14 +4203,14 @@ function FormattingTool({ book, hasAiContent }) {
                                     <div className="flex gap-2">
                                         <button
                                             onClick={() => setPreviewSettings(prev => ({ ...prev, theme: 'light' }))}
-                                            className={`px-3 py-1 rounded ${previewSettings.theme === 'light' ? 'bg-indigo-600 text-ink' : 'bg-gray-200 text-gray-700'}`}
+                                            className={`px-3 py-1 rounded ${previewSettings.theme === 'light' ? 'bg-indigo-600 text-paper' : 'bg-gray-200 text-gray-700'}`}
                                         >
                                             Light
                                         </button>
 
                                         <button
                                             onClick={() => setPreviewSettings(prev => ({ ...prev, theme: 'dark' }))}
-                                            className={`px-3 py-1 rounded ${previewSettings.theme === 'dark' ? 'bg-indigo-600 text-ink' : 'bg-gray-200 text-gray-700'}`}
+                                            className={`px-3 py-1 rounded ${previewSettings.theme === 'dark' ? 'bg-indigo-600 text-paper' : 'bg-gray-200 text-gray-700'}`}
                                         >
                                             Dark
                                         </button>
@@ -4232,7 +4232,7 @@ function FormattingTool({ book, hasAiContent }) {
                                                         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                                                     }}
                                                     className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all hover:translate-x-1 ${previewSettings.theme === 'dark'
-                                                        ? 'text-ink-soft hover:bg-gray-700 hover:text-ink'
+                                                        ? 'text-ink-soft hover:bg-vellum hover:text-ink'
                                                         : 'text-slate-700 hover:bg-white hover:shadow-sm'
                                                         }`}
                                                 >

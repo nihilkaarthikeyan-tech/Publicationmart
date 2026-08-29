@@ -3,6 +3,12 @@ import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    // 'class' rather than the default 'media': the site has one deliberate
+    // light look, but Breeze components still carry dark: variants. Under
+    // 'media' every OS-dark visitor got those gray-800/900 fragments smeared
+    // over the paper theme. With 'class' (and nothing ever adding the class)
+    // they are inert.
+    darkMode: 'class',
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
@@ -49,8 +55,13 @@ export default {
                 },
                 umber: '#635c4e',       // muted text
                 taupe: {
-                    DEFAULT: '#7c7364', // faint text
-                    light: '#a49b8b',   // disabled / faintest
+                    // Darkened from #7c7364 after a WCAG sweep: the old value
+                    // gave 4.40:1 on paper, just under AA for small text, and
+                    // worse on parchment and vellum. #6c6353 clears 4.5:1 on
+                    // all three house surfaces. Because everything reads this
+                    // token, the one edit fixed every page at once.
+                    DEFAULT: '#6c6353', // faint text
+                    light: '#a49b8b',   // decorative only — never body text
                 },
                 oxblood: {
                     DEFAULT: '#6e2530', // primary accent — binding cloth

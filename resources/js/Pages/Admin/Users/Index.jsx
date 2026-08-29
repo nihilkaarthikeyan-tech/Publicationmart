@@ -5,7 +5,7 @@ export default function Index({ auth, users }) {
         <>
             <Head title="User Management" />
 
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 py-8">
+            <div className="min-h-screen bg-parchment py-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* Header */}
@@ -115,7 +115,7 @@ export default function Index({ auth, users }) {
                                         key={index}
                                         href={link.url || '#'}
                                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${link.active
-                                            ? 'bg-purple-600 text-ink'
+                                            ? 'bg-purple-600 text-paper'
                                             : link.url
                                                 ? 'bg-vellum text-ink-soft hover:bg-vellum'
                                                 : 'bg-paper text-umber cursor-not-allowed'

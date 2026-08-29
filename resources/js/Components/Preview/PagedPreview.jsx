@@ -106,28 +106,28 @@ const PagedPreview = ({
     };
 
     return (
-        <div className="fixed inset-0 z-[100] bg-slate-900 flex flex-col h-screen">
+        <div className="fixed inset-0 z-[100] bg-paper flex flex-col h-screen">
             {/* Header */}
-            <div className="h-14 bg-slate-800 border-b border-slate-700 flex items-center justify-between px-6 shrink-0 z-50">
+            <div className="h-14 bg-vellum border-b border-linen flex items-center justify-between px-6 shrink-0 z-50">
                 <div className="flex items-center gap-4">
                     <button
                         onClick={onClose}
-                        className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-medium transition-colors"
+                        className="px-4 py-2 bg-vellum hover:bg-linen text-ink rounded-lg text-sm font-medium transition-colors"
                     >
                         &larr; Back to Editor
                     </button>
-                    <span className="text-slate-400 text-sm">
+                    <span className="text-umber text-sm">
                         Print Preview ({bookSize} in)
                     </span>
                 </div>
                 <div>
                     {loading && <span className="text-indigo-400 font-bold animate-pulse">Generating Layout...</span>}
-                    {!loading && <button onClick={handlePrint} className="text-white hover:text-indigo-400">Print / Save PDF</button>}
+                    {!loading && <button onClick={handlePrint} className="text-ink hover:text-indigo-400">Print / Save PDF</button>}
                 </div>
             </div>
 
             {/* Preview Container */}
-            <div className="flex-1 overflow-auto bg-slate-900/50 p-8 flex justify-center">
+            <div className="flex-1 overflow-auto bg-vellum p-8 flex justify-center">
                 <iframe
                     ref={iframeRef}
                     className="bg-white shadow-2xl origin-top scale-90 sm:scale-100 transition-transform"

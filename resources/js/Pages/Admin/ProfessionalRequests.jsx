@@ -113,7 +113,7 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                                 key={filter.value}
                                 href={route('admin.professional.index', { status: filter.value })}
                                 className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${currentStatus === filter.value
-                                    ? 'bg-indigo-500 text-ink'
+                                    ? 'bg-indigo-500 text-paper'
                                     : 'bg-paper text-umber hover:bg-vellum hover:text-ink'
                                     }`}
                             >
@@ -208,7 +208,7 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                                     key={index}
                                     href={link.url || '#'}
                                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${link.active
-                                        ? 'bg-indigo-500 text-ink'
+                                        ? 'bg-indigo-500 text-paper'
                                         : link.url
                                             ? 'bg-paper text-umber hover:bg-vellum'
                                             : 'bg-paper text-umber cursor-not-allowed'

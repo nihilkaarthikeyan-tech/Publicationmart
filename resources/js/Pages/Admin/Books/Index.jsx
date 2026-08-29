@@ -102,7 +102,7 @@ export default function Index({ auth, books }) {
                                             <div className="hidden md:block font-bold text-ink text-base leading-tight mb-1 group-hover:text-indigo-700 transition-colors w-full truncate" title={book.title}>{book.title}</div>
                                             {book.user && (
                                                 <div className="flex items-center gap-2 text-sm text-umber">
-                                                    <div className="w-5 h-5 rounded-full bg-gray-700 flex items-center justify-center text-[10px] text-ink font-bold">
+                                                    <div className="w-5 h-5 rounded-full bg-vellum flex items-center justify-center text-[10px] text-ink font-bold">
                                                         {book.user.name.charAt(0)}
                                                     </div>
                                                     <span className="truncate">{book.user.name}</span>
@@ -191,7 +191,7 @@ export default function Index({ auth, books }) {
                                         key={index}
                                         href={link.url || '#'}
                                         disabled={!link.url}
-                                        className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${link.active ? 'bg-indigo-600 text-ink shadow-lg' :
+                                        className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${link.active ? 'bg-indigo-600 text-paper shadow-lg' :
                                                 !link.url ? 'text-umber cursor-not-allowed' :
                                                     'text-umber hover:bg-paper hover:text-ink'
                                             }`}

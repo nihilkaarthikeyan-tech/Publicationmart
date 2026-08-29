@@ -24,7 +24,7 @@ export default function CouponIndex({ auth, coupons }) {
                             <p className="text-umber">Manage promotional codes and discounts.</p>
                         </div>
                         <div className="flex items-center gap-3">
-                            <Link href={route('admin.dashboard')} className="px-4 py-2 bg-paper hover:bg-slate-700 text-ink-soft rounded-lg text-sm font-bold transition-colors">
+                            <Link href={route('admin.dashboard')} className="px-4 py-2 bg-paper hover:bg-vellum text-ink-soft rounded-lg text-sm font-bold transition-colors">
                                 Dashboard
                             </Link>
                             <button
@@ -70,7 +70,7 @@ export default function CouponIndex({ auth, coupons }) {
                                                         <td className="px-4 py-3">{coupon.min_order_value ? `₹${coupon.min_order_value}` : '-'}</td>
                                                         <td className="px-4 py-3">{coupon.usage_count} uses</td>
                                                         <td className="px-4 py-3">
-                                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${coupon.is_active ? 'bg-emerald-500/10 text-emerald-700' : 'bg-red-500/10 text-red-700'}`}>
+                                                            <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${coupon.is_active ? 'bg-emerald-500/10 text-emerald-800' : 'bg-red-500/10 text-red-800'}`}>
                                                                 {coupon.is_active ? 'Active' : 'Inactive'}
                                                             </span>
                                                         </td>

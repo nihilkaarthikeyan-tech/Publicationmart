@@ -35,7 +35,7 @@ export default function ManuscriptPreview({ book, formattingData, interiorFile, 
                             </a>
                             <Link
                                 href={route('admin.books.show', book.id)}
-                                className="block w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 text-ink-soft rounded-lg font-medium transition-colors"
+                                className="block w-full py-3 px-4 bg-vellum hover:bg-linen text-ink-soft rounded-lg font-medium transition-colors"
                             >
                                 Back to Book Details
                             </Link>

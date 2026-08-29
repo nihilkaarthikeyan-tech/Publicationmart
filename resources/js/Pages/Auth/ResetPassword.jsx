@@ -20,7 +20,7 @@ export default function ResetPassword({ token, email }) {
     };
 
     return (
-        <div className="min-h-screen bg-parchment flex items-center justify-center p-6 relative overflow-hidden font-sans selection:bg-indigo-500 selection:text-ink">
+        <div className="min-h-screen bg-parchment flex items-center justify-center p-6 relative overflow-hidden font-sans selection:bg-indigo-500 selection:text-paper">
             <Head title="Reset Password" />
 
             {/* Ambient Background Effects */}

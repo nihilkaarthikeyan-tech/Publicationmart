@@ -62,7 +62,7 @@ export default function ChallengeEnrollments({ enrollments, filters }) {
         <>
             <Head title="Challenge Enrollments | Admin" />
 
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+            <div className="min-h-screen bg-parchment">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
                     {/* Header */}
@@ -292,7 +292,7 @@ export default function ChallengeEnrollments({ enrollments, filters }) {
                                             key={i}
                                             href={link.url || '#'}
                                             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${link.active
-                                                    ? 'bg-indigo-600 text-ink'
+                                                    ? 'bg-indigo-600 text-paper'
                                                     : link.url
                                                         ? 'bg-paper text-umber hover:bg-vellum hover:text-ink'
                                                         : 'text-umber cursor-not-allowed'

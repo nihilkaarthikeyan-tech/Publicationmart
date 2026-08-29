@@ -120,14 +120,14 @@ export default function Cart({ auth, book, format }) {
                                             <div className="flex items-center gap-2">
                                                 <button
                                                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                                    className="w-8 h-8 rounded-lg bg-gray-700 hover:bg-gray-600 text-ink flex items-center justify-center transition"
+                                                    className="w-8 h-8 rounded-lg bg-vellum hover:bg-linen text-ink flex items-center justify-center transition"
                                                 >
                                                     -
                                                 </button>
                                                 <span className="w-12 text-center text-ink font-bold">{quantity}</span>
                                                 <button
                                                     onClick={() => setQuantity(quantity + 1)}
-                                                    className="w-8 h-8 rounded-lg bg-gray-700 hover:bg-gray-600 text-ink flex items-center justify-center transition"
+                                                    className="w-8 h-8 rounded-lg bg-vellum hover:bg-linen text-ink flex items-center justify-center transition"
                                                 >
                                                     +
                                                 </button>

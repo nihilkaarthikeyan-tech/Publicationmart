@@ -284,7 +284,7 @@ export default function PublishingInquiries({ inquiries, filters }) {
                                             key={i}
                                             href={link.url || '#'}
                                             className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${link.active
-                                                    ? 'bg-purple-600 text-ink'
+                                                    ? 'bg-purple-600 text-paper'
                                                     : link.url
                                                         ? 'bg-paper text-umber hover:bg-vellum hover:text-ink'
                                                         : 'bg-paper text-umber cursor-not-allowed'

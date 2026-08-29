@@ -89,7 +89,7 @@ export default function Show({ blog }) {
         <>
             <Head title={blog.title} />
 
-            <div className={`min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-ink pb-20 pt-32 ${isBookingOpen ? 'overflow-hidden blur-sm' : ''}`}>
+            <div className={`min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-paper pb-20 pt-32 ${isBookingOpen ? 'overflow-hidden blur-sm' : ''}`}>
 
                 {/* Article Header */}
                 <div className="pb-10 px-6 max-w-4xl mx-auto text-center relative z-10">
@@ -258,7 +258,7 @@ export default function Show({ blog }) {
                                 />
                                 <button
                                     onClick={handleCopy}
-                                    className="p-2 bg-paper hover:bg-gray-700 rounded-md text-ink-soft transition-colors"
+                                    className="p-2 bg-paper hover:bg-vellum rounded-md text-ink-soft transition-colors"
                                     title="Copy to clipboard"
                                 >
                                     <Copy className="w-4 h-4" />
@@ -323,7 +323,7 @@ export default function Show({ blog }) {
                                                 type="button"
                                                 onClick={handleSendOtp}
                                                 disabled={sendingOtp || !captchaInput || !data.email}
-                                                className="whitespace-nowrap px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-700 rounded-lg font-bold text-sm transition-colors"
+                                                className="whitespace-nowrap px-4 py-2 bg-blue-600 hover:bg-blue-500 disabled:bg-taupe-light rounded-lg font-bold text-sm transition-colors"
                                             >
                                                 {sendingOtp ? 'Sending...' : 'Send OTP'}
                                             </button>

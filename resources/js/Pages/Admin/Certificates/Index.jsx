@@ -127,7 +127,7 @@ export default function CertificatesIndex({ auth, certificates }) {
                             ) : (
                                 <div className="overflow-x-auto">
                                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                                        <thead className="bg-gray-50 dark:bg-gray-700">
+                                        <thead className="bg-vellum">
                                             <tr>
                                                 <th className="px-6 py-3 text-left text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Recipient</th>
                                                 <th className="px-6 py-3 text-left text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Title</th>

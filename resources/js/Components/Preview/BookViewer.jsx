@@ -279,18 +279,18 @@ const BookViewer = ({
             style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}
         >
             {/* ═══ TOP BAR ═══ */}
-            <div className="h-14 bg-slate-900 border-b border-slate-800 flex items-center justify-between px-4 sm:px-6 shrink-0 z-50 shadow-md">
+            <div className="h-14 bg-paper border-b border-linen flex items-center justify-between px-4 sm:px-6 shrink-0 z-50 shadow-md">
                 <div className="flex items-center gap-4">
                     <button
                         onClick={onClose}
-                        className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
+                        className="flex items-center gap-2 text-umber hover:text-ink transition-colors group"
                     >
-                        <div className="p-1.5 rounded-lg group-hover:bg-slate-800 transition-colors">
+                        <div className="p-1.5 rounded-lg group-hover:bg-vellum transition-colors">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         </div>
                         <span className="hidden sm:inline font-medium text-sm">Back to Editor</span>
                     </button>
-                    <div className="h-4 w-px bg-slate-800"></div>
+                    <div className="h-4 w-px bg-vellum"></div>
                     <div className="flex items-center gap-2">
                         <span className="text-amber-500">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
@@ -304,14 +304,14 @@ const BookViewer = ({
                 <div className="flex items-center gap-3">
                     {/* Admin Actions */}
                     {isAdminPreview && bookId && (
-                        <div className="flex items-center gap-2 mr-2 border-r border-slate-800 pr-4">
+                        <div className="flex items-center gap-2 mr-2 border-r border-linen pr-4">
                             <span className="text-[10px] text-amber-500 font-bold uppercase tracking-widest mr-1">
                                 Admin
                             </span>
 
                             <a
                                 href={`/admin/books/${bookId}/download-manuscript?format=docx`}
-                                className="flex items-center gap-1.5 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white px-3 py-1.5 rounded text-xs font-bold transition-colors border border-blue-600/30 hover:border-blue-600"
+                                className="flex items-center gap-1.5 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-paper px-3 py-1.5 rounded text-xs font-bold transition-colors border border-blue-600/30 hover:border-blue-600"
                                 title="Download Word (.docx)"
                             >
                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -320,7 +320,7 @@ const BookViewer = ({
 
                             <a
                                 href={`/admin/books/${bookId}/download-manuscript?format=pdf`}
-                                className="flex items-center gap-1.5 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-white px-3 py-1.5 rounded text-xs font-bold transition-colors border border-red-600/30 hover:border-red-600"
+                                className="flex items-center gap-1.5 bg-red-600/20 hover:bg-red-600 text-red-400 hover:text-paper px-3 py-1.5 rounded text-xs font-bold transition-colors border border-red-600/30 hover:border-red-600"
                                 title="Download via DomPDF (Approximate)"
                             >
                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
@@ -329,31 +329,31 @@ const BookViewer = ({
                         </div>
                     )}
 
-                    <div className="flex bg-slate-800 rounded-lg p-1">
+                    <div className="flex bg-vellum rounded-lg p-1">
                         <button
                             onClick={() => setZoom(z => Math.max(z - 0.1, 0.5))}
-                            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
+                            className="p-1.5 text-umber hover:text-ink hover:bg-linen rounded-md transition-colors"
                             title="Pro Tip: Use - to zoom out"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 12H4"></path></svg>
                         </button>
-                        <span className="text-xs font-mono text-slate-400 w-12 flex items-center justify-center border-x border-slate-700/50">
+                        <span className="text-xs font-mono text-umber w-12 flex items-center justify-center border-x border-linen/50">
                             {Math.round(zoom * 100)}%
                         </span>
                         <button
                             onClick={() => setZoom(z => Math.min(z + 0.1, 2.0))}
-                            className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
+                            className="p-1.5 text-umber hover:text-ink hover:bg-linen rounded-md transition-colors"
                             title="Pro Tip: Use + to zoom in"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path></svg>
                         </button>
                     </div>
 
-                    <div className="h-4 w-px bg-slate-800 mx-1"></div>
+                    <div className="h-4 w-px bg-vellum mx-1"></div>
 
                     <button
                         onClick={handlePrint}
-                        className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition-all shadow-lg hover:shadow-emerald-500/25"
+                        className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-paper px-4 py-1.5 rounded-lg text-xs font-bold transition-all shadow-lg hover:shadow-emerald-500/25"
                         title={isAdminPreview ? "Save exactly what you see here as a PDF" : "Print or Save as PDF"}
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
@@ -362,7 +362,7 @@ const BookViewer = ({
 
                     <button
                         onClick={toggleFullscreen}
-                        className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors ml-2"
+                        className="p-2 text-umber hover:text-ink hover:bg-vellum rounded-lg transition-colors ml-2"
                         title="Toggle Fullscreen"
                     >
                         {isFullscreen ? (
@@ -375,18 +375,18 @@ const BookViewer = ({
             </div>
 
             {/* ═══ MAIN CONTENT AREA ═══ */}
-            <div className={`flex-1 relative overflow-hidden flex flex-col items-center justify-center p-4 sm:p-8 transition-colors duration-300 ${isFullscreen ? 'bg-black' : 'bg-slate-950'}`}>
+            <div className={`flex-1 relative overflow-hidden flex flex-col items-center justify-center p-4 sm:p-8 transition-colors duration-300 ${isFullscreen ? 'bg-night' : 'bg-vellum'}`}>
 
                 {/* Loading State */}
                 {loading && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center z-50 bg-slate-950/80 backdrop-blur-sm">
                         <div className="relative">
-                            <div className="w-16 h-16 border-4 border-slate-700 border-t-indigo-500 rounded-full animate-spin"></div>
+                            <div className="w-16 h-16 border-4 border-linen border-t-indigo-500 rounded-full animate-spin"></div>
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <span className="text-xl">📖</span>
                             </div>
                         </div>
-                        <p className="mt-4 text-slate-300 font-medium animate-pulse">Formatting Pages...</p>
+                        <p className="mt-4 text-ink-soft font-medium animate-pulse">Formatting Pages...</p>
                         <p className="text-slate-500 text-xs mt-1">This happens in your browser</p>
                     </div>
                 )}
@@ -420,7 +420,7 @@ const BookViewer = ({
                                 className="absolute top-0 bottom-0 -left-20 w-32 flex items-center justify-end pr-4 cursor-pointer group opacity-0 hover:opacity-100 transition-opacity"
                                 onClick={prevPage}
                             >
-                                <div className="p-3 bg-slate-800/90 text-white rounded-full shadow-xl transform translate-x-4 group-hover:translate-x-0 transition-transform">
+                                <div className="p-3 bg-paper/90 text-ink rounded-full shadow-xl transform translate-x-4 group-hover:translate-x-0 transition-transform">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
                                 </div>
                             </div>
@@ -430,7 +430,7 @@ const BookViewer = ({
                                 className="absolute top-0 bottom-0 -right-20 w-32 flex items-center justify-start pl-4 cursor-pointer group opacity-0 hover:opacity-100 transition-opacity"
                                 onClick={nextPage}
                             >
-                                <div className="p-3 bg-slate-800/90 text-white rounded-full shadow-xl transform -translate-x-4 group-hover:translate-x-0 transition-transform">
+                                <div className="p-3 bg-paper/90 text-ink rounded-full shadow-xl transform -translate-x-4 group-hover:translate-x-0 transition-transform">
                                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                                 </div>
                             </div>
@@ -441,8 +441,8 @@ const BookViewer = ({
                 {/* Bottom Controls (Timeline) */}
                 {!loading && (
                     <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 w-full max-w-xl px-4 z-50">
-                        <div className="bg-slate-900/90 backdrop-blur-md rounded-full px-6 py-2 border border-slate-800 flex items-center gap-4 shadow-xl">
-                            <span className="text-xs text-slate-400 font-mono w-16 text-right">
+                        <div className="bg-paper/90 backdrop-blur-md rounded-full px-6 py-2 border border-linen flex items-center gap-4 shadow-xl">
+                            <span className="text-xs text-umber font-mono w-16 text-right">
                                 {Math.min(currentSpread * 2 + 1, totalPages) + (currentSpread * 2 + 2 <= totalPages ? `-${currentSpread * 2 + 2}` : '')}/{totalPages}
                             </span>
                             <div className="relative flex-1 mx-4 h-6 flex items-center">
@@ -452,10 +452,10 @@ const BookViewer = ({
                                     max={Math.max(0, totalSpreads - 1)}
                                     value={currentSpread}
                                     onChange={(e) => goToSpread(parseInt(e.target.value))}
-                                    className="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400 transition-all"
+                                    className="w-full h-1.5 bg-linen rounded-lg appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400 transition-all"
                                 />
                             </div>
-                            <span className="text-xs text-slate-400 font-mono w-16">
+                            <span className="text-xs text-umber font-mono w-16">
                                 {Math.round(((currentSpread + 1) / totalSpreads) * 100)}%
                             </span>
                         </div>
@@ -465,7 +465,7 @@ const BookViewer = ({
 
             {/* TOC Drawer (Optional) */}
             {showTOC && (
-                <div className="absolute top-14 bottom-0 left-0 w-64 bg-slate-900 border-r border-slate-800 z-40 overflow-y-auto animate-in slide-in-from-left duration-200">
+                <div className="absolute top-14 bottom-0 left-0 w-64 bg-paper border-r border-linen z-40 overflow-y-auto animate-in slide-in-from-left duration-200">
                     <div className="p-4">
                         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Table of Contents</h3>
                         <div className="space-y-1">
@@ -473,13 +473,13 @@ const BookViewer = ({
                                 <button
                                     key={idx}
                                     onClick={() => jumpToChapter(ch.pageIndex)}
-                                    className="block w-full text-left px-3 py-2 rounded hover:bg-slate-800 text-sm text-slate-300 hover:text-white transition-colors truncate"
+                                    className="block w-full text-left px-3 py-2 rounded hover:bg-vellum text-sm text-ink-soft hover:text-ink transition-colors truncate"
                                 >
                                     {ch.title}
                                 </button>
                             ))}
                             {chapters.length === 0 && (
-                                <p className="text-slate-600 text-sm italic">No chapters found.</p>
+                                <p className="text-taupe text-sm italic">No chapters found.</p>
                             )}
                         </div>
                     </div>

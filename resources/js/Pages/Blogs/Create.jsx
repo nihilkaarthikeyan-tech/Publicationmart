@@ -73,7 +73,7 @@ export default function Create({ auth }) {
             <Head title="Create Studio Post" />
 
 
-            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-ink pb-20 pt-32">
+            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-paper pb-20 pt-32">
                 <div className="pb-16 px-6 max-w-3xl mx-auto">
                     <h1 className="text-4xl font-bold mb-8 text-center text-oxblood">
                         Create Studio Article
@@ -115,7 +115,7 @@ export default function Create({ auth }) {
                             <input
                                 type="file"
                                 onChange={e => setData('image', e.target.files[0])}
-                                className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-purple-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-ink hover:file:bg-purple-700"
+                                className="w-full bg-paper border border-linen rounded-xl px-4 py-3.5 text-ink focus:outline-none focus:border-purple-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-600 file:text-paper hover:file:bg-purple-700"
                                 accept="image/*"
                             />
                             {errors.image && <div className="text-red-500 text-xs ml-1">{errors.image}</div>}
@@ -174,7 +174,7 @@ export default function Create({ auth }) {
                                                         authors.splice(index, 1);
                                                         setData('author_name', authors.join(', '));
                                                     }}
-                                                    className="px-4 py-2 bg-red-500/10 text-red-700 hover:bg-red-500/20 border border-red-500/20 rounded-xl transition-colors"
+                                                    className="px-4 py-2 bg-red-500/10 text-red-800 hover:bg-red-500/20 border border-red-500/20 rounded-xl transition-colors"
                                                 >
                                                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                                                 </button>

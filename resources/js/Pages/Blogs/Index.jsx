@@ -33,7 +33,7 @@ export default function Index({ blogs }) {
 
 
 
-            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-ink pb-20 pt-24">
+            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-paper pb-20 pt-24">
 
                 {/* Hero Section - Redesigned */}
                 <div className="px-6 text-center max-w-5xl mx-auto relative">

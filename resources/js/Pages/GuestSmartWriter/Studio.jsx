@@ -434,7 +434,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                     {s === 4 && 'Write'}
                                     {s === 5 && 'Export'}
                                 </span>
-                                {s < 5 && <div className={`w-3 md:w-6 h-px mx-0.5 md:mx-1 ${step > s ? 'bg-indigo-500/50' : 'bg-gray-700'}`} />}
+                                {s < 5 && <div className={`w-3 md:w-6 h-px mx-0.5 md:mx-1 ${step > s ? 'bg-indigo-500/50' : 'bg-linen-deep'}`} />}
                             </button>
                         ))}
                     </div>

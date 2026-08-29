@@ -207,7 +207,7 @@ export default function Footer() {
                         <Link href={route('welcome')} className="text-2xl font-black tracking-tight text-white block">
                             PublicationMart
                         </Link>
-                        <p className="text-parchment/60 text-sm max-w-md">
+                        <p className="text-parchment/75 text-sm max-w-md">
                             Empowering authors worldwide with professional tools to design, format, and distribute their stories to a global audience.
                         </p>
                     </div>
@@ -216,7 +216,7 @@ export default function Footer() {
                         <p className="text-sm font-medium text-parchment/75">
                             Built for authors. Powered by Smart Tech.
                         </p>
-                        <p className="text-xs text-parchment/45">
+                        <p className="text-xs text-parchment/65">
                             © {new Date().getFullYear()} PublicationMart. All rights reserved.
                         </p>
                     </div>

@@ -35,7 +35,7 @@ export default function OrderDetailsModal({ order, onClose }) {
             onClick={onClose}
         >
             <div
-                className="bg-gradient-to-br from-gray-900 to-emerald-950/40 rounded-2xl w-full max-w-lg shadow-2xl border border-emerald-500/20 max-h-[90vh] overflow-y-auto"
+                className="bg-paper rounded-2xl w-full max-w-lg shadow-2xl border border-linen max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex justify-between items-center px-5 py-4 border-b border-linen sticky top-0 bg-gray-50 backdrop-blur-sm">

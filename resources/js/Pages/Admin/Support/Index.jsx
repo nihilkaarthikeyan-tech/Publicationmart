@@ -29,7 +29,7 @@ export default function AdminSupportIndex({ auth, tickets, stats, categories, fi
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 py-8">
+        <div className="min-h-screen bg-parchment py-8">
             <Head title="Support Tickets – Admin" />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -159,7 +159,7 @@ export default function AdminSupportIndex({ auth, tickets, stats, categories, fi
                                 key={i}
                                 onClick={() => link.url && router.get(link.url)}
                                 disabled={!link.url}
-                                className={`px-3 py-1.5 rounded-lg text-sm ${link.active ? 'bg-violet-600 text-ink' : 'bg-vellum text-ink-soft hover:bg-vellum'} disabled:opacity-40 transition`}
+                                className={`px-3 py-1.5 rounded-lg text-sm ${link.active ? 'bg-violet-600 text-paper' : 'bg-vellum text-ink-soft hover:bg-vellum'} disabled:opacity-40 transition`}
                                 dangerouslySetInnerHTML={{ __html: link.label }}
                             />
                         ))}

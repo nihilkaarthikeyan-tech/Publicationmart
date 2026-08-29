@@ -54,7 +54,7 @@ export default function RoyaltyCalculator({ auth }) {
     }, [listPrice, pageCount, format]);
 
     return (
-        <div className="min-h-screen bg-parchment text-ink selection:bg-indigo-500 selection:text-ink">
+        <div className="min-h-screen bg-parchment text-ink selection:bg-indigo-500 selection:text-paper">
             <Head title="Royalty Calculator – Estimate Your Book Earnings | PublicationMart">
                 <meta name="description" content="Calculate how much you can earn per book sale. Estimate royalties for paperback, hardcover, and eBook formats with our free royalty calculator." />
                 <meta property="og:title" content="Royalty Calculator | PublicationMart" />
@@ -110,7 +110,7 @@ export default function RoyaltyCalculator({ auth }) {
                             step="10"
                             value={listPrice}
                             onChange={(e) => setListPrice(Number(e.target.value))}
-                            className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400 transition-all"
+                            className="w-full h-2 bg-linen rounded-lg appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400 transition-all"
                         />
                         <div className="flex justify-between text-xs text-umber px-1">
                             <span>₹100</span>
@@ -131,7 +131,7 @@ export default function RoyaltyCalculator({ auth }) {
                             step="1"
                             value={pageCount}
                             onChange={(e) => setPageCount(Number(e.target.value))}
-                            className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400 transition-all"
+                            className="w-full h-2 bg-linen rounded-lg appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400 transition-all"
                         />
                         <div className="flex justify-between text-xs text-umber px-1">
                             <span>24</span>

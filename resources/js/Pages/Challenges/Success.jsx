@@ -16,7 +16,7 @@ export default function Success({ enrollment }) {
         <>
             <Head title="Enrollment Successful - Poetry Challenge" />
 
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900 flex items-center justify-center p-4">
+            <div className="min-h-screen bg-parchment flex items-center justify-center p-4">
                 <div className="w-full max-w-lg">
 
                     {/* Success Card */}

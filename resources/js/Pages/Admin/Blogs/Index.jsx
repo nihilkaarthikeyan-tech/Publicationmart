@@ -89,7 +89,7 @@ export default function Index({ auth, blogs }) {
                                             <p className="text-umber text-sm line-clamp-2">{blog.excerpt}</p>
                                             <div className="mt-2 text-xs">
                                                 <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${blog.status === 'pending' ? 'bg-yellow-500/10 text-yellow-800 border border-yellow-500/20' :
-                                                        blog.status === 'rejected' ? 'bg-red-500/10 text-red-700 border border-red-500/20' :
+                                                        blog.status === 'rejected' ? 'bg-red-500/10 text-red-800 border border-red-500/20' :
                                                             blog.status === 'approved' ? 'bg-green-500/10 text-green-700 border border-green-500/20' :
                                                                 'bg-gray-500/10 text-umber'
                                                     }`}>

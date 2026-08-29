@@ -53,7 +53,7 @@ export default function Index({ presales }) {
                                         <div className="col-span-1 text-center">
                                             <span className={`px-2 py-1 text-[10px] uppercase font-bold rounded border ${presale.status === 'approved' ? 'bg-green-500/10 text-green-700 border-green-500/20' :
                                                 presale.status === 'pending' ? 'bg-yellow-500/10 text-yellow-800 border-yellow-500/20' :
-                                                    'bg-red-500/10 text-red-700 border-red-500/20'
+                                                    'bg-red-500/10 text-red-800 border-red-500/20'
                                                 }`}>
                                                 {presale.status}
                                             </span>

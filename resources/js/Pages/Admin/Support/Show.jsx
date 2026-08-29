@@ -40,7 +40,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 py-8">
+        <div className="min-h-screen bg-parchment py-8">
             <Head title={`Ticket ${ticket.ticket_number} – Admin`} />
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,7 +103,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
                         {ticket.replies.map(reply => (
                             <div key={reply.id} className={`rounded-2xl p-5 ${reply.is_admin ? 'bg-violet-100 border border-linen' : 'bg-vellum backdrop-blur'}`}>
                                 <div className="flex items-center gap-2 mb-3">
-                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-ink' : 'bg-gray-600 text-ink'}`}>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-paper' : 'bg-gray-600 text-ink'}`}>
                                         {reply.is_admin ? '🛡' : reply.author_name.charAt(0).toUpperCase()}
                                     </div>
                                     <div>

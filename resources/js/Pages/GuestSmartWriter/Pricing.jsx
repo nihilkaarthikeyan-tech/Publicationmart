@@ -98,7 +98,7 @@ export default function SmartWritingTool({ auth }) {
         <Layout>
             <Head title="Smart Writer - PublicationMart" />
 
-            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-indigo-500 selection:text-ink overflow-x-hidden">
+            <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-indigo-500 selection:text-paper overflow-x-hidden">
 
                 {/* ═══ HERO SECTION ═══ */}
                 <section className="relative pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">

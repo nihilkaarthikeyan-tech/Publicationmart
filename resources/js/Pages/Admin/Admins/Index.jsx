@@ -5,7 +5,7 @@ export default function Index({ auth, admins, stats }) {
         <>
             <Head title="Admin Management" />
 
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 py-8">
+            <div className="min-h-screen bg-parchment py-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                     {/* Header */}
@@ -71,7 +71,7 @@ export default function Index({ auth, admins, stats }) {
                                 </thead>
                                 <tbody className="divide-y divide-linen">
                                     {admins.data?.map((admin) => (
-                                        <tr key={admin.id} className="hover:bg-white/[0.02] transition-colors group">
+                                        <tr key={admin.id} className="hover:bg-vellum transition-colors group">
                                             <td className="px-8 py-6">
                                                 <div className="flex items-center gap-4">
                                                     <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center text-indigo-700 font-black border border-linen group-hover:scale-110 transition-transform shadow-lg">
@@ -92,7 +92,7 @@ export default function Index({ auth, admins, stats }) {
                                                 </span>
                                             </td>
                                             <td className="px-8 py-6 text-center">
-                                                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-700 font-bold border border-emerald-500/20">
+                                                <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-800 font-bold border border-emerald-500/20">
                                                     {admin.published_books_count}
                                                 </span>
                                             </td>
@@ -128,7 +128,7 @@ export default function Index({ auth, admins, stats }) {
                                         key={index}
                                         href={link.url || '#'}
                                         className={`px-5 py-3 rounded-xl text-xs font-black tracking-widest uppercase transition-all border ${link.active
-                                            ? 'bg-indigo-600 border-indigo-500 text-ink shadow-lg shadow-indigo-500/25'
+                                            ? 'bg-indigo-600 border-indigo-500 text-paper shadow-lg shadow-indigo-500/25'
                                             : link.url
                                                 ? 'bg-paper border-linen text-umber hover:border-linen hover:text-ink'
                                                 : 'bg-paper border-linen text-umber cursor-not-allowed'

@@ -147,7 +147,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
 
 
     return (
-        <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-ink pb-20">
+        <div className="min-h-screen bg-parchment text-ink font-sans selection:bg-purple-500 selection:text-paper pb-20">
             {/* <PremiumBackground /> */}
             <Head title="Writing Challenges" />
 
@@ -189,7 +189,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                         >
                             <div className={`
                                 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-6 transition-all duration-300
-                                ${selectedChallenge === challenge.title ? 'bg-indigo-600 text-ink shadow-lg shadow-indigo-500/40' : 'bg-vellum text-umber group-hover:bg-vellum'}
+                                ${selectedChallenge === challenge.title ? 'bg-indigo-600 text-paper shadow-lg shadow-indigo-500/40' : 'bg-vellum text-umber group-hover:bg-vellum'}
                             `}>
                                 {challenge.icon}
                             </div>

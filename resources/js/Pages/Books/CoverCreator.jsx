@@ -2480,7 +2480,7 @@ export default function CoverCreator({ book }) {
                                 {/* Spine Info */}
                                 <div className="bg-gray-100 rounded-xl p-6 border border-gray-200">
                                     <h3 className="font-bold text-gray-900 flex items-center gap-2 mb-4">
-                                        <span className="w-8 h-8 bg-gray-700 text-ink rounded-lg flex items-center justify-center text-sm">📖</span>
+                                        <span className="w-8 h-8 bg-vellum text-ink rounded-lg flex items-center justify-center text-sm">📖</span>
                                         Spine Guidelines
                                     </h3>
                                     <p className="text-sm text-umber">
