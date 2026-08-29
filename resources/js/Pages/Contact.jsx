@@ -1,5 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Head, useForm } from '@inertiajs/react';
+
+/* The letter goes into its envelope, the flap folds, the wax seal presses on. */
+const POST_CSS = `
+.pm-env{position:relative;width:100%;max-width:330px;margin:0 auto;aspect-ratio:5/3;background:#faf6ec;border:1px solid #d8d1c1;border-radius:3px;overflow:hidden;box-shadow:0 14px 30px rgba(23,21,15,.13)}
+.pm-env-letter{position:absolute;left:7%;right:7%;top:8%;bottom:30%;background:#fdfbf5;border:1px solid #e7e1d4;padding:5% 6%;font-family:'EB Garamond',Georgia,serif;font-size:12.5px;line-height:1.6;color:#4b443a;transform:translateY(0);transition:transform .75s cubic-bezier(.2,.8,.3,1)}
+.pm-env.sealed .pm-env-letter{transform:translateY(24%)}
+.pm-env-flap{position:absolute;left:0;right:0;top:0;height:58%;background:linear-gradient(180deg,#efe9db,#e4ddcb);z-index:2;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transform:rotateX(180deg);transition:transform .6s .4s cubic-bezier(.2,.8,.3,1);filter:drop-shadow(0 3px 4px rgba(23,21,15,.16))}
+.pm-env.sealed .pm-env-flap{transform:rotateX(0)}
+.pm-wax{position:absolute;left:50%;top:52%;z-index:3;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8c3541,#5a1e27 70%);color:#e8cf8e;display:grid;place-items:center;font-family:'EB Garamond',Georgia,serif;font-size:22px;box-shadow:0 4px 10px rgba(23,21,15,.32);transform:scale(0);transition:transform .4s 1.05s cubic-bezier(.34,1.56,.64,1)}
+.pm-env.sealed .pm-wax{transform:scale(1)}
+@media (prefers-reduced-motion:reduce){.pm-env-letter,.pm-env-flap,.pm-wax{transition:none}}
+`;
 
 export default function Contact() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -8,6 +20,8 @@ export default function Contact() {
         subject: 'General Inquiry',
         message: ''
     });
+    // Plate III — the letter is posted rather than "submitted".
+    const [posted, setPosted] = useState(false);
 
     return (
         <div className="min-h-screen overflow-x-hidden bg-parchment text-ink font-sans selection:bg-oxblood selection:text-paper pt-24 pb-20">
@@ -22,6 +36,8 @@ export default function Contact() {
                 <meta name="twitter:title" content="Contact PublicationMart" />
                 <meta name="twitter:description" content="Get publishing help today. Email, phone, or send us a message." />
             </Head>
+
+            <style dangerouslySetInnerHTML={{ __html: POST_CSS }} />
 
             <div className="max-w-7xl mx-auto px-6">
 
@@ -110,14 +126,44 @@ export default function Contact() {
                     {/* Right Column: Contact Form */}
                     <div className="lg:col-span-7">
                         <div className="bg-paper border border-linen rounded-3xl p-8 md:p-10 h-full">
-                            <h2 className="text-2xl font-bold mb-8">Send us a message</h2>
+                            <h2 className="text-2xl font-bold mb-8">
+                                {posted ? 'Your letter is posted' : 'Send us a message'}
+                            </h2>
 
+                            {posted ? (
+                                /* Plate III — the letter is sealed and on its way. */
+                                <div className="py-4">
+                                    <div className="pm-env sealed" aria-hidden="true">
+                                        <div className="pm-env-letter">
+                                            Dear PublicationMart,<br />
+                                            {(data.message || 'I have a manuscript…').slice(0, 60)}
+                                        </div>
+                                        <div className="pm-env-flap" />
+                                        <div className="pm-wax">P</div>
+                                    </div>
+                                    <p className="text-center text-[17px] text-ink mt-8" style={{ fontFamily: "'EB Garamond', Georgia, serif" }}>
+                                        Your letter is with the desk.
+                                    </p>
+                                    <p className="text-center text-sm text-umber mt-2">
+                                        We reply within one working day — check your inbox at{' '}
+                                        <span className="text-ink font-medium">{data.email || 'your email address'}</span>.
+                                    </p>
+                                    <div className="text-center mt-8">
+                                        <button
+                                            type="button"
+                                            onClick={() => { setPosted(false); reset(); }}
+                                            className="px-6 py-3 text-sm font-bold border border-linen text-ink-soft hover:border-oxblood hover:text-oxblood rounded-xl transition-colors"
+                                        >
+                                            Write another letter
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : (
                             <form onSubmit={(e) => {
                                 e.preventDefault();
                                 post(route('contact.store'), {
                                     onSuccess: () => {
-                                        reset();
-                                        alert('Message sent successfully!');
+                                        setPosted(true);
                                         // Meta Pixel: Track contact form submission
                                         if (typeof window.fbq === 'function') {
                                             fbq('track', 'Lead');
@@ -183,11 +229,12 @@ export default function Contact() {
 
                                 <button
                                     disabled={processing}
-                                    className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg shadow-indigo-900/20 transform hover:scale-[1.01] transition-all duration-200"
+                                    className="w-full py-4 bg-oxblood hover:bg-oxblood-deep text-paper font-bold rounded-xl shadow-lg shadow-oxblood/20 transform hover:scale-[1.01] transition-all duration-200"
                                 >
-                                    {processing ? 'Sending...' : 'Send Message'}
+                                    {processing ? 'Sealing the envelope…' : 'Post the letter'}
                                 </button>
                             </form>
+                            )}
                         </div>
                     </div>
 
