@@ -1,6 +1,116 @@
 import { Head, Link, usePage } from '@inertiajs/react';
+import { useState } from 'react';
 import { route } from 'ziggy-js';
 import { PhysicalCover, STORE_CSS } from './Components/BookCard';
+
+/* The sample reader: the book's front matter, on leaves that turn. */
+const SAMPLE_CSS = `
+.pm-sample{perspective:1400px}
+.pm-sample-book{position:relative;aspect-ratio:3/4;transform-style:preserve-3d}
+.pm-leafpage{position:absolute;inset:0;background:#fdfbf5;border:1px solid #d8d1c1;border-radius:2px 5px 5px 2px;padding:11% 10%;display:flex;flex-direction:column;text-align:center;transform-origin:left center;transition:transform .75s cubic-bezier(.3,.7,.3,1);backface-visibility:hidden;box-shadow:0 10px 26px rgba(23,21,15,.13)}
+.pm-leafpage::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:linear-gradient(90deg,rgba(23,21,15,.10),transparent);pointer-events:none}
+.pm-leafpage.turned{transform:rotateY(-178deg)}
+.pm-leaf-folio{margin-top:auto;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#a49b8b;font-weight:700}
+@media (prefers-reduced-motion:reduce){.pm-leafpage{transition:none}}
+`;
+
+/**
+ * "Look inside" — the book's own front matter set as leaves that turn:
+ * the title page, the copyright page, and the opening of the description.
+ * Everything is drawn from data the store already holds. Turning works by
+ * tap or button, so it needs no hover and works the same on a phone.
+ */
+function SampleReader({ book }) {
+    const [leaf, setLeaf] = useState(0);
+
+    const opening = (book.about_book || '').trim();
+    const pages = [
+        {
+            folio: 'Title page',
+            body: (
+                <>
+                    <span className="mt-auto text-[21px] leading-snug text-ink" style={SERIF}>{book.title}</span>
+                    {book.subtitle && <span className="mt-2 text-[13px] text-umber italic" style={SERIF}>{book.subtitle}</span>}
+                    <span className="mt-5 text-[11px] uppercase tracking-[.2em] text-taupe font-bold">by</span>
+                    <span className="mt-2 text-[15px] text-ink-soft" style={SERIF}>{book.author_name}</span>
+                    <span className="mt-auto text-foil text-[15px]">❦</span>
+                    <span className="mt-2 text-[9px] uppercase tracking-[.2em] text-foil-deep font-bold">PublicationMart Press</span>
+                </>
+            ),
+        },
+        {
+            folio: 'Copyright',
+            body: (
+                <div className="my-auto space-y-2.5 text-[11.5px] leading-relaxed text-umber" style={SERIF}>
+                    <p className="text-ink-soft">© {book.author_name}</p>
+                    {book.isbn && <p>ISBN {book.isbn}</p>}
+                    {book.genre && <p className="capitalize">{book.genre}</p>}
+                    {book.num_pages > 0 && <p>{book.num_pages} pages</p>}
+                    <p className="pt-2 italic">All rights reserved. Published in India.</p>
+                </div>
+            ),
+        },
+        ...(opening ? [{
+            folio: 'The opening',
+            body: (
+                <p className="my-auto text-[12.5px] leading-[1.75] text-ink-soft text-left" style={SERIF}>
+                    {opening.slice(0, 300)}{opening.length > 300 ? '…' : ''}
+                </p>
+            ),
+        }] : []),
+    ];
+
+    const last = pages.length - 1;
+
+    return (
+        <div className="mt-10">
+            <div className="flex items-baseline gap-4 mb-5">
+                <h3 className="pm-store-run">Look inside</h3>
+                <span className="flex-1 h-px bg-linen" />
+            </div>
+
+            <div className="pm-sample max-w-[340px] mx-auto lg:mx-0">
+                <div className="pm-sample-book">
+                    {pages.map((p, i) => (
+                        <button
+                            key={p.folio}
+                            type="button"
+                            onClick={() => setLeaf(i < last ? i + 1 : 0)}
+                            aria-label={i < last ? `Turn to ${pages[i + 1].folio}` : 'Back to the title page'}
+                            className={`pm-leafpage ${i < leaf ? 'turned' : ''}`}
+                            style={{ zIndex: pages.length - i }}
+                        >
+                            {p.body}
+                            <span className="pm-leaf-folio">{p.folio}</span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="flex items-center justify-center lg:justify-start gap-4 mt-5 max-w-[340px] mx-auto lg:mx-0">
+                <button
+                    type="button"
+                    onClick={() => setLeaf((n) => Math.max(n - 1, 0))}
+                    disabled={leaf === 0}
+                    className="px-4 py-2 text-[12px] font-bold border border-linen text-ink-soft hover:border-oxblood hover:text-oxblood disabled:opacity-35 disabled:hover:border-linen disabled:hover:text-ink-soft transition-colors"
+                >
+                    ← Back
+                </button>
+                <span className="text-[11px] uppercase tracking-[.18em] text-taupe font-bold tabular-nums">
+                    {leaf + 1} / {pages.length}
+                </span>
+                <button
+                    type="button"
+                    onClick={() => setLeaf((n) => Math.min(n + 1, last))}
+                    disabled={leaf === last}
+                    className="px-4 py-2 text-[12px] font-bold border border-linen text-ink-soft hover:border-oxblood hover:text-oxblood disabled:opacity-35 disabled:hover:border-linen disabled:hover:text-ink-soft transition-colors"
+                >
+                    Turn the page →
+                </button>
+            </div>
+        </div>
+    );
+}
 
 const currencyFormatter = new Intl.NumberFormat('en-IN', {
     style: 'currency',
@@ -100,7 +210,7 @@ export default function Show({ auth, book }) {
                 </script>
             </Head>
 
-            <style dangerouslySetInnerHTML={{ __html: STORE_CSS }} />
+            <style dangerouslySetInnerHTML={{ __html: STORE_CSS + SAMPLE_CSS }} />
 
             <div className="bg-parchment min-h-screen pt-16 pb-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,6 +247,9 @@ export default function Show({ auth, book }) {
                             <div className="group max-w-[340px] mx-auto lg:mx-0">
                                 <PhysicalCover book={book} appUrl={app_url} clothIndex={1} />
                             </div>
+
+                            {/* Plate II — the sample that turns */}
+                            <SampleReader book={book} />
 
                             {/* Editions */}
                             <div className="mt-12 space-y-4">
