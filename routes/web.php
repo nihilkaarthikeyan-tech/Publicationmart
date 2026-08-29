@@ -123,7 +123,7 @@ Route::post('/api/studio/presale/otp', [PresaleBookingController::class, 'sendOt
 
 // ── Challenges (guests can enrol) ────────────────────────────────────────────
 Route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
-Route::post('/challenges', [ChallengeController::class, 'store'])->name('challenges.store');
+Route::post('/challenges', [ChallengeController::class, 'store'])->name('challenges.store')->middleware('throttle:10,1');
 Route::get('/challenges/{enrollment}/success', [ChallengeController::class, 'success'])->name('challenges.success');
 
 // ── Smart Writer (guest AI writing, no login) ────────────────────────────────
@@ -136,10 +136,10 @@ Route::post('/smart-writer/studio/{token}/save', [GuestSmartWriterController::cl
 Route::get('/smart-writer/export/{token}', [GuestSmartWriterController::class, 'export'])->name('guest-writer.export');
 Route::get('/smart-writer/success/{token}', [GuestSmartWriterController::class, 'success'])->name('guest-writer.success');
 Route::get('/smart-writer/link-account', [GuestSmartWriterController::class, 'linkToUser'])->middleware('auth')->name('guest-writer.link');
-Route::post('/smart-writer/generate-outline', [GuestSmartWriterController::class, 'generateOutline'])->name('guest-writer.generate-outline');
-Route::post('/smart-writer/generate-sections', [GuestSmartWriterController::class, 'generateSections'])->name('guest-writer.generate-sections');
-Route::post('/smart-writer/write-section', [GuestSmartWriterController::class, 'generateSectionContent'])->name('guest-writer.write-section');
-Route::post('/smart-writer/generate-image', [GuestSmartWriterController::class, 'generateImage'])->name('guest-writer.generate-image');
+Route::post('/smart-writer/generate-outline', [GuestSmartWriterController::class, 'generateOutline'])->name('guest-writer.generate-outline')->middleware('throttle:20,1');
+Route::post('/smart-writer/generate-sections', [GuestSmartWriterController::class, 'generateSections'])->name('guest-writer.generate-sections')->middleware('throttle:30,1');
+Route::post('/smart-writer/write-section', [GuestSmartWriterController::class, 'generateSectionContent'])->name('guest-writer.write-section')->middleware('throttle:40,1');
+Route::post('/smart-writer/generate-image', [GuestSmartWriterController::class, 'generateImage'])->name('guest-writer.generate-image')->middleware('throttle:20,1');
 Route::get('/smart-writer/download-book/{session_token}/{format}', [GuestSmartWriterController::class, 'downloadBook'])->name('guest-writer.download-book');
 
 // ── Book store ───────────────────────────────────────────────────────────────
