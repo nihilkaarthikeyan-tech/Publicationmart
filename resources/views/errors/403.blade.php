@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Press Is Being Reset | PublicationMart</title>
+    <title>A Closed Shelf | PublicationMart</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v=2">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=eb-garamond:400,500,600i|figtree:400,600,700&display=swap" rel="stylesheet">
     <style>
-        /* Planned maintenance — the press is stopped on purpose, unlike 500
-           where it broke. Standalone file served without the app shell, so the
-           house palette is written out here. */
+        /* The private shelf: the page exists, this reader may not open it.
+           Standalone file served without the app shell, so the house palette
+           is written out here — same as 404 and 500. */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -25,7 +25,7 @@
             padding: 32px 20px;
         }
 
-        .card {
+        .shelf {
             position: relative;
             background: #fdfbf5;
             border: 1px solid #d8d1c1;
@@ -33,16 +33,28 @@
             width: 100%;
             padding: 46px 48px 50px;
             box-shadow: 0 18px 44px rgba(23, 21, 15, .13);
-            overflow: hidden;
         }
 
-        /* a compositor's rule across the head of the sheet */
-        .band {
+        /* a binding cloth strip down the hinge, as on a closed volume */
+        .hinge {
             position: absolute;
-            left: 0; right: 0; top: 0;
-            height: 6px;
-            background: repeating-linear-gradient(90deg, #6e2530 0 14px, #a07d3b 14px 28px);
-            opacity: .8;
+            left: 0; top: 0; bottom: 0;
+            width: 10px;
+            background: linear-gradient(90deg, #6e2530, #4d1a22);
+        }
+
+        /* the wax seal that keeps it shut */
+        .seal {
+            width: 54px; height: 54px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #8c3541, #5a1e27 70%);
+            color: #e8cf8e;
+            display: grid;
+            place-items: center;
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 23px;
+            box-shadow: 0 4px 10px rgba(23, 21, 15, .3);
+            margin-bottom: 22px;
         }
 
         .folio {
@@ -58,7 +70,7 @@
             font-weight: 500;
             font-size: clamp(28px, 6vw, 38px);
             line-height: 1.14;
-            margin: 14px 0 12px;
+            margin: 12px 0 12px;
         }
 
         p {
@@ -80,14 +92,15 @@
             font-weight: 700;
             text-decoration: none;
             border-radius: 3px;
-            border: 1px solid #6e2530;
-            background: #6e2530;
-            color: #faf8f3;
-            cursor: pointer;
-            font-family: inherit;
-            transition: background-color .25s, border-color .25s;
+            transition: background-color .25s, color .25s, border-color .25s;
         }
-        .btn:hover { background: #5a1e27; border-color: #5a1e27; }
+
+        .btn-primary { background: #6e2530; color: #faf8f3; border: 1px solid #6e2530; }
+        .btn-primary:hover { background: #5a1e27; border-color: #5a1e27; }
+
+        .btn-ghost { background: transparent; color: #17150f; border: 1px solid #d8d1c1; }
+        .btn-ghost:hover { border-color: #6e2530; color: #6e2530; }
+
         .btn:focus-visible { outline: 2px solid #17150f; outline-offset: 3px; }
 
         .press {
@@ -100,27 +113,29 @@
         }
 
         @media (max-width: 520px) {
-            .card { padding: 36px 30px 40px; }
+            .shelf { padding: 36px 28px 40px 34px; }
         }
     </style>
 </head>
 
 <body>
-    <main class="card">
-        <div class="band"></div>
+    <main class="shelf">
+        <div class="hinge"></div>
 
-        <div class="folio">error 503 &middot; the press is stopped</div>
+        <div class="seal" aria-hidden="true">P</div>
 
-        <h1>We are resetting the press.</h1>
+        <div class="folio">error 403 &middot; the shelf is closed</div>
 
-        <p>Planned maintenance, and it is usually brief. Nothing you have written
-            or bought is affected &mdash; everything will be exactly where you left
-            it when we start printing again.</p>
+        <h1>This one is not on open shelves.</h1>
+
+        <p>The page exists, but your account is not admitted to it. If you believe
+            it should be, the desk can check your permissions.</p>
 
         <div class="rule"></div>
 
         <div class="actions">
-            <button class="btn" type="button" onclick="window.location.reload()">Try again</button>
+            <a class="btn btn-primary" href="{{ url('/') }}">Back to the front page</a>
+            <a class="btn btn-ghost" href="{{ url('/contact') }}">Ask the desk</a>
         </div>
 
         <div class="press">PublicationMart Press</div>
