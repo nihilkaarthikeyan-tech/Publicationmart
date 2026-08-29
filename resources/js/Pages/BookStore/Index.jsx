@@ -1,13 +1,36 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import BookCard, { PhysicalCover, STORE_CSS } from './Components/BookCard';
+
+/**
+ * On phones there is no hover, so the front-table covers peek open by
+ * themselves as they pass the centre band of the screen. Front table only —
+ * four books, one observer, nothing for the big catalogue grid to pay.
+ */
+function useTouchPeek() {
+    useEffect(() => {
+        if (!window.matchMedia('(pointer: coarse)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const covers = document.querySelectorAll('#front-table .pm-peek');
+        if (!covers.length || !('IntersectionObserver' in window)) return;
+        // The band is half the viewport: a phone-sized cover (~230px) passes
+        // comfortably through it. A tighter band than the cover is tall would
+        // never register a clean pass.
+        const io = new IntersectionObserver(
+            (entries) => entries.forEach((e) => e.target.classList.toggle('pm-peek-open', e.isIntersecting)),
+            { rootMargin: '-25% 0px -25% 0px', threshold: 0 },
+        );
+        covers.forEach((c) => io.observe(c));
+        return () => io.disconnect();
+    }, []);
+}
 
 /** A small edition of a book for the genre shelf rails. */
 function RailBook({ book, i }) {
     const { app_url } = usePage().props;
     return (
         <Link href={route('book-store.show', book.id)} className="group block w-[136px]">
-            <PhysicalCover book={book} appUrl={app_url} clothIndex={i} />
+            <PhysicalCover book={book} appUrl={app_url} clothIndex={i} peek />
             <h4
                 className="mt-4 text-[14px] leading-snug line-clamp-2 text-ink group-hover:text-oxblood transition-colors"
                 style={{ fontFamily: "'EB Garamond', Georgia, serif" }}
@@ -27,7 +50,7 @@ function FrontTableBook({ book, i }) {
     return (
         <div className="group">
             <Link href={route('book-store.show', book.id)} className="block">
-                <PhysicalCover book={book} appUrl={app_url} clothIndex={i} />
+                <PhysicalCover book={book} appUrl={app_url} clothIndex={i} peek />
                 <div className="mt-6">
                     <h3
                         className="text-[20px] leading-snug line-clamp-2 text-ink group-hover:text-oxblood transition-colors"
@@ -68,6 +91,7 @@ const PAGE_SIZE = 24;
 export default function BookStoreIndex({ auth, books }) {
     const [searchQuery, setSearchQuery] = useState('');
     const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+    useTouchPeek();
 
     const q = searchQuery.toLowerCase();
     const filteredBooks = books.filter(book =>
@@ -168,7 +192,7 @@ export default function BookStoreIndex({ auth, books }) {
             <div className="bg-parchment min-h-screen pb-16">
                 {/* ── The front table: newest titles, displayed large ── */}
                 {!searchQuery && frontTable.length > 0 && (
-                    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14">
+                    <section id="front-table" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14">
                         <div className="flex items-baseline gap-6 mb-10">
                             <span className="pm-store-run whitespace-nowrap">New arrivals</span>
                             <div className="flex-1 h-px bg-linen" />

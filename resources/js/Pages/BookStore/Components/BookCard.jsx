@@ -27,7 +27,19 @@ export const STORE_CSS = `
 .pm-rail::-webkit-scrollbar-thumb{background:#d8d1c1;border-radius:3px}
 .pm-rail>*{scroll-snap-align:start;flex:0 0 auto}
 .pm-shelfboard{height:9px;margin-top:-14px;background:linear-gradient(180deg,#cdc5b1,#b9b09a);border-radius:2px;box-shadow:0 10px 18px rgba(23,21,15,.16)}
-@media (prefers-reduced-motion:reduce){.pm-cov{transition:none}}
+
+/* ── the dust-jacket peek: hovering (or, on phones, scrolling a front-table
+   book through the centre of the screen) swings the cover open a few
+   degrees, glimpsing the title page beneath. The cover element itself
+   becomes the flap; the title page sits under it. ── */
+.pm-under{position:absolute;inset:0;border-radius:3px 7px 7px 3px;background:#fdfbf5;border:1px solid #d8d1c1;padding:14% 12%;display:flex;flex-direction:column;text-align:center;overflow:hidden}
+.pm-under-t{font-family:'EB Garamond',Georgia,serif;font-size:14px;line-height:1.3;color:#17150f;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.pm-under-a{margin-top:8px;font-size:10.5px;color:#635c4e;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pm-under-orn{margin-top:auto;color:#a07d3b;font-size:13px}
+.pm-under-p{margin-top:4px;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#856531;font-weight:700}
+.pm-peek .pm-cov{transform-origin:left center}
+.pm-peek:hover .pm-cov,.pm-peek.pm-peek-open .pm-cov,a:hover>.pm-covwrap.pm-peek>.pm-cov{transform:rotateY(-44deg);box-shadow:14px 18px 38px rgba(23,21,15,.25),2px 4px 10px rgba(23,21,15,.12)}
+@media (prefers-reduced-motion:reduce){.pm-cov{transition:none}.pm-peek:hover .pm-cov,.pm-peek.pm-peek-open .pm-cov{transform:none}}
 `;
 
 /**
@@ -35,9 +47,18 @@ export const STORE_CSS = `
  * block on the right edge, a real shadow, and a lift-and-tilt on hover
  * (the hover classes live in the store page's stylesheet as .pm-cov).
  */
-export function PhysicalCover({ book, appUrl, fit = 'contain', clothIndex = 1 }) {
+export function PhysicalCover({ book, appUrl, fit = 'contain', clothIndex = 1, peek = false }) {
     return (
-        <div className="pm-covwrap relative aspect-[2/3]">
+        <div className={`pm-covwrap relative aspect-[2/3] ${peek ? 'pm-peek' : ''}`}>
+            {/* The title page under the dust jacket — seen when the cover peeks open */}
+            {peek && (
+                <div className="pm-under" aria-hidden="true">
+                    <span className="pm-under-t">{book.title}</span>
+                    <span className="pm-under-a">{book.author_name}</span>
+                    <span className="pm-under-orn">❦</span>
+                    <span className="pm-under-p">PublicationMart Press</span>
+                </div>
+            )}
             <div className="pm-cov absolute inset-0 overflow-hidden bg-paper">
                 {book.cover_design_path ? (
                     <img
@@ -75,7 +96,7 @@ export default function BookCard({ book, clothIndex = 1 }) {
         <div className="group relative flex flex-col">
             {/* Clickable physical cover */}
             <Link href={route('book-store.show', book.id)} className="block px-2 pt-2 pb-4">
-                <PhysicalCover book={book} appUrl={app_url} clothIndex={clothIndex} />
+                <PhysicalCover book={book} appUrl={app_url} clothIndex={clothIndex} peek />
             </Link>
 
             {/* Content — set like a catalogue entry, not a boxed card */}
