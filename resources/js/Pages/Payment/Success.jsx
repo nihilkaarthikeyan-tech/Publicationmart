@@ -1,6 +1,25 @@
 ﻿import { Head, Link } from '@inertiajs/react';
 import { useEffect } from 'react';
 
+/* The receipt, and the stamp that lands on it. */
+const RECEIPT_CSS = `
+.pm-receipt{position:relative;background:#fdfbf5;border:1px solid #d8d1c1;padding:20px 22px 18px;font-family:ui-monospace,Consolas,monospace;text-align:left}
+.pm-receipt-row{display:flex;justify-content:space-between;gap:14px;font-size:12.5px;color:#635c4e;padding:5px 0}
+.pm-receipt-row b{color:#17150f;font-weight:600}
+.pm-receipt-rule{height:1px;background:#d8d1c1;margin:9px 0}
+.pm-receipt-total{font-size:15px;color:#17150f;font-weight:700}
+/* The receipt rests stamped: if the animation never runs — reduced motion, a
+   background tab, an engine that skips it — PAID is still on the slip. The
+   keyframes only animate it into that resting state. */
+.pm-paid{position:absolute;right:14px;top:12px;font-family:'Figtree',system-ui,sans-serif;font-size:13px;font-weight:800;letter-spacing:.2em;color:#6e2530;border:2.5px solid #6e2530;border-radius:4px;padding:4px 12px;opacity:.92;transform:rotate(-12deg);animation:pmPaid .55s cubic-bezier(.16,1,.3,1)}
+@keyframes pmPaid{0%{opacity:0;transform:rotate(-24deg) scale(2.6)}70%{opacity:1;transform:rotate(-9deg) scale(.94)}100%{opacity:.92;transform:rotate(-12deg) scale(1)}}
+/* the tear edge along the bottom of the slip */
+.pm-receipt-tear{height:12px;background:#fdfbf5;border-left:1px solid #d8d1c1;border-right:1px solid #d8d1c1;
+  -webkit-mask-image:radial-gradient(circle at 6px 12px,transparent 5px,#000 5.5px);mask-image:radial-gradient(circle at 6px 12px,transparent 5px,#000 5.5px);
+  -webkit-mask-size:12px 12px;mask-size:12px 12px;-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x}
+@media (prefers-reduced-motion:reduce){.pm-paid{animation:none;opacity:.92;transform:rotate(-12deg) scale(1)}}
+`;
+
 export default function Success({ auth, transaction }) {
 
     const transactionId = transaction.transaction_id || 'N/A';
@@ -19,6 +38,7 @@ export default function Success({ auth, transaction }) {
     return (
         <>
             <Head title="Payment Successful" />
+            <style dangerouslySetInnerHTML={{ __html: RECEIPT_CSS }} />
 
             <div className="min-h-screen bg-parchment flex items-center justify-center p-4 relative overflow-hidden">
                 {/* Background Glows */}
@@ -27,25 +47,34 @@ export default function Success({ auth, transaction }) {
 
                 <div className="max-w-md w-full bg-paper/80 backdrop-blur-xl border border-linen rounded-3xl p-8 relative z-10 text-center shadow-2xl">
 
-                    <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6 ring-4 ring-emerald-500/10 animate-bounce">
-                        <svg className="w-10 h-10 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                        </svg>
+                    <h1 className="text-3xl font-black text-ink mb-2">Payment received</h1>
+                    <p className="text-umber mb-8">Your order is with the press. Here is your receipt.</p>
+
+                    {/* Plate VI — the receipt, with the stamp that lands on it */}
+                    <div className="mb-2">
+                        <div className="pm-receipt">
+                            <div className="pm-paid" aria-hidden="true">PAID</div>
+                            <div className="pm-receipt-row">
+                                <span>Receipt</span>
+                                <b>{transactionId}</b>
+                            </div>
+                            <div className="pm-receipt-row">
+                                <span>Date</span>
+                                <b>{new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</b>
+                            </div>
+                            <div className="pm-receipt-rule" />
+                            <div className="pm-receipt-row pm-receipt-total">
+                                <span>Amount paid</span>
+                                <b>₹{amount}</b>
+                            </div>
+                        </div>
+                        <div className="pm-receipt-tear" aria-hidden="true" />
+                        <p className="text-[10px] uppercase tracking-[.2em] text-foil-deep font-bold mt-3">
+                            PublicationMart Press
+                        </p>
                     </div>
 
-                    <h1 className="text-3xl font-black text-ink mb-2">Payment Successful!</h1>
-                    <p className="text-umber mb-8">Thank you for your purchase. Your transaction has been completed securely.</p>
-
-                    <div className="bg-paper rounded-xl p-4 border border-linen mb-8">
-                        <div className="flex justify-between items-center mb-2">
-                            <span className="text-umber text-sm font-medium">Transaction ID</span>
-                            <span className="text-ink font-mono text-sm">{transactionId}</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                            <span className="text-umber text-sm font-medium">Amount Paid</span>
-                            <span className="text-emerald-700 font-bold text-lg">₹{amount}</span>
-                        </div>
-                    </div>
+                    <div className="mb-8" />
 
                     {/* Guest vs User Logic */}
                     <div className="space-y-4">
@@ -80,7 +109,7 @@ export default function Success({ auth, transaction }) {
 
                             <Link
                                 href="/"
-                                className={`block w-full py-3.5 border border-linen text-ink-soft font-semibold rounded-xl transition-all ${!auth.user ? 'bg-white hover:bg-gray-50 text-gray-900 shadow-[0_0_15px_rgba(255,255,255,0.1)]' : 'bg-paper hover:bg-vellum'}`}
+                                className="block w-full py-3.5 border border-linen text-ink-soft font-semibold rounded-xl transition-all bg-paper hover:bg-vellum"
                             >
                                 {auth.user ? 'Return Home' : 'Continue Shopping'}
                             </Link>
