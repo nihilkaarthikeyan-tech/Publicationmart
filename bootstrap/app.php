@@ -33,12 +33,30 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (\Illuminate\Session\TokenMismatchException $e, $request) {
+            // An async request gets the real 419 so the client can fetch a
+            // fresh token and retry — the visitor keeps whatever they typed.
+            // Redirecting here instead (as this used to do for every request)
+            // threw away the page and its form along with it.
+            if ($request->expectsJson() || $request->ajax() || $request->hasHeader('X-Inertia')) {
+                return response()->json(['message' => 'CSRF token mismatch.'], 419);
+            }
+
+            // A plain browser navigation has nothing to preserve, so the
+            // login redirect remains the right answer there.
             return redirect()->route('login')
                 ->with('status', 'Your session expired. Please login again to continue.');
         });
 
+        // TokenMismatchException extends HttpException, and render callbacks are
+        // evaluated last-registered-first — so this one used to win and send
+        // every expired token to the login page, async requests included. It
+        // now makes the same distinction as the handler above.
         $exceptions->render(function (\Symfony\Component\HttpKernel\Exception\HttpException $e, $request) {
             if ($e->getStatusCode() === 419) {
+                if ($request->expectsJson() || $request->ajax() || $request->hasHeader('X-Inertia')) {
+                    return response()->json(['message' => 'Page expired.'], 419);
+                }
+
                 return redirect()->route('login')
                     ->with('status', 'Page expired. Please try again.');
             }

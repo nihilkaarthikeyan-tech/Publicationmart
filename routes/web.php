@@ -148,6 +148,20 @@ Route::get('/payment/pending/{transactionId}', [PaymentController::class, 'payme
 Route::any('/payment/phonepe/redirect', [PaymentController::class, 'handlePhonePeRedirect'])->name('payment.phonepe.redirect'); // user returns here
 Route::any('/payment/phonepe/callback', [PaymentController::class, 'handlePhonePeCallback'])->name('payment.phonepe.callback'); // S2S webhook
 
+// ── Session ──────────────────────────────────────────────────────────────────
+// A stale CSRF token and a dead session look identical to the browser: both
+// return 419. This endpoint tells them apart and hands back a fresh token, so
+// the client can retry silently when the session is actually still alive
+// rather than throwing the visitor at the login page with their form lost.
+// The token belongs to the caller's own session, so returning it reveals
+// nothing they do not already hold.
+Route::get('/session/token', function () {
+    return response()->json([
+        'token' => csrf_token(),
+        'authenticated' => auth()->check(),
+    ]);
+})->name('session.token');
+
 // ── Public APIs ──────────────────────────────────────────────────────────────
 Route::get('/api/stock-images/search', [StockImageController::class, 'search'])->name('api.stock-images.search');
 // Throttled: public endpoint, otherwise coupon codes can be brute-forced.
