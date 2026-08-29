@@ -38,8 +38,10 @@ export default function Footer() {
     const legalLinks = [
         { name: 'Terms & Conditions', href: route('terms-and-conditions') },
         { name: 'Privacy Policy', href: route('privacy-policy') },
-        { name: 'Copyright Policy', href: route('terms-and-conditions') },
-        { name: 'Refund Policy', href: route('terms-and-conditions') },
+        { name: 'Refund Policy', href: route('refund-policy') },
+        { name: 'Cancellation Policy', href: route('cancellation-policy') },
+        { name: 'Shipping Policy', href: route('shipping-policy') },
+        { name: 'Return & Exchange', href: route('return-policy') },
     ];
 
     const socialIcons = [

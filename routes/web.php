@@ -80,6 +80,15 @@ Route::get('/help-center', fn () => Inertia::render('Resources'))->name('help-ce
 Route::get('/privacy-policy', fn () => Inertia::render('PrivacyPolicy'))->name('privacy-policy');
 Route::get('/terms', fn () => Inertia::render('TermsOfService'))->name('terms');
 Route::get('/terms-and-conditions', fn () => Inertia::render('TermsOfService'))->name('terms-and-conditions');
+
+// ── Commerce policies ────────────────────────────────────────────────────────
+// These restate sections of the Terms at their own addresses. The footer used
+// to advertise a "Refund Policy" that silently linked to the Terms; buyers of
+// a site that ships physical books should be able to find each policy directly.
+Route::get('/refund-policy', fn () => Inertia::render('Policies/Refund'))->name('refund-policy');
+Route::get('/cancellation-policy', fn () => Inertia::render('Policies/Cancellation'))->name('cancellation-policy');
+Route::get('/shipping-policy', fn () => Inertia::render('Policies/Shipping'))->name('shipping-policy');
+Route::get('/return-policy', fn () => Inertia::render('Policies/Returns'))->name('return-policy');
 Route::get('/careers', fn () => Inertia::render('Services/Careers'))->name('careers');
 
 // ── Managed service pages ────────────────────────────────────────────────────
