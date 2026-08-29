@@ -89,6 +89,17 @@ Route::get('/refund-policy', fn () => Inertia::render('Policies/Refund'))->name(
 Route::get('/cancellation-policy', fn () => Inertia::render('Policies/Cancellation'))->name('cancellation-policy');
 Route::get('/shipping-policy', fn () => Inertia::render('Policies/Shipping'))->name('shipping-policy');
 Route::get('/return-policy', fn () => Inertia::render('Policies/Returns'))->name('return-policy');
+
+// ── Trust pages ──────────────────────────────────────────────────────────────
+// Each states only what the house has already committed to in public or what
+// is verifiably true of the code. Where a commitment has not been made — a
+// conformance level, a response time, a bounty — these pages say so rather
+// than inventing one.
+Route::get('/acceptable-use', fn () => Inertia::render('Policies/AcceptableUse'))->name('acceptable-use');
+Route::get('/community-guidelines', fn () => Inertia::render('Policies/CommunityGuidelines'))->name('community-guidelines');
+Route::get('/accessibility', fn () => Inertia::render('Policies/Accessibility'))->name('accessibility');
+Route::get('/security', fn () => Inertia::render('Policies/Security'))->name('security');
+Route::get('/responsible-disclosure', fn () => Inertia::render('Policies/ResponsibleDisclosure'))->name('responsible-disclosure');
 Route::get('/careers', fn () => Inertia::render('Services/Careers'))->name('careers');
 
 // ── Managed service pages ────────────────────────────────────────────────────

@@ -42,6 +42,10 @@ export default function Footer() {
         { name: 'Cancellation Policy', href: route('cancellation-policy') },
         { name: 'Shipping Policy', href: route('shipping-policy') },
         { name: 'Return & Exchange', href: route('return-policy') },
+        { name: 'Acceptable Use', href: route('acceptable-use') },
+        { name: 'Community Guidelines', href: route('community-guidelines') },
+        { name: 'Accessibility', href: route('accessibility') },
+        { name: 'Security', href: route('security') },
     ];
 
     const socialIcons = [
