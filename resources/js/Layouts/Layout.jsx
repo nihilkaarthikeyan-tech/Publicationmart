@@ -14,7 +14,7 @@ export default function Layout({ children }) {
                 <div className="fixed top-24 right-4 z-[100] max-w-sm w-full animate-slide-in-right pointer-events-none">
                     <div className="pointer-events-auto">
                         {flash.success && (
-                            <div className="bg-[#221f18] border-l-4 border-emerald-500 text-white p-4 rounded-r shadow-2xl flex items-start gap-3 mb-4 ring-1 ring-white/10">
+                            <div className="bg-night border-l-4 border-emerald-500 text-white p-4 rounded-r shadow-2xl flex items-start gap-3 mb-4 ring-1 ring-white/10">
                                 <div className="p-1 bg-emerald-500/20 rounded-full">
                                     <svg className="w-5 h-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                                 </div>
@@ -26,7 +26,7 @@ export default function Layout({ children }) {
                             </div>
                         )}
                         {flash.error && (
-                            <div className="bg-[#221f18] border-l-4 border-red-500 text-white p-4 rounded-r shadow-2xl flex items-start gap-3 mb-4 ring-1 ring-white/10">
+                            <div className="bg-night border-l-4 border-red-500 text-white p-4 rounded-r shadow-2xl flex items-start gap-3 mb-4 ring-1 ring-white/10">
                                 <div className="p-1 bg-red-500/20 rounded-full">
                                     <svg className="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
                                 </div>
