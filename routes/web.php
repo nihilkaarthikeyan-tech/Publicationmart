@@ -59,7 +59,17 @@ Route::get('/', function () {
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
 // ── Static pages ─────────────────────────────────────────────────────────────
-Route::get('/about', fn () => Inertia::render('About'))->name('about');
+// The About page's edition history quotes real figures from the register,
+// cached like the landing page's so it costs nothing per visitor.
+Route::get('/about', function () {
+    $stats = \Illuminate\Support\Facades\Cache::remember('about_house_stats', 1800, fn () => [
+        'publishedBooks' => \App\Models\Book::where('step_completed', '>=', 5)->count(),
+        'titlesInStore' => \App\Models\Book::where('status', 'approved')->count(),
+        'totalAuthors' => \App\Models\User::count(),
+    ]);
+
+    return Inertia::render('About', ['houseStats' => $stats]);
+})->name('about');
 Route::get('/contact', fn () => Inertia::render('Contact'))->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store')->middleware('throttle:5,1');
 Route::get('/how-to-publish', fn () => Inertia::render('HowToPublish'))->name('how-to-publish');
