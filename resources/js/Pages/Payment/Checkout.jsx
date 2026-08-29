@@ -286,7 +286,7 @@ export default function Checkout({ auth, book, purchaseType = 'hardcover' }) {
                                             value={couponCode}
                                             onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                                             placeholder="Coupon Code"
-                                            className="w-full bg-paper border border-linen rounded-l-lg px-4 py-2 text-sm text-ink focus:outline-none focus:border-indigo-500 placeholder-gray-500 uppercase font-mono"
+                                            className="w-full bg-paper border border-linen rounded-l-lg px-4 py-2 text-sm text-ink focus:outline-none focus:border-indigo-500 placeholder-taupe uppercase font-mono"
                                         />
                                         <button
                                             type="button"

@@ -4,13 +4,13 @@ import { useState } from 'react';
 const statusColors = {
     open:        'bg-emerald-100 text-emerald-700',
     in_progress: 'bg-yellow-100 text-yellow-800',
-    closed:      'bg-gray-100 text-umber',
+    closed:      'bg-vellum text-umber',
 };
 
 const priorityColors = {
     urgent: 'bg-red-100 text-red-700',
     normal: 'bg-blue-100 text-blue-700',
-    low:    'bg-gray-100 text-umber',
+    low:    'bg-vellum text-umber',
 };
 
 export default function SupportShow({ auth, ticket }) {
@@ -51,7 +51,7 @@ export default function SupportShow({ auth, ticket }) {
                                 <span className="text-ink-soft">•</span>
                                 <span className="text-xs text-umber">{ticket.category_label}</span>
                             </div>
-                            <h1 className="text-xl font-bold text-gray-900">{ticket.subject}</h1>
+                            <h1 className="text-xl font-bold text-ink">{ticket.subject}</h1>
                             <p className="text-xs text-umber mt-1">Opened {ticket.created_at}</p>
                         </div>
                         <div className="flex items-center gap-2">
@@ -64,7 +64,7 @@ export default function SupportShow({ auth, ticket }) {
                             {ticket.status !== 'closed' && (
                                 <button
                                     onClick={handleClose}
-                                    className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-umber rounded-full text-xs font-semibold transition"
+                                    className="px-3 py-1 bg-vellum hover:bg-linen text-umber rounded-full text-xs font-semibold transition"
                                 >
                                     Close Ticket
                                 </button>
@@ -83,11 +83,11 @@ export default function SupportShow({ auth, ticket }) {
                                 {auth.user.name.charAt(0).toUpperCase()}
                             </div>
                             <div>
-                                <span className="font-semibold text-gray-800 text-sm">{auth.user.name}</span>
+                                <span className="font-semibold text-ink text-sm">{auth.user.name}</span>
                                 <span className="text-xs text-umber ml-2">{ticket.created_at}</span>
                             </div>
                         </div>
-                        <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">{ticket.message}</p>
+                        <p className="text-ink-soft text-sm leading-relaxed whitespace-pre-wrap">{ticket.message}</p>
                         {ticket.attachment_path && (
                             <a
                                 href={`/storage/${ticket.attachment_path}`}
@@ -110,12 +110,12 @@ export default function SupportShow({ auth, ticket }) {
                                     {reply.is_admin ? '🛡' : reply.author_name.charAt(0).toUpperCase()}
                                 </div>
                                 <div>
-                                    <span className="font-semibold text-gray-800 text-sm">{reply.author_name}</span>
+                                    <span className="font-semibold text-ink text-sm">{reply.author_name}</span>
                                     {reply.is_admin && <span className="ml-1 text-xs bg-violet-600 text-white px-2 py-0.5 rounded-full">Support</span>}
                                     <span className="text-xs text-umber ml-2">{reply.created_at}</span>
                                 </div>
                             </div>
-                            <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">{reply.message}</p>
+                            <p className="text-ink-soft text-sm leading-relaxed whitespace-pre-wrap">{reply.message}</p>
                             {reply.attachment_path && (
                                 <a
                                     href={`/storage/${reply.attachment_path}`}
@@ -132,14 +132,14 @@ export default function SupportShow({ auth, ticket }) {
                 {/* Reply Form */}
                 {ticket.status !== 'closed' ? (
                     <div className="bg-white rounded-2xl shadow p-6 mt-4">
-                        <h3 className="font-semibold text-gray-800 mb-4">Add a Reply</h3>
+                        <h3 className="font-semibold text-ink mb-4">Add a Reply</h3>
                         <form onSubmit={handleReply} encType="multipart/form-data" className="space-y-4">
                             <div>
                                 <textarea
                                     value={data.message}
                                     onChange={e => setData('message', e.target.value)}
                                     rows={4}
-                                    className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none text-sm"
+                                    className="w-full border border-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none text-sm"
                                     placeholder="Type your reply..."
                                 />
                                 {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
@@ -149,7 +149,7 @@ export default function SupportShow({ auth, ticket }) {
                                     type="file"
                                     accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
                                     onChange={e => setData('attachment', e.target.files[0])}
-                                    className="text-sm text-umber border border-gray-200 rounded-lg px-3 py-2 w-full"
+                                    className="text-sm text-umber border border-linen rounded-lg px-3 py-2 w-full"
                                 />
                             </div>
                             <button
@@ -162,7 +162,7 @@ export default function SupportShow({ auth, ticket }) {
                         </form>
                     </div>
                 ) : (
-                    <div className="bg-gray-50 rounded-2xl border border-gray-200 p-5 mt-4 text-center">
+                    <div className="bg-paper rounded-2xl border border-linen p-5 mt-4 text-center">
                         <p className="text-umber text-sm">This ticket is closed.</p>
                         <Link href={route('support.create')} className="mt-2 inline-block text-violet-600 hover:underline text-sm font-medium">
                             Open a new ticket →

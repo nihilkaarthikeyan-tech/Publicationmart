@@ -255,7 +255,7 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                     placeholder="Search by title, author, or user..."
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
-                                    className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-gray-500 focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 transition-all outline-none"
+                                    className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-taupe focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 transition-all outline-none"
                                 />
                             </div>
 

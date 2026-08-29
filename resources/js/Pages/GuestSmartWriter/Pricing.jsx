@@ -147,14 +147,14 @@ export default function SmartWritingTool({ auth }) {
                         </div>
 
                         {/* PREMIUM CARD - DISABLED */}
-                        <div className="relative bg-paper border border-gray-700/40 rounded-3xl p-8 opacity-60 group overflow-hidden">
+                        <div className="relative bg-paper border border-linen rounded-3xl p-8 opacity-60 group overflow-hidden">
                             {/* Premium badge */}
                             <div className="absolute top-5 right-5">
                                 <span className="bg-ink-soft text-paper text-[10px] font-black px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
                                     COMING SOON
                                 </span>
                             </div>
-                            <div className="absolute top-0 right-0 w-48 h-48 bg-gray-600/10 rounded-full blur-[60px] pointer-events-none" />
+                            <div className="absolute top-0 right-0 w-48 h-48 bg-vellum rounded-full blur-[60px] pointer-events-none" />
 
                             <h3 className="text-2xl font-bold text-umber mb-1">Premium</h3>
                             <p className="text-umber text-sm mb-6">Complete suite for professional authors</p>
@@ -165,7 +165,7 @@ export default function SmartWritingTool({ auth }) {
                             </ul>
                             <button
                                 disabled
-                                className="w-full py-3.5 bg-gray-100 border border-gray-700/40 text-umber font-bold rounded-xl cursor-not-allowed text-sm tracking-wider uppercase"
+                                className="w-full py-3.5 bg-vellum border border-linen text-umber font-bold rounded-xl cursor-not-allowed text-sm tracking-wider uppercase"
                             >
                                 Coming Soon
                             </button>
@@ -269,7 +269,7 @@ export default function SmartWritingTool({ auth }) {
                         {/* Premium Coming Soon Message */}
                         <div className="flex items-center justify-center mb-16">
                             <div className="text-center">
-                                <span className="inline-block px-4 py-1.5 rounded-full bg-gray-100 border border-gray-700/40 text-umber text-xs font-bold uppercase tracking-widest mb-4">Premium Plans</span>
+                                <span className="inline-block px-4 py-1.5 rounded-full bg-vellum border border-linen text-umber text-xs font-bold uppercase tracking-widest mb-4">Premium Plans</span>
                                 <h2 className="text-4xl font-black text-umber mb-2">Premium Plans Coming Soon</h2>
                                 <p className="text-umber">We're preparing an enhanced experience. Stay tuned for premium features!</p>
                             </div>

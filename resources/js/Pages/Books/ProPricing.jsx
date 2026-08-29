@@ -207,7 +207,7 @@ export default function ProPricing({ book }) {
                                         <div className="flex-1 space-y-4 mb-8">
                                             {plan.features.map((feature, idx) => (
                                                 <div key={idx} className="flex items-center gap-3">
-                                                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-paper flex items-center justify-center border border-gray-700">
+                                                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-paper flex items-center justify-center border border-linen">
                                                         <svg className="w-3 h-3 text-umber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                         </svg>

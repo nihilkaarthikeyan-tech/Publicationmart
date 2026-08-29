@@ -101,7 +101,7 @@ export default function Create({ auth }) {
                                 id="is_presale"
                                 checked={data.is_presale}
                                 onChange={e => setData('is_presale', e.target.checked)}
-                                className="w-5 h-5 text-purple-600 rounded focus:ring-purple-500 bg-paper border-gray-600"
+                                className="w-5 h-5 text-purple-600 rounded focus:ring-purple-500 bg-paper border-linen"
                             />
                             <label htmlFor="is_presale" className="text-sm font-medium text-ink-soft cursor-pointer select-none">
                                 Is this a Presale? <span className="text-umber text-xs">(Requires Admin Approval)</span>

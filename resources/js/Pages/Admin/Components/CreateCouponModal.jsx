@@ -27,13 +27,13 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-paper backdrop-blur-sm animate-fade-in">
-            <div className="bg-white rounded-xl w-full max-w-md shadow-2xl overflow-hidden animate-scale-in border border-gray-100">
+            <div className="bg-white rounded-xl w-full max-w-md shadow-2xl overflow-hidden animate-scale-in border border-linen">
                 {/* Header */}
-                <div className="flex justify-between items-center px-5 py-4 border-b border-gray-50 bg-gray-50/30">
-                    <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+                <div className="flex justify-between items-center px-5 py-4 border-b border-linen bg-paper/30">
+                    <h3 className="text-lg font-bold text-ink flex items-center gap-2">
                         <span className="text-lg">🎟️</span> Manage Coupons
                     </h3>
-                    <button onClick={onClose} className="text-umber hover:text-umber transition-colors p-1 hover:bg-gray-100 rounded-lg">
+                    <button onClick={onClose} className="text-umber hover:text-umber transition-colors p-1 hover:bg-vellum rounded-lg">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -55,7 +55,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                                     type="text"
                                     value={data.code}
                                     onChange={e => setData('code', e.target.value.toUpperCase())}
-                                    className="w-full bg-gray-50 border border-gray-100 rounded-lg pl-9 pr-3 py-2 text-sm text-gray-800 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-mono font-bold uppercase"
+                                    className="w-full bg-paper border border-linen rounded-lg pl-9 pr-3 py-2 text-sm text-ink focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-mono font-bold uppercase"
                                     placeholder="SUMMER20"
                                     required
                                 />
@@ -73,7 +73,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                                     type="number"
                                     value={data.discount_percentage}
                                     onChange={e => setData('discount_percentage', e.target.value)}
-                                    className="w-full bg-gray-50 border border-gray-100 rounded-lg pl-8 pr-3 py-2 text-sm text-gray-800 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-bold"
+                                    className="w-full bg-paper border border-linen rounded-lg pl-8 pr-3 py-2 text-sm text-ink focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-bold"
                                     placeholder="20"
                                     min="1"
                                     max="100"
@@ -93,7 +93,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                                     type="number"
                                     value={data.min_order_value}
                                     onChange={e => setData('min_order_value', e.target.value)}
-                                    className="w-full bg-gray-50 border border-gray-100 rounded-lg pl-8 pr-3 py-2 text-sm text-gray-800 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-bold"
+                                    className="w-full bg-paper border border-linen rounded-lg pl-8 pr-3 py-2 text-sm text-ink focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-bold"
                                     placeholder="0.00"
                                     min="0"
                                 />
@@ -111,24 +111,24 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                 </form>
 
                 {/* Existing Coupons List */}
-                <div className="bg-gray-50 p-4 border-t border-gray-100 max-h-[35vh] overflow-y-auto custom-scrollbar">
+                <div className="bg-paper p-4 border-t border-linen max-h-[35vh] overflow-y-auto custom-scrollbar">
                     <h4 className="text-[11px] text-umber font-black uppercase tracking-widest mb-3 flex items-center gap-2">
                         <span>📜</span> Active Coupons
                     </h4>
                     {coupons.length > 0 ? (
                         <div className="space-y-2">
                             {coupons.map((coupon) => (
-                                <div key={coupon.id} className="bg-white border border-gray-100 rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-indigo-100 transition-all">
+                                <div key={coupon.id} className="bg-white border border-linen rounded-lg p-3 flex items-center justify-between shadow-sm hover:border-indigo-100 transition-all">
                                     <div className="flex items-center gap-3">
                                         <div className={`w-2 h-2 rounded-full ${coupon.is_active ? 'bg-emerald-500' : 'bg-red-400'}`}></div>
                                         <div>
-                                            <p className="text-sm text-gray-800 font-bold font-mono uppercase leading-tight">{coupon.code}</p>
+                                            <p className="text-sm text-ink font-bold font-mono uppercase leading-tight">{coupon.code}</p>
                                             <p className="text-indigo-600 text-[10px] font-black uppercase">{parseInt(coupon.discount_percentage)}% OFF {coupon.min_order_value ? `(Min ₹${coupon.min_order_value})` : ''}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <div className="text-right mr-1">
-                                            <p className="text-xs text-gray-800 font-bold leading-tight">{coupon.usage_count}</p>
+                                            <p className="text-xs text-ink font-bold leading-tight">{coupon.usage_count}</p>
                                             <p className="text-[9px] text-umber uppercase font-bold tracking-tight">Uses</p>
                                         </div>
 

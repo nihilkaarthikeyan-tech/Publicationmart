@@ -202,7 +202,7 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
                                 value={notes}
                                 onChange={(e) => setNotes(e.target.value)}
                                 placeholder="Any specific formatting requirements, style preferences, or special instructions for our team..."
-                                className="w-full px-4 py-3 bg-paper border border-linen rounded-xl text-ink placeholder-gray-500 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none"
+                                className="w-full px-4 py-3 bg-paper border border-linen rounded-xl text-ink placeholder-taupe focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 resize-none"
                                 rows={4}
                             />
                         </div>

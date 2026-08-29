@@ -389,7 +389,7 @@ export default function AiBookStudio({ book, auth }) {
     };
 
     return (
-        <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${step === 0 ? 'bg-paper' : step >= 1 && step <= 5 ? 'bg-paper' : 'bg-gray-50'}`}>
+        <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${step === 0 ? 'bg-paper' : step >= 1 && step <= 5 ? 'bg-paper' : 'bg-paper'}`}>
             <Head title={`AI Studio - ${book.title}`} />
 
             {/* Header */}
@@ -428,7 +428,7 @@ export default function AiBookStudio({ book, auth }) {
                             disabled={s > step + 1}
                             className={`flex items-center gap-2 ${step >= s ? 'text-indigo-700 font-bold' : 'text-umber'}`}
                         >
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${step >= s ? 'border-indigo-500 bg-indigo-500/20 text-indigo-700' : 'border-gray-600 text-umber'} ${s === step + 1 ? 'cursor-pointer hover:border-indigo-400' : ''}`}>
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${step >= s ? 'border-indigo-500 bg-indigo-500/20 text-indigo-700' : 'border-linen text-umber'} ${s === step + 1 ? 'cursor-pointer hover:border-indigo-400' : ''}`}>
                                 {s}
                             </div>
                             <span className="hidden md:inline">
@@ -438,7 +438,7 @@ export default function AiBookStudio({ book, auth }) {
                                 {s === 4 && 'Write'}
                                 {s === 5 && 'Export'}
                             </span>
-                            {s < 5 && <div className="w-8 h-0.5 bg-gray-200 mx-2" />}
+                            {s < 5 && <div className="w-8 h-0.5 bg-linen mx-2" />}
                         </button>
                     ))}
                 </div>
@@ -649,7 +649,7 @@ export default function AiBookStudio({ book, auth }) {
                                                     type="text"
                                                     value={initData.title}
                                                     onChange={e => setInitData({ ...initData, title: e.target.value })}
-                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition"
+                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-taupe focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition"
                                                     placeholder="Enter book title"
                                                 />
                                             </div>
@@ -659,7 +659,7 @@ export default function AiBookStudio({ book, auth }) {
                                                     type="text"
                                                     value={initData.author_name}
                                                     onChange={e => setInitData({ ...initData, author_name: e.target.value })}
-                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition"
+                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-taupe focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition"
                                                     placeholder="Enter author name"
                                                 />
                                             </div>
@@ -709,7 +709,7 @@ export default function AiBookStudio({ book, auth }) {
                                             <textarea
                                                 value={initData.topic}
                                                 onChange={e => setInitData({ ...initData, topic: e.target.value })}
-                                                className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-gray-500 focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition h-20 resize-none"
+                                                className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-sm text-ink placeholder-taupe focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition h-20 resize-none"
                                                 placeholder={initData.genre === 'Fiction' ? "Describe the plot, characters, and setting..." : "Describe the topic, key lessons, and goals of the book..."}
                                             />
                                         </div>
@@ -887,7 +887,7 @@ export default function AiBookStudio({ book, auth }) {
                                                 <p className="text-[10px] text-ink-soft mb-2">Type your {initData.chapter_count} chapters line by line.</p>
                                                 <textarea
                                                     id="manual-chapters-input"
-                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink placeholder-gray-500 text-xs mb-3 flex-grow focus:outline-none focus:border-indigo-400 transition resize-none"
+                                                    className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink placeholder-taupe text-xs mb-3 flex-grow focus:outline-none focus:border-indigo-400 transition resize-none"
                                                     placeholder={`Chapter 1: Introduction\nChapter 2: Getting Started\n...`}
                                                     style={{ minHeight: '80px' }}
                                                 ></textarea>
@@ -1022,7 +1022,7 @@ export default function AiBookStudio({ book, auth }) {
 
                                                     <textarea
                                                         id={`manual-input-${activeChapterId}`}
-                                                        className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink placeholder-gray-500 text-xs focus:outline-none focus:border-indigo-400 transition h-24 resize-none"
+                                                        className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink placeholder-taupe text-xs focus:outline-none focus:border-indigo-400 transition h-24 resize-none"
                                                         placeholder={`1. First sub-heading\n2. Second sub-heading\n...`}
                                                     ></textarea>
 
@@ -1092,7 +1092,7 @@ export default function AiBookStudio({ book, auth }) {
                                                         {section.status === 'generated' || section.content ? (
                                                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                                                         ) : (
-                                                            <span className="w-1.5 h-1.5 rounded-full bg-gray-600 border border-gray-500"></span>
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-ink-soft border border-linen-deep"></span>
                                                         )}
                                                     </div>
                                                 </button>
@@ -1395,7 +1395,7 @@ export default function AiBookStudio({ book, auth }) {
                                             value={customImagePrompt}
                                             onChange={(e) => setCustomImagePrompt(e.target.value)}
                                             placeholder="Describe the illustration you want... (e.g., 'A serene landscape with mountains at sunset, digital art style')"
-                                            className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-ink text-sm placeholder-gray-500 focus:outline-none focus:border-cyan-400 transition resize-none h-24"
+                                            className="w-full bg-paper border border-linen rounded-lg px-3 py-2.5 text-ink text-sm placeholder-taupe focus:outline-none focus:border-cyan-400 transition resize-none h-24"
                                         />
                                         <p className="text-[10px] text-umber">
                                             Tip: Be descriptive! Include style, mood, and specific details.

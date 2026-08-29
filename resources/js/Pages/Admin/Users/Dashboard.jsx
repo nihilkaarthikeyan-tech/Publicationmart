@@ -120,7 +120,7 @@ export default function Dashboard({ auth, user, analytics, books, backUrl, backL
                                                         ? 'bg-green-500/20 text-green-700'
                                                         : book.status === 'pending'
                                                             ? 'bg-yellow-500/20 text-yellow-800'
-                                                            : 'bg-gray-500/20 text-umber'
+                                                            : 'bg-taupe/20 text-umber'
                                                         }`}>
                                                         {book.status || 'Draft'}
                                                     </span>

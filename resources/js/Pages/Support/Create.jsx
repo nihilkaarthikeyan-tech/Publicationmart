@@ -26,8 +26,8 @@ export default function SupportCreate({ auth, categories, auth_user }) {
                 {/* Header */}
                 <div className="mb-8">
                     <Link href={route('support.index')} className="text-sm text-violet-600 hover:underline">← My Tickets</Link>
-                    <h1 className="text-3xl font-bold text-gray-900 mt-3">Create Support Ticket</h1>
-                    <p className="text-gray-500 mt-1">Describe your issue and we'll get back to you within 24–48 hours.</p>
+                    <h1 className="text-3xl font-bold text-ink mt-3">Create Support Ticket</h1>
+                    <p className="text-taupe mt-1">Describe your issue and we'll get back to you within 24–48 hours.</p>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow p-8">
@@ -35,12 +35,12 @@ export default function SupportCreate({ auth, categories, auth_user }) {
 
                         {/* Name */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">Your Name</label>
+                            <label className="block text-sm font-semibold text-ink-soft mb-1">Your Name</label>
                             <input
                                 type="text"
                                 value={data.name}
                                 onChange={e => setData('name', e.target.value)}
-                                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                                className="w-full border border-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
                                 placeholder="John Doe"
                             />
                             {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -48,12 +48,12 @@ export default function SupportCreate({ auth, categories, auth_user }) {
 
                         {/* Email */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">Email Address</label>
+                            <label className="block text-sm font-semibold text-ink-soft mb-1">Email Address</label>
                             <input
                                 type="email"
                                 value={data.email}
                                 onChange={e => setData('email', e.target.value)}
-                                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                                className="w-full border border-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
                                 placeholder="you@example.com"
                             />
                             {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -61,11 +61,11 @@ export default function SupportCreate({ auth, categories, auth_user }) {
 
                         {/* Category */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">Category</label>
+                            <label className="block text-sm font-semibold text-ink-soft mb-1">Category</label>
                             <select
                                 value={data.category}
                                 onChange={e => setData('category', e.target.value)}
-                                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white"
+                                className="w-full border border-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 bg-white"
                             >
                                 {Object.entries(categories).map(([key, label]) => (
                                     <option key={key} value={key}>{label}</option>
@@ -76,12 +76,12 @@ export default function SupportCreate({ auth, categories, auth_user }) {
 
                         {/* Subject */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">Subject</label>
+                            <label className="block text-sm font-semibold text-ink-soft mb-1">Subject</label>
                             <input
                                 type="text"
                                 value={data.subject}
                                 onChange={e => setData('subject', e.target.value)}
-                                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                                className="w-full border border-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
                                 placeholder="Brief description of your issue"
                             />
                             {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
@@ -89,12 +89,12 @@ export default function SupportCreate({ auth, categories, auth_user }) {
 
                         {/* Message */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">Message</label>
+                            <label className="block text-sm font-semibold text-ink-soft mb-1">Message</label>
                             <textarea
                                 value={data.message}
                                 onChange={e => setData('message', e.target.value)}
                                 rows={6}
-                                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent resize-none"
+                                className="w-full border border-linen rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent resize-none"
                                 placeholder="Describe your issue in detail..."
                             />
                             {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
@@ -102,14 +102,14 @@ export default function SupportCreate({ auth, categories, auth_user }) {
 
                         {/* Attachment */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">
-                                Attachment <span className="font-normal text-gray-400">(optional – jpg, png, pdf, doc, max 5MB)</span>
+                            <label className="block text-sm font-semibold text-ink-soft mb-1">
+                                Attachment <span className="font-normal text-taupe">(optional – jpg, png, pdf, doc, max 5MB)</span>
                             </label>
                             <input
                                 type="file"
                                 accept=".jpg,.jpeg,.png,.pdf,.doc,.docx"
                                 onChange={e => setData('attachment', e.target.files[0])}
-                                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none text-sm text-gray-600"
+                                className="w-full border border-linen rounded-xl px-4 py-3 focus:outline-none text-sm text-umber"
                             />
                             {errors.attachment && <p className="text-red-500 text-xs mt-1">{errors.attachment}</p>}
                         </div>

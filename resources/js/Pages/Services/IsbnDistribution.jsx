@@ -164,7 +164,7 @@ export default function IsbnDistribution() {
 
                 {/* CTA */}
                 <section className="pb-24 px-6 text-center">
-                    <Link href={route('services')} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-black rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 shadow-2xl">
+                    <Link href={route('services')} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-black rounded-full hover:bg-linen transition-all hover:scale-105 active:scale-95 shadow-2xl">
                         Explore Distribution Packages
                         <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

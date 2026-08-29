@@ -3,13 +3,13 @@ import { Head, Link } from '@inertiajs/react';
 const statusColors = {
     open:        'bg-emerald-100 text-emerald-700',
     in_progress: 'bg-yellow-100 text-yellow-800',
-    closed:      'bg-gray-100 text-umber',
+    closed:      'bg-vellum text-umber',
 };
 
 const priorityColors = {
     urgent: 'bg-red-100 text-red-700',
     normal: 'bg-blue-100 text-blue-700',
-    low:    'bg-gray-100 text-umber',
+    low:    'bg-vellum text-umber',
 };
 
 export default function SupportIndex({ auth, tickets }) {
@@ -22,7 +22,7 @@ export default function SupportIndex({ auth, tickets }) {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-gray-900">Support Tickets</h1>
+                        <h1 className="text-3xl font-bold text-ink">Support Tickets</h1>
                         <p className="text-umber mt-1">Track and manage your support requests</p>
                     </div>
                     <Link
@@ -37,7 +37,7 @@ export default function SupportIndex({ auth, tickets }) {
                 {tickets.length === 0 ? (
                     <div className="bg-white rounded-2xl shadow p-12 text-center">
                         <div className="text-5xl mb-4">🎫</div>
-                        <h2 className="text-xl font-semibold text-gray-700 mb-2">No tickets yet</h2>
+                        <h2 className="text-xl font-semibold text-ink-soft mb-2">No tickets yet</h2>
                         <p className="text-umber mb-6">Need help? Submit a support ticket and our team will get back to you.</p>
                         <Link href={route('support.create')} className="px-6 py-3 bg-violet-600 text-white rounded-xl font-semibold hover:bg-violet-700 transition">
                             Create Your First Ticket
@@ -58,7 +58,7 @@ export default function SupportIndex({ auth, tickets }) {
                                             <span className="text-ink-soft">•</span>
                                             <span className="text-xs text-umber">{ticket.category_label}</span>
                                         </div>
-                                        <h3 className="font-semibold text-gray-900 truncate">{ticket.subject}</h3>
+                                        <h3 className="font-semibold text-ink truncate">{ticket.subject}</h3>
                                         <p className="text-xs text-umber mt-1">
                                             Created {ticket.created_at}
                                             {ticket.last_reply_at && <> &bull; Last reply {ticket.last_reply_at}</>}

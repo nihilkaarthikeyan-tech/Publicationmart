@@ -100,7 +100,7 @@ function ChallengeCard({ setting }) {
                             value={data.video_url}
                             onChange={(e) => setData('video_url', e.target.value)}
                             placeholder="https://www.youtube.com/watch?v=..."
-                            className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink text-sm placeholder-gray-600 focus:border-indigo-500 focus:outline-none"
+                            className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink text-sm placeholder-taupe focus:border-indigo-500 focus:outline-none"
                         />
                         {errors.video_url && <p className="text-red-700 text-xs mt-1">{errors.video_url}</p>}
                         <p className="text-umber text-xs mt-1.5">A normal YouTube link works — it is converted to an embed automatically.</p>

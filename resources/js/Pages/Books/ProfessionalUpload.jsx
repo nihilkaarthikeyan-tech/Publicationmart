@@ -161,7 +161,7 @@ export default function ProfessionalUpload({ serviceRequest }) {
                                     value={notes}
                                     onChange={(e) => setNotes(e.target.value)}
                                     placeholder="Any specific formatting preferences, font choices, or special requirements..."
-                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-gray-500 focus:outline-none focus:border-indigo-400 transition resize-none h-24"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-taupe focus:outline-none focus:border-indigo-400 transition resize-none h-24"
                                 />
                             </div>
 

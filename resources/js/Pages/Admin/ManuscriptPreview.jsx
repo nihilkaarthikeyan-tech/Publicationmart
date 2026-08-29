@@ -11,7 +11,7 @@ export default function ManuscriptPreview({ book, formattingData, interiorFile, 
             <>
                 <Head title={`Preview: ${book.title}`} />
                 <div className="min-h-screen bg-paper flex items-center justify-center p-6">
-                    <div className="bg-paper p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border border-slate-700">
+                    <div className="bg-paper p-8 rounded-2xl shadow-2xl max-w-md w-full text-center border border-linen">
                         <div className="w-20 h-20 bg-indigo-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-indigo-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

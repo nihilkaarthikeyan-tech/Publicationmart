@@ -3,13 +3,13 @@ import { Head, Link, useForm, router } from '@inertiajs/react';
 const statusColors = {
     open:        'bg-emerald-900/30 text-emerald-700',
     in_progress: 'bg-yellow-900/30 text-yellow-800',
-    closed:      'bg-gray-100 text-umber',
+    closed:      'bg-vellum text-umber',
 };
 
 const priorityColors = {
     urgent: 'bg-red-900/30 text-red-700',
     normal: 'bg-blue-900/30 text-blue-700',
-    low:    'bg-gray-100 text-umber',
+    low:    'bg-vellum text-umber',
 };
 
 export default function AdminSupportShow({ auth, ticket, statuses, priorities }) {
@@ -83,7 +83,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
                         {/* Original Message */}
                         <div className="bg-vellum backdrop-blur rounded-2xl p-5">
                             <div className="flex items-center gap-2 mb-3">
-                                <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center text-ink font-bold text-sm">
+                                <div className="w-8 h-8 rounded-full bg-ink-soft flex items-center justify-center text-ink font-bold text-sm">
                                     {ticket.name.charAt(0).toUpperCase()}
                                 </div>
                                 <div>
@@ -103,7 +103,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
                         {ticket.replies.map(reply => (
                             <div key={reply.id} className={`rounded-2xl p-5 ${reply.is_admin ? 'bg-violet-100 border border-linen' : 'bg-vellum backdrop-blur'}`}>
                                 <div className="flex items-center gap-2 mb-3">
-                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-paper' : 'bg-gray-600 text-ink'}`}>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-paper' : 'bg-ink-soft text-ink'}`}>
                                         {reply.is_admin ? '🛡' : reply.author_name.charAt(0).toUpperCase()}
                                     </div>
                                     <div>
@@ -129,7 +129,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
                                     value={replyForm.data.message}
                                     onChange={e => replyForm.setData('message', e.target.value)}
                                     rows={5}
-                                    className="w-full bg-vellum border border-linen rounded-xl px-4 py-3 text-ink placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none"
+                                    className="w-full bg-vellum border border-linen rounded-xl px-4 py-3 text-ink placeholder-taupe text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 resize-none"
                                     placeholder="Type your reply to the user..."
                                 />
                                 {replyForm.errors.message && <p className="text-red-700 text-xs">{replyForm.errors.message}</p>}
@@ -187,7 +187,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
                                         value={statusForm.data.admin_notes}
                                         onChange={e => statusForm.setData('admin_notes', e.target.value)}
                                         rows={3}
-                                        className="w-full bg-vellum border border-linen rounded-xl px-4 py-2.5 text-ink placeholder-gray-400 text-sm focus:outline-none resize-none"
+                                        className="w-full bg-vellum border border-linen rounded-xl px-4 py-2.5 text-ink placeholder-taupe text-sm focus:outline-none resize-none"
                                         placeholder="Internal notes (not visible to user)..."
                                     />
                                 </div>

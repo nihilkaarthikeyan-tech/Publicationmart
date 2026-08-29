@@ -4,13 +4,13 @@ import { useState } from 'react';
 const statusColors = {
     open:        'bg-emerald-900/30 text-emerald-700',
     in_progress: 'bg-yellow-900/30 text-yellow-800',
-    closed:      'bg-gray-100 text-umber',
+    closed:      'bg-vellum text-umber',
 };
 
 const priorityColors = {
     urgent: 'bg-red-900/30 text-red-700',
     normal: 'bg-blue-900/30 text-blue-700',
-    low:    'bg-gray-100 text-umber',
+    low:    'bg-vellum text-umber',
 };
 
 export default function AdminSupportIndex({ auth, tickets, stats, categories, filters }) {
@@ -68,7 +68,7 @@ export default function AdminSupportIndex({ auth, tickets, stats, categories, fi
                         value={search}
                         onChange={e => setSearch(e.target.value)}
                         placeholder="Search ticket, name, email..."
-                        className="bg-vellum border border-linen rounded-xl px-4 py-2 text-ink placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 flex-1 min-w-[200px]"
+                        className="bg-vellum border border-linen rounded-xl px-4 py-2 text-ink placeholder-taupe text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 flex-1 min-w-[200px]"
                         onKeyDown={e => e.key === 'Enter' && applyFilters()}
                     />
                     <select value={status} onChange={e => setStatus(e.target.value)} className="bg-vellum border border-linen rounded-xl px-4 py-2 text-ink text-sm focus:outline-none">

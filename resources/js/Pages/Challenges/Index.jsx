@@ -515,7 +515,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                     type="text"
                                     value={data.full_name}
                                     onChange={e => setData('full_name', e.target.value)}
-                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-taupe backdrop-blur-sm"
                                     placeholder="Enter your full name"
                                 />
                                 {errors.full_name && <div className="text-red-500 text-xs mt-1">{errors.full_name}</div>}
@@ -526,7 +526,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                     type="email"
                                     value={data.email}
                                     onChange={e => setData('email', e.target.value)}
-                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-taupe backdrop-blur-sm"
                                     placeholder="your@email.com"
                                 />
                                 {errors.email && <div className="text-red-500 text-xs mt-1">{errors.email}</div>}
@@ -540,7 +540,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                     type="text"
                                     value={data.mobile_number}
                                     onChange={e => setData('mobile_number', e.target.value)}
-                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-taupe backdrop-blur-sm"
                                     placeholder="+91 00000 00000"
                                 />
                                 {errors.mobile_number && <div className="text-red-500 text-xs mt-1">{errors.mobile_number}</div>}
@@ -551,7 +551,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                     type="text"
                                     value={data.city}
                                     onChange={e => setData('city', e.target.value)}
-                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm"
+                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-taupe backdrop-blur-sm"
                                     placeholder="Enter your city"
                                 />
                                 {errors.city && <div className="text-red-500 text-xs mt-1">{errors.city}</div>}
@@ -568,7 +568,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                             type="text"
                                             value={couponInput}
                                             onChange={e => setCouponInput(e.target.value.toUpperCase())}
-                                            className="flex-1 bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-gray-500 backdrop-blur-sm uppercase tracking-wider text-sm font-mono"
+                                            className="flex-1 bg-paper border border-linen rounded-xl px-4 py-3 text-ink focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition placeholder-taupe backdrop-blur-sm uppercase tracking-wider text-sm font-mono"
                                             placeholder="ENTER CODE"
                                             maxLength={20}
                                         />

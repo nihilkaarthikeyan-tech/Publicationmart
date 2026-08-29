@@ -55,7 +55,7 @@ export default function Index({ auth, books }) {
                                 placeholder="Search your books by title or author name..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-gray-500 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all outline-none"
+                                className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-taupe focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all outline-none"
                             />
                         </div>
                     </div>

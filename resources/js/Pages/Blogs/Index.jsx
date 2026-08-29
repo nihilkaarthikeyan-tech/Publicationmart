@@ -70,7 +70,7 @@ export default function Index({ blogs }) {
                                 placeholder="Search by title or topic..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full bg-transparent border-none text-ink placeholder-gray-500 focus:ring-0 pl-11 py-3"
+                                className="w-full bg-transparent border-none text-ink placeholder-taupe focus:ring-0 pl-11 py-3"
                             />
                         </div>
 

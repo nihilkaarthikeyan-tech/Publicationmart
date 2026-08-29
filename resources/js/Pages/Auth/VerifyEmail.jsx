@@ -31,7 +31,7 @@ export default function VerifyEmail({ status }) {
                 </div>
 
                 {/* Main Card */}
-                <div className="bg-paper border border-gray-800 rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
+                <div className="bg-paper border border-linen rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
                     <div className="text-umber text-sm leading-relaxed mb-6">
                         <p>
                             Thanks for signing up! Before getting started, could you verify
@@ -79,7 +79,7 @@ export default function VerifyEmail({ status }) {
                                 href={route('logout')}
                                 method="post"
                                 as="button"
-                                className="w-full py-3 text-sm font-semibold text-umber hover:text-ink-soft transition-colors border border-gray-800 hover:border-gray-700 rounded-xl hover:bg-paper"
+                                className="w-full py-3 text-sm font-semibold text-umber hover:text-ink-soft transition-colors border border-linen hover:border-linen rounded-xl hover:bg-paper"
                             >
                                 Log Out
                             </Link>

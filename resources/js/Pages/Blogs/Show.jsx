@@ -97,7 +97,7 @@ export default function Show({ blog }) {
                     <div className="absolute top-0 right-0 hidden md:block">
                         <button
                             onClick={() => setIsShareOpen(true)}
-                            className="flex items-center gap-2 px-4 py-2 bg-gray-50 backdrop-blur-md border border-gray-700/50 hover:border-taupe rounded-full text-ink-soft hover:text-ink transition-all group"
+                            className="flex items-center gap-2 px-4 py-2 bg-paper backdrop-blur-md border border-linen hover:border-taupe rounded-full text-ink-soft hover:text-ink transition-all group"
                         >
                             <Share2 className="w-4 h-4 text-purple-500 group-hover:scale-110 transition-transform" />
                             <span className="text-xs font-semibold uppercase tracking-wide">Share Studio</span>
@@ -159,7 +159,7 @@ export default function Show({ blog }) {
 
                 {/* Featured Image */}
                 <div className="max-w-5xl mx-auto px-6 mb-16">
-                    <div className="rounded-3xl overflow-hidden aspect-[21/9] border border-gray-800 shadow-2xl shadow-purple-900/10">
+                    <div className="rounded-3xl overflow-hidden aspect-[21/9] border border-linen shadow-2xl shadow-purple-900/10">
                         <img
                             src={blog.image_path ? `/storage/${blog.image_path}` : (blog.image_url || 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=2070')}
                             alt={blog.title}
@@ -174,7 +174,7 @@ export default function Show({ blog }) {
                 </article>
 
                 {/* Back Button */}
-                <div className="max-w-3xl mx-auto px-6 mt-20 pt-10 border-t border-gray-800 flex justify-between items-center">
+                <div className="max-w-3xl mx-auto px-6 mt-20 pt-10 border-t border-linen flex justify-between items-center">
                     <Link href={route('blogs.index')} className="text-umber hover:text-ink font-bold flex items-center gap-2 transition-colors">
                         ← Back to Book Studio
                     </Link>
@@ -189,7 +189,7 @@ export default function Show({ blog }) {
                 isShareOpen && (
                     <div className="fixed inset-0 z-[60] flex items-center justify-center px-4">
                         <div className="absolute inset-0 bg-paper backdrop-blur-sm" onClick={() => setIsShareOpen(false)}></div>
-                        <div className="relative bg-paper border border-gray-700 p-8 rounded-2xl shadow-2xl w-full max-w-sm animate-in fade-in zoom-in duration-200">
+                        <div className="relative bg-paper border border-linen p-8 rounded-2xl shadow-2xl w-full max-w-sm animate-in fade-in zoom-in duration-200">
                             <button onClick={() => setIsShareOpen(false)} className="absolute top-4 right-4 text-umber hover:text-ink">
                                 <X className="w-5 h-5" />
                             </button>
@@ -241,7 +241,7 @@ export default function Show({ blog }) {
                                     href={`mailto:?subject=${encodeURIComponent(blog.title)}&body=${encodeURIComponent('Check this out: ' + shareUrl)}`}
                                     className="flex flex-col items-center gap-2 group"
                                 >
-                                    <div className="w-12 h-12 rounded-full bg-gray-500/10 border border-gray-500/20 flex items-center justify-center group-hover:bg-gray-500 group-hover:text-black transition-all text-umber">
+                                    <div className="w-12 h-12 rounded-full bg-taupe/10 border border-taupe/20 flex items-center justify-center group-hover:bg-taupe group-hover:text-black transition-all text-umber">
                                         <Mail className="w-5 h-5" />
                                     </div>
                                     <span className="text-xs text-umber group-hover:text-ink">Email</span>
@@ -249,7 +249,7 @@ export default function Show({ blog }) {
                             </div>
 
                             {/* Copy Link */}
-                            <div className="flex items-center gap-2 bg-parchment border border-gray-700 rounded-lg p-2 pl-3">
+                            <div className="flex items-center gap-2 bg-parchment border border-linen rounded-lg p-2 pl-3">
                                 <input
                                     type="text"
                                     readOnly
@@ -273,7 +273,7 @@ export default function Show({ blog }) {
                 isBookingOpen && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
                         <div className="absolute inset-0 bg-paper backdrop-blur-sm" onClick={() => setIsBookingOpen(false)}></div>
-                        <div className="relative bg-paper border border-gray-700 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-in fade-in zoom-in duration-200">
+                        <div className="relative bg-paper border border-linen p-8 rounded-2xl shadow-2xl w-full max-w-md animate-in fade-in zoom-in duration-200">
                             <button onClick={() => setIsBookingOpen(false)} className="absolute top-4 right-4 text-umber hover:text-ink">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
                             </button>
@@ -289,7 +289,7 @@ export default function Show({ blog }) {
                                         min="1"
                                         value={data.copies_count}
                                         onChange={e => setData('copies_count', e.target.value)}
-                                        className="w-full bg-parchment border border-gray-600 rounded-lg px-4 py-3 text-ink focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none"
+                                        className="w-full bg-parchment border border-linen rounded-lg px-4 py-3 text-ink focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none"
                                     />
                                     {errors.copies_count && <div className="text-red-500 text-xs mt-1">{errors.copies_count}</div>}
                                 </div>
@@ -300,14 +300,14 @@ export default function Show({ blog }) {
                                         type="email"
                                         value={data.email}
                                         onChange={e => setData('email', e.target.value)}
-                                        className="w-full bg-parchment border border-gray-600 rounded-lg px-4 py-3 text-ink focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none"
+                                        className="w-full bg-parchment border border-linen rounded-lg px-4 py-3 text-ink focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none"
                                         placeholder="your@email.com"
                                     />
                                     {errors.email && <div className="text-red-500 text-xs mt-1">{errors.email}</div>}
                                 </div>
 
                                 {!otpSent && (
-                                    <div className="bg-gray-100 p-4 rounded-xl border border-gray-700/50">
+                                    <div className="bg-vellum p-4 rounded-xl border border-linen">
                                         <label className="block text-xs font-bold text-umber uppercase tracking-widest mb-2">
                                             Prove you are human: <span className="text-ink text-lg ml-2">{captchaQuestion}</span>
                                         </label>
@@ -316,7 +316,7 @@ export default function Show({ blog }) {
                                                 type="number"
                                                 value={captchaInput}
                                                 onChange={e => setCaptchaInput(e.target.value)}
-                                                className="w-full bg-parchment border border-gray-600 rounded-lg px-4 py-2 text-ink focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none"
+                                                className="w-full bg-parchment border border-linen rounded-lg px-4 py-2 text-ink focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none"
                                                 placeholder="Answer"
                                             />
                                             <button
@@ -357,7 +357,7 @@ export default function Show({ blog }) {
                                         type="tel"
                                         value={data.mobile_number}
                                         onChange={e => setData('mobile_number', e.target.value)}
-                                        className="w-full bg-parchment border border-gray-600 rounded-lg px-4 py-3 text-ink focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none"
+                                        className="w-full bg-parchment border border-linen rounded-lg px-4 py-3 text-ink focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 outline-none"
                                         placeholder="+1 234 567 8900"
                                     />
                                     {errors.mobile_number && <div className="text-red-500 text-xs mt-1">{errors.mobile_number}</div>}

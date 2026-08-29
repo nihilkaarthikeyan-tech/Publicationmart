@@ -6,7 +6,7 @@ export default function PublishingInquiries({ inquiries, filters }) {
     const [statusForm, setStatusForm] = useState({ id: null, status: '', admin_notes: '' });
 
     const planColors = {
-        silver: 'bg-gray-500/20 text-ink-soft',
+        silver: 'bg-taupe/20 text-ink-soft',
         gold: 'bg-yellow-500/20 text-yellow-800',
         diamond: 'bg-cyan-500/20 text-cyan-700',
         platinum: 'bg-indigo-500/20 text-indigo-700',
@@ -104,7 +104,7 @@ export default function PublishingInquiries({ inquiries, filters }) {
                                 defaultValue={filters.search}
                                 onKeyDown={handleSearch}
                                 placeholder="Search name, email, phone, title..."
-                                className="w-full bg-paper border border-linen rounded-xl px-4 py-2.5 text-ink text-sm placeholder-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none"
+                                className="w-full bg-paper border border-linen rounded-xl px-4 py-2.5 text-ink text-sm placeholder-taupe focus:border-purple-500 focus:ring-1 focus:ring-purple-500 outline-none"
                             />
                         </div>
 
@@ -207,7 +207,7 @@ export default function PublishingInquiries({ inquiries, filters }) {
                                                                 onChange={e => setStatusForm({ ...statusForm, admin_notes: e.target.value })}
                                                                 placeholder="Admin notes..."
                                                                 rows={2}
-                                                                className="w-full bg-paper border border-linen rounded-lg px-3 py-1.5 text-ink text-xs placeholder-gray-600 focus:border-purple-500 outline-none resize-none"
+                                                                className="w-full bg-paper border border-linen rounded-lg px-3 py-1.5 text-ink text-xs placeholder-taupe focus:border-purple-500 outline-none resize-none"
                                                             />
                                                             <div className="flex gap-2">
                                                                 <button

@@ -41,7 +41,7 @@ export default function CouponIndex({ auth, coupons }) {
                         {/* Summary / Stats could go here */}
 
                         {/* Main List (if not using modal list as main view) */}
-                        <div className="bg-slate-100 backdrop-blur border border-linen rounded-2xl overflow-hidden">
+                        <div className="bg-vellum backdrop-blur border border-linen rounded-2xl overflow-hidden">
                             <div className="p-6">
                                 <h3 className="text-lg font-bold text-ink mb-4">Active Campaign Codes</h3>
                                 {coupons.length === 0 ? (

@@ -353,7 +353,7 @@ export default function Review({ auth, book }) {
                             <p className="text-umber mb-6 leading-relaxed">
                                 Your book details have been successfully submitted to the admin for approval. You can track the status in your dashboard.
                             </p>
-                            <div className="w-full bg-gray-200 rounded-full h-3 mb-3 overflow-hidden">
+                            <div className="w-full bg-linen rounded-full h-3 mb-3 overflow-hidden">
                                 <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-3 rounded-full animate-pulse" style={{ width: '100%' }}></div>
                             </div>
                             <p className="text-sm text-umber font-medium">Redirecting to dashboard...</p>

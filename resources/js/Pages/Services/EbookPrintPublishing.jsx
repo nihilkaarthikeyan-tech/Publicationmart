@@ -136,7 +136,7 @@ export default function EbookPrintPublishing() {
 
                 {/* CTA */}
                 <section className="pb-24 px-6 text-center">
-                    <Link href={route('services')} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-black rounded-full hover:bg-gray-200 transition-all hover:scale-105">
+                    <Link href={route('services')} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-black font-black rounded-full hover:bg-linen transition-all hover:scale-105">
                         Start Your Publishing Journey
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3" />

@@ -35,13 +35,13 @@ export default function CertificatesIndex({ auth, certificates }) {
         <>
             <Head title="Manage Certificates" />
 
-            <div className="min-h-screen bg-gray-100 dark:bg-paper py-12">
+            <div className="min-h-screen bg-vellum dark:bg-paper py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
                     {/* Header Action */}
                     <div className="flex justify-between items-center mb-6">
                         <div>
-                            <h2 className="font-semibold text-2xl text-gray-800 dark:text-ink-soft leading-tight">Certificate Manager</h2>
+                            <h2 className="font-semibold text-2xl text-ink dark:text-ink-soft leading-tight">Certificate Manager</h2>
                             <div className="text-umber dark:text-umber mt-1">
                                 Issue certificates to users before they even sign up.
                             </div>
@@ -57,7 +57,7 @@ export default function CertificatesIndex({ auth, certificates }) {
                     {/* Issue Form */}
                     {showForm && (
                         <div className="bg-white dark:bg-paper p-6 rounded-lg shadow-lg border border-indigo-500/30 animate-in fade-in slide-in-from-top-4">
-                            <h3 className="text-lg font-bold text-gray-900 dark:text-ink mb-4">Issue Digital Certificate</h3>
+                            <h3 className="text-lg font-bold text-ink dark:text-ink mb-4">Issue Digital Certificate</h3>
                             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <InputLabel value="Recipient Email (Key Anchor)" />
@@ -102,7 +102,7 @@ export default function CertificatesIndex({ auth, certificates }) {
                                     <InputLabel value="Upload Certificate (PDF/Image)" />
                                     <input
                                         type="file"
-                                        className="w-full mt-1 text-umber file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 dark:file:bg-gray-700 dark:file:text-ink-soft"
+                                        className="w-full mt-1 text-umber file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 dark:file:bg-ink-soft dark:file:text-ink-soft"
                                         onChange={e => setData('file', e.target.files[0])}
                                     />
                                     <InputError message={errors.file} className="mt-2" />
@@ -120,13 +120,13 @@ export default function CertificatesIndex({ auth, certificates }) {
                     {/* Certificates List */}
                     <div className="bg-white dark:bg-paper overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6">
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-ink-soft mb-4">Issued Certificates</h3>
+                            <h3 className="text-lg font-semibold text-ink dark:text-ink-soft mb-4">Issued Certificates</h3>
 
                             {certificates.length === 0 ? (
                                 <p className="text-umber text-center py-10">No certificates issued yet.</p>
                             ) : (
                                 <div className="overflow-x-auto">
-                                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                    <table className="min-w-full divide-y divide-linen dark:divide-linen">
                                         <thead className="bg-vellum">
                                             <tr>
                                                 <th className="px-6 py-3 text-left text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Recipient</th>
@@ -136,11 +136,11 @@ export default function CertificatesIndex({ auth, certificates }) {
                                                 <th className="px-6 py-3 text-right text-xs font-medium text-umber dark:text-ink-soft uppercase tracking-wider">Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody className="bg-white dark:bg-paper divide-y divide-gray-200 dark:divide-gray-700">
+                                        <tbody className="bg-white dark:bg-paper divide-y divide-linen dark:divide-linen">
                                             {certificates.map((cert) => (
-                                                <tr key={cert.id} className="hover:bg-gray-50 dark:hover:bg-gray-100 transition">
+                                                <tr key={cert.id} className="hover:bg-paper dark:hover:bg-vellum transition">
                                                     <td className="px-6 py-4 whitespace-nowrap">
-                                                        <div className="text-sm font-medium text-gray-900 dark:text-ink">{cert.recipient_name}</div>
+                                                        <div className="text-sm font-medium text-ink dark:text-ink">{cert.recipient_name}</div>
                                                         <div className="text-sm text-umber">{cert.email}</div>
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap">

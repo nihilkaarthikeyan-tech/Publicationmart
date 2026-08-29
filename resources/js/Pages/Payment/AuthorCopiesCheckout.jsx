@@ -106,15 +106,15 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
     const isTestDomain = window.location.hostname.includes('radinfotec') || window.location.hostname === 'localhost';
 
     return (
-        <div className="min-h-screen bg-slate-50 font-sans selection:bg-blue-100 selection:text-blue-900">
+        <div className="min-h-screen bg-paper font-sans selection:bg-blue-100 selection:text-blue-900">
             <Head title="Order Summary — PublicationMart" />
 
             {/* Header */}
-            <header className="bg-white/80 backdrop-blur-xl border-b border-slate-200 sticky top-0 z-50">
+            <header className="bg-white/80 backdrop-blur-xl border-b border-linen sticky top-0 z-50">
                 <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
                     <Link
                         href={route('books.details', book.id)}
-                        className="flex items-center gap-2 text-umber hover:text-slate-800 transition-colors group"
+                        className="flex items-center gap-2 text-umber hover:text-ink transition-colors group"
                     >
                         <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                         <span className="font-medium text-sm">Back to Details</span>
@@ -130,7 +130,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
             <main className="relative z-10 max-w-5xl mx-auto px-6 py-12">
                 {/* Page Title */}
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl font-black text-slate-900 mb-2 tracking-tight">Order Summary</h1>
+                    <h1 className="text-4xl font-black text-ink mb-2 tracking-tight">Order Summary</h1>
                     <p className="text-umber text-sm">Review everything before you publish</p>
                 </div>
 
@@ -140,12 +140,12 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                     <div className="lg:col-span-3 space-y-6">
 
                         {/* Book Card */}
-                        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                        <div className="bg-white rounded-2xl border border-linen shadow-sm overflow-hidden">
                             <div className="p-6">
                                 <div className="flex gap-6">
                                     {/* Cover Image */}
                                     <div className="w-28 flex-shrink-0">
-                                        <div className="aspect-[2/3] rounded-lg overflow-hidden bg-slate-100 border border-slate-100 shadow-lg shadow-black/5">
+                                        <div className="aspect-[2/3] rounded-lg overflow-hidden bg-vellum border border-linen shadow-lg shadow-black/5">
                                             {coverUrl ? (
                                                 <img src={coverUrl} alt="Book Cover" className="w-full h-full object-cover object-right" />
                                             ) : (
@@ -162,15 +162,15 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                             <span className="px-2 py-0.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[9px] font-bold uppercase tracking-wider">{book.genre || 'General'}</span>
                                             {book.language && <span className="px-2 py-0.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-[9px] font-bold uppercase tracking-wider">{book.language}</span>}
                                         </div>
-                                        <h2 className="text-xl font-bold text-slate-900 mb-0.5 truncate">{book.title || 'Untitled'}</h2>
+                                        <h2 className="text-xl font-bold text-ink mb-0.5 truncate">{book.title || 'Untitled'}</h2>
                                         {book.subtitle && <p className="text-umber text-sm mb-2 truncate">{book.subtitle}</p>}
-                                        <p className="text-umber text-sm">by <span className="text-slate-800 font-medium">{book.author_name}</span></p>
+                                        <p className="text-umber text-sm">by <span className="text-ink font-medium">{book.author_name}</span></p>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Specs Grid */}
-                            <div className="border-t border-slate-100 grid grid-cols-4 divide-x divide-slate-100">
+                            <div className="border-t border-linen grid grid-cols-4 divide-x divide-linen">
                                 {[
                                     { label: 'Format', value: book.book_size || '6x9' },
                                     { label: 'Pages', value: book.num_pages || '—' },
@@ -179,15 +179,15 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                 ].map((spec, i) => (
                                     <div key={i} className="p-3 text-center">
                                         <div className="text-umber text-[9px] uppercase font-bold tracking-wider mb-0.5">{spec.label}</div>
-                                        <div className="text-slate-700 font-semibold text-xs truncate">{spec.value}</div>
+                                        <div className="text-ink-soft font-semibold text-xs truncate">{spec.value}</div>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
                         {/* Pricing Breakdown */}
-                        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-                            <h3 className="text-sm font-bold text-slate-800 mb-5 flex items-center gap-2">
+                        <div className="bg-white rounded-2xl border border-linen shadow-sm p-6">
+                            <h3 className="text-sm font-bold text-ink mb-5 flex items-center gap-2">
                                 <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                                 Pricing Breakdown
                             </h3>
@@ -198,23 +198,23 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                         <span className="text-umber text-sm">Cost per Copy</span>
                                         <span className="text-umber text-xs ml-1">(Author Price)</span>
                                     </div>
-                                    <span className="text-slate-900 font-semibold">₹{costs.per_copy.toFixed(2)}</span>
+                                    <span className="text-ink font-semibold">₹{costs.per_copy.toFixed(2)}</span>
                                 </div>
 
                                 {/* Quantity */}
                                 <div className="flex justify-between items-center py-2">
                                     <span className="text-umber text-sm">Author Copies</span>
-                                    <span className="text-slate-900 font-semibold">× {copies}</span>
+                                    <span className="text-ink font-semibold">× {copies}</span>
                                 </div>
 
                                 {/* Copies Subtotal */}
                                 <div className="flex justify-between items-center py-2">
                                     <span className="text-umber text-sm">Copies Subtotal</span>
-                                    <span className="text-slate-900 font-semibold">₹{(costs.per_copy * copies).toFixed(2)}</span>
+                                    <span className="text-ink font-semibold">₹{(costs.per_copy * copies).toFixed(2)}</span>
                                 </div>
 
                                 {/* Divider */}
-                                <div className="border-t border-slate-100"></div>
+                                <div className="border-t border-linen"></div>
 
                                 {/* Publishing Package Fee */}
                                 {costs.publishing_fee > 0 && (
@@ -229,7 +229,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
 
                                 {/* What's included in publishing fee */}
                                 {costs.publishing_fee > 0 && (
-                                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                                    <div className="bg-paper rounded-xl p-4 border border-linen">
                                         <p className="text-[10px] text-umber font-bold uppercase tracking-wider mb-3">Publishing Package Includes</p>
                                         <div className="grid grid-cols-2 gap-2">
                                             {[
@@ -252,7 +252,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                 )}
 
                                 {/* Coupon Section */}
-                                <div className="py-4 border-t border-slate-100">
+                                <div className="py-4 border-t border-linen">
                                     <div className="flex items-center justify-between mb-3">
                                         <h4 className="text-[10px] font-bold text-umber uppercase tracking-widest">Publishing Fee Coupon</h4>
                                     </div>
@@ -264,7 +264,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                                     value={couponCode}
                                                     onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
                                                     placeholder="Enter code"
-                                                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 focus:ring-2 focus:ring-blue-500/50 outline-none uppercase font-medium placeholder:normal-case"
+                                                    className="w-full bg-paper border border-linen rounded-xl px-4 py-2.5 text-sm text-ink focus:ring-2 focus:ring-blue-500/50 outline-none uppercase font-medium placeholder:normal-case"
                                                 />
                                                 <div className="absolute right-3 top-1/2 -translate-y-1/2">
                                                     <svg className="w-4 h-4 text-ink-soft" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
@@ -314,7 +314,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                 </div>
 
                                 {/* Divider */}
-                                <div className="border-t border-slate-100"></div>
+                                <div className="border-t border-linen"></div>
 
                                 {/* Discount Display */}
                                 {discountAmount > 0 && (
@@ -326,9 +326,9 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
 
                                 {/* Total */}
                                 <div className="flex justify-between items-center py-3">
-                                    <span className="text-lg font-bold text-slate-900">Total Amount</span>
+                                    <span className="text-lg font-bold text-ink">Total Amount</span>
                                     <div className="text-right">
-                                        <span className="text-3xl font-black text-slate-900 block">
+                                        <span className="text-3xl font-black text-ink block">
                                             ₹{(costs.total - discountAmount).toFixed(2)}
                                         </span>
                                         {discountAmount > 0 && (
@@ -340,8 +340,8 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                         </div>
 
                         {/* Dispatch Address Form */}
-                        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-                            <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+                        <div className="bg-white rounded-2xl border border-linen shadow-sm p-6">
+                            <h3 className="text-sm font-bold text-ink mb-4 flex items-center gap-2">
                                 <svg className="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                 Dispatch Address
                             </h3>
@@ -350,7 +350,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                     <label className="block text-xs font-semibold text-umber mb-1.5 uppercase tracking-wider">Street Address</label>
                                     <textarea
                                         rows="3"
-                                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-slate-400"
+                                        className="w-full px-4 py-3 bg-white border border-linen rounded-xl text-ink text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-taupe"
                                         value={data.shipping_address}
                                         onChange={e => setData('shipping_address', e.target.value)}
                                         placeholder="Flat/House No, Street, Landmark"
@@ -362,7 +362,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                     <label className="block text-xs font-semibold text-umber mb-1.5 uppercase tracking-wider">City</label>
                                     <input
                                         type="text"
-                                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-slate-400"
+                                        className="w-full px-4 py-3 bg-white border border-linen rounded-xl text-ink text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-taupe"
                                         value={data.city}
                                         onChange={e => setData('city', e.target.value)}
                                         placeholder="City"
@@ -374,7 +374,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                     <label className="block text-xs font-semibold text-umber mb-1.5 uppercase tracking-wider">State</label>
                                     <input
                                         type="text"
-                                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-slate-400"
+                                        className="w-full px-4 py-3 bg-white border border-linen rounded-xl text-ink text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-taupe"
                                         value={data.state}
                                         onChange={e => setData('state', e.target.value)}
                                         placeholder="State"
@@ -386,7 +386,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                     <label className="block text-xs font-semibold text-umber mb-1.5 uppercase tracking-wider">Pincode</label>
                                     <input
                                         type="text"
-                                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-slate-400"
+                                        className="w-full px-4 py-3 bg-white border border-linen rounded-xl text-ink text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-taupe"
                                         value={data.pincode}
                                         onChange={e => setData('pincode', e.target.value)}
                                         placeholder="e.g. 110001"
@@ -398,7 +398,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                     <label className="block text-xs font-semibold text-umber mb-1.5 uppercase tracking-wider">Contact Number</label>
                                     <input
                                         type="tel"
-                                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-slate-400"
+                                        className="w-full px-4 py-3 bg-white border border-linen rounded-xl text-ink text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-taupe"
                                         value={data.contact_number}
                                         onChange={e => setData('contact_number', e.target.value)}
                                         placeholder="+91..."
@@ -411,17 +411,17 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
 
                         {/* Selling Price & Royalty Info */}
                         {book.selling_price > 0 && (
-                            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
-                                <h3 className="text-sm font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <div className="bg-white rounded-2xl border border-linen shadow-sm p-6">
+                                <h3 className="text-sm font-bold text-ink mb-4 flex items-center gap-2">
                                     <svg className="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                     Your Book Pricing
                                 </h3>
                                 <div className="grid grid-cols-3 gap-3">
-                                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-center">
+                                    <div className="bg-paper rounded-xl p-4 border border-linen text-center">
                                         <div className="text-umber text-[9px] uppercase font-bold tracking-wider mb-1">Selling Price</div>
-                                        <div className="text-slate-900 font-bold text-lg">₹{book.selling_price}</div>
+                                        <div className="text-ink font-bold text-lg">₹{book.selling_price}</div>
                                     </div>
-                                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-center">
+                                    <div className="bg-paper rounded-xl p-4 border border-linen text-center">
                                         <div className="text-umber text-[9px] uppercase font-bold tracking-wider mb-1">Author Cost (Minimum Price)</div>
                                         <div className="text-orange-600 font-bold text-lg">₹{costs.per_copy.toFixed(2)}</div>
                                     </div>
@@ -436,8 +436,8 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
 
                     {/* RIGHT COLUMN — Payment Form (2/5 width) */}
                     <div className="lg:col-span-2">
-                        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sticky top-20">
-                            <h3 className="text-sm font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <div className="bg-white rounded-2xl border border-linen shadow-sm p-6 sticky top-20">
+                            <h3 className="text-sm font-bold text-ink mb-6 flex items-center gap-2">
                                 <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>
                                 Payment
                             </h3>
@@ -456,7 +456,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                             {/* Payment Methods Visual */}
                             <div className="flex flex-wrap justify-center gap-2 mb-6">
                                 {['UPI', 'Visa', 'MasterCard', 'RuPay', 'Net Banking'].map(m => (
-                                    <span key={m} className="text-umber text-[10px] border border-slate-200 px-2 py-1 rounded-md font-medium">{m}</span>
+                                    <span key={m} className="text-umber text-[10px] border border-linen px-2 py-1 rounded-md font-medium">{m}</span>
                                 ))}
                             </div>
 
@@ -466,7 +466,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                     <label className="block text-xs font-semibold text-umber mb-1.5 uppercase tracking-wider">Billing Name</label>
                                     <input
                                         type="text"
-                                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-slate-400"
+                                        className="w-full px-4 py-3 bg-white border border-linen rounded-xl text-ink text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-taupe"
                                         value={data.billing_name}
                                         onChange={e => setData('billing_name', e.target.value)}
                                         placeholder="Full name for invoice"
@@ -479,7 +479,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                     <label className="block text-xs font-semibold text-umber mb-1.5 uppercase tracking-wider">Email Address</label>
                                     <input
                                         type="email"
-                                        className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-slate-400"
+                                        className="w-full px-4 py-3 bg-white border border-linen rounded-xl text-ink text-sm focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all placeholder-taupe"
                                         value={data.billing_email}
                                         onChange={e => setData('billing_email', e.target.value)}
                                         placeholder="email@example.com"
@@ -489,21 +489,21 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
                                 </div>
 
                                 {/* Order Total Recap */}
-                                <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 mt-4">
+                                <div className="bg-paper rounded-xl p-4 border border-linen mt-4">
                                     <div className="flex justify-between items-center mb-1">
                                         <span className="text-umber text-xs">Author Copies ({copies}×)</span>
-                                        <span className="text-slate-700 text-xs font-medium">₹{(costs.per_copy * copies).toFixed(2)}</span>
+                                        <span className="text-ink-soft text-xs font-medium">₹{(costs.per_copy * copies).toFixed(2)}</span>
                                     </div>
                                     {costs.publishing_fee > 0 && (
                                         <div className="flex justify-between items-center mb-1">
                                             <span className="text-umber text-xs">Publishing Fee</span>
-                                            <span className="text-slate-700 text-xs font-medium">₹{costs.publishing_fee.toFixed(2)}</span>
+                                            <span className="text-ink-soft text-xs font-medium">₹{costs.publishing_fee.toFixed(2)}</span>
                                         </div>
                                     )}
-                                    <div className="border-t border-slate-200 mt-2 pt-2 flex justify-between items-center">
-                                        <span className="text-slate-900 text-sm font-bold">Pay Now</span>
+                                    <div className="border-t border-linen mt-2 pt-2 flex justify-between items-center">
+                                        <span className="text-ink text-sm font-bold">Pay Now</span>
                                         <div className="text-right">
-                                            <span className="text-slate-900 text-lg font-black block">₹{(costs.total - discountAmount).toFixed(2)}</span>
+                                            <span className="text-ink text-lg font-black block">₹{(costs.total - discountAmount).toFixed(2)}</span>
                                             {discountAmount > 0 && (
                                                 <span className="text-emerald-600 text-[10px] font-bold tracking-tight">SAVED ₹{discountAmount.toFixed(0)}</span>
                                             )}
@@ -542,7 +542,7 @@ export default function AuthorCopiesCheckout({ book, copies, costs, auth }) {
 
                 {/* Back Link */}
                 <div className="text-center mt-10">
-                    <Link href={route('books.details', book.id)} className="text-sm text-umber hover:text-slate-800 transition-colors">
+                    <Link href={route('books.details', book.id)} className="text-sm text-umber hover:text-ink transition-colors">
                         ← Cancel and return to details
                     </Link>
                 </div>

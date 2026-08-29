@@ -104,7 +104,7 @@ export default function PublishingInquiry({ selectedPlan }) {
                                             type="text"
                                             value={data.name}
                                             onChange={e => setData('name', e.target.value)}
-                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
+                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-taupe focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
                                             placeholder="Your full name"
                                         />
                                         {errors.name && <p className="text-red-700 text-xs mt-1.5">{errors.name}</p>}
@@ -117,7 +117,7 @@ export default function PublishingInquiry({ selectedPlan }) {
                                             type="email"
                                             value={data.email}
                                             onChange={e => setData('email', e.target.value)}
-                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
+                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-taupe focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
                                             placeholder="your@email.com"
                                         />
                                         {errors.email && <p className="text-red-700 text-xs mt-1.5">{errors.email}</p>}
@@ -130,7 +130,7 @@ export default function PublishingInquiry({ selectedPlan }) {
                                             type="tel"
                                             value={data.phone}
                                             onChange={e => setData('phone', e.target.value)}
-                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
+                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-taupe focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
                                             placeholder="+91 98765 43210"
                                         />
                                         {errors.phone && <p className="text-red-700 text-xs mt-1.5">{errors.phone}</p>}
@@ -143,7 +143,7 @@ export default function PublishingInquiry({ selectedPlan }) {
                                             type="tel"
                                             value={data.whatsapp}
                                             onChange={e => setData('whatsapp', e.target.value)}
-                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
+                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-taupe focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
                                             placeholder="+91 98765 43210 (if different)"
                                         />
                                         {errors.whatsapp && <p className="text-red-700 text-xs mt-1.5">{errors.whatsapp}</p>}
@@ -191,7 +191,7 @@ export default function PublishingInquiry({ selectedPlan }) {
                                             type="text"
                                             value={data.book_title}
                                             onChange={e => setData('book_title', e.target.value)}
-                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-gray-600 focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
+                                            className="w-full bg-paper border border-linen rounded-xl px-4 py-3 text-ink placeholder-taupe focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all outline-none"
                                             placeholder="Working title of your book"
                                         />
                                         {errors.book_title && <p className="text-red-700 text-xs mt-1.5">{errors.book_title}</p>}

@@ -36,7 +36,7 @@ export default function ForgotPassword({ status }) {
                 </div>
 
                 {/* Main Card */}
-                <div className="bg-paper border border-gray-800 rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
+                <div className="bg-paper border border-linen rounded-2xl p-8 shadow-2xl backdrop-blur-xl">
                     {status && (
                         <div className="mb-6 p-4 rounded-xl bg-green-500/10 border border-green-500/20">
                             <div className="flex items-center gap-3">
@@ -64,7 +64,7 @@ export default function ForgotPassword({ status }) {
                                     type="email"
                                     name="email"
                                     value={data.email}
-                                    className="block w-full pl-11 pr-4 py-3 border border-gray-800 rounded-xl bg-paper text-ink-soft placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all text-sm"
+                                    className="block w-full pl-11 pr-4 py-3 border border-linen rounded-xl bg-paper text-ink-soft placeholder-taupe focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all text-sm"
                                     placeholder="author@example.com"
                                     isFocused={true}
                                     onChange={(e) => setData('email', e.target.value)}
@@ -81,7 +81,7 @@ export default function ForgotPassword({ status }) {
                         </PrimaryButton>
                     </form>
 
-                    <div className="mt-8 pt-6 border-t border-gray-800 text-center">
+                    <div className="mt-8 pt-6 border-t border-linen text-center">
                         <Link href={route('login')} className="text-sm font-semibold text-umber hover:text-ink transition-colors flex items-center justify-center gap-2">
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />

@@ -10,7 +10,7 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
 
             <div className="bg-white shadow dark:bg-paper">
                 <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-                    <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-ink-soft">
+                    <h2 className="text-xl font-semibold leading-tight text-ink dark:text-ink-soft">
                         Profile
                     </h2>
                 </div>
@@ -23,7 +23,7 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
                     <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-paper">
                         <section>
                             <header>
-                                <h2 className="text-lg font-medium text-gray-900 dark:text-ink-soft">
+                                <h2 className="text-lg font-medium text-ink dark:text-ink-soft">
                                     My Purchases
                                 </h2>
                                 <p className="mt-1 text-sm text-umber dark:text-umber">
@@ -32,18 +32,18 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
                             </header>
 
                             <div className="mt-6 flow-root">
-                                <ul role="list" className="-my-5 divide-y divide-gray-200 dark:divide-gray-700">
+                                <ul role="list" className="-my-5 divide-y divide-linen dark:divide-linen">
                                     {myPurchases.length > 0 ? myPurchases.map((purchase) => (
                                         <li key={purchase.id} className="py-4">
                                             <div className="flex items-center space-x-4">
                                                 <div className="flex-shrink-0">
                                                     {purchase.book_cover ?
                                                         <img className="h-12 w-8 object-cover rounded shadow" src={`/storage/${purchase.book_cover}`} alt={purchase.book_title} />
-                                                        : <div className="h-12 w-8 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-xs">📖</div>
+                                                        : <div className="h-12 w-8 bg-linen dark:bg-ink-soft rounded flex items-center justify-center text-xs">📖</div>
                                                     }
                                                 </div>
                                                 <div className="min-w-0 flex-1">
-                                                    <p className="truncate text-sm font-medium text-gray-900 dark:text-ink-soft">{purchase.book_title}</p>
+                                                    <p className="truncate text-sm font-medium text-ink dark:text-ink-soft">{purchase.book_title}</p>
                                                     <p className="truncate text-xs text-umber dark:text-umber">Transaction ID: {purchase.transaction_id}</p>
                                                     <p className="text-xs text-umber dark:text-umber">{purchase.created_at}</p>
                                                 </div>

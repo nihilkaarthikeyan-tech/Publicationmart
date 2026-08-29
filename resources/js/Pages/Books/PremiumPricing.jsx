@@ -235,7 +235,7 @@ export default function PremiumPricing({ book }) {
                                         {/* CTA Button - DISABLED */}
                                         <button
                                             disabled
-                                            className="w-full py-3 font-bold text-sm rounded-lg transition-all duration-300 bg-gray-100 text-umber border border-gray-700/30 cursor-not-allowed"
+                                            className="w-full py-3 font-bold text-sm rounded-lg transition-all duration-300 bg-vellum text-umber border border-linen cursor-not-allowed"
                                         >
                                             COMING SOON
                                         </button>

@@ -133,7 +133,7 @@ export default function GuestCheckout({ plan, price, pages }) {
                                     value={data.book_title}
                                     onChange={e => setData('book_title', e.target.value)}
                                     placeholder="e.g. The Future of AI"
-                                    className={`w-full bg-paper border border-linen rounded-xl px-4 py-4 text-ink placeholder-gray-600 focus:outline-none ${focusBorder} transition-all`}
+                                    className={`w-full bg-paper border border-linen rounded-xl px-4 py-4 text-ink placeholder-taupe focus:outline-none ${focusBorder} transition-all`}
                                 />
                                 {errors.book_title && <p className="text-red-700 text-xs mt-1">{errors.book_title}</p>}
                             </div>
@@ -146,7 +146,7 @@ export default function GuestCheckout({ plan, price, pages }) {
                                         value={data.full_name}
                                         onChange={e => setData('full_name', e.target.value)}
                                         placeholder="John Doe"
-                                        className={`w-full bg-paper border border-linen rounded-xl px-4 py-4 text-ink placeholder-gray-600 focus:outline-none ${focusBorder} transition-all`}
+                                        className={`w-full bg-paper border border-linen rounded-xl px-4 py-4 text-ink placeholder-taupe focus:outline-none ${focusBorder} transition-all`}
                                     />
                                     {errors.full_name && <p className="text-red-700 text-xs mt-1">{errors.full_name}</p>}
                                 </div>
@@ -157,7 +157,7 @@ export default function GuestCheckout({ plan, price, pages }) {
                                         value={data.email}
                                         onChange={e => setData('email', e.target.value)}
                                         placeholder="john@example.com"
-                                        className={`w-full bg-paper border border-linen rounded-xl px-4 py-4 text-ink placeholder-gray-600 focus:outline-none ${focusBorder} transition-all`}
+                                        className={`w-full bg-paper border border-linen rounded-xl px-4 py-4 text-ink placeholder-taupe focus:outline-none ${focusBorder} transition-all`}
                                     />
                                     {errors.email && <p className="text-red-700 text-xs mt-1">{errors.email}</p>}
                                 </div>

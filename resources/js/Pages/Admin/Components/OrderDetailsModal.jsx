@@ -38,7 +38,7 @@ export default function OrderDetailsModal({ order, onClose }) {
                 className="bg-paper rounded-2xl w-full max-w-lg shadow-2xl border border-linen max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
             >
-                <div className="flex justify-between items-center px-5 py-4 border-b border-linen sticky top-0 bg-gray-50 backdrop-blur-sm">
+                <div className="flex justify-between items-center px-5 py-4 border-b border-linen sticky top-0 bg-paper backdrop-blur-sm">
                     <h3 className="text-lg font-bold text-ink flex items-center gap-2">
                         <svg className="w-5 h-5 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
                         Order Details

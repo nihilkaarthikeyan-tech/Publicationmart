@@ -424,7 +424,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                 disabled={s > Math.max(step, 2) && s > step + 1}
                                 className={`flex items-center gap-1 md:gap-2 ${step >= s ? 'text-indigo-700 font-bold' : 'text-umber'}`}
                             >
-                                <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center border-2 transition-all text-xs md:text-sm ${step >= s ? 'border-indigo-500 bg-indigo-500/20 text-indigo-700' : 'border-gray-600/50 text-umber'} ${s <= step ? 'cursor-pointer hover:border-indigo-400' : ''}`}>
+                                <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center border-2 transition-all text-xs md:text-sm ${step >= s ? 'border-indigo-500 bg-indigo-500/20 text-indigo-700' : 'border-linen text-umber'} ${s <= step ? 'cursor-pointer hover:border-indigo-400' : ''}`}>
                                     {s}
                                 </div>
                                 <span className="hidden md:inline text-xs font-semibold uppercase tracking-wider">
@@ -741,14 +741,14 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
 
                                         {/* Manual Mode */}
                                         <div className="group bg-paper rounded-xl p-4 border border-linen hover:border-linen transition-all text-center h-full flex flex-col justify-center relative">
-                                            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">✍️</div>
+                                            <div className="w-10 h-10 bg-vellum rounded-full flex items-center justify-center mx-auto mb-3 text-lg">✍️</div>
                                             <h4 className="font-semibold text-ink text-sm mb-1">Manual Creation</h4>
                                             <p className="text-xs text-umber mb-3">Type or paste your chapter titles directly.</p>
 
                                             <div className="flex-1 w-full mb-3">
                                                 <textarea
                                                     id="manual-chapters-input"
-                                                    className="w-full h-24 bg-parchment border border-linen rounded-lg p-2 text-xs text-ink placeholder-gray-600 resize-none focus:outline-none focus:border-indigo-500"
+                                                    className="w-full h-24 bg-parchment border border-linen rounded-lg p-2 text-xs text-ink placeholder-taupe resize-none focus:outline-none focus:border-indigo-500"
                                                     placeholder="Chapter 1: The Beginning&#10;Chapter 2: The Journey&#10;..."
                                                     onClick={(e) => e.stopPropagation()}
                                                 ></textarea>
@@ -835,7 +835,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                             </button>
 
                                             <div className="text-xs text-umber uppercase tracking-widest mb-3">Or Manually (Max {initData.sub_chapter_count || 5})</div>
-                                            <textarea id={`manual-input-${activeChapterId}`} className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink placeholder-gray-500 text-xs h-24 mb-3" placeholder={`1. First sub-heading\n2. Second sub-heading\n...`}></textarea>
+                                            <textarea id={`manual-input-${activeChapterId}`} className="w-full bg-paper border border-linen rounded-lg px-3 py-2 text-ink placeholder-taupe text-xs h-24 mb-3" placeholder={`1. First sub-heading\n2. Second sub-heading\n...`}></textarea>
                                             <button onClick={() => saveManualStructure(activeChapterId)} className="w-full py-2.5 bg-vellum text-ink rounded-lg font-bold text-xs border border-linen hover:bg-white/15 transition">Save Manual Structure</button>
                                         </div>
                                     )}
@@ -877,7 +877,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                 <button key={section.id} onClick={() => { setActiveSection(section); setActiveChapterId(chapter.id); }} className={`w-full text-left px-4 py-2 text-xs border-b border-linen hover:bg-paper transition ${activeSection?.id === section.id ? 'bg-indigo-500/15 text-ink border-l-4 border-l-indigo-400' : 'text-ink-soft'}`}>
                                                     <div className="flex justify-between items-center">
                                                         <span className="truncate pr-2">{section.title}</span>
-                                                        {section.content ? <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> : <span className="w-1.5 h-1.5 rounded-full bg-gray-600 border border-gray-500"></span>}
+                                                        {section.content ? <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> : <span className="w-1.5 h-1.5 rounded-full bg-ink-soft border border-linen-deep"></span>}
                                                     </div>
                                                 </button>
                                             ))}

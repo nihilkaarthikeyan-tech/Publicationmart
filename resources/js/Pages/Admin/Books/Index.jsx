@@ -63,7 +63,7 @@ export default function Index({ auth, books }) {
                                 placeholder="Search books, authors, or users..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-gray-500 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all outline-none"
+                                className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-taupe focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all outline-none"
                             />
                         </div>
                     </div>
@@ -91,7 +91,7 @@ export default function Index({ auth, books }) {
                                             <div className="font-bold text-ink text-lg">{book.title}</div>
                                             <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${book.status === 'approved' ? 'bg-green-500/10 text-green-700 border border-green-500/20' :
                                                     book.status === 'pending' ? 'bg-yellow-500/10 text-yellow-800 border border-yellow-500/20' :
-                                                        'bg-gray-500/10 text-umber border border-gray-500/20'
+                                                        'bg-taupe/10 text-umber border border-taupe/20'
                                                 }`}>
                                                 {book.status || 'Draft'}
                                             </span>
@@ -121,11 +121,11 @@ export default function Index({ auth, books }) {
                                         <div className="hidden md:flex col-span-2 justify-center">
                                             <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${book.status === 'approved' ? 'bg-green-500/10 text-green-700 border border-green-500/20 shadow-[0_0_10px_rgba(74,222,128,0.1)]' :
                                                     book.status === 'pending' ? 'bg-yellow-500/10 text-yellow-800 border border-yellow-500/20' :
-                                                        'bg-gray-500/10 text-umber border border-gray-500/20'
+                                                        'bg-taupe/10 text-umber border border-taupe/20'
                                                 }`}>
                                                 <span className={`w-1.5 h-1.5 rounded-full ${book.status === 'approved' ? 'bg-green-400' :
                                                         book.status === 'pending' ? 'bg-yellow-400 animate-pulse' :
-                                                            'bg-gray-400'
+                                                            'bg-taupe-light'
                                                     }`}></span>
                                                 {book.status || 'Draft'}
                                             </span>

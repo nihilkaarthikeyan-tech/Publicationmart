@@ -112,7 +112,7 @@ export default function ChallengeEnrollments({ enrollments, filters }) {
                                         value={search}
                                         onChange={e => setSearch(e.target.value)}
                                         placeholder="Search by name, email, mobile..."
-                                        className="w-full bg-paper border border-linen rounded-xl pl-10 pr-4 py-2.5 text-ink text-sm placeholder-gray-600 focus:outline-none focus:border-indigo-500"
+                                        className="w-full bg-paper border border-linen rounded-xl pl-10 pr-4 py-2.5 text-ink text-sm placeholder-taupe focus:outline-none focus:border-indigo-500"
                                     />
                                 </div>
                             </form>
@@ -182,7 +182,7 @@ export default function ChallengeEnrollments({ enrollments, filters }) {
 
                                                 {/* Challenge Type */}
                                                 <td className="px-4 py-4">
-                                                    <span className={`px-2.5 py-1 rounded-lg text-xs font-bold ${challengeColors[enrollment.challenge_type] || 'bg-gray-500/15 text-umber'}`}>
+                                                    <span className={`px-2.5 py-1 rounded-lg text-xs font-bold ${challengeColors[enrollment.challenge_type] || 'bg-taupe/15 text-umber'}`}>
                                                         {enrollment.challenge_type}
                                                     </span>
                                                 </td>

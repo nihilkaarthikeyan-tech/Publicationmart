@@ -131,7 +131,7 @@ export default function Services() {
                     <p className="text-xl text-umber mb-8">
                         Every book is unique. Contact us today to discuss a tailored publishing package that meets your specific needs.
                     </p>
-                    <Link href="/contact" className="inline-block px-10 py-5 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors">
+                    <Link href="/contact" className="inline-block px-10 py-5 bg-white text-black font-bold rounded-full hover:bg-linen transition-colors">
                         Contact Our Team
                     </Link>
                 </div>

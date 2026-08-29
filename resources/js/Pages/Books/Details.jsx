@@ -636,14 +636,14 @@ export default function Details({ auth, book }) {
                                                                 type="number"
                                                                 min={authorCost.toFixed(2)}
                                                                 step="0.01"
-                                                                className="w-full text-2xl font-bold text-ink border-none p-0 focus:ring-0 placeholder-gray-300"
+                                                                className="w-full text-2xl font-bold text-ink border-none p-0 focus:ring-0 placeholder-taupe"
                                                                 placeholder="0.00"
                                                                 value={data.selling_price}
                                                                 onChange={(e) => setData('selling_price', e.target.value)}
                                                                 onWheel={(e) => e.target.blur()}
                                                                 required
                                                             />
-                                                            <div className="h-px bg-gray-200 w-full my-2"></div>
+                                                            <div className="h-px bg-linen w-full my-2"></div>
                                                             <p className={`text-xs font-medium ${parseFloat(data.selling_price || 0) < authorCost ? 'text-red-500' : 'text-umber'
                                                                 }`}>
                                                                 Must be ≥ ₹{authorCost.toFixed(2)}
@@ -1021,7 +1021,7 @@ export default function Details({ auth, book }) {
                                                 <div className="flex flex-col items-end">
                                                     <button
                                                         type="submit"
-                                                        className={`px-6 py-3 text-white font-bold rounded-xl shadow-lg transition-all items-center flex gap-2 ${(!hasPreviewed || !data.agreed_terms || !data.confirmed_content) ? 'bg-gray-300 cursor-not-allowed text-umber shadow-none' : 'bg-orange-600 hover:bg-orange-700'
+                                                        className={`px-6 py-3 text-white font-bold rounded-xl shadow-lg transition-all items-center flex gap-2 ${(!hasPreviewed || !data.agreed_terms || !data.confirmed_content) ? 'bg-linen-deep cursor-not-allowed text-umber shadow-none' : 'bg-orange-600 hover:bg-orange-700'
                                                             }`}
                                                     >
                                                         Pay & Order Copies

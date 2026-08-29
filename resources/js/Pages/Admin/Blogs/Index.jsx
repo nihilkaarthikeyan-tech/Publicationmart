@@ -61,7 +61,7 @@ export default function Index({ auth, blogs }) {
                                 placeholder="Search studio posts or authors..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-gray-500 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all outline-none"
+                                className="w-full bg-paper border border-linen rounded-xl py-3 pl-12 pr-4 text-ink placeholder-taupe focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition-all outline-none"
                             />
                         </div>
                     </div>
@@ -91,7 +91,7 @@ export default function Index({ auth, blogs }) {
                                                 <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${blog.status === 'pending' ? 'bg-yellow-500/10 text-yellow-800 border border-yellow-500/20' :
                                                         blog.status === 'rejected' ? 'bg-red-500/10 text-red-800 border border-red-500/20' :
                                                             blog.status === 'approved' ? 'bg-green-500/10 text-green-700 border border-green-500/20' :
-                                                                'bg-gray-500/10 text-umber'
+                                                                'bg-taupe/10 text-umber'
                                                     }`}>
                                                     {blog.status}
                                                 </span>
