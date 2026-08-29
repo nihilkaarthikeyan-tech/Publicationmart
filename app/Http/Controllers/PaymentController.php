@@ -490,7 +490,7 @@ class PaymentController extends Controller
             $this->fulfillOrder($merchantTransactionId, $response['data']);
             return $this->redirectSuccess($merchantTransactionId);
         } elseif ($response['status'] === 'pending') {
-            return \Inertia\Inertia::render('Payment/Pending', ['transactionId' => $merchantTransactionId]);
+            return redirect()->route('payment.pending', ['transactionId' => $merchantTransactionId]);
         } else {
             return $this->redirectFailure($merchantTransactionId, $response['message'] ?? 'Payment Failed or Incomplete');
         }
@@ -681,6 +681,31 @@ class PaymentController extends Controller
                 }
             }
         }
+    }
+
+    /**
+     * Check a pending payment again, by reference.
+     *
+     * The Pending page used to be rendered only as the direct response to the
+     * gateway redirect, with no named route — so a customer who closed the tab
+     * had no way back to it, and nothing could link them there. This gives that
+     * state a real address: it re-verifies with the gateway and forwards to
+     * success or failure once the bank has made up its mind.
+     */
+    public function paymentPending(Request $request, $transactionId)
+    {
+        $response = $this->phonePeService->verifyPayment($transactionId);
+
+        if (($response['success'] ?? false) && ($response['status'] ?? null) === 'paid') {
+            $this->fulfillOrder($transactionId, $response['data']);
+            return $this->redirectSuccess($transactionId);
+        }
+
+        if (($response['status'] ?? null) === 'pending') {
+            return \Inertia\Inertia::render('Payment/Pending', ['transactionId' => $transactionId]);
+        }
+
+        return $this->redirectFailure($transactionId, $response['message'] ?? 'Payment Failed or Incomplete');
     }
 
     protected function redirectSuccess($txnId)

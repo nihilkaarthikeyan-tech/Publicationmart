@@ -142,6 +142,9 @@ Route::get('/payment/checkout/{book}', [PaymentController::class, 'checkout'])->
 Route::post('/payment/process/{book}', [PaymentController::class, 'processPayment'])->name('payment.process');
 Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
 Route::get('/payment/failure', [PaymentController::class, 'paymentFailure'])->name('payment.failure');
+// A pending payment needs an address of its own: without one a customer who
+// closed the tab had no way back to the page that is still waiting on the bank.
+Route::get('/payment/pending/{transactionId}', [PaymentController::class, 'paymentPending'])->name('payment.pending');
 Route::any('/payment/phonepe/redirect', [PaymentController::class, 'handlePhonePeRedirect'])->name('payment.phonepe.redirect'); // user returns here
 Route::any('/payment/phonepe/callback', [PaymentController::class, 'handlePhonePeCallback'])->name('payment.phonepe.callback'); // S2S webhook
 
