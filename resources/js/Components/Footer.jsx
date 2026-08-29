@@ -161,6 +161,17 @@ export default function Footer() {
                                     </Link>
                                 </li>
                             ))}
+                            {/* A policy explains what we set; this lets the reader
+                                actually change it. Both are needed, not one. */}
+                            <li>
+                                <button
+                                    type="button"
+                                    onClick={() => window.pmOpenCookiePrefs?.()}
+                                    className="text-parchment/70 hover:text-foil-light text-[14px] transition-colors text-left"
+                                >
+                                    Cookie Preferences
+                                </button>
+                            </li>
                         </ul>
                     </div>
 

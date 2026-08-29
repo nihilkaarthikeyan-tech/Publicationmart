@@ -4,6 +4,7 @@ import { createInertiaApp, router } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 import Layout from './Layouts/Layout';
+import CookieConsent from './Components/CookieConsent';
 
 const appName = 'PublicationMart';
 
@@ -32,7 +33,14 @@ createInertiaApp({
     },
     setup({ el, App, props }) {
         const root = createRoot(el);
-        root.render(<App {...props} />);
+        // The consent UI sits outside <App> so it survives page navigations and
+        // shows on full-screen pages too, which opt out of the global Layout.
+        root.render(
+            <>
+                <App {...props} />
+                <CookieConsent />
+            </>
+        );
     },
     progress: { color: '#a07d3b', showSpinner: true, includeCSS: true, delay: 50 },
 });

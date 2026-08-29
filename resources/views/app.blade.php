@@ -58,36 +58,91 @@
     @vite(['resources/js/app.jsx'])
     @inertiaHead
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XH0VKQQX8"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-0XH0VKQQX8');
-    </script>
     <script>
         window.RECAPTCHA_V3_SITE_KEY = "{{ config('services.recaptcha.site_key') }}";
     </script>
 
-    <!-- Facebook Pixel Code -->
+    {{-- Consent-gated analytics and marketing.
+
+         Google Analytics and the Facebook Pixel used to initialise here
+         unconditionally, so they ran for every visitor before anyone agreed
+         and with no way to opt out. They are now injected only by
+         pmApplyConsent(), which the consent banner calls once the visitor has
+         chosen. In 'notice' mode they load immediately, which is the one
+         setting that changes the whole behaviour.
+
+         The Pixel's <noscript> beacon was removed with them: an image that
+         fires without JavaScript cannot be gated by consent at all. --}}
     <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window,document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '1303589550727690');
-        fbq('track', 'PageView');
+        window.PM_CONSENT = {
+            mode: @json(config('consent.mode')),
+            version: @json(config('consent.version')),
+            gaId: @json(config('consent.ga_id')),
+            pixelId: @json(config('consent.pixel_id')),
+            storageKey: 'pm_cookie_consent'
+        };
+
+        (function () {
+            var C = window.PM_CONSENT;
+            var done = { analytics: false, marketing: false };
+
+            function loadAnalytics() {
+                if (done.analytics || !C.gaId) return;
+                done.analytics = true;
+                var s = document.createElement('script');
+                s.async = true;
+                s.src = 'https://www.googletagmanager.com/gtag/js?id=' + C.gaId;
+                document.head.appendChild(s);
+                window.dataLayer = window.dataLayer || [];
+                window.gtag = function () { window.dataLayer.push(arguments); };
+                window.gtag('js', new Date());
+                window.gtag('config', C.gaId);
+            }
+
+            function loadMarketing() {
+                if (done.marketing || !C.pixelId) return;
+                done.marketing = true;
+                !function(f,b,e,v,n,t,s)
+                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+                n.queue=[];t=b.createElement(e);t.async=!0;
+                t.src=v;s=b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s)}(window,document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+                window.fbq('init', C.pixelId);
+                window.fbq('track', 'PageView');
+            }
+
+            // Trackers only ever start here. Never un-loads: a script cannot be
+            // recalled once running, so withdrawing consent stores the choice
+            // and takes effect on the next page load, which we tell the visitor.
+            window.pmApplyConsent = function (consent) {
+                if (!consent) return;
+                if (consent.analytics) loadAnalytics();
+                if (consent.marketing) loadMarketing();
+            };
+
+            window.pmReadConsent = function () {
+                try {
+                    var raw = window.localStorage.getItem(C.storageKey);
+                    if (!raw) return null;
+                    var v = JSON.parse(raw);
+                    // A choice made against an older set of categories is not a
+                    // choice about the current ones — ask again.
+                    return v && v.version === C.version ? v : null;
+                } catch (e) {
+                    return null;
+                }
+            };
+
+            if (C.mode === 'notice') {
+                window.pmApplyConsent({ analytics: true, marketing: true });
+            } else {
+                window.pmApplyConsent(window.pmReadConsent());
+            }
+        })();
     </script>
-    <noscript>
-        <img height="1" width="1" style="display:none"
-            src="https://www.facebook.com/tr?id=1303589550727690&ev=PageView&noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
 </head>
 
 <body class="font-sans antialiased bg-parchment">

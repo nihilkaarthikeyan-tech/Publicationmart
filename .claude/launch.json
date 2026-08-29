@@ -3,7 +3,8 @@
   "configurations": [
     {
       "name": "publicationmart",
-      "url": "http://localhost:8000",
+      "runtimeExecutable": "D:/dev/php/php.exe",
+      "runtimeArgs": ["artisan", "serve", "--host=127.0.0.1", "--port=8000"],
       "port": 8000
     }
   ]
