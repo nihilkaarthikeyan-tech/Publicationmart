@@ -2,6 +2,25 @@
 
 import { useState, useEffect } from 'react';
 
+const rupees = (n) =>
+    '₹' + Number(n || 0).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+/* The result printed as a statement, torn off a ledger pad. */
+const LEDGER_CSS = `
+.pm-ledger{max-width:360px;margin:0 auto;background:#fdfbf5;border:1px solid #d8d1c1;border-bottom:0;padding:22px 26px 16px;font-family:'EB Garamond',Georgia,serif}
+.pm-ledger-head{margin:0;text-align:center;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#6e2530;font-weight:700}
+.pm-ledger-sub{margin:4px 0 14px;text-align:center;font-size:12px;color:#a49b8b;font-family:'Figtree',system-ui,sans-serif}
+.pm-ledger-row{display:flex;justify-content:space-between;gap:16px;font-size:15px;color:#4b443a;padding:8px 0;border-bottom:1px dotted #d8d1c1;font-variant-numeric:tabular-nums}
+.pm-ledger-total{border-bottom:0;padding-top:12px;font-size:19px;color:#17150f;font-weight:600}
+.pm-ledger-total span:last-child{color:#6e2530}
+.pm-ledger-proj{border-bottom:0;border-top:1px solid #d8d1c1;margin-top:8px;font-size:13.5px;color:#635c4e}
+.pm-ledger-note{margin:10px 0 2px;font-size:13px;line-height:1.5;color:#9c4038;font-family:'Figtree',system-ui,sans-serif}
+/* the perforated edge the slip tears off along */
+.pm-ledger-tear{max-width:360px;margin:0 auto;height:13px;background:#fdfbf5;border-left:1px solid #d8d1c1;border-right:1px solid #d8d1c1;
+  -webkit-mask-image:radial-gradient(circle at 6px 13px,transparent 5px,#000 5.5px);mask-image:radial-gradient(circle at 6px 13px,transparent 5px,#000 5.5px);
+  -webkit-mask-size:12px 13px;mask-size:12px 13px;-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x}
+`;
+
 export default function RoyaltyCalculator({ auth }) {
     const [format, setFormat] = useState('Paperback');
     const [listPrice, setListPrice] = useState(499);
@@ -122,23 +141,50 @@ export default function RoyaltyCalculator({ auth }) {
 
                     <div className="border-t border-linen my-8" />
 
-                    {/* Result */}
-                    <div className="text-center">
-                        <p className="text-xs font-bold text-umber uppercase tracking-widest mb-2">
-                            Estimated Royalty Per Sale
+                    {/* Plate IV — the result, printed as a royalty statement.
+                        The arithmetic is unchanged; only its form is. The
+                        deduction is shown as what it is: list price less what
+                        reaches you. */}
+                    <div className="pm-ledger" aria-live="polite">
+                        <p className="pm-ledger-head">Royalty Statement</p>
+                        <p className="pm-ledger-sub">
+                            {format} · {format === 'Ebook' ? 'no print cost' : `${pageCount} pages`}
                         </p>
-                        <div className="text-6xl font-black text-oxblood">
-                            {royalty > 0 ? `₹${royalty.toFixed(2)}` : '₹0.00'}
+
+                        <div className="pm-ledger-row">
+                            <span>List price</span>
+                            <span>{rupees(listPrice)}</span>
                         </div>
-                        {royalty <= 0 && (
-                            <p className="text-red-700 text-sm mt-2">
-                                Price too low for this page count.
+                        <div className="pm-ledger-row">
+                            <span>{format === 'Ebook' ? 'Platform share' : 'Print & platform'}</span>
+                            <span>− {rupees(listPrice - royalty)}</span>
+                        </div>
+                        <div className="pm-ledger-row pm-ledger-total">
+                            <span>Yours per copy</span>
+                            <span>{rupees(royalty)}</span>
+                        </div>
+
+                        {royalty > 0 ? (
+                            <div className="pm-ledger-row pm-ledger-proj">
+                                <span>× 100 copies a month</span>
+                                <span>{rupees(royalty * 100)}</span>
+                            </div>
+                        ) : (
+                            <p className="pm-ledger-note">
+                                At this price the print cost is not covered. Raise the
+                                list price, or reduce the page count.
                             </p>
                         )}
                     </div>
+                    <div className="pm-ledger-tear" aria-hidden="true" />
+                    <p className="text-center text-[11px] text-taupe mt-3">
+                        An estimate on today’s print rates — your real statement is issued monthly.
+                    </p>
                 </div>
             </div>
 
+
+            <style dangerouslySetInnerHTML={{ __html: LEDGER_CSS }} />
 
             <style jsx global>{`
                 @keyframes fadeInUp {
