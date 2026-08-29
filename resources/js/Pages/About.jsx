@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 
 const SERIF = { fontFamily: "'EB Garamond', Georgia, serif" };
 
@@ -133,14 +134,15 @@ export default function About({ houseStats = {} }) {
                     <h2 className="text-3xl font-bold mb-12">Driven by Passion, Powered by Tech</h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {[
-                            { title: 'Global Distribution', icon: '🌍' },
-                            { title: 'Smart Formatting', icon: '⚡' },
-                            { title: 'Expert Support', icon: '🤝' },
-                            { title: 'Royalties Transparency', icon: '💎' }
-                        ].map((item, i) => (
-                            <div key={i} className="bg-paper border border-linen rounded-2xl p-6 hover:-translate-y-1 transition-transform duration-300">
-                                <div className="text-4xl mb-4">{item.icon}</div>
-                                <h3 className="font-bold text-ink-soft">{item.title}</h3>
+                            { title: 'Global Distribution', icon: 'globe', desc: 'Fifty countries, thousands of channels.' },
+                            { title: 'Smart Formatting', icon: 'ruler', desc: 'Print-standard interiors from your draft.' },
+                            { title: 'Expert Support', icon: 'support', desc: 'A person at the desk, not a queue.' },
+                            { title: 'Royalties Transparency', icon: 'rupee', desc: 'Monthly statements, and you keep 100%.' },
+                        ].map((item) => (
+                            <div key={item.title} className="bg-paper border border-linen rounded-2xl p-6 text-left hover:-translate-y-1 transition-transform duration-300">
+                                <Icon name={item.icon} size={26} className="text-oxblood mb-4" />
+                                <h3 className="font-bold text-ink">{item.title}</h3>
+                                <p className="text-[13px] text-umber mt-1 leading-relaxed">{item.desc}</p>
                             </div>
                         ))}
                     </div>
