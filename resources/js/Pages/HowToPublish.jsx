@@ -1,7 +1,128 @@
 import { Link, Head } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 
+/* Plate V — the book assembles beside the steps as the reader scrolls. */
+const ASSEMBLY_CSS = `
+.pm-asm{position:relative;width:150px;aspect-ratio:2/3;margin:0 auto}
+.pm-asm-l{position:absolute;inset:0;border-radius:2px 5px 5px 2px;transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1)}
+/* loose sheets, still scattered */
+.pm-asm-p1{background:#fdfbf5;border:1px solid #d8d1c1;transform:rotate(-7deg) translate(-9px,5px);box-shadow:0 6px 16px rgba(23,21,15,.10)}
+.pm-asm-p2{background:#fdfbf5;border:1px solid #d8d1c1;transform:rotate(5deg) translate(7px,-3px);box-shadow:0 6px 16px rgba(23,21,15,.10)}
+.pm-asm-p3{background:#fdfbf5;border:1px solid #d8d1c1;box-shadow:0 8px 20px rgba(23,21,15,.12)}
+/* squared up at the gathering stage */
+.pm-asm[data-stage="1"] .pm-asm-p1,.pm-asm[data-stage="2"] .pm-asm-p1,.pm-asm[data-stage="3"] .pm-asm-p1,.pm-asm[data-stage="4"] .pm-asm-p1{transform:rotate(-1.5deg) translate(-3px,2px)}
+.pm-asm[data-stage="1"] .pm-asm-p2,.pm-asm[data-stage="2"] .pm-asm-p2,.pm-asm[data-stage="3"] .pm-asm-p2,.pm-asm[data-stage="4"] .pm-asm-p2{transform:rotate(1.5deg) translate(3px,-1px)}
+/* the case wraps the block */
+.pm-asm-case{background:linear-gradient(155deg,#6e2530,#4d1a22);box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),0 14px 30px rgba(23,21,15,.25);opacity:0;transform:scale(.94)}
+.pm-asm[data-stage="2"] .pm-asm-case,.pm-asm[data-stage="3"] .pm-asm-case,.pm-asm[data-stage="4"] .pm-asm-case{opacity:1;transform:none}
+.pm-asm-case::before{content:"";position:absolute;inset:11px;border:1px solid rgba(160,125,59,.5);border-radius:1px}
+.pm-asm-case::after{content:"";position:absolute;left:0;top:0;bottom:0;width:9px;background:linear-gradient(90deg,rgba(0,0,0,.32),rgba(0,0,0,.04))}
+/* the foil title presses on */
+.pm-asm-title{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 18px;opacity:0;transform:scale(1.35)}
+.pm-asm[data-stage="3"] .pm-asm-title,.pm-asm[data-stage="4"] .pm-asm-title{opacity:1;transform:none}
+.pm-asm-title span{font-family:'EB Garamond',Georgia,serif;color:#e8cf8e;font-size:14px;line-height:1.35}
+.pm-asm-title small{margin-top:9px;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(232,207,142,.65);font-weight:700}
+/* the finished book stands up */
+.pm-asm[data-stage="4"]{transform:perspective(900px) rotateY(-13deg) translateY(-6px);transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.pm-asm-label{margin-top:20px;text-align:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#635c4e}
+.pm-asm-label b{display:block;font-family:'EB Garamond',Georgia,serif;font-size:17px;letter-spacing:0;text-transform:none;color:#6e2530;font-weight:500;margin-top:5px}
+/* The phone version: a slim bar, so nothing is covered up. Display is set
+   inside the media query, never on the bare class — this stylesheet loads
+   after Tailwind and a bare .pm-asmbar{display:flex} would beat lg:hidden
+   at equal specificity, leaving the bar on desktop too. */
+.pm-asmbar{display:none}
+@media (max-width:1023.98px){
+  .pm-asmbar{position:sticky;bottom:0;z-index:30;display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(250,248,243,.94);backdrop-filter:blur(8px);border-top:1px solid #d8d1c1}
+}
+.pm-asmbar-book{width:20px;height:28px;border-radius:1px 3px 3px 1px;flex:0 0 auto;background:#fdfbf5;border:1px solid #d8d1c1;transition:background .5s,border-color .5s}
+.pm-asmbar[data-stage="2"] .pm-asmbar-book,.pm-asmbar[data-stage="3"] .pm-asmbar-book,.pm-asmbar[data-stage="4"] .pm-asmbar-book{background:linear-gradient(155deg,#6e2530,#4d1a22);border-color:#4d1a22}
+.pm-asmbar-t{flex:1;min-width:0;font-family:'EB Garamond',Georgia,serif;font-size:14px;color:#17150f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pm-asmbar-n{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#a49b8b;flex:0 0 auto}
+.pm-asmbar-rule{position:absolute;left:0;bottom:0;height:2px;background:#6e2530;transition:width .5s cubic-bezier(.16,1,.3,1)}
+@media (prefers-reduced-motion:reduce){.pm-asm-l,.pm-asm,.pm-asmbar-rule,.pm-asmbar-book{transition:none}}
+`;
+
+const ASSEMBLY_STAGES = [
+    { label: 'Loose sheets', note: 'A manuscript, written' },
+    { label: 'Gathered', note: 'Squared and formatted' },
+    { label: 'Bound', note: 'The case goes on' },
+    { label: 'Titled', note: 'Foil, ISBN, registered' },
+    { label: 'Published', note: 'On the shelves worldwide' },
+];
+
+/**
+ * The book being made, beside the steps that describe making it. One
+ * rAF-throttled scroll listener maps progress through the steps section to a
+ * stage, so it moves with the reader rather than on a timer. On phones the
+ * same state drives a slim bar instead of a column, so nothing is covered.
+ */
+function AssemblingBook({ sectionRef }) {
+    const [stage, setStage] = useState(0);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        let raf = 0;
+        const measure = () => {
+            const r = section.getBoundingClientRect();
+            const travel = r.height - window.innerHeight * 0.5;
+            if (travel <= 0) return;
+            const p = Math.min(Math.max((window.innerHeight * 0.5 - r.top) / travel, 0), 1);
+            setStage(Math.min(Math.floor(p * ASSEMBLY_STAGES.length), ASSEMBLY_STAGES.length - 1));
+        };
+        const onScroll = () => {
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(measure);
+        };
+        // Measure once synchronously: a reader who lands mid-page (a shared
+        // link, a restored scroll position) sees the right stage before the
+        // first frame, rather than an unbuilt book until they scroll.
+        measure();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            window.removeEventListener('resize', onScroll);
+            cancelAnimationFrame(raf);
+        };
+    }, [sectionRef]);
+
+    const s = ASSEMBLY_STAGES[stage];
+
+    return (
+        <>
+            {/* Desktop: the book builds in the margin, beside the steps */}
+            <div className="hidden lg:block sticky top-32" aria-hidden="true">
+                <div className="pm-asm" data-stage={stage}>
+                    <div className="pm-asm-l pm-asm-p1" />
+                    <div className="pm-asm-l pm-asm-p2" />
+                    <div className="pm-asm-l pm-asm-p3" />
+                    <div className="pm-asm-l pm-asm-case" />
+                    <div className="pm-asm-l pm-asm-title">
+                        <span>Your Title Here</span>
+                        <small>PublicationMart</small>
+                    </div>
+                </div>
+                <p className="pm-asm-label">
+                    {s.label}
+                    <b>{s.note}</b>
+                </p>
+            </div>
+
+            {/* Phone: the same progress as a slim bar that covers nothing */}
+            <div className="pm-asmbar relative" data-stage={stage} aria-hidden="true">
+                <span className="pm-asmbar-book" />
+                <span className="pm-asmbar-t">{s.note}</span>
+                <span className="pm-asmbar-n">{stage + 1}/{ASSEMBLY_STAGES.length}</span>
+                <span className="pm-asmbar-rule" style={{ width: `${((stage + 1) / ASSEMBLY_STAGES.length) * 100}%` }} />
+            </div>
+        </>
+    );
+}
+
 export default function HowToPublish({ auth }) {
+    const stepsRef = useRef(null);
+
     return (
         <>
             <Head title="How to Publish Your Book Online in India – Step-by-Step Guide | PublicationMart">
@@ -15,6 +136,8 @@ export default function HowToPublish({ auth }) {
                 <meta name="twitter:title" content="How to Publish Your Book | PublicationMart" />
                 <meta name="twitter:description" content="Complete guide to self-publishing your book in India. AI-powered tools, global distribution." />
             </Head>
+
+            <style dangerouslySetInnerHTML={{ __html: ASSEMBLY_CSS }} />
 
             <div className="min-h-screen bg-parchment text-ink selection:bg-indigo-500 selection:text-ink overflow-x-hidden">
 
@@ -47,8 +170,11 @@ export default function HowToPublish({ auth }) {
                     </div>
                 </section>
 
-                {/* ═══ STEPS TIMELINE ═══ */}
-                <section className="relative pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+                {/* ═══ STEPS TIMELINE — the book assembles alongside (Plate V) ═══ */}
+                <section ref={stepsRef} className="relative pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto lg:grid lg:grid-cols-[190px_minmax(0,1fr)] lg:gap-x-12">
+                    <AssemblingBook sectionRef={stepsRef} />
+
+                    <div className="relative">
                     {/* Central Line */}
                     <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-purple-500/30 to-transparent md:-translate-x-1/2 transform" />
 
@@ -198,6 +324,7 @@ export default function HowToPublish({ auth }) {
                             </p>
                         </StepCard>
 
+                    </div>
                     </div>
                 </section>
 
