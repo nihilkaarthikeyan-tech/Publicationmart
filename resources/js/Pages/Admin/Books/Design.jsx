@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Head, useForm, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { route } from 'ziggy-js';
 import InputError from '@/Components/InputError';
 
@@ -53,12 +54,12 @@ export default function Design({ auth, book }) {
     };
 
     const bookSizes = [
-        { id: '5x8', label: '5×8"', desc: 'Novels & Fiction', icon: '📖' },
-        { id: '6x9', label: '6×9"', desc: 'Non-Fiction', icon: '📚' },
+        { id: '5x8', label: '5×8"', desc: 'Novels & Fiction', icon: 'bookOpen' },
+        { id: '6x9', label: '6×9"', desc: 'Non-Fiction', icon: 'library' },
         { id: '5.5x8.5', label: '5.5×8.5"', desc: 'Poetry', icon: '✨' },
-        { id: '8.5x8.5', label: '8.5×8.5"', desc: 'Children\'s', icon: '🎨' },
-        { id: '8.5x11', label: '8.5×11"', desc: 'Academic', icon: '🎓' },
-        { id: '16.5x11', label: '16.5×11"', desc: 'Magazine', icon: '📰' },
+        { id: '8.5x8.5', label: '8.5×8.5"', desc: 'Children\'s', icon: 'palette' },
+        { id: '8.5x11', label: '8.5×11"', desc: 'Academic', icon: 'academic' },
+        { id: '16.5x11', label: '16.5×11"', desc: 'Magazine', icon: 'newspaper' },
     ];
 
     return (
@@ -111,7 +112,7 @@ export default function Design({ auth, book }) {
                         {/* Book Size */}
                         <div className="bg-paper backdrop-blur-xl rounded-3xl p-8 border border-linen">
                             <h2 className="text-xl font-bold text-ink mb-6 flex items-center gap-3">
-                                <span className="w-10 h-10 rounded-xl bg-oxblood/10 text-oxblood flex items-center justify-center">📐</span>
+                                <span className="w-10 h-10 rounded-xl bg-oxblood/10 text-oxblood flex items-center justify-center"><Icon name="ruler" size={20} /></span>
                                 Book Dimensions
                             </h2>
                             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -126,7 +127,7 @@ export default function Design({ auth, book }) {
                                                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                                             </div>
                                         )}
-                                        <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">{size.icon}</div>
+                                        <div className="mb-2 flex justify-center group-hover:scale-110 transition-transform"><Icon name={size.icon} size={24} /></div>
                                         <div className="text-lg font-black text-ink">{size.label}</div>
                                         <div className="text-xs text-umber font-medium mt-1">{size.desc}</div>
                                     </button>
@@ -140,20 +141,20 @@ export default function Design({ auth, book }) {
                             {/* Printing Type */}
                             <div className="bg-paper backdrop-blur-xl rounded-3xl p-8 border border-linen">
                                 <h2 className="text-xl font-bold text-ink mb-6 flex items-center gap-3">
-                                    <span className="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center">🖨️</span>
+                                    <span className="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center"><Icon name="printer" size={20} /></span>
                                     Print Color
                                 </h2>
                                 <div className="space-y-3">
                                     {[
                                         { id: 'B/W', label: 'Black & White', desc: 'Crisp text, lower cost', icon: '◐' },
-                                        { id: 'Color', label: 'Full Color', desc: 'Vibrant illustrations', icon: '🌈' }
+                                        { id: 'Color', label: 'Full Color', desc: 'Vibrant illustrations', icon: 'colour' }
                                     ].map((opt) => (
                                         <button key={opt.id} type="button" onClick={() => setData('printing_color', opt.id)}
                                             className={`w-full p-5 rounded-2xl border-2 flex items-center gap-4 transition-all ${data.printing_color === opt.id
                                                 ? 'border-rose-400 bg-rose-50'
                                                 : 'border-linen bg-paper hover:border-rose-400/50'
                                                 }`}>
-                                            <span className="text-2xl">{opt.icon}</span>
+                                            <Icon name={opt.icon} size={24} />
                                             <div className="text-left flex-1">
                                                 <div className="font-bold text-ink">{opt.label}</div>
                                                 <div className="text-xs text-umber">{opt.desc}</div>
@@ -169,7 +170,7 @@ export default function Design({ auth, book }) {
                             {/* Paper Type */}
                             <div className="bg-paper backdrop-blur-xl rounded-3xl p-8 border border-linen">
                                 <h2 className="text-xl font-bold text-ink mb-6 flex items-center gap-3">
-                                    <span className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center">📄</span>
+                                    <span className="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center"><Icon name="document" size={20} /></span>
                                     Paper Type
                                 </h2>
                                 <div className="space-y-3">
@@ -192,20 +193,20 @@ export default function Design({ auth, book }) {
                         {/* Binding */}
                         <div className="bg-paper backdrop-blur-xl rounded-3xl p-8 border border-linen">
                             <h2 className="text-xl font-bold text-ink mb-6 flex items-center gap-3">
-                                <span className="w-10 h-10 rounded-xl bg-oxblood/10 text-oxblood flex items-center justify-center">📕</span>
+                                <span className="w-10 h-10 rounded-xl bg-oxblood/10 text-oxblood flex items-center justify-center"><Icon name="book" size={20} /></span>
                                 Binding Style
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {[
-                                    { id: 'Soft Binding', label: 'Paperback', desc: 'Flexible, lightweight cover', icon: '📖' },
-                                    { id: 'Hard Binding', label: 'Hardcover', desc: 'Durable, premium finish', icon: '📚' }
+                                    { id: 'Soft Binding', label: 'Paperback', desc: 'Flexible, lightweight cover', icon: 'bookOpen' },
+                                    { id: 'Hard Binding', label: 'Hardcover', desc: 'Durable, premium finish', icon: 'library' }
                                 ].map((bind) => (
                                     <button key={bind.id} type="button" onClick={() => setData('binding_type', bind.id)}
                                         className={`p-6 rounded-2xl border-2 flex items-center gap-4 transition-all ${data.binding_type === bind.id
                                             ? 'border-oxblood bg-oxblood/10 shadow-lg shadow-oxblood/10'
                                             : 'border-linen bg-paper hover:border-oxblood/50'
                                             }`}>
-                                        <span className="text-3xl">{bind.icon}</span>
+                                        <Icon name={bind.icon} size={26} />
                                         <div className="text-left flex-1">
                                             <div className="font-bold text-ink text-lg">{bind.label}</div>
                                             <div className="text-sm text-umber">{bind.desc}</div>
@@ -223,7 +224,7 @@ export default function Design({ auth, book }) {
                             {/* Interior */}
                             <div className="bg-gradient-to-br from-orange-50 to-amber-50 backdrop-blur-xl rounded-3xl p-8 border border-orange-200">
                                 <h2 className="text-xl font-bold text-ink mb-2 flex items-center gap-3">
-                                    <span className="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center">📝</span>
+                                    <span className="w-10 h-10 rounded-xl bg-orange-500 text-white flex items-center justify-center"><Icon name="manuscript" size={20} /></span>
                                     Interior Manuscript
                                 </h2>
                                 <p className="text-sm text-umber mb-6">Upload your formatted PDF or Word document</p>
@@ -231,7 +232,7 @@ export default function Design({ auth, book }) {
                                 <div className="space-y-3">
                                     <button type="button" onClick={() => setShowTemplateModal(true)}
                                         className="w-full py-3 px-4 bg-paper rounded-xl border-2 border-dashed border-orange-400/50 text-orange-700 font-semibold hover:border-orange-400 hover:bg-orange-50 transition-all">
-                                        📚 Browse Templates
+                                        <Icon name="library" size={17} /> Browse Templates
                                     </button>
                                     <label className="block w-full py-3 px-4 bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl text-white font-bold text-center cursor-pointer hover:shadow-lg hover:shadow-orange-500/30 transition-all">
                                         ⬆️ Upload File
@@ -251,13 +252,13 @@ export default function Design({ auth, book }) {
                             {/* Cover */}
                             <div className="bg-gradient-to-br from-rose-50 to-pink-50 backdrop-blur-xl rounded-3xl p-8 border border-rose-200">
                                 <h2 className="text-xl font-bold text-ink mb-2 flex items-center gap-3">
-                                    <span className="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center">🎨</span>
+                                    <span className="w-10 h-10 rounded-xl bg-rose-500 text-white flex items-center justify-center"><Icon name="palette" size={20} /></span>
                                     Cover Design
                                 </h2>
                                 <p className="text-sm text-umber mb-6">Upload your cover image (PNG, JPG)</p>
 
                                 <label className="block border-2 border-dashed border-rose-400/50 rounded-2xl p-8 text-center cursor-pointer hover:border-rose-400 hover:bg-rose-50 transition-all">
-                                    <div className="text-4xl mb-3">🖼️</div>
+                                    <div className="mb-3 flex justify-center text-taupe"><Icon name="image" size={34} /></div>
                                     <div className="text-sm text-ink-soft"><span className="text-rose-600 font-semibold">Click to upload</span> or drag and drop</div>
                                     <div className="text-xs text-taupe mt-1">PNG, JPG up to 10MB</div>
                                     <input type="file" className="hidden" accept=".jpg,.jpeg,.png,.pdf"
@@ -306,18 +307,18 @@ export default function Design({ auth, book }) {
                             <div className="p-6 grid grid-cols-2 gap-4 overflow-y-auto max-h-[60vh]">
                                 {(data.book_size === '16.5x11'
                                     ? [
-                                        { name: 'Magazine Template', folder: 'Magazine Template', icon: '📰', color: 'from-stone-600 to-stone-800' }
+                                        { name: 'Magazine Template', folder: 'Magazine Template', icon: 'newspaper', color: 'from-stone-600 to-stone-800' }
                                     ]
                                     : [
-                                        { name: 'Horror Style', folder: 'Horror Book Template', icon: '🧛', color: 'from-slate-800 to-red-900' },
+                                        { name: 'Horror Style', folder: 'Horror Book Template', icon: 'book', color: 'from-slate-800 to-red-900' },
                                         { name: 'Kavithai Style', folder: 'Kavithai', icon: '✍️', color: 'from-amber-500 to-orange-600' },
-                                        { name: 'Standard Book', folder: 'Book', icon: '📖', color: 'from-blue-500 to-indigo-600' },
-                                        { name: 'Bordered Style', folder: 'Book with border', icon: '🖼️', color: 'from-emerald-500 to-teal-600' },
+                                        { name: 'Standard Book', folder: 'Book', icon: 'bookOpen', color: 'from-blue-500 to-indigo-600' },
+                                        { name: 'Bordered Style', folder: 'Book with border', icon: 'image', color: 'from-emerald-500 to-teal-600' },
                                     ]
                                 ).map((style) => (
                                     <div key={style.folder} className="bg-vellum rounded-2xl p-5 border border-linen hover:shadow-lg transition-all">
                                         <div className="flex items-center gap-3 mb-4">
-                                            <span className="text-3xl">{style.icon}</span>
+                                            <Icon name={style.icon} size={26} />
                                             <span className="font-bold text-ink">{style.name}</span>
                                         </div>
                                         <button onClick={() => handleDownload(style.folder, data.book_size)}

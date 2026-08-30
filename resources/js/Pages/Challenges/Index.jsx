@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Head, useForm } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import PremiumBackground from '@/Components/PremiumBackground';
 import axios from 'axios';
 
@@ -81,7 +82,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
         {
             id: 'story',
             title: 'Story Challenge',
-            icon: '📖',
+            icon: 'bookOpen',
             desc: 'A structured creative writing program where authors craft a complete story using linear or non-linear narrative techniques and publish it as a book through our professional publishing platform.',
             rules: [
                 'Duration: 22 Days',
@@ -90,56 +91,8 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                 'Minimum pages – 30'
             ],
             eligibility: 'Open to registered authors worldwide. Participants must submit original, unpublished work and adhere to platform quality and ethical standards.',
-            benefits: [
-                { icon: '📘', text: 'Get your own published book' },
-                { icon: '🏆', text: "Overcome writer's block" },
-                { icon: '📚', text: 'Publish in paperback & eBook' },
-                { icon: '📜', text: 'Free author copy & publishing certificate' },
-                { icon: '💰', text: 'Earn 100% royalty' },
-                { icon: '🎁', text: 'Free bonuses worth ₹8,500' },
-            ]
-        },
-        {
-            id: 'poetry',
-            title: 'Poetry Challenge',
-            icon: '✒️',
-            desc: 'Write one poem each day for 22 days and transform your collection into a published poetry book. Build your voice, shape your themes, and release your work through our DIY publishing platform.',
-            rules: [
-                'Duration: 22 Days',
-                'Language – English, Tamil & Hindi',
-                'ISBN-Based Publication',
-                'Minimum pages – 30'
-            ],
             eligibility: 'Open to registered authors worldwide. Participants must submit original, unpublished work and adhere to platform quality and ethical standards.',
-            benefits: [
-                { icon: '📗', text: 'Get your own poetry journal' },
-                { icon: '🏆', text: 'Overcome writer\'s block' },
-                { icon: '📚', text: 'Publish in paperback & eBook' },
-                { icon: '📜', text: 'Free author copy & publishing certificate' },
-                { icon: '💰', text: 'Earn 100% royalty' },
-                { icon: '🎁', text: 'Free bonuses worth ₹8,500' },
-            ]
-        },
-        {
-            id: 'academic',
-            title: 'Academic Challenge',
-            icon: '🔬',
-            desc: 'A structured 22-day publishing program for academic authors. Develop your single-author book one chapter per day and publish with ISBN through our professional DIY platform.',
-            rules: [
-                'Duration: 22 Days',
-                'Language – English, Tamil & Hindi',
-                'ISBN-Based Publication',
-                'Minimum pages – 30'
-            ],
-            eligibility: 'Open to registered authors worldwide. Participants must submit original, unpublished work and adhere to platform quality and ethical standards.',
-            benefits: [
-                { icon: '📕', text: 'Get your own academic book' },
-                { icon: '🏆', text: "Structured daily writing plan" },
-                { icon: '📚', text: 'Publish in paperback & eBook' },
-                { icon: '📜', text: 'Free author copy & publishing certificate' },
-                { icon: '💰', text: 'Earn 100% royalty' },
-                { icon: '🎁', text: 'Free bonuses worth ₹8,500' },
-            ]
+            eligibility: 'Open to registered authors worldwide. Participants must submit original, unpublished work and adhere to platform quality and ethical standards.'
         }
     ];
 
@@ -191,7 +144,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                 w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-6 transition-all duration-300
                                 ${selectedChallenge === challenge.title ? 'bg-indigo-600 text-paper shadow-lg shadow-indigo-500/40' : 'bg-vellum text-umber group-hover:bg-vellum'}
                             `}>
-                                {challenge.icon}
+                                <Icon name={challenge.icon} size={24} />
                             </div>
                             <h3 className="text-xl font-bold mb-3 group-hover:text-indigo-700 transition-colors">{challenge.title}</h3>
                             <p className="text-sm text-umber leading-relaxed mb-8 min-h-[60px]">
@@ -355,7 +308,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                 {/* Certificate */}
                                 <div className="bg-indigo-50 border border-linen rounded-2xl p-6 hover:border-indigo-500/50 transition-colors shadow-lg shadow-indigo-500/5 backdrop-blur-sm">
                                     <h3 className="text-lg font-bold text-indigo-700 mb-3 flex items-center gap-2">
-                                        📜 Publishing Certificate
+                                        <Icon name="scroll" size={19} /> Publishing Certificate
                                     </h3>
                                     <p className="text-umber text-sm leading-relaxed">We will send a digital publishing Certificate to each participating writer.</p>
                                 </div>
@@ -363,7 +316,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                 {/* Book Publishing Intro */}
                                 <div className="bg-indigo-50 border border-linen rounded-2xl p-6 hover:border-indigo-500/50 transition-colors shadow-lg shadow-indigo-500/5 backdrop-blur-sm">
                                     <h3 className="text-lg font-bold text-indigo-700 mb-3 flex items-center gap-2">
-                                        📚 Book Publishing
+                                        <Icon name="library" size={19} /> Book Publishing
                                     </h3>
                                     <p className="text-umber text-sm leading-relaxed">
                                         We'll publish what you write during this month as your own book as part of the Writing Challenge.
@@ -401,7 +354,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                         <div className="mt-12 bg-gradient-to-br from-indigo-900/20 to-purple-900/20 border border-indigo-500/30 rounded-2xl p-8 hover:border-indigo-500/60 transition-colors relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl -z-10"></div>
                             <h3 className="text-xl font-bold text-ink mb-4 flex items-center gap-3">
-                                <span className="text-2xl">🚀</span> Book Marketing
+                                <Icon name="rocket" size={22} className="text-oxblood" /> Book Marketing
                             </h3>
                             <p className="text-ink-soft leading-relaxed text-lg font-light">
                                 When your book is out, we'll send you promotional material to help you promote it.
@@ -628,7 +581,7 @@ export default function ChallengeIndex({ challengeSettings = {} }) {
                                     </div>
                                     {couponApplied && (
                                         <div className="text-center">
-                                            <span className="text-xs text-emerald-700 font-bold">🎉 You save ₹{couponApplied.discount_amount.toLocaleString()}!</span>
+                                            <span className="text-xs text-emerald-700 font-bold inline-flex items-center gap-1.5"><Icon name="gift" size={14} /> You save ₹{couponApplied.discount_amount.toLocaleString()}!</span>
                                         </div>
                                     )}
                                 </div>

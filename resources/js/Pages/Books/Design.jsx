@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Head, useForm, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { route } from 'ziggy-js';
 import InputError from '@/Components/InputError';
 import AiWritingModal from '@/Components/AiWritingModal';
@@ -276,13 +277,13 @@ export default function Design({ auth, book }) {
                                     {/* Features List */}
                                     <div className="space-y-4">
                                         {[
-                                            { icon: '📏', text: 'Standard & Custom Sizes' },
-                                            { icon: '🎨', text: 'Premium Color Options' },
-                                            { icon: '📚', text: 'Professional Binding' }
+                                            { icon: 'ruler', text: 'Standard & Custom Sizes' },
+                                            { icon: 'palette', text: 'Premium Color Options' },
+                                            { icon: 'library', text: 'Professional Binding' }
                                         ].map((item, idx) => (
                                             <div key={idx} className="flex items-center gap-3 text-cream/85">
-                                                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-lg">
-                                                    {item.icon}
+                                                <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">
+                                                    <Icon name={item.icon} size={17} />
                                                 </div>
                                                 <span className="font-medium">{item.text}</span>
                                             </div>
@@ -543,7 +544,7 @@ export default function Design({ auth, book }) {
                                                             </div>
                                                             <span className="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">RECOMMENDED</span>
                                                         </div>
-                                                        <h3 className="font-bold text-ink text-lg mb-2">AI Studio 👻</h3>
+                                                        <h3 className="font-bold text-ink text-lg mb-2">AI Studio</h3>
                                                         <p className="text-sm text-umber mb-6">Write directly in our browser editor. We handle formatting automatically.</p>
                                                         <button
                                                             type="button"
@@ -968,7 +969,7 @@ export default function Design({ auth, book }) {
                                     <h3 className="text-3xl font-black text-ink tracking-tight">Template Library</h3>
                                     <p className="text-purple-600 font-bold flex items-center gap-2 mt-1">
                                         <span className="px-2 py-0.5 bg-purple-100 rounded text-xs">SIZE: {data.book_size}</span>
-                                        Formatting optimized for your selection 📏
+                                        Formatting optimized for your selection
                                     </p>
                                 </div>
                                 <button onClick={() => setShowTemplateModal(false)} className="p-2 hover:bg-white rounded-full transition-colors text-taupe hover:text-ink shadow-sm">
@@ -1004,20 +1005,20 @@ export default function Design({ auth, book }) {
                             <div className="p-8 overflow-y-auto grid grid-cols-1 md:grid-cols-2 gap-6 bg-paper/50">
                                 {(data.book_size === '16.5x11'
                                     ? [
-                                        { name: 'Magazine Template', folder: 'Magazine Template', icon: '📰', color: 'from-stone-600 to-stone-800', border: 'border-stone-300' }
+                                        { name: 'Magazine Template', folder: 'Magazine Template', icon: 'newspaper', color: 'from-stone-600 to-stone-800', border: 'border-stone-300' }
                                     ]
                                     : [
-                                        { name: 'Horror Style', folder: 'Horror Book Template', icon: '🧛', color: 'from-oxblood-deep to-red-950', border: 'border-red-900/20' },
+                                        { name: 'Horror Style', folder: 'Horror Book Template', icon: 'book', color: 'from-oxblood-deep to-red-950', border: 'border-red-900/20' },
                                         { name: 'Kavithai Style', folder: 'Kavithai', icon: '✍️', color: 'from-amber-500 to-orange-600', border: 'border-amber-200' },
-                                        { name: 'Standard Book', folder: 'Book', icon: '📖', color: 'from-[#6a222d] to-indigo-700', border: 'border-blue-200' },
-                                        { name: 'Bordered Style', folder: 'Book with border', icon: '🖼️', color: 'from-emerald-500 to-teal-600', border: 'border-emerald-200' },
+                                        { name: 'Standard Book', folder: 'Book', icon: 'bookOpen', color: 'from-[#6a222d] to-indigo-700', border: 'border-blue-200' },
+                                        { name: 'Bordered Style', folder: 'Book with border', icon: 'image', color: 'from-emerald-500 to-teal-600', border: 'border-emerald-200' },
                                     ]
                                 ).map((style) => (
                                     <div key={style.folder} className={`group relative bg-white rounded-2xl border ${style.border} p-1 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1`}>
                                         <div className="p-6">
                                             <div className="flex items-center gap-5 mb-6">
-                                                <div className="w-16 h-16 rounded-2xl bg-paper flex items-center justify-center text-3xl shadow-inner group-hover:scale-110 transition-transform">
-                                                    {style.icon}
+                                                <div className="w-16 h-16 rounded-2xl bg-paper flex items-center justify-center text-oxblood shadow-inner group-hover:scale-110 transition-transform">
+                                                    <Icon name={style.icon} size={28} />
                                                 </div>
                                                 <div>
                                                     <h4 className="text-xl font-bold text-ink">{style.name}</h4>
