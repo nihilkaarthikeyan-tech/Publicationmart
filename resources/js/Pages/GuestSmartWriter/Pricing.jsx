@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useRef, useState, useEffect } from 'react';
 import Layout from '@/Layouts/Layout';
 
@@ -135,8 +136,8 @@ export default function SmartWritingTool({ auth }) {
                             <p className="text-umber text-sm mb-6">Perfect for getting started with Smart Writer</p>
                             <ul className="space-y-4 mb-8">
                                 <TierFeature icon="✏️" title="Smart Writer" desc="Generate chapters, outlines, and content effortlessly." />
-                                <TierFeature icon="📄" title="Auto Formatting" desc="Professional book layout and structure." />
-                                <TierFeature icon="📦" title="Amazon-Ready Export" desc="Export in KDP-ready formats." />
+                                <TierFeature icon="document" title="Auto Formatting" desc="Professional book layout and structure." />
+                                <TierFeature icon="package" title="Amazon-Ready Export" desc="Export in KDP-ready formats." />
                             </ul>
                             <button
                                 onClick={scrollToPro}
@@ -159,8 +160,8 @@ export default function SmartWritingTool({ auth }) {
                             <h3 className="text-2xl font-bold text-umber mb-1">Premium</h3>
                             <p className="text-umber text-sm mb-6">Complete suite for professional authors</p>
                             <ul className="space-y-4 mb-8">
-                                <TierFeature icon="🤖" title="Advanced Smart Writer Engine" desc="Superior models for bestseller-quality prose." color="gray" />
-                                <TierFeature icon="🎨" title="Smart Writer Art Studio" desc="Stunning visuals for covers and headers." color="gray" />
+                                <TierFeature icon="robot" title="Advanced Smart Writer Engine" desc="Superior models for bestseller-quality prose." color="gray" />
+                                <TierFeature icon="palette" title="Smart Writer Art Studio" desc="Stunning visuals for covers and headers." color="gray" />
                                 <TierFeature icon="⭐" title="Priority Support" desc="Get help when you need it most." color="gray" />
                             </ul>
                             <button
@@ -189,7 +190,7 @@ export default function SmartWritingTool({ auth }) {
                                 <BulletItem color="indigo">Key themes and flow direction</BulletItem>
                             </ul>
                         </StepCard>
-                        <StepCard number="2" title="Outline Review & Approval" subtitle="You Remain Fully in Control" icon="🛡️" side="left" delay={200} gradient="from-purple-500 to-pink-600" glowColor="purple">
+                        <StepCard number="2" title="Outline Review & Approval" subtitle="You Remain Fully in Control" icon="shield" side="left" delay={200} gradient="from-purple-500 to-pink-600" glowColor="purple">
                             <p className="text-umber mb-4">Before the manuscript is developed, you can:</p>
                             <ul className="space-y-2">
                                 <BulletItem color="purple">Review the proposed structure</BulletItem>
@@ -198,7 +199,7 @@ export default function SmartWritingTool({ auth }) {
                                 <BulletItem color="purple">Adjust tone and direction</BulletItem>
                             </ul>
                         </StepCard>
-                        <StepCard number="3" title="Automatic Full Draft" subtitle="Ready for Review & Refinement" icon="🚀" side="right" delay={300} gradient="from-pink-500 to-rose-600" glowColor="rose">
+                        <StepCard number="3" title="Automatic Full Draft" subtitle="Ready for Review & Refinement" icon="rocket" side="right" delay={300} gradient="from-pink-500 to-rose-600" glowColor="rose">
                             <p className="text-umber mb-4">Once approved, the system generates the complete manuscript. It expands chapters, maintains consistency, and ensures smooth flow.</p>
                             <p className="text-umber text-sm mt-4 italic border-l-2 border-pink-500/30 pl-3">Within minutes, you receive a complete first draft ready for your review.</p>
                         </StepCard>
@@ -214,8 +215,8 @@ export default function SmartWritingTool({ auth }) {
                                 <p className="text-umber mb-10 text-lg">Smart Writer simplifies the process and reduces the time required to complete your manuscript.</p>
                                 <div className="space-y-6">
                                     <FeatureRow icon="✍️" title="First-time Writers" desc="Needing structure and guidance to start their journey." />
-                                    <FeatureRow icon="💼" title="Busy Professionals" desc="Turning expertise into a book efficiently." />
-                                    <FeatureRow icon="🚀" title="Content Creators" desc="Expanding into publishing with speed and quality." />
+                                    <FeatureRow icon="briefcase" title="Busy Professionals" desc="Turning expertise into a book efficiently." />
+                                    <FeatureRow icon="rocket" title="Content Creators" desc="Expanding into publishing with speed and quality." />
                                 </div>
                             </div>
                             <div className="relative group">
@@ -392,7 +393,7 @@ function StepCard({ number, title, subtitle, icon, side, delay, gradient, glowCo
                 <div className={`bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] p-8 rounded-2xl hover:bg-white/[0.06] hover:border-linen transition-all duration-500 relative overflow-hidden ${glowColors[glowColor] || ''}`}>
                     <div className={`absolute -top-12 ${isRight ? '-right-12' : '-left-12'} w-32 h-32 bg-gradient-to-br ${gradient} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500`} />
                     <div className={`flex items-start gap-3 mb-2 ${!isRight ? 'md:flex-row-reverse md:text-right' : ''}`}>
-                        <span className="text-3xl flex-shrink-0 mt-0.5">{icon}</span>
+                        <Icon name={icon} size={28} className="flex-shrink-0 mt-0.5" />
                         <div className="flex-1">
                             <h3 className="text-xl font-bold text-ink mb-1">{title}</h3>
                             <p className="text-umber text-sm font-mono">{subtitle}</p>
@@ -421,7 +422,7 @@ function BulletItem({ children, color = 'indigo' }) {
 function FeatureRow({ icon, title, desc }) {
     return (
         <div className="flex gap-5 p-4 rounded-2xl hover:bg-paper transition-colors duration-300 border border-transparent hover:border-linen">
-            <div className="w-12 h-12 rounded-xl bg-vellum flex items-center justify-center shrink-0 text-xl backdrop-blur-sm">{icon}</div>
+            <div className="w-12 h-12 rounded-xl bg-vellum flex items-center justify-center shrink-0 text-oxblood backdrop-blur-sm"><Icon name={icon} size={22} /></div>
             <div>
                 <h4 className="font-bold text-ink text-lg">{title}</h4>
                 <p className="text-sm text-umber mt-1">{desc}</p>

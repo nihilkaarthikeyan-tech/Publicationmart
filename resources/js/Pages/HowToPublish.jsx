@@ -1,4 +1,5 @@
 import { Link, Head } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useEffect, useRef, useState } from 'react';
 
 /* Plate V — the book assembles beside the steps as the reader scrolls. */
@@ -208,7 +209,7 @@ export default function HowToPublish({ auth }) {
                             number="2"
                             title="Format Your Book Professionally"
                             subtitle="A professionally formatted book improves readability and credibility."
-                            icon="📖"
+                            icon="bookOpen"
                             side="left"
                             delay={200}
                             gradient="from-foil to-[#7d6027]"
@@ -231,7 +232,7 @@ export default function HowToPublish({ auth }) {
                             number="3"
                             title="Design Your Cover"
                             subtitle="Readers judge books by their covers."
-                            icon="🎨"
+                            icon="palette"
                             side="right"
                             delay={300}
                             gradient="from-[#2f4f45] to-[#20362d]"
@@ -253,7 +254,7 @@ export default function HowToPublish({ auth }) {
                             number="4"
                             title="ISBN & Publishing Setup"
                             subtitle="An ISBN gives your book a unique identity worldwide."
-                            icon="🔑"
+                            icon="key"
                             side="left"
                             delay={400}
                             gradient="from-[#7a6224] to-[#584618]"
@@ -280,7 +281,7 @@ export default function HowToPublish({ auth }) {
                             number="5"
                             title="Global Distribution"
                             subtitle="Once approved, your book becomes available through major online platforms."
-                            icon="🚀"
+                            icon="rocket"
                             side="right"
                             delay={500}
                             gradient="from-[#2b3a56] to-[#1c2739]"
@@ -303,7 +304,7 @@ export default function HowToPublish({ auth }) {
                             number="6"
                             title="Marketing & Growth"
                             subtitle="Publishing is just the beginning."
-                            icon="📈"
+                            icon="chart"
                             side="left"
                             delay={600}
                             badge="Optional"
@@ -436,7 +437,7 @@ function StepCard({ number, title, subtitle, icon, side, delay, badge, gradient,
 
                     {/* Header */}
                     <div className={`flex items-start gap-3 mb-2 ${!isRight ? 'md:flex-row-reverse md:text-right' : ''}`}>
-                        <span className="text-3xl flex-shrink-0 mt-0.5">{icon}</span>
+                        <Icon name={icon} size={28} className="flex-shrink-0 mt-0.5" />
                         <div className="flex-1">
                             <div className="flex items-center gap-2 flex-wrap">
                                 <h3 className="text-xl font-bold text-ink">{title}</h3>

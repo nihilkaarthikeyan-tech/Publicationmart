@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Head, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import axios from 'axios';
 
 const FICTION_TYPES = [
@@ -856,8 +857,8 @@ export default function AiBookStudio({ book, auth }) {
                                 {/* Choice: AI or Manual (Only if no chapters exist) */}
                                 {chapters.length === 0 ? (
                                     <div className="bg-paper rounded-2xl border border-linen p-6 md:p-8 shadow-xl text-center">
-                                        <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 text-white rounded-xl flex items-center justify-center mx-auto mb-5 text-2xl border border-indigo-500/30">
-                                            📚
+                                        <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 text-white rounded-xl flex items-center justify-center mx-auto mb-5 border border-indigo-500/30">
+                                            <Icon name="library" size={26} />
                                         </div>
                                         <h3 className="text-lg font-bold text-ink mb-2">No Chapters Yet</h3>
                                         <p className="text-sm text-ink-soft mb-6 max-w-sm mx-auto">Generate an outline with AI or manually create your own structure.</p>
@@ -1000,8 +1001,8 @@ export default function AiBookStudio({ book, auth }) {
                                             </div>
                                         ) : (
                                             <div className="bg-paper rounded-xl border border-linen p-6 text-center">
-                                                <div className="w-12 h-12 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl border border-indigo-500/30">
-                                                    📑
+                                                <div className="w-12 h-12 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 rounded-xl flex items-center justify-center mx-auto mb-4 border border-indigo-500/30">
+                                                    <Icon name="pages" size={22} />
                                                 </div>
                                                 <h3 className="font-bold text-ink text-base mb-1">No sections yet</h3>
                                                 <p className="text-ink-soft mb-5 text-xs max-w-xs mx-auto">Generate sub-headings for this chapter to organize the content.</p>
@@ -1156,7 +1157,7 @@ export default function AiBookStudio({ book, auth }) {
                                                             Generating Image...
                                                         </>
                                                     ) : (
-                                                        <>🎨 Generate Illustration</>
+                                                        <><Icon name="palette" size={17} /> Generate Illustration</>
                                                     )}
                                                 </button>
 
@@ -1176,7 +1177,7 @@ export default function AiBookStudio({ book, auth }) {
                                         ) : (
                                             <div className="h-10 border-b border-linen flex items-center px-5 bg-paper">
                                                 <span className="text-[10px] font-bold uppercase tracking-wider text-umber flex items-center gap-1.5">
-                                                    🔒 Image Generation (Premium Only)
+                                                    <Icon name="lock" size={13} /> Image Generation (Premium Only)
                                                 </span>
                                             </div>
                                         )}
@@ -1346,7 +1347,7 @@ export default function AiBookStudio({ book, auth }) {
                             {/* Modal Header */}
                             <div className="p-4 border-b border-linen flex items-center justify-between">
                                 <h3 className="text-lg font-bold text-ink flex items-center gap-2">
-                                    <span>🎨</span>
+                                    <Icon name="palette" size={19} />
                                     Generate Illustration
                                 </h3>
                                 <button
@@ -1371,7 +1372,7 @@ export default function AiBookStudio({ book, auth }) {
                                         onClick={() => setImagePromptMode('auto')}
                                         className={`p-4 rounded-xl border text-center transition-all ${imagePromptMode === 'auto' ? 'border-indigo-500 bg-indigo-500/20' : 'border-linen hover:border-linen bg-paper'}`}
                                     >
-                                        <span className="text-2xl mb-2 block">🤖</span>
+                                        <Icon name="robot" size={24} className="mb-2 mx-auto block" />
                                         <span className={`text-sm font-bold block ${imagePromptMode === 'auto' ? 'text-ink' : 'text-ink-soft'}`}>Auto (AI)</span>
                                         <span className="text-[10px] text-umber mt-1 block">Based on content</span>
                                     </button>

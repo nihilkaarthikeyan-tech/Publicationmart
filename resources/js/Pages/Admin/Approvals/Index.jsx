@@ -1,5 +1,6 @@
 ﻿
 import { Head, Link, router, usePage } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState, useMemo, useEffect } from 'react';
 
 export default function ApprovalQueue({ auth, books, dbError }) {
@@ -91,13 +92,13 @@ export default function ApprovalQueue({ auth, books, dbError }) {
 
     // Filter options
     const filterOptions = [
-        { value: 'all', label: 'All Submissions', icon: '📚' },
+        { value: 'all', label: 'All Submissions', icon: 'library' },
         { value: 'ready', label: 'Ready to Publish', icon: '✅' },
-        { value: 'missing_isbn', label: 'Missing ISBN', icon: '🏷️' },
-        { value: 'no_cover', label: 'No Cover', icon: '🖼️' },
+        { value: 'missing_isbn', label: 'Missing ISBN', icon: 'tag' },
+        { value: 'no_cover', label: 'No Cover', icon: 'image' },
         { value: 'has_cover', label: 'Has Cover', icon: '✨' },
-        { value: 'no_price', label: 'No Price Set', icon: '💰' },
-        { value: 'has_price', label: 'Price Set', icon: '💵' },
+        { value: 'no_price', label: 'No Price Set', icon: 'rupee' },
+        { value: 'has_price', label: 'Price Set', icon: 'rupee' },
     ];
 
     // Client-side filtering with advanced filters
@@ -166,7 +167,7 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                             <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                             </svg>
-                            New book submission received! 🎉
+                            New book submission received
                         </div>
                     </div>
                 )}
@@ -284,7 +285,7 @@ export default function ApprovalQueue({ auth, books, dbError }) {
                                         : 'bg-paper text-umber border border-linen hover:border-orange-500/50 hover:text-orange-800'
                                         }`}
                                 >
-                                    <span>{option.icon}</span>
+                                    <Icon name={option.icon} size={16} />
                                     <span>{option.label}</span>
                                     {option.value !== 'all' && (
                                         <span className={`ml-1 px-1.5 py-0.5 rounded text-[10px] ${filter === option.value ? 'bg-vellum' : 'bg-paper'
