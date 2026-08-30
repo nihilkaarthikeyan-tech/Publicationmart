@@ -1,4 +1,5 @@
 import { Head, Link, router, useForm } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 
 export default function PublishingInquiries({ inquiries, filters }) {
@@ -142,7 +143,7 @@ export default function PublishingInquiries({ inquiries, filters }) {
                     <div className="bg-paper rounded-2xl border border-linen overflow-hidden">
                         {inquiries.data?.length === 0 ? (
                             <div className="text-center py-16">
-                                <div className="text-4xl mb-3">📭</div>
+                                <div className="mb-3 flex justify-center text-taupe"><Icon name="inbox" size={34} /></div>
                                 <p className="text-umber font-semibold">No inquiries found</p>
                                 <p className="text-umber text-sm mt-1">Inquiries from the Premium Suite form will appear here</p>
                             </div>
@@ -169,7 +170,7 @@ export default function PublishingInquiries({ inquiries, filters }) {
                                                     <p className="text-umber text-xs">{inquiry.phone}</p>
                                                     {inquiry.whatsapp && (
                                                         <p className="text-emerald-500/70 text-xs flex items-center gap-1 mt-0.5">
-                                                            <span>📱</span> {inquiry.whatsapp}
+                                                            <Icon name="mobile" size={15} /> {inquiry.whatsapp}
                                                         </p>
                                                     )}
                                                 </td>
@@ -234,7 +235,7 @@ export default function PublishingInquiries({ inquiries, filters }) {
                                                     )}
                                                     {inquiry.admin_notes && statusForm.id !== inquiry.id && (
                                                         <p className="text-umber text-xs mt-1 italic max-w-[200px] truncate" title={inquiry.admin_notes}>
-                                                            📝 {inquiry.admin_notes}
+                                                            <Icon name="manuscript" size={14} /> {inquiry.admin_notes}
                                                         </p>
                                                     )}
                                                 </td>

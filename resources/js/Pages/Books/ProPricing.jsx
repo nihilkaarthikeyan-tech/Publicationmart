@@ -1,4 +1,5 @@
 ﻿import { Head, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -146,7 +147,7 @@ export default function ProPricing({ book }) {
                     <div className="text-center mb-12 relative z-10">
                         <div className="flex items-center justify-center gap-2 mb-4">
                             <span className="px-3 py-1 bg-gradient-to-r from-orange-500 to-amber-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-full shadow-lg">INDIA'S NEXT GEN</span>
-                            <span className="text-umber text-xs">| AI-Powered Book Writing & Publishing Platform 🟢</span>
+                            <span className="text-umber text-xs">| AI-Powered Book Writing & Publishing Platform</span>
                         </div>
                         <h1 className="text-4xl md:text-6xl font-bold text-ink mb-4 tracking-tight leading-tight">
                             Turn Ideas into Books<br />

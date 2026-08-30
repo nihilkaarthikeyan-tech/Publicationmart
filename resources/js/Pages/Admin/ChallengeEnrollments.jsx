@@ -1,4 +1,5 @@
 import { Head, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 
 export default function ChallengeEnrollments({ enrollments, filters }) {
@@ -238,7 +239,7 @@ export default function ChallengeEnrollments({ enrollments, filters }) {
                                                             </button>
                                                             {enrollment.admin_notes && (
                                                                 <p className="text-umber text-xs mt-1 max-w-[150px] truncate" title={enrollment.admin_notes}>
-                                                                    📝 {enrollment.admin_notes}
+                                                                    <Icon name="manuscript" size={14} /> {enrollment.admin_notes}
                                                                 </p>
                                                             )}
                                                         </div>
@@ -270,7 +271,7 @@ export default function ChallengeEnrollments({ enrollments, filters }) {
                                     ) : (
                                         <tr>
                                             <td colSpan="8" className="px-6 py-16 text-center">
-                                                <div className="text-umber text-4xl mb-3">📭</div>
+                                                <div className="text-taupe mb-3 flex justify-center"><Icon name="inbox" size={34} /></div>
                                                 <p className="text-umber font-medium">No enrollments found</p>
                                                 <p className="text-umber text-sm mt-1">Challenge enrollments will appear here</p>
                                             </td>

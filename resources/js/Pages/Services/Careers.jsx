@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 
 export default function Careers() {
     return (
@@ -49,19 +50,19 @@ export default function Careers() {
                     {/* Floating Decorative Elements */}
                     <div className="mt-20 flex justify-center gap-8 grayscale opacity-20 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
                         <div className="flex flex-col items-center">
-                            <span className="text-4xl">👨💻</span>
+                            <Icon name="users" size={34} />
                             <span className="text-[10px] font-bold mt-2 tracking-widest uppercase">Tech</span>
                         </div>
                         <div className="flex flex-col items-center">
-                            <span className="text-4xl">🎨</span>
+                            <Icon name="palette" size={34} />
                             <span className="text-[10px] font-bold mt-2 tracking-widest uppercase">Design</span>
                         </div>
                         <div className="flex flex-col items-center">
-                            <span className="text-4xl">📖</span>
+                            <Icon name="bookOpen" size={34} />
                             <span className="text-[10px] font-bold mt-2 tracking-widest uppercase">Content</span>
                         </div>
                         <div className="flex flex-col items-center">
-                            <span className="text-4xl">🚀</span>
+                            <Icon name="rocket" size={34} />
                             <span className="text-[10px] font-bold mt-2 tracking-widest uppercase">Growth</span>
                         </div>
                     </div>

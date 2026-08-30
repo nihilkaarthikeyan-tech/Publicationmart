@@ -1,4 +1,5 @@
 import { Head, useForm, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 
 const statusColors = {
@@ -94,7 +95,7 @@ export default function SupportShow({ auth, ticket }) {
                                 target="_blank"
                                 className="inline-flex items-center gap-1 mt-3 text-xs text-violet-600 hover:underline"
                             >
-                                📎 View Attachment
+                                <Icon name="attachment" size={14} /> View Attachment
                             </a>
                         )}
                     </div>
@@ -107,7 +108,7 @@ export default function SupportShow({ auth, ticket }) {
                         >
                             <div className="flex items-center gap-2 mb-3">
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-paper' : 'bg-violet-100 text-violet-700'}`}>
-                                    {reply.is_admin ? '🛡' : reply.author_name.charAt(0).toUpperCase()}
+                                    {reply.is_admin ? 'shield' : reply.author_name.charAt(0).toUpperCase()}
                                 </div>
                                 <div>
                                     <span className="font-semibold text-ink text-sm">{reply.author_name}</span>
@@ -122,7 +123,7 @@ export default function SupportShow({ auth, ticket }) {
                                     target="_blank"
                                     className="inline-flex items-center gap-1 mt-3 text-xs text-violet-600 hover:underline"
                                 >
-                                    📎 View Attachment
+                                    <Icon name="attachment" size={14} /> View Attachment
                                 </a>
                             )}
                         </div>

@@ -1,4 +1,5 @@
 ﻿import { Head, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useEffect } from 'react';
 
 export default function GuestSuccess({ session, token }) {
@@ -20,7 +21,7 @@ export default function GuestSuccess({ session, token }) {
                     <div className="mb-8 relative inline-block">
                         <div className="absolute inset-0 bg-emerald-500/20 blur-xl rounded-full animate-pulse"></div>
                         <div className="relative w-24 h-24 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto shadow-2xl">
-                            <span className="text-4xl">🎉</span>
+                            <Icon name="checkCircle" size={38} />
                         </div>
                     </div>
 

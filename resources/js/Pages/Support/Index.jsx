@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 
 const statusColors = {
     open:        'bg-emerald-100 text-emerald-700',
@@ -36,7 +37,7 @@ export default function SupportIndex({ auth, tickets }) {
                 {/* Tickets List */}
                 {tickets.length === 0 ? (
                     <div className="bg-white rounded-2xl shadow p-12 text-center">
-                        <div className="text-5xl mb-4">🎫</div>
+                        <div className="mb-4 flex justify-center text-taupe"><Icon name="ticket" size={44} /></div>
                         <h2 className="text-xl font-semibold text-ink-soft mb-2">No tickets yet</h2>
                         <p className="text-umber mb-6">Need help? Submit a support ticket and our team will get back to you.</p>
                         <Link href={route('support.create')} className="px-6 py-3 bg-violet-600 text-white rounded-xl font-semibold hover:bg-violet-700 transition">

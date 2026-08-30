@@ -1,4 +1,5 @@
 import { Head, Link, useForm } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 
 export default function Review({ auth, book }) {
@@ -83,7 +84,7 @@ export default function Review({ auth, book }) {
                                         </div>
                                         <div>
                                             <h1 className="text-xl font-bold text-white tracking-tight">Final Review</h1>
-                                            <p className="text-taupe text-sm">Review everything before submission 🎉</p>
+                                            <p className="text-taupe text-sm">Review everything before submission</p>
                                         </div>
                                     </div>
                                     <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">

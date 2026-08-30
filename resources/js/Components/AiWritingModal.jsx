@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Icon from '@/Components/Icon';
 import axios from 'axios';
 
 export default function AiWritingModal({ show, onClose, onInsert }) {
@@ -103,7 +104,7 @@ export default function AiWritingModal({ show, onClose, onInsert }) {
                                         </>
                                     ) : (
                                         <>
-                                            <span>🪄</span> Generate
+                                            <Icon name="wand" size={17} /> Generate
                                         </>
                                     )}
                                 </button>
@@ -127,7 +128,7 @@ export default function AiWritingModal({ show, onClose, onInsert }) {
                                     className="p-2 bg-gray-100 hover:bg-gray-200 text-gray-600 rounded-lg text-xs font-bold transition-colors"
                                     title="Copy to clipboard"
                                 >
-                                    📋 Copy
+                                    <Icon name="clipboard" size={15} /> Copy
                                 </button>
                             </div>
                             <div className="prose prose-purple max-w-none whitespace-pre-wrap font-serif text-gray-800 leading-relaxed">

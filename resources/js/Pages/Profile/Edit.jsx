@@ -1,4 +1,5 @@
 import { Head } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
@@ -39,7 +40,7 @@ export default function Edit({ mustVerifyEmail, status, myPurchases = [] }) {
                                                 <div className="flex-shrink-0">
                                                     {purchase.book_cover ?
                                                         <img className="h-12 w-8 object-cover rounded shadow" src={`/storage/${purchase.book_cover}`} alt={purchase.book_title} />
-                                                        : <div className="h-12 w-8 bg-linen dark:bg-ink-soft rounded flex items-center justify-center text-xs">📖</div>
+                                                        : <div className="h-12 w-8 bg-linen rounded flex items-center justify-center text-umber"><Icon name="book" size={15} /></div>
                                                     }
                                                 </div>
                                                 <div className="min-w-0 flex-1">

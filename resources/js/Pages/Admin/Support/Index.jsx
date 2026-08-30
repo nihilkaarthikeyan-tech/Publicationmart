@@ -1,4 +1,5 @@
 import { Head, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 
 const statusColors = {
@@ -97,7 +98,7 @@ export default function AdminSupportIndex({ auth, tickets, stats, categories, fi
                 <div className="bg-vellum backdrop-blur rounded-2xl overflow-hidden">
                     {tickets.data.length === 0 ? (
                         <div className="text-center py-16 text-umber">
-                            <div className="text-4xl mb-3">🎫</div>
+                            <div className="mb-3 flex justify-center text-taupe"><Icon name="ticket" size={34} /></div>
                             <p>No tickets found.</p>
                         </div>
                     ) : (

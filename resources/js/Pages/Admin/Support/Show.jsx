@@ -1,4 +1,5 @@
 import { Head, Link, useForm, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 
 const statusColors = {
     open:        'bg-emerald-900/30 text-emerald-700',
@@ -94,7 +95,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
                             <p className="text-ink-soft text-sm leading-relaxed whitespace-pre-wrap">{ticket.message}</p>
                             {ticket.attachment_path && (
                                 <a href={`/storage/${ticket.attachment_path}`} target="_blank" className="inline-flex items-center gap-1 mt-3 text-xs text-violet-700 hover:underline">
-                                    📎 View Attachment
+                                    <Icon name="attachment" size={14} /> View Attachment
                                 </a>
                             )}
                         </div>
@@ -104,7 +105,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
                             <div key={reply.id} className={`rounded-2xl p-5 ${reply.is_admin ? 'bg-violet-100 border border-linen' : 'bg-vellum backdrop-blur'}`}>
                                 <div className="flex items-center gap-2 mb-3">
                                     <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${reply.is_admin ? 'bg-violet-600 text-paper' : 'bg-ink-soft text-ink'}`}>
-                                        {reply.is_admin ? '🛡' : reply.author_name.charAt(0).toUpperCase()}
+                                        {reply.is_admin ? 'shield' : reply.author_name.charAt(0).toUpperCase()}
                                     </div>
                                     <div>
                                         <span className="font-semibold text-ink text-sm">{reply.author_name}</span>
@@ -115,7 +116,7 @@ export default function AdminSupportShow({ auth, ticket, statuses, priorities })
                                 <p className="text-ink-soft text-sm leading-relaxed whitespace-pre-wrap">{reply.message}</p>
                                 {reply.attachment_path && (
                                     <a href={`/storage/${reply.attachment_path}`} target="_blank" className="inline-flex items-center gap-1 mt-3 text-xs text-violet-700 hover:underline">
-                                        📎 View Attachment
+                                        <Icon name="attachment" size={14} /> View Attachment
                                     </a>
                                 )}
                             </div>

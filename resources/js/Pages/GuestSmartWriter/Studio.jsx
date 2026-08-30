@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Head, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import axios from 'axios';
 
 const FICTION_TYPES = [
@@ -724,7 +725,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
 
                             {chapters.length === 0 ? (
                                 <div className="bg-paper rounded-2xl border border-linen p-6 md:p-8 shadow-xl text-center">
-                                    <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 text-white rounded-xl flex items-center justify-center mx-auto mb-5 text-2xl border border-indigo-500/30">📚</div>
+                                    <div className="w-14 h-14 bg-gradient-to-br from-indigo-500/30 to-cyan-500/20 text-white rounded-xl flex items-center justify-center mx-auto mb-5 border border-indigo-500/30"><Icon name="library" size={26} /></div>
                                     <h3 className="text-lg font-bold text-ink mb-2">No Chapters Yet</h3>
                                     <p className="text-sm text-ink-soft mb-6 max-w-sm mx-auto">Generate an outline with AI or manually create your own.</p>
 
@@ -918,7 +919,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                             {session.image_credits_limit > 0 ? (
                                                 <>
                                                     <button onClick={handleGenerateImageClick} disabled={isGeneratingImage || imageCredits.used >= imageCredits.limit} className={`text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5 ${isGeneratingImage || imageCredits.used >= imageCredits.limit ? 'text-umber cursor-not-allowed' : 'text-indigo-700 hover:text-indigo-700'}`}>
-                                                        {isGeneratingImage ? 'Generating Image...' : '🎨 Generate Illustration'}
+                                                        {isGeneratingImage ? 'Generating Image...' : <><Icon name="palette" size={16} /> Generate Illustration</>}
                                                     </button>
                                                     <div className="mx-3 h-4 w-px bg-vellum"></div>
                                                     <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-umber">
@@ -927,7 +928,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                                     </div>
                                                 </>
                                             ) : (
-                                                <span className="text-[10px] font-bold uppercase tracking-wider text-umber">🔒 Image Generation (Not Available)</span>
+                                                <span className="text-[10px] font-bold uppercase tracking-wider text-umber"><Icon name="lock" size={13} /> Image Generation (Not Available)</span>
                                             )}
                                         </div>
 
@@ -948,7 +949,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                                 ) : (
                                     <div className="flex-1 flex items-center justify-center p-10">
                                         <div className="text-center text-umber">
-                                            <div className="text-4xl mb-4 opacity-50">👈</div>
+                                            <div className="mb-4 opacity-50 flex justify-center text-taupe"><Icon name="pointLeft" size={34} /></div>
                                             <p className="text-base font-medium">Select a section from the left sidebar to start writing</p>
                                         </div>
                                     </div>
@@ -1014,7 +1015,7 @@ export default function GuestStudio({ session, token, existingChapters = [] }) {
                     <div className="fixed inset-0 bg-vellum/70 backdrop-blur-sm flex items-center justify-center z-[100] p-4">
                         <div className="bg-paper rounded-2xl border border-linen w-full max-w-md overflow-hidden shadow-2xl">
                             <div className="p-4 border-b border-linen flex items-center justify-between">
-                                <h3 className="text-lg font-bold text-ink">🎨 Generate Illustration</h3>
+                                <h3 className="text-lg font-bold text-ink"><Icon name="palette" size={18} /> Generate Illustration</h3>
                                 <button onClick={() => setShowImagePromptModal(false)} className="text-umber hover:text-ink">✕</button>
                             </div>
                             <div className="p-4 space-y-4">

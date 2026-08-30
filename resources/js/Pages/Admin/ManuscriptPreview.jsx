@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Head, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { route } from 'ziggy-js';
 import BookViewer from '@/Components/Preview/BookViewer';
 
@@ -103,7 +104,7 @@ export default function ManuscriptPreview({ book, formattingData, interiorFile, 
                 <Head title="Manuscript Preview" />
                 <div className="min-h-screen bg-paper flex items-center justify-center">
                     <div className="text-center">
-                        <div className="text-6xl mb-4">📄</div>
+                        <div className="mb-4 flex justify-center text-taupe"><Icon name="document" size={52} /></div>
                         <h2 className="text-ink text-xl font-bold mb-2">No Formatted Content</h2>
                         <p className="text-ink/50 mb-6">This book hasn't been formatted yet.</p>
                         <Link href={route('admin.books.show', book.id)} className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">

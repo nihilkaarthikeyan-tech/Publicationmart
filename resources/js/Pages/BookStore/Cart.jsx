@@ -1,4 +1,5 @@
 import { Head, Link, usePage, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { route } from 'ziggy-js';
 import { useState } from 'react';
 
@@ -105,7 +106,7 @@ export default function Cart({ auth, book, format }) {
                                                     ? 'bg-purple-500/20 text-purple-700'
                                                     : 'bg-amber-500/20 text-amber-800'
                                                     }`}>
-                                                    {format === 'audiobook' ? '🎧 Audiobook' : '📖 Hardcover'}
+                                                    {format === 'audiobook' ? <><Icon name="headphones" size={16} /> Audiobook</> : <><Icon name="book" size={16} /> Hardcover</>}
                                                 </span>
                                             </div>
                                             <div className="text-right">

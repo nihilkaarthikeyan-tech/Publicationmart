@@ -1,4 +1,5 @@
 import { Head, useForm } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { route } from 'ziggy-js';
 import InputError from '@/Components/InputError';
 import { useState, useEffect } from 'react';
@@ -39,9 +40,9 @@ export default function Create({ auth }) {
     };
 
     const genres = [
-        { id: 'fiction', label: 'Fiction', icon: '📖' },
-        { id: 'non-fiction', label: 'Non-Fiction', icon: '📚' },
-        { id: 'academic', label: 'Academic', icon: '🎓' },
+        { id: 'fiction', label: 'Fiction', icon: 'bookOpen' },
+        { id: 'non-fiction', label: 'Non-Fiction', icon: 'library' },
+        { id: 'academic', label: 'Academic', icon: 'academic' },
         { id: 'poetry', label: 'Poetry', icon: '✨' },
     ];
 
@@ -224,7 +225,7 @@ export default function Create({ auth }) {
                                             : 'border-linen bg-paper hover:border-oxblood/50'
                                             }`}
                                     >
-                                        <div className="text-3xl mb-2">{genre.icon}</div>
+                                        <div className="mb-2 flex justify-center"><Icon name={genre.icon} size={26} /></div>
                                         <div className="font-bold text-ink text-sm">{genre.label}</div>
                                     </button>
                                 ))}

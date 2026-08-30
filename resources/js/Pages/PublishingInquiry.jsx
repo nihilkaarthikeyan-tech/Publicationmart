@@ -1,4 +1,5 @@
 import { Head, useForm, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 
 export default function PublishingInquiry({ selectedPlan }) {
@@ -70,7 +71,7 @@ export default function PublishingInquiry({ selectedPlan }) {
                 {submitted && (
                     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
                         <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 text-center">
-                            <div className="text-4xl mb-3">🎉</div>
+                            <div className="mb-3 flex justify-center text-oxblood"><Icon name="checkCircle" size={34} /></div>
                             <h3 className="text-xl font-bold text-emerald-700 mb-2">Inquiry Submitted Successfully!</h3>
                             <p className="text-umber">Thank you for your interest. Our publishing team will reach out to you within 24 hours.</p>
                             <Link

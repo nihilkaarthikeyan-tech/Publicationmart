@@ -1,4 +1,5 @@
 ﻿import { Head, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 
 export default function ProfessionalRequestDetails({ serviceRequest }) {
@@ -96,7 +97,7 @@ export default function ProfessionalRequestDetails({ serviceRequest }) {
                                         <div>
                                             <p className="text-taupe text-xs uppercase tracking-wider mb-1">Phone</p>
                                             <a href={`tel:${serviceRequest.user?.mobile_number}`} className="text-emerald-700 hover:underline text-lg font-bold">
-                                                📞 {serviceRequest.user?.mobile_number}
+                                                <Icon name="phone" size={14} /> {serviceRequest.user?.mobile_number}
                                             </a>
                                         </div>
                                     )}
@@ -117,7 +118,7 @@ export default function ProfessionalRequestDetails({ serviceRequest }) {
                                             href={`tel:${serviceRequest.user.mobile_number}`}
                                             className="flex-1 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 rounded-lg text-sm font-medium text-center transition-colors"
                                         >
-                                            📞 Call
+                                            <Icon name="phone" size={14} /> Call
                                         </a>
                                     )}
                                 </div>

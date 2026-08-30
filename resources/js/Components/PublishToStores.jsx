@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { route } from 'ziggy-js';
 
 /**
@@ -67,7 +68,7 @@ export default function PublishToStores({ book }) {
         };
         const labels = {
             pending: '⏳ Not Started',
-            uploaded: '📤 Uploaded',
+            uploaded: 'Uploaded',
             published: '✅ Published',
         };
         return (

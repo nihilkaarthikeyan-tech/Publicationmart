@@ -1,4 +1,5 @@
 ﻿import { Head, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState, useRef } from 'react';
 
 export default function ProfessionalUploadFirst({ book, serviceType, price }) {
@@ -100,7 +101,7 @@ export default function ProfessionalUploadFirst({ book, serviceType, price }) {
                             <span className="font-medium">Back</span>
                         </Link>
                         <div className="flex items-center gap-2">
-                            <span className="text-xl">📄</span>
+                            <Icon name="document" size={20} />
                             <span className="font-bold text-ink">Step 1: Upload Manuscript</span>
                         </div>
                     </div>

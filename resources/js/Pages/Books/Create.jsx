@@ -1,4 +1,5 @@
 import { Head, useForm, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { route } from 'ziggy-js';
 import InputError from '@/Components/InputError';
 import { useState, useEffect } from 'react';
@@ -45,9 +46,9 @@ export default function Create({ auth, book }) {
     };
 
     const genres = [
-        { id: 'Fiction', label: 'Fiction', icon: '📖', color: 'from-violet-500 to-purple-600', bgLight: 'bg-violet-50', borderColor: 'border-violet-500' },
-        { id: 'Non-Fiction', label: 'Non-Fiction', icon: '📚', color: 'from-blue-500 to-cyan-600', bgLight: 'bg-blue-50', borderColor: 'border-blue-500' },
-        { id: 'Academic', label: 'Academic', icon: '🎓', color: 'from-emerald-500 to-teal-600', bgLight: 'bg-emerald-50', borderColor: 'border-emerald-500' },
+        { id: 'Fiction', label: 'Fiction', icon: 'bookOpen', color: 'from-violet-500 to-purple-600', bgLight: 'bg-violet-50', borderColor: 'border-violet-500' },
+        { id: 'Non-Fiction', label: 'Non-Fiction', icon: 'library', color: 'from-blue-500 to-cyan-600', bgLight: 'bg-blue-50', borderColor: 'border-blue-500' },
+        { id: 'Academic', label: 'Academic', icon: 'academic', color: 'from-emerald-500 to-teal-600', bgLight: 'bg-emerald-50', borderColor: 'border-emerald-500' },
         { id: 'Poetry', label: 'Poetry', icon: '✨', color: 'from-rose-500 to-pink-600', bgLight: 'bg-rose-50', borderColor: 'border-rose-500' },
     ];
 
@@ -330,7 +331,7 @@ export default function Create({ auth, book }) {
                                                             )}
 
                                                             <div className={`text-3xl mb-2 transition-transform duration-300 ${hoveredGenre === genre.id || data.genre === genre.id ? 'scale-110' : ''}`}>
-                                                                {genre.icon}
+                                                                <Icon name={genre.icon} size={26} />
                                                             </div>
                                                             <div className={`text-sm font-bold ${data.genre === genre.id ? 'text-ink' : 'text-ink-soft'}`}>
                                                                 {genre.label}

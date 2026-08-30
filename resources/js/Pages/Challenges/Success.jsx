@@ -1,4 +1,5 @@
 import { Head, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useEffect } from 'react';
 
 export default function Success({ enrollment }) {
@@ -70,7 +71,7 @@ export default function Success({ enrollment }) {
                         {/* Next Steps */}
                         <div className="px-8 pb-8">
                             <div className="bg-gradient-to-r from-indigo-600/20 to-purple-600/20 rounded-2xl p-6 border border-indigo-500/30 mb-6">
-                                <h3 className="text-ink font-bold text-lg mb-3">🎯 What's Next?</h3>
+                                <h3 className="text-ink font-bold text-lg mb-3"><Icon name="target" size={18} /> What's Next?</h3>
                                 <p className="text-ink-soft text-sm leading-relaxed">
                                     Create an account or login to access your challenge dashboard,
                                     submit your entries, and track your progress throughout the competition.

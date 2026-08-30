@@ -1,4 +1,5 @@
 import { Head, useForm, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import InputError from '@/Components/InputError';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -369,13 +370,13 @@ export default function Details({ auth, book }) {
                                     {/* Features List */}
                                     <div className="space-y-4">
                                         {[
-                                            { icon: '💰', text: 'Real-time Royalty Calculator' },
-                                            { icon: '🌍', text: 'Global Distribution Setup' },
-                                            { icon: '📈', text: 'Control Your Selling Price' }
+                                            { icon: 'rupee', text: 'Real-time Royalty Calculator' },
+                                            { icon: 'globe', text: 'Global Distribution Setup' },
+                                            { icon: 'chart', text: 'Control Your Selling Price' }
                                         ].map((item, idx) => (
                                             <div key={idx} className="flex items-center gap-3 text-cream/85">
                                                 <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-lg">
-                                                    {item.icon}
+                                                    <Icon name={item.icon} size={17} />
                                                 </div>
                                                 <span className="font-medium">{item.text}</span>
                                             </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
+import Icon from '@/Components/Icon';
 import { createPortal } from 'react-dom';
 import { getPagedStyles, getPageDimensions } from '@/Utils/BookStyles';
 
@@ -383,7 +384,7 @@ const BookViewer = ({
                         <div className="relative">
                             <div className="w-16 h-16 border-4 border-linen border-t-indigo-500 rounded-full animate-spin"></div>
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-xl">📖</span>
+                                <Icon name="bookOpen" size={20} />
                             </div>
                         </div>
                         <p className="mt-4 text-ink-soft font-medium animate-pulse">Formatting Pages...</p>

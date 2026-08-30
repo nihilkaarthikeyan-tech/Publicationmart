@@ -1,4 +1,5 @@
 ﻿import { Head, Link, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { useState } from 'react';
 
 export default function ProfessionalRequests({ requests, currentStatus, stats }) {
@@ -46,7 +47,7 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                                 </svg>
                             </Link>
                             <h1 className="text-xl font-bold text-ink flex items-center gap-2">
-                                <span className="text-2xl">🛠️</span>
+                                <Icon name="tools" size={24} />
                                 Professional Service Requests
                             </h1>
                         </div>
@@ -151,7 +152,7 @@ export default function ProfessionalRequests({ requests, currentStatus, stats })
                                                             <p className="text-ink font-medium">{request.user?.name || 'Unknown'}</p>
                                                             <p className="text-umber text-xs">{request.user?.email}</p>
                                                             {request.user?.mobile_number && (
-                                                                <p className="text-cyan-700 text-xs mt-0.5">📞 {request.user?.mobile_number}</p>
+                                                                <p className="text-cyan-700 text-xs mt-0.5"><Icon name="phone" size={12} /> {request.user?.mobile_number}</p>
                                                             )}
                                                         </div>
                                                     </td>

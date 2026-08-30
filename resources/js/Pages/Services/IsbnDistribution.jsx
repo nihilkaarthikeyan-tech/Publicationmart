@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 
 export default function IsbnDistribution() {
     return (
@@ -46,13 +47,13 @@ export default function IsbnDistribution() {
                                 </p>
                                 <ul className="grid grid-cols-2 gap-4">
                                     {[
-                                        { icon: '🏪', label: 'Bookstores' },
-                                        { icon: '🌐', label: 'Online Marketplaces' },
-                                        { icon: '📚', label: 'Libraries' },
-                                        { icon: '🚛', label: 'Distribution Networks' }
+                                        { icon: 'store', label: 'Bookstores' },
+                                        { icon: 'globe', label: 'Online Marketplaces' },
+                                        { icon: 'library', label: 'Libraries' },
+                                        { icon: 'truck', label: 'Distribution Networks' }
                                     ].map((item, i) => (
                                         <li key={i} className="p-4 rounded-xl bg-white/[0.03] border border-linen flex items-center gap-3">
-                                            <span className="text-2xl">{item.icon}</span>
+                                            <Icon name={item.icon} size={24} />
                                             <span className="font-semibold text-ink-soft">{item.label}</span>
                                         </li>
                                     ))}

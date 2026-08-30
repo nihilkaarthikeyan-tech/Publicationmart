@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Head, Link, useForm, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 
 const STATUS_COLORS = {
     open:        { bg: 'rgba(34,197,94,0.12)',  text: '#4ade80',  dot: '#22c55e' },
@@ -106,7 +107,7 @@ export default function Show({ ticket, statuses, priorities, agent }) {
                                 </div>
                                 <p style={s.msgBody}>{ticket.message}</p>
                                 {ticket.attachment_path && (
-                                    <a href={`/storage/${ticket.attachment_path}`} target="_blank" style={s.attachLink}>📎 View Attachment</a>
+                                    <a href={`/storage/${ticket.attachment_path}`} target="_blank" style={s.attachLink}><Icon name="attachment" size={14} /> View Attachment</a>
                                 )}
                             </div>
 
@@ -125,7 +126,7 @@ export default function Show({ ticket, statuses, priorities, agent }) {
                                     </div>
                                     <p style={s.msgBody}>{reply.message}</p>
                                     {reply.attachment_path && (
-                                        <a href={`/storage/${reply.attachment_path}`} target="_blank" style={s.attachLink}>📎 View Attachment</a>
+                                        <a href={`/storage/${reply.attachment_path}`} target="_blank" style={s.attachLink}><Icon name="attachment" size={14} /> View Attachment</a>
                                     )}
                                 </div>
                             ))}
@@ -145,7 +146,7 @@ export default function Show({ ticket, statuses, priorities, agent }) {
                                     {replyForm.errors.message && <p style={s.errText}>{replyForm.errors.message}</p>}
                                     <div style={s.replyBottom}>
                                         <label style={s.fileLabel}>
-                                            📎 Attach file
+                                            <Icon name="attachment" size={14} /> Attach file
                                             <input type="file" onChange={e => replyForm.setData('attachment', e.target.files[0])} style={{ display: 'none' }} />
                                         </label>
                                         {replyForm.data.attachment && (
@@ -158,7 +159,7 @@ export default function Show({ ticket, statuses, priorities, agent }) {
                                 </form>
                             ) : (
                                 <div style={s.closedNote}>
-                                    🔒 This ticket is closed. Update the status to reopen it.
+                                    <Icon name="lock" size={13} /> This ticket is closed. Update the status to reopen it.
                                 </div>
                             )}
                         </div>

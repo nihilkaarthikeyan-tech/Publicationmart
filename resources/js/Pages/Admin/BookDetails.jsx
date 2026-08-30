@@ -1,4 +1,5 @@
 import { Head, Link, useForm, usePage, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 import { route } from 'ziggy-js';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
@@ -424,7 +425,7 @@ export default function BookDetails({ auth, book }) {
                                                                     ? 'text-emerald-700'
                                                                     : 'text-taupe'
                                                                 }`}>
-                                                                {(book.interior_layout_method === 'upload' || book.interior_layout_method === 'upload_template') ? '📄 Uploaded File' : book.interior_layout_method === 'formatting_tool' ? '✏️ Formatting Tool' : '—'}
+                                                                {(book.interior_layout_method === 'upload' || book.interior_layout_method === 'upload_template') ? 'Uploaded File' : book.interior_layout_method === 'formatting_tool' ? '✏️ Formatting Tool' : '—'}
                                                             </span>
                                                         </p>
                                                     </div>

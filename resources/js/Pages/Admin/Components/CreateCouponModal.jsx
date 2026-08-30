@@ -1,4 +1,5 @@
 import { useForm, router } from '@inertiajs/react';
+import Icon from '@/Components/Icon';
 
 export default function CreateCouponModal({ onClose, coupons = [] }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -31,7 +32,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                 {/* Header */}
                 <div className="flex justify-between items-center px-5 py-4 border-b border-linen bg-paper/30">
                     <h3 className="text-lg font-bold text-ink flex items-center gap-2">
-                        <span className="text-lg">🎟️</span> Manage Coupons
+                        <Icon name="ticket" size={18} /> Manage Coupons
                     </h3>
                     <button onClick={onClose} className="text-umber hover:text-umber transition-colors p-1 hover:bg-vellum rounded-lg">
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -113,7 +114,7 @@ export default function CreateCouponModal({ onClose, coupons = [] }) {
                 {/* Existing Coupons List */}
                 <div className="bg-paper p-4 border-t border-linen max-h-[35vh] overflow-y-auto custom-scrollbar">
                     <h4 className="text-[11px] text-umber font-black uppercase tracking-widest mb-3 flex items-center gap-2">
-                        <span>📜</span> Active Coupons
+                        <Icon name="scroll" size={17} /> Active Coupons
                     </h4>
                     {coupons.length > 0 ? (
                         <div className="space-y-2">
