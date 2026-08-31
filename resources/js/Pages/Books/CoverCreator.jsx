@@ -361,20 +361,42 @@ export default function CoverCreator({ book }) {
                 spineAuthor: { id: 'spineAuthor', x: 49.5, y: 70, text: book.author_name, fontSize: 10, color: '#666666', fontFamily: 'font-sans', textAlign: 'center', rotation: -90, isDragging: false }
             },
             shapes: {},
-            background: null
+            background: null,
+            backBackground: null,
+            spineBackground: null
         }
     ]);
     const [historyIndex, setHistoryIndex] = useState(0);
 
-    const saveHistory = (newElements, newBg, newShapes) => {
+    /* Undo is worth having only while the tab is still responsive. Each entry
+       deep-clones every element, and a cover's backgrounds are data URLs, so an
+       uncapped stack grows until a long session crawls — exactly the session
+       where undo matters most. */
+    const MAX_HISTORY = 50;
+
+    /**
+     * Record a step. Each background has its own slot: the back cover and the
+     * spine used to be written into the front's, so undo restored one panel's
+     * artwork onto another.
+     *
+     * Any argument left undefined keeps whatever is currently on screen.
+     */
+    const saveHistory = (newElements, newBg, newShapes, newBackBg, newSpineBg) => {
         const nextState = {
             elements: JSON.parse(JSON.stringify(newElements || coverElements)),
             shapes: JSON.parse(JSON.stringify(newShapes || shapeElements)),
-            background: newBg !== undefined ? newBg : bgImage
+            background: newBg !== undefined ? newBg : bgImage,
+            backBackground: newBackBg !== undefined ? newBackBg : backBgImage,
+            spineBackground: newSpineBg !== undefined ? newSpineBg : spineBgImage
         };
 
-        const newHistory = history.slice(0, historyIndex + 1);
+        let newHistory = history.slice(0, historyIndex + 1);
         newHistory.push(nextState);
+
+        // Drop the oldest steps once the stack is full.
+        if (newHistory.length > MAX_HISTORY) {
+            newHistory = newHistory.slice(newHistory.length - MAX_HISTORY);
+        }
 
         setHistory(newHistory);
         setHistoryIndex(newHistory.length - 1);
@@ -387,6 +409,8 @@ export default function CoverCreator({ book }) {
             setCoverElements(prevState.elements);
             setShapeElements(prevState.shapes || {});
             setBgImage(prevState.background);
+            setBackBgImage(prevState.backBackground ?? null);
+            setSpineBgImage(prevState.spineBackground ?? null);
             setHistoryIndex(prevIndex);
         }
     };
@@ -398,6 +422,8 @@ export default function CoverCreator({ book }) {
             setCoverElements(nextState.elements);
             setShapeElements(nextState.shapes || {});
             setBgImage(nextState.background);
+            setBackBgImage(nextState.backBackground ?? null);
+            setSpineBgImage(nextState.spineBackground ?? null);
             setHistoryIndex(nextIndex);
         }
     };
@@ -722,14 +748,7 @@ export default function CoverCreator({ book }) {
                 const reader = new FileReader();
                 reader.onload = (ev) => {
                     const newUrl = ev.target.result;
-                    if (bgTarget === 'front') {
-                        setBgImage(newUrl);
-                    } else if (bgTarget === 'back') {
-                        setBackBgImage(newUrl);
-                    } else {
-                        setSpineBgImage(newUrl);
-                    }
-                    saveHistory(undefined, newUrl);
+                    applyBackgroundTo(bgTarget, newUrl);
                     alert("Image uploaded successfully! It has been applied to the cover.");
                 };
                 reader.readAsDataURL(file);
@@ -744,16 +763,27 @@ export default function CoverCreator({ book }) {
         }
     };
 
-    const applyBackground = (url) => {
-        if (bgTarget === 'front') {
+    /**
+     * Put a background on one panel and record it against that panel.
+     *
+     * Both callers previously ran the same three-way branch and then recorded
+     * the result as the front background whichever panel they had changed, so
+     * redoing a back-cover change pasted that art onto the front.
+     */
+    const applyBackgroundTo = (target, url) => {
+        if (target === 'front') {
             setBgImage(url);
-        } else if (bgTarget === 'back') {
+            saveHistory(undefined, url);
+        } else if (target === 'back') {
             setBackBgImage(url);
+            saveHistory(undefined, undefined, undefined, url);
         } else {
             setSpineBgImage(url);
+            saveHistory(undefined, undefined, undefined, undefined, url);
         }
-        saveHistory(undefined, url);
     };
+
+    const applyBackground = (url) => applyBackgroundTo(bgTarget, url);
 
     // Helper to compute background styles for different types
     const getBackgroundStyle = (bgValue, defaultBg = null) => {
