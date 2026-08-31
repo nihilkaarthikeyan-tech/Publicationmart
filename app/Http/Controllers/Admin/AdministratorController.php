@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Rules\CoverMatchesBookSize;
 use App\Models\Book;
 use App\Models\Blog;
 use Illuminate\Http\Request;
@@ -221,7 +222,10 @@ class AdministratorController extends Controller
             'interior_layout_method' => 'nullable|string',
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
             'interior_file' => 'nullable|file|mimes:doc,docx,pdf|max:51200',
-            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:10240',
+            'cover_design_path' => [
+                'nullable', 'file', 'mimes:jpg,jpeg,png', 'max:10240',
+                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size),
+            ],
             'audio_file' => 'nullable|file|mimes:mp3,wav,m4a,ogg,aac|max:102400',
 
             // External Links
@@ -272,8 +276,11 @@ class AdministratorController extends Controller
 
         if ($fileType === 'cover' && $request->hasFile('file')) {
             try {
-                // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-                $request->validate(['file' => 'required|file|mimes:jpg,jpeg,png|max:10240']);
+                // Laravel 'max' is in KB → 10240 KB = 10 MB.
+                $request->validate(['file' => [
+                    'required', 'file', 'mimes:jpg,jpeg,png', 'max:10240',
+                    new CoverMatchesBookSize($book->book_size),
+                ]]);
                 $path = $request->file('file')->store('covers', 'public');
                 $book->update(['cover_design_path' => $path]);
                 return back()->with('success', 'Cover image uploaded successfully.');
@@ -537,7 +544,10 @@ class AdministratorController extends Controller
             'interior_layout_method' => 'nullable|string',
             // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
             'interior_file' => 'nullable|file|mimes:doc,docx,pdf|max:51200',
-            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:10240',
+            'cover_design_path' => [
+                'nullable', 'file', 'mimes:jpg,jpeg,png', 'max:10240',
+                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size),
+            ],
         ]);
 
         $data = $validated;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Books;
 
 use App\Http\Controllers\Controller;
+use App\Rules\CoverMatchesBookSize;
 use App\Rules\DocxMatchesBookSize;
 use App\Models\Book;
 use Illuminate\Http\Request;
@@ -104,7 +105,13 @@ class BookController extends Controller
         // Validate
         $request->validate([
             'cover_data' => 'nullable', // Flexible (array or JSON string)
-            'cover_image' => 'nullable|mimes:jpeg,jpg,png,gif,webp|max:10240', // Max 10MB (no SVG)
+            // Max 10MB (no SVG). The Cover Creator now crops the front panel
+            // out of the spread before sending, so its output is checked by the
+            // same rule as a hand-made cover rather than being trusted.
+            'cover_image' => [
+                'nullable', 'mimes:jpeg,jpg,png,gif,webp', 'max:10240',
+                new CoverMatchesBookSize($book->book_size),
+            ],
         ]);
 
         $updateData = [];
@@ -180,7 +187,10 @@ class BookController extends Controller
                 // falling back to the book's stored size when it is unchanged.
                 new DocxMatchesBookSize($request->input('book_size') ?: $book->book_size),
             ],
-            'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:10240',
+            'cover_design_path' => [
+                'nullable', 'file', 'mimes:jpg,jpeg,png', 'max:10240',
+                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size),
+            ],
         ]);
 
         $data = $validated;

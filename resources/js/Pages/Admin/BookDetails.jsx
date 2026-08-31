@@ -103,17 +103,53 @@ export default function BookDetails({ auth, book }) {
     };
 
     // Quick file upload using dedicated endpoint (Modified to use router.post for correct CSRF handling)
+    // What this particular book's cover should measure, at a sensible print
+    // width. The screen used to advertise one fixed size for every title.
+    const recommendedCover = () => {
+        const T = {
+            '5x8': [5, 8], '5.25x8': [5.25, 8], '5.25x8.25': [5.25, 8.25],
+            '5.5x8.5': [5.5, 8.5], '6x9': [6, 9], '8.5x8.5': [8.5, 8.5],
+            '8.5x11': [8.5, 11], '16.5x11': [16.5, 11],
+            a4: [8.27, 11.69], a3: [11.69, 16.54], a5: [5.83, 8.27],
+        };
+        const dims = T[String(book?.book_size || '').toLowerCase().replace(/\s+/g, '')];
+        if (!dims) return 'match your book’s trim size';
+        const [w, h] = dims;
+        return `${Math.round(w * 300)} x ${Math.round(h * 300)} px`;
+    };
+
     const handleQuickCoverUpload = (file) => {
         if (!file) return;
 
-        // Validate Image Dimensions (755 x 1144)
+        // Check the cover is the shape of THIS book before uploading.
+        // This used to demand exactly 755 x 1144 for every book, which is the
+        // proportion of a 6x9 — so a 5.5x8.5 title could never supply a correct
+        // cover. The server enforces the same rule; this is only a fast answer.
+        const TRIM_RATIOS = {
+            '5x8': 5 / 8, '5.25x8': 5.25 / 8, '5.25x8.25': 5.25 / 8.25,
+            '5.5x8.5': 5.5 / 8.5, '6x9': 6 / 9, '8.5x8.5': 1,
+            '8.5x11': 8.5 / 11, '16.5x11': 16.5 / 11,
+            a4: 8.27 / 11.69, a3: 11.69 / 16.54, a5: 5.83 / 8.27,
+        };
+        const trimKey = String(book?.book_size || '').toLowerCase().replace(/\s+/g, '');
+        const wantedRatio = TRIM_RATIOS[trimKey];
+
         const img = new Image();
         const objectUrl = URL.createObjectURL(file);
 
         img.onload = () => {
             URL.revokeObjectURL(objectUrl); // Clean up memory
-            if (img.width !== 755 || img.height !== 1144) {
-                alert(`Cover Error: Image size must be exactly 755 x 1144 pixels.\nYour image: ${img.width} x ${img.height} pixels.`);
+            if (img.width < 600) {
+                alert(`Cover Error: this image is only ${img.width} pixels wide.\nCovers need to be at least 600 pixels wide.`);
+                setUploadingCover(false);
+                return;
+            }
+            // 0.7% proportional, matching CoverMatchesBookSize on the server —
+            // adjacent trim sizes are under 2% apart, so a looser check here
+            // would pass files the server then refuses.
+            if (wantedRatio && Math.abs(img.width / img.height - wantedRatio) / wantedRatio > 0.007) {
+                const suggest = Math.round(img.height * wantedRatio);
+                alert(`Cover Error: this image is ${img.width} x ${img.height}, which is not the shape of a ${book.book_size} book.\nUse ${suggest} x ${img.height} pixels, or any size with those proportions.`);
                 setUploadingCover(false);
                 return;
             }
@@ -299,7 +335,7 @@ export default function BookDetails({ auth, book }) {
                                             <div className="flex items-center justify-between mb-3">
                                                 <div>
                                                     <h3 className="font-semibold text-ink">Cover Design</h3>
-                                                    <p className="text-[10px] text-umber">Rec. Size: 755 x 1144 px</p>
+                                                    <p className="text-[10px] text-umber">Rec. size: {recommendedCover()}</p>
                                                 </div>
                                                 <label className={`cursor-pointer inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${uploadingCover ? 'bg-vellum text-taupe' : 'text-oxblood bg-oxblood/10 hover:bg-oxblood/20'}`}>
                                                     {uploadingCover ? (
@@ -361,7 +397,7 @@ export default function BookDetails({ auth, book }) {
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                     </svg>
                                                     <span>No Cover Uploaded</span>
-                                                    <span className="text-xs text-taupe mt-1">Rec. Size: 755 x 1144 px</span>
+                                                    <span className="text-xs text-taupe mt-1">Rec. size: {recommendedCover()}</span>
                                                 </div>
                                             )}
                                         </div>

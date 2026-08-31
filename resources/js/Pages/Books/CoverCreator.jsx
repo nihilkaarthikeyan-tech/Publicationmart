@@ -5,6 +5,57 @@ import html2canvas from 'html2canvas';
 import { HexColorPicker } from "react-colorful";
 import { AlignLeft, AlignCenter, AlignRight, Layers, ArrowUp, ArrowDown, Type, Palette } from "lucide-react";
 
+/* The wrap is laid out as 0-48% back cover, 48-52% spine, 52-100% front, so the
+   front panel is the right 48% of any capture of it. */
+const FRONT_PANEL_START = 0.52;
+
+/* Trim sizes in inches, keyed the way book_size is stored. Mirrors
+   App\Support\BookPageSize on the server, which validates what we upload. */
+const TRIM_RATIOS = {
+    '5x8': 5 / 8,
+    '5.25x8': 5.25 / 8,
+    '5.25x8.25': 5.25 / 8.25,
+    '5.5x8.5': 5.5 / 8.5,
+    '6x9': 6 / 9,
+    '8.5x8.5': 1,
+    '8.5x11': 8.5 / 11,
+    '16.5x11': 16.5 / 11,
+    a4: 8.27 / 11.69,
+    a3: 11.69 / 16.54,
+    a5: 5.83 / 8.27,
+};
+
+/**
+ * Cut the front cover out of a captured spread, at the book's trim ratio.
+ *
+ * The front panel of the wrap is not the same shape as the book — the spread is
+ * a fixed 1500x1000 regardless of trim size — so the panel is centre-cropped to
+ * the right proportions rather than squashed to them.
+ */
+function cropFrontCover(canvas, bookSize) {
+    const ratio = TRIM_RATIOS[String(bookSize || '').toLowerCase().replace(/\s+/g, '')] ?? 2 / 3;
+
+    const panelX = Math.round(canvas.width * FRONT_PANEL_START);
+    const panelW = canvas.width - panelX;
+    const panelH = canvas.height;
+
+    // Fit the trim rectangle inside the panel, then centre it.
+    let w = panelW;
+    let h = Math.round(w / ratio);
+    if (h > panelH) {
+        h = panelH;
+        w = Math.round(h * ratio);
+    }
+    const sx = panelX + Math.round((panelW - w) / 2);
+    const sy = Math.round((panelH - h) / 2);
+
+    const out = document.createElement('canvas');
+    out.width = w;
+    out.height = h;
+    out.getContext('2d').drawImage(canvas, sx, sy, w, h, 0, 0, w, h);
+    return out;
+}
+
 export default function CoverCreator({ book }) {
     // Save states
     const [saveStatus, setSaveStatus] = useState('saved'); // 'saved', 'saving', 'error'
@@ -88,7 +139,16 @@ export default function CoverCreator({ book }) {
     const saveCoverData = useCallback(async () => {
         setSaveStatus('saving');
         try {
-            // 1. Capture the Hidden Front Cover View
+            // 1. Capture the hidden spread, then keep only the front cover.
+            //
+            // The capture area is the FULL WRAP — back cover, spine, front — and
+            // the text and shape overlay is positioned across all of it, so the
+            // front panel cannot be captured on its own without moving every
+            // saved element. We render the whole spread as before and crop the
+            // front out of the finished canvas instead.
+            //
+            // This used to save the entire landscape wrap as cover_design_path,
+            // which the book store then displayed in a portrait 2:3 frame.
             if (!captureRef.current) return false;
 
             const canvas = await html2canvas(captureRef.current, {
@@ -97,8 +157,7 @@ export default function CoverCreator({ book }) {
                 backgroundColor: '#ffffff'
             });
 
-            // Promisify toBlob to ensure we wait for it
-            const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+            const blob = await new Promise(resolve => cropFrontCover(canvas, book.book_size).toBlob(resolve, 'image/png'));
 
             const formData = new FormData();
             // Send JSON data as string (backend handles decoding)
