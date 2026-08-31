@@ -224,7 +224,8 @@ class AdministratorController extends Controller
             'interior_file' => 'nullable|file|mimes:doc,docx,pdf|max:51200',
             'cover_design_path' => [
                 'nullable', 'file', 'mimes:jpg,jpeg,png', 'max:10240',
-                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size),
+                // Staff may upload a cover of any shape; see the rule's constructor.
+                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size, enforceShape: false),
             ],
             'audio_file' => 'nullable|file|mimes:mp3,wav,m4a,ogg,aac|max:102400',
 
@@ -279,7 +280,7 @@ class AdministratorController extends Controller
                 // Laravel 'max' is in KB → 10240 KB = 10 MB.
                 $request->validate(['file' => [
                     'required', 'file', 'mimes:jpg,jpeg,png', 'max:10240',
-                    new CoverMatchesBookSize($book->book_size),
+                    new CoverMatchesBookSize($book->book_size, enforceShape: false),
                 ]]);
                 $path = $request->file('file')->store('covers', 'public');
                 $book->update(['cover_design_path' => $path]);
@@ -546,7 +547,8 @@ class AdministratorController extends Controller
             'interior_file' => 'nullable|file|mimes:doc,docx,pdf|max:51200',
             'cover_design_path' => [
                 'nullable', 'file', 'mimes:jpg,jpeg,png', 'max:10240',
-                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size),
+                // Staff may upload a cover of any shape; see the rule's constructor.
+                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size, enforceShape: false),
             ],
         ]);
 

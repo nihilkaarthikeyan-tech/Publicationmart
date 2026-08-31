@@ -40,8 +40,16 @@ class CoverMatchesBookSize implements ValidationRule
      */
     private const MIN_WIDTH_PX = 600;
 
-    public function __construct(private readonly ?string $bookSize)
-    {
+    /**
+     * @param  bool  $enforceShape  Staff upload covers for titles we do not
+     *   control — reprints, legacy books, a file rescued from an author — so
+     *   the shape rule is advisory for them. The minimum size still applies:
+     *   an unusably small image is broken no matter who chose it.
+     */
+    public function __construct(
+        private readonly ?string $bookSize,
+        private readonly bool $enforceShape = true,
+    ) {
     }
 
     public function validate(string $attribute, mixed $value, Closure $fail): void
@@ -69,6 +77,10 @@ class CoverMatchesBookSize implements ValidationRule
             $fail("This cover is only {$width} pixels wide. Covers need to be at least " . self::MIN_WIDTH_PX . ' pixels wide to print and display cleanly.');
 
             return;
+        }
+
+        if (! $this->enforceShape) {
+            return; // staff override — see the constructor
         }
 
         $expected = BookPageSize::twips($this->bookSize);

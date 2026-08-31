@@ -144,14 +144,25 @@ export default function BookDetails({ auth, book }) {
                 setUploadingCover(false);
                 return;
             }
-            // 0.7% proportional, matching CoverMatchesBookSize on the server —
+            // 0.7% proportional, the same figure CoverMatchesBookSize uses —
             // adjacent trim sizes are under 2% apart, so a looser check here
-            // would pass files the server then refuses.
+            // would flag files differently from the server.
+            //
+            // Staff are warned rather than blocked. The desk uploads covers for
+            // reprints and legacy titles whose shape it does not control, so the
+            // server treats the shape rule as advisory for administrators and
+            // this dialog matches that.
             if (wantedRatio && Math.abs(img.width / img.height - wantedRatio) / wantedRatio > 0.007) {
                 const suggest = Math.round(img.height * wantedRatio);
-                alert(`Cover Error: this image is ${img.width} x ${img.height}, which is not the shape of a ${book.book_size} book.\nUse ${suggest} x ${img.height} pixels, or any size with those proportions.`);
-                setUploadingCover(false);
-                return;
+                const proceed = window.confirm(
+                    `This image is ${img.width} x ${img.height}, which is not the shape of a ${book.book_size} book.\n\n`
+                    + `It will be letterboxed in the book store. The matching size is ${suggest} x ${img.height} pixels.\n\n`
+                    + `Upload it anyway?`
+                );
+                if (!proceed) {
+                    setUploadingCover(false);
+                    return;
+                }
             }
 
             // Proceed with upload if valid

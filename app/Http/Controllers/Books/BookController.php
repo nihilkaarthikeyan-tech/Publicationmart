@@ -110,7 +110,7 @@ class BookController extends Controller
             // same rule as a hand-made cover rather than being trusted.
             'cover_image' => [
                 'nullable', 'mimes:jpeg,jpg,png,gif,webp', 'max:10240',
-                new CoverMatchesBookSize($book->book_size),
+                new CoverMatchesBookSize($book->book_size, enforceShape: ! auth()->user()?->is_admin),
             ],
         ]);
 
@@ -189,7 +189,9 @@ class BookController extends Controller
             ],
             'cover_design_path' => [
                 'nullable', 'file', 'mimes:jpg,jpeg,png', 'max:10240',
-                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size),
+                // An administrator working on an author's book is still staff, and is
+                // held to the same advisory standard as on the admin screens.
+                new CoverMatchesBookSize($request->input('book_size') ?: $book->book_size, enforceShape: ! auth()->user()?->is_admin),
             ],
         ]);
 
