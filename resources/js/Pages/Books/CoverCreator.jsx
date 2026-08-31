@@ -257,6 +257,7 @@ export default function CoverCreator({ book }) {
         // but for % based simple drag, we just set dragging true.
         // For smoother drag, we'll store the mouse starting point.
         dragOffset.current = { x: e.clientX, y: e.clientY };
+        setSnapGuides(pendingGuides.current);
 
         setCoverElements(prev => ({
             ...prev,
@@ -322,8 +323,7 @@ export default function CoverCreator({ book }) {
             ...prev,
             [activeId]: {
                 ...prev[activeId],
-                x: prev[activeId].x + deltaX,
-                y: prev[activeId].y + deltaY
+                ...snapResult(prev, activeId, prev[activeId].x + deltaX, prev[activeId].y + deltaY)
             }
         }));
 
@@ -373,6 +373,62 @@ export default function CoverCreator({ book }) {
        uncapped stack grows until a long session crawls — exactly the session
        where undo matters most. */
     const MAX_HISTORY = 50;
+
+    /* Snapping.
+       Element x and y are the element's centre as a percentage of the whole
+       spread, so the lines worth snapping to are the centre of each panel —
+       the wrap is laid out 0-48% back cover, 48-52% spine, 52-100% front —
+       plus the vertical middle, plus whatever a sibling element is aligned to.
+       Without this everything is eyeballed, and a title that is one percent off
+       centre is visible on a printed cover. */
+    const SNAP_TOLERANCE = 1.2;          // in percent of the spread
+    const PANEL_CENTRES_X = [24, 50, 76]; // back, spine, front
+    const PANEL_CENTRES_Y = [50];
+    const [snapGuides, setSnapGuides] = useState({ x: null, y: null });
+    const pendingGuides = useRef({ x: null, y: null });
+
+    /**
+     * Pull a dragged position onto a nearby guide.
+     * Returns the adjusted position and which guides it caught, so the canvas
+     * can draw them while the pull is active.
+     */
+    /* Runs inside the drag setState updater: snaps the proposed position and
+       records which guides caught it so the canvas can show them. */
+    const snapResult = (elements, id, proposedX, proposedY) => {
+        const { x, y, guides } = applySnapping(proposedX, proposedY, id, elements);
+        pendingGuides.current = guides;
+        return { x, y };
+    };
+
+    const applySnapping = (x, y, movingId, elements) => {
+        const siblingXs = [];
+        const siblingYs = [];
+        Object.entries(elements || {}).forEach(([id, el]) => {
+            if (id === movingId || !el) return;
+            siblingXs.push(el.x);
+            siblingYs.push(el.y);
+        });
+
+        const nearest = (value, candidates) => {
+            let best = null;
+            let bestGap = SNAP_TOLERANCE;
+            candidates.forEach((c) => {
+                const gap = Math.abs(value - c);
+                if (gap <= bestGap) { bestGap = gap; best = c; }
+            });
+            return best;
+        };
+
+        const snapX = nearest(x, [...PANEL_CENTRES_X, ...siblingXs]);
+        const snapY = nearest(y, [...PANEL_CENTRES_Y, ...siblingYs]);
+
+        return {
+            x: snapX ?? x,
+            y: snapY ?? y,
+            guides: { x: snapX, y: snapY },
+        };
+    };
+
 
     /**
      * Record a step. Each background has its own slot: the back cover and the
@@ -429,6 +485,10 @@ export default function CoverCreator({ book }) {
     };
 
     const handleDragEnd = () => {
+        // The guides only mean something while something is being dragged.
+        setSnapGuides({ x: null, y: null });
+        pendingGuides.current = { x: null, y: null };
+
         // Handle Resize End
         if (resizeState.current.active) {
             resizeState.current.active = false;
@@ -2031,9 +2091,13 @@ export default function CoverCreator({ book }) {
                     {/* The Unified Book Canvas */}
                     <div
                         className="relative shadow-2xl flex bg-white select-none group/canvas transition-transform duration-200"
-                        style={{ height: '600px', width: '900px', transform: `scale(${canvasScale})` }}
-                        onMouseMove={(e) => { handleCanvasMouseMove(e); handleShapeDragMove(e); }}
-                        onMouseUp={() => { handleDragEnd(); handleShapeDragEnd(); }}
+                        // touchAction none: without it a finger drag scrolls the
+                        // page instead of moving the element, and the editor is
+                        // unusable on a tablet.
+                        style={{ height: '600px', width: '900px', transform: `scale(${canvasScale})`, touchAction: 'none' }}
+                        onPointerMove={(e) => { handleCanvasMouseMove(e); handleShapeDragMove(e); }}
+                        onPointerUp={() => { handleDragEnd(); handleShapeDragEnd(); }}
+                            onPointerCancel={() => { handleDragEnd(); handleShapeDragEnd(); }}
                         onMouseLeave={() => { handleDragEnd(); handleShapeDragEnd(); }}
                     >
 
@@ -2107,11 +2171,29 @@ export default function CoverCreator({ book }) {
                             </div>
                         </div>
 
+                        {/* SNAP GUIDES — only while a drag is actually caught on one */}
+                        {(snapGuides.x !== null || snapGuides.y !== null) && (
+                            <div className="absolute inset-0 z-30 pointer-events-none" aria-hidden="true">
+                                {snapGuides.x !== null && (
+                                    <div
+                                        className="absolute top-0 bottom-0"
+                                        style={{ left: `${snapGuides.x}%`, width: '1px', background: '#6e2530', boxShadow: '0 0 0 1px rgba(250,248,243,.6)' }}
+                                    />
+                                )}
+                                {snapGuides.y !== null && (
+                                    <div
+                                        className="absolute left-0 right-0"
+                                        style={{ top: `${snapGuides.y}%`, height: '1px', background: '#6e2530', boxShadow: '0 0 0 1px rgba(250,248,243,.6)' }}
+                                    />
+                                )}
+                            </div>
+                        )}
+
                         {/* LAYER 2: INTERACTIVE ELEMENTS (Overlay on top of everything) */}
                         {Object.entries(coverElements).map(([key, el]) => (
                             <div
                                 key={key}
-                                onMouseDown={(e) => { if (editingId !== key) handleDragStart(e, key); }}
+                                onPointerDown={(e) => { if (editingId !== key) handleDragStart(e, key); }}
                                 onDoubleClick={(e) => {
                                     e.stopPropagation();
                                     setEditingId(key);
@@ -2126,6 +2208,7 @@ export default function CoverCreator({ book }) {
                                 }}
                                 className={`absolute ${editingId === key ? 'cursor-text' : 'cursor-move'} group/element`}
                                 style={{
+                                    touchAction: 'none',
                                     top: `${el.y}%`,
                                     left: `${el.x}%`,
                                     transform: `translate(-50%, -50%) rotate(${el.rotation || 0}deg)`, // Center anchor + Rotation
@@ -2137,10 +2220,10 @@ export default function CoverCreator({ book }) {
                                 {selectedId === key && (
                                     <div className="absolute -inset-3 border-2 border-red-500 border-dashed pointer-events-none rounded-sm">
                                         {/* Corner Handles */}
-                                        <div className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-nw-resize pointer-events-auto hover:bg-red-50 transition" onMouseDown={(e) => handleTextResizeStart(e, key, 'nw')}></div>
-                                        <div className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-ne-resize pointer-events-auto hover:bg-red-50 transition" onMouseDown={(e) => handleTextResizeStart(e, key, 'ne')}></div>
-                                        <div className="absolute -bottom-1.5 -left-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-sw-resize pointer-events-auto hover:bg-red-50 transition" onMouseDown={(e) => handleTextResizeStart(e, key, 'sw')}></div>
-                                        <div className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-se-resize pointer-events-auto hover:bg-red-50 transition" onMouseDown={(e) => handleTextResizeStart(e, key, 'se')}></div>
+                                        <div className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-nw-resize pointer-events-auto hover:bg-red-50 transition" onPointerDown={(e) => handleTextResizeStart(e, key, 'nw')}></div>
+                                        <div className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-ne-resize pointer-events-auto hover:bg-red-50 transition" onPointerDown={(e) => handleTextResizeStart(e, key, 'ne')}></div>
+                                        <div className="absolute -bottom-1.5 -left-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-sw-resize pointer-events-auto hover:bg-red-50 transition" onPointerDown={(e) => handleTextResizeStart(e, key, 'sw')}></div>
+                                        <div className="absolute -bottom-1.5 -right-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-se-resize pointer-events-auto hover:bg-red-50 transition" onPointerDown={(e) => handleTextResizeStart(e, key, 'se')}></div>
 
                                         {/* Edge Handles (Middle) */}
                                         <div className="absolute top-1/2 -left-1.5 -translate-y-1/2 w-1.5 h-4 bg-white border border-red-500 rounded-full cursor-w-resize pointer-events-auto hover:bg-red-50"></div>
@@ -2151,7 +2234,7 @@ export default function CoverCreator({ book }) {
                                             <div className="w-px h-6 bg-red-500"></div> {/* Connecting Line */}
                                             <div
                                                 className="w-6 h-6 bg-white border-2 border-red-500 rounded-full flex items-center justify-center cursor-grab pointer-events-auto hover:scale-110 transition active:cursor-grabbing shadow-sm"
-                                                onMouseDown={(e) => handleRotateStart(e, key)}
+                                                onPointerDown={(e) => handleRotateStart(e, key)}
                                             >
                                                 <svg className="w-3 h-3 text-umber" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                                             </div>
@@ -2214,9 +2297,10 @@ export default function CoverCreator({ book }) {
                         {Object.entries(shapeElements).map(([key, shape]) => (
                             <div
                                 key={key}
-                                onMouseDown={(e) => handleShapeDragStart(e, key)}
+                                onPointerDown={(e) => handleShapeDragStart(e, key)}
                                 className="absolute cursor-move"
                                 style={{
+                                    touchAction: 'none',
                                     top: `${shape.y}%`,
                                     left: `${shape.x}%`,
                                     width: `${shape.width}%`,
@@ -2406,6 +2490,7 @@ export default function CoverCreator({ book }) {
                                 <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
                                     {Object.entries(coverElements).map(([key, el]) => (
                                         <div key={key} className="absolute" style={{
+                                            touchAction: 'none',
                                             top: `${el.y}%`,
                                             left: `${el.x}%`,
                                             transform: `translate(-50%, -50%) rotate(${el.rotation || 0}deg)`,
@@ -2435,6 +2520,7 @@ export default function CoverCreator({ book }) {
                                 <div className="absolute inset-0 w-full h-full z-15 pointer-events-none">
                                     {Object.entries(shapeElements).map(([key, shape]) => (
                                         <div key={key} className="absolute" style={{
+                                            touchAction: 'none',
                                             top: `${shape.y}%`,
                                             left: `${shape.x}%`,
                                             width: `${shape.width}%`,
@@ -2666,6 +2752,7 @@ export default function CoverCreator({ book }) {
                         {/* Text Elements (ALL) */}
                         {Object.entries(coverElements).map(([key, el]) => (
                             <div key={key} className="absolute" style={{
+                                touchAction: 'none',
                                 top: `${el.y}%`,
                                 left: `${el.x}%`,
                                 transform: `translate(-50%, -50%) rotate(${el.rotation || 0}deg)`,
