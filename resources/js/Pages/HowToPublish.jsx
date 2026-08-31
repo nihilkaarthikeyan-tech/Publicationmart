@@ -186,7 +186,7 @@ export default function HowToPublish({ auth }) {
                             number="1"
                             title="Start Writing Your Manuscript"
                             subtitle="Every great book begins with an idea."
-                            icon="✍️"
+                            icon="pen"
                             side="right"
                             delay={100}
                             gradient="from-oxblood to-oxblood-night"

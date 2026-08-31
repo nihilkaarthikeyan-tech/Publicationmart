@@ -49,7 +49,7 @@ export default function Create({ auth, book }) {
         { id: 'Fiction', label: 'Fiction', icon: 'bookOpen', color: 'from-violet-500 to-purple-600', bgLight: 'bg-violet-50', borderColor: 'border-violet-500' },
         { id: 'Non-Fiction', label: 'Non-Fiction', icon: 'library', color: 'from-blue-500 to-cyan-600', bgLight: 'bg-blue-50', borderColor: 'border-blue-500' },
         { id: 'Academic', label: 'Academic', icon: 'academic', color: 'from-emerald-500 to-teal-600', bgLight: 'bg-emerald-50', borderColor: 'border-emerald-500' },
-        { id: 'Poetry', label: 'Poetry', icon: '✨', color: 'from-rose-500 to-pink-600', bgLight: 'bg-rose-50', borderColor: 'border-rose-500' },
+        { id: 'Poetry', label: 'Poetry', icon: 'feather', color: 'from-rose-500 to-pink-600', bgLight: 'bg-rose-50', borderColor: 'border-rose-500' },
     ];
 
     return (

@@ -135,7 +135,7 @@ export default function SmartWritingTool({ auth }) {
                             <h3 className="text-2xl font-bold text-ink mb-1">Pro</h3>
                             <p className="text-umber text-sm mb-6">Perfect for getting started with Smart Writer</p>
                             <ul className="space-y-4 mb-8">
-                                <TierFeature icon="✏️" title="Smart Writer" desc="Generate chapters, outlines, and content effortlessly." />
+                                <TierFeature icon="pen" title="Smart Writer" desc="Generate chapters, outlines, and content effortlessly." />
                                 <TierFeature icon="document" title="Auto Formatting" desc="Professional book layout and structure." />
                                 <TierFeature icon="package" title="Amazon-Ready Export" desc="Export in KDP-ready formats." />
                             </ul>
@@ -162,7 +162,7 @@ export default function SmartWritingTool({ auth }) {
                             <ul className="space-y-4 mb-8">
                                 <TierFeature icon="robot" title="Advanced Smart Writer Engine" desc="Superior models for bestseller-quality prose." color="gray" />
                                 <TierFeature icon="palette" title="Smart Writer Art Studio" desc="Stunning visuals for covers and headers." color="gray" />
-                                <TierFeature icon="⭐" title="Priority Support" desc="Get help when you need it most." color="gray" />
+                                <TierFeature icon="star" title="Priority Support" desc="Get help when you need it most." color="gray" />
                             </ul>
                             <button
                                 disabled
@@ -182,7 +182,7 @@ export default function SmartWritingTool({ auth }) {
                     </div>
                     <div className="absolute left-6 md:left-1/2 top-32 bottom-0 w-px bg-gradient-to-b from-indigo-500/50 via-purple-500/30 to-transparent md:-translate-x-1/2 transform" />
                     <div className="space-y-16 md:space-y-24">
-                        <StepCard number="1" title="Instant First Draft" subtitle="Within 120 Seconds" icon="⚡" side="right" delay={100} gradient="from-indigo-500 to-purple-600" glowColor="indigo">
+                        <StepCard number="1" title="Instant First Draft" subtitle="Within 120 Seconds" icon="zap" side="right" delay={100} gradient="from-indigo-500 to-purple-600" glowColor="indigo">
                             <p className="text-umber mb-4">Simply enter your book idea, topic, or prompt — and the system generates:</p>
                             <ul className="space-y-2">
                                 <BulletItem color="indigo">A structured content outline</BulletItem>
@@ -214,7 +214,7 @@ export default function SmartWritingTool({ auth }) {
                                 <h2 className="text-3xl md:text-4xl font-black mb-6">Built for Authors at Every Level</h2>
                                 <p className="text-umber mb-10 text-lg">Smart Writer simplifies the process and reduces the time required to complete your manuscript.</p>
                                 <div className="space-y-6">
-                                    <FeatureRow icon="✍️" title="First-time Writers" desc="Needing structure and guidance to start their journey." />
+                                    <FeatureRow icon="pen" title="First-time Writers" desc="Needing structure and guidance to start their journey." />
                                     <FeatureRow icon="briefcase" title="Busy Professionals" desc="Turning expertise into a book efficiently." />
                                     <FeatureRow icon="rocket" title="Content Creators" desc="Expanding into publishing with speed and quality." />
                                 </div>

@@ -93,10 +93,10 @@ export default function ApprovalQueue({ auth, books, dbError }) {
     // Filter options
     const filterOptions = [
         { value: 'all', label: 'All Submissions', icon: 'library' },
-        { value: 'ready', label: 'Ready to Publish', icon: '✅' },
+        { value: 'ready', label: 'Ready to Publish', icon: 'checkCircle' },
         { value: 'missing_isbn', label: 'Missing ISBN', icon: 'tag' },
         { value: 'no_cover', label: 'No Cover', icon: 'image' },
-        { value: 'has_cover', label: 'Has Cover', icon: '✨' },
+        { value: 'has_cover', label: 'Has Cover', icon: 'image' },
         { value: 'no_price', label: 'No Price Set', icon: 'rupee' },
         { value: 'has_price', label: 'Price Set', icon: 'rupee' },
     ];

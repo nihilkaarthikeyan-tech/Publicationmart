@@ -43,7 +43,7 @@ export default function Create({ auth }) {
         { id: 'fiction', label: 'Fiction', icon: 'bookOpen' },
         { id: 'non-fiction', label: 'Non-Fiction', icon: 'library' },
         { id: 'academic', label: 'Academic', icon: 'academic' },
-        { id: 'poetry', label: 'Poetry', icon: '✨' },
+        { id: 'poetry', label: 'Poetry', icon: 'feather' },
     ];
 
     return (

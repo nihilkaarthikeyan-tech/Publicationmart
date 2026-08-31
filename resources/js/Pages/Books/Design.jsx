@@ -1009,7 +1009,7 @@ export default function Design({ auth, book }) {
                                     ]
                                     : [
                                         { name: 'Horror Style', folder: 'Horror Book Template', icon: 'book', color: 'from-oxblood-deep to-red-950', border: 'border-red-900/20' },
-                                        { name: 'Kavithai Style', folder: 'Kavithai', icon: '✍️', color: 'from-amber-500 to-orange-600', border: 'border-amber-200' },
+                                        { name: 'Kavithai Style', folder: 'Kavithai', icon: 'penNib', color: 'from-amber-500 to-orange-600', border: 'border-amber-200' },
                                         { name: 'Standard Book', folder: 'Book', icon: 'bookOpen', color: 'from-[#6a222d] to-indigo-700', border: 'border-blue-200' },
                                         { name: 'Bordered Style', folder: 'Book with border', icon: 'image', color: 'from-emerald-500 to-teal-600', border: 'border-emerald-200' },
                                     ]

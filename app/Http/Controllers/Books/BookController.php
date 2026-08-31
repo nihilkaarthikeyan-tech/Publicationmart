@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Books;
 
 use App\Http\Controllers\Controller;
+use App\Rules\DocxMatchesBookSize;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -170,8 +171,15 @@ class BookController extends Controller
             'paper_type' => 'nullable|string',
             'binding_type' => 'nullable|string',
             'interior_layout_method' => 'nullable|string',
-            // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'interior_file' => 'nullable|file|mimes:doc,docx|max:51200',
+            // Laravel 'max' is in KB → 51200 KB = 50 MB, matching the limit the
+            // upload screen states and the frontend enforces.
+            'interior_file' => [
+                'nullable', 'file', 'mimes:doc,docx', 'max:51200',
+                // The upload screen promises a mismatched page size is rejected.
+                // Compare against the size being saved in this same request,
+                // falling back to the book's stored size when it is unchanged.
+                new DocxMatchesBookSize($request->input('book_size') ?: $book->book_size),
+            ],
             'cover_design_path' => 'nullable|file|mimes:jpg,jpeg,png|max:10240',
         ]);
 

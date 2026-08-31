@@ -56,7 +56,7 @@ export default function Design({ auth, book }) {
     const bookSizes = [
         { id: '5x8', label: '5×8"', desc: 'Novels & Fiction', icon: 'bookOpen' },
         { id: '6x9', label: '6×9"', desc: 'Non-Fiction', icon: 'library' },
-        { id: '5.5x8.5', label: '5.5×8.5"', desc: 'Poetry', icon: '✨' },
+        { id: '5.5x8.5', label: '5.5×8.5"', desc: 'Poetry', icon: 'feather' },
         { id: '8.5x8.5', label: '8.5×8.5"', desc: 'Children\'s', icon: 'palette' },
         { id: '8.5x11', label: '8.5×11"', desc: 'Academic', icon: 'academic' },
         { id: '16.5x11', label: '16.5×11"', desc: 'Magazine', icon: 'newspaper' },
@@ -146,7 +146,7 @@ export default function Design({ auth, book }) {
                                 </h2>
                                 <div className="space-y-3">
                                     {[
-                                        { id: 'B/W', label: 'Black & White', desc: 'Crisp text, lower cost', icon: '◐' },
+                                        { id: 'B/W', label: 'Black & White', desc: 'Crisp text, lower cost', icon: 'colour' },
                                         { id: 'Color', label: 'Full Color', desc: 'Vibrant illustrations', icon: 'colour' }
                                     ].map((opt) => (
                                         <button key={opt.id} type="button" onClick={() => setData('printing_color', opt.id)}
@@ -311,7 +311,7 @@ export default function Design({ auth, book }) {
                                     ]
                                     : [
                                         { name: 'Horror Style', folder: 'Horror Book Template', icon: 'book', color: 'from-slate-800 to-red-900' },
-                                        { name: 'Kavithai Style', folder: 'Kavithai', icon: '✍️', color: 'from-amber-500 to-orange-600' },
+                                        { name: 'Kavithai Style', folder: 'Kavithai', icon: 'penNib', color: 'from-amber-500 to-orange-600' },
                                         { name: 'Standard Book', folder: 'Book', icon: 'bookOpen', color: 'from-blue-500 to-indigo-600' },
                                         { name: 'Bordered Style', folder: 'Book with border', icon: 'image', color: 'from-emerald-500 to-teal-600' },
                                     ]

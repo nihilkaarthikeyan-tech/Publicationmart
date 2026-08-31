@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Books;
 
 use App\Http\Controllers\Controller;
+use App\Rules\DocxMatchesBookSize;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -1891,8 +1892,14 @@ class FormattingToolController extends Controller
         }
 
         $request->validate([
-            // Laravel 'max' is in KB → 1 GB = 1,048,576 KB
-            'file' => 'required|file|mimes:docx|max:51200',
+            // Laravel 'max' is in KB → 51200 KB = 50 MB.
+            'file' => [
+                'required', 'file', 'mimes:docx', 'max:51200',
+                // Same promise as the design screen: a manuscript whose pages
+                // are not the book's trim size is refused rather than accepted
+                // and then printed wrong.
+                new DocxMatchesBookSize($book->book_size),
+            ],
         ]);
 
         $file = $request->file('file');
