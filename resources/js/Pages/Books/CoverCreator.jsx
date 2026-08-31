@@ -136,6 +136,57 @@ export default function CoverCreator({ book }) {
 
     const [selectedId, setSelectedId] = useState(null);
     const [selectedShapeId, setSelectedShapeId] = useState(null);
+
+    /* Multi-selection.
+       selectedId and selectedShapeId stay exactly as they were — they drive the
+       properties panel, which edits one thing at a time — and these hold the
+       whole selection alongside. Shift-click adds and removes; a plain click
+       still selects one, so nothing about the existing feel changes.
+       Everything that moves, deletes or duplicates reads these. */
+    const [selectedIds, setSelectedIds] = useState([]);
+    const [selectedShapeIds, setSelectedShapeIds] = useState([]);
+
+    /** Replace the whole selection with one element (or clear it). */
+    const selectOnlyText = (id) => {
+        setSelectedId(id);
+        setSelectedIds(id ? [id] : []);
+        setSelectedShapeId(null);
+        setSelectedShapeIds([]);
+    };
+
+    const selectOnlyShape = (id) => {
+        setSelectedShapeId(id);
+        setSelectedShapeIds(id ? [id] : []);
+        setSelectedId(null);
+        setSelectedIds([]);
+    };
+
+    /** Shift-click: add if absent, remove if present. */
+    const toggleTextInSelection = (id) => {
+        setSelectedIds((prev) => {
+            const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
+            // The properties panel only makes sense for a single element.
+            setSelectedId(next.length === 1 ? next[0] : null);
+            return next;
+        });
+    };
+
+    const toggleShapeInSelection = (id) => {
+        setSelectedShapeIds((prev) => {
+            const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
+            setSelectedShapeId(next.length === 1 ? next[0] : null);
+            return next;
+        });
+    };
+
+    const clearSelection = () => {
+        setSelectedId(null);
+        setSelectedShapeId(null);
+        setSelectedIds([]);
+        setSelectedShapeIds([]);
+    };
+
+    const selectionCount = selectedIds.length + selectedShapeIds.length;
     const [editingId, setEditingId] = useState(null); // For inline text editing
     const dragOffset = useRef({ x: 0, y: 0 });
     const inlineEditRef = useRef(null);
@@ -326,6 +377,18 @@ export default function CoverCreator({ book }) {
     const handleDragStart = (e, id) => {
         e.stopPropagation();
         const el = coverElements[id];
+
+        if (e.shiftKey) {
+            // Shift-click builds a selection; it must not start a drag, or the
+            // element being added would jump with the pointer.
+            toggleTextInSelection(id);
+            return;
+        }
+
+        // Dragging something outside the current selection starts a new one.
+        if (!selectedIds.includes(id)) {
+            selectOnlyText(id);
+        }
         // Calculate offset (click position vs element position) needed if we were using pixels,
         // but for % based simple drag, we just set dragging true.
         // For smoother drag, we'll store the mouse starting point.
@@ -392,13 +455,37 @@ export default function CoverCreator({ book }) {
         const deltaX = ((e.clientX - dragOffset.current.x) / container.width) * 100;
         const deltaY = ((e.clientY - dragOffset.current.y) / container.height) * 100;
 
-        setCoverElements(prev => ({
-            ...prev,
-            [activeId]: {
-                ...prev[activeId],
-                ...snapResult(prev, activeId, prev[activeId].x + deltaX, prev[activeId].y + deltaY)
-            }
-        }));
+        // Everything selected travels with the element under the pointer, by the
+        // same delta. Only the dragged one snaps — snapping each separately
+        // would tear a group apart the moment one member caught a guide.
+        const movingTextIds = selectedIds.includes(activeId) ? selectedIds : [activeId];
+
+        setCoverElements(prev => {
+            const anchor = snapResult(prev, activeId, prev[activeId].x + deltaX, prev[activeId].y + deltaY);
+            const appliedX = anchor.x - prev[activeId].x;
+            const appliedY = anchor.y - prev[activeId].y;
+
+            const next = { ...prev };
+            movingTextIds.forEach((id) => {
+                if (!next[id]) return;
+                next[id] = id === activeId
+                    ? { ...next[id], ...anchor }
+                    : { ...next[id], x: next[id].x + appliedX, y: next[id].y + appliedY };
+            });
+            return next;
+        });
+
+        // Shapes selected alongside move by the same amount.
+        if (selectedShapeIds.length) {
+            setShapeElements(prev => {
+                const next = { ...prev };
+                selectedShapeIds.forEach((id) => {
+                    if (!next[id]) return;
+                    next[id] = { ...next[id], x: next[id].x + deltaX, y: next[id].y + deltaY };
+                });
+                return next;
+            });
+        }
 
         // Reset drag origin for next frame
         dragOffset.current = { x: e.clientX, y: e.clientY };
@@ -704,6 +791,75 @@ export default function CoverCreator({ book }) {
     };
 
     // Delete shape
+    /**
+     * Remove everything selected in one step, with one confirmation rather than
+     * one per element.
+     */
+    const deleteSelection = () => {
+        const textIds = selectedIds.length ? selectedIds : (selectedId ? [selectedId] : []);
+        const shapeIds = selectedShapeIds.length ? selectedShapeIds : (selectedShapeId ? [selectedShapeId] : []);
+        const total = textIds.length + shapeIds.length;
+        if (!total) return;
+
+        if (textIds.length) {
+            setCoverElements((prev) => {
+                const next = { ...prev };
+                textIds.forEach((id) => delete next[id]);
+                saveHistory(next, undefined);
+                return next;
+            });
+        }
+        if (shapeIds.length) {
+            setShapeElements((prev) => {
+                const next = { ...prev };
+                shapeIds.forEach((id) => delete next[id]);
+                saveHistory(undefined, undefined, next);
+                return next;
+            });
+        }
+        clearSelection();
+    };
+
+    /** Copy everything selected, keeping the copies selected so they can be
+     *  dragged into place as a group straight away. */
+    const duplicateSelection = () => {
+        const stamp = Date.now().toString(36);
+        const newTextIds = [];
+        const newShapeIds = [];
+
+        if (selectedIds.length) {
+            setCoverElements((prev) => {
+                const next = { ...prev };
+                selectedIds.forEach((id) => {
+                    if (!prev[id]) return;
+                    const newId = `${id}_copy_${stamp}_${newTextIds.length}`;
+                    next[newId] = { ...JSON.parse(JSON.stringify(prev[id])), id: newId, x: prev[id].x + 5, y: prev[id].y + 5, isDragging: false };
+                    newTextIds.push(newId);
+                });
+                saveHistory(next, undefined);
+                return next;
+            });
+        }
+        if (selectedShapeIds.length) {
+            setShapeElements((prev) => {
+                const next = { ...prev };
+                selectedShapeIds.forEach((id) => {
+                    if (!prev[id]) return;
+                    const newId = `shape_copy_${stamp}_${newShapeIds.length}`;
+                    next[newId] = { ...JSON.parse(JSON.stringify(prev[id])), id: newId, x: prev[id].x + 5, y: prev[id].y + 5, isDragging: false };
+                    newShapeIds.push(newId);
+                });
+                saveHistory(undefined, undefined, next);
+                return next;
+            });
+        }
+
+        setSelectedIds(newTextIds);
+        setSelectedShapeIds(newShapeIds);
+        setSelectedId(newTextIds.length === 1 && !newShapeIds.length ? newTextIds[0] : null);
+        setSelectedShapeId(newShapeIds.length === 1 && !newTextIds.length ? newShapeIds[0] : null);
+    };
+
     const deleteShape = (id, skipConfirm = false) => {
         if (!id) return;
         if (!skipConfirm && !confirm('Are you sure you want to delete this shape?')) return;
@@ -720,6 +876,15 @@ export default function CoverCreator({ book }) {
     // Handle shape drag
     const handleShapeDragStart = (e, id) => {
         e.stopPropagation();
+
+        if (e.shiftKey) {
+            toggleShapeInSelection(id);
+            return;
+        }
+        if (!selectedShapeIds.includes(id)) {
+            selectOnlyShape(id);
+        }
+
         dragOffset.current = { x: e.clientX, y: e.clientY };
         setShapeElements(prev => ({
             ...prev,
@@ -1021,8 +1186,7 @@ export default function CoverCreator({ book }) {
                 if (showPreview) setShowPreview(false);
                 else if (showGuidelines) setShowGuidelines(false);
                 else {
-                    setSelectedId(null);
-                    setSelectedShapeId(null);
+                    clearSelection();
                     setEditingId(null);
                 }
                 return;
@@ -1042,16 +1206,14 @@ export default function CoverCreator({ book }) {
             // 3. DUPLICATE (Ctrl+D)
             if (isCtrl && e.key.toLowerCase() === 'd') {
                 e.preventDefault();
-                if (selectedId) duplicateElement(selectedId);
-                if (selectedShapeId) duplicateShape(selectedShapeId);
+                duplicateSelection();
                 return;
             }
 
-            // 4. DELETE
+            // 4. DELETE — the whole selection, not just the last thing clicked
             if (e.key === 'Delete' || e.key === 'Backspace') {
                 e.preventDefault();
-                if (selectedId) deleteElement(selectedId, true);
-                if (selectedShapeId) deleteShape(selectedShapeId, true);
+                deleteSelection();
                 return;
             }
 
@@ -2277,6 +2439,28 @@ export default function CoverCreator({ book }) {
                             </div>
                         </div>
 
+                        {selectionCount > 1 && (
+                            <div className="absolute -top-11 left-0 z-40 flex items-center gap-3 bg-oxblood text-paper text-xs font-bold px-3 py-2 rounded-lg shadow-lg">
+                                <span>{selectionCount} selected</span>
+                                <span className="opacity-60">drag to move together</span>
+                                <button
+                                    onClick={duplicateSelection}
+                                    className="underline underline-offset-2 hover:opacity-80"
+                                    title="Duplicate all selected"
+                                >
+                                    Duplicate
+                                </button>
+                                <button
+                                    onClick={deleteSelection}
+                                    className="underline underline-offset-2 hover:opacity-80"
+                                    title="Delete all selected"
+                                >
+                                    Delete
+                                </button>
+                                <button onClick={clearSelection} className="opacity-70 hover:opacity-100" title="Clear selection">&times;</button>
+                            </div>
+                        )}
+
                         {/* SNAP GUIDES — only while a drag is actually caught on one */}
                         {(snapGuides.x !== null || snapGuides.y !== null) && (
                             <div className="absolute inset-0 z-30 pointer-events-none" aria-hidden="true">
@@ -2323,7 +2507,7 @@ export default function CoverCreator({ book }) {
                                 }}
                             >
                                 {/* Selection Box UI (Canva-like Red Theme) */}
-                                {selectedId === key && (
+                                {(selectedId === key || selectedIds.includes(key)) && (
                                     <div className="absolute -inset-3 border-2 border-red-500 border-dashed pointer-events-none rounded-sm">
                                         {/* Corner Handles */}
                                         <div className="absolute -top-1.5 -left-1.5 w-3.5 h-3.5 bg-white border-2 border-red-500 rounded-full cursor-nw-resize pointer-events-auto hover:bg-red-50 transition" onPointerDown={(e) => handleTextResizeStart(e, key, 'nw')}></div>
@@ -2417,7 +2601,7 @@ export default function CoverCreator({ book }) {
                                 }}
                             >
                                 {/* Selection Box for Shapes */}
-                                {selectedShapeId === key && (
+                                {(selectedShapeId === key || selectedShapeIds.includes(key)) && (
                                     <div className="absolute -inset-2 border-2 border-blue-500 pointer-events-none rounded">
                                         <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-full cursor-nwse-resize"></div>
                                         <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-white border-2 border-blue-500 rounded-full cursor-nesw-resize"></div>
