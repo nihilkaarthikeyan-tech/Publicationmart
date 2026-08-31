@@ -56,6 +56,41 @@ function cropFrontCover(canvas, bookSize) {
     return out;
 }
 
+/**
+ * The faces a cover may be set in.
+ *
+ * All nine are already loaded by the site's stylesheet for its own pages, so
+ * offering them here costs no new request. The tool previously offered three
+ * generic families — serif, sans, mono — which is the difference between a
+ * designed cover and a default one.
+ *
+ * Stored values keep the old `font-serif` / `font-sans` / `font-mono` keys so
+ * covers saved before this still resolve.
+ */
+export const COVER_FONTS = [
+    { id: 'font-serif', label: 'Serif', stack: 'Georgia, serif', group: 'Classic' },
+    { id: 'eb-garamond', label: 'EB Garamond', stack: "'EB Garamond', Georgia, serif", group: 'Classic' },
+    { id: 'cormorant', label: 'Cormorant Garamond', stack: "'Cormorant Garamond', Georgia, serif", group: 'Classic' },
+    { id: 'lora', label: 'Lora', stack: "'Lora', Georgia, serif", group: 'Classic' },
+    { id: 'merriweather', label: 'Merriweather', stack: "'Merriweather', Georgia, serif", group: 'Classic' },
+    { id: 'playfair', label: 'Playfair Display', stack: "'Playfair Display', Georgia, serif", group: 'Display' },
+    { id: 'cinzel', label: 'Cinzel', stack: "'Cinzel', Georgia, serif", group: 'Display' },
+    { id: 'font-sans', label: 'Sans', stack: 'ui-sans-serif, system-ui, sans-serif', group: 'Modern' },
+    { id: 'open-sans', label: 'Open Sans', stack: "'Open Sans', ui-sans-serif, sans-serif", group: 'Modern' },
+    { id: 'roboto', label: 'Roboto', stack: "'Roboto', ui-sans-serif, sans-serif", group: 'Modern' },
+    { id: 'comic-neue', label: 'Comic Neue', stack: "'Comic Neue', ui-sans-serif, cursive", group: 'Informal' },
+    { id: 'font-mono', label: 'Mono', stack: 'ui-monospace, Consolas, monospace', group: 'Informal' },
+];
+
+/**
+ * One resolver for every place a font is drawn — the editable canvas, the
+ * selection outline, the preview and the hidden capture that becomes the saved
+ * cover. They used to each carry their own ternary, and the capture's had lost
+ * its monospace branch, so a cover set in Mono exported as Sans.
+ */
+export const resolveFont = (id) =>
+    COVER_FONTS.find((f) => f.id === id)?.stack ?? 'ui-sans-serif, system-ui, sans-serif';
+
 export default function CoverCreator({ book }) {
     // Save states
     const [saveStatus, setSaveStatus] = useState('saved'); // 'saved', 'saving', 'error'
@@ -136,6 +171,44 @@ export default function CoverCreator({ book }) {
     // Auto-save function
     // Auto-save function with Image Capture
     // Auto-save function with Image Capture
+    /**
+     * Hand the author the cover file.
+     *
+     * There was no way to get a cover out of the tool at all — an author could
+     * design one and then have nothing to send a printer or use in an ad. This
+     * renders the same spread the save path does and crops the same front panel,
+     * so what downloads is exactly what the store will show.
+     */
+    const downloadCover = async () => {
+        if (!captureRef.current) return;
+        setSaveStatus('saving');
+        try {
+            const canvas = await html2canvas(captureRef.current, {
+                useCORS: true,
+                scale: 1.5,
+                backgroundColor: '#ffffff',
+            });
+            const front = cropFrontCover(canvas, book.book_size);
+            const blob = await new Promise((resolve) => front.toBlob(resolve, 'image/png'));
+            if (!blob) throw new Error('could not render the cover');
+
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const slug = String(book.title || 'cover').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+            a.href = url;
+            a.download = `${slug || 'cover'}-front-cover.png`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(url);
+            setSaveStatus('saved');
+        } catch (e) {
+            console.error('Cover download failed', e);
+            alert('The cover could not be prepared for download. Please try again.');
+            setSaveStatus('idle');
+        }
+    };
+
     const saveCoverData = useCallback(async () => {
         setSaveStatus('saving');
         try {
@@ -1367,6 +1440,13 @@ export default function CoverCreator({ book }) {
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <button
+                                                onClick={() => duplicateElement(selectedId)}
+                                                className="p-1.5 text-ink-soft hover:text-oxblood hover:bg-oxblood/10 rounded transition"
+                                                title="Duplicate element"
+                                            >
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V5a1 1 0 011-1h10a1 1 0 011 1v10a1 1 0 01-1 1h-2M5 8h10a1 1 0 011 1v10a1 1 0 01-1 1H5a1 1 0 01-1-1V9a1 1 0 011-1z"></path></svg>
+                                            </button>
+                                            <button
                                                 onClick={() => deleteElement(selectedId)}
                                                 className="p-1.5 text-red-700 hover:text-red-600 hover:bg-red-50 rounded transition"
                                                 title="Delete Element"
@@ -1474,9 +1554,17 @@ export default function CoverCreator({ book }) {
                                             onChange={(e) => updateElementStyle('fontFamily', e.target.value)}
                                             className="w-full text-sm border-gray-200 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                                         >
-                                            <option value="font-serif">Serif (Classic)</option>
-                                            <option value="font-sans">Sans (Modern)</option>
-                                            <option value="font-mono">Mono (Code)</option>
+                                            {['Classic', 'Display', 'Modern', 'Informal'].map((group) => (
+                                                <optgroup key={group} label={group}>
+                                                    {COVER_FONTS.filter((f) => f.group === group).map((f) => (
+                                                        // Each name is shown in its own face, so the list
+                                                        // is a specimen sheet rather than a list of words.
+                                                        <option key={f.id} value={f.id} style={{ fontFamily: f.stack }}>
+                                                            {f.label}
+                                                        </option>
+                                                    ))}
+                                                </optgroup>
+                                            ))}
                                         </select>
                                     </div>
 
@@ -1636,8 +1724,16 @@ export default function CoverCreator({ book }) {
                                         <h3 className="text-sm font-bold text-indigo-700">Editing Shape</h3>
                                         <div className="flex gap-2">
                                             <button
+                                                onClick={() => duplicateShape(selectedShapeId)}
+                                                className="p-1.5 text-ink-soft hover:text-oxblood hover:bg-oxblood/10 rounded"
+                                                title="Duplicate shape"
+                                            >
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V5a1 1 0 011-1h10a1 1 0 011 1v10a1 1 0 01-1 1h-2M5 8h10a1 1 0 011 1v10a1 1 0 01-1 1H5a1 1 0 01-1-1V9a1 1 0 011-1z"></path></svg>
+                                            </button>
+                                            <button
                                                 onClick={() => deleteShape(selectedShapeId)}
                                                 className="p-1.5 text-red-700 hover:text-red-600 hover:bg-red-50 rounded"
+                                                title="Delete shape"
                                             >
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                                             </button>
@@ -2025,6 +2121,16 @@ export default function CoverCreator({ book }) {
                             Preview
                         </button>
 
+                        {/* Download — the author's own copy of the finished front cover */}
+                        <button
+                            onClick={downloadCover}
+                            title="Download the front cover as a PNG"
+                            className="bg-paper hover:bg-vellum text-ink-soft hover:text-oxblood border border-linen text-sm font-bold px-4 py-2.5 rounded-lg transition-colors flex items-center gap-2"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3.5v12M8 12l4 4 4-4M4 15v4a1.5 1.5 0 001.5 1.5h13A1.5 1.5 0 0020 19v-4"></path></svg>
+                            <span className="hidden sm:inline">Download</span>
+                        </button>
+
                         {/* Save Button */}
                         <button
                             onClick={async () => {
@@ -2262,7 +2368,7 @@ export default function CoverCreator({ book }) {
                                         style={{
                                             fontSize: `${el.fontSize}px`,
                                             color: el.color,
-                                            fontFamily: el.fontFamily === 'font-serif' ? 'serif' : el.fontFamily === 'font-mono' ? 'monospace' : 'sans-serif',
+                                            fontFamily: resolveFont(el.fontFamily),
                                             textAlign: el.textAlign || 'center',
                                             fontWeight: el.fontWeight || 'normal',
                                             fontStyle: el.fontStyle || 'normal',
@@ -2277,7 +2383,7 @@ export default function CoverCreator({ book }) {
                                         style={{
                                             fontSize: `${el.fontSize}px`,
                                             color: el.color,
-                                            fontFamily: el.fontFamily === 'font-serif' ? 'serif' : el.fontFamily === 'font-mono' ? 'monospace' : 'sans-serif',
+                                            fontFamily: resolveFont(el.fontFamily),
                                             textAlign: el.textAlign || 'center',
                                             fontWeight: el.fontWeight || 'normal',
                                             fontStyle: el.fontStyle || 'normal',
@@ -2502,7 +2608,7 @@ export default function CoverCreator({ book }) {
                                             <div style={{
                                                 fontSize: `${(el.fontSize / 600) * 550}px`, // Scale font size to match preview height
                                                 color: el.color,
-                                                fontFamily: el.fontFamily === 'font-serif' ? 'serif' : el.fontFamily === 'font-mono' ? 'monospace' : 'sans-serif',
+                                                fontFamily: resolveFont(el.fontFamily),
                                                 fontWeight: el.fontWeight,
                                                 textAlign: el.textAlign || 'center',
                                                 lineHeight: el.lineHeight || 1.4,
@@ -2763,7 +2869,7 @@ export default function CoverCreator({ book }) {
                                 <div style={{
                                     fontSize: `${el.fontSize * 1.66}px`, // Scaled for 1500px width (1.66x of 900px)
                                     color: el.color,
-                                    fontFamily: el.fontFamily === 'font-serif' ? 'serif' : 'sans-serif',
+                                    fontFamily: resolveFont(el.fontFamily),
                                     fontWeight: el.fontWeight,
                                     textShadow: !key.includes('back') ? '0 3px 6px rgba(0,0,0,0.6)' : 'none',
                                     textAlign: el.textAlign || 'center',
