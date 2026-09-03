@@ -12,11 +12,18 @@ set -euo pipefail
 
 REMOTE="publicationmart"
 
-# The staging subdomain's document root. Create the subdomain in hPanel first;
-# Hostinger makes the folder for you. If your panel reports a different path,
-# change it here — the guard below will catch a path that overlaps the live
-# site either way.
-RPATH="domains/beta.publicationmart.com/public_html"
+# The staging subdomain's document root.
+#
+# Hostinger's Subdomains page can only create folders underneath public_html,
+# so staging necessarily lives inside the live site's directory tree. Two facts
+# make that safe, and they were both checked rather than assumed:
+#
+#   - tar -C extracts relative paths into RPATH. Nothing in a git-tracked file
+#     list begins with ../, so an upload physically cannot climb out of it.
+#   - the live site's root .htaccess rewrites every request into public/, so
+#     publicationmart.com/beta resolves to public/beta and returns 404.
+#     Staging is reachable only through beta.publicationmart.com.
+RPATH="domains/publicationmart.com/public_html/beta"
 
 LIVE_PATH="domains/publicationmart.com/public_html"
 
@@ -31,11 +38,16 @@ done
 
 cd "$(dirname "$0")"
 
-# Guard 1: never write to the live site from this script, whatever RPATH says.
-if [ "$RPATH" = "$LIVE_PATH" ] || [ "${RPATH#$LIVE_PATH}" != "$RPATH" ]; then
-  echo "!! RPATH points at the live site. This script only deploys staging."
+# Guard 1: the live application root is never a valid target. A folder beneath
+# it is (see the note on RPATH above); the root itself, or any path that would
+# contain it, is not.
+if [ "$RPATH" = "$LIVE_PATH" ] || [ "$RPATH" = "$LIVE_PATH/" ]; then
+  echo "!! RPATH is the live application root. Refusing."
   exit 1
 fi
+case "$LIVE_PATH" in
+  "$RPATH"/*) echo "!! RPATH contains the live site. Refusing."; exit 1 ;;
+esac
 
 # Guard 2: main belongs on the live site, deployed by deploy.sh. Staging exists
 # to show work that is NOT yet on main, so deploying main here is a mistake.
@@ -89,6 +101,20 @@ fi
 if ! ssh "$REMOTE" "[ -d $RPATH ]"; then
   echo "!! $RPATH does not exist on the server."
   echo "   Create the subdomain in Hostinger's hPanel first, then re-run."
+  exit 1
+fi
+
+# The path check above is textual. This one asks the server: resolve both
+# directories and refuse if they turn out to be the same place — a symlink or a
+# mistyped path that textual comparison would not catch.
+if ssh "$REMOTE" "[ \"\$(readlink -f $RPATH)\" = \"\$(readlink -f $LIVE_PATH)\" ]"; then
+  echo "!! $RPATH resolves to the live site on the server. Refusing."
+  exit 1
+fi
+
+# The live site must own an artisan file; staging must not be sharing it.
+if ssh "$REMOTE" "[ -f $RPATH/artisan ] && [ $RPATH/artisan -ef $LIVE_PATH/artisan ]"; then
+  echo "!! $RPATH/artisan is the same file as the live site's. Refusing."
   exit 1
 fi
 
