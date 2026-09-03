@@ -15,6 +15,7 @@
 /bootstrap/cache/*
 .env
 .env.backup
+.env.demo-backup   # written by share-demo.ps1; holds live credentials
 .phpunit.result.cache
 error_log
 npm-debug.log

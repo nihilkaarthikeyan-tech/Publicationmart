@@ -11,6 +11,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        /*
+         * Anything in front of the app that terminates HTTPS — a tunnel used to
+         * demo the site, a load balancer later — forwards the original scheme in
+         * X-Forwarded-*. Without trusting those headers Laravel believes every
+         * request arrived over plain http and writes http:// into its own links
+         * and asset tags, which a browser on an https page then refuses to load.
+         */
+        $middleware->trustProxies(at: '*');
+
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
             \App\Http\Middleware\HandleReferralCode::class, // Capture referral codes
